@@ -1,0 +1,10 @@
+# Sync components
+
+  steps:
+    - script: '"$(FsiPath)" "$(DaxifPath)/PluginSyncDev.fsx" $(AuthParams)'
+      displayName: 'PluginSyncDev'
+
+    - script: '"$(FsiPath)" "$(DaxifPath)/WebresourceSyncDev.fsx" $(AuthParams)'
+      displayName: 'WebResourceSyncDev'
+
+

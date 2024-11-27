@@ -1,0 +1,51 @@
+parameters:
+  environment: ''
+  serviceConnectionName: ''
+
+jobs:
+- job: Build
+  displayName: 'Build Job'
+  steps:
+    - script: echo "Building the application..."
+      displayName: 'Execute build'
+
+- deployment: Deploy_Infrastructure
+  displayName: 'Deploy Infrastructure'
+  condition: eq(${{parameters.params.deployInfrastructure}}, true)
+  environment: ${{ parameters.environment }}
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+          - download: current
+            artifact: drop
+            displayName: Download artifacts      
+          - task: AzurePowerShell@5
+            displayName: 'Deploy Azure Infrastructure'
+            inputs:
+              connectedServiceNameARM: ${{ parameters.serviceConnectionName }}
+              azurePowerShellVersion: 'LatestVersion'
+              ScriptPath: '$(Pipeline.Workspace)/drop/deploy/deploy.ps1'
+              ScriptArguments: 
+                -resourceGroupName $(ResourceGroupName) `
+                -template '$(Pipeline.Workspace)/drop/deploy/main.bicep' `
+                -Parameters '$(Pipeline.Workspace)/drop/deploy/params/main.${{lower(parameters.environment)}}.parameters.json' `
+                -DataverseUrl $(DataverseURL) `
+                -DataverseClientId $(DataverseAppId) `
+                -DataverseClientSecret $(DataverseSecret) `
+                -CvrUsername $(CvrUsername) `
+                -CvrPassword $(CvrPassword) `
+                -WebAppClientSecret $(WebAppClientSecret) `
+                -ManagedIdentitiesForExternal '$(ManagedIdentitiesForExternal)' `
+                -cprDisabled $(cprDisabled) `
+                -cprKey $(cprKey) `
+                -cprCustomerNumber $(cprCustomerNumber) `
+                -cprConnectionString $(cprConnectionString) `
+                -cprFTPUser $(cprFTPUser) `
+                -cprFTPPassword $(cprFTPPassword) `
+                -cprDeployPackageUrl '$(cprDeployPackageUrl)' `
+                -farPayApiKey '$(FarPayApiKey)' `
+                -DMAzureSqlConnectionString '$(DMAzureSqlConnectionString)' `
+                -getPaymentsFromFarpayDisabled $(getPaymentsFromFarpayDisabled) `
+                -existingAppClientId $(AzureClientId) `
+                -existingAppClientObjectId $(AzureClientObjectId) 

@@ -1,0 +1,67 @@
+parameters:
+  environment:
+  dataverseEnv:
+  powerPlatformSPN:
+  dependsOn:
+  params:
+
+stages:
+- stage: Deploy_${{parameters.environment}}
+  displayName: Deploy to ${{parameters.environment}}
+  dependsOn: ${{parameters.dependsOn}}
+  variables:
+    - group: ${{parameters.environment}}
+  jobs:
+  - deployment: Deploy_${{parameters.environment}}_Approval
+    environment: ${{parameters.environment}}
+    displayName: Deploy Approval
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Approved
+        
+  - template: Azure/deploy-Infrastructure.yml
+    parameters:
+      environment: ${{parameters.environment}}
+      serviceConnectionName: '${{upper(parameters.environment)}}'
+      params: ${{parameters.params}}
+    
+  - template: Azure/deploy-FA.yml
+    parameters:
+      environment: ${{parameters.environment}}
+      serviceConnectionName: '${{upper(parameters.environment)}}'
+      params: ${{parameters.params}}
+
+  - template: Azure/deploy-AS.yml
+    parameters:
+      environment: ${{parameters.environment}}
+      serviceConnectionName: '${{upper(parameters.environment)}}'
+      params: ${{parameters.params}}
+
+  - job: Deploy_Dataverse
+    displayName: Deploy Dataverse ${{parameters.dataverseEnv}}
+    pool: 
+      vmImage: "windows-latest"
+    condition: eq(${{parameters.params.deployDataverse}}, true)
+    steps:
+      - download: current
+        artifact: Scripts
+        displayName: Download artifacts                
+      - template: Dataverse/Templates/import-solution-separate-steps.yml
+        parameters:
+          environment: ${{parameters.dataverseEnv}}
+          powerPlatformSPN: ${{parameters.powerPlatformSPN}}
+
+  - job: Set_Config
+    displayName: Set Config ${{parameters.environment}}
+    dependsOn: Deploy_Infrastructure
+    condition: and(eq(${{ parameters.params.deployDataverse }}, true),eq(${{ parameters.params.deployInfrastructure }}, true))
+    pool: 
+      vmImage: "windows-latest"
+    steps:
+    - download: current
+      artifact: Scripts
+    - template: Dataverse/Templates/set-config.yml
+      parameters:
+        environment: ${{parameters.environment}}

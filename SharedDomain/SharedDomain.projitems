@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>2d20c6e0-4e49-4f76-a1fd-3675305a500c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedDomain</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CultureInfoHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomerArea\DemoAccountMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILoggingComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LoggingComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueueNames.cs" />
+  </ItemGroup>
+</Project>

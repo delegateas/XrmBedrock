@@ -1,0 +1,6 @@
+steps:
+  - template: Templates/sync.yml
+  - template: Templates/publish-all.yml
+  - template: Templates/export-solution.yml
+  - template: Templates/publish-artifacts.yml     
+      

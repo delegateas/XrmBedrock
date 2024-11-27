@@ -1,0 +1,24 @@
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish'
+    inputs:
+      command: publish   
+      publishWebProjects: false
+      projects: |
+          Azure/src/*/*.csproj
+        
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
+
+  - task: CopyFiles@2
+    displayName: 'Copy deployment files Infra'
+    inputs:
+      SourceFolder: 'Infrastructure'
+      contents: |
+        **/*
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'

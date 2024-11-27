@@ -1,0 +1,1021 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Delegate.Daxif</name></assembly>
+<members>
+<member name="T:DG.Daxif.AsyncJobState">
+<summary>
+ State of asynchronous job
+</summary>
+</member>
+<member name="T:DG.Daxif.CrmReleases">
+<summary>
+ CRM Releases
+ Newer versions have higher values
+</summary>
+</member>
+<member name="T:DG.Daxif.WebResourceType">
+<summary>
+ Matches CRM2011/2013 OptionSet values
+</summary>
+</member>
+<member name="T:DG.Daxif.Serialize">
+<summary>
+ Represents what type of serialization should be done to encode/decode files
+</summary>
+</member>
+<member name="F:DG.Daxif.LogLevel.Debug">
+<summary>
+ Indicates logs for debugging
+</summary>
+</member>
+<member name="F:DG.Daxif.LogLevel.Verbose">
+<summary>
+ Indicates logs at all levels.
+</summary>
+</member>
+<member name="F:DG.Daxif.LogLevel.Info">
+<summary>
+ Indicates logs for an informational message.
+</summary>
+</member>
+<member name="F:DG.Daxif.LogLevel.Warning">
+<summary>
+ Indicates logs for a warning.
+</summary>
+</member>
+<member name="F:DG.Daxif.LogLevel.Error">
+<summary>
+ Indicates logs for an error.
+</summary>
+</member>
+<member name="T:DG.Daxif.LogLevel">
+<summary>
+ Defines the level of logging which should be done for specific message.
+</summary>
+</member>
+<member name="M:DG.Daxif.Environment.getCreds">
+<summary>
+ Gets credentials for the given environment
+</summary>
+</member>
+<member name="M:DG.Daxif.Environment.executeProcess``1(System.String,Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Core.FSharpFunc{System.Tuple{System.String,System.String},System.String}})">
+<summary>
+ Runs an executable with the given arguments and also passes on necessary login details for CRM if specified
+</summary>
+</member>
+<member name="M:DG.Daxif.Environment.connect(Microsoft.FSharp.Core.FSharpOption{DG.Daxif.ConsoleLogger})">
+<summary>
+ Connects to the given environment
+</summary>
+</member>
+<member name="M:DG.Daxif.Environment.Get(System.String)">
+<summary>
+ Gets the environment with the given name, if one exists
+</summary>
+</member>
+<member name="M:DG.Daxif.Environment.Create(System.String,Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.ConnectionType},Microsoft.FSharp.Core.FSharpOption{Microsoft.Xrm.Sdk.Client.AuthenticationProviderType},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Credentials},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String[]})">
+<summary>
+ Creates a new environment using the credentials and arguments given
+</summary>
+</member>
+<member name="T:DG.Daxif.Environment">
+<summary>
+ Describes a connection to a Dynamics 365/CRM environment
+</summary>
+</member>
+<member name="M:DG.Daxif.Connection.GetService(Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+<summary>
+ Connects to the environment and returns IOrganizationService
+</summary>
+</member>
+<member name="M:DG.Daxif.Connection.GetProxy(Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+<summary>
+ Connects to the environment and returns an OrganizationServiceProxy
+</summary>
+</member>
+<member name="M:DG.Daxif.Connection.GetCrmServiceClient(Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+<summary>
+ Connects to the environment and returns a CrmServiceClient
+</summary>
+</member>
+<member name="M:DG.Daxif.Connection.Connect(DG.Daxif.Environment)">
+<summary>
+ Creates a connection with the given credentials
+</summary>
+</member>
+<member name="T:DG.Daxif.Connection">
+<summary>
+ Used to get new proxy connections to a CRM environment
+</summary>
+</member>
+<member name="M:DG.Daxif.Credentials.getValues">
+<summary>
+ Gets the raw credential values from this credential key
+</summary>
+</member>
+<member name="M:DG.Daxif.Credentials.FromKey(System.String)">
+<summary>
+ Gets credentials from a given identification key
+</summary>
+</member>
+<member name="M:DG.Daxif.Credentials.Create(Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Constructs credential with the given username, password, and domain
+</summary>
+</member>
+<member name="T:DG.Daxif.Credentials">
+<summary>
+ Manages credentials used for connecting to a CRM environment
+</summary>
+</member>
+<member name="M:DG.Daxif.Data.Import``1(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Serialize},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.FSharp.Collections.FSharpMap{System.Guid,System.Guid}}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpMap{System.String,``0}},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.String[]},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Imports data from a given file.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToData">A relative or absolute path to a data import file.</param>
+ <param name="serialize">Serialization format ('BIN', 'XML' or 'JSON') - defaults to: 'JSON'</param>
+ <param name="guidRemapping">Guid remapping map</param>
+ <param name="additionalAttributes">Additional attributes to include in data import</param>
+ <param name="includeAttributes">Flag whether or not to include attributes in data import - defaults to: true</param>
+ <param name="includeReferences">Flag whether or not to include references (lookup attributes) in data import - defaults to: true</param>
+ <param name="referenceFilter">List of filtering which lookup attributes to include in data import (based on logical name)</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Data.Export(DG.Daxif.Environment,System.String[],System.String,Microsoft.FSharp.Core.FSharpOption{System.DateTime},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Exports data from given entities to a file.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="entityNames">List of entity logical names to include in data export.</param>
+ <param name="pathToOutputFile">A relative or absolute path to a data export output file.</param>
+ <param name="deltaFromDate">Export only entities with modified on or later than date given as DateTime.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Data.Count(DG.Daxif.Environment,System.String[],Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Counts the amount of records for the given entity logical names.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="entityNames">List of entity logical names to include in record count.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Plugin.Sync(DG.Daxif.Environment,System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.AssemblyIsolationMode},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Updates plugin registrations in CRM based on the plugins found in your local assembly.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="assemblyPath">Path to the plugin assembly dll to be synced (usually under the project bin folder).</param>
+ <param name="projectPath">Path to the plugin assembly project (.csproj).</param>
+ <param name="solutionName">The name of the solution to which to sync plugins</param>
+ <param name="dryRun">Flag whether or not to simulate/test syncing plugins (running a 'dry run'). - defaults to: false</param>
+ <param name="isolationMode">Assembly Isolation Mode ('Sandbox' or 'None'). All Online environments must use 'Sandbox' - defaults to: 'Sandbox'</param>
+ <param name="ignoreOutdatedAssembly">Flag whether or not to simulate/test syncing plugins (running a 'dry run'). - defaults to: false</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Plugin.EnableSolutionPluginSteps(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Activates or deactivates all plugin steps of a solution</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="solutionName">The name of the solution in which to enable or disable all plugins</param>
+ <param name="enable">Flag whether to enable or disable all solution plugins. - defaults to: true</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Solution.UpdateVersionNumber(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.VersionIncrement})">
+ <summary>Updates the version number of a solution by the given increment, defaults to revision number</summary>
+</member>
+<member name="M:DG.Daxif.Solution.PublishAll(DG.Daxif.Environment,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+ <summary>Publish all customization. Not necessary after a import of an managed solution</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug</param>
+ <param name="timeOut">DataVerse Service Client timeout represented as a TimeSpan. - defaults to: 15 minutes</param>
+ <remarks>Due to Microsoft's PublishAll API Message often timing out first time after a Solution Import (although publish went through server-side), this function will retry once after timeout failure.</remarks>
+</member>
+<member name="M:DG.Daxif.Solution.Pack(System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Packs a solution package using the SolutionPackager</summary>
+</member>
+<member name="M:DG.Daxif.Solution.Import(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.DiffImportCallingInfo},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+ <summary>Imports a solution package from a given environment</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToSolutionZip">A relative or absolute path to solution file.</param>
+ <param name="activatePluginSteps">Flag whether or not to enable all solution plugins. - defaults to: false</param>
+ <param name="extended">Flag whether or not to enable Delegate Extended Solution functionality. - defaults to: false</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+ <param name="diffCallingInfo">[Experimental] When specified, a diff import will be performed. Assumes exportdiff has been used prior.</param>
+ <param name="publishAfterImport">Flag whether or not to publish all customizations after solution import. - defaults to: true</param>
+ <param name="reassignWorkflows">Flag whether to reassign workflows based on environment from which the solution was exported. - defaults to: false</param>
+ <param name="timeOut">DataVerse Service Client timeout represented as a TimeSpan. - defaults to: 1 hour</param>
+</member>
+<member name="M:DG.Daxif.Solution.GenerateXrmMockupMetadata(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}}},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Generates XrmMockup Metadata from a given environment and settings using XrmMockup's MetadataGenerator</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToXrmMockupGenerator">A relative or absolute path to XrmMockup executable.</param>
+ <param name="outputDir">The directory under which the XrmMockup Metadata will be saved.</param>
+ <param name="solutions">List of solutions to include in XrmMockup Metadata.</param>
+ <param name="entities">List of entities to include in XrmMockup Metadata.</param>
+ <param name="extraArguments">Extra command-line arguments to pass to XrmMockup executable.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Solution.GenerateTypeScriptContext(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}}},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Generates TypeScript context from a given environment and settings using XrmDefinitelyTyped (XDT)</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToXDT">A relative or absolute path to XrmDefinitelyTyped (XDT) executable.</param>
+ <param name="outputDir">The directory under which the TypeScript Context will be saved.</param>
+ <param name="solutions">List of solutions to include in TypeScript Context.</param>
+ <param name="entities">List of entities to include in TypeScript Context.</param>
+ <param name="extraArguments">Extra command-line arguments to pass to XrmDefinitelyTyped (XDT) executable.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Solution.GenerateCSharpContext(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}}},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Generates C# context from a given environment and settings using XrmContext</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToXrmContext">A relative or absolute path to XrmContext executable.</param>
+ <param name="outputDir">The directory under which the C# Context will be saved.</param>
+ <param name="solutions">List of solutions to include in C# Context.</param>
+ <param name="entities">List of entities to include in C# Context.</param>
+ <param name="extraArguments">Extra command-line arguments to pass to XrmContext executable.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Solution.Extract(System.String,System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Extracts a solution package using the SolutionPackager</summary>
+</member>
+<member name="M:DG.Daxif.Solution.Export``2(DG.Daxif.Environment,System.String,System.String,System.Boolean,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpOption{``1},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.DiffExportCallingInfo},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+ <summary>Exports a solution package from a given environment</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="solutionName">The name of the solution to export.</param>
+ <param name="outputDirectory">The directory to which the solution file will be saved.</param>
+ <param name="managed">Flag whether to export as Managed or Unmanaged solution.</param>
+ <param name="extended">Flag whether or not to enable Delegate Extended Solution functionality. - defaults to: false</param>
+ <param name="deltaFromDate">N/A - Not used</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+ <param name="diffCallingInfo">[Experimental] When specified, a diff export happens with env as source and diffCallingInfo.TargetEnv as target</param>
+ <param name="async">Flag whether to execute solution export asynchronously. - defaults to: false</param>
+ <param name="timeOut">DataVerse Service Client timeout represented as a TimeSpan. - defaults to: 1 hour</param>
+</member>
+<member name="M:DG.Daxif.Solution.EnablePluginSteps(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Activates or deactivates all plugin steps of a solution</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="solutionName">The name of the solution in which to enable or disable all plugins</param>
+ <param name="enable">Flag whether to enable or disable all solution plugins. - defaults to: true</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Solution.CreatePublisher(DG.Daxif.Environment,System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Creates a publisher in the given environment</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="name">Desired Publisher Name</param>
+ <param name="displayName">Desired Publisher Display Name</param>
+ <param name="prefix">Desired Publisher Prefix</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Solution.Create(DG.Daxif.Environment,System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Creates a solution in the given environment</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="name">Desired Solution Name</param>
+ <param name="displayName">Desired Solution Display Name</param>
+ <param name="publisherPrefix">Desired Publisher Prefix (must be an existing publisher in the environment)</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Solution.Count(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Counts the amount of entities in a solution</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="solutionName">The name of the solution for which to count entities.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.ExtendedSolution.PreImport(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+ <summary>Starts pre-import task for an extended solution. Run this before solution import</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToSolutionZip">A relative or absolute path to solution file.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+ <param name="timeOut">DataVerse Service Client timeout represented as a TimeSpan. - defaults to: 1 hour</param>
+</member>
+<member name="M:DG.Daxif.ExtendedSolution.PostImport(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+ <summary>Starts post-import task for an extended solution. Run this after solution import</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToSolutionZip">A relative or absolute path to solution file.</param>
+ <param name="reassignWorkflows">Flag whether to reassign workflows based on environment from which the solution was exported. - defaults to: false</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+ <param name="timeOut">DataVerse Service Client timeout represented as a TimeSpan. - defaults to: 1 hour</param>
+</member>
+<member name="M:DG.Daxif.ExtendedSolution.Export(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+ <summary>Extends an exported solution package from a given environment. Run this after solution export</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="pathToSolutionZip">A relative or absolute path to solution file.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+ <param name="timeOut">DataVerse Service Client timeout represented as a TimeSpan. - defaults to: 1 hour</param>
+</member>
+<member name="M:DG.Daxif.Translations.Import(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Imports translations to a given solution from a given directory.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="solutionName">The name of the solution to which to import translations.</param>
+ <param name="outputDir">The directory from which the translation file will be loaded.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Translations.Export(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Exports translations from a given solution to a given directory.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="solutionName">The name of the solution from which to export translations.</param>
+ <param name="outputDir">The directory into which the translation file will be saved (SolutionName + '_Translations.xip').</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.WebResource.Sync(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{System.String})">
+ <summary>Updates the web resources in CRM based on the ones from your local web resource root.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="webresourceRoot">Root folder of the Web Resources project.</param>
+ <param name="solutionName">The name of the solution to which to sync web resources</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+ <param name="patchSolutionName">The name of the patch solution to which to sync web resources.</param>
+</member>
+<member name="M:DG.Daxif.Workflow.Sync(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.AssemblyIsolationMode},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Synchronizes all CodeActivities found in your local assembly to CRM.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="assemblyPath">Path to the workflow activity assembly dll to be synced (usually under the project bin folder).</param>
+ <param name="solutionName">The name of the solution to which to sync workflow activities</param>
+ <param name="isolationMode">Assembly Isolation Mode ('Sandbox' or 'None'). All Online environments must use 'Sandbox' - defaults to: 'Sandbox'</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.View.GenerateFiles(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{System.String[]},Microsoft.FSharp.Core.FSharpOption{System.String[]},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Generates the files needed for View Extender</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="daxifRoot">Daxif script folder.</param>
+ <param name="entities">List of entities to include in View Extender files.</param>
+ <param name="solutions">List of solutions to include in View Extender files.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Info.RetrieveVersion(DG.Daxif.Environment,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
+ <summary>Retrieves the CRM version of the targeted environment.</summary>
+ <param name="env">Environment the action should be performed against.</param>
+ <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
+</member>
+<member name="M:DG.Daxif.Common.FSharpCoreExt.Array.binExists``1(``0,``0[])">
+<summary>
+ Array must be sorted
+</summary>
+</member>
+<member name="T:DG.Daxif.Common.Utility.MapDiff`3">
+<summary>
+ Holds the result of a map diff
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.getLoadableTypes(System.Reflection.Assembly,DG.Daxif.ConsoleLogger)">
+<summary>
+ Gets the loadable types from the given assembly 
+ (skipping types that cannot be loaded and would otherwise throw exceptions)
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.getVersionIncrement(System.String)">
+<summary>
+ Parses a string to a version increment, which is either &quot;major&quot;, &quot;minor&quot;, &quot;build&quot;, or &quot;revision&quot;
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.matchesVersionCriteria(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.FSharp.Core.FSharpOption{System.Tuple{System.Int32,System.Int32,System.Int32,System.Int32}},Microsoft.FSharp.Core.FSharpOption{System.Tuple{System.Int32,System.Int32,System.Int32,System.Int32}})">
+<summary>
+ Check if the version matches the version criteria
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_DotLess(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+<summary>
+ Version less than
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_DotGreater(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+<summary>
+ Version greater than
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_DotLessEquals(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+<summary>
+ Version less than or equal to
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_DotGreaterEquals(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+<summary>
+ Version greater than or equal to
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.parseVersion(System.String)">
+<summary>
+ Parses a string into a Version
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.parseInt(System.String)">
+<summary>
+ Parses a string to a Maybe int
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.addEndingToFilename(System.String,System.String)">
+<summary>
+ Adds specified ending to the end of the filename found in the path
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.alterFilenameInPath(System.String,Microsoft.FSharp.Core.FSharpFunc{System.String,System.String})">
+<summary>
+ Alters a given filename of a path with the mapping function
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.tryFindArgOpt``2(System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpMap{``0,``1}})">
+<summary>
+ Tries to find an argument that matches one of the specified strings in the toFind parameter on an optional map 
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.tryFindArg``2(System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ Tries to find an argument that matches one of the specified strings in the toFind parameter
+</summary>
+</member>
+<member name="P:DG.Daxif.Common.Utility.parseArgs">
+<summary>
+ Parses an array of argument
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.parseArg(System.String)">
+<summary>
+ Parses an argument
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.|ParseRegex|_|(System.String,System.String)">
+<summary>
+ Active pattern to match regular expressions
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.getFullException(System.Exception)">
+<summary>
+ Converts an exception to stringm including all inner exception messages
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.timeStamp''">
+<summary>
+ Only date
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.timeStamp'">
+<summary>
+ Filename safe
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.timeStamp">
+<summary>
+ ISO-8601
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.unionToString``1(``0)">
+<summary>
+ Union to string
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.printMergePartition``2(System.String,Microsoft.FSharp.Collections.FSharpMap{System.String,``0},Microsoft.FSharp.Collections.FSharpMap{System.String,``1},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Boolean}},DG.Daxif.ConsoleLogger)">
+<summary>
+ Prints sizes of a mergePartition
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.mapDiff``3(Microsoft.FSharp.Collections.FSharpMap{``0,``1},Microsoft.FSharp.Collections.FSharpMap{``0,``2},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,System.Boolean}})">
+<summary>
+ Merges/partitions two maps based their keys
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.mapKeyIntersect``3(Microsoft.FSharp.Collections.FSharpMap{``0,``1},Microsoft.FSharp.Collections.FSharpMap{``0,``2})">
+<summary>
+ Intersects two maps based on their keys
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_MinusMinus``3(Microsoft.FSharp.Collections.FSharpMap{``0,``1},Microsoft.FSharp.Collections.FSharpMap{``0,``2})">
+<summary>
+ Minus for maps (based on their keys)
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.makeMap``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1})">
+<summary>
+ Make a map from a sequence and a given key function
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.objToMaybe``1(``0)">
+<summary>
+ Converts a nullable-object to Maybe monad
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_BarGreaterGreater``1(``0,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Use argument and pass it along
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_QmarkBarGreaterPlus``1(Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit})">
+<summary>
+ If option is some, do second argument
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_QmarkBarGreaterMinus``1(Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit})">
+<summary>
+ If option is none, do second argument
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_QmarkBarQmark``1(Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpOption{``0})">
+<summary>
+ If first option is none, choose second option
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_QmarkBar``1">
+<summary>
+ Option default argument
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_QmarkGreaterGreaterQmark``1(Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean})">
+<summary>
+ Option checker
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_QmarkGreaterGreater``2(Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}})">
+<summary>
+ Option binder
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.Utility.op_QmarkBarGreater``2(Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{``0,``1})">
+<summary>
+ Option mapper
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.InternalUtility.fileToBase64(System.String)">
+<summary>
+ Ensure is set with OR
+ And then remove with XOR
+</summary>
+</member>
+<member name="P:DG.Daxif.Common.InternalUtility.log">
+<summary>
+ Global logger
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.attributesPrint(Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Prints attributes in a formatted manner to console
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.attributesToMap(Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Takes the attributes in an entity and parses them into a Map&lt;string, string&gt;
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.attributeValueToString(System.Object)">
+<summary>
+ Takes an attribute value and parses it to a string
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.queryExpressionToString(Microsoft.Xrm.Sdk.Query.QueryExpression)">
+<summary>
+ Takes a QueryExpression and outputs it as a formatted string
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.getSolutionInformationFromFile(System.String)">
+<summary>
+ Gets solution information from zip file found at given path
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.getSolutionInformation(System.IO.Compression.ZipArchive)">
+<summary>
+ Gets solution information from given ZipArchive
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.raiseExceptionIfFault(Microsoft.Xrm.Sdk.OrganizationServiceFault)">
+<summary>
+ Raises an exception if faul is not null
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.parseFault(Microsoft.Xrm.Sdk.OrganizationServiceFault)">
+<summary>
+ Parses a fault to a list of strings
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.impersonateUser``1(Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy,System.Guid,Microsoft.FSharp.Core.FSharpFunc{Microsoft.Xrm.Sdk.Client.OrganizationServiceProxy,``0})">
+<summary>
+ Impersonate a user
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.attachToSolution``2(``0,``1)">
+<summary>
+ Attaches a given request to a solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.toOrgReq(Microsoft.Xrm.Sdk.OrganizationRequest)">
+<summary>
+ Upcasts a request to an OrganizationRequest
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.getRecordName(Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Fetches the name of an entity
+</summary>
+</member>
+<member name="P:DG.Daxif.Common.CrmUtility.guidNotSet">
+<summary>
+ Check if the Guid is empty
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.getDefaultOptSetValue(Microsoft.Xrm.Sdk.Entity,System.String,System.Int32)">
+<summary>
+ Gets the integer value from an OptionSetValue attribute, or default if null
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmUtility.defaultAttributeVal``1(Microsoft.Xrm.Sdk.Entity,System.String,``0)">
+<summary>
+ Tries to fetch an attribute. If the attribute does not exist,
+ a default value is returned.
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.retrieveSolution(Microsoft.Xrm.Sdk.IOrganizationService,System.String,DG.Daxif.Common.CrmDataHelper.RetrieveSelect)">
+<summary>
+ Retrieves the solution with the given name
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.whoAmI(Microsoft.Xrm.Sdk.IOrganizationService)">
+<summary>
+ Retrieve current user id
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.publishAll(Microsoft.Xrm.Sdk.IOrganizationService)">
+<summary>
+ Publish all
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.retrieveAndMakeMap``1(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.FSharp.Core.FSharpFunc{Microsoft.Xrm.Sdk.Entity,``0})">
+<summary>
+ Retrieve multiple and turns the entities into a map based on the given key function
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.retrieveFirstMatch(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.Query.QueryExpression)">
+<summary>
+ Retrieve multiple which returns the first match, or raises an exception if no matches were found
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.retrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.Query.QueryExpression)">
+<summary>
+ Retrieve multiple with automatic pagination
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.exists(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid)">
+<summary>
+ Exists
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.retrieve(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,DG.Daxif.Common.CrmDataHelper.RetrieveSelect)">
+<summary>
+ Retrieve
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.performAsBulkResultHandling``1(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.FSharp.Core.FSharpFunc{Microsoft.Xrm.Sdk.OrganizationServiceFault,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpFunc{Microsoft.Xrm.Sdk.ExecuteMultipleResponseItem,``0})">
+<summary>
+ Perform requests as bulk. Any faults will cause an exception to be thrown.
+ Returns the value returned by the transform of the response
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.performAsBulk(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.OrganizationRequest[])">
+<summary>
+ Perform requests as bulk
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.executeRequest(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.OrganizationRequest)">
+<summary>
+ Execute a request and ignore the response
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.getResponseWithParams``1(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.OrganizationRequest,System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.Object}})">
+<summary>
+ Execute a request with given parameters
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.getResponse``1(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.OrganizationRequest)">
+<summary>
+ Execute a request and expect a response of a certain type
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.makeRetrieveMultiple(Microsoft.Xrm.Sdk.Query.QueryExpression)">
+<summary>
+ Makes an delete request from an entity reference
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.makeRetrieve(System.String,System.Guid,DG.Daxif.Common.CrmDataHelper.RetrieveSelect)">
+<summary>
+ Makes an delete request from an entity reference
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.makeDeleteReq(Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Makes an delete request from an entity reference
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.makeCreateReq(Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Makes an create request from an entity object
+</summary>
+</member>
+<member name="M:DG.Daxif.Common.CrmDataHelper.makeUpdateReq(Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Makes an update request from an entity object
+</summary>
+</member>
+<member name="T:DG.Daxif.Setup.CredentialManagement">
+<summary>
+ Contains the credential management logic of Daxif.
+ The first time you use a certain credential key, it prompts the user for input, and validates it. 
+ If valid, the login information is encrypted and stored locally in a &quot;&lt;key&gt;.daxif&quot; file in the Daxif folder.
+ Next time that credential key is used, it will load the login information from that file instead of prompting the user.
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Serialization.SerializationHelper.serializeJson``1(``0)">
+<summary>
+ Json
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Serialization.SerializationHelper.serializeXML``1(``0)">
+<summary>
+ XML
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Serialization.SerializationHelper.serializeBinary'``1(``0)">
+<summary>
+ BIN
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.migrate'``1(DG.Daxif.Environment,System.String,DG.Daxif.ConsoleLogger,DG.Daxif.Serialize,Microsoft.FSharp.Collections.FSharpMap{System.String,``0})">
+<summary>
+ @deprecated
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.reassignOwner''(DG.Daxif.Environment,System.String,DG.Daxif.ConsoleLogger,DG.Daxif.Serialize,Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.FSharp.Collections.FSharpMap{System.Guid,System.Guid}})">
+<summary>
+ TODO: 
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.associationImport'(DG.Daxif.Environment,System.String,DG.Daxif.ConsoleLogger,DG.Daxif.Serialize,Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.FSharp.Collections.FSharpMap{System.Guid,System.Guid}})">
+<summary>
+ TODO:
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.import''``1(DG.Daxif.Environment,System.String,DG.Daxif.ConsoleLogger,DG.Daxif.Serialize,System.Boolean,System.Boolean,System.String[],Microsoft.FSharp.Collections.FSharpMap{System.String,``0},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.FSharp.Collections.FSharpMap{System.Guid,System.Guid}})">
+<summary>
+ TODO: 
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.exportView'(DG.Daxif.Environment,System.String,System.String,System.Boolean,DG.Daxif.ConsoleLogger,DG.Daxif.Serialize)">
+<summary>
+ TODO:
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.exportDelta'(DG.Daxif.Environment,System.String,System.String[],System.DateTime,DG.Daxif.ConsoleLogger,DG.Daxif.Serialize)">
+<summary>
+ TODO:
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.export'(DG.Daxif.Environment,System.String,System.String[],DG.Daxif.ConsoleLogger,DG.Daxif.Serialize)">
+<summary>
+ TODO:
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.reassignAllRecords''(DG.Daxif.Environment,System.Guid,System.Guid,DG.Daxif.ConsoleLogger)">
+<summary>
+ TODO:
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.updateState''(DG.Daxif.Environment,System.String,Microsoft.FSharp.Collections.FSharpMap{System.String,System.Object},System.Int32,System.Int32,DG.Daxif.ConsoleLogger)">
+<summary>
+ TODO:
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Data.DataHelper.exists'(DG.Daxif.Environment,System.String,Microsoft.FSharp.Collections.FSharpMap{System.String,System.Object},DG.Daxif.ConsoleLogger)">
+<summary>
+ TODO:
+</summary>
+</member>
+<member name="T:DG.Daxif.Modules.Plugin.Domain.AssemlyLocal">
+<summary>
+ Information about a plugin assembly
+</summary>
+</member>
+<member name="T:DG.Daxif.Modules.Plugin.Domain.Image">
+<summary>
+ Information about a plugin step image
+</summary>
+</member>
+<member name="T:DG.Daxif.Modules.Plugin.Domain.Step">
+<summary>
+ Information about a plugin step
+</summary>
+</member>
+<member name="T:DG.Daxif.Modules.Plugin.Validation.Result`2">
+<summary>
+ Helper functions and monads for step based testing
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.getAssemblyContextFromDll(System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean)">
+<summary>
+ Analyzes an assembly based on a path to its compiled assembly and its project file
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.getPluginsFromAssembly(System.Reflection.Assembly)">
+<summary>
+ Calls &quot;PluginProcessingStepConfigs&quot; in the plugin assembly that returns a
+ tuple containing the plugin informations
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.tupleToRecord``1(System.Tuple{System.String,System.Int32,System.String,System.String},System.Tuple{System.Int32,System.Int32,``0,System.Int32,System.String,System.String},System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String,System.Int32,System.String}})">
+<summary>
+ Transforms the received tuple from the assembly file through invocation into
+ plugin, step and image records
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.projDependencies(System.String)">
+<summary>
+ Used to retrieve a .vsproj dependencies (recursive)
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.updateImage(DG.Daxif.Modules.Plugin.Domain.Image,Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Used to update an existing image with changes to its attributes
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.updateStep(System.Guid,DG.Daxif.Modules.Plugin.Domain.Step)">
+<summary>
+ Used to update an existing step with changes to its attributes
+ Only check for updated on stage, deployment, mode, rank and filteredAttributes. 
+ The rest must be update by UI
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.createImage(System.Guid,System.String,DG.Daxif.Modules.Plugin.Domain.Image)">
+<summary>
+ Create a new image with the provided image informations under the defined step
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.createStep``1(System.Guid,System.Guid,System.Guid,``0,DG.Daxif.Modules.Plugin.Domain.Step)">
+<summary>
+ Create a new step with the provided step information in CRM under the defined type
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.createType(System.Guid,System.String)">
+<summary>
+ Create a new type in CRM under the defined assembly id
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.createAssembly``2(``0,System.String,System.Reflection.Assembly,``1,DG.Daxif.AssemblyIsolationMode)">
+<summary>
+ Creates a new assembly in CRM with the provided information
+</summary>
+</member>
+<member name="P:DG.Daxif.Modules.Plugin.EntitySetup.propertyNames">
+<summary>
+ Used to set the requied attribute messagePropertyName 
+ based on the message class when creating images
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Compare.assembly(DG.Daxif.Modules.Plugin.Domain.AssemlyLocal,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration})">
+<summary>
+ Compares an assembly from CRM with the one containing the source code
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Compare.image(DG.Daxif.Modules.Plugin.Domain.Image,Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Compares an plugin step image from CRM with one in source code
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Compare.step(DG.Daxif.Modules.Plugin.Domain.Step,Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Compares an plugin step from CRM with one in source code
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Compare.pluginType(DG.Daxif.Modules.Plugin.Domain.Plugin,Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Compares an plugin type from CRM with one in source code
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.sdkMessageFilter(System.String,System.Guid)">
+<summary>
+ Create a query to get a SdkMessageFilter from its parent message and entity type
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.sdkMessage(System.String)">
+<summary>
+ Create a query to get a SdkMessage from its name (event operation)
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginStepImagesBySolution(System.Guid)">
+<summary>
+ Create a query to get plugin step images by solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginStepImagesByStep(System.Guid)">
+<summary>
+ Create a query to get plugin step images by step
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginStepsByType(System.Guid)">
+<summary>
+ Create a query to get plugin steps by type
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginStepsBySolution(System.Guid)">
+<summary>
+ Create a query to get plugin steps by solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginTypesBySolution(System.Guid)">
+<summary>
+ Create a query to get plugin types by solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginTypesByAssembly(System.Guid)">
+<summary>
+ Create a query to get plugin types by assembly
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginAssembliesBySolution(System.Guid)">
+<summary>
+ Create a query to get plugin assemblies by solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.pluginAssemblyByName(System.String)">
+<summary>
+ Create a query to get a plugin assembly by its name
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Retrieval.getStepMap(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity})">
+<summary>
+ Retrieves the associated event operation for a given collection of step entities
+ and creates a map of it. This map is used for the images associated with the steps
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Retrieval.getRelevantMessagesAndFilters(Microsoft.Xrm.Sdk.IOrganizationService,System.Collections.Generic.IEnumerable{DG.Daxif.Modules.Plugin.Domain.Step})">
+<summary>
+ Retrieves the necessary SdkMessage and SdkMessageFilter GUIDs for a collection of Steps
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Retrieval.retrieveRegisteredByAssembly(Microsoft.Xrm.Sdk.IOrganizationService,System.Guid,System.String)">
+<summary>
+ Retrieve registered plugins from CRM under a given assembly
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Retrieval.retrieveRegistered(Microsoft.Xrm.Sdk.IOrganizationService,System.Guid,System.Guid)">
+<summary>
+ Retrieve registered plugins from CRM related to a certain assembly and solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.CreateHelper.createImages``2(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Image,``1},Microsoft.FSharp.Collections.FSharpMap{System.String,System.Tuple{System.Guid,System.String}})">
+<summary>
+ Creates images and binds to matching steps
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.CreateHelper.createSteps``2(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Step,``1},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,System.Guid})">
+<summary>
+ Creates steps and binds to matching plugin types. Returns a guid map for steps.
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.CreateHelper.createTypes``3(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Common.Utility.MapDiff{System.String,``1,``2},System.Guid,Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity})">
+<summary>
+ Creates types and returns guid map for them.
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.performSync``1(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Modules.Plugin.Domain.AssemlyLocal,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Plugin},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Step},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Image},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity})">
+<summary>
+ Performs a full synchronization of plugins
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.analyze``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0},System.String,System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean)">
+<summary>
+ Analyzes local and remote registrations and returns the information about each of them
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.loadAndValidateAssembly(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean)">
+<summary>
+ Load a local assembly and validate its plugins
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.create``5(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Image,``1},DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Step,``2},DG.Daxif.Common.Utility.MapDiff{System.String,``3,``4},System.Guid,Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity})">
+<summary>
+ Creates additions to the plugin configuration in the correct order and
+ passes guid maps to next step in process
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.update(Microsoft.Xrm.Sdk.IOrganizationService,DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Image,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Step,Microsoft.Xrm.Sdk.Entity})">
+<summary>
+ Updates with changes to the plugin configuration
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.performDelete``3(Microsoft.Xrm.Sdk.IOrganizationService,DG.Daxif.Common.Utility.MapDiff{System.String,``0,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``1,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``2,Microsoft.Xrm.Sdk.Entity})">
+<summary>
+ Deletes obsolete records in current plugin configuration
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.ensureAssembly(Microsoft.Xrm.Sdk.IOrganizationService,System.Object,DG.Daxif.Modules.Plugin.Domain.AssemlyLocal,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration})">
+<summary>
+ Update or create assembly
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.localToMaps(System.Collections.Generic.IEnumerable{DG.Daxif.Modules.Plugin.Domain.Plugin})">
+<summary>
+ Transforms plugins from source to maps with names as keys
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Main.syncSolution``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0},System.String,System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean,System.Boolean)">
+<summary>
+ Main plugin synchronization function
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.WebResource.WebResourcesHelper.getLocalWRs(System.String,System.String,DG.Daxif.CrmReleases)">
+<summary>
+ Filter out any files which are labeled with &quot;_nosync&quot;
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.WebResource.WebResourcesHelper.getLocalResourcesHelper(System.String,DG.Daxif.CrmReleases)">
+<summary>
+ Get all local webresources by enumerating all folders at given location,
+ while looking for supported file types.
+</summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,97 @@
+# ATC coding rules - https://github.com/atc-net/atc-coding-rules
+# Version: 1.0.0
+# Updated: 25-09-2023
+# Location: src
+# Distribution: DotNet8
+# Inspired by: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
+
+##########################################
+# Code Analyzers Rules
+##########################################
+[*.{cs,csx,cake}]
+
+# AsyncFixer
+# http://www.asyncfixer.com
+
+
+# Asyncify
+# https://github.com/hvanbakel/Asyncify-CSharp
+
+
+# Meziantou
+# https://www.meziantou.net/enforcing-asynchronous-code-good-practices-using-a-roslyn-analyzer.htm
+
+
+# Microsoft - Code Analysis
+# https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/
+
+
+# Microsoft - Compiler Errors
+# https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/
+
+
+# SecurityCodeScan
+# https://security-code-scan.github.io/
+
+
+# StyleCop
+# https://github.com/DotNetAnalyzers/StyleCopAnalyzers
+
+
+# SonarAnalyzer.CSharp
+# https://rules.sonarsource.com/csharp
+
+
+##########################################
+# Custom - Code Analyzers Rules
+##########################################
+
+dotnet_diagnostic.CA1848.severity = none
+dotnet_diagnostic.CA2254.severity = none	# relaxing requirement of a static template for logging for Azure Functions for now
+
+[*/CvrServiceFunction/*.cs]
+dotnet_diagnostic.CA1826.severity = none	# relaxing rule for imported code
+
+[*/Foundation/Dao/*.cs]
+dotnet_diagnostic.CA1062.severity = none # null-checking relaxed until we have rewritten the logging method of DAO
+dotnet_diagnostic.SA1611.severity = none
+dotnet_diagnostic.SA1612.severity = none
+dotnet_diagnostic.SA1614.severity = none
+dotnet_diagnostic.SA1615.severity = none
+dotnet_diagnostic.SA1616.severity = none
+dotnet_diagnostic.SA1622.severity = none
+dotnet_diagnostic.SA1627.severity = none
+dotnet_diagnostic.MA0016.severity = none 	# We DO want to return Lists
+dotnet_diagnostic.MA0048.severity = none 	# Filenames cannot match when using partial classes
+dotnet_diagnostic.SA1601.severity = none 	# We do not document partial classes that are introduced to organize code
+dotnet_diagnostic.SA1649.severity = none 	# Filenames cannot match when using partial classes
+
+[*/Foundation/Dao/IDataverseAccessObjectAsync.cs]
+dotnet_diagnostic.SA1127.severity = none 	# We accept the lack of newline before generic type constraint in this interface
+dotnet_diagnostic.SA1516.severity = none 	# We accept the lack of newlines between declarations in this interface
+
+[*/Foundation/Dao/DataverseWrapAccessAsync.cs]
+dotnet_diagnostic.SA1123.severity = none 	# We will accept regions in this file
+dotnet_diagnostic.SA1124.severity = none 	# We will accept regions in this file
+dotnet_diagnostic.SA1501.severity = none 	# We will accept inline statements in this file
+
+[*/XrmExtensions.cs]
+generated_code = true
+dotnet_diagnostic.S2344.severity = none
+dotnet_diagnostic.S3442.severity = none
+dotnet_diagnostic.S1168.severity = none
+dotnet_diagnostic.S2971.severity = none
+dotnet_diagnostic.IDE1005.severity = none
+
+[MedlemssystemApi/Controllers/*.cs]
+dotnet_diagnostic.CA1031.severity = none # allow catching unspecific exceptions
+
+[CustomerAreaFunctionApp/DataMigrationFunction/*.cs]
+dotnet_diagnostic.CA1031.severity = none
+dotnet_diagnostic.MA0048.severity = none # Filenames cannot match when using partial classes
+dotnet_diagnostic.SA1601.severity = none # We do not document partial classes that are introduced to organize code
+dotnet_diagnostic.SA1649.severity = none # Filenames cannot match when using partial classes
+dotnet_diagnostic.SA1503.severity = none	# Currently accepting that a single-line-body of an if-statement shall not require curly brackets
+dotnet_diagnostic.SA1519.severity = none	# Currently accepting that a single-line-body of an if-statement shall not require curly brackets
+
+

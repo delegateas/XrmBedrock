@@ -1,0 +1,16 @@
+# Variables needed for pipelines
+variables:
+  ToolsPath: '$(build.sourcesDirectory)/Dataverse/Tools'
+  DaxifPath: '$(build.sourcesDirectory)/Dataverse/Tools/Daxif'
+  ScriptsPath: '$(build.sourcesDirectory)/.pipelines/Dataverse/scripts'
+  SolutionFile: '$(build.sourcesDirectory)/*.sln'
+  AuthParams: '/mfaappid="$(DataverseAppId)" /mfaclientsecret="$(DataverseSecret)" /method="ClientSecret"'
+# Arguments used when authentication are located in Ado Pipeline Variables.
+# The following varibles should exist, for this script to work:
+# ClientId<env> : This is the App id for a given environment.
+# ClientSecret<env> : The client secret from the app for a given environment.
+# ClientSecret : The client secret from the app.
+  FsiPath: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools\fsi.exe'
+  BuildPlatform: 'any cpu'
+  BuildConfiguration: 'release'
+  

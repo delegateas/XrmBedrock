@@ -1,0 +1,3 @@
+See: https://dev.azure.com/laegeforeningen/Medlemssystemet/_wiki/wikis/Medlemssystemet.wiki/34/Udviklingsretningslinjer
+
+To make the Azure Functions be able to connect to Dataverse, the Managed Identity (user mamaged) must be created in Dataverse as an App User with a suitable role (Lazy choise System Administrator for now).

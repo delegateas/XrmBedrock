@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "noImplicitAny": false,
+    "module": "none",
+    "removeComments": true,
+    "declaration": false,
+    "sourceMap": true,
+    "noEmitOnError": false,
+    "strict": true,
+    "lib": [ "dom", "es2015", "es2015.promise", "ES2015.Iterable" ]
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}

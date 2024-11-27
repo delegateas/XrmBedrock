@@ -1,0 +1,24 @@
+# Import solution
+parameters:
+  environment:
+  powerPlatformSPN:
+steps:
+- script: '"$(FsiPath)" "$(Pipeline.Workspace)/Scripts/SolutionImportArg.fsx" $(AuthParams) /env:${{parameters.environment}} /dir:$(Pipeline.Workspace)/Scripts/solutions'
+  displayName: 'Solution Import ${{parameters.environment}}'
+
+- task: PowerPlatformToolInstaller@2
+  inputs:
+    DefaultVersion: true
+
+- task: PowerPlatformPublishCustomizations@2
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: ${{parameters.powerPlatformSPN}}
+    AsyncOperation: true
+    MaxAsyncWaitTime: '60'
+
+- script: '"$(FsiPath)" "$(Pipeline.Workspace)/Scripts/SolutionPostImportArg.fsx" $(AuthParams) /env:${{parameters.environment}} /dir:$(Pipeline.Workspace)/Scripts/solutions'
+  displayName: 'Solution Post Import ${{parameters.environment}}'
+
+- script: '"$(FsiPath)" "$(DaxifPath)/EnsureManagedIdentity.fsx" $(AuthParams) /env:${{parameters.environment}} /clientid:"$(AzureClientId)" /tenantid:"$(AzureTenantId)"'
+  displayName: 'Ensure Managed Identity'

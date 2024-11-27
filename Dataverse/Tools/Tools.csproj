@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!--<RootNamespace>DG.XrmFramework.Daxif</RootNamespace>-->
+		<!--<AssemblyName>Delegate.XrmFramework.Daxif</AssemblyName>-->
+		<TargetFramework>net462</TargetFramework>
+		
+		<!--<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\Tools\DG\Signature\delegate.snk</AssemblyOriginatorKeyFile>-->
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="CustomScripting\**" />
+	  <EmbeddedResource Remove="CustomScripting\**" />
+	  <None Remove="CustomScripting\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove=".editorconfig" />
+	  <None Remove="Daxif\CountEntities.fsx" />
+	  <None Remove="Daxif\DataExportSource.fsx" />
+	  <None Remove="Daxif\DataImportTarget.fsx" />
+	  <None Remove="Daxif\Playground.fsx" />
+	  <None Remove="Daxif\username.txt" />
+	  <None Remove="Daxif\ViewExtender.fsx" />
+	  <None Remove="Daxif\WorkflowSyncDev.fsx" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Delegate.Daxif" Version="5.6.0" />
+	  <PackageReference Include="Delegate.Daxif.Scripts" Version="1.0.0" />
+	  <PackageReference Include="Delegate.XrmContext" Version="3.0.1" />
+	  <PackageReference Include="Delegate.XrmDefinitelyTyped" Version="6.6.0" />
+	  <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EditorConfigFiles Remove="C:\Code\Laegeforeningen\Medlemssystemet\Dataverse\Tools\.editorconfig" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EditorConfigFiles Remove="C:\Code\Laegeforeningen\Medlemssystemet\Dataverse\Tools\.editorconfig" />
+	</ItemGroup>
+</Project>

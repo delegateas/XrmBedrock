@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup Label="Configuration">
+	  <TypeScriptTarget>ES5</TypeScriptTarget>
+	  <TypeScriptLib>"dom,es2015,es2015.promise,es2015.iterable"</TypeScriptLib>
+    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
+  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net462</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="src\demo_XrmBedrock\account.js" />
+		<None Remove="src\demo_XrmBedrock\account.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_addon.js" />
+		<None Remove="src\demo_XrmBedrock\msys_addon.js.map" />
+    <None Remove="src\demo_XrmBedrock\msys_addonoption.js" />
+    <None Remove="src\demo_XrmBedrock\msys_addonoption.js.map" />
+		<None Remove="src\demo_XrmBedrock\contact.js" />
+		<None Remove="src\demo_XrmBedrock\contact.js.map" />
+		<None Remove="src\demo_XrmBedrock\email.js" />
+		<None Remove="src\demo_XrmBedrock\email.js.map" />
+		<None Remove="src\demo_XrmBedrock\empty_ressource.js" />
+		<None Remove="src\demo_XrmBedrock\empty_ressource.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_addonoption.js" />
+		<None Remove="src\demo_XrmBedrock\msys_addonoption.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_configuration.js" />
+		<None Remove="src\demo_XrmBedrock\msys_configuration.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_employment.js" />
+		<None Remove="src\demo_XrmBedrock\msys_employment.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_event.js" />
+		<None Remove="src\demo_XrmBedrock\msys_event.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_event_commands.js" />
+		<None Remove="src\demo_XrmBedrock\msys_event_commands.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_invoice.js" />
+		<None Remove="src\demo_XrmBedrock\msys_invoice.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_payment.js" />
+		<None Remove="src\demo_XrmBedrock\msys_payment.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_paymentagreement.js" />
+		<None Remove="src\demo_XrmBedrock\msys_paymentagreement.js.map" />
+    <None Remove="src\demo_XrmBedrock\msys_practicetransaction.js" />
+    <None Remove="src\demo_XrmBedrock\msys_practicetransaction.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_product.js" />
+		<None Remove="src\demo_XrmBedrock\msys_product.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_prosocietymember.js" />
+		<None Remove="src\demo_XrmBedrock\msys_prosocietymember.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_registration.js" />
+		<None Remove="src\demo_XrmBedrock\msys_registration.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_subscription.js" />
+		<None Remove="src\demo_XrmBedrock\msys_subscription.js.map" />
+		<None Remove="src\demo_XrmBedrock\msys_subscription_quickcreate.js" />
+		<None Remove="src\demo_XrmBedrock\msys_subscription_quickcreate.js.map" />
+		<None Remove="src\demo_XrmBedrock\phonecall.js" />
+		<None Remove="src\demo_XrmBedrock\phonecall.js.map" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.5.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>  
+</Project>

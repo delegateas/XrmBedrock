@@ -1,0 +1,6 @@
+# Publish Artifacts template
+
+  steps:
+  - publish: '$(DaxifPath)'
+    artifact: Scripts
+    displayName: 'Publish Artifact: Daxif'

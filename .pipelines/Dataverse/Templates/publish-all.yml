@@ -1,0 +1,13 @@
+# Export solution
+
+  steps:
+  - script: '"$(FsiPath)" "$(DaxifPath)/PublishAllArg.fsx" env=Dev $(AuthParams)'
+    displayName: 'Publish all - timeout allowed'
+    timeoutInMinutes: 10
+    continueOnError: true
+
+  - script: '"$(FsiPath)" "$(DaxifPath)/PublishAllArg.fsx" env=Dev $(AuthParams)'
+    displayName: 'Publish all'
+    timeoutInMinutes: 10
+    condition: eq(variables['Agent.JobStatus'], 'SucceededWithIssues')
+  

@@ -1,0 +1,15 @@
+# Import solution
+parameters:
+  environment:
+steps:
+- script: echo Blank
+# - task: AzureKeyVault@1
+#   inputs:
+#     azureSubscription: ${{parameters.environment}}                    
+#     KeyVaultName: $(KeyVaultName)                         
+#     SecretsFilter: 'StorageAccountName'                          
+#     RunAsPreJob: false  
+
+# Removed until it has been fixed
+# - script: '"$(FsiPath)" "$(Pipeline.Workspace)/Scripts/SetConfigArg.fsx" $(AuthParams) /env:${{parameters.environment}} /tenantid="$(AzureTenantId)" /clientid="$(AzureClientId)" /clientsecret="$(AzureClientSecret)" /storageaccountname="$(StorageAccountName)"'
+#   displayName: 'Set Config ${{parameters.environment}}'

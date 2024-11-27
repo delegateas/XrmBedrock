@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>43ded35c-6479-41a6-9629-346178ddd3c4</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedTest</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DataProducer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProducerStaticExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MetadataGenerated\TypeDeclarations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimpleLogger.cs" />
+  </ItemGroup>
+</Project>

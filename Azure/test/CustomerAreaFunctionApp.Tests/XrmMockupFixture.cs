@@ -1,0 +1,24 @@
+using DG.Tools.XrmMockup;
+
+namespace CustomerAreaFunctionApp.Tests;
+
+public class XrmMockupFixture
+{
+    private readonly XrmMockup365 xrm;
+
+    public XrmMockup365 Xrm => xrm;
+
+    public XrmMockupFixture()
+    {
+        var settings = new XrmMockupSettings
+        {
+            BasePluginTypes = Array.Empty<Type>(),
+            EnableProxyTypes = true,
+            IncludeAllWorkflows = false,
+            MetadataDirectoryPath = "..\\..\\..\\..\\..\\..\\SharedTest\\MetadataGenerated",
+            ExceptionFreeRequests = new string[] { "AddToQueue" },
+        };
+
+        xrm = XrmMockup365.GetInstance(settings);
+    }
+}

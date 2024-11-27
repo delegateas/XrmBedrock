@@ -1,0 +1,10 @@
+# Export solution
+steps:
+- script: '"$(FsiPath)" "$(DaxifPath)/RemoveManagedIdentity.fsx" $(AuthParams) /env:Dev'
+  displayName: 'Remove Managed Identity Before Export'
+
+- script: '"$(FsiPath)" "$(DaxifPath)/SolutionExportDev.fsx" $(AuthParams)'
+  displayName: 'Solution Export Dev'
+
+- script: '"$(FsiPath)" "$(DaxifPath)/EnsureManagedIdentity.fsx" $(AuthParams) /env:Dev /clientid:"$(AzureClientId)" /tenantid:"$(AzureTenantId)"'
+  displayName: 'Ensure Managed Identity'

@@ -1,0 +1,22 @@
+<entities >
+  <entity name="msys_configuration" displayname="Konfiguration" etc="10994" primaryidfield="msys_configurationid" primarynamefield="msys_name" disableplugins="false">
+    <fields>
+      <field displayname="AzureClientId" name="msys_azureclientid" type="string" customfield="true" />
+      <field displayname="Aktiv Restanceopsætning" name="msys_activearrearssetup" type="entityreference" lookupType="msys_arrearssetup" customfield="true" />
+      <field displayname="AzureClientSecret" name="msys_azureclientsecret" type="string" customfield="true" />
+      <field displayname="AzureStorageAccountName" name="msys_azurestorageaccountname" type="string" customfield="true" />
+      <field displayname="AzureStorageAccountUrl" name="msys_azurestorageaccounturl" type="string" customfield="true" />
+      <field displayname="AzureTenantId" name="msys_azuretenantid" type="string" customfield="true" />
+      <field displayname="ContactHandlingQueue" name="msys_contacthandlingqueue" type="entityreference" lookupType="queue" customfield="true" />
+      <field displayname="Kategori for Mødeanmodninger" name="msys_categoryformeetingrequest" type="entityreference" lookupType="msys_activitycategory" customfield="true" />
+      <field displayname="Kategori for opgaver ifbm. manuel intervention" name="msys_categoryformanualintervention" type="entityreference" lookupType="msys_activitycategory" customfield="true" />
+      <field displayname="Konfiguration" name="msys_configurationid" type="guid" primaryKey="true" />
+      <field displayname="Max antal dage åben Restancesag" name="msys_maxdaysopenarrearscase" type="number" customfield="true" />
+      <field displayname="Name" name="msys_name" type="string" customfield="true" />
+      <field displayname="Skabelonnavn for kvittering for Mødeanmodning" name="msys_templatenameforreceiptofmeetingrequest" type="string" customfield="true" />
+      <field displayname="Standardkø til afsendelse af Emails" name="msys_defaultqueueforsendingemails" type="entityreference" lookupType="queue" customfield="true" />
+      <field displayname="VS adviseringstekst (dansk)" name="msys_vs_notification_da" type="string" customfield="true" />
+      <field displayname="VS adviseringstekst (engelsk) " name="msys_vs_notification_en" type="string" customfield="true" />
+    </fields>
+  </entity>
+</entities>

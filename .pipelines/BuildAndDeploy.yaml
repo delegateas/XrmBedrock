@@ -1,0 +1,189 @@
+trigger: none
+schedules:
+  - cron: "30 09 * * *"
+    displayName: "Scheduled Trigger at 11:30"
+    branches:
+      include:
+        - master
+  - cron: "59 21 * * *"
+    displayName: "Scheduled Trigger at 23:59"
+    branches:
+      include:
+        - master
+
+pool:
+  vmImage: "ubuntu-latest"
+
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+parameters:
+  - name: "deployDataverse"
+    displayName: "Deploy DataVerse"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployActivityAreaFA"
+    displayName: "Deploy ActivityArea Function App"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployCommitteeAreaFA"
+    displayName: "Deploy CommitteeArea Function App"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployCustomerAreaFA"
+    displayName: "Deploy CustomerArea Function App"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployEconomyAreaFA"
+    displayName: "Deploy EconomyArea Function App"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployEmploymentAreaFA"
+    displayName: "Deploy EmploymentArea Function App"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployEventAreaFA"
+    displayName: "Deploy ActivityArea Function App"
+    type: boolean
+    values:
+      - false
+      - true
+  - name: "deployMedlemssystemApi"
+    displayName: "Deploy Medlemssystem Api"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployProductAreaFA"
+    displayName: "Deploy ProductArea Function App"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+  - name: "deployInfrastructure"
+    displayName: "Deploy Azure Infrastructure"
+    type: boolean
+    values:
+      - false
+      - true
+    default: true
+
+variables:
+  - name: BuildConfiguration
+    value: "release"
+  - template: Dataverse/variables.yml
+  - name: DeployFunctions
+    value: or(eq(parameters.deployActivityAreaFA, true),eq(parameters.deployCommitteeAreaFA, true),eq(parameters.deployCustomerAreaFA, true),eq(parameters.deployEconomyAreaFA, true),eq(parameters.deployEmploymentAreaFA, true),eq(parameters.deployEventAreaFA, true),eq(parameters.deployProductAreaFA, true))
+  - name: DeployAppServices
+    value: eq(parameters.deployMedlemssystemApi, true)
+
+  ###########################################################################################
+  #######################################    BUILD    #######################################
+  ###########################################################################################
+stages:
+  - stage: Build_Application
+    displayName: Build & Publish artifacts
+    variables:
+      - group: Dev
+    jobs:
+      - job: Build_And_Test
+        displayName: Build and Test
+        pool:
+          vmImage: "windows-latest"
+        steps:
+          - template: BuildSteps.yaml
+          - ${{ if or(eq(variables.DeployFunctions, true),eq(parameters.deployInfrastructure, true),eq(variables.DeployAppServices, true)) }}:
+              - template: Azure/PublishArtifacts.yml
+          - ${{ if eq(parameters.deployDataverse, true) }}:
+              - template: Dataverse/PublishArtifacts.yml
+
+  ###########################################################################################
+  ####################################### DEPLOY DEV  #######################################
+  ###########################################################################################
+  - stage: Deploy_Development
+    displayName: Deploy to Dev
+    dependsOn: Build_Application
+    variables:
+      - group: Dev
+    jobs:
+      - deployment: Deploy_Approval
+        environment: Dev
+        displayName: Deploy Approval
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: echo Approved
+      - template: Azure/deploy-Infrastructure.yml
+        parameters:
+          environment: Dev
+          serviceConnectionName: "DEV"
+          params: ${{parameters}}
+      - template: Azure/deploy-FA.yml
+        parameters:
+          environment: Dev
+          serviceConnectionName: "DEV"
+          params: ${{parameters}}
+      - template: Azure/deploy-AS.yml
+        parameters:
+          environment: Dev
+          serviceConnectionName: "DEV"
+          params: ${{parameters}}
+      - job: Set_Config
+        displayName: Set Config Dev
+        dependsOn: Deploy_Infrastructure
+        condition: and(eq(${{ parameters.deployDataverse }}, true),eq(${{ parameters.deployInfrastructure }}, true))
+        pool:
+          vmImage: "windows-latest"
+        steps:
+          - download: current
+            artifact: Scripts
+          - template: Dataverse/Templates/set-config.yml
+            parameters:
+              environment: Dev
+
+  ###########################################################################################
+  ####################################### DEPLOY Rest #######################################
+  ###########################################################################################
+  - template: Deploy-Environment.yml
+    parameters:
+      environment: Test
+      dataverseEnv: Test
+      powerPlatformSPN: "Dataverse Test"
+      dependsOn: Deploy_Development
+      params: ${{parameters}}
+
+  - template: Deploy-Environment.yml
+    parameters:
+      environment: UAT
+      dataverseEnv: UAT
+      powerPlatformSPN: "Dataverse UAT"
+      dependsOn: Deploy_Test
+      params: ${{parameters}}
+
+  - template: Deploy-Environment.yml
+    parameters:
+      environment: Prod
+      dataverseEnv: Production
+      powerPlatformSPN: "Dataverse Prod"
+      dependsOn: Deploy_UAT
+      params: ${{parameters}}

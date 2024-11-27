@@ -1,0 +1,67 @@
+trigger: none
+pool:
+  vmImage: 'windows-latest'
+
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+variables:
+  - name: BuildConfiguration
+    value: 'release'
+  - template: Dataverse/variables.yml
+
+  ########################################################################################### 
+  #######################################    BUILD    ####################################### 
+  ###########################################################################################
+stages:
+  - stage: CopyEnvironment
+    displayName: Copy 
+    variables:
+      - group: UAT
+    jobs:
+    - job: Copy_UAT_To_Test
+      displayName: Copy UAT to Test
+      steps:
+      - task: PowerPlatformToolInstaller@2
+        inputs:
+          DefaultVersion: true
+      
+      - task: PowerPlatformExportData@2
+        inputs:
+          authenticationType: 'PowerPlatformSPN'
+          PowerPlatformSPN: 'Dataverse Test'
+          SchemaFile: '$(build.sourcesDirectory)\.pipelines\DataSchema\configschema.xml'
+          DataFile: '$(Pipeline.Workspace)\exportdata.zip'
+
+      - task: PowerPlatformCopyEnvironment@2
+        inputs:
+          authenticationType: 'PowerPlatformSPN'
+          PowerPlatformSPN: 'Dataverse UAT'
+          TargetEnvironmentUrl: 'https://msys-test.crm4.dynamics.com'
+          CopyType: 'FullCopy'
+          SkipAuditData: true
+      
+      - task: PowerShell@2
+        displayName: 'Wait for environment to finalize'
+        inputs:
+          targetType: 'inline'
+          script: 'Start-Sleep -Seconds 60'
+          
+      - task: PowerPlatformAssignUser@2
+        inputs:
+          authenticationType: 'PowerPlatformSPN'
+          PowerPlatformSPN: 'Dataverse UAT'
+          Environment: 'https://msys-test.crm4.dynamics.com'
+          User: 'cb500a44-3dbe-4e30-8b28-9ba2c3eca4cb'
+          Role: 'System Administrator'
+          ApplicationUser: true
+
+      - task: PowerPlatformWhoAmi@2
+        inputs:
+          authenticationType: 'PowerPlatformSPN'
+          PowerPlatformSPN: 'Dataverse Test'
+
+      - task: PowerPlatformImportData@2
+        inputs:
+          authenticationType: 'PowerPlatformSPN'
+          PowerPlatformSPN: 'Dataverse Test'
+          DataFile: '$(Pipeline.Workspace)\exportdata.zip'

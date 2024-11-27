@@ -1,0 +1,9 @@
+# Import solution
+parameters:
+  environment:
+steps:
+- script: '"$(FsiPath)" "$(Pipeline.Workspace)/Scripts/SolutionImportArg.fsx" $(AuthParams) /env:${{parameters.environment}} /dir:$(Pipeline.Workspace)/Scripts/solutions'
+  displayName: 'Solution Import ${{parameters.environment}}'
+
+- script: '"$(FsiPath)" "$(DaxifPath)/EnsureManagedIdentity.fsx" $(AuthParams) /env:${{parameters.environment}} /clientid:"$(AzureClientId)" /tenantid:"$(AzureTenantId)"'
+  displayName: 'Ensure Managed Identity'

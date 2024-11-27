@@ -1,0 +1,21 @@
+parameters:
+  environment: ''
+  serviceConnectionName: ''
+  params: {}
+
+jobs:
+  - job: Deploy_WebApp_MedlemssystemApi
+    displayName: Deploy Web App Medlemssystem Api
+    dependsOn: Deploy_Infrastructure
+    condition: eq(${{parameters.params.deployMedlemssystemApi}}, true)
+    steps:
+      - download: current
+        artifact: drop
+        displayName: Download drop
+      - task: AzureWebApp@1
+        displayName: "Deploy Web App"
+        retryCountOnTaskFailure: 4
+        inputs:
+          azureSubscription: ${{ parameters.serviceConnectionName }}
+          appName: "app-${{lower(parameters.environment)}}-medlemssystemapi"
+          package: "$(Pipeline.Workspace)/drop/publish/MedlemssystemApi.zip"
