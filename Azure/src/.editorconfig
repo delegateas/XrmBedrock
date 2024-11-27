@@ -49,9 +49,6 @@
 dotnet_diagnostic.CA1848.severity = none
 dotnet_diagnostic.CA2254.severity = none	# relaxing requirement of a static template for logging for Azure Functions for now
 
-[*/CvrServiceFunction/*.cs]
-dotnet_diagnostic.CA1826.severity = none	# relaxing rule for imported code
-
 [*/Foundation/Dao/*.cs]
 dotnet_diagnostic.CA1062.severity = none # null-checking relaxed until we have rewritten the logging method of DAO
 dotnet_diagnostic.SA1611.severity = none
@@ -83,7 +80,7 @@ dotnet_diagnostic.S1168.severity = none
 dotnet_diagnostic.S2971.severity = none
 dotnet_diagnostic.IDE1005.severity = none
 
-[MedlemssystemApi/Controllers/*.cs]
+[DemoExternalAPI/Controllers/*.cs]
 dotnet_diagnostic.CA1031.severity = none # allow catching unspecific exceptions
 
 [CustomerAreaFunctionApp/DataMigrationFunction/*.cs]

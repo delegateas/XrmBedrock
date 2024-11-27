@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\DataverseService\DataverseService.csproj" />
-    <ProjectReference Include="..\..\src\MedlemssystemApi\DemoExternalAPi.csproj" />
+    <ProjectReference Include="..\..\src\DemoExternalAPI\DemoExternalAPi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

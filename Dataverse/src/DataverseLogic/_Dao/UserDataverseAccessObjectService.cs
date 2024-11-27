@@ -1,6 +1,6 @@
-using SharedContext.Dao;
 using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
+using SharedContext.Dao;
 
 namespace DataverseLogic;
 

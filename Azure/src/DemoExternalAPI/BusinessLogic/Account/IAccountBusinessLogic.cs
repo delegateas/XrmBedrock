@@ -1,6 +1,6 @@
 using DataverseService.Dto.Account;
 
-namespace MedlemssystemApi.BusinessLogic;
+namespace DemoExternalApi.BusinessLogic;
 
 public interface IAccountBusinessLogic
 {

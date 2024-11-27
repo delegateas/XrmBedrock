@@ -3,8 +3,8 @@ using DataverseService.ActivityArea;
 using DataverseService.CustomerArea;
 using DataverseService.Foundation.Dao;
 using DataverseService.UtilityArea;
-using MedlemssystemApi.BusinessLogic;
-using MedlemssystemApi.Middleware;
+using DemoExternalApi.BusinessLogic;
+using DemoExternalApi.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +13,7 @@ using SharedContext.Dao;
 using SharedDataverseLogic.ActivityArea;
 using SharedDomain;
 
-namespace MedlemssystemApi;
+namespace DemoExternalApi;
 
 internal static class Program
 {
@@ -137,7 +137,7 @@ internal static class Program
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "MedlemssystemApi V1");
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoExternalApi V1");
             c.OAuthClientId(clientId);
             c.OAuthClientSecret(clientSecret);
             c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
@@ -156,6 +156,5 @@ internal static class Program
 
         // Run the app
         app.Run();
-
     }
 }

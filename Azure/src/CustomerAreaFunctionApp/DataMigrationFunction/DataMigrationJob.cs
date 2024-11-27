@@ -8,10 +8,10 @@ public record DataMigrationJob(string JobType, string ViewName, string ElementId
 {
     public string? GetElementIdValueAsString(DataRow row)
     {
-        switch (ElementIdType.ToLowerLfDefault())
+        switch (ElementIdType.ToLowerSolutionDefault())
         {
             case "int":
-                return row.Field<int>(ElementIdName).ToStringLfDefault();
+                return row.Field<int>(ElementIdName).ToStringSolutionDefault();
             case "guid":
                 return row.Field<Guid>(ElementIdName).ToString();
             case "string":

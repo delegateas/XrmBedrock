@@ -1,7 +1,7 @@
 using DataverseLogic.Utility;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LF.Medlemssystem.Plugins.Utility;
+namespace Dataverse.Plugins.Utility;
 
 /// <summary>
 /// This plugin is responsible for autopublishing duplicate rules on PublishAll.

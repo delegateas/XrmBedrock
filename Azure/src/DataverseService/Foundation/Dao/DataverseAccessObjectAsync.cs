@@ -1,9 +1,9 @@
-using SharedContext.Dao;
 using DataverseService.Foundation.Dao;
 using Microsoft.Extensions.Logging;
 using Microsoft.PowerPlatform.Dataverse.Client;
+using SharedContext.Dao;
 
-namespace LF.Services.Dataverse.Dao;
+namespace Azure.DataverseService.Foundation.Dao;
 
 /// <summary>
 /// This is an extension of the DataverseAccessObject with some Async methods for use in Azure Functions and Azure App Services.

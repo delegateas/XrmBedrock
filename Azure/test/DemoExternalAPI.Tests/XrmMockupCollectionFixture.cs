@@ -1,4 +1,4 @@
-namespace MedlemssystemApi.Tests;
+namespace DemoExternalApi.Tests;
 
 [CollectionDefinition("Xrm Collection")]
 public class XrmMockupCollectionFixture : ICollectionFixture<XrmMockupFixture> // Must be defined in same assembly as test classes.

@@ -1,12 +1,11 @@
-using LF.Medlemssystem.DataverseTests;
+using Azure.DataverseService.Tests;
 
-namespace DataverseActivityServiceTests
+namespace DataverseActivityServiceTests;
+
+public class DataverseActivityServiceTest : TestBase
 {
-    public class DataverseActivityServiceTest : TestBase
+    public DataverseActivityServiceTest(XrmMockupFixture fixture)
+        : base(fixture)
     {
-        public DataverseActivityServiceTest(XrmMockupFixture fixture)
-            : base(fixture)
-        {
-        }
     }
 }

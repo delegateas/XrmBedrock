@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LF.Medlemssystem.Plugins;
+namespace Dataverse.Plugins;
 
 internal sealed class DummyManagedIdentityService : IManagedIdentityService
 {

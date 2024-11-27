@@ -1,32 +1,31 @@
+using Azure.DataverseService.Tests;
 using DataverseService.Dto.Account;
-using LF.Medlemssystem.DataverseTests;
 using XrmBedrock.SharedContext;
 using Task = System.Threading.Tasks.Task;
 
-namespace DataverseAccountServiceTests
+namespace DataverseAccountServiceTests;
+
+public class DataverseAccountServiceTest : TestBase
 {
-    public class DataverseAccountServiceTest : TestBase
+    public DataverseAccountServiceTest(XrmMockupFixture fixture)
+        : base(fixture)
     {
-        public DataverseAccountServiceTest(XrmMockupFixture fixture)
-            : base(fixture)
-        {
-        }
+    }
 
-        [Fact]
-        public async Task DemoTestCreateAccount()
-        {
-            // Arrange
-            var CreateAccountRequest = new CreateAccountRequest("New Account", "Example Street");
+    [Fact]
+    public async Task DemoTestCreateAccount()
+    {
+        // Arrange
+        var createAccountRequest = new CreateAccountRequest("New Account", "Example Street");
 
-            // Act
-            var response = await DataverseAccountService.CreateAccount(CreateAccountRequest);
+        // Act
+        var response = await DataverseAccountService.CreateAccount(createAccountRequest);
 
-            // Assert
-            response.Should().NotBeNull();
-            var createdAccount = AdminDao.Retrieve<Account>(response.AccountId);
-            createdAccount.Should().NotBeNull();
-            createdAccount.Name.Should().Be(CreateAccountRequest.Name);
-            createdAccount.Address1_Line1.Should().Be(CreateAccountRequest.StreetName);
-        }
+        // Assert
+        response.Should().NotBeNull();
+        var createdAccount = AdminDao.Retrieve<Account>(response.AccountId, a => a.Name, a => a.Address1_Line1);
+        createdAccount.Should().NotBeNull();
+        createdAccount.Name.Should().Be(createAccountRequest.Name);
+        createdAccount.Address1_Line1.Should().Be(createAccountRequest.StreetName);
     }
 }

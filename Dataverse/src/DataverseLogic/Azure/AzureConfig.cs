@@ -1,7 +1,5 @@
-namespace DataverseLogic.Azure
-{
-    public record AzureConfig(
-        string StorageAccountToken,
-        Uri StorageAccountUrl
-    );
-}
+namespace DataverseLogic.Azure;
+
+public record AzureConfig(
+    Uri StorageAccountUrl
+);

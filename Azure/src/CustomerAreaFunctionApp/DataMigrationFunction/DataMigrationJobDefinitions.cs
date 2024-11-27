@@ -1,5 +1,4 @@
 using DataverseService.UtilityArea.DataMigration;
-using Microsoft.Extensions.Caching.Memory;
 using System.Data;
 
 namespace CustomerAreaFunctionApp.DataMigrationFunction;
@@ -11,22 +10,16 @@ internal sealed partial class DataMigrationJobDefinitions : IDataMigrationJobDef
 {
     private readonly IDataverseMigrateGenericService dataverseMigrateGenericService;
     private readonly Dictionary<string, DataMigrationJob> jobDictionary;
-    private readonly IMemoryCache cache;
     private string? dataMigrationTestMarking;
-    private string? environmentIdentifier;
 
-    public DataMigrationJobDefinitions(
-        IDataverseMigrateGenericService dataverseMigrateGenericService,
-        IMemoryCache cache)
+    public DataMigrationJobDefinitions(IDataverseMigrateGenericService dataverseMigrateGenericService)
     {
         this.dataverseMigrateGenericService = dataverseMigrateGenericService;
         jobDictionary = RegisterJobs();
-        this.cache = cache;
     }
 
     public void SetEnvironmentIdentifier(string environmentIdentifier)
     {
-        this.environmentIdentifier = environmentIdentifier;
         this.dataMigrationTestMarking = environmentIdentifier == "Dev" ? "DataMigDoNotUse " : string.Empty;
     }
 

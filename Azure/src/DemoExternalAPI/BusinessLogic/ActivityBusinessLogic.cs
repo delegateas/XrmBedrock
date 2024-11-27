@@ -5,7 +5,7 @@ using SharedDomain;
 using XrmBedrock.SharedContext;
 using DataverseTask = XrmBedrock.SharedContext.Task;
 
-namespace MedlemssystemApi.BusinessLogic;
+namespace DemoExternalApi.BusinessLogic;
 
 public class ActivityBusinessLogic : IActivityBusinessLogic
 {

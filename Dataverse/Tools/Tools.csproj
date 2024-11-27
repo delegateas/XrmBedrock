@@ -1,11 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<!--<RootNamespace>DG.XrmFramework.Daxif</RootNamespace>-->
-		<!--<AssemblyName>Delegate.XrmFramework.Daxif</AssemblyName>-->
 		<TargetFramework>net462</TargetFramework>
-		
-		<!--<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\..\Tools\DG\Signature\delegate.snk</AssemblyOriginatorKeyFile>-->
 	</PropertyGroup>
 	<ItemGroup>
 	  <Compile Remove="CustomScripting\**" />
@@ -30,9 +25,6 @@
 	  <PackageReference Include="System.ValueTuple" Version="4.5.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Code\Laegeforeningen\Medlemssystemet\Dataverse\Tools\.editorconfig" />
-	</ItemGroup>
-	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Code\Laegeforeningen\Medlemssystemet\Dataverse\Tools\.editorconfig" />
+	  <EditorConfigFiles Remove=".\.editorconfig" />
 	</ItemGroup>
 </Project>

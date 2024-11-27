@@ -1,23 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<RootNamespace>LF.Medlemssystem.Plugins</RootNamespace>
-		<AssemblyName>Delegate.LF.Medlemssystem.Plugins</AssemblyName>
+		<RootNamespace>Dataverse.Plugins</RootNamespace>
+		<AssemblyName>XrmBedrock.Dataverse.Plugins</AssemblyName>
 		<TargetFramework>net462</TargetFramework>
 		<SignAssembly>False</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\..\lfmedlemssystem.snk</AssemblyOriginatorKeyFile>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
-	<ItemGroup>
-	  <Compile Remove="CommiteeArea\**" />
-	  <Compile Remove="EventArea\**" />
-	  <Compile Remove="EventRegistration\**" />
-	  <EmbeddedResource Remove="CommiteeArea\**" />
-	  <EmbeddedResource Remove="EventArea\**" />
-	  <EmbeddedResource Remove="EventRegistration\**" />
-	  <None Remove="CommiteeArea\**" />
-	  <None Remove="EventArea\**" />
-	  <None Remove="EventRegistration\**" />
-	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="ServiceBase.cs" />
 	</ItemGroup>

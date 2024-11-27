@@ -1,15 +1,15 @@
+using Azure.DataverseService.Foundation.Dao;
 using DataverseService.ActivityArea;
 using DataverseService.Foundation.Dao;
 using DataverseService.UtilityArea;
+using DemoExternalApi.BusinessLogic;
 using DG.Tools.XrmMockup;
-using LF.Services.Dataverse.Dao;
-using MedlemssystemApi.BusinessLogic;
 using Microsoft.Extensions.Logging;
 using SharedDataverseLogic.ActivityArea;
 using SharedDomain;
 using SharedTest;
 
-namespace MedlemssystemApi.Tests;
+namespace DemoExternalApi.Tests;
 
 [Collection("Xrm Collection")]
 public class TestBase : IDisposable

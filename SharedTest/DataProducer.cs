@@ -66,12 +66,10 @@ public class DataProducer
         });
     }
 
-
     internal static DateTime GetUTCDate(int year, int month, int day)
     {
         return new DateTime(year, month, day, 0, 0, 0, 0, DateTimeKind.Utc);
     }
-
 
     internal Template ProduceValidEmailTemplate(Template? queue)
     {

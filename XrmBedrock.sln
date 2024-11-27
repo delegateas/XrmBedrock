@@ -33,11 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomAPITests", "Dataverse
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataverseServiceTests", "Azure\test\DataverseServiceTests\DataverseServiceTests.csproj", "{58B57E3B-D346-4D64-B85D-259BA39E0EA6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoExternalAPi", "Azure\src\MedlemssystemApi\DemoExternalAPi.csproj", "{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoExternalAPi", "Azure\src\DemoExternalAPI\DemoExternalAPi.csproj", "{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedDataverseLogic", "SharedDataverseLogic\SharedDataverseLogic.shproj", "{6C57ADF6-80C2-4AE4-BF25-CB514041E3DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedlemssystemApi.Tests", "Azure\test\MedlemssystemApi.Tests\MedlemssystemApi.Tests.csproj", "{D45B7F39-982E-4098-B946-88EF10A569C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedlemssystemApi.Tests", "Azure\test\DemoExternalAPI.Tests\DemoExternalAPI.Tests.csproj", "{D45B7F39-982E-4098-B946-88EF10A569C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerAreaFunctionApp.Tests", "Azure\test\CustomerAreaFunctionApp.Tests\CustomerAreaFunctionApp.Tests.csproj", "{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}"
 EndProject

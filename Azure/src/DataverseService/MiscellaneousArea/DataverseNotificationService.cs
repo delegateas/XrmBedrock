@@ -1,7 +1,7 @@
-using XrmBedrock.SharedContext;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+using XrmBedrock.SharedContext;
 using Task = System.Threading.Tasks.Task;
 
 namespace DataverseService.UtilityArea;

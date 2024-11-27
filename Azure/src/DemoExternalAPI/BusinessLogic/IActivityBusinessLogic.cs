@@ -1,6 +1,6 @@
 using DataverseService.Dto.Activity;
 
-namespace MedlemssystemApi.BusinessLogic;
+namespace DemoExternalApi.BusinessLogic;
 
 public interface IActivityBusinessLogic
 {

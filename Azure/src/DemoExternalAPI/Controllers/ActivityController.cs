@@ -1,9 +1,9 @@
 using DataverseService.Dto.Activity;
 using DataverseService.Foundation.Logging;
-using MedlemssystemApi.BusinessLogic;
+using DemoExternalApi.BusinessLogic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MedlemssystemApi.Controllers;
+namespace DemoExternalApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -44,13 +44,13 @@ public class ActivityController : ControllerBase
 
         try
         {
-            logger.LogMessageInformation($"RegisterPerson invoked at {DateTime.Now}");
+            logger.LogMessageInformation($"CreateTask invoked at {DateTime.Now}");
             var createTaskResponse = activityBusinessLogic.CreateTask(createTaskRequest);
             return CreatedAtAction(nameof(CreateTask), new { id = createTaskResponse.TaskId }, createTaskResponse);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error occurred while creating a member.");
+            logger.LogError(ex, "Error occurred while creating a task.");
             return StatusCode(StatusCodes.Status500InternalServerError, new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,

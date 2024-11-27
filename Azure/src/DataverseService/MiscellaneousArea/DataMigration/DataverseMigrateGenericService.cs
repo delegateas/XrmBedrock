@@ -149,7 +149,7 @@ public class DataverseMigrateGenericService : IDataverseMigrateGenericService
     {
         return attributeValue switch
         {
-            int intValue => intValue.ToStringLfDefault(),
+            int intValue => intValue.ToStringSolutionDefault(),
             Guid guidValue => guidValue.ToString(),
             string stringValue => stringValue,
             _ => throw new NotSupportedException($"Attribute value type {attributeValue.GetType()} is not supported"),

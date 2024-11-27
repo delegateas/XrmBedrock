@@ -1,7 +1,7 @@
 using Microsoft.Xrm.Sdk;
 using Task = System.Threading.Tasks.Task;
 
-namespace LF.Services.Dataverse.Dao;
+namespace Azure.DataverseService.Foundation.Dao;
 
 #pragma warning disable MA0048 // File name must match type name
 public partial class DataverseAccessObjectAsync

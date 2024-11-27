@@ -515,8 +515,8 @@ dotnet_diagnostic.CA1848.severity = none	# Use the LoggerMessage delegates for h
 dotnet_diagnostic.CA1860.severity = none	# We will accept the use of .Any()
 dotnet_diagnostic.CA2254.severity = none	# We should not log so much that this potential performance optimization will have any effect
 dotnet_diagnostic.SA1208.severity = none	# Ordering of System usings before other usings. This conflicts with the built-in tool in VS to auto-remove unused usings and order the rest on each save of a file
-#dotnet_diagnostic.SA1503.severity = none	# LF project relaxation: It has been chosen to accept that a single-line-body of an if-statement shall not require curly brackets
-#dotnet_diagnostic.SA1519.severity = none	# LF project relaxation: It has been chosen to accept that a single-line-body of an if-statement shall not require curly brackets
+dotnet_diagnostic.SA1503.severity = none	# It has been chosen to accept that a single-line-body of an if-statement shall not require curly brackets
+dotnet_diagnostic.SA1519.severity = none	# It has been chosen to accept that a single-line-body of an if-statement shall not require curly brackets
 
 dotnet_diagnostic.S3925.severity = none		# rule that requires an implementation that is obsolete in .Net8
 

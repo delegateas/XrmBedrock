@@ -1,8 +1,8 @@
 using Azure.Core;
+using Azure.DataverseService.Foundation.Dao;
 using Azure.Identity;
 using DataverseService.Foundation.Dao;
 using DataverseService.Foundation.Logging;
-using LF.Services.Dataverse.Dao;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;

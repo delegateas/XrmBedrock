@@ -10,6 +10,7 @@ public static class AzureConfigSetter
         services.AddScoped(provider =>
         {
             var dao = provider.GetRequiredService<IDataverseAccessObject>();
+
             // TODO: Check that this query is correct
             var urlFromEnvVar = dao.RetrieveFirst(xrm => xrm.EnvironmentVariableValueSet
                 .Where(ev => ev.EnvironmentVariableDefinitionId.Name == "AzureStorageAccountUrl")
@@ -18,7 +19,6 @@ public static class AzureConfigSetter
             var storageAccountUrl = urlFromEnvVar ?? "https://www.microsoft.com/";
 
             return new AzureConfig(
-                string.Empty,
                 new Uri(storageAccountUrl));
         });
     }

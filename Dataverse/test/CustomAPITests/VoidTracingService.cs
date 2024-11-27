@@ -1,6 +1,6 @@
 using SharedDataverseLogic;
 
-namespace LF.Medlemssystem.CustomAPITests;
+namespace Dataverse.CustomAPITests;
 
 public class VoidTracingService : IExtendedTracingService
 {

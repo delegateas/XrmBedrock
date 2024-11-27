@@ -42,7 +42,7 @@ public class DuplicateRuleService : IDuplicateRuleService
                 Description = r.Description,
                 Name = r.Name,
             }));
-        return unpublisedRules.Where(r => r.Description?.ToLowerLfDefault()?.Contains("autopublish") ?? false).ToList();
+        return unpublisedRules.Where(r => r.Description?.ToLowerSolutionDefault()?.Contains("autopublish") ?? false).ToList();
     }
 
     private void PublishRule(DuplicateRule rule)

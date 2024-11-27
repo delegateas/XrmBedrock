@@ -53,7 +53,7 @@ internal class BookKeeping : IDisposable
     {
         var dmId = row.Field<int?>("DmId");
         var sql = dmId != null
-            ? $"UPDATE {GetElementStatusTableName()} SET DmStatus = '{ElementStatus.Success}', DmMessage = NULL WHERE DmId = {dmId.Value.ToStringLfDefault()}"
+            ? $"UPDATE {GetElementStatusTableName()} SET DmStatus = '{ElementStatus.Success}', DmMessage = NULL WHERE DmId = {dmId.Value.ToStringSolutionDefault()}"
             : $"INSERT INTO {GetElementStatusTableName()} (DmJobType, DMElementId, DmStatus, DmMessage) VALUES ('{dataMigrationJob.JobType}', '{dataMigrationJob.GetElementIdValueAsString(row)}', '{ElementStatus.Success}', NULL)";
         ExecuteNonQuery(sql);
     }
@@ -86,7 +86,7 @@ internal class BookKeeping : IDisposable
     {
         var dmId = row.Field<int?>("DmId");
         var sql = dmId != null
-            ? $"UPDATE {GetElementStatusTableName()} SET DmStatus = '{ElementStatus.Failure}', DmMessage = '{errorMsg}' WHERE DmId = {dmId.Value.ToStringLfDefault()}"
+            ? $"UPDATE {GetElementStatusTableName()} SET DmStatus = '{ElementStatus.Failure}', DmMessage = '{errorMsg}' WHERE DmId = {dmId.Value.ToStringSolutionDefault()}"
             : $"INSERT INTO {GetElementStatusTableName()} (DmJobType, DMElementId, DmStatus, DmMessage) VALUES ('{dataMigrationJob.JobType}', '{dataMigrationJob.GetElementIdValueAsString(row)}', '{ElementStatus.Failure}', '{errorMsg}')";
         ExecuteNonQuery(sql);
     }
@@ -110,7 +110,7 @@ internal class BookKeeping : IDisposable
 
     private void RegisterJobStatus(JobInstance jobInstance, string jobStatus, string? message)
     {
-        var sql = $"UPDATE {GetJobTableName()} SET DmStatus = '{jobStatus}', DmMessage = {(message == null ? "NULL" : "'" + message + "'")}, DmErrorsOccurred = {(jobInstance.ErrorHasOccurred ? "1" : "0")} WHERE DmId = {jobInstance.JobId.ToStringLfDefault()}";
+        var sql = $"UPDATE {GetJobTableName()} SET DmStatus = '{jobStatus}', DmMessage = {(message == null ? "NULL" : "'" + message + "'")}, DmErrorsOccurred = {(jobInstance.ErrorHasOccurred ? "1" : "0")} WHERE DmId = {jobInstance.JobId.ToStringSolutionDefault()}";
         ExecuteNonQuery(sql);
     }
 

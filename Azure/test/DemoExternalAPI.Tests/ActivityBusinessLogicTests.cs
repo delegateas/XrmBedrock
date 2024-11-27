@@ -1,6 +1,6 @@
 using Task = System.Threading.Tasks.Task;
 
-namespace MedlemssystemApi.Tests;
+namespace DemoExternalApi.Tests;
 
 public class ActivityBusinessLogicTests : TestBase
 {

@@ -45,7 +45,7 @@ internal sealed class BookKeepingExtended : BookKeeping
     public DataTable GetElementsToMigrate(DataMigrationJob dataMigrationJob)
     {
         var sql = @$"
-SELECT top {limitJobToTop.ToStringLfDefault()} * FROM {dataMigrationJob.ViewName} d
+SELECT top {limitJobToTop.ToStringSolutionDefault()} * FROM {dataMigrationJob.ViewName} d
 LEFT JOIN {GetElementStatusTableName()} s ON d.{dataMigrationJob.ElementIdName} = s.DmElementId and s.DmJobType = '{dataMigrationJob.JobType}'
 WHERE s.DmStatus IS NULL OR s.DmStatus = '{ElementStatus.Retry}'
 ORDER BY s.DmStatus, d.{dataMigrationJob.ElementIdName}";

@@ -6,7 +6,7 @@ using SharedContext.Dao;
 using SharedDataverseLogic.ActivityArea;
 using SharedDomain;
 
-namespace LF.Medlemssystem.Plugins;
+namespace Dataverse.Plugins;
 
 internal static class PluginSetupCustomDependencies
 {

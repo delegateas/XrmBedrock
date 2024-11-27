@@ -1,6 +1,5 @@
-namespace SharedDomain.CustomerArea
+namespace SharedDomain.CustomerArea;
+
+public record DemoAccountMessage(string EmailAddress)
 {
-    public record DemoAccountMessage(string EmailAddress)
-    {
-    }
 }

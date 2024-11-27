@@ -2,7 +2,7 @@ using DataverseService.CustomerArea;
 using DataverseService.Dto.Account;
 using DataverseService.Foundation.Logging;
 
-namespace MedlemssystemApi.BusinessLogic;
+namespace DemoExternalApi.BusinessLogic;
 
 public class AccountBusinessLogic : IAccountBusinessLogic
 {

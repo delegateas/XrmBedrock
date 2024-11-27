@@ -1,7 +1,8 @@
 using Microsoft.Xrm.Tooling.Connector;
 using SharedContext.Dao;
+using SharedTest;
 
-namespace LF.Medlemssystem.PluginTests.LiveDebug;
+namespace Dataverse.PluginTests.LiveDebug;
 
 /// <summary>
 /// This class is for debugging stuff that you cannot test using XrmMockup like
@@ -36,7 +37,7 @@ public class LiveDebugTests
     {
         var connString = GetDataverseConnectionstring();
         var orgService = GetOrgService(connString);
-        return new DataverseAccessObject(orgService, new ConsoleLogger());
+        return new DataverseAccessObject(orgService, new SimpleLogger());
     }
 
     private static CrmServiceClient GetOrgService(string dataverseConnectionstring)

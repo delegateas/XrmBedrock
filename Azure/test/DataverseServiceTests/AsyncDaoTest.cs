@@ -1,4 +1,4 @@
-using LF.Medlemssystem.DataverseTests;
+using Azure.DataverseService.Tests;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using XrmBedrock.SharedContext;

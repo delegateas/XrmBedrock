@@ -1,24 +1,23 @@
 using DG.Tools.XrmMockup;
 
-namespace LF.Medlemssystem.DataverseTests
+namespace Azure.DataverseService.Tests;
+
+public class XrmMockupFixture
 {
-    public class XrmMockupFixture
+    private readonly XrmMockup365 xrm;
+
+    public XrmMockup365 Xrm => xrm;
+
+    public XrmMockupFixture()
     {
-        private readonly XrmMockup365 xrm;
-
-        public XrmMockup365 Xrm => xrm;
-
-        public XrmMockupFixture()
+        var settings = new XrmMockupSettings
         {
-            var settings = new XrmMockupSettings
-            {
-                BasePluginTypes = Array.Empty<Type>(),
-                EnableProxyTypes = true,
-                IncludeAllWorkflows = false,
-                MetadataDirectoryPath = "..\\..\\..\\..\\..\\..\\SharedTest\\MetadataGenerated",
-            };
+            BasePluginTypes = Array.Empty<Type>(),
+            EnableProxyTypes = true,
+            IncludeAllWorkflows = false,
+            MetadataDirectoryPath = "..\\..\\..\\..\\..\\..\\SharedTest\\MetadataGenerated",
+        };
 
-            xrm = XrmMockup365.GetInstance(settings);
-        }
+        xrm = XrmMockup365.GetInstance(settings);
     }
 }

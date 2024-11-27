@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using SharedDataverseLogic;
 
-namespace LF.Medlemssystem.Plugins;
+namespace Dataverse.Plugins;
 
 public class DataverseLogger : ILogger
 {

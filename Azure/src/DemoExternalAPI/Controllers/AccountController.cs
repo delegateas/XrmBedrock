@@ -1,9 +1,9 @@
 using DataverseService.Dto.Account;
 using DataverseService.Foundation.Logging;
-using MedlemssystemApi.BusinessLogic;
+using DemoExternalApi.BusinessLogic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MedlemssystemApi.Controllers;
+namespace DemoExternalApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -39,5 +39,4 @@ public class AccountController : ControllerBase
         var accountResponse = await accountBusinessLogic.CreateAccount(createAccountRequest);
         return CreatedAtAction(nameof(CreateAccount), new { id = accountResponse.AccountId }, accountResponse);
     }
-
 }

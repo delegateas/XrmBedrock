@@ -1,6 +1,6 @@
 using DG.Tools.XrmMockup;
 
-namespace MedlemssystemApi.Tests;
+namespace DemoExternalApi.Tests;
 
 public class XrmMockupFixture
 {

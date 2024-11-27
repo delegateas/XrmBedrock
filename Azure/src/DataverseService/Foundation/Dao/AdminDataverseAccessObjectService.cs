@@ -1,6 +1,6 @@
-using SharedContext.Dao;
 using Microsoft.Extensions.Logging;
 using Microsoft.PowerPlatform.Dataverse.Client;
+using SharedContext.Dao;
 
 namespace DataverseService.Foundation.Dao;
 
