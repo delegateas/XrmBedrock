@@ -5,10 +5,12 @@ using System.Linq.Expressions;
 using Microsoft.Xrm.Sdk;
 
 // StepConfig           : className, ExecutionStage, EventOperation, LogicalName
-// ExtendedStepConfig   : Deployment, ExecutionMode, Name, ExecutionOrder, FilteredAttributes, UserContext
-// ImageTuple           : Name, EntityAlias, ImageType, Attributes
 using StepConfig = System.Tuple<string, int, string, string>;
+
+// ExtendedStepConfig   : Deployment, ExecutionMode, Name, ExecutionOrder, FilteredAttributes, UserContext
 using ExtendedStepConfig = System.Tuple<int, int, string, int, string, string>;
+
+// ImageTuple           : Name, EntityAlias, ImageType, Attributes
 using ImageTuple = System.Tuple<string, string, int, string>;
 
 namespace Dataverse.Plugins;
@@ -18,39 +20,13 @@ namespace Dataverse.Plugins;
 /// </summary>    
 public class Plugin : IPlugin {
     protected class LocalPluginContext {
-        internal IServiceProvider ServiceProvider {
-            get;
+        internal IServiceProvider ServiceProvider { get; private set; }
+        internal IOrganizationService OrganizationService { get; private set; }
+        internal IOrganizationService OrganizationAdminService { get; private set; }
+        internal IPluginExecutionContext PluginExecutionContext { get; private set; }
+        internal ITracingService TracingService { get; private set; }
 
-            private set;
-        }
-
-        internal IOrganizationService OrganizationService {
-            get;
-
-            private set;
-        }
-
-        // Delegate A/S added:
-        internal IOrganizationService OrganizationAdminService {
-            get;
-
-            private set;
-        }
-
-        internal IPluginExecutionContext PluginExecutionContext {
-            get;
-
-            private set;
-        }
-
-        internal ITracingService TracingService {
-            get;
-
-            private set;
-        }
-
-        private LocalPluginContext() {
-        }
+        private LocalPluginContext() {}
 
         internal LocalPluginContext(IServiceProvider serviceProvider) {
             if (serviceProvider == null) {
@@ -80,7 +56,8 @@ public class Plugin : IPlugin {
 
             if (this.PluginExecutionContext == null) {
                 this.TracingService.Trace(message);
-            } else {
+            }
+            else {
                 this.TracingService.Trace(
                     "{0}, Correlation Id: {1}, Initiating User: {2}",
                     message,
@@ -186,7 +163,6 @@ public class Plugin : IPlugin {
     }
 
 
-    // Delegate A/S added:
     /// <summary>
     /// The methods exposes the RegisteredEvents as a collection of tuples
     /// containing:
@@ -199,8 +175,6 @@ public class Plugin : IPlugin {
     /// MS CRM without have to use any extra layer to perform this operation
     /// </summary>
     /// <returns></returns>
-    /// 
-
     public IEnumerable<Tuple<string, int, string, string>> PluginProcessingSteps() {
         var className = this.ChildClassName;
         foreach (var events in this.RegisteredEvents) {
@@ -250,7 +224,6 @@ public class Plugin : IPlugin {
 
     #endregion
 
-
     #region PluginStepConfig retrieval
     /// <summary>
     /// Made by Delegate A/S
@@ -268,7 +241,6 @@ public class Plugin : IPlugin {
         }
     }
 
-
     protected PluginStepConfig<T> RegisterPluginStep<T>(
         EventOperation eventOperation, ExecutionStage executionStage, Action<LocalPluginContext> action)
         where T : Entity {
@@ -285,8 +257,8 @@ public class Plugin : IPlugin {
         return stepConfig;
     }
 
-
     private Collection<IPluginStepConfig> pluginConfigs;
+
     private Collection<IPluginStepConfig> PluginStepConfigs {
         get {
             if (this.pluginConfigs == null) {
@@ -296,11 +268,9 @@ public class Plugin : IPlugin {
         }
     }
     #endregion
-
 }
 
-
-#region PluginStepConfig made by Delegate A/S
+#region PluginStepConfig
 public static class HelperPlugin {
     public static EventOperation ToEventOperation(this String x) {
         return (EventOperation)Enum.Parse(typeof(EventOperation), x);
@@ -322,7 +292,6 @@ interface IPluginStepConfig {
 }
 
 /// <summary>
-/// Made by Delegate A/S
 /// Class to encapsulate the various configurations that can be made 
 /// to a plugin step.
 /// </summary>
@@ -330,7 +299,6 @@ public class PluginStepConfig<T> : IPluginStepConfig where T : Entity {
     public string _LogicalName { get; private set; }
     public string _EventOperation { get; private set; }
     public int _ExecutionStage { get; private set; }
-
     public string _Name { get; private set; }
     public int _Deployment { get; private set; }
     public int _ExecutionMode { get; private set; }
@@ -346,7 +314,6 @@ public class PluginStepConfig<T> : IPluginStepConfig where T : Entity {
             return string.Join(",", this._FilteredAttributesCollection).ToLower();
         }
     }
-
 
     public PluginStepConfig(EventOperation eventOperation, ExecutionStage executionStage) {
         this._LogicalName = Activator.CreateInstance<T>().LogicalName;
@@ -437,7 +404,6 @@ public class PluginStepConfig<T> : IPluginStepConfig where T : Entity {
             }
         }
     }
-
 
     private static string GetMemberName(Expression<Func<T, object>> lambda) {
         MemberExpression body = lambda.Body as MemberExpression;

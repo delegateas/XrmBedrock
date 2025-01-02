@@ -4,7 +4,7 @@
 		<AssemblyName>XrmBedrock.Dataverse.Plugins</AssemblyName>
 		<TargetFramework>net462</TargetFramework>
 		<SignAssembly>False</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\..\..\lfmedlemssystem.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>..\..\..\xrmbedrock.snk</AssemblyOriginatorKeyFile>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
 	<ItemGroup>
@@ -73,7 +73,7 @@
 			<InputAssemblies Include="$(TargetDir)System.Threading.Tasks.Extensions.dll" />
 			<InputAssemblies Include="$(TargetDir)System.Text.Json.dll" />
 		</ItemGroup>
-		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\lfmedlemssystem.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
+		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\xrmbedrock.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
   </Target>
 	<Target Name="SignDLL" AfterTargets="ILRepack">
 	  <Exec Command="signtool sign /p oINSADpn9081hn9dn /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
