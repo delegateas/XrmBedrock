@@ -1,12 +1,11 @@
 using Azure.DataverseService.Foundation.Dao;
 using DataverseService.ActivityArea;
 using DataverseService.Foundation.Dao;
-using DataverseService.UtilityArea;
 using DemoExternalApi.BusinessLogic;
 using DG.Tools.XrmMockup;
 using Microsoft.Extensions.Logging;
+using Microsoft.PowerPlatform.Dataverse.Client;
 using SharedDataverseLogic.ActivityArea;
-using SharedDomain;
 using SharedTest;
 
 namespace DemoExternalApi.Tests;
@@ -14,14 +13,10 @@ namespace DemoExternalApi.Tests;
 [Collection("Xrm Collection")]
 public class TestBase : IDisposable
 {
+    private readonly IOrganizationServiceAsync2 orgAdminService;
     private readonly IDataverseAccessObjectAsync adminDao;
 #pragma warning disable S3459 // Unassigned members should be removed
 #pragma warning disable CS0649 // Field 'TestBase.dataverseImageService' is never assigned to, and will always have its default value null
-    private readonly IDataverseImageService dataverseImageService;
-#pragma warning restore CS0649 // Field 'TestBase.dataverseImageService' is never assigned to, and will always have its default value null
-#pragma warning restore S3459 // Unassigned members should be removed
-#pragma warning disable S3459 // Unassigned members should be removed
-#pragma warning disable CS0649 // Field 'TestBase.dataverselogger' is never assigned to, and will always have its default value null
     private readonly ILogger<DataverseActivityService> dataverselogger;
 #pragma warning restore CS0649 // Field 'TestBase.dataverselogger' is never assigned to, and will always have its default value null
 #pragma warning restore S3459 // Unassigned members should be removed
@@ -33,11 +28,7 @@ public class TestBase : IDisposable
 
     protected IDataverseAccessObjectAsync AdminDao => adminDao;
 
-    protected IDataverseImageService DataverseImageService => dataverseImageService;
-
-    protected IDataverseImageService I => dataverseImageService;
-
-    protected ILogger<DataverseActivityService> DataverseLogger => dataverselogger;
+    protected ILogger DataverseLogger => dataverselogger;
 
     protected DataProducer Producer => dataProducer;
 
@@ -50,18 +41,21 @@ public class TestBase : IDisposable
         ArgumentNullException.ThrowIfNull(fixture);
 
         xrm = fixture.Xrm;
-        var simpleLogger = new SimpleLogger<TestBase>();
-        var loggingComponent = new LoggingComponent();
-        loggingComponent.SetLogger(simpleLogger);
-        var orgAdminService = Xrm.GetAdminService(new MockupServiceSettings(true, false, MockupServiceSettings.Role.UI));
+
+        // setting up the logger
         using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Trace));
-        var dataverseAccessObjectAsyncLogger = loggerFactory.CreateLogger<DataverseAccessObjectAsync>();
-        adminDao = new DataverseAccessObjectAsync(orgAdminService, dataverseAccessObjectAsyncLogger);
+        var logger = loggerFactory.CreateLogger<TestBase>();
+
+        // setting up the dataverse access objects and Producer
+        orgAdminService = Xrm.GetAdminService(new MockupServiceSettings(true, false, MockupServiceSettings.Role.UI));
+        adminDao = new DataverseAccessObjectAsync(orgAdminService, logger);
         dataProducer = new DataProducer(adminDao);
+
+        // setting up other services
 #pragma warning disable CS8604 // Possible null reference argument.
         activityBusinessLogic = new ActivityBusinessLogic(
             new SharedDataverseActivityService(adminDao),
-            loggingComponent);
+            logger);
 #pragma warning restore CS8604 // Possible null reference argument.
     }
 

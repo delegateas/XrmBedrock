@@ -1,4 +1,5 @@
 using DataverseLogic;
+using DataverseLogic.ActivityArea;
 using DataverseLogic.Azure;
 using DataverseLogic.Utility;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,7 @@ internal static class PluginSetupCustomDependencies
 
         // Dataverse Logic (lexicografical order please)
         //services.AddScoped<IAccountService, AccountService>();
-        //services.AddScoped<IActivityService, ActivityService>();
+        services.AddScoped<IActivityService, ActivityService>();
         //services.AddScoped<IContactService, ContactService>();
         services.AddScoped<IDuplicateRuleService, DuplicateRuleService>();
         services.AddScoped<ILoggingComponent, LoggingComponent>();

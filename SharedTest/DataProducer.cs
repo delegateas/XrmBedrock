@@ -1,5 +1,6 @@
 using SharedContext.Dao;
 using XrmBedrock.SharedContext;
+using Task = XrmBedrock.SharedContext.Task;
 
 namespace SharedTest;
 
@@ -69,6 +70,14 @@ public class DataProducer
     internal static DateTime GetUTCDate(int year, int month, int day)
     {
         return new DateTime(year, month, day, 0, 0, 0, 0, DateTimeKind.Utc);
+    }
+
+    internal Task ConstructValidTask(Task? task)
+    {
+        return adminDao.Constructor(task, e =>
+        {
+            e.EnsureValue(t => t.Subject, "Some task");
+        });
     }
 
     internal Template ProduceValidEmailTemplate(Template? queue)

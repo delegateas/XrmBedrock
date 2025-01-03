@@ -146,6 +146,7 @@ namespace DG.Tools.XrmMockup {
 		public static Guid LFFinans = new Guid("778092db-bdcc-ee11-9079-000d3a666782");
 		public static Guid LFFondsadministrationbasisrolle = new Guid("b00aac2b-10a7-ef11-b8e9-000d3a694b8f");
 		public static Guid LFFondsadministrationefteruddannelse = new Guid("9b046590-14a7-ef11-b8e9-000d3aba6245");
+		public static Guid LFFondsadministrationstandardejergruppe = new Guid("ba52f14e-92b8-ef11-b8e9-7c1e52211a9b");
 		public static Guid LFFondsadministrationsygefond = new Guid("452fa922-15a7-ef11-b8e9-000d3ab30dda");
 		public static Guid LFMedlemsservice = new Guid("45b87b25-2318-ef11-9f89-0022489f527f");
 		public static Guid LFOprydningsrolle = new Guid("f84fa09b-4f22-ef11-840a-000d3adb8952");

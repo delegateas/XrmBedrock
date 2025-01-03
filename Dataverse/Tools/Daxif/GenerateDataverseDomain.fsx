@@ -24,6 +24,7 @@ Solution.GenerateCSharpContext(Env.dev, xrmContext, businessDomainFolder,
     "environmentvariablevalue"
     "queue"
     "savedquery"
+    "systemuser"
     "task"
     "template"
     ],

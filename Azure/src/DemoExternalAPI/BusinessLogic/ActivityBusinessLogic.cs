@@ -1,7 +1,6 @@
 using DataverseService.Dto.Activity;
 using SharedContext.Dao;
 using SharedDataverseLogic.ActivityArea;
-using SharedDomain;
 using XrmBedrock.SharedContext;
 using DataverseTask = XrmBedrock.SharedContext.Task;
 
@@ -10,11 +9,11 @@ namespace DemoExternalApi.BusinessLogic;
 public class ActivityBusinessLogic : IActivityBusinessLogic
 {
     private readonly ISharedDataverseActivityService sharedDataverseActivityService;
-    private readonly ILoggingComponent logger;
+    private readonly ILogger logger;
 
     public ActivityBusinessLogic(
         ISharedDataverseActivityService sharedDataverseActivityService,
-        ILoggingComponent logger)
+        ILogger logger)
     {
         this.sharedDataverseActivityService = sharedDataverseActivityService;
         this.logger = logger;

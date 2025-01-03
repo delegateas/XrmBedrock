@@ -22,6 +22,7 @@ Solution.GenerateXrmMockupMetadata(Env.dev, xrmMockupMetadataGenerator, Path.sol
     "environmentvariablevalue"
     "queue"
     "savedquery"
+    "systemuser"
     "task"
     "template"
   ],

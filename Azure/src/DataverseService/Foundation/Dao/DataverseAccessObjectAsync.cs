@@ -24,7 +24,7 @@ public partial class DataverseAccessObjectAsync : DataverseAccessObject, IDatave
     private readonly IOrganizationServiceAsync2 orgServiceAsync;
     private CancellationToken cancellationToken = CancellationToken.None;
 
-    public DataverseAccessObjectAsync(IOrganizationServiceAsync2 orgServiceAsync, ILogger<DataverseAccessObjectAsync> logger)
+    public DataverseAccessObjectAsync(IOrganizationServiceAsync2 orgServiceAsync, ILogger logger)
         : base(orgServiceAsync, logger)
     {
         this.orgServiceAsync = orgServiceAsync;

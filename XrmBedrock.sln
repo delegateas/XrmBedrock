@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoExternalAPi", "Azure\sr
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedDataverseLogic", "SharedDataverseLogic\SharedDataverseLogic.shproj", "{6C57ADF6-80C2-4AE4-BF25-CB514041E3DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedlemssystemApi.Tests", "Azure\test\DemoExternalAPI.Tests\DemoExternalAPI.Tests.csproj", "{D45B7F39-982E-4098-B946-88EF10A569C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoExternalAPI.Tests", "Azure\test\DemoExternalAPI.Tests\DemoExternalAPI.Tests.csproj", "{D45B7F39-982E-4098-B946-88EF10A569C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerAreaFunctionApp.Tests", "Azure\test\CustomerAreaFunctionApp.Tests\CustomerAreaFunctionApp.Tests.csproj", "{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}"
 EndProject
@@ -45,7 +45,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerAreaFunctionApp", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F92A2DD-A6E5-4521-BF2B-70956FD23244}"
 	ProjectSection(SolutionItems) = preProject
-		pull_request_template.md = pull_request_template.md
 		README.md = README.md
 	EndProjectSection
 EndProject
