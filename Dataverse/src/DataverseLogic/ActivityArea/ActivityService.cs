@@ -19,7 +19,7 @@ public class ActivityService : IActivityService
 
     public void DemoValidateTask()
     {
-        // Genrerally do not bloat your code with logging - this is just to demonstrate how to use it.
+        // Generally do not bloat your code with logging - this is just to demonstrate how to use it.
         logger.LogInformation("Validating task.");
 
         // Get the values of interest from the target entity and missing values from the preimage. For a Create the preimage will be empty but the GetTargetMergedWithPreImage is robust to that

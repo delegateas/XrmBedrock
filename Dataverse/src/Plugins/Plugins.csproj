@@ -55,10 +55,6 @@
 	  </None>
 	</ItemGroup>
 	
-	<ItemGroup>
-	  <Folder Include="CustomerArea\" />
-	</ItemGroup>
-	
 	<!-- ILRepack is only need because DAXIF doesn't support Plugin Packages yet -->
 	<Target Name="ILRepack" AfterTargets="Build">
 		<ItemGroup>

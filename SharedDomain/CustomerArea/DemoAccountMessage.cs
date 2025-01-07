@@ -1,5 +1,5 @@
 namespace SharedDomain.CustomerArea;
 
-public record DemoAccountMessage(string EmailAddress)
+public record DemoAccountMessage(Guid AccountId)
 {
 }

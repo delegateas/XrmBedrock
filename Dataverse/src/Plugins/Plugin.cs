@@ -20,6 +20,7 @@ using XrmBedrock.SharedContext;
 using Microsoft.Extensions.Logging;
 using DataverseLogic;
 using System.ServiceModel.Configuration;
+using SharedContext.Dao;
 using SharedDataverseLogic;
 using SharedDomain;
 
@@ -121,6 +122,10 @@ public class Plugin : IPlugin
         services.AddScoped(x => managedIdentity);
         services.AddScoped<ILogger, DataverseLogger>();
         services.TryAdd(ServiceDescriptor.Scoped(typeof(ILogger<>), typeof(DataverseLogger<>)));
+
+        // Dao objects
+        services.AddScoped<IAdminDataverseAccessObjectService, AdminDataverseAccessObjectService>();
+        services.AddScoped<IUserDataverseAccessObjectService, UserDataverseAccessObjectService>();
 
         services.SetupCustomDependencies();
 

@@ -13,49 +13,18 @@ public class DataProducer
         this.adminDao = adminDao;
     }
 
-    private readonly Random random = new Random((int)DateTime.Now.Ticks);
-    private readonly Dictionary<int, bool> used = new Dictionary<int, bool>();
+    internal Account ProduceValidAccount(Account? account) => adminDao.Producer(ConstructValidAccount(account));
 
-    internal int GetUniqueNumber()
+    internal Account ConstructValidAccount(Account? account)
     {
-#pragma warning disable SCS0005
-#pragma warning disable CA5394
-        var next = random.Next();
-#pragma warning restore SCS0005
-#pragma warning restore CA5394
-
-        try
+        return adminDao.Constructor(account, e =>
         {
-            used.Add(next, true);
-            return next;
-        }
-        catch (ArgumentException)
-        {
-            return GetUniqueNumber();
-        }
-    }
-
-    internal Account ProduceValidAccount(Account? account)
-    {
-        return adminDao.Producer(account, e =>
-        {
-            e.EnsureValue(a => a.Name, "Silkeborg sygehus");
-            e.EnsureValue(a => a.EMailAddress1, "silkeborg@kommune.dk");
+            e.EnsureValue(a => a.Name, "Kattens værn");
+            e.EnsureValue(a => a.EMailAddress1, "værn@kattenettet.dk");
         });
     }
 
-    internal Account ProduceValidRegionAccount(Account? account)
-    {
-        return adminDao.Producer(account, e =>
-        {
-            e.EnsureValue(p => p.Name, "Region Midt");
-        });
-    }
-
-    internal Contact ProduceValidContact(Contact? person)
-    {
-        return adminDao.Producer(ConstructValidContact(person));
-    }
+    internal Contact ProduceValidContact(Contact? person) => adminDao.Producer(ConstructValidContact(person));
 
     internal Contact ConstructValidContact(Contact? person)
     {

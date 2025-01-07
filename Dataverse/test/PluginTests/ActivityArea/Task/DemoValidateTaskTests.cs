@@ -6,11 +6,11 @@ using Task = XrmBedrock.SharedContext.Task;
 
 namespace Dataverse.PluginTests.ActivityArea;
 
-public class DemoValidateTaskTest : TestBase
+public class DemoValidateTaskTests : TestBase
 {
     private readonly Guid someUserId;
 
-    public DemoValidateTaskTest(XrmMockupFixture fixture)
+    public DemoValidateTaskTests(XrmMockupFixture fixture)
         : base(fixture)
     {
         someUserId = CreateUser(Guid.NewGuid(), Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator).Id;

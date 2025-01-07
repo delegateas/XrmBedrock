@@ -49,7 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="CustomerArea\Account\" />
 	  <Folder Include="CustomerArea\Contact\" />
 	  <Folder Include="UtilityArea\" />
 	</ItemGroup>

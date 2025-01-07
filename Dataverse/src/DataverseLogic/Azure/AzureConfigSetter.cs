@@ -9,7 +9,7 @@ public static class AzureConfigSetter
     {
         services.AddScoped(provider =>
         {
-            var dao = provider.GetRequiredService<IDataverseAccessObject>();
+            var dao = provider.GetRequiredService<IAdminDataverseAccessObjectService>();
 
             // TODO: Check that this query is correct
             var urlFromEnvVar = dao.RetrieveFirst(xrm => xrm.EnvironmentVariableValueSet
