@@ -9,8 +9,6 @@
     <Import_RootNamespace>SharedDataverseLogic</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ActivityArea\ISharedDataverseActivityService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ActivityArea\SharedDataverseActivityService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ConfigurationNotFoundException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ConfigurationPropertyNullException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataverseConfigurationException.cs" />

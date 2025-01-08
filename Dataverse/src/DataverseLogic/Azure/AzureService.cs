@@ -2,7 +2,7 @@ using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
 using SharedDataverseLogic;
 using SharedDomain;
-using SharedDomain.CustomerArea;
+using SharedDomain.EconomyArea;
 using System.Net.Http;
 using System.Text;
 using System.Xml;
@@ -24,7 +24,7 @@ public class AzureService : IAzureService
         this.managedIdentityService = managedIdentityService;
     }
 
-    public void SendDemoAccountMessage(DemoAccountMessage message) => SendStorageQueueMessage(QueueNames.DemoAccountQueue, JsonConvert.SerializeObject(message));
+    public void SendCreateInvoicesMessage(CreateInvoicesMessage message) => SendStorageQueueMessage(QueueNames.CreateInvoicesQueue, JsonConvert.SerializeObject(message));
 
     private void SendStorageQueueMessage(string queueName, string message)
     {

@@ -22,6 +22,7 @@ Solution.GenerateCSharpContext(Env.dev, xrmContext, businessDomainFolder,
     "contact"
     "duplicaterule"
     "environmentvariablevalue"
+    "environmentvariabledefinition"
     "queue"
     "savedquery"
     "systemuser"

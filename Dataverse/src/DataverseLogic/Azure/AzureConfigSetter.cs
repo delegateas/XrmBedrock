@@ -11,10 +11,11 @@ public static class AzureConfigSetter
         {
             var dao = provider.GetRequiredService<IAdminDataverseAccessObjectService>();
 
-            // TODO: Check that this query is correct
-            var urlFromEnvVar = dao.RetrieveFirst(xrm => xrm.EnvironmentVariableValueSet
-                .Where(ev => ev.EnvironmentVariableDefinitionId.Name == "AzureStorageAccountUrl")
-                .Select(ev => ev.Value));
+            var urlFromEnvVar = dao.RetrieveFirst(xrm =>
+                from variable in xrm.EnvironmentVariableValueSet
+                join definition in xrm.EnvironmentVariableDefinitionSet on variable.EnvironmentVariableDefinitionId.Id equals definition.Id
+                where definition.SchemaName == "mgs_AzureStorageAccountUrl"
+                select variable.Value);
 
             var storageAccountUrl = urlFromEnvVar ?? "https://www.microsoft.com/";
 

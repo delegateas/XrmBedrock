@@ -1,9 +1,9 @@
-using DataverseLogic.ActivityArea;
+using DataverseLogic;
 using DataverseLogic.Azure;
-using DataverseLogic.CustomerArea;
+using DataverseLogic.EconomyArea;
 using DataverseLogic.Utility;
 using Microsoft.Extensions.DependencyInjection;
-using SharedDataverseLogic.ActivityArea;
+using SharedContext.Dao;
 using SharedDomain;
 
 namespace Dataverse.Plugins;
@@ -16,14 +16,18 @@ internal static class PluginSetupCustomDependencies
     {
         services.AddAzureConfig();
 
+        // Utility
+        services.AddScoped<IDuplicateRuleService, DuplicateRuleService>();
+        services.AddScoped<ILoggingComponent, LoggingComponent>();
+
+        // Dao objects
+        services.AddScoped<IAdminDataverseAccessObjectService, AdminDataverseAccessObjectService>();
+        services.AddScoped<IUserDataverseAccessObjectService, UserDataverseAccessObjectService>();
+
         // Integration logic (lexicografical order please)
         services.AddScoped<IAzureService, AzureService>();
 
         // Dataverse Logic (lexicografical order please)
-        services.AddScoped<IActivityService, ActivityService>();
-        services.AddScoped<ICustomerService, CustomerService>();
-        services.AddScoped<IDuplicateRuleService, DuplicateRuleService>();
-        services.AddScoped<ILoggingComponent, LoggingComponent>();
-        services.AddScoped<ISharedDataverseActivityService, SharedDataverseActivityService>();
+        services.AddEconomyArea();
     }
 }

@@ -18,10 +18,12 @@ public static class Startup
 {
     public static IServiceCollection AddDataverse(this IServiceCollection services, bool enableAffinityCookie = true)
     {
+        services.AddScoped(provider => provider.GetRequiredService<ILoggerFactory>().CreateLogger("DataverseService"));
         services.AddScoped<IOrganizationServiceAsync2>(provider => GetServiceClient(provider, enableAffinityCookie: enableAffinityCookie));
         services.AddScoped<IDataverseAccessObjectAsync, DataverseAccessObjectAsync>();
         services.AddScoped<IExtendedTracingService, ExtendedTracingService>();
         services.AddScoped<ILoggingComponent, LoggingComponent>();
+        services.AddScoped<IDataverseCustomApiService, DataverseCustomApiService>();
 
         return services;
     }
@@ -29,9 +31,8 @@ public static class Startup
     private static ServiceClient GetServiceClient(IServiceProvider provider, bool enableAffinityCookie = true)
     {
         var configuration = provider.GetRequiredService<IConfiguration>();
-        var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
+        var logger = provider.GetRequiredService<ILogger>();
 
-        var logger = loggerFactory.CreateLogger("DataverseService");
         var httpContextAccessor = provider.GetService<IHttpContextAccessor>();
         var clientId = httpContextAccessor?.HttpContext?.Items["ClientId"]?.ToString();
 

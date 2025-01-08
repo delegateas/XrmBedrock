@@ -371,3 +371,4 @@ MigrationBackup/
 /Azure/src/MedlemssystemApi/appsettings.Development.json
 /Azure/src/DataMigrationFunction/local.settings.json
 /Dataverse/test/PluginTests/LiveDebug/LiveDebugConnectionString.local.txt
+/SharedContext/XrmContext.cs

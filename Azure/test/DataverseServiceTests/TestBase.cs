@@ -1,12 +1,13 @@
 using Azure.DataverseService.Foundation.Dao;
-using DataverseService.ActivityArea;
-using DataverseService.CustomerArea;
+using DataverseService;
+using DataverseService.EconomyArea;
 using DataverseService.Foundation.Dao;
 using DataverseService.UtilityArea;
 using DG.Tools.XrmMockup;
 using Microsoft.Extensions.Logging;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
+using NSubstitute.ClearExtensions;
 using SharedTest;
 
 namespace Azure.DataverseService.Tests;
@@ -18,9 +19,9 @@ public class TestBase : IDisposable
     private readonly IDataverseAccessObjectAsync adminDao;
     private readonly XrmMockup365 xrm;
     private readonly DataProducer dataProducer;
-    private readonly IDataverseAccountService dataverseAccountService;
-    private readonly IDataverseActivityService dataverseActivityService;
+    private readonly IDataverseInvoiceService dataverseActivityService;
     private readonly IDataverseImageService dataverseImageService;
+    private readonly IDataverseCustomApiService dataverseCustomApiService;
 
     protected XrmMockup365 Xrm => xrm;
 
@@ -32,9 +33,7 @@ public class TestBase : IDisposable
 
     protected DataProducer Producer => dataProducer;
 
-    protected IDataverseAccountService DataverseAccountService => dataverseAccountService;
-
-    protected IDataverseActivityService DataverseActivityService => dataverseActivityService;
+    protected IDataverseInvoiceService DataverseActivityService => dataverseActivityService;
 
     public TestBase(XrmMockupFixture fixture)
     {
@@ -46,9 +45,10 @@ public class TestBase : IDisposable
         var dataverseAccessObjectAsyncLogger = loggerFactory.CreateLogger<DataverseAccessObjectAsync>();
         adminDao = new DataverseAccessObjectAsync(orgAdminService, dataverseAccessObjectAsyncLogger);
         dataProducer = new DataProducer(adminDao);
+        dataverseCustomApiService = Substitute.For<IDataverseCustomApiService>();
+
         dataverseImageService = new DataverseImageService(adminDao);
-        dataverseAccountService = new DataverseAccountService(adminDao);
-        dataverseActivityService = new DataverseActivityService(adminDao);
+        dataverseActivityService = new DataverseInvoiceService(adminDao, dataverseCustomApiService);
     }
 
     public void Dispose()
@@ -62,6 +62,7 @@ public class TestBase : IDisposable
         if (disposing)
         {
             // free managed resources
+            dataverseCustomApiService.ClearSubstitute();
             Xrm.ResetEnvironment();
         }
     }

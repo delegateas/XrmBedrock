@@ -2,5 +2,5 @@ namespace SharedDomain;
 
 public static class QueueNames
 {
-    public const string DemoAccountQueue = "demoaccountqueue";
+    public const string CreateInvoicesQueue = "createinvoicesqueue";
 }

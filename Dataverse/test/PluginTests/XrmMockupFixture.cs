@@ -47,7 +47,7 @@ public class XrmMockupFixture : IDisposable
 
         AddQueueEndpoints(new List<string>
         {
-            QueueNames.DemoAccountQueue,
+            QueueNames.CreateInvoicesQueue,
         });
 
         Xrm.TakeSnapshot(SnapshotName);

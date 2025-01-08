@@ -1,15 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<RootNamespace>Dataverse.Plugins</RootNamespace>
-		<AssemblyName>XrmBedrock.Dataverse.Plugins</AssemblyName>
+		<AssemblyName>Magesoe.Dataverse.Plugins</AssemblyName>
 		<TargetFramework>net462</TargetFramework>
 		<SignAssembly>False</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\..\xrmbedrock.snk</AssemblyOriginatorKeyFile>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
-	<ItemGroup>
-	  <Compile Remove="ServiceBase.cs" />
-	</ItemGroup>
 	
 	<ItemGroup>
 		<!-- ILRepack is only need because DAXIF doesn't support Plugin Packages yet -->
@@ -39,13 +36,11 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Folder Include="CustomAPI\" />
 	  <Compile Update="Properties\Settings.Designer.cs">
 	    <DesignTimeSharedInput>True</DesignTimeSharedInput>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Settings.settings</DependentUpon>
 	  </Compile>
-	  <Folder Include="MiscellaneousArea\" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -71,6 +66,6 @@
 		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\xrmbedrock.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
   </Target>
 	<Target Name="SignDLL" AfterTargets="ILRepack">
-	  <Exec Command="signtool sign /p oINSADpn9081hn9dn /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
+	  <Exec Command="signtool sign /p someRandomPassword /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
 	</Target>
 </Project>

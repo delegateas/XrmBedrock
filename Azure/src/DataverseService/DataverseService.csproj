@@ -14,11 +14,8 @@
   <Import Project="..\..\..\SharedContext\SharedContext.projitems" Label="Shared" />
 
   <ItemGroup>
-    <Compile Remove="Dto\Products\**" />
     <Compile Remove="FundsAdministrationArea\**" />
-    <EmbeddedResource Remove="Dto\Products\**" />
     <EmbeddedResource Remove="FundsAdministrationArea\**" />
-    <None Remove="Dto\Products\**" />
     <None Remove="FundsAdministrationArea\**" />
   </ItemGroup>
   
