@@ -57,13 +57,13 @@ CRM Solution Setup
 ------------------
 *)
 module SolutionInfo =
-  let name = @"Magesoe"
-  let displayName = @"Magesoe"
+  let name = @"XrmBedrock"
+  let displayName = @"XrmBedrock"
 
 module PublisherInfo =
-  let prefix = @"mgs"
-  let name = @"Magesoe"
-  let displayName = @"Magesoe"
+  let prefix = @"xrm"
+  let name = @"XrmBedrock"
+  let displayName = @"XrmBedrock"
 
 (** 
 Path and project setup 
@@ -80,7 +80,7 @@ module Path =
   let webResourceProject = dataverseRoot ++ "src" ++ @"WebResources"
   let webResourceFolder = webResourceProject ++ @"src" ++ (sprintf "%s_%s" PublisherInfo.prefix SolutionInfo.name)
   
-  let pluginDllName = "ILMerged.Magesoe.Dataverse.Plugins"
+  let pluginDllName = "ILMerged.XrmBedrock.Dataverse.Plugins"
 
   /// Path information used by the SolutionPackager scripts
   module SolutionPack =
