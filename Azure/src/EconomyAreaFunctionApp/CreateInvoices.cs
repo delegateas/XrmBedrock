@@ -1,6 +1,7 @@
 using DataverseService.EconomyArea;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using SharedDomain;
 using SharedDomain.EconomyArea;
 
 namespace EconomyAreaFunctionApp
@@ -19,7 +20,7 @@ namespace EconomyAreaFunctionApp
         }
 
         [Function(nameof(CreateInvoices))]
-        public Task Run([QueueTrigger("createinvoicesqueue")] CreateInvoicesMessage message)
+        public Task Run([QueueTrigger(QueueNames.CreateInvoicesQueue)] CreateInvoicesMessage message)
         {
             ArgumentNullException.ThrowIfNull(message);
 
