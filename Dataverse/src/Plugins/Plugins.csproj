@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<RootNamespace>Dataverse.Plugins</RootNamespace>
-		<AssemblyName>Magesoe.Dataverse.Plugins</AssemblyName>
+		<AssemblyName>XrmBedrock.Dataverse.Plugins</AssemblyName>
 		<TargetFramework>net462</TargetFramework>
 		<SignAssembly>False</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\..\xrmbedrock.snk</AssemblyOriginatorKeyFile>
