@@ -67,5 +67,10 @@ public class TransactionService : ITransactionService
 
             adminDao.Create(entity);
         }
+        
+        adminDao.Update(new mgs_Subscription(subscription.Id)
+        {
+            mgs_InvoicedUntil = end,
+        });
     }
 }
