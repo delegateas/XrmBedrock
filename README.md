@@ -7,6 +7,9 @@ Follow these steps to setup the project correctly. After this you are ready to s
 ## Update Plugin Assembly Name
 In the Dataverse/src/Plugins.csproj file, update the assembly name from XrmBedrock to the relevant name.
 
+## Update DAXIF Config
+Update Solution info and Plugin Assembly name
+
 ## Generate new strong name key
 Open the developer terminal in Visual Studio and write
 `sn -k nameOfSolutionHere.snk`
