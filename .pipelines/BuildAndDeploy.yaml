@@ -18,7 +18,7 @@ name: $(Date:yyyyMMdd)$(Rev:.r)
 
 parameters:
   - name: "deployDataverse"
-    displayName: "Deploy DataVerse"
+    displayName: "Deploy Dataverse"
     type: boolean
     values:
       - false
