@@ -34,7 +34,7 @@ $environmentIdSuffix = $environmentId.Substring($environmentId.Length - 2)
 $issuer = "https://$environmentIdPrefix.$environmentIdSuffix.environment.api.powerplatform.com/sts"
 
 # 6. Generate the subject identifier based on the certificate thumbprint (extracted during the configuration of the certificate) and the environment ID.
-$subjectIdentifier = "component:pluginassembly,thumbprint:$certificateThumbprint,environment:$environmentId"
+$subjectIdentifier = "component:pluginassembly,thumbprint:$thumbprint,environment:$environmentId"
 
 # 7. Configure federated identity credentials for the application registration.
 Write-Host ""
