@@ -5,19 +5,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\..\xrmbedrock.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\..\magesoe.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="CommiteeArea\**" />
+    <Compile Remove="CustomerArea\**" />
     <Compile Remove="EventArea\**" />
     <Compile Remove="ProductArea\**" />
     <Compile Remove="UtilityArea\**" />
     <EmbeddedResource Remove="CommiteeArea\**" />
+    <EmbeddedResource Remove="CustomerArea\**" />
     <EmbeddedResource Remove="EventArea\**" />
     <EmbeddedResource Remove="ProductArea\**" />
     <EmbeddedResource Remove="UtilityArea\**" />
     <None Remove="CommiteeArea\**" />
+    <None Remove="CustomerArea\**" />
     <None Remove="EventArea\**" />
     <None Remove="ProductArea\**" />
     <None Remove="UtilityArea\**" />

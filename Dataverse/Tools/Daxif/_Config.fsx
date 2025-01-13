@@ -22,7 +22,7 @@ let authMethod, authSecret =
 let appId =
  match args |> tryFindArg ["mfaAppId"; "a"] with
  | Some arg -> arg
- | None -> "51f81489-12ee-4a9e-aaae-a2591f45987d" // OAuth AppId
+ | None -> "d6ce5e9e-e5ae-45a4-92cd-6d8c54440c8d" // OAuth AppId
 
 let defaultUsername =
     try
@@ -42,53 +42,14 @@ module Env =
   let dev = 
     Environment.Create(
       name = "Dev",
-      url = "https://msys-udv.crm4.dynamics.com",
+      url = "https://org5cbc5740.crm4.dynamics.com",
       method = authMethod,
       args = fsi.CommandLineArgs,
       ap = AuthenticationProviderType.OnlineFederation,
       mfaClientSecret = authSecret,
       mfaAppId = appId,
       mfaReturnUrl = "https://login.microsoftonline.com/common/oauth2/nativeclient",
-      connectionString = sprintf @"AuthType=OAuth; url=https://msys-udv.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername
-    )
-    
-  let test = 
-    Environment.Create(
-      name = "Test",
-      url = "https://xxxx-test.crm4.dynamics.com",
-      method = authMethod,
-      args = fsi.CommandLineArgs,
-      ap = AuthenticationProviderType.OnlineFederation,
-      mfaClientSecret = authSecret,
-      mfaAppId = appId,
-      mfaReturnUrl = "https://login.microsoftonline.com/common/oauth2/nativeclient",
-      connectionString = sprintf @"AuthType=OAuth; url=https://xxxx-test.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername
-    )
-
-  let uat = 
-    Environment.Create(
-      name = "UAT",
-      url = "https://xxxx-uat.crm4.dynamics.com",
-      method = authMethod,
-      args = fsi.CommandLineArgs,
-      ap = AuthenticationProviderType.OnlineFederation,
-      mfaClientSecret = authSecret,
-      mfaAppId = appId,
-      mfaReturnUrl = "https://login.microsoftonline.com/common/oauth2/nativeclient",
-      connectionString = sprintf @"AuthType=OAuth; url=https://xxxx-uat.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername
-    )
-
-  let prod = 
-    Environment.Create(
-      name = "Production",
-      url = "https://xxxx.crm4.dynamics.com",
-      method = authMethod,
-      args = fsi.CommandLineArgs,
-      ap = AuthenticationProviderType.OnlineFederation,
-      mfaClientSecret = authSecret,
-      mfaAppId = appId,
-      mfaReturnUrl = "https://login.microsoftonline.com/common/oauth2/nativeclient",
-      connectionString = sprintf @"AuthType=OAuth; url=https://xxxx.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername
+      connectionString = sprintf @"AuthType=OAuth; url=https://org5cbc5740.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername
     )
 
 (** 
@@ -100,7 +61,7 @@ module SolutionInfo =
   let displayName = @"XrmBedrock"
 
 module PublisherInfo =
-  let prefix = @"xb"
+  let prefix = @"xrm"
   let name = @"XrmBedrock"
   let displayName = @"XrmBedrock"
 
@@ -119,7 +80,7 @@ module Path =
   let webResourceProject = dataverseRoot ++ "src" ++ @"WebResources"
   let webResourceFolder = webResourceProject ++ @"src" ++ (sprintf "%s_%s" PublisherInfo.prefix SolutionInfo.name)
   
-  let pluginDllName = "ILMerged.XrmBedrock.Plugins"
+  let pluginDllName = "ILMerged.XrmBedrock.Dataverse.Plugins"
 
   /// Path information used by the SolutionPackager scripts
   module SolutionPack =

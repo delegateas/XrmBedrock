@@ -1,8 +1,8 @@
-using SharedDomain.CustomerArea;
+using SharedDomain.EconomyArea;
 
 namespace DataverseLogic.Azure;
 
 public interface IAzureService
 {
-    void SendDemoAccountMessage(DemoAccountMessage message);
+    void SendCreateInvoicesMessage(CreateInvoicesMessage message);
 }

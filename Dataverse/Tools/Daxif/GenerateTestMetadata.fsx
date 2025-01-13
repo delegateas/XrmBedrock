@@ -20,6 +20,7 @@ Solution.GenerateXrmMockupMetadata(Env.dev, xrmMockupMetadataGenerator, Path.sol
     "contact"
     "duplicaterule"
     "environmentvariablevalue"
+    "environmentvariabledefinition"
     "queue"
     "savedquery"
     "systemuser"

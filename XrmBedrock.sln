@@ -33,24 +33,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomAPITests", "Dataverse
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataverseServiceTests", "Azure\test\DataverseServiceTests\DataverseServiceTests.csproj", "{58B57E3B-D346-4D64-B85D-259BA39E0EA6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoExternalAPi", "Azure\src\DemoExternalAPI\DemoExternalAPi.csproj", "{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedDataverseLogic", "SharedDataverseLogic\SharedDataverseLogic.shproj", "{6C57ADF6-80C2-4AE4-BF25-CB514041E3DE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoExternalAPI.Tests", "Azure\test\DemoExternalAPI.Tests\DemoExternalAPI.Tests.csproj", "{D45B7F39-982E-4098-B946-88EF10A569C2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerAreaFunctionApp.Tests", "Azure\test\CustomerAreaFunctionApp.Tests\CustomerAreaFunctionApp.Tests.csproj", "{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerAreaFunctionApp", "Azure\src\CustomerAreaFunctionApp\CustomerAreaFunctionApp.csproj", "{9495BC25-7CD2-464E-B520-34732B494FB2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F92A2DD-A6E5-4521-BF2B-70956FD23244}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityAreaFunctionApp", "Azure\src\ActivityAreaFunctionApp\ActivityAreaFunctionApp.csproj", "{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityAreaFunctionApp.Tests", "Azure\test\ActivityAreaFunctionApp.Tests\ActivityAreaFunctionApp.Tests.csproj", "{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EconomyAreaFunctionApp", "Azure\src\EconomyAreaFunctionApp\EconomyAreaFunctionApp.csproj", "{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedTest", "SharedTest\SharedTest.shproj", "{43DED35C-6479-41A6-9629-346178DDD3C4}"
 EndProject
@@ -160,54 +150,6 @@ Global
 		{58B57E3B-D346-4D64-B85D-259BA39E0EA6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{58B57E3B-D346-4D64-B85D-259BA39E0EA6}.Release|x86.ActiveCfg = Release|Any CPU
 		{58B57E3B-D346-4D64-B85D-259BA39E0EA6}.Release|x86.Build.0 = Release|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Debug|x86.Build.0 = Debug|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Release|x86.ActiveCfg = Release|Any CPU
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4}.Release|x86.Build.0 = Release|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Debug|x86.Build.0 = Debug|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Release|x86.ActiveCfg = Release|Any CPU
-		{D45B7F39-982E-4098-B946-88EF10A569C2}.Release|x86.Build.0 = Release|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Debug|x86.Build.0 = Debug|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Release|x86.ActiveCfg = Release|Any CPU
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8}.Release|x86.Build.0 = Release|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Debug|x86.Build.0 = Debug|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Release|x86.ActiveCfg = Release|Any CPU
-		{9495BC25-7CD2-464E-B520-34732B494FB2}.Release|x86.Build.0 = Release|Any CPU
 		{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -220,18 +162,6 @@ Global
 		{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}.Release|x86.ActiveCfg = Release|Any CPU
 		{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA}.Release|x86.Build.0 = Release|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Debug|x86.Build.0 = Debug|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Release|x86.ActiveCfg = Release|Any CPU
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -249,12 +179,7 @@ Global
 		{7CC6898E-5621-407C-AC86-D2B127F7BF1B} = {8562FB2F-6C42-4AA8-B69D-29E090835430}
 		{419614C7-20FF-4271-8EE2-AED39F44F580} = {E7EEC659-0CF3-45BE-91E9-ACAB762D0F70}
 		{58B57E3B-D346-4D64-B85D-259BA39E0EA6} = {D62A49FC-DC80-495C-9E42-21FD27310354}
-		{9EAF6213-D8AB-4CA6-BC8E-533DDE2DADA4} = {8562FB2F-6C42-4AA8-B69D-29E090835430}
-		{D45B7F39-982E-4098-B946-88EF10A569C2} = {D62A49FC-DC80-495C-9E42-21FD27310354}
-		{0A4F4EC6-8F18-4591-9CE3-83AE68E4C0F8} = {D62A49FC-DC80-495C-9E42-21FD27310354}
-		{9495BC25-7CD2-464E-B520-34732B494FB2} = {8562FB2F-6C42-4AA8-B69D-29E090835430}
 		{C6BFD7CC-5B78-4343-A2ED-24AE9DD353AA} = {8562FB2F-6C42-4AA8-B69D-29E090835430}
-		{BDFCB64D-BE40-40F0-9085-F660D35EE5F9} = {D62A49FC-DC80-495C-9E42-21FD27310354}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C70A14F-46F6-49DE-9988-FACADC5A3EB3}
@@ -263,7 +188,6 @@ Global
 		SharedContext\SharedContext.projitems*{09c52370-c499-4982-802f-29106623c85f}*SharedItemsImports = 5
 		SharedDataverseLogic\SharedDataverseLogic.projitems*{09c52370-c499-4982-802f-29106623c85f}*SharedItemsImports = 5
 		SharedDomain\SharedDomain.projitems*{09c52370-c499-4982-802f-29106623c85f}*SharedItemsImports = 5
-		SharedTest\SharedTest.projitems*{0a4f4ec6-8f18-4591-9ce3-83ae68e4c0f8}*SharedItemsImports = 5
 		SharedDomain\SharedDomain.projitems*{2d20c6e0-4e49-4f76-a1fd-3675305a500c}*SharedItemsImports = 13
 		SharedTest\SharedTest.projitems*{419614c7-20ff-4271-8ee2-aed39f44f580}*SharedItemsImports = 5
 		SharedTest\SharedTest.projitems*{43ded35c-6479-41a6-9629-346178ddd3c4}*SharedItemsImports = 13
@@ -274,7 +198,5 @@ Global
 		SharedDataverseLogic\SharedDataverseLogic.projitems*{7cc6898e-5621-407c-ac86-d2b127f7bf1b}*SharedItemsImports = 5
 		SharedDomain\SharedDomain.projitems*{7cc6898e-5621-407c-ac86-d2b127f7bf1b}*SharedItemsImports = 5
 		SharedTest\SharedTest.projitems*{ad56821e-4658-412f-bc5a-b5015042ff45}*SharedItemsImports = 5
-		SharedTest\SharedTest.projitems*{bdfcb64d-be40-40f0-9085-f660d35ee5f9}*SharedItemsImports = 5
-		SharedTest\SharedTest.projitems*{d45b7f39-982e-4098-b946-88ef10a569c2}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

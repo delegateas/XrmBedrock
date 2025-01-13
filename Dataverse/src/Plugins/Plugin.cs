@@ -20,7 +20,6 @@ using XrmBedrock.SharedContext;
 using Microsoft.Extensions.Logging;
 using DataverseLogic;
 using System.ServiceModel.Configuration;
-using SharedContext.Dao;
 using SharedDataverseLogic;
 using SharedDomain;
 
@@ -64,14 +63,14 @@ public class Plugin : IPlugin
     /// Initializes a new instance of the <see cref="Plugin"/> class.
     /// </summary>
     /// <param name="childClassName">The <see cref="" cred="Type"/> of the derived class.</param>
-    internal Plugin(Type childClassName) : this(childClassName, null, null) { }
+    internal Plugin() : this(null, null) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Plugin"/> class.
     /// </summary>
     /// <param name="childClassName"></param>
     /// <param name="unsecure"></param>
-    internal Plugin(Type childClassName, string unsecure) : this(childClassName, unsecure, null) { }
+    internal Plugin(string unsecure) : this(unsecure, null) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Plugin"/> class.
@@ -79,9 +78,9 @@ public class Plugin : IPlugin
     /// <param name="childClassName"></param>
     /// <param name="unsecure"></param>
     /// <param name="secure"></param>
-    internal Plugin(Type childClassName, string unsecure, string secure)
+    internal Plugin(string unsecure, string secure)
     {
-        this.ChildClassName = childClassName.ToString();
+        this.ChildClassName = this.GetType().ToString();
     }
 
     /// <summary>
@@ -122,10 +121,6 @@ public class Plugin : IPlugin
         services.AddScoped(x => managedIdentity);
         services.AddScoped<ILogger, DataverseLogger>();
         services.TryAdd(ServiceDescriptor.Scoped(typeof(ILogger<>), typeof(DataverseLogger<>)));
-
-        // Dao objects
-        services.AddScoped<IAdminDataverseAccessObjectService, AdminDataverseAccessObjectService>();
-        services.AddScoped<IUserDataverseAccessObjectService, UserDataverseAccessObjectService>();
 
         services.SetupCustomDependencies();
 

@@ -9,9 +9,15 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Compile Remove="CustomerArea\**" />
 	  <Compile Remove="Metadata\**" />
+	  <Compile Remove="UtilityArea\**" />
+	  <EmbeddedResource Remove="CustomerArea\**" />
 	  <EmbeddedResource Remove="Metadata\**" />
+	  <EmbeddedResource Remove="UtilityArea\**" />
+	  <None Remove="CustomerArea\**" />
 	  <None Remove="Metadata\**" />
+	  <None Remove="UtilityArea\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="local.settings.txt" />
@@ -46,11 +52,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Plugins\Plugins.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="CustomerArea\Contact\" />
-	  <Folder Include="UtilityArea\" />
 	</ItemGroup>
 
 	<Import Project="..\..\..\SharedTest\SharedTest.projitems" Label="Shared" />

@@ -11,7 +11,6 @@ namespace Dataverse.Plugins.Utility;
 public class AutopublishDuplicateRulesOnPublishAll : Plugin
 {
     public AutopublishDuplicateRulesOnPublishAll()
-        : base(typeof(AutopublishDuplicateRulesOnPublishAll))
     {
         RegisterPluginStep<AnyEntity>(
             EventOperation.PublishAll,

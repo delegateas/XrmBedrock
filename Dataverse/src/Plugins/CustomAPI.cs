@@ -44,9 +44,9 @@ public class CustomAPI : IPlugin
     /// Initializes a new instance of the <see cref="CustomAPI"/> class.
     /// </summary>
     /// <param name="childClassName">The <see cref="" cred="Type"/> of the derived class.</param>
-    internal CustomAPI(Type childClassName)
+    internal CustomAPI()
     {
-        this.ChildClassName = childClassName.ToString();
+        this.ChildClassName = this.GetType().ToString();
     }
 
 
