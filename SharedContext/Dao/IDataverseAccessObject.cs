@@ -3,6 +3,8 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System;
 
 namespace SharedContext.Dao;
 

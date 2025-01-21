@@ -1,3 +1,5 @@
+using System;
+
 namespace SharedContext.Dao.Exceptions;
 
 #pragma warning disable CA2237 // Mark ISerializable types with serializable
