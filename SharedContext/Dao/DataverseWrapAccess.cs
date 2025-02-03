@@ -4,6 +4,8 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System.Diagnostics;
 using System.ServiceModel;
+using System;
+using System.Collections.Generic;
 
 namespace SharedContext.Dao;
 
