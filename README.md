@@ -1,3 +1,12 @@
+# XrmBedrock
+This project serves as a template for Dataverse projects. This project aims to make it easy to work with Dataverse and Azure together. This project shows that modern development paradigms are applicable to Dataverse.
+
+This template will be updated. The current list is as follows
+* Update folder structure to indicate Azure and Dataverse should be tested together.
+* Better in-code description of examples to increase adoption.
+* New way of handling web resources.
+* Deploying data.
+
 # Initial setup
 This project serves both as a template, but also as a demonstration of how XrmBedrock can be used. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder.
 
