@@ -520,8 +520,27 @@ dotnet_diagnostic.SA1519.severity = none	# It has been chosen to accept that a s
 
 dotnet_diagnostic.S3925.severity = none		# rule that requires an implementation that is obsolete in .Net8
 
-[*/Dao/*.cs]
+[**/Dao/IDataverseAccessObjectAsync.cs]
+dotnet_diagnostic.SA1127.severity = none 	# We accept the lack of newline before generic type constraint in this interface
+dotnet_diagnostic.SA1516.severity = none 	# We accept the lack of newlines between declarations in this interface
+
+[**/Dao/DataverseWrapAccessAsync.cs]
+dotnet_diagnostic.SA1123.severity = none 	# We will accept regions in this file
+dotnet_diagnostic.SA1124.severity = none 	# We will accept regions in this file
+dotnet_diagnostic.SA1501.severity = none 	# We will accept inline statements in this file
+
+[**/Dao/*.cs]
 generated_code = true
+dotnet_diagnostic.CA1062.severity = none # null-checking relaxed until we have rewritten the logging method of DAO
+dotnet_diagnostic.SA1611.severity = none
+dotnet_diagnostic.SA1612.severity = none
+dotnet_diagnostic.SA1615.severity = none
+dotnet_diagnostic.SA1616.severity = none
+dotnet_diagnostic.SA1622.severity = none
+dotnet_diagnostic.SA1627.severity = none
+dotnet_diagnostic.MA0016.severity = none 	# We DO want to return Lists
+dotnet_diagnostic.SA1601.severity = none 	# We do not document partial classes that are introduced to organize code
+dotnet_diagnostic.SA1649.severity = none 	# Filenames cannot match when using partial classes
 dotnet_diagnostic.MA0047.severity = none
 dotnet_diagnostic.MA0048.severity = none
 dotnet_diagnostic.MA0132.severity = none
@@ -558,28 +577,76 @@ dotnet_diagnostic.CS8600.severity = none
 dotnet_diagnostic.IDE0005.severity = none
 dotnet_diagnostic.IDE1006.severity = none
 dotnet_diagnostic.IDE1005.severity = none
+dotnet_diagnostic.SA1413.severity = none
+dotnet_diagnostic.SA1122.severity = none
 
-[*/Dao/DiSupport/*.cs]
+[**/Dao/DiSupport/*.cs]
 dotnet_diagnostic.CA1848.severity = none
 dotnet_diagnostic.CA1062.severity = none
 dotnet_diagnostic.CA2254.severity = none
 
-[*/XrmExtensions.cs]
+[**/XrmExtensions.cs]
 generated_code = true
 dotnet_diagnostic.S2344.severity = none
 dotnet_diagnostic.S3442.severity = none
 dotnet_diagnostic.S1168.severity = none
 dotnet_diagnostic.S2971.severity = none
+dotnet_diagnostic.CA1707.severity = none
+dotnet_diagnostic.MA0016.severity = none
+dotnet_diagnostic.MA0048.severity = none
+dotnet_diagnostic.IDE0005.severity = none
 
-[*/MetadataGenerated/*.cs]
+[**/MetadataGenerated/*.cs]
 generated_code = true
 dotnet_diagnostic.IDE0005.severity = none
 dotnet_diagnostic.IDE1006.severity = none
 dotnet_diagnostic.MA0048.severity = none
 dotnet_diagnostic.SA1649.severity = none
 
-[Dataverse/Tools/*]
+[src/Tools/**]
 dotnet_diagnostic.IDE0005.severity = none
 
-[Dataverse/src/DataverseLogic/CreateTransactions/*]
-dotnet_diagnostic.SA1124.severity = none    # LF project relaxation: Region is accepted
+[src/Dataverse/**/Plugin.cs]
+generated_code = true
+dotnet_diagnostic.MA0048.severity = none
+dotnet_diagnostic.SA1402.severity = none
+dotnet_diagnostic.SA1500.severity = none
+dotnet_diagnostic.SA1507.severity = none
+dotnet_diagnostic.SA0001.severity = none
+dotnet_diagnostic.CA1724.severity = none
+dotnet_diagnostic.CA1812.severity = none
+dotnet_diagnostic.CA1852.severity = none
+dotnet_diagnostic.S1104.severity = none
+dotnet_diagnostic.S1125.severity = none
+dotnet_diagnostic.S112.severity = none
+dotnet_diagnostic.S6605.severity = none
+dotnet_diagnostic.S3241.severity = none
+dotnet_diagnostic.CS8618.severity = none
+dotnet_diagnostic.IDE1005.severity = none
+
+[src/Dataverse/**/CustomAPI.cs]
+generated_code = true
+dotnet_diagnostic.MA0048.severity = none
+dotnet_diagnostic.SA1402.severity = none
+dotnet_diagnostic.SA1500.severity = none
+dotnet_diagnostic.SA1507.severity = none
+dotnet_diagnostic.S1104.severity = none
+dotnet_diagnostic.S1125.severity = none
+dotnet_diagnostic.S112.severity = none
+dotnet_diagnostic.S6605.severity = none
+dotnet_diagnostic.S3241.severity = none
+dotnet_diagnostic.CS8618.severity = none
+dotnet_diagnostic.S125.severity = none
+dotnet_diagnostic.S101.severity = none
+
+[**/TypeDeclarations.cs]
+generated_code = true
+dotnet_diagnostic.SA1649.severity = none
+
+[**/XrmContext.cs]
+generated_code = true
+dotnet_diagnostic.CS8981.severity = none
+
+[src/Dataverse/**]
+dotnet_diagnostic.CA1510.severity = none
+dotnet_diagnostic.CA1307.severity = none

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>878e76ac-232e-491e-b669-aaa2623f4bed</ProjectGuid>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.props" />
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Include="Logic\ArgumentNullExceptionHelper.cs" />
+    <Compile Include="Logic\Azure\AzureConfig.cs" />
+    <Compile Include="Logic\Azure\AzureConfigSetter.cs" />
+    <Compile Include="Logic\Azure\AzureService.cs" />
+    <Compile Include="Logic\Azure\IAzureService.cs" />
+    <Compile Include="Logic\Azure\IsExternalInit.cs" />
+    <Compile Include="Logic\Azure\StorageQueueError.cs" />
+    <Compile Include="Logic\EconomyArea\AddServices.cs" />
+    <Compile Include="Logic\EconomyArea\IInvoiceCollectionService.cs" />
+    <Compile Include="Logic\EconomyArea\InvoiceCollectionService.cs" />
+    <Compile Include="Logic\EconomyArea\ITransactionService.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionCalculation\Converter.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionCalculation\Dto\Interval.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionCalculation\Dto\TransactionPeriod.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionCalculation\ITransactionCalculationService.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionCalculation\MonthlyTransactionCalculationService.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionCalculation\TransactionCalculationFactory.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionCalculation\YearlyTransactionCalculationService.cs" />
+    <Compile Include="Logic\EconomyArea\TransactionService.cs" />
+    <Compile Include="Logic\ExecutionContextExtensions.cs" />
+    <Compile Include="Logic\ExtendedTracingService.cs" />
+    <Compile Include="Logic\ImageType.cs" />
+    <Compile Include="Logic\StaticExtensions.cs" />
+    <Compile Include="Logic\Utility\DuplicateRuleService.cs" />
+    <Compile Include="Logic\Utility\EntityUtilityService.cs" />
+    <Compile Include="Logic\Utility\IDuplicateRuleService.cs" />
+    <Compile Include="Logic\_Dao\AdminDataverseAccessObjectService.cs" />
+    <Compile Include="Logic\_Dao\UserDataverseAccessObjectService.cs" />
+    <Compile Include="Plugins\APIs\CreateTransactions.cs" />
+    <Compile Include="Plugins\DataverseLogger.cs" />
+    <Compile Include="Plugins\DummyManagedIdentityService.cs" />
+    <Compile Include="Plugins\EconomyArea\InvoiceCollectionStatusChange.cs" />
+    <Compile Include="Plugins\PluginSetupCustomDependencies.cs" />
+    <Compile Include="Plugins\Utility\AutopublishDuplicateRulesOnPublishAll.cs" />
+  </ItemGroup>
+  <Import Project="Source.projitems" Label="Shared" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
+</Project>

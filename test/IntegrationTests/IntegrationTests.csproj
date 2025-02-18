@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- Required because Uipath.Workflow is our only realistic option for running System.ServiceModel in .NET core -->
+    <NoWarn>NU1608</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="WireMock.Net" Version="1.5.62" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+    <PackageReference Include="XrmMockup365" Version="1.14.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Azure\EconomyAreaFunctionApp\EconomyAreaFunctionApp.csproj" />
+    <ProjectReference Include="..\..\src\Dataverse\PluginsNetCore\PluginsNetCore.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\SharedTest\SharedTest.projitems" Label="Shared" />
+
+</Project>
