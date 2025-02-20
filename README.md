@@ -2,7 +2,7 @@
 This project serves as a template for Dataverse projects. This project aims to make it easy to work with Dataverse and Azure together. This project shows that modern development paradigms are applicable to Dataverse.
 
 This template will be updated. The current list is as follows
-* Update folder structure to indicate Azure and Dataverse should be tested together.
+* Clean-up DataverseService
 * Better in-code description of examples to increase adoption.
 * New way of handling web resources.
 * Deploying data.
