@@ -45,11 +45,13 @@ public class XrmMockupFixture
         MessageExecutor = new MessageExecutor(AdminDao);
         Server = WireMockServer.Start();
 
+        // Make sure all queues are added here
         AddQueueEndpoints(new List<string>
         {
             QueueNames.CreateInvoicesQueue,
         });
 
+        // Create any data needed for the tests
         var envVarDefinition = new EnvironmentVariableDefinition()
         {
             SchemaName = "mgs_AzureStorageAccountUrl",
@@ -64,6 +66,9 @@ public class XrmMockupFixture
         Xrm.TakeSnapshot(SnapshotName);
     }
 
+    /// <summary>
+    /// Catches any messages send to the queues and stores them in the MessageExecutor
+    /// </summary>
     private void AddQueueEndpoints(IEnumerable<string> queuenames)
     {
         foreach (var queuename in queuenames)

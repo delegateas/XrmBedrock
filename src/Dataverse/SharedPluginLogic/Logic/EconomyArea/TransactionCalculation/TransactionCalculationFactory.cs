@@ -11,7 +11,7 @@ internal sealed class TransactionCalculationFactory
         this.interval = interval;
     }
 
-    public ITransactionCalculationService Create()
+    public ITransactionCalculationService GetCalculationService()
     {
         return interval switch
         {

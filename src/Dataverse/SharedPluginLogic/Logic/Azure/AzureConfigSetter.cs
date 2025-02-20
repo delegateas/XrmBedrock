@@ -5,6 +5,7 @@ namespace DataverseLogic.Azure;
 
 public static class AzureConfigSetter
 {
+    // Sets the storage account url from the environment variable mgs_AzureStorageAccountUrl
     public static void AddAzureConfig(this IServiceCollection services)
     {
         services.AddScoped(provider =>

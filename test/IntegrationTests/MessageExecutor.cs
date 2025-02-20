@@ -11,6 +11,10 @@ using System.Text;
 
 namespace IntegrationTests;
 
+/// <summary>
+/// Enables the storage of serialized messages to a storage queue
+/// Connects queue messages to the correct function, such that logic can be debugged
+/// </summary>
 public class MessageExecutor
 {
     private List<AwaitingMessage> messages;

@@ -14,16 +14,6 @@ open DG.Daxif.Common.Utility
 
 let args = fsi.CommandLineArgs |> parseArgs
 
-let authMethod, authSecret =
- match args |> tryFindArg ["mfaClientSecret"; "s"] with
- | Some arg -> ConnectionType.ClientSecret, arg
- | None -> ConnectionType.ConnectionString, ""
-
-let appId =
- match args |> tryFindArg ["mfaAppId"; "a"] with
- | Some arg -> arg
- | None -> "d6ce5e9e-e5ae-45a4-92cd-6d8c54440c8d" // OAuth AppId
-
 let defaultUsername =
     try
       let lines = File.ReadAllLines(@"username.txt") in
@@ -42,14 +32,10 @@ module Env =
   let dev = 
     Environment.Create(
       name = "Dev",
-      url = "https://org5cbc5740.crm4.dynamics.com",
-      method = authMethod,
-      args = fsi.CommandLineArgs,
-      ap = AuthenticationProviderType.OnlineFederation,
-      mfaClientSecret = authSecret,
-      mfaAppId = appId,
-      mfaReturnUrl = "https://login.microsoftonline.com/common/oauth2/nativeclient",
-      connectionString = sprintf @"AuthType=OAuth; url=https://org5cbc5740.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername
+      url = "https://yourenv.crm4.dynamics.com",
+      method = ConnectionType.ConnectionString,
+      connectionString = sprintf @"AuthType=OAuth; url=https://yourenv.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      args = fsi.CommandLineArgs
     )
 
 (** 
@@ -57,13 +43,13 @@ CRM Solution Setup
 ------------------
 *)
 module SolutionInfo =
-  let name = @"Magesoe"
-  let displayName = @"Magesoe"
+  let name = @"XrmBedrock"
+  let displayName = @"XrmBedrock"
 
 module PublisherInfo =
-  let prefix = @"mgs"
-  let name = @"Magesoe"
-  let displayName = @"Magesoe"
+  let prefix = @"demo"
+  let name = @"XrmBedrock"
+  let displayName = @"XrmBedrock"
 
 (** 
 Path and project setup 
@@ -80,7 +66,7 @@ module Path =
   let webResourceProject = srcRoot ++ "Dataverse" ++ @"WebResources"
   let webResourceFolder = webResourceProject ++ @"src" ++ (sprintf "%s_%s" PublisherInfo.prefix SolutionInfo.name)
   
-  let pluginDllName = "ILMerged.Magesoe.Dataverse.Plugins"
+  let pluginDllName = "ILMerged.XrmBedrock.Dataverse.Plugins"
 
   /// Path information used by the SolutionPackager scripts
   module SolutionPack =

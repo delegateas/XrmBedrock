@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <doc>
 <assembly><name>Delegate.Daxif</name></assembly>
 <members>
@@ -15,7 +15,7 @@
 </member>
 <member name="T:DG.Daxif.WebResourceType">
 <summary>
- Matches CRM2011/2013 OptionSet values
+ Matches D365 OptionSet values
 </summary>
 </member>
 <member name="T:DG.Daxif.Serialize">
@@ -83,7 +83,7 @@
  Describes a connection to a Dynamics 365/CRM environment
 </summary>
 </member>
-<member name="M:DG.Daxif.Connection.GetService(Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+<member name="M:DG.Daxif.Connection.GetService(Microsoft.FSharp.Core.FSharpOption{System.TimeSpan},Microsoft.FSharp.Core.FSharpOption{System.Boolean})">
 <summary>
  Connects to the environment and returns IOrganizationService
 </summary>
@@ -93,7 +93,7 @@
  Connects to the environment and returns an OrganizationServiceProxy
 </summary>
 </member>
-<member name="M:DG.Daxif.Connection.GetCrmServiceClient(Microsoft.FSharp.Core.FSharpOption{System.TimeSpan})">
+<member name="M:DG.Daxif.Connection.GetCrmServiceClient(Microsoft.FSharp.Core.FSharpOption{System.TimeSpan},Microsoft.FSharp.Core.FSharpOption{System.Boolean})">
 <summary>
  Connects to the environment and returns a CrmServiceClient
 </summary>
@@ -158,11 +158,11 @@
  <summary>Updates plugin registrations in CRM based on the plugins found in your local assembly.</summary>
  <param name="env">Environment the action should be performed against.</param>
  <param name="assemblyPath">Path to the plugin assembly dll to be synced (usually under the project bin folder).</param>
- <param name="projectPath">Path to the plugin assembly project (.csproj).</param>
+ <param name="projectPath">DEPRECATED: PASS AN EMPTY STRING. Path to the plugin assembly project (.csproj).</param>
  <param name="solutionName">The name of the solution to which to sync plugins</param>
  <param name="dryRun">Flag whether or not to simulate/test syncing plugins (running a 'dry run'). - defaults to: false</param>
  <param name="isolationMode">Assembly Isolation Mode ('Sandbox' or 'None'). All Online environments must use 'Sandbox' - defaults to: 'Sandbox'</param>
- <param name="ignoreOutdatedAssembly">Flag whether or not to simulate/test syncing plugins (running a 'dry run'). - defaults to: false</param>
+ <param name="ignoreOutdatedAssembly">DEPRECATED. Flag whether or not to simulate/test syncing plugins (running a 'dry run'). - defaults to: false</param>
  <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
 </member>
 <member name="M:DG.Daxif.Plugin.EnableSolutionPluginSteps(DG.Daxif.Environment,System.String,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel})">
@@ -308,7 +308,7 @@
  <param name="outputDir">The directory into which the translation file will be saved (SolutionName + '_Translations.xip').</param>
  <param name="logLevel">Log Level - Error, Warning, Info, Verbose or Debug - defaults to: 'Verbose'</param>
 </member>
-<member name="M:DG.Daxif.WebResource.Sync(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{System.String})">
+<member name="M:DG.Daxif.WebResource.Sync(DG.Daxif.Environment,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.LogLevel},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.String[]})">
  <summary>Updates the web resources in CRM based on the ones from your local web resource root.</summary>
  <param name="env">Environment the action should be performed against.</param>
  <param name="webresourceRoot">Root folder of the Web Resources project.</param>
@@ -521,12 +521,6 @@
 <member name="M:DG.Daxif.Common.Utility.op_QmarkBarGreater``2(Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{``0,``1})">
 <summary>
  Option mapper
-</summary>
-</member>
-<member name="M:DG.Daxif.Common.InternalUtility.fileToBase64(System.String)">
-<summary>
- Ensure is set with OR
- And then remove with XOR
 </summary>
 </member>
 <member name="P:DG.Daxif.Common.InternalUtility.log">
@@ -776,7 +770,22 @@
 </member>
 <member name="T:DG.Daxif.Modules.Plugin.Domain.AssemlyLocal">
 <summary>
- Information about a plugin assembly
+ Information about an assembly
+</summary>
+</member>
+<member name="T:DG.Daxif.Modules.Plugin.Domain.ResponseProperty">
+<summary>
+ Information about a Custom API Response Property
+</summary>
+</member>
+<member name="T:DG.Daxif.Modules.Plugin.Domain.RequestParameter">
+<summary>
+ Information about a Custom API Request Parameter
+</summary>
+</member>
+<member name="T:DG.Daxif.Modules.Plugin.Domain.Message">
+<summary>
+ Information about a Custom API definition
 </summary>
 </member>
 <member name="T:DG.Daxif.Modules.Plugin.Domain.Image">
@@ -794,26 +803,48 @@
  Helper functions and monads for step based testing
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.getAssemblyContextFromDll(System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean)">
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.getAssemblyContextFromDll(System.String,DG.Daxif.AssemblyIsolationMode)">
 <summary>
  Analyzes an assembly based on a path to its compiled assembly and its project file
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.getCustomAPIsFromAssembly(System.Reflection.Assembly)">
+<summary>
+ Calls &quot;GetCustomAPIConfig&quot; in the assembly that returns a
+ tuple containing the custom api information
 </summary>
 </member>
 <member name="M:DG.Daxif.Modules.Plugin.PluginDetection.getPluginsFromAssembly(System.Reflection.Assembly)">
 <summary>
  Calls &quot;PluginProcessingStepConfigs&quot; in the plugin assembly that returns a
- tuple containing the plugin informations
+ tuple containing the plugin information
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.tupleToRecord``1(System.Tuple{System.String,System.Int32,System.String,System.String},System.Tuple{System.Int32,System.Int32,``0,System.Int32,System.String,System.String},System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String,System.Int32,System.String}})">
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.tupleToCustomApi(System.Tuple{System.String,System.Boolean,System.Int32,System.Int32,System.Int32,System.String},System.Tuple{System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.String},System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Int32}},System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String,System.String,System.Boolean,System.String,System.Int32}})">
+<summary>
+ Transforms the received tuple from the assembly file through invocation into
+ custom api, request parameter and response property records
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.tupleToPlugin``1(System.Tuple{System.String,System.Int32,System.String,System.String},System.Tuple{System.Int32,System.Int32,``0,System.Int32,System.String,System.String},System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String,System.Int32,System.String}})">
 <summary>
  Transforms the received tuple from the assembly file through invocation into
  plugin, step and image records
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.PluginDetection.projDependencies(System.String)">
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.createCustomAPIResp(DG.Daxif.Modules.Plugin.Domain.ResponseProperty,Microsoft.Xrm.Sdk.EntityReference,System.String)">
 <summary>
- Used to retrieve a .vsproj dependencies (recursive)
+ Create a new customAPIResp
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.createCustomAPIReq(DG.Daxif.Modules.Plugin.Domain.RequestParameter,Microsoft.Xrm.Sdk.EntityReference,System.String)">
+<summary>
+ Create a new customAPIReq
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.EntitySetup.createCustomAPI(DG.Daxif.Modules.Plugin.Domain.Message,Microsoft.Xrm.Sdk.EntityReference,System.String)">
+<summary>
+ Create a new customAPI with the provided CustomAPI
 </summary>
 </member>
 <member name="M:DG.Daxif.Modules.Plugin.EntitySetup.updateImage(DG.Daxif.Modules.Plugin.Domain.Image,Microsoft.Xrm.Sdk.Entity)">
@@ -854,14 +885,30 @@
  based on the message class when creating images
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.Compare.assembly(DG.Daxif.Modules.Plugin.Domain.AssemlyLocal,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration})">
+<member name="M:DG.Daxif.Modules.Plugin.Compare.registeredIsSameAsLocal(DG.Daxif.Modules.Plugin.Domain.AssemlyLocal,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration})">
 <summary>
  Compares an assembly from CRM with the one containing the source code
+ Returns true if the assembly in CRM is newer and the hash matches the one in the source code
 </summary>
 </member>
 <member name="M:DG.Daxif.Modules.Plugin.Compare.image(DG.Daxif.Modules.Plugin.Domain.Image,Microsoft.Xrm.Sdk.Entity)">
 <summary>
  Compares an plugin step image from CRM with one in source code
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Compare.apiResp(DG.Daxif.Modules.Plugin.Domain.ResponseProperty,Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Compares a custom API requestparameter from CRM with one in source code
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Compare.apiReq(DG.Daxif.Modules.Plugin.Domain.RequestParameter,Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Compares a custom API requestparameter from CRM with one in source code
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Compare.api(DG.Daxif.Modules.Plugin.Domain.Message,Microsoft.Xrm.Sdk.Entity)">
+<summary>
+ Compares a custom API from CRM with one in source code
 </summary>
 </member>
 <member name="M:DG.Daxif.Modules.Plugin.Compare.step(DG.Daxif.Modules.Plugin.Domain.Step,Microsoft.Xrm.Sdk.Entity)">
@@ -892,6 +939,26 @@
 <member name="M:DG.Daxif.Modules.Plugin.Query.pluginStepImagesByStep(System.Guid)">
 <summary>
  Create a query to get plugin step images by step
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.CustomAPIsByType(System.Guid)">
+<summary>
+ Create a query to get custom apis by type
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.customAPIRespParamsByCustomApiId(System.Guid)">
+<summary>
+ Create a query to get custom apis by solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.customAPIReqParamsByCustomApiId(System.Guid)">
+<summary>
+ Create a query to get custom apis by solution
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.Query.customAPIsBySolution(System.Guid)">
+<summary>
+ Create a query to get custom apis by solution
 </summary>
 </member>
 <member name="M:DG.Daxif.Modules.Plugin.Query.pluginStepsByType(System.Guid)">
@@ -945,6 +1012,11 @@
  Retrieve registered plugins from CRM related to a certain assembly and solution
 </summary>
 </member>
+<member name="M:DG.Daxif.Modules.Plugin.CreateHelper.createAPIs``4(Microsoft.Xrm.Sdk.IOrganizationService,``0,System.String,DG.Daxif.Common.Utility.MapDiff{``1,DG.Daxif.Modules.Plugin.Domain.Message,``2},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},``3,Microsoft.FSharp.Collections.FSharpMap{System.String,System.Guid})">
+<summary>
+ Creates custom apis and return guid map. 
+</summary>
+</member>
 <member name="M:DG.Daxif.Modules.Plugin.CreateHelper.createImages``2(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Image,``1},Microsoft.FSharp.Collections.FSharpMap{System.String,System.Tuple{System.Guid,System.String}})">
 <summary>
  Creates images and binds to matching steps
@@ -960,22 +1032,22 @@
  Creates types and returns guid map for them.
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.MainHelper.performSync``1(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Modules.Plugin.Domain.AssemlyLocal,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Plugin},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Step},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Image},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity})">
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.performSync``1(Microsoft.Xrm.Sdk.IOrganizationService,``0,System.String,DG.Daxif.Modules.Plugin.Domain.AssemlyLocal,Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Plugin},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Step},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Image},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.CustomAPI},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.Message},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.RequestParameter},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.ResponseProperty},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity})">
 <summary>
  Performs a full synchronization of plugins
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.MainHelper.analyze``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0},System.String,System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean)">
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.analyze``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0},System.String,System.String,DG.Daxif.AssemblyIsolationMode)">
 <summary>
  Analyzes local and remote registrations and returns the information about each of them
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.MainHelper.loadAndValidateAssembly(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean)">
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.loadAndValidateAssembly(Microsoft.Xrm.Sdk.IOrganizationService,System.String,DG.Daxif.AssemblyIsolationMode)">
 <summary>
  Load a local assembly and validate its plugins
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.MainHelper.create``5(Microsoft.Xrm.Sdk.IOrganizationService,``0,DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Image,``1},DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Step,``2},DG.Daxif.Common.Utility.MapDiff{System.String,``3,``4},System.Guid,Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity})">
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.create``11(Microsoft.Xrm.Sdk.IOrganizationService,``0,System.String,DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Image,``1},DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.Step,``2},DG.Daxif.Common.Utility.MapDiff{``3,DG.Daxif.Modules.Plugin.Domain.Message,``4},DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.RequestParameter,``5},DG.Daxif.Common.Utility.MapDiff{System.String,DG.Daxif.Modules.Plugin.Domain.ResponseProperty,``6},DG.Daxif.Common.Utility.MapDiff{System.String,``7,``8},System.Guid,Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,Microsoft.Xrm.Sdk.Entity},``9,``10)">
 <summary>
  Creates additions to the plugin configuration in the correct order and
  passes guid maps to next step in process
@@ -986,7 +1058,7 @@
  Updates with changes to the plugin configuration
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.MainHelper.performDelete``3(Microsoft.Xrm.Sdk.IOrganizationService,DG.Daxif.Common.Utility.MapDiff{System.String,``0,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``1,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``2,Microsoft.Xrm.Sdk.Entity})">
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.performDelete``6(Microsoft.Xrm.Sdk.IOrganizationService,DG.Daxif.Common.Utility.MapDiff{System.String,``0,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``1,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``2,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``3,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``4,Microsoft.Xrm.Sdk.Entity},DG.Daxif.Common.Utility.MapDiff{System.String,``5,Microsoft.Xrm.Sdk.Entity},Microsoft.FSharp.Collections.FSharpMap{System.String,DG.Daxif.Modules.Plugin.Domain.CustomAPI})">
 <summary>
  Deletes obsolete records in current plugin configuration
 </summary>
@@ -996,22 +1068,27 @@
  Update or create assembly
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.MainHelper.localToMaps(System.Collections.Generic.IEnumerable{DG.Daxif.Modules.Plugin.Domain.Plugin})">
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.determineOperation(Microsoft.FSharp.Core.FSharpOption{DG.Daxif.Modules.Plugin.Domain.AssemblyRegistration},DG.Daxif.Modules.Plugin.Domain.AssemlyLocal)">
+<summary>
+ Determine which operation we want to perform on the assembly
+</summary>
+</member>
+<member name="M:DG.Daxif.Modules.Plugin.MainHelper.localToMaps(System.Collections.Generic.IEnumerable{DG.Daxif.Modules.Plugin.Domain.Plugin},System.Collections.Generic.IEnumerable{DG.Daxif.Modules.Plugin.Domain.CustomAPI})">
 <summary>
  Transforms plugins from source to maps with names as keys
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.Plugin.Main.syncSolution``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0},System.String,System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean,System.Boolean)">
+<member name="M:DG.Daxif.Modules.Plugin.Main.syncSolution``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0},System.String,System.String,DG.Daxif.AssemblyIsolationMode,System.Boolean)">
 <summary>
  Main plugin synchronization function
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.WebResource.WebResourcesHelper.getLocalWRs(System.String,System.String,DG.Daxif.CrmReleases)">
+<member name="M:DG.Daxif.Modules.WebResource.WebResourcesHelper.getLocalWRs(System.String,System.String,System.String[],DG.Daxif.CrmReleases)">
 <summary>
  Filter out any files which are labeled with &quot;_nosync&quot;
 </summary>
 </member>
-<member name="M:DG.Daxif.Modules.WebResource.WebResourcesHelper.getLocalResourcesHelper(System.String,DG.Daxif.CrmReleases)">
+<member name="M:DG.Daxif.Modules.WebResource.WebResourcesHelper.getLocalResourcesHelper(System.String,System.String[],DG.Daxif.CrmReleases)">
 <summary>
  Get all local webresources by enumerating all folders at given location,
  while looking for supported file types.

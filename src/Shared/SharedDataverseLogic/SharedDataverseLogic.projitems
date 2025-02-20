@@ -14,7 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataverseConfigurationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IExtendedTracingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\DateTimeExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)utility\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)ReadMe.md" />

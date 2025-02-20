@@ -26,8 +26,10 @@ public class AzureService : IAzureService
         this.managedIdentityService = managedIdentityService;
     }
 
+    // Strongly typed way of sending messages to the storage queue
     public void SendCreateInvoicesMessage(CreateInvoicesMessage message) => SendStorageQueueMessage(QueueNames.CreateInvoicesQueue, JsonConvert.SerializeObject(message));
 
+    // Generic way of sending messages to the storage queue
     private void SendStorageQueueMessage(string queueName, string message)
     {
         var connectionString = $"{azureConfig.StorageAccountUrl}{queueName}/messages";
@@ -41,6 +43,7 @@ public class AzureService : IAzureService
         }
     }
 
+    // Http call to send the message to the storage queue
     private async Task QueueMessageAsync(
         string message,
         Uri connectionString)
@@ -68,11 +71,12 @@ public class AzureService : IAzureService
         throw new InvalidPluginExecutionException($"{error?.Code}\n{error?.Message}\n{error?.AuthenticationErrorDetail}");
     }
 
+    // Current best method for calling an Azure Function with a HTTP Trigger. Can be improved to not require a url with a function code in it.
 #pragma warning disable S1144 // Unused private types or members should be removed
     private async Task<string> CallHttpTrigger(Uri url, string payload)
 #pragma warning restore S1144 // Unused private types or members should be removed
     {
-        using var client = new HttpClient(); // YO! TODO: There is something with using and HttpClient, it is not recommended to use using with HttpClient TODO: Check this
+        using var client = new HttpClient();
         client.DefaultRequestHeaders.Clear();
         client.DefaultRequestHeaders
             .Accept

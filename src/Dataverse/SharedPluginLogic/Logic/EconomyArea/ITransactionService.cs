@@ -2,5 +2,5 @@ namespace DataverseLogic.EconomyArea;
 
 public interface ITransactionService
 {
-    void CreateTransactionFromPayload();
+    void CreateTransactionsFromPayload();
 }

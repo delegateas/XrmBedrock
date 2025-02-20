@@ -1,4 +1,6 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
+using Newtonsoft.Json;
 
 namespace DataverseLogic;
 
@@ -97,4 +99,11 @@ internal static class ExecutionContextExtensions
 
     internal static TE GetPostImageDefaultTarget<TE>(this IPluginExecutionContext context)
         where TE : Entity => context.GetPostImage<TE>() ?? context.GetTarget<TE>();
+
+    internal static T GetRequest<T>(this IPluginExecutionContext context)
+    {
+        var requestString = context.InputParameters["Payload"] as string ?? throw new InvalidPluginExecutionException($"Payload parameter required");
+
+        return JsonConvert.DeserializeObject<T>(requestString) ?? throw new InvalidPluginExecutionException($"Invalid request format {requestString}");
+    }
 }
