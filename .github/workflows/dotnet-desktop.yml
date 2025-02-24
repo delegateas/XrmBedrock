@@ -24,11 +24,6 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Install .NET Framework
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 4.6.2
-
     # Copy Setup files to the correct location
     - name: Copy Setup files
       run: |
