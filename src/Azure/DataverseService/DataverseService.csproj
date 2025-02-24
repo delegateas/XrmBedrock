@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <!--<NoWarn>$(NoWarn);IDE0005,CS1591,CS1573,CS8981</NoWarn>-->
+  </PropertyGroup>
+
+  <Import Project="..\..\Shared\SharedDataverseLogic\SharedDataverseLogic.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Core" Version="1.43.0" />
+    <PackageReference Include="Azure.Identity" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.2" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\NetCoreContext\NetCoreContext.csproj" />
+  </ItemGroup>
+</Project>
