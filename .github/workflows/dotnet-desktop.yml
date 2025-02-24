@@ -1,0 +1,45 @@
+name: Build and Test using Setup files
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: windows-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Install .NET Framework
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 4.6.2
+
+    # Copy Setup files to the correct location
+    - name: Copy Setup files
+      run: |
+        cp Setup/InitialSetup/WebResources src/Dataverse/WebResources
+        cp Setup/InitialSetup/SharedTest src/Dataverse/SharedTest
+        cp Setup/InitialSetup/SharedContext src/Shared/SharedContext
+
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+
+    # Execute all unit tests in the solution
+    - name: Execute unit tests
+      run: dotnet test
