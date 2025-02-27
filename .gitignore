@@ -360,15 +360,9 @@ MigrationBackup/
 /**/Daxif/*.dll
 
 *.daxif
-/Dataverse/Tools/Daxif/username.txt
-/Dataverse/src/Context/XrmContext.cs
-/SharedTest/MetadataGenerated/Metadata.xml
-/SharedTest/MetadataGenerated/SecurityRoles/*.xml
-/SharedTest/MetadataGenerated/Workflows/*.xml
-/Dataverse/src/WebResources/typings/XRM/*
-/Dataverse/src/WebResources/src/msys_Medlemssystem/*.js
-/Dataverse/src/WebResources/src/msys_Medlemssystem/*.map
-/Azure/src/MedlemssystemApi/appsettings.Development.json
-/Azure/src/DataMigrationFunction/local.settings.json
-/Dataverse/test/PluginTests/LiveDebug/LiveDebugConnectionString.local.txt
-/SharedContext/XrmContext.cs
+/src/Dataverse/Tools/Daxif/username.txt
+/src/Dataverse/SharedTest/MetadataGenerated
+/src/Dataverse/WebResources/typings/XRM/*
+/src/Dataverse/WebResources/src/**/*.js
+/src/Dataverse/WebResources/src/**/*.map
+/src/Shared/SharedContext/XrmContext.cs
