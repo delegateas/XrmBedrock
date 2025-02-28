@@ -44,6 +44,6 @@
     <Compile Include="Plugins\PluginSetupCustomDependencies.cs" />
     <Compile Include="Plugins\Utility\AutopublishDuplicateRulesOnPublishAll.cs" />
   </ItemGroup>
-  <Import Project="Source.projitems" Label="Shared" />
+  <Import Project="SharedPluginLogic.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
 </Project>
