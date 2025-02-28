@@ -9,7 +9,7 @@ open DG.Daxif.Common.Utility
 open System.IO
 
 let xrmContext = Path.toolsFolder ++ @"XrmContext\XrmContext.exe"
-let businessDomainFolder = Path.solutionRoot ++ "src" ++ "SharedContext"
+let businessDomainFolder = Path.solutionRoot ++ "src" ++ "Shared" ++ "SharedContext"
 
 Solution.GenerateCSharpContext(Env.dev, xrmContext, businessDomainFolder,
   solutions = [
