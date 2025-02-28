@@ -361,8 +361,9 @@ MigrationBackup/
 
 *.daxif
 /src/Dataverse/Tools/Daxif/username.txt
-/src/Dataverse/SharedTest/MetadataGenerated
 /src/Dataverse/WebResources/typings/XRM/*
 /src/Dataverse/WebResources/src/**/*.js
 /src/Dataverse/WebResources/src/**/*.map
+/src/Dataverse/WebResources/src/*/lib
 /src/Shared/SharedContext/XrmContext.cs
+/test/SharedTest/MetadataGenerated
