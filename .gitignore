@@ -367,3 +367,10 @@ MigrationBackup/
 /src/Dataverse/WebResources/src/*/lib
 /src/Shared/SharedContext/XrmContext.cs
 /test/SharedTest/MetadataGenerated
+
+
+# JetBrains
+.idea/
+
+# Mac
+.DS_Store
