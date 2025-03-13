@@ -69,6 +69,19 @@ The template uses Storage Queue Data Contributor
 ## Managed identity
 A managed identity is created by the bicep deploy. This is what azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
 
+# GitHub
+
+Additionally, this seciton is relevant if the code repository is hosted and GitHub and you want to use GitHub Actions.
+
+_NB: Only the dataverse parts are converted from Azure DevOps Pipelines to GitHub Actions_.
+
+## Environment
+
+The workflows assume a base environment named `dev` is created with variables `DATAVERSE_APP_ID` and `TENANT_ID` and secrets `CLIENT_SECRET`. The base environemnt URL must be updated in the workflow defintion and the environment specific URLs are constructed from the GitHub environment name.
+
+Remember to "uncomment" the `build-and-test.yaml` workflow trigger.
+
+
 ## TODO
 * Improve validation of infrastructure to be easier to manage
 * Auto set storage account environment variable

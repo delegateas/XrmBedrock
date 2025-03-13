@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildandtest:
+    uses: ./.github/workflows/build-and-test.yaml
+    with:
+      SYNC: true
+    secrets:
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  
+  package:
+    needs: buildandtest
+    uses: ./.github/workflows/package.yaml
+    secrets:
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+  deploy:
+    needs: package
+    uses: ./.github/workflows/deploy-environment.yaml
+    with:
+      ENVIRONMENT: uat
+    secrets:
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}

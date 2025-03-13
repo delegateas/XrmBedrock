@@ -1,0 +1,16 @@
+name: Build and Test
+
+#on:
+#  pull_request:
+#    types:
+#      - opened
+#      - synchronize
+#    branches:
+#      - main
+#  workflow_dispatch:
+
+jobs:
+  buildandtest:
+    uses: ./.github/workflows/build-and-test.yaml
+    secrets:
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
