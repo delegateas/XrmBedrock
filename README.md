@@ -86,11 +86,9 @@ The template assumes the following variables exist.
 * AzureClientEAObjectId
 
 ## Service Connection
-Under Project Settings > Pipelines > Service connections, create a service connection per azure environment is required.
-A service connection is used to authorize the pipeline against other services. 
-The goal is to avoid secrets in the pipeline.
-Use the recommended settings with Workload Federated Credentials.
-Template uses Dev, Test, UAT, Prod.
+Under Project Settings > Pipelines > Service connections, create a service connection per azure environment.
+A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
+Note: The pipeline template uses Dev, Test, UAT, Prod.
 
 ## App registration privileges
 Remember to give your app reg permission to assign roles.
