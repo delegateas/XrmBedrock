@@ -67,6 +67,10 @@ As soon as you run ``GenerateCSharpContext.fsx`` you will get a lot of errors, s
 
 Remember to delete the Setup folder as well. 
 
+# Update files in .pipelines and Infrastructure
+TODO
+- Validate-DIF-Template => resource group names
+- main.bicep => companyId, more? 
 
 # Azure DevOps
 ## Environment
