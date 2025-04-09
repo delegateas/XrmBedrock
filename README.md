@@ -42,12 +42,14 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
   - add your username
 
 ## Generate new strong name key
-Open the developer terminal in Visual Studio and write
+Open the developer terminal in Visual Studio and write: 
 `sn -k nameOfSolution.snk`
 
 Make sure you have updated the reference to the .snk file in ``src/Dataverse/Plugins.csproj``.
 
 ## Generate a certificate
+TODO: Add a description of what the certificate is used for.
+
 - Create a new password (at least 12 randomly generated characters is recommended). 
 - Open an administrator powershell and run the ``Setup/generateNewCertificate.ps1`` file. 
 - Use the following commands - remember to update "nameOfSolution" and "someRandomPassword":
@@ -68,9 +70,12 @@ As soon as you run ``GenerateCSharpContext.fsx`` you will get a lot of errors, s
 Remember to delete the Setup folder as well. 
 
 # Update files in .pipelines and Infrastructure
-TODO
-- Validate-DIF-Template => resource group names
-- main.bicep => companyId, more? 
+TODO: There should be a dedicated section for pipelines. Here it should be described what the default configurations do and what the prerequisites are.
+
+Update values to match your solution:
+- In ``.pipelines/Azure/Validate-DIF-Template`` update the resource group names
+- In ``.pipelines/Infrastructure/main.bicep`` update the ``solutionId``  and ``companyId``
+
 
 # Azure DevOps
 ## Environment
@@ -100,7 +105,8 @@ The easiest method is to add it as owner to the subscription and restrict the ro
 The template uses Storage Queue Data Contributor
 
 ## Managed identity
-A managed identity is created by the bicep deploy. This is what azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
+A managed identity is created by the bicep deploy. This is what Azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
+
 
 ## TODO
 * Improve validation of infrastructure to be easier to manage
