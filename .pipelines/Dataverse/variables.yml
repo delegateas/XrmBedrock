@@ -1,7 +1,7 @@
 # Variables needed for pipelines
 variables:
-  ToolsPath: '$(build.sourcesDirectory)/Dataverse/Tools'
-  DaxifPath: '$(build.sourcesDirectory)/Dataverse/Tools/Daxif'
+  ToolsPath: '$(build.sourcesDirectory)/src/Tools'
+  DaxifPath: '$(build.sourcesDirectory)/src/Tools/Daxif'
   ScriptsPath: '$(build.sourcesDirectory)/.pipelines/Dataverse/scripts'
   SolutionFile: '$(build.sourcesDirectory)/*.sln'
   AuthParams: '/mfaappid="$(DataverseAppId)" /mfaclientsecret="$(DataverseSecret)" /method="ClientSecret"'
