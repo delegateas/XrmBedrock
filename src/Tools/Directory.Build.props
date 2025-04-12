@@ -6,7 +6,7 @@
   the auto imported Directory.Build.props
   -->
   <Import
-    Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., Directory.Build.props))\Directory.Build.props" />
+    Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)..,Directory.Build.props))\Directory.Build.props" />
 
   <PropertyGroup Label="Build instructions">
     <OutputType>Library</OutputType>
