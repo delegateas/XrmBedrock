@@ -55,7 +55,7 @@ To add new plugins and related business logic for Dataverse:
   Implement the business logic as services in `src/Dataverse/SharedPluginLogic/Logic` within a folder named for the same area. Any services that should be public for the area must be exposed via a static method in an `AddServices` class (e.g., `AddServices.cs`) within the area folder. This class is responsible for registering all services for dependency injection.
 
 - **Service Registration:**  
-  All area `AddServices` methods must be called from `src/Dataverse/SharedPluginLogic/PluginSetupCustomDependencies.cs`. This ensures that all services are registered and available for plugin execution.
+  All area `AddServices` methods must be called from `src/Dataverse/SharedPluginLogic/Plugins/PluginSetupCustomDependencies.cs`. This ensures that all services are registered and available for plugin execution.
 
 **Summary Flow:**
 1. Add/organize plugin class in `Plugins/[Area]`
