@@ -40,3 +40,28 @@ The repository is organized to support modular, cross-platform development for M
 ## Extensibility
 - New Azure services, plugins, or shared logic can be added by following the established project structure and referencing shared projects as needed.
 - Additional F# scripts or setup scripts can be introduced for new automation or configuration requirements.
+
+## Plugin Extensibility and Service Registration
+
+To add new plugins and related business logic for Dataverse:
+
+- **Plugin Class Location:**  
+  Create a new class in `src/Dataverse/SharedPluginLogic/Plugins` inside a folder matching the relevant business area (e.g., `Warehousing`, `Economy`, etc.). If no folder exists for the area, create one. Each plugin class should represent a logical grouping of plugin steps for that area.
+
+- **Registering Plugin Steps:**  
+  In the plugin class constructor, use `RegisterPluginStep` calls to specify the Dataverse table, operation (e.g., Create, Update), and stage (e.g., PreOperation, PostOperation) for which the plugin should execute. Each step should call the appropriate service method for the business logic to be triggered.
+
+- **Service Implementation and Exposure:**  
+  Implement the business logic as services in `src/Dataverse/SharedPluginLogic/Logic` within a folder named for the same area. Any services that should be public for the area must be exposed via a static method in an `AddServices` class (e.g., `AddServices.cs`) within the area folder. This class is responsible for registering all services for dependency injection.
+
+- **Service Registration:**  
+  All area `AddServices` methods must be called from `src/Dataverse/SharedPluginLogic/PluginSetupCustomDependencies.cs`. This ensures that all services are registered and available for plugin execution.
+
+**Summary Flow:**
+1. Add/organize plugin class in `Plugins/[Area]`
+2. Register plugin steps in the constructor using `RegisterPluginStep`
+3. Implement business logic in `Logic/[Area]`
+4. Expose public services via static `Add[Area]` method
+5. Register all area services in `PluginSetupCustomDependencies.cs`
+
+This pattern ensures a modular, discoverable, and maintainable approach to plugin and service development in the project.

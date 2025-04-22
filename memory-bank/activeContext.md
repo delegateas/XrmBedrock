@@ -8,10 +8,12 @@
 ## Recent Changes
 - Initial creation of the memory bank files: projectbrief.md, productContext.md, systemPatterns.md, techContext.md, activeContext.md, and progress.md.
 - Documentation of repository structure, technical decisions, and integration patterns.
+- Added documentation for the plugin extensibility and service registration pattern in systemPatterns.md, with cross-references in techContext.md and activeContext.md.
 
 ## Next Steps
 - Generate new proxy classes for your own Dataverse environment using the provided tooling.
 - Write and implement your own business logic to replace the sample files.
+- Follow the documented plugin extensibility and service registration pattern when adding new plugins or services, and update documentation as the pattern evolves.
 - Review and refine memory bank content as the project evolves.
 - Begin onboarding new developers using the memory bank as the primary source of project context.
 - Implement additional documentation for complex features, integrations, or testing strategies as needed.

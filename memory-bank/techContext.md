@@ -39,6 +39,7 @@
 - **PowerShell**: Used for setup, deployment, and certificate management.
 - **CI/CD Pipelines**: Automate build, test, and deployment for both Dataverse and Azure components.
 - **Testing Utilities**: MessageExecutor and custom mocks for simulating cross-platform interactions.
+- **Plugin Extensibility Pattern**: For details on how to add new plugins, register plugin steps, and organize related services, see the "Plugin Extensibility and Service Registration" section in `systemPatterns.md`.
 
 ## Environment Management
 - **Parameterization**: Bicep parameter files for dev, test, uat, and prod environments.
