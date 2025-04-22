@@ -4,7 +4,7 @@
 - **Microsoft Dataverse**: Target platform for plugin deployment and data integration.
 - **Azure**: Cloud platform for hosting services, functions, and infrastructure.
 - **.NET**: 
-  - Plugins: .NET 4.6.2 (for Dataverse deployment), latest LTS .NET (for testing and Azure services).
+  - Plugins: .NET 4.6.2 (for Dataverse deployment), latest LTS .NET (for testing).
   - Azure Functions and services: latest LTS .NET.
 - **F#**: Used for scripting, automation, and code generation (via F# Interactive).
 - **TypeScript**: For Dataverse web resources (front-end logic). All authored code in src/Dataverse/WebResources must be TypeScript; JavaScript files are generated for deployment only.
