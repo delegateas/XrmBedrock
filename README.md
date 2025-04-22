@@ -10,64 +10,105 @@ This template will be updated. The current list is as follows
 # Initial setup
 This project serves both as a template, but also as a demonstration of how XrmBedrock can be used. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder.
 
-# Project
-Follow these steps to setup the project correctly. After this you are ready to setup Azure Devops.
+Right after downloading XrmBedrock, you are not able to build the project since it is also used as a demonstration. In order to build, you should first run ``Setup/copyInitialSetup.ps1`` using PowerShell. The script is not signed, so make sure to first run ``Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass``. This copies the context for the demo and you should now be able to build and run all unit tests for the demo. 
 
-## Update Plugin Assembly Name
-In the Dataverse/src/Plugins.csproj file, update the assembly name from XrmBedrock to the relevant name.
+# Getting up and running
+Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.
+
+# Rename file names and folders
+- Rename file ``XrmBedrock.sln``
+- Rename file ``xrmbedrock.snk``
+- Rename folder ``src/Dataverse/Webresources/src/mgs_Magesoe``
+
+## Update values in Plugins.csproj
+In the ``src/Dataverse/Plugins.csproj`` file, update the following:
+- RootNameSpace
+- AssemblyName
+- AssemblyOriginatorKeyFile
+- Reference to the .snk file in the ``Exec`` element
 
 ## Update DAXIF Config
-Update Solution info and Plugin Assembly name
+In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
+- SolutionInfo
+- PublisherInfo
+- Environments
+  - url
+  - the url part of the connectionString
+- ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
+  - add or remove table names based on your solution and needs
+- ``src\Tools\Daxif\GenerateTypeScriptContext.fsx``
+  - add or remove table names based on your solution and needs
+- ``src\Tools\Daxif\username.txt``
+  - add your username
 
 ## Generate new strong name key
-Open the developer terminal in Visual Studio and write
-`sn -k nameOfSolutionHere.snk`
+Open the developer terminal in Visual Studio and write: 
+`sn -k nameOfSolution.snk`
 
-Update the reference to the .snk file in the Dataverse/src/Plugins.csproj file
+Make sure you have updated the reference to the .snk file in ``src/Dataverse/Plugins.csproj``.
 
 ## Generate a certificate
-Run the Setup/generateNewCertificate.ps1 file in an administrator powershell. Use the following commands.
-`Set-ExecutionPolicy Bypass -Scope Process`
-`./Setup/generateNewCertificate.ps1 -name "nameOfSolutionHere" -friendlyName "nameOfSolutionHere" -password "someRandomPassword" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
+TODO: Add a description of what the certificate is used for.
 
-Set the password in the signing part of the Dataverse/src/Plugins.csproj file
+- Create a new password (at least 12 randomly generated characters is recommended). 
+- Open an administrator powershell and run the ``Setup/generateNewCertificate.ps1`` file. 
+- Use the following commands - remember to update "nameOfSolution" and "someRandomPassword":
+  - `Set-ExecutionPolicy Bypass -Scope Process`
+  - `./Setup/generateNewCertificate.ps1 -name "nameOfSolution" -friendlyName "nameOfSolution" -password "someRandomPassword" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
+
+Set the password in the signing part of the ``src/Dataverse/Plugins.csproj`` file in the ``Exec`` element.
 
 ## Update storage account environment variable
 Create a new environment variable that will contain the storage account url
 
-Update the name of that variable in DataverseLogic/Azure/AzureConfigSetter
+Update the reference to that variable in ``src\Dataverse\SharedPluginLogic\Logic\Azure\AzureConfigSetter.cs`` 
 
-# Devops
+## Verify solution and delete demo code
+At this point you should still be able to build and run all unit tests. 
+As soon as you run ``GenerateCSharpContext.fsx`` you will get a lot of errors, since the XrmContext will be overwritten and replaced with your solution's context. In order to build again, you need to delete all the demo code...
+
+Remember to delete the Setup folder as well. 
+
+# Update files in .pipelines and Infrastructure
+TODO: There should be a dedicated section for pipelines. Here it should be described what the default configurations do and what the prerequisites are.
+
+Update values to match your solution:
+- In ``.pipelines/Azure/Validate-DIF-Template`` update the resource group names
+- In ``.pipelines/Infrastructure/main.bicep`` update the ``solutionId``  and ``companyId``
+
+
+# Azure DevOps
 ## Environment
-Create an environment per Dataverse environment. 
-Template uses Dev, Test, UAT, Prod.
-Use this to control approvals
+Under Pipelines > Environment, create an environment per Dataverse environment. 
+Note: The pipeline template uses Dev, Test, UAT, Prod.
+Use these to control approvals of deployments.
 
 ## Library
-Create a variable group per environment.
-Template uses Dev, Test, UAT, Prod.
+Under Pipelines > Library, create a variable group per environment.
+Note: The pipeline template uses Dev, Test, UAT, Prod.
 The template assumes the following variables exist.
 * ResourceGroupName
 * DataverseUrl
+* DataverseAppId (used by pipeline)
+* DataverseSecret (used by pipeline)
 * AzureClientId
 * AzureClientSecret (only used for DAXIF)
 * AzureTenantId (Needed for the managed identity record)
 * AzureClientEAObjectId
 
 ## Service Connection
-A service connection is used to authorize the pipeline against other services. 
-The goal is to avoid secrets in the pipeline.
-A service connection per azure environment is required.
-Use the recommended settings with Workload Federated Credentials.
-Template uses Dev, Test, UAT, Prod.
+Under Project Settings > Pipelines > Service connections, create a service connection per azure environment.
+A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
+Note: The pipeline template uses Dev, Test, UAT, Prod.
 
-## App reg privileges
+## App registration privileges
 Remember to give your app reg permission to assign roles.
 The easiest method is to add it as owner to the subscription and restrict the role assignment to the ones bicep assigns.
 The template uses Storage Queue Data Contributor
 
 ## Managed identity
-A managed identity is created by the bicep deploy. This is what azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
+A managed identity is created by the bicep deploy. This is what Azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
+
 
 ## TODO
 * Improve validation of infrastructure to be easier to manage

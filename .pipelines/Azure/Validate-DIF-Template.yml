@@ -5,22 +5,22 @@ parameters:
       {
       environment: 'Dev',
       serviceConnectionName: 'Dev',
-      resourceGroupName: 'rg-medlemssystem-dev'
+      resourceGroupName: 'rg-resourcegroupname-dev'
       },
       {
       environment: 'Test',
       serviceConnectionName: 'Test',
-      resourceGroupName: 'rg-medlemssystem-test'
+      resourceGroupName: 'rg-resourcegroupname-test'
       },
       {
       environment: 'UAT',
       serviceConnectionName: 'UAT',
-      resourceGroupName: 'rg-medlemssystem-uat'
+      resourceGroupName: 'rg-resourcegroupname-uat'
       },
       {
       environment: 'Prod',
       serviceConnectionName: 'Prod',
-      resourceGroupName: 'rg-medlemssystem-prod'
+      resourceGroupName: 'rg-resourcegroupname-prod'
       }
     ]
 
@@ -40,19 +40,5 @@ steps:
           -DataverseUrl $(DataverseUrl) `
           -DataverseClientId $(DataverseAppId)  `
           -DataverseClientSecret $(DataverseSecret) `
-          -CvrUsername $(CvrUsername) `
-          -CvrPassword $(CvrPassword) `
-          -WebAppClientSecret $(WebAppClientSecret) `
-          -ManagedIdentitiesForExternal '$(ManagedIdentitiesForExternal)' `
-          -cprDisabled $(cprDisabled) `
-          -cprKey $(cprKey) `
-          -cprCustomerNumber $(cprCustomerNumber) `
-          -cprConnectionString $(cprConnectionString) `
-          -cprFTPUser $(cprFTPUser) `
-          -cprFTPPassword $(cprFTPPassword) `
-          -cprDeployPackageUrl '$(cprDeployPackageUrl)' `
-          -farPayApiKey '$(FarPayApiKey)' `
-          -DMAzureSqlConnectionString '$(DMAzureSqlConnectionString)' `
-          -getPaymentsFromFarpayDisabled $(getPaymentsFromFarpayDisabled) `
           -existingAppClientId $(AzureClientId) `
-          -existingAppClientObjectId $(AzureClientObjectId)
+          -existingAppClientObjectId $(AzureClientObjectId) 

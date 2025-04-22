@@ -4,10 +4,10 @@ parameters:
   params: {}
 
 jobs:
-  - job: Deploy_WebApp_MedlemssystemApi
-    displayName: Deploy Web App Medlemssystem Api
+  - job: Deploy_WebApp_ExampleApi
+    displayName: Deploy Web App Example Api
     dependsOn: Deploy_Infrastructure
-    condition: eq(${{parameters.params.deployMedlemssystemApi}}, true)
+    condition: eq(${{parameters.params.deployExampleApi}}, true)
     steps:
       - download: current
         artifact: drop
@@ -17,5 +17,5 @@ jobs:
         retryCountOnTaskFailure: 4
         inputs:
           azureSubscription: ${{ parameters.serviceConnectionName }}
-          appName: "app-${{lower(parameters.environment)}}-medlemssystemapi"
-          package: "$(Pipeline.Workspace)/drop/publish/MedlemssystemApi.zip"
+          appName: "app-${{lower(parameters.environment)}}-Exampleapi"
+          package: "$(Pipeline.Workspace)/drop/publish/ExampleApi.zip"
