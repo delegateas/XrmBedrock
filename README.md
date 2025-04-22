@@ -89,6 +89,8 @@ Note: The pipeline template uses Dev, Test, UAT, Prod.
 The template assumes the following variables exist.
 * ResourceGroupName
 * DataverseUrl
+* DataverseAppId (used by pipeline)
+* DataverseSecret (used by pipeline)
 * AzureClientId
 * AzureClientSecret (only used for DAXIF)
 * AzureTenantId (Needed for the managed identity record)
