@@ -30,7 +30,27 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dao\DataverseWrapAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dao\Exceptions\DataverseInteractionException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dao\IDataverseAccessObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)XrmContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)XrmExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\Account.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\Annotation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\appnotification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\Contact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\DuplicateRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\EnvironmentVariableDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\EnvironmentVariableValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\GlobalOptionSets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\ICustomer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\mgs_Invoice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\mgs_InvoiceCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\mgs_Product.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\mgs_Subscription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\mgs_Transaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\Queue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\QueueMembership.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\SavedQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\SystemUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\Task.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\Template.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\XrmContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\XrmExtensions.cs" />
   </ItemGroup>
 </Project>

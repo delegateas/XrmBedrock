@@ -26,7 +26,7 @@
 - Testing should leverage XrmMockup and MessageExecutor for cross-platform logic validation.
 
 ## Important Patterns and Preferences
-- The file `src/Shared/SharedContext/XrmContext.cs` is the canonical mapping of Dataverse tables and columns to C# code, with a class for each table and an attribute for each column. This pattern is essential for onboarding and for understanding the data model in code.
+- The directory `src/Shared/SharedContext/XrmContext` is the canonical mapping of Dataverse tables and columns to C# code, with a class for each table and an attribute for each column. This pattern is essential for onboarding and for understanding the data model in code.
 - Trunk-based development with automated CI/CD for build, test, and deployment.
 - Clear separation of concerns between Azure, Dataverse, and shared logic.
 - Use of F# scripts for automation and code generation.

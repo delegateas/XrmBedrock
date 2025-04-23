@@ -12,7 +12,7 @@ The repository is organized to support modular, cross-platform development for M
 - **Test**: Projects for integration and cross-platform business logic testing.
 
 ## Key Technical Decisions
-- **Dataverse Schema Mapping**: The file `src/Shared/SharedContext/XrmContext.cs` contains a class for each Dataverse table, with an attribute for each column. This file serves as the canonical mapping between Dataverse tables/columns and C# code, making it the primary reference for understanding the data model in code.
+- **Dataverse Schema Mapping**: The directory `src/Shared/SharedContext/XrmContext` contains a class for each Dataverse table, with an attribute for each column. This serves as the canonical mapping between Dataverse tables/columns and C# code, making it the primary reference for understanding the data model in code.
 - **TypeScript-Only Web Resources**: The src/Dataverse/WebResources project enforces a TypeScript-only policy. No authored JavaScript files are permitted; all source code must be TypeScript, and only the compiled JavaScript is deployed.
 - **Trunk-Based Development**: All changes are integrated into a single main branch, with CI/CD pipelines for build, test, and deployment.
 - **CI/CD Pipelines**: Defined in YAML under `.pipelines/`, with separate pipelines for build (pull requests) and build-and-deploy (trunk).

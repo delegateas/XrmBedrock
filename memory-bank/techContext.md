@@ -33,7 +33,7 @@
 - **Bicep CLI**: For deploying infrastructure templates.
 
 ## Tool Usage Patterns
-- **Dataverse Schema Reference**: The file `src/Shared/SharedContext/XrmContext.cs` is the canonical source for Dataverse tables and columns in code. It contains a class for each table and an attribute for each column, providing the definitive mapping between the Dataverse schema and C# code.
+- **Dataverse Schema Reference**: The directory `src/Shared/SharedContext/XrmContext` is the canonical source for Dataverse tables and columns in code. It contains a class for each table and an attribute for each column, providing the definitive mapping between the Dataverse schema and C# code.
 - **F# Scripts**: Used for code generation (C#, TypeScript contexts), solution management, and automation tasks.
 - **TypeScript Tooling**: tsconfig.json and ESLint are used to enforce TypeScript standards and code quality in WebResources. The build process compiles TypeScript to JavaScript for deployment to Dataverse.
 - **PowerShell**: Used for setup, deployment, and certificate management.
