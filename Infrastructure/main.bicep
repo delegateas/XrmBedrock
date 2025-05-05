@@ -5,7 +5,7 @@ param existingAppClientObjectId string
 @secure()
 param DataverseUrl string
 
-// Naming
+// Naming (OBS: some resources have limitations to their naming)
 var solutionId = 'demo'
 var companyId = 'mgs'
 var namingSuffix = '${toLower(companyId)}-${toLower(solutionId)}-${toLower(env)}'
@@ -199,7 +199,7 @@ var kvPrincipals = concat(principals.outputs.userprincipals, [
   userManangedIdentityModule.outputs.userManIdentityPrincipalId
 ])
 
-var keyvaultName = 'keyvault-${namingSuffix}'
+var keyvaultName = 'kv-${namingSuffix}'
 
 module keyvault 'modules/keyVault.bicep' = {
   name: 'keyvault'

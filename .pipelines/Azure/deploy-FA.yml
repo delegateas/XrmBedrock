@@ -23,6 +23,6 @@ jobs:
         inputs:
           azureSubscription: ${{parameters.serviceConnectionName}}
           appType: functionApp
-          appName: "func-${{lower(parameters.environment)}}-economyarea"
+          appName: "func-economyarea-mgs-demo-${{lower(parameters.environment)}}" #Name is set in main.bicep and depends on your namingSuffix
           package: "$(Pipeline.Workspace)/drop/publish/EconomyAreaFunctionApp.zip"
           appSettings: '-appsettingKey "$(AppSettingValueFromLibrary)"'
