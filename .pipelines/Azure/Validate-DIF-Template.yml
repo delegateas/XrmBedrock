@@ -41,4 +41,4 @@ steps:
           -DataverseClientId $(DataverseAppId)  `
           -DataverseClientSecret $(DataverseSecret) `
           -existingAppClientId $(AzureClientId) `
-          -existingAppClientObjectId $(AzureClientObjectId) 
+          -existingAppClientObjectId $(AzureClientEAObjectId) 

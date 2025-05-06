@@ -76,6 +76,10 @@ Update values to match your solution:
 - In ``.pipelines/Azure/Validate-DIF-Template`` update the resource group names
 - In ``.pipelines/Infrastructure/main.bicep`` update the ``solutionId``  and ``companyId``
 
+Tip: To locally validate your main.bicep, run the following commands:
+``az login``
+``az deployment group validate --resource-group <your-resource-group> --template-file main.bicep``
+This will validate the template and show you any errors in the template (which the pipeline won't output)
 
 # Azure DevOps
 ## Environment
@@ -94,7 +98,7 @@ The template assumes the following variables exist.
 * AzureClientId
 * AzureClientSecret (only used for DAXIF)
 * AzureTenantId (Needed for the managed identity record)
-* AzureClientEAObjectId
+* AzureClientEAObjectId (Object id of the Enterprise Application related to the App registration)
 
 ## Service Connection
 Under Project Settings > Pipelines > Service connections, create a service connection per azure environment.
