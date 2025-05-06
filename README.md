@@ -79,7 +79,7 @@ Update values to match your solution:
 Tip: To locally validate your main.bicep, run the following commands:
 ``az login``
 ``az deployment group validate --resource-group <your-resource-group> --template-file main.bicep``
-This will validate the template and show you any errors in the template (which the pipeline won't do)
+This will validate the template and show you any errors in the template (which the pipeline won't output)
 
 # Azure DevOps
 ## Environment
