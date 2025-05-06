@@ -98,7 +98,7 @@ The template assumes the following variables exist.
 * AzureClientId
 * AzureClientSecret (only used for DAXIF)
 * AzureTenantId (Needed for the managed identity record)
-* AzureClientEAObjectId
+* AzureClientEAObjectId (Object id of the Enterprise Application related to the App registration)
 
 ## Service Connection
 Under Project Settings > Pipelines > Service connections, create a service connection per azure environment.
