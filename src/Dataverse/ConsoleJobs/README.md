@@ -23,9 +23,9 @@ In App.config, define the following parameters:
 
 `LoginPrompt` When to display the login prompt (set to "Always").
 
-`AppId` The application ID for Azure AD authentication. No need to change this.
+`AppId` The application ID for Azure AD authentication. Supplied by Microsoft: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters. No need to change this.
 
-`RedirectUri` The redirect URI for OAuth authentication flow. No need to change this.
+`RedirectUri` The redirect URI for OAuth authentication flow. Supplied by Microsoft: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters. No need to change this.
 
 ## Usage
 Create your job as a class implementing the `IJob` interface in the /Jobs directory. Set the `ConsoleJobs` project as your startup project, make sure `JobClassName` and `Environment` are set correctly in App.config and run.
