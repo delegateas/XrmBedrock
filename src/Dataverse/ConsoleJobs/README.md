@@ -28,7 +28,10 @@ In App.config, define the following parameters:
 `RedirectUri` The redirect URI for OAuth authentication flow. Supplied by Microsoft: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters. No need to change this.
 
 ## Usage
-Create your job as a class implementing the `IJob` interface in the /Jobs directory. Set the `ConsoleJobs` project as your startup project, make sure `JobClassName` and `Environment` are set correctly in App.config and run.
+1. Create your job as a class implementing the `IJob` interface in the /Jobs directory. 
+2. Set the `ConsoleJobs` project as your startup project in Visual Studio.
+3. In the App.config, make sure to configure `JobClassName`, `Environment`, `DevEnv`, `TestEnv`, `UatEnv`, `ProdEnv` and `Username`.
+4. Build and run the `ConsoleJobs` project to run your job.
 
 ### Adding Additional Environments
 To add additional environments, create an entry in App.config for it in the same fashion as the other environments, expand the `EnvironmentsEnum` and `GetUrlFromEnvironment()` in `EnvironmentConfig.cs` to include your new environment.
