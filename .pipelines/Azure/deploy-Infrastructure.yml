@@ -1,37 +1,34 @@
 parameters:
-  environment: ''
-  serviceConnectionName: ''
+  environment: ""
+  serviceConnectionName: ""
 
 jobs:
-- job: Build
-  displayName: 'Build Job'
-  steps:
-    - script: echo "Building the application..."
-      displayName: 'Execute build'
+  - job: Build
+    displayName: "Build Job"
+    steps:
+      - script: echo "Building the application..."
+        displayName: "Execute build"
 
-- deployment: Deploy_Infrastructure
-  displayName: 'Deploy Infrastructure'
-  condition: eq(${{parameters.params.deployInfrastructure}}, true)
-  environment: ${{ parameters.environment }}
-  strategy:
-    runOnce:
-      deploy:
-        steps:
-          - download: current
-            artifact: drop
-            displayName: Download artifacts      
-          - task: AzurePowerShell@5
-            displayName: 'Deploy Azure Infrastructure'
-            inputs:
-              connectedServiceNameARM: ${{ parameters.serviceConnectionName }}
-              azurePowerShellVersion: 'LatestVersion'
-              ScriptPath: '$(Pipeline.Workspace)/drop/deploy/deploy.ps1'
-              ScriptArguments: 
-                -resourceGroupName $(ResourceGroupName) `
-                -template '$(Pipeline.Workspace)/drop/deploy/main.bicep' `
-                -Parameters '$(Pipeline.Workspace)/drop/deploy/params/main.${{lower(parameters.environment)}}.parameters.json' `
-                -DataverseUrl $(DataverseURL) `
-                -DataverseClientId $(DataverseAppId) `
-                -DataverseClientSecret $(DataverseSecret) `
-                -existingAppClientId $(AzureClientId) `
-                -existingAppClientObjectId $(AzureClientEAObjectId) 
+  - deployment: Deploy_Infrastructure
+    displayName: "Deploy Infrastructure"
+    condition: eq(${{parameters.params.deployInfrastructure}}, true)
+    environment: ${{ parameters.environment }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - download: current
+              artifact: drop
+              displayName: Download artifacts
+            - task: AzurePowerShell@5
+              displayName: "Deploy Azure Infrastructure"
+              inputs:
+                connectedServiceNameARM: ${{ parameters.serviceConnectionName }}
+                azurePowerShellVersion: "LatestVersion"
+                ScriptPath: "$(Pipeline.Workspace)/drop/deploy/deploy.ps1"
+                ScriptArguments: -resourceGroupName $(ResourceGroupName) `
+                  -template '$(Pipeline.Workspace)/drop/deploy/main.bicep' `
+                  -Parameters '$(Pipeline.Workspace)/drop/deploy/params/main.${{lower(parameters.environment)}}.parameters.json' `
+                  -DataverseUrl $(DataverseURL) `
+                  -existingAppClientId $(AzureClientId) `
+                  -existingAppClientObjectId $(AzureClientEAObjectId)

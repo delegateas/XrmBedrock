@@ -1,44 +1,41 @@
 parameters:
   - name: "Deployments"
     type: object
-    default: [
-      {
-      environment: 'Dev',
-      serviceConnectionName: 'Dev',
-      resourceGroupName: 'rg-resourcegroupname-dev'
-      },
-      {
-      environment: 'Test',
-      serviceConnectionName: 'Test',
-      resourceGroupName: 'rg-resourcegroupname-test'
-      },
-      {
-      environment: 'UAT',
-      serviceConnectionName: 'UAT',
-      resourceGroupName: 'rg-resourcegroupname-uat'
-      },
-      {
-      environment: 'Prod',
-      serviceConnectionName: 'Prod',
-      resourceGroupName: 'rg-resourcegroupname-prod'
-      }
-    ]
-
+    default:
+      [
+        {
+          environment: "Dev",
+          serviceConnectionName: "Dev",
+          resourceGroupName: "rg-resourcegroupname-dev",
+        },
+        {
+          environment: "Test",
+          serviceConnectionName: "Test",
+          resourceGroupName: "rg-resourcegroupname-test",
+        },
+        {
+          environment: "UAT",
+          serviceConnectionName: "UAT",
+          resourceGroupName: "rg-resourcegroupname-uat",
+        },
+        {
+          environment: "Prod",
+          serviceConnectionName: "Prod",
+          resourceGroupName: "rg-resourcegroupname-prod",
+        },
+      ]
 
 steps:
   - ${{ each value in parameters.Deployments }}:
-    - task: AzurePowerShell@5
-      displayName: 'Test Azure Infrastructure ${{value.environment}}'
-      inputs:
-        connectedServiceNameARM: ${{value.serviceConnectionName}}
-        azurePowerShellVersion: 'LatestVersion'
-        ScriptPath: '$(System.DefaultWorkingDirectory)/Infrastructure/test-deploy.ps1'
-        ScriptArguments:
-          -resourceGroupName ${{value.resourceGroupName}} `
-          -template '$(System.DefaultWorkingDirectory)/Infrastructure/main.bicep' `
-          -Parameters '$(System.DefaultWorkingDirectory)/Infrastructure/params/main.${{lower(value.environment)}}.parameters.json' `
-          -DataverseUrl $(DataverseUrl) `
-          -DataverseClientId $(DataverseAppId)  `
-          -DataverseClientSecret $(DataverseSecret) `
-          -existingAppClientId $(AzureClientId) `
-          -existingAppClientObjectId $(AzureClientEAObjectId) 
+      - task: AzurePowerShell@5
+        displayName: "Test Azure Infrastructure ${{value.environment}}"
+        inputs:
+          connectedServiceNameARM: ${{value.serviceConnectionName}}
+          azurePowerShellVersion: "LatestVersion"
+          ScriptPath: "$(System.DefaultWorkingDirectory)/Infrastructure/test-deploy.ps1"
+          ScriptArguments: -resourceGroupName ${{value.resourceGroupName}} `
+            -template '$(System.DefaultWorkingDirectory)/Infrastructure/main.bicep' `
+            -Parameters '$(System.DefaultWorkingDirectory)/Infrastructure/params/main.${{lower(value.environment)}}.parameters.json' `
+            -DataverseUrl $(DataverseUrl) `
+            -existingAppClientId $(AzureClientId) `
+            -existingAppClientObjectId $(AzureClientEAObjectId)

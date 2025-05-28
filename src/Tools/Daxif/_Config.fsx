@@ -32,11 +32,39 @@ module Env =
   let dev = 
     Environment.Create(
       name = "Dev",
-      url = "https://yourenv.crm4.dynamics.com",
+      url = "https://dev.crm4.dynamics.com",
       method = ConnectionType.ConnectionString,
-      connectionString = sprintf @"AuthType=OAuth; url=https://yourenv.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      connectionString = sprintf @"AuthType=OAuth; url=https://dev.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
       args = fsi.CommandLineArgs
     )
+
+  let test = 
+    Environment.Create(
+      name = "Test",
+      url = "https://test.crm4.dynamics.com",
+      method = ConnectionType.ConnectionString,
+      connectionString = sprintf @"AuthType=OAuth; url=https://test.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      args = fsi.CommandLineArgs
+    )
+
+  let uat = 
+    Environment.Create(
+      name = "UAT",
+      url = "https://uat.crm4.dynamics.com",
+      method = ConnectionType.ConnectionString,
+      connectionString = sprintf @"AuthType=OAuth; url=https://uat.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      args = fsi.CommandLineArgs
+    )
+
+  let prod = 
+    Environment.Create(
+      name = "Prod",
+      url = "https://prod.crm4.dynamics.com",
+      method = ConnectionType.ConnectionString,
+      connectionString = sprintf @"AuthType=OAuth; url=https://prod.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      args = fsi.CommandLineArgs
+    )
+
 
 (** 
 CRM Solution Setup 

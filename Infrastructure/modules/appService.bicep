@@ -44,7 +44,7 @@ var kvSettings = [for secret in kvSecrets: {
 var combinedAppSettings = concat(defaultAppSettings, kvSettings)
 
 resource appService 'Microsoft.Web/sites@2022-03-01' = {
-  name: 'app-${toLower(env)}-medlemssystemapi'
+  name: 'app-${toLower(env)}-exampleapi'
   location: location
   kind: 'app'
   properties: {
