@@ -102,11 +102,48 @@ Under Project Settings > Pipelines > Service connections, create 2 service conne
 A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
 
-### How to create Power Platform service connections
-TODO
+### How to create Power Platform service connections with federated credentials
+1. Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
+2. Select Workload Identity federation
+3. Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
+4. TenantI Id = Teant Id, can be found in Azure Portal
+5. Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
 
-### How to create Azure Resource Manager service connections
-TODO
+Once created:
+1. Copy the service connection id from the url as it is needed in the next step.
+2. Open a new tab and paste https://dev.azure.com/`organization`/`project`/_apis/serviceendpoint/endpoints/`service-connection-id`?api-version=7.1-preview.4
+   1. The `organization` and `project` can be found in the URL from ADO
+3. Find the `workloadIdentityFederationSubject` in the response and copy it for later.
+
+You now need to create a federated credential on your app registration.
+1. Find your app registration in the Azure Portal
+2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
+3. For 'Federated credential scenario' select 'Other issuer'
+4. Issuer = https://vstoken.dev.azure.com/{organizationName} 
+5. Type = Explicit subject identifier
+6. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
+7. Name = Name of your choice (e.g. PipelineDataverse)
+
+### How to create Azure Resource Manager service connections with federated credentials
+1. Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
+2. Identity type = App registration or managed identity (manual)
+3. Credential = Workload identity federation
+4. Service Connection Name = The name of the service connetion (e.g. Dev)
+5. Directory (tenant) Id = Teant Id, can be found in Azure Portal
+6. Click Next
+7. Copy the Issuer and Subject Identifier for later use
+8. Scope level = Subscription
+9. Subcription ID and Subscription Name can be found in the Azure Portal
+10. Application (client) ID = The client id of your app registration for the environment.
+
+You now need to create a federated credential on your app registration.
+1. Find your app registration in the Azure Portal
+2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
+3. For 'Federated credential scenario' select 'Other issuer'
+4. Issuer = Paste the issuer (copied in earlier step)
+5. Type = Explicit subject identifier
+6. Value = Paste the subject (copied in earlier step)
+7. Name = Name of your choice (e.g. Pipeline)
 
 ## App registration privileges
 Remember to give your app reg permission to assign roles.
