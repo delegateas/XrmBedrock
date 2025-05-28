@@ -34,6 +34,7 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
 - Environments
   - url
   - the url part of the connectionString
+  - The pipeline expects environment names Dev, Test, UAT and Prod - make sure that the names of the environment matches what the pipeline excepts, modify it if needed. 
 - ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
   - add or remove table names based on your solution and needs
 - ``src\Tools\Daxif\GenerateTypeScriptContext.fsx``
@@ -97,9 +98,15 @@ The template assumes the following variables exist.
 * AzureClientEAObjectId
 
 ## Service Connection
-Under Project Settings > Pipelines > Service connections, create a service connection per azure environment.
+Under Project Settings > Pipelines > Service connections, create 2 service connections per azure environment of types Power Platform and Azure Resource Manager. 
 A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
+
+### How to create Power Platform service connections
+TODO
+
+### How to create Azure Resource Manager service connections
+TODO
 
 ## App registration privileges
 Remember to give your app reg permission to assign roles.
@@ -111,8 +118,7 @@ A managed identity is created by the bicep deploy. This is what Azure uses to ca
 
 
 # GitHub
-
-Additionally, this seciton is relevant if the code repository is hosted and GitHub and you want to use GitHub Actions.
+Additionally, this section is relevant if the code repository is hosted and GitHub and you want to use GitHub Actions.
 
 _NB: Only the dataverse parts are converted from Azure DevOps Pipelines to GitHub Actions_.
 
