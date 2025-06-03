@@ -50,7 +50,7 @@ variables:
     value: "release"
   - template: Dataverse/variables.yml
   - name: DeployFunctions
-    value: ${{ parameters.deployEconomyAreaFA }} # Wrap in an or-statement if you have multiple function apps to deploy
+    value: ${{ eq(parameters.deployEconomyAreaFA, true) }} # Wrap in an or-statement if you have multiple function apps to deploy
   # - name: DeployAppServices
   #   value: eq(parameters.deployExampleApi, true)
 
@@ -69,7 +69,7 @@ stages:
           vmImage: "windows-latest"
         steps:
           - template: BuildSteps.yaml
-          - ${{ if or(variables.DeployFunctions, parameters.deployInfrastructure) }}: # , variables.DeployAppServices, true
+          - ${{ if or(eq(variables.DeployFunctions, true), eq(parameters.deployInfrastructure, true)) }}: # , variables.DeployAppServices, true
               - template: Azure/PublishArtifacts.yml
           - ${{ if eq(parameters.deployDataverse, true) }}:
               - template: Dataverse/PublishArtifacts.yml
@@ -109,7 +109,7 @@ stages:
       - job: Set_Config
         displayName: Set Config Dev
         dependsOn: Deploy_Infrastructure
-        condition: and(eq(${{ parameters.deployDataverse }}, true),eq(${{ parameters.deployInfrastructure }}, true))
+        condition: and(eq(${{ parameters.deployDataverse }}, true), eq(${{ parameters.deployInfrastructure }}, true))
         pool:
           vmImage: "windows-latest"
         steps:
