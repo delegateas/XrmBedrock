@@ -3,15 +3,9 @@ parameters:
   serviceConnectionName: ""
 
 jobs:
-  - job: Build
-    displayName: "Build Job"
-    condition: eq(${{parameters.params.deployInfrastructure}}, true)
-    steps:
-      - script: echo "Building the application..."
-        displayName: "Execute build"
-
   - deployment: Deploy_Infrastructure
     displayName: "Deploy Infrastructure"
+    condition: eq(${{parameters.params.deployInfrastructure}}, true)
     environment: ${{ parameters.environment }}
     strategy:
       runOnce:
