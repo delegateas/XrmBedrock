@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A76E07CF-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{CBAE8321-E969-4809-9783-8EA2BEE8CBD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleJobs", "src\Dataverse\ConsoleJobs\ConsoleJobs.csproj", "{DE037A86-52BC-8FA0-03CE-46B284D82921}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{C7601692-2A6C-4D53-ABDE-A4D897CDCFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7601692-2A6C-4D53-ABDE-A4D897CDCFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7601692-2A6C-4D53-ABDE-A4D897CDCFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE037A86-52BC-8FA0-03CE-46B284D82921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE037A86-52BC-8FA0-03CE-46B284D82921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE037A86-52BC-8FA0-03CE-46B284D82921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE037A86-52BC-8FA0-03CE-46B284D82921}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{85C7E181-5D26-4579-A03B-48AA2B455D94} = {4FD2D15A-8A2F-4F5D-BFA5-75662B3BA5D4}
 		{2C2DA732-CDC7-4BFB-A544-FC26B8A1C163} = {4FD2D15A-8A2F-4F5D-BFA5-75662B3BA5D4}
 		{CBAE8321-E969-4809-9783-8EA2BEE8CBD7} = {4FD2D15A-8A2F-4F5D-BFA5-75662B3BA5D4}
+		{DE037A86-52BC-8FA0-03CE-46B284D82921} = {2C2DA732-CDC7-4BFB-A544-FC26B8A1C163}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {211F19E6-4B7A-419E-A176-9BB15275F84F}
@@ -118,6 +125,7 @@ Global
 		src\Dataverse\SharedPluginLogic\SharedPluginLogic.projitems*{878e76ac-232e-491e-b669-aaa2623f4bed}*SharedItemsImports = 13
 		src\Shared\SharedContext\SharedContext.projitems*{c7601692-2a6c-4d53-abde-a4d897cdcfae}*SharedItemsImports = 5
 		src\Shared\SharedDomain\SharedDomain.projitems*{c7601692-2a6c-4d53-abde-a4d897cdcfae}*SharedItemsImports = 5
+		src\Shared\SharedContext\SharedContext.projitems*{de037a86-52bc-8fa0-03ce-46b284d82921}*SharedItemsImports = 5
 		test\SharedTest\SharedTest.projitems*{f3e641c0-3f8b-4b0c-a58b-e757c011f142}*SharedItemsImports = 5
 		src\Dataverse\SharedPluginLogic\SharedPluginLogic.projitems*{f5e9a7cc-0c50-4aa1-ada0-f850e46c0736}*SharedItemsImports = 5
 		src\Shared\SharedContext\SharedContext.projitems*{f5e9a7cc-0c50-4aa1-ada0-f850e46c0736}*SharedItemsImports = 5
