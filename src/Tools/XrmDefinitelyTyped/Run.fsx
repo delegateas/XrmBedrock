@@ -1,4 +1,4 @@
-﻿open System.Diagnostics
+open System.Diagnostics
 
 let shellExecute program args =
   let startInfo = new ProcessStartInfo()
