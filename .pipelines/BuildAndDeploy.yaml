@@ -31,6 +31,12 @@ parameters:
       - false
       - true
     default: true
+  # - name: "deployExampleApi"
+  #   displayName: "Deploy Example Api"
+  #   type: boolean
+  #   values:
+  #     - false
+  #     - true
   - name: "deployInfrastructure"
     displayName: "Deploy Azure Infrastructure"
     type: boolean
@@ -44,9 +50,9 @@ variables:
     value: "release"
   - template: Dataverse/variables.yml
   - name: DeployFunctions
-    value: or(eq(parameters.deployActivityAreaFA, true),eq(parameters.deployCommitteeAreaFA, true),eq(parameters.deployCustomerAreaFA, true),eq(parameters.deployEconomyAreaFA, true),eq(parameters.deployEmploymentAreaFA, true),eq(parameters.deployEventAreaFA, true),eq(parameters.deployProductAreaFA, true))
-  - name: DeployAppServices
-    value: eq(parameters.deployMedlemssystemApi, true)
+    value: ${{ eq(parameters.deployEconomyAreaFA, true) }} # Wrap in an or-statement if you have multiple function apps to deploy
+  # - name: DeployAppServices
+  #   value: eq(parameters.deployExampleApi, true)
 
   ###########################################################################################
   #######################################    BUILD    #######################################
@@ -63,7 +69,7 @@ stages:
           vmImage: "windows-latest"
         steps:
           - template: BuildSteps.yaml
-          - ${{ if or(eq(variables.DeployFunctions, true),eq(parameters.deployInfrastructure, true),eq(variables.DeployAppServices, true)) }}:
+          - ${{ if or(eq(variables.DeployFunctions, true), eq(parameters.deployInfrastructure, true)) }}: # , variables.DeployAppServices, true
               - template: Azure/PublishArtifacts.yml
           - ${{ if eq(parameters.deployDataverse, true) }}:
               - template: Dataverse/PublishArtifacts.yml
@@ -95,15 +101,15 @@ stages:
           environment: Dev
           serviceConnectionName: "DEV"
           params: ${{parameters}}
-      - template: Azure/deploy-AS.yml
-        parameters:
-          environment: Dev
-          serviceConnectionName: "DEV"
-          params: ${{parameters}}
+      # - template: Azure/deploy-AS.yml
+      #   parameters:
+      #     environment: Dev
+      #     serviceConnectionName: "DEV"
+      #     params: ${{parameters}}
       - job: Set_Config
         displayName: Set Config Dev
         dependsOn: Deploy_Infrastructure
-        condition: and(eq(${{ parameters.deployDataverse }}, true),eq(${{ parameters.deployInfrastructure }}, true))
+        condition: and(eq(${{ parameters.deployDataverse }}, true), eq(${{ parameters.deployInfrastructure }}, true))
         pool:
           vmImage: "windows-latest"
         steps:
@@ -135,7 +141,7 @@ stages:
   - template: Deploy-Environment.yml
     parameters:
       environment: Prod
-      dataverseEnv: Production
+      dataverseEnv: Prod
       powerPlatformSPN: "Dataverse Prod"
       dependsOn: Deploy_UAT
       params: ${{parameters}}

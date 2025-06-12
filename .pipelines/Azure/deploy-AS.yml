@@ -1,6 +1,6 @@
 parameters:
-  environment: ''
-  serviceConnectionName: ''
+  environment: ""
+  serviceConnectionName: ""
   params: {}
 
 jobs:
@@ -17,5 +17,5 @@ jobs:
         retryCountOnTaskFailure: 4
         inputs:
           azureSubscription: ${{ parameters.serviceConnectionName }}
-          appName: "app-${{lower(parameters.environment)}}-Exampleapi"
+          appName: "app-${{lower(parameters.environment)}}-exampleapi" # Does not exist in codebase - this is just an example
           package: "$(Pipeline.Workspace)/drop/publish/ExampleApi.zip"

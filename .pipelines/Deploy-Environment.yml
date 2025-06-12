@@ -33,11 +33,11 @@ stages:
       serviceConnectionName: '${{upper(parameters.environment)}}'
       params: ${{parameters.params}}
 
-  - template: Azure/deploy-AS.yml
-    parameters:
-      environment: ${{parameters.environment}}
-      serviceConnectionName: '${{upper(parameters.environment)}}'
-      params: ${{parameters.params}}
+  # - template: Azure/deploy-AS.yml
+  #   parameters:
+  #     environment: ${{parameters.environment}}
+  #     serviceConnectionName: '${{upper(parameters.environment)}}'
+  #     params: ${{parameters.params}}
 
   - job: Deploy_Dataverse
     displayName: Deploy Dataverse ${{parameters.dataverseEnv}}
