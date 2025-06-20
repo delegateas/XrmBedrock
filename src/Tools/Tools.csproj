@@ -16,6 +16,8 @@
 	  <PackageReference Include="Delegate.Daxif.Scripts" Version="1.0.0" />
 	  <PackageReference Include="Delegate.XrmContext" Version="3.0.1" />
 	  <PackageReference Include="Delegate.XrmDefinitelyTyped" Version="6.6.0" />
+	  <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.24" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	  <PackageReference Include="System.ValueTuple" Version="4.5.0" />
 	</ItemGroup>
 	<ItemGroup>
