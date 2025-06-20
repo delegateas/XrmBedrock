@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
 
