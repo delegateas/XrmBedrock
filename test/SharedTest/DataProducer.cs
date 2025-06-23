@@ -1,5 +1,6 @@
 using SharedContext.Dao;
 using XrmBedrock.SharedContext;
+using Task = XrmBedrock.SharedContext.Task;
 
 namespace SharedTest;
 
@@ -32,6 +33,25 @@ public class DataProducer
         {
             return GetUniqueNumber();
         }
+    }
+
+    internal Account ExampleProduceValidAccount(Account? account) => adminDao.Producer(ExampleConstructValidAccount(account));
+
+    internal Account ExampleConstructValidAccount(Account? account)
+    {
+        return adminDao.Constructor(account, e =>
+        {
+            e.EnsureValue(a => a.Name, "Just som example account");
+            e.EnsureValue(a => a.EMailAddress1, "just@sampleaccount.com");
+        });
+    }
+
+    internal Task ExampleConstructValidTask(Task? task)
+    {
+        return adminDao.Constructor(task, e =>
+        {
+            e.EnsureValue(t => t.Subject, "Some task");
+        });
     }
 
     internal Contact ProduceValidContact(Contact? person) =>

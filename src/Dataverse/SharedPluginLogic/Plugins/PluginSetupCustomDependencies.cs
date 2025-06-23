@@ -1,3 +1,4 @@
+using Dataverse.PluginLogic.ExampleActivityArea;
 using DataverseLogic;
 using DataverseLogic.Azure;
 using DataverseLogic.EconomyArea;
@@ -29,5 +30,6 @@ internal static class PluginSetupCustomDependencies
 
         // Dataverse Logic (lexicografical order please)
         services.AddEconomyArea();
+        services.AddExampleActivityArea();
     }
 }

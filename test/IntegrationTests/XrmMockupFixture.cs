@@ -1,7 +1,6 @@
 using Azure.DataverseService.Foundation.Dao;
 using Dataverse.Plugins;
 using DG.Tools.XrmMockup;
-using IntegrationTests;
 using SharedDomain;
 using SharedTest;
 using WireMock;
@@ -10,7 +9,7 @@ using WireMock.Server;
 using XrmBedrock.SharedContext;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
-namespace Azure.DataverseService.Tests;
+namespace IntegrationTests;
 
 public class XrmMockupFixture
 {

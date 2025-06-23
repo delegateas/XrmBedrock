@@ -1,4 +1,3 @@
-using Azure.DataverseService.Tests;
 using XrmBedrock.SharedContext;
 using Task = System.Threading.Tasks.Task;
 
