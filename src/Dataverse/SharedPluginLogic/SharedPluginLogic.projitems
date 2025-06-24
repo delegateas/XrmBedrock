@@ -29,6 +29,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logic\EconomyArea\TransactionCalculation\YearlyTransactionCalculationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\EconomyArea\TransactionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ExampleActivityArea\AddServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\ExampleCustomerArea\AddServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\ExampleCustomerArea\ExampleCustomerService.cs" />
+    <Compile Include="..\SharedPluginLogic\Plugins\ExampleCustomerArea\Account\ExampleAccountCreditAssessment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugins\ExampleCustomerArea\Account\ExampleValidatePhoneNumber.cs" />
     <Compile Include="..\SharedPluginLogic\Plugins\ExampleActivityArea\Task\ExampleValidateTask.cs" />
     <Compile Include="..\SharedPluginLogic\Logic\ExampleActivityArea\ExampleActivityService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ExecutionContextExtensions.cs" />

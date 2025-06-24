@@ -20,8 +20,8 @@ public class ExampleValidateTaskTests : TestBase
     public void TestNoValidationOfOwnTask_Implicit()
     {
         // Arrange
-        var account = Producer.ExampleProduceValidAccount(null);
-        var task = Producer.ExampleConstructValidTask(new Task()
+        var account = Producer.ProduceValidAccount(null);
+        var task = Producer.ConstructValidTask(new Task()
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),
@@ -38,8 +38,8 @@ public class ExampleValidateTaskTests : TestBase
     public void TestNoValidationOfOwnTask_Explicit()
     {
         // Arrange
-        var account = Producer.ExampleProduceValidAccount(null);
-        var task = Producer.ExampleConstructValidTask(new Task()
+        var account = Producer.ProduceValidAccount(null);
+        var task = Producer.ConstructValidTask(new Task()
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),
@@ -57,8 +57,8 @@ public class ExampleValidateTaskTests : TestBase
     public void TestBlockOutsideBusinessHours()
     {
         // Arrange
-        var account = Producer.ExampleProduceValidAccount(null);
-        var task = Producer.ExampleConstructValidTask(new Task()
+        var account = Producer.ProduceValidAccount(null);
+        var task = Producer.ConstructValidTask(new Task()
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),
@@ -76,8 +76,8 @@ public class ExampleValidateTaskTests : TestBase
     public void TestNoBlockWithinBusinessHours()
     {
         // Arrange
-        var account = Producer.ExampleProduceValidAccount(null);
-        var task = Producer.ExampleConstructValidTask(new Task()
+        var account = Producer.ProduceValidAccount(null);
+        var task = Producer.ConstructValidTask(new Task()
         {
             ScheduledStart = DateTime.Now.Date.AddHours(10),
             RegardingObjectId = account.ToEntityReference(),
@@ -95,8 +95,8 @@ public class ExampleValidateTaskTests : TestBase
     public void TestBlockOnSwapOwnerOfOutsideTask()
     {
         // Arrange
-        var account = Producer.ExampleProduceValidAccount(null);
-        var task = Producer.ExampleConstructValidTask(new Task()
+        var account = Producer.ProduceValidAccount(null);
+        var task = Producer.ConstructValidTask(new Task()
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),

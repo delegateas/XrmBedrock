@@ -35,9 +35,13 @@ public class DataProducer
         }
     }
 
-    internal Account ExampleProduceValidAccount(Account? account) => adminDao.Producer(ExampleConstructValidAccount(account));
+    /*
+     * Note: The ProduceValid- and ConstructValid-methods below are examples used in the Example-tests. Make sure to replace them with real ones as you start implementing your tests.
+     */
 
-    internal Account ExampleConstructValidAccount(Account? account)
+    internal Account ProduceValidAccount(Account? account) => adminDao.Producer(ConstructValidAccount(account));
+
+    internal Account ConstructValidAccount(Account? account)
     {
         return adminDao.Constructor(account, e =>
         {
@@ -46,7 +50,7 @@ public class DataProducer
         });
     }
 
-    internal Task ExampleConstructValidTask(Task? task)
+    internal Task ConstructValidTask(Task? task)
     {
         return adminDao.Constructor(task, e =>
         {

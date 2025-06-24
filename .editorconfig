@@ -651,3 +651,4 @@ dotnet_diagnostic.CS8981.severity = none
 [src/Dataverse/**]
 dotnet_diagnostic.CA1510.severity = none
 dotnet_diagnostic.CA1307.severity = none
+dotnet_diagnostic.MA0009.severity = none	# With data that comes from Dataverse we will not worry about Denial of service attacks
