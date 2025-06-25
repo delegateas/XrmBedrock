@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ExampleActivityArea\AddServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ExampleCustomerArea\AddServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ExampleCustomerArea\ExampleCustomerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Plugins\ExampleCustomerArea\Account\ExampleUpdateTelephoneOnSubaccounts.cs" />
     <Compile Include="..\SharedPluginLogic\Plugins\ExampleCustomerArea\Account\ExampleCopyParentTelephone.cs" />
     <Compile Include="..\SharedPluginLogic\Plugins\ExampleCustomerArea\Account\ExampleAccountCreditAssessment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugins\ExampleCustomerArea\Account\ExampleValidatePhoneNumber.cs" />

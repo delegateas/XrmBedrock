@@ -93,9 +93,11 @@ ProduceValidSomeEntity often makes use of ConstructValidSomeEntity.
 
 When you set up data in your tests in XrmMockup you allways use these ConstructValidSomeEntity and ConstructValidSomeEntity instead for using AdminDao.Create(), except when you are actually testing the plugins that enforce the business rules.
 This way you will only have to change a few ConstructValid/ProduceValid-methods when you introduce a new business rule instead of going through a bunch of tests making sure that all creates get the required value set.
+Test classes shall inherit from TestBase class and ConstructValid/ProduceValid-methods can be invoked using the Producer-property of TestBase.
 
 Tests use `UserDao` or `AdminDao` from `test/IntegrationTests/TestBase.cs` to interact with XrmMockup never `IOrganizationServiceFactory`.
- 
+
+When constructing tests make sure to mimic patterns/structure from the tests already in the project over examples from the internet/github.
 
 
 

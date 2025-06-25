@@ -28,6 +28,7 @@
 - Use of strong types from XrmContext.cs is mandatory for all Dataverse entity interactions to ensure type safety and adherence to project standards.
 - Private properties and fields should not be prepended with an underscore to maintain consistent naming conventions across the codebase.
 - Use the GetTarget method from IPluginExecutionContext to retrieve the target entity as a strongly typed object in plugin implementations.
+- Use file-scoped namespaces
 
 ## Important Patterns and Preferences
 - The file `src/Shared/SharedContext/XrmContext.cs` is the canonical mapping of Dataverse tables and columns to C# code, with a class for each table and an attribute for each column. This pattern is essential for onboarding and for understanding the data model in code.

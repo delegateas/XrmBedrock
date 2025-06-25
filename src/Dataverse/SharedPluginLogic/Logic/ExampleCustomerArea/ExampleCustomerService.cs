@@ -10,12 +10,12 @@ namespace Dataverse.PluginLogic.ExampleCustomerArea;
 public class ExampleCustomerService // Missing an interface here? We actually do not need one as this IS exactly the logic we want to test, so exchanging the implementation for _this_ services does no make sense
 {
     private readonly IPluginExecutionContext context;
-    private readonly IAdminDataverseAccessObjectService adminService;
+    private readonly IAdminDataverseAccessObjectService adminDao;
 
-    public ExampleCustomerService(IPluginExecutionContext context, IAdminDataverseAccessObjectService adminService)
+    public ExampleCustomerService(IPluginExecutionContext context, IAdminDataverseAccessObjectService adminDao)
     {
         this.context = context;
-        this.adminService = adminService;
+        this.adminDao = adminDao;
     }
 
     public void ValidatePhoneNumber()
@@ -52,7 +52,7 @@ public class ExampleCustomerService // Missing an interface here? We actually do
             };
 
             // Create the Task in Dataverse
-            adminService.Create(task);
+            adminDao.Create(task);
         }
     }
 
@@ -68,9 +68,31 @@ public class ExampleCustomerService // Missing an interface here? We actually do
         // Check if a parent account is specified
         if (targetAccount.ParentAccountId != null)
         {
-            var parentAccountPhone = adminService.Retrieve<Account, string>(targetAccount.ParentAccountId.Id, a => a.Telephone1);
+            var parentAccountPhone = adminDao.Retrieve<Account, string>(targetAccount.ParentAccountId.Id, a => a.Telephone1);
             if (!string.IsNullOrWhiteSpace(parentAccountPhone))
                 targetAccount.Telephone1 = parentAccountPhone;
+        }
+    }
+
+    public void UpdateTelephoneOnSubaccounts()
+    {
+        // Get the target account merged with pre-image to access old values
+        var preImage = context.GetRequiredPreImage<Account>();
+        var postImage = context.GetRequiredPostImage<Account>();
+
+        // Skip if there is no real change
+        if (preImage.Telephone1 == postImage.Telephone1)
+            return;
+
+        // Query for subaccounts (child accounts where ParentAccountId matches this account's ID)
+        var subaccounts = adminDao.RetrieveList(xrm => xrm.AccountSet
+            .Where(a => a.ParentAccountId != null && a.ParentAccountId.Id == context.PrimaryEntityId && a.Telephone1 == preImage.Telephone1));
+
+        // Update Telephone1 for each subaccount that matches the old value
+        foreach (var subaccount in subaccounts)
+        {
+            subaccount.Telephone1 = postImage.Telephone1;
+            adminDao.Update(subaccount);
         }
     }
 }
