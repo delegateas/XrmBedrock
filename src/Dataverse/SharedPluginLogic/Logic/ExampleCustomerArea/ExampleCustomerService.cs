@@ -21,22 +21,14 @@ public class ExampleCustomerService // Missing an interface here? We actually do
     public void ValidatePhoneNumber()
     {
         var account = context.GetTargetMergedWithPreImage<Account>();
-
         string phoneNumber = account.Telephone1;
-
         if (string.IsNullOrEmpty(phoneNumber))
-        {
             return;
-        }
 
         // Regex to check if phone number starts with "+" and contains only digits and spaces
         string pattern = @"^\+[0-9\s]+$";
-        bool isValid = Regex.IsMatch(phoneNumber, pattern);
-
-        if (!isValid)
-        {
+        if (!Regex.IsMatch(phoneNumber, pattern))
             throw new InvalidPluginExecutionException("The phone number must start with '+' and contain only digits and spaces.");
-        }
     }
 
     public void CreateCreditAssessmentTask()
@@ -61,6 +53,24 @@ public class ExampleCustomerService // Missing an interface here? We actually do
 
             // Create the Task in Dataverse
             adminService.Create(task);
+        }
+    }
+
+    public void CopyParentTelephone()
+    {
+        // Get the target entity as a strongly typed Account object
+        var targetAccount = context.GetTarget<Account>();
+
+        // Check if Telephone1 is already set on the new account
+        if (!string.IsNullOrEmpty(targetAccount.Telephone1))
+            return;
+
+        // Check if a parent account is specified
+        if (targetAccount.ParentAccountId != null)
+        {
+            var parentAccountPhone = adminService.Retrieve<Account, string>(targetAccount.ParentAccountId.Id, a => a.Telephone1);
+            if (!string.IsNullOrWhiteSpace(parentAccountPhone))
+                targetAccount.Telephone1 = parentAccountPhone;
         }
     }
 }

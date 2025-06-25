@@ -49,7 +49,10 @@ To add new plugins and related business logic for Dataverse:
   Create a new class in `src/Dataverse/SharedPluginLogic/Plugins` inside a folder matching the target entity in the relevant business area as defined in `memory-bank/codeOrganizationInAreas.md`. If no folder exists for the area or entity, create one. 
 
 - **Registering Plugin Steps:**  
-  In the plugin class constructor, use `RegisterPluginStep` calls to specify the Dataverse table, operation (e.g., Create, Update), and stage (e.g., PreOperation, PostOperation) for which the plugin should execute. Each step should call the appropriate service method for the business logic to be triggered. The service methods are parameterless.
+  In the plugin class constructor, use `RegisterPluginStep` calls to specify the Dataverse table/entity, operation (e.g., EventOperation.Create, EventOperation.Update), and stage (e.g., ExecutionStage.PreOperation, ExecutionStage.PostOperation) for which the plugin should execute.
+  Each step should call the appropriate service method for the business logic to be triggered. 
+  The service methods are parameterless.
+  Make sure to adopt the patterns of the existing plugins in the solution in favor of patterns of plugins from the internet/github.
 
 - **Service Implementation and Exposure:**  
   Implement the business logic as services in `src/Dataverse/SharedPluginLogic/Logic` within a folder named for the same area. 
