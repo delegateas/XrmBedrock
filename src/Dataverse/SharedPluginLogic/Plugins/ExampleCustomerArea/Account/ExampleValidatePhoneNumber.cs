@@ -6,6 +6,7 @@ namespace Dataverse.Plugins.CustomerArea;
 
 /// <summary>
 /// This plugin is purely for demonstration purposes and should be removed from the solution, when you have created a few real plugins in project.
+/// This plugin gives a simple illustration of validating the data on an object (here an Account) before it is saved to the database.
 ///
 /// A good practice is to describe what a plugin does in natuaral languate. For this plugin it would be something like:
 /// This plugin validates the Telephone1 field on the Account entity to ensure it starts with "+" and contains only spaces and digits.
