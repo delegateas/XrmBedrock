@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SharedContext.Dao;
-using SharedDomain;
 
 var host = new HostBuilder()
     .ConfigureFunctionsWebApplication()
@@ -19,7 +18,6 @@ var host = new HostBuilder()
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
         services.AddLogging();
-        services.AddScoped<ILoggingComponent, LoggingComponent>();
         services.AddDataverse();
 
         // Add required services

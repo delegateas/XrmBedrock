@@ -1,7 +1,7 @@
 using DataverseService.Foundation.Dao;
+using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
-using SharedDomain;
 using System.ServiceModel;
 
 namespace DataverseService.UtilityArea;
@@ -13,9 +13,9 @@ namespace DataverseService.UtilityArea;
 public class DataverseOrganizationRequestService : IDataverseOrganizationRequestService
 {
     private readonly IDataverseAccessObjectAsync adminDao;
-    private readonly ILoggingComponent logger;
+    private readonly ILogger logger;
 
-    public DataverseOrganizationRequestService(IDataverseAccessObjectAsync adminDao, ILoggingComponent logger)
+    public DataverseOrganizationRequestService(IDataverseAccessObjectAsync adminDao, ILogger logger)
     {
         this.adminDao = adminDao;
         this.logger = logger;
