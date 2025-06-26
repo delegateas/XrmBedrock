@@ -9,7 +9,7 @@ namespace Dataverse.Plugins.ActivityArea;
 /// Them main illustration here is actually in the tests, which show how to test situation where the user context matters.
 /// By additionally adding specific roles to the user in the tests you can test the behavior of the plugin that depend on user roles.
 ///
-/// A good practice is to describe what a plugin does in natuaral languate. For this plugin it would be something like:
+/// A good practice is to describe what a plugin does in natural language. For this plugin it would be something like:
 /// This plugin is responsible for validating that a task assigned to someone else is scheduled within business hours.
 /// </summary>
 public class ExampleValidateTask : Plugin
