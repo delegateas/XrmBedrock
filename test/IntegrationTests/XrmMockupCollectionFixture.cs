@@ -1,4 +1,4 @@
-namespace Azure.DataverseService.Tests;
+namespace IntegrationTests;
 
 [CollectionDefinition("Xrm Collection")]
 public class XrmMockupCollectionFixture : ICollectionFixture<XrmMockupFixture> // Must be defined in same assembly as test classes.

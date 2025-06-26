@@ -1,9 +1,8 @@
 using DataverseService.Foundation.Dao;
 using DG.Tools.XrmMockup;
-using IntegrationTests;
 using SharedTest;
 
-namespace Azure.DataverseService.Tests;
+namespace IntegrationTests;
 
 [Collection("Xrm Collection")]
 public class TestBase : IDisposable

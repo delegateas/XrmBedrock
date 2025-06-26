@@ -12,8 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)CultureInfoHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EconomyArea\CreateInvoicesMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)economyarea\CreateTransactionsRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ILoggingComponent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LoggingComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueueNames.cs" />
   </ItemGroup>
 </Project>
