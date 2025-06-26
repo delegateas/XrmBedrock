@@ -45,7 +45,7 @@ public class DataProducer
     {
         return adminDao.Constructor(account, e =>
         {
-            e.EnsureValue(a => a.Name, "Just som example account");
+            e.EnsureValue(a => a.Name, "Just some example account");
             e.EnsureValue(a => a.EMailAddress1, "just@sampleaccount.com");
         });
     }
