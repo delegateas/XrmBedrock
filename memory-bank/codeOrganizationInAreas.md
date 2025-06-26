@@ -29,7 +29,7 @@ Task (task)
 
 ## Area: ExampleCustomerArea
 Account (account)
-Contact (constact)
+Contact (contact)
 
 ## Recommandations on how to define Areas
 TODO
