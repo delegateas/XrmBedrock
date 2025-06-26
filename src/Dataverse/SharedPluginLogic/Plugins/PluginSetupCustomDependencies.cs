@@ -6,7 +6,6 @@ using DataverseLogic.EconomyArea;
 using DataverseLogic.Utility;
 using Microsoft.Extensions.DependencyInjection;
 using SharedContext.Dao;
-using SharedDomain;
 
 namespace Dataverse.Plugins;
 
@@ -20,7 +19,6 @@ internal static class PluginSetupCustomDependencies
 
         // Utility
         services.AddScoped<IDuplicateRuleService, DuplicateRuleService>();
-        services.AddScoped<ILoggingComponent, LoggingComponent>();
 
         // Dao objects
         services.AddScoped<IAdminDataverseAccessObjectService, AdminDataverseAccessObjectService>();

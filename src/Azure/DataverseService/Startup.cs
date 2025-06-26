@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using SharedDataverseLogic;
-using SharedDomain;
 
 namespace DataverseService;
 
@@ -22,7 +21,6 @@ public static class Startup
         services.AddScoped<IOrganizationServiceAsync2>(provider => GetServiceClient(provider, enableAffinityCookie: enableAffinityCookie));
         services.AddScoped<IDataverseAccessObjectAsync, DataverseAccessObjectAsync>();
         services.AddScoped<IExtendedTracingService, ExtendedTracingService>();
-        services.AddScoped<ILoggingComponent, LoggingComponent>();
         services.AddScoped<IDataverseCustomApiService, DataverseCustomApiService>();
 
         return services;
