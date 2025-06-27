@@ -9,6 +9,7 @@
 - Initial creation of the memory bank files: projectbrief.md, productContext.md, systemPatterns.md, techContext.md, activeContext.md, and progress.md.
 - Documentation of repository structure, technical decisions, and integration patterns.
 - Added documentation for the plugin extensibility and service registration pattern in systemPatterns.md, with cross-references in techContext.md and activeContext.md.
+- Added example-plugins and tests for these to illustrate to developers and agents how to do this in a good way using the XrmBedrock platform
 
 ## Next Steps
 - Generate new proxy classes for your own Dataverse environment using the provided tooling.
@@ -24,6 +25,10 @@
 - Plugins must be dual-targeted for .NET 4.6.2 (Dataverse) and latest LTS .NET (testing).
 - Infrastructure changes must be managed via Bicep and tracked in version control.
 - Testing should leverage XrmMockup and MessageExecutor for cross-platform logic validation.
+- Use of strong types from XrmContext.cs is mandatory for all Dataverse entity interactions to ensure type safety and adherence to project standards.
+- Private properties and fields should not be prepended with an underscore to maintain consistent naming conventions across the codebase.
+- Use the GetTarget method from IPluginExecutionContext to retrieve the target entity as a strongly typed object in plugin implementations.
+- Use file-scoped namespaces
 
 ## Important Patterns and Preferences
 - The file `src/Shared/SharedContext/XrmContext.cs` is the canonical mapping of Dataverse tables and columns to C# code, with a class for each table and an attribute for each column. This pattern is essential for onboarding and for understanding the data model in code.
@@ -36,3 +41,4 @@
 - Early investment in documentation and shared logic reduces onboarding time and technical debt.
 - Automated testing and infrastructure provisioning are critical for reliability in cross-platform solutions.
 - Mocking and dependency substitution are essential for effective integration testing.
+- Using strong types from XrmContext.cs improves code quality and maintainability for Dataverse interactions.

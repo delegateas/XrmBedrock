@@ -29,6 +29,8 @@
 - **NuGet Packages**: Managed via `packages.config` and project files.
 - **XrmMockup**: For in-memory Dataverse service mocking in tests.
 - **NSubstitute**: For dependency substitution in tests (e.g., loggers).
+- **XUnit**: As framework for tests in `test/IntegrationTests`.
+- **FluentAssertions**: For assertions in tests in `test/IntegrationTests`.
 - **Azure SDKs**: For Azure service integration.
 - **Bicep CLI**: For deploying infrastructure templates.
 

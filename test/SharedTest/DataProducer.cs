@@ -1,5 +1,6 @@
 using SharedContext.Dao;
 using XrmBedrock.SharedContext;
+using Task = XrmBedrock.SharedContext.Task;
 
 namespace SharedTest;
 
@@ -32,6 +33,29 @@ public class DataProducer
         {
             return GetUniqueNumber();
         }
+    }
+
+    /*
+     * Note: The ProduceValid- and ConstructValid-methods below are examples used in the Example-tests. Make sure to replace them with real ones as you start implementing your tests.
+     */
+
+    internal Account ProduceValidAccount(Account? account) => adminDao.Producer(ConstructValidAccount(account));
+
+    internal Account ConstructValidAccount(Account? account)
+    {
+        return adminDao.Constructor(account, e =>
+        {
+            e.EnsureValue(a => a.Name, "Just some example account");
+            e.EnsureValue(a => a.EMailAddress1, "just@sampleaccount.com");
+        });
+    }
+
+    internal Task ConstructValidTask(Task? task)
+    {
+        return adminDao.Constructor(task, e =>
+        {
+            e.EnsureValue(t => t.Subject, "Some task");
+        });
     }
 
     internal Contact ProduceValidContact(Contact? person) =>

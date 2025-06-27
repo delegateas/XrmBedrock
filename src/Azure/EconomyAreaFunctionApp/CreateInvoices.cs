@@ -4,29 +4,28 @@ using Microsoft.Extensions.Logging;
 using SharedDomain;
 using SharedDomain.EconomyArea;
 
-namespace EconomyAreaFunctionApp
+namespace EconomyAreaFunctionApp;
+
+public class CreateInvoices
 {
-    public class CreateInvoices
+    private readonly ILogger<CreateInvoices> logger;
+    private readonly IDataverseInvoiceService dataverseInvoiceService;
+
+    public CreateInvoices(
+        ILogger<CreateInvoices> logger,
+        IDataverseInvoiceService dataverseInvoiceService)
     {
-        private readonly ILogger<CreateInvoices> logger;
-        private readonly IDataverseInvoiceService dataverseInvoiceService;
+        this.logger = logger;
+        this.dataverseInvoiceService = dataverseInvoiceService;
+    }
 
-        public CreateInvoices(
-            ILogger<CreateInvoices> logger,
-            IDataverseInvoiceService dataverseInvoiceService)
-        {
-            this.logger = logger;
-            this.dataverseInvoiceService = dataverseInvoiceService;
-        }
+    [Function(nameof(CreateInvoices))]
+    public Task Run([QueueTrigger(QueueNames.CreateInvoicesQueue)] CreateInvoicesMessage message)
+    {
+        ArgumentNullException.ThrowIfNull(message);
 
-        [Function(nameof(CreateInvoices))]
-        public Task Run([QueueTrigger(QueueNames.CreateInvoicesQueue)] CreateInvoicesMessage message)
-        {
-            ArgumentNullException.ThrowIfNull(message);
+        logger.LogInformation($"C# Queue trigger function processed: {message.End}");
 
-            logger.LogInformation($"C# Queue trigger function processed: {message.End}");
-
-            return dataverseInvoiceService.CreateInvoices(message.End, message.InvoiceCollectionId);
-        }
+        return dataverseInvoiceService.CreateInvoices(message.End, message.InvoiceCollectionId);
     }
 }

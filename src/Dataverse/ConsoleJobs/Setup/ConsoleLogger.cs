@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ConsoleJobs.Setup;
 
-internal class ConsoleLogger : ILogger
+internal sealed class ConsoleLogger : ILogger
 {
     public ConsoleLogger()
     {

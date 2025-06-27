@@ -46,22 +46,58 @@ The repository is organized to support modular, cross-platform development for M
 To add new plugins and related business logic for Dataverse:
 
 - **Plugin Class Location:**  
-  Create a new class in `src/Dataverse/SharedPluginLogic/Plugins` inside a folder matching the relevant business area (e.g., `Warehousing`, `Economy`, etc.). If no folder exists for the area, create one. Each plugin class should represent a logical grouping of plugin steps for that area.
+  Create a new class in `src/Dataverse/SharedPluginLogic/Plugins` inside a folder matching the target entity in the relevant business area as defined in `memory-bank/codeOrganizationInAreas.md`. If no folder exists for the area or entity, create one. 
 
 - **Registering Plugin Steps:**  
-  In the plugin class constructor, use `RegisterPluginStep` calls to specify the Dataverse table, operation (e.g., Create, Update), and stage (e.g., PreOperation, PostOperation) for which the plugin should execute. Each step should call the appropriate service method for the business logic to be triggered.
+  In the plugin class constructor, use `RegisterPluginStep` calls to specify the Dataverse table/entity, operation (e.g., EventOperation.Create, EventOperation.Update), and stage (e.g., ExecutionStage.PreOperation, ExecutionStage.PostOperation) for which the plugin should execute.
+  Each step should call the appropriate service method for the business logic to be triggered. 
+  The service methods are parameterless.
+  Make sure to adopt the patterns of the existing plugins in the solution in favor of patterns of plugins from the internet/github.
 
 - **Service Implementation and Exposure:**  
-  Implement the business logic as services in `src/Dataverse/SharedPluginLogic/Logic` within a folder named for the same area. Any services that should be public for the area must be exposed via a static method in an `AddServices` class (e.g., `AddServices.cs`) within the area folder. This class is responsible for registering all services for dependency injection.
+  Implement the business logic as services in `src/Dataverse/SharedPluginLogic/Logic` within a folder named for the same area. 
+  Services within an area should be kept at maintainable size and be divided and named according to subareas that makes sense in the business context. 
+  Often it can makes sense to split into services per entity. 
+  Services may depend upon each other but be carefull not to introduce cyclic dependencies!
+  Services rely on dependency injection to get hold of required logic and context for instance the plugin context is obtained by specifying a dependency to `IPluginExecutionContext` in the constructor of the service.
+  Services use `IUserDataverseAccessObjectService` or `IAdminDataverseAccessObjectService` to interact with dataverse never `IOrganizationServiceFactory`.
+  Services make use of the classes enheriting from Entity-class in `src/Shared/SharedContext/XrmContext.cs` instead of using Entity-class directly
+  Any services that should be public for the area must be exposed via a static method in an `AddServices` class (e.g., `AddServices.cs`) within the area folder. This class is responsible for registering all services for dependency injection.
 
 - **Service Registration:**  
   All area `AddServices` methods must be called from `src/Dataverse/SharedPluginLogic/Plugins/PluginSetupCustomDependencies.cs`. This ensures that all services are registered and available for plugin execution.
 
 **Summary Flow:**
-1. Add/organize plugin class in `Plugins/[Area]`
+1. Add/organize plugin class in `Plugins/[Area]/[Entity]`
 2. Register plugin steps in the constructor using `RegisterPluginStep`
-3. Implement business logic in `Logic/[Area]`
+3. Implement business logic as Services in `Logic/[Area]`
 4. Expose public services via static `Add[Area]` method
 5. Register all area services in `PluginSetupCustomDependencies.cs`
 
 This pattern ensures a modular, discoverable, and maintainable approach to plugin and service development in the project.
+
+## Tests
+
+The project `test/IntegrationTests` contains all the unit tests of the solution.
+It supports testing of both plugins and azure functions.
+The organization is as for `src/Dataverse/SharedPluginLogic/Plugins`: Create a new test class in `test/IntegrationTests` inside a folder matching the target entity in the relevant business area as defined in `memory-bank/codeOrganizationInAreas.md`. If no folder exists for the area or entity, create one. 
+Naming of the test class that targets testing a plugin shall be the name of the plugin with `Tests` appended.
+
+### Producer-pattern
+In testing with XrmMockup we are using a pattern of creating af set of ConstructValid and ProduceValid methods.
+Use `test/SharedTest/DataProducer.cs` for ProduceValid- and ConstructValid-methods.
+ConstructValidSomeEntity shall create an object of `SomeEntity` (in memory) that complies with all implemented business rules of the solution and optionally adds the attributes of the optionally provided instance of `SomeEntity`.
+This will NOT trigger any plugins as the object is not created in XrmMockup.
+ProduceValidSomeEntity does the same as ConstructValidSomeEntity and then in addition creates the object in XrmMockup triggering plugins. 
+ProduceValidSomeEntity often makes use of ConstructValidSomeEntity.
+
+When you set up data in your tests in XrmMockup you allways use these ConstructValidSomeEntity and ConstructValidSomeEntity instead for using AdminDao.Create(), except when you are actually testing the plugins that enforce the business rules.
+This way you will only have to change a few ConstructValid/ProduceValid-methods when you introduce a new business rule instead of going through a bunch of tests making sure that all creates get the required value set.
+Test classes shall inherit from TestBase class and ConstructValid/ProduceValid-methods can be invoked using the Producer-property of TestBase.
+
+Tests use `UserDao` or `AdminDao` from `test/IntegrationTests/TestBase.cs` to interact with XrmMockup never `IOrganizationServiceFactory`.
+
+When constructing tests make sure to mimic patterns/structure from the tests already in the project over examples from the internet/github.
+
+
+

@@ -4,7 +4,12 @@ using Microsoft.Extensions.Logging;
 
 namespace ConsoleJobs.Jobs;
 
+#pragma warning disable CA1518 // It's an example, it's OK that its not referenced
+#pragma warning disable CA1812 // It's an example, it's OK that its not referenced
+
 internal sealed class ExampleJob : IJob
+#pragma warning restore CA1812
+#pragma warning restore CA1518
 {
     private sealed class PrintableAccount
     {
