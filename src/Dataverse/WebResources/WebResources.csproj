@@ -1,19 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup Label="Configuration">
-	  <TypeScriptTarget>ES5</TypeScriptTarget>
-	  <TypeScriptLib>"dom,es2015,es2015.promise,es2015.iterable"</TypeScriptLib>
-    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
+  <PropertyGroup Label="Configuration">
+    <!-- Custom properties, can be left as-is or removed if not needed -->
   </PropertyGroup>
-	<PropertyGroup>
-		<TargetFramework>net462</TargetFramework>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System.Net.Http" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.5.3">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>  
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <Target Name="NpmBuild" BeforeTargets="Build">
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+    <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
+    <Exec Command="npm run postbuild" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+  <Target Name="NpmClean" BeforeTargets="Clean" Condition="'$(IsRebuild)' != 'true'">
+    <Exec Command="npm run clean" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+  <Target Name="NpmCleanAll" BeforeTargets="Clean" Condition="'$(IsRebuild)' == 'true'">
+    <Exec Command="npm run clean-all" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+  <Target Name="NpmCleanAfterBuild" AfterTargets="Build">
+    <Exec Command="npm run clean" WorkingDirectory="$(ProjectDir)" />
+  </Target>
 </Project>
