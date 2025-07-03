@@ -1,15 +1,9 @@
 {
-  "compileOnSave": true,
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "es5",
-    "noImplicitAny": false,
-    "module": "none",
-    "removeComments": true,
-    "declaration": false,
-    "sourceMap": true,
-    "noEmitOnError": false,
-    "strict": true,
-    "lib": [ "dom", "es2015", "es2015.promise", "ES2015.Iterable" ]
+    "module": "ES6",
+    "moduleResolution": "Bundler",
+    "outDir": "./src/mgs_Magesoe/out"
   },
   "include": [
     "**/*.ts"

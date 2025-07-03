@@ -1,0 +1,24 @@
+{
+  "name": "webresources",
+  "version": "1.0.0",
+  "description": "Webresources for XrmBedrock",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "UNLICENSED",
+  "author": "DG",
+  "scripts": {
+    "concurrently": "concurrently",
+    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/mgs_Magesoe/out",
+    "clean-all": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/mgs_Magesoe ./src/mgs_Magesoe/out",
+    "build": "tsc",
+    "postbuild": "node esbuild.config.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.25.5",
+    "glob": "^11.0.2",
+    "typescript": "^5.8.3"
+  }
+}
