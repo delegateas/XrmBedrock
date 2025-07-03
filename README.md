@@ -20,6 +20,11 @@ Follow these steps to setup your project correctly. After this you are ready to 
 - Rename file ``xrmbedrock.snk``
 - Rename folder ``src/Dataverse/Webresources/src/mgs_Magesoe``
 
+# Update values in WebResources files
+- Update ``mgs_Magesoe`` to the new folder name in ``src/Dataverse/src/<new folder name>/esbuild.config.mjs``
+- Update ``mgs_Magesoe`` to the new folder name in ``src/Dataverse/src/<new folder name>/package.json``
+- Update ``mgs_Magesoe`` to the new folder name in ``src/Dataverse/src/<new folder name>/tsconfig.json``
+
 ## Update values in Plugins.csproj
 In the ``src/Dataverse/Plugins.csproj`` file, update the following:
 - RootNameSpace
