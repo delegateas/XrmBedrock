@@ -14,12 +14,12 @@ public class InvoiceGenerationTests : TestBase
     public async Task TestInvoiceGeneration()
     {
         // Create a subscription using the producer with specific values
-        var subscription = Producer.ProduceValidSubscription(new mgs_Subscription()
+        var subscription = Producer.ProduceValidSubscription(new demo_Membership()
         {
-            mgs_StartDate = DateTime.Now.AddMonths(-1),
-            mgs_Product = Producer.ProduceValidProduct(new mgs_Product()
+            demo_StartDate = DateTime.Now.AddMonths(-1),
+            demo_Product = Producer.ProduceValidProduct(new demo_Product()
             {
-                mgs_BillingInterval = mgs_billinginterval.Monthly,
+                demo_BillingInterval = demo_billinginterval.Monthly,
             }).ToEntityReference(),
         });
 
@@ -27,28 +27,29 @@ public class InvoiceGenerationTests : TestBase
         var invoiceCollection = Producer.ProduceValidInvoiceCollection(null);
 
         // Assert that default values are set as expected by the test
-        invoiceCollection.mgs_Name.Should().NotBeNull();
+        invoiceCollection.demo_Name.Should().NotBeNull();
 
         // Trigger plugin that sends message to Azure
-        AdminDao.Update(new mgs_InvoiceCollection(invoiceCollection.Id)
+        AdminDao.Update(new demo_InvoiceCollection(invoiceCollection.Id)
         {
-            statuscode = mgs_InvoiceCollection_statuscode.CreateInvoices,
+            statuscode = demo_invoicecollection_statuscode.Create_Invoices,
         });
 
         // Send messages to Azure
         await MessageExecutor.SendMessages();
 
         // Assert that the invoice collection status is updated
-        var retrievedInvoiceCollection = AdminDao.Retrieve<mgs_InvoiceCollection>(invoiceCollection.Id, x => x.statuscode);
-        retrievedInvoiceCollection.statuscode.Should().Be(mgs_InvoiceCollection_statuscode.InvoicesCreated);
+        var retrievedInvoiceCollection = AdminDao.Retrieve<demo_InvoiceCollection>(invoiceCollection.Id, x => x.statuscode);
+        retrievedInvoiceCollection.statuscode.Should().Be(demo_invoicecollection_statuscode.Invoices_Created);
 
         // Assert that a single transaction was created from the Custom API
-        var transactions = AdminDao.RetrieveList(xrm => xrm.mgs_TransactionSet);
+        var transactions = AdminDao.RetrieveList(xrm => xrm.demo_TransactionSet);
         transactions.Count.Should().Be(1);
-        transactions[0].mgs_Subscription.Id.Should().Be(subscription.Id);
+        transactions[0].demo_Membership?.Id.Should().Be(subscription.Id);
 
         // Assert that the invoice was created after the call to the Custom API
-        var invoice = AdminDao.Retrieve<mgs_Invoice>(transactions[0].mgs_Invoice.Id, x => x.mgs_InvoiceCollection);
-        invoice.mgs_InvoiceCollection.Id.Should().Be(invoiceCollection.Id);
+        transactions[0].demo_Invoice.Should().NotBeNull();
+        var invoice = AdminDao.Retrieve<demo_Invoice>(transactions[0].demo_Invoice!.Id, x => x.demo_InvoiceCollection);
+        invoice.demo_InvoiceCollection?.Id.Should().Be(invoiceCollection.Id);
     }
 }

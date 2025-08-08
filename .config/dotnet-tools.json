@@ -6,7 +6,15 @@
       "version": "14.0.7",
       "commands": [
         "nswag"
-      ]
+      ],
+      "rollForward": false
+    },
+    "xrmcontext": {
+      "version": "4.0.0-beta.17",
+      "commands": [
+        "xrmcontext"
+      ],
+      "rollForward": false
     }
   }
 }

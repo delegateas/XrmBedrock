@@ -30,7 +30,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dao\DataverseWrapAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dao\Exceptions\DataverseInteractionException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dao\IDataverseAccessObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)XrmContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)XrmExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XrmContext\**\*.cs" />
   </ItemGroup>
 </Project>

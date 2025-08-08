@@ -20,17 +20,17 @@ public class InvoiceCollectionService : IInvoiceCollectionService
     public void HandleStatusChange()
     {
         // Get post image from the Plugin Context, but default to the target if the post image is not available
-        var target = pluginContext.GetPostImageDefaultTarget<mgs_InvoiceCollection>();
+        var target = pluginContext.GetPostImageDefaultTarget<demo_InvoiceCollection>();
 
         // If the status code is not CreateInvoices, return
-        if (target.statuscode != mgs_InvoiceCollection_statuscode.CreateInvoices)
+        if (target.statuscode != demo_invoicecollection_statuscode.Create_Invoices)
             return;
 
         // If the Invoice Until is not set, throw an exception
-        if (target.mgs_InvoiceUntil == null)
+        if (target.demo_InvoiceUntil == null)
             throw new InvalidPluginExecutionException("Invoice Until is required");
 
         // Send Create Invoices message to the storage queue in Azure
-        azureService.SendCreateInvoicesMessage(new SharedDomain.EconomyArea.CreateInvoicesMessage(target.mgs_InvoiceUntil.Value, target.Id));
+        azureService.SendCreateInvoicesMessage(new SharedDomain.EconomyArea.CreateInvoicesMessage(target.demo_InvoiceUntil.Value, target.Id));
     }
 }

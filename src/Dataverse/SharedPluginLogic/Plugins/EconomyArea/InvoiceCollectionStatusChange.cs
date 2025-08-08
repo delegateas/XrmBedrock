@@ -8,7 +8,7 @@ public class InvoiceCollectionStatusChange : Plugin
 {
     public InvoiceCollectionStatusChange()
     {
-        RegisterPluginStep<mgs_InvoiceCollection>(
+        RegisterPluginStep<demo_InvoiceCollection>(
             EventOperation.Update,
             ExecutionStage.PostOperation,
             provider => provider.GetRequiredService<IInvoiceCollectionService>().HandleStatusChange())

@@ -23,13 +23,13 @@ public class ExampleUpdateTelephoneOnSubaccountsTests : TestBase
         AdminDao.Update(updatedParent);
 
         // Assert - Check subaccounts
-        var updatedSubAccount1Telephone = AdminDao.Retrieve<Account, string>(subAccount1.Id, a => a.Telephone1);
+        var updatedSubAccount1Telephone = AdminDao.Retrieve<Account, string?>(subAccount1.Id, a => a.Telephone1);
         updatedSubAccount1Telephone.Should().Be("+45 8765 4321", "Subaccount1's telephone should be updated to match the parent's new telephone.");
 
-        var updatedSubAccount2Telephone = AdminDao.Retrieve<Account, string>(subAccount2.Id, a => a.Telephone1);
+        var updatedSubAccount2Telephone = AdminDao.Retrieve<Account, string?>(subAccount2.Id, a => a.Telephone1);
         updatedSubAccount2Telephone.Should().Be("+45 8765 4321", "Subaccount2's telephone should be updated to match the parent's new telephone.");
 
-        var updatedSubAccount3Telephone = AdminDao.Retrieve<Account, string>(subAccount3.Id, a => a.Telephone1);
+        var updatedSubAccount3Telephone = AdminDao.Retrieve<Account, string?>(subAccount3.Id, a => a.Telephone1);
         updatedSubAccount3Telephone.Should().Be("+45 9876 5432", "Subaccount3's telephone should remain unchanged as it did not match the parent's original telephone.");
     }
 
@@ -45,7 +45,7 @@ public class ExampleUpdateTelephoneOnSubaccountsTests : TestBase
         AdminDao.Update(updatedParent);
 
         // Assert - Check subaccount telephone remains unchanged
-        var updatedSubAccountTelephone = AdminDao.Retrieve<Account, string>(subAccount.Id, a => a.Telephone1);
+        var updatedSubAccountTelephone = AdminDao.Retrieve<Account, string?>(subAccount.Id, a => a.Telephone1);
         updatedSubAccountTelephone.Should().Be("+45 1234 5678", "Subaccount's telephone should remain unchanged as parent's telephone was not updated.");
     }
 }

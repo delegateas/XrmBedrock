@@ -35,7 +35,7 @@ public class DuplicateRuleService : IDuplicateRuleService
     private List<DuplicateRule> GetUnpublishedDuplicateRulesForAutoPublish()
     {
         var unpublisedRules = adminDao.RetrieveList(xrm => xrm.DuplicateRuleSet
-            .Where(r => r.StateCode == DuplicateRuleState.Inactive)
+            .Where(r => r.StateCode == duplicaterule_statecode.Inactive)
             .Select(r => new DuplicateRule
             {
                 Id = r.Id,

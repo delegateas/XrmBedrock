@@ -30,8 +30,8 @@ public class DataverseNotificationService : IDataverseNotificationService
                 ["Title"] = title,
                 ["Recipient"] = owner,
                 ["Body"] = message,
-                ["IconType"] = new OptionSetValue((int)appnotification_IconType.Failure),
-                ["ToastType"] = new OptionSetValue((int)appnotification_ToastType.Timed),
+                ["IconType"] = new OptionSetValue((int)notification_iconid.Failure),
+                ["ToastType"] = new OptionSetValue((int)notification_toasttype.Timed),
             },
         };
 

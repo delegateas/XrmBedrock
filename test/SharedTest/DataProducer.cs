@@ -66,25 +66,25 @@ public class DataProducer
             e.EnsureValue(c => c.EMailAddress1, "SomeEmail@SomeFakeDomain.test");
         });
 
-    internal mgs_Product ProduceValidProduct(mgs_Product? product) =>
+    internal demo_Product ProduceValidProduct(demo_Product? product) =>
         adminDao.Producer(product, e =>
         {
-            e.EnsureValue(p => p.mgs_Name, "Some product");
-            e.EnsureValue(p => p.mgs_Price, 100m);
+            e.EnsureValue(p => p.demo_Name, "Some product");
+            e.EnsureValue(p => p.demo_Price, 100m);
         });
 
-    internal mgs_InvoiceCollection ProduceValidInvoiceCollection(mgs_InvoiceCollection? invoiceCollection) =>
+    internal demo_InvoiceCollection ProduceValidInvoiceCollection(demo_InvoiceCollection? invoiceCollection) =>
         adminDao.Producer(invoiceCollection, e =>
         {
-            e.EnsureValue(i => i.mgs_Name, "Some name");
-            e.EnsureValue(i => i.mgs_InvoiceUntil, DateTime.UtcNow);
+            e.EnsureValue(i => i.demo_Name, "Some name");
+            e.EnsureValue(i => i.demo_InvoiceUntil, DateTime.UtcNow);
         });
 
-    internal mgs_Subscription ProduceValidSubscription(mgs_Subscription? subscription) =>
-        adminDao.Producer(subscription, e =>
+    internal demo_Membership ProduceValidSubscription(demo_Membership? membership) =>
+        adminDao.Producer(membership, e =>
         {
-            e.EnsureValue(s => s.mgs_StartDate, DateTime.UtcNow);
-            e.EnsureValue(s => s.mgs_Product, () => ProduceValidProduct(null).ToEntityReference());
-            e.EnsureValue(s => s.mgs_Contact, () => ProduceValidContact(null).ToEntityReference());
+            e.EnsureValue(s => s.demo_StartDate, DateTime.UtcNow);
+            e.EnsureValue(s => s.demo_Product, () => ProduceValidProduct(null).ToEntityReference());
+            e.EnsureValue(s => s.demo_Contact, () => ProduceValidContact(null).ToEntityReference());
         });
 }

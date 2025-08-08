@@ -32,7 +32,7 @@ public class XrmMockupFixture
         var settings = new XrmMockupSettings
         {
             BasePluginTypes = new Type[] { typeof(Plugin) },
-            BaseCustomApiTypes = new Tuple<string, Type>[] { new("mgs", typeof(CustomAPI)) },
+            BaseCustomApiTypes = new Tuple<string, Type>[] { new("demo", typeof(CustomAPI)) },
             EnableProxyTypes = true,
             IncludeAllWorkflows = false,
             MetadataDirectoryPath = "..\\..\\..\\..\\SharedTest\\MetadataGenerated",

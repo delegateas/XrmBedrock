@@ -14,7 +14,7 @@ public class DataverseCustomApiService : IDataverseCustomApiService
         this.dao = dao;
     }
 
-    public Task CreateTransactions(CreateTransactionsRequest request) => dao.ExecuteAsync(new OrganizationRequest("mgs_CreateTransactions")
+    public Task CreateTransactions(CreateTransactionsRequest request) => dao.ExecuteAsync(new OrganizationRequest("demo_CreateTransactions")
     {
         Parameters = new ParameterCollection()
         {

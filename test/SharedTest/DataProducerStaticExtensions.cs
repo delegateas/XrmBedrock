@@ -5,7 +5,7 @@ namespace SharedTest;
 
 internal static class DataProducerStaticExtensions
 {
-    internal static void EnsureValue<TE>(this TE entity, Expression<Func<TE, string>> selector, string defaultvalue)
+    internal static void EnsureValue<TE>(this TE entity, Expression<Func<TE, string?>> selector, string defaultvalue)
         where TE : Entity
     {
         if (selector.Compile()(entity) == null)
@@ -14,7 +14,7 @@ internal static class DataProducerStaticExtensions
         }
     }
 
-    internal static void EnsureValue<TE, TV>(this TE entity, Expression<Func<TE, TV>> selector, Expression<Func<TV>> defaultvalue)
+    internal static void EnsureValue<TE, TV>(this TE entity, Expression<Func<TE, TV?>> selector, Expression<Func<TV>> defaultvalue)
         where TE : Entity
         where TV : class
     {
@@ -24,7 +24,7 @@ internal static class DataProducerStaticExtensions
         }
     }
 
-    internal static void EnsureValue<TE, TV>(this TE entity, Expression<Func<TE, EntityReference>> selector, TV defaultvalue)
+    internal static void EnsureValue<TE, TV>(this TE entity, Expression<Func<TE, EntityReference?>> selector, TV defaultvalue)
         where TE : Entity
         where TV : Entity
     {

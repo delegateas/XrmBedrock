@@ -21,13 +21,12 @@ public class ExampleCustomerService // Missing an interface here? We actually do
     public void ValidatePhoneNumber()
     {
         var account = context.GetTargetMergedWithPreImage<Account>();
-        string phoneNumber = account.Telephone1;
-        if (string.IsNullOrEmpty(phoneNumber))
+        if (string.IsNullOrEmpty(account.Telephone1))
             return;
 
         // Regex to check if phone number starts with "+" and contains only digits and spaces
         string pattern = @"^\+[0-9\s]+$";
-        if (!Regex.IsMatch(phoneNumber, pattern))
+        if (!Regex.IsMatch(account.Telephone1, pattern))
             throw new InvalidPluginExecutionException("The phone number must start with '+' and contain only digits and spaces.");
     }
 
@@ -37,7 +36,7 @@ public class ExampleCustomerService // Missing an interface here? We actually do
 
         // Check if Customer Type is set to "Supplier"
         // Assuming Customer Type is 'customertypecode' with value 3 for Supplier (adjust based on actual schema)
-        if (account.CustomerTypeCode == Account_CustomerTypeCode.Supplier)
+        if (account.CustomerTypeCode == account_customertypecode.Supplier)
         {
             // Get Account Name
             string accountName = account.Name ?? "Unnamed Account";
@@ -68,7 +67,7 @@ public class ExampleCustomerService // Missing an interface here? We actually do
         // Check if a parent account is specified
         if (targetAccount.ParentAccountId != null)
         {
-            var parentAccountPhone = adminDao.Retrieve<Account, string>(targetAccount.ParentAccountId.Id, a => a.Telephone1);
+            var parentAccountPhone = adminDao.Retrieve<Account, string?>(targetAccount.ParentAccountId.Id, a => a.Telephone1);
             if (!string.IsNullOrWhiteSpace(parentAccountPhone))
                 targetAccount.Telephone1 = parentAccountPhone;
         }
