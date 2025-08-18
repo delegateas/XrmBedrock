@@ -1,6 +1,7 @@
 using Azure.DataverseService.Foundation.Dao;
 using Dataverse.Plugins;
 using DG.Tools.XrmMockup;
+using Microsoft.OpenApi.Models;
 using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
@@ -12,10 +13,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure JSON options
-builder.Services.ConfigureHttpJsonOptions(options =>
+// Configure JSON options with Newtonsoft.Json
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
 {
     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
+// Add Newtonsoft.Json for request/response serialization
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.Converters.Add(new OrganizationRequestConverter());
+    options.SerializerSettings.Converters.Add(new ParameterCollectionConverter());
+    options.SerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
 });
 
 builder.Services.AddSingleton(serviceProvider =>
@@ -100,7 +109,45 @@ app.MapPost("/execute", async (HttpContext context, DataverseAccessObjectAsync d
     }
 })
 .WithName("ExecuteRequest")
-.WithOpenApi();
+.WithOpenApi(operation =>
+{
+    operation.RequestBody = new OpenApiRequestBody
+    {
+        Content =
+        {
+            ["application/json"] = new OpenApiMediaType
+            {
+                Schema = new OpenApiSchema
+                {
+                    Type = "object",
+                    Properties = new Dictionary<string, OpenApiSchema>
+                    {
+                        ["RequestName"] = new OpenApiSchema { Type = "string" },
+                        ["Parameters"] = new OpenApiSchema { Type = "object" },
+                    },
+                    Required = new HashSet<string> { "RequestName" },
+                },
+                Example = new Microsoft.OpenApi.Any.OpenApiObject
+                {
+                    ["RequestName"] = new Microsoft.OpenApi.Any.OpenApiString("Create"),
+                    ["Parameters"] = new Microsoft.OpenApi.Any.OpenApiObject
+                    {
+                        ["Target"] = new Microsoft.OpenApi.Any.OpenApiObject
+                        {
+                            ["LogicalName"] = new Microsoft.OpenApi.Any.OpenApiString("contact"),
+                            ["Attributes"] = new Microsoft.OpenApi.Any.OpenApiObject
+                            {
+                                ["firstname"] = new Microsoft.OpenApi.Any.OpenApiString("John"),
+                                ["lastname"] = new Microsoft.OpenApi.Any.OpenApiString("Doe"),
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    };
+    return operation;
+});
 
 app.MapGet("/metadata/{entityName}", async (string entityName, DataverseAccessObjectAsync dao, ILogger<Program> logger) =>
 {
