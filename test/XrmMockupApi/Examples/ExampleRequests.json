@@ -1,0 +1,72 @@
+{
+  "create_request_example": {
+    "RequestName": "Create",
+    "Parameters": {
+      "Target": {
+        "LogicalName": "contact",
+        "Attributes": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "emailaddress1": "john.doe@example.com"
+        }
+      }
+    }
+  },
+  "retrieve_request_example": {
+    "RequestName": "Retrieve",
+    "Parameters": {
+      "Target": {
+        "LogicalName": "contact",
+        "Id": "12345678-1234-1234-1234-123456789012"
+      },
+      "ColumnSet": {
+        "AllColumns": false,
+        "Columns": ["firstname", "lastname", "emailaddress1"]
+      }
+    }
+  },
+  "update_request_example": {
+    "RequestName": "Update",
+    "Parameters": {
+      "Target": {
+        "LogicalName": "contact",
+        "Id": "12345678-1234-1234-1234-123456789012",
+        "Attributes": {
+          "firstname": "Jane",
+          "lastname": "Smith"
+        }
+      }
+    }
+  },
+  "delete_request_example": {
+    "RequestName": "Delete",
+    "Parameters": {
+      "Target": {
+        "LogicalName": "contact",
+        "Id": "12345678-1234-1234-1234-123456789012"
+      }
+    }
+  },
+  "retrievemultiple_request_example": {
+    "RequestName": "RetrieveMultiple",
+    "Parameters": {
+      "Query": {
+        "EntityName": "contact",
+        "ColumnSet": {
+          "AllColumns": false,
+          "Columns": ["firstname", "lastname", "emailaddress1"]
+        },
+        "Criteria": {
+          "FilterOperator": "And",
+          "Conditions": [
+            {
+              "AttributeName": "statecode",
+              "Operator": "Equal",
+              "Values": [0]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

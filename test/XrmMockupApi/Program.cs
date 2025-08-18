@@ -4,8 +4,7 @@ using DG.Tools.XrmMockup;
 using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
-using XrmMockupApi.Helpers;
-using XrmMockupApi.Models;
+using XrmMockupApi.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,14 +56,29 @@ app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = Dat
     .WithName("HealthCheck")
     .WithOpenApi();
 
-app.MapPost("/execute", async (ExecuteRequest executeRequest, DataverseAccessObjectAsync dao, ILogger<Program> logger) =>
+app.MapPost("/execute", async (HttpContext context, DataverseAccessObjectAsync dao, ILogger<Program> logger) =>
 {
     try
     {
-        logger.LogInformation("Executing request: {RequestName}", executeRequest.RequestName);
+        // Read the request body as string
+        using var reader = new StreamReader(context.Request.Body);
+        var requestBody = await reader.ReadToEndAsync();
 
-        // Create the appropriate OrganizationRequest based on RequestName
-        OrganizationRequest request = RequestHelper.CreateOrganizationRequest(executeRequest.RequestName, executeRequest.Parameters);
+        logger.LogInformation("Received execute request: {RequestBody}", requestBody);
+
+        // Deserialize using custom converters
+        var request = JsonConvert.DeserializeObject<OrganizationRequest>(requestBody, new JsonSerializerSettings
+        {
+            Converters = { new OrganizationRequestConverter(), new ParameterCollectionConverter() },
+            TypeNameHandling = TypeNameHandling.Auto,
+        });
+
+        if (request == null)
+        {
+            return Results.BadRequest(new { Error = "Invalid request format" });
+        }
+
+        logger.LogInformation("Executing request: {RequestName}", request.RequestName);
 
         var response = await dao.ExecuteAsync(request);
 
@@ -81,7 +95,7 @@ app.MapPost("/execute", async (ExecuteRequest executeRequest, DataverseAccessObj
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, "Error executing request: {RequestName}", executeRequest.RequestName);
+        logger.LogError(ex, "Error executing request: {Message}", ex.Message);
         return Results.BadRequest(new { Error = ex.Message, Type = ex.GetType().Name });
     }
 })
