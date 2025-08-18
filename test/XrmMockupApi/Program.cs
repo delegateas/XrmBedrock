@@ -4,6 +4,8 @@ using DG.Tools.XrmMockup;
 using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
+using XrmMockupApi.Helpers;
+using XrmMockupApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,11 +57,14 @@ app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = Dat
     .WithName("HealthCheck")
     .WithOpenApi();
 
-app.MapPost("/execute", async (OrganizationRequest request, DataverseAccessObjectAsync dao, ILogger<Program> logger) =>
+app.MapPost("/execute", async (ExecuteRequest executeRequest, DataverseAccessObjectAsync dao, ILogger<Program> logger) =>
 {
     try
     {
-        logger.LogInformation("Executing request: {RequestType}", request.GetType().Name);
+        logger.LogInformation("Executing request: {RequestName}", executeRequest.RequestName);
+
+        // Create the appropriate OrganizationRequest based on RequestName
+        OrganizationRequest request = RequestHelper.CreateOrganizationRequest(executeRequest.RequestName, executeRequest.Parameters);
 
         var response = await dao.ExecuteAsync(request);
 
@@ -76,7 +81,7 @@ app.MapPost("/execute", async (OrganizationRequest request, DataverseAccessObjec
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, "Error executing request: {RequestType}", request.GetType().Name);
+        logger.LogError(ex, "Error executing request: {RequestName}", executeRequest.RequestName);
         return Results.BadRequest(new { Error = ex.Message, Type = ex.GetType().Name });
     }
 })
