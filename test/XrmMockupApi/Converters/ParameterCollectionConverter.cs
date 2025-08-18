@@ -69,8 +69,24 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
         if (jObject.ContainsKey("LogicalName") && jObject.ContainsKey("Id"))
         {
             var logicalName = jObject["LogicalName"]?.Value<string>();
-            var id = jObject["Id"]?.Value<Guid>();
+            var idToken = jObject["Id"];
             var name = jObject["Name"]?.Value<string>();
+
+            Guid? id = null;
+            if (idToken != null)
+            {
+                if (idToken.Type == JTokenType.String)
+                {
+                    if (Guid.TryParse(idToken.Value<string>(), out var parsedGuid))
+                    {
+                        id = parsedGuid;
+                    }
+                }
+                else if (idToken.Type == JTokenType.Guid)
+                {
+                    id = idToken.Value<Guid>();
+                }
+            }
 
             if (!string.IsNullOrEmpty(logicalName) && id.HasValue)
             {
@@ -86,9 +102,20 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
             {
                 var entity = new Entity(logicalName);
 
-                if (jObject["Id"] != null)
+                var idToken = jObject["Id"];
+                if (idToken != null)
                 {
-                    entity.Id = jObject["Id"]!.Value<Guid>();
+                    if (idToken.Type == JTokenType.String)
+                    {
+                        if (Guid.TryParse(idToken.Value<string>(), out var parsedGuid))
+                        {
+                            entity.Id = parsedGuid;
+                        }
+                    }
+                    else if (idToken.Type == JTokenType.Guid)
+                    {
+                        entity.Id = idToken.Value<Guid>();
+                    }
                 }
 
                 var attributes = jObject["Attributes"] as JObject;
@@ -122,6 +149,31 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
             {
                 return new Money(value.Value);
             }
+        }
+
+        // Check if this is a ColumnSet
+        if (jObject.ContainsKey("AllColumns") || jObject.ContainsKey("Columns"))
+        {
+            var columnSet = new Microsoft.Xrm.Sdk.Query.ColumnSet();
+
+            if (jObject["AllColumns"] != null)
+            {
+                columnSet.AllColumns = jObject["AllColumns"]!.Value<bool>();
+            }
+
+            if (jObject["Columns"] is JArray columnsArray)
+            {
+                foreach (var column in columnsArray)
+                {
+                    var columnName = column.Value<string>();
+                    if (!string.IsNullOrEmpty(columnName))
+                    {
+                        columnSet.Columns.Add(columnName);
+                    }
+                }
+            }
+
+            return columnSet;
         }
 
         // For other objects, try to deserialize using the default serializer
@@ -209,6 +261,21 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
                 writer.WriteStartObject();
                 writer.WritePropertyName("Value");
                 writer.WriteValue(money.Value);
+                writer.WriteEndObject();
+                break;
+
+            case Microsoft.Xrm.Sdk.Query.ColumnSet columnSet:
+                writer.WriteStartObject();
+                writer.WritePropertyName("AllColumns");
+                writer.WriteValue(columnSet.AllColumns);
+                writer.WritePropertyName("Columns");
+                writer.WriteStartArray();
+                foreach (var column in columnSet.Columns)
+                {
+                    writer.WriteValue(column);
+                }
+
+                writer.WriteEndArray();
                 writer.WriteEndObject();
                 break;
 

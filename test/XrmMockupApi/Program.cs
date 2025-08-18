@@ -4,8 +4,10 @@ using DG.Tools.XrmMockup;
 using Microsoft.OpenApi.Models;
 using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using XrmMockupApi.Converters;
+using XrmMockupApi.Converters.SystemTextJson;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,14 +95,16 @@ app.MapPost("/execute", async (HttpContext context, DataverseAccessObjectAsync d
 
         logger.LogInformation("Request executed successfully");
 
-        // Serialize the response to JSON
-        var jsonResponse = JsonConvert.SerializeObject(response, new JsonSerializerSettings
+        return Results.Json(response, new JsonSerializerOptions
         {
-            TypeNameHandling = TypeNameHandling.Auto,
-            Formatting = Formatting.Indented,
+            WriteIndented = true,
+            Converters =
+            {
+                new JsonStringEnumConverter(),
+                new OrganizationResponseJsonConverter(),
+                new ParameterCollectionJsonConverter(),
+            },
         });
-
-        return Results.Ok(jsonResponse);
     }
     catch (Exception ex)
     {
@@ -121,11 +125,11 @@ app.MapPost("/execute", async (HttpContext context, DataverseAccessObjectAsync d
                 {
                     Type = "object",
                     Properties = new Dictionary<string, OpenApiSchema>
-                    {
+(StringComparer.Ordinal) {
                         ["RequestName"] = new OpenApiSchema { Type = "string" },
                         ["Parameters"] = new OpenApiSchema { Type = "object" },
                     },
-                    Required = new HashSet<string> { "RequestName" },
+                    Required = new HashSet<string>(StringComparer.Ordinal) { "RequestName" },
                 },
                 Example = new Microsoft.OpenApi.Any.OpenApiObject
                 {
