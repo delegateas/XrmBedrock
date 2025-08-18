@@ -13,6 +13,8 @@ public class OrganizationResponseJsonConverter : JsonConverter<OrganizationRespo
 
     public override void Write(Utf8JsonWriter writer, OrganizationResponse value, JsonSerializerOptions options)
     {
+        ArgumentNullException.ThrowIfNull(writer);
+        ArgumentNullException.ThrowIfNull(value);
         writer.WriteStartObject();
 
         writer.WriteString("ResponseName", value.ResponseName);

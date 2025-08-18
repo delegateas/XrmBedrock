@@ -81,7 +81,7 @@ app.MapPost("/execute", async (HttpContext context, DataverseAccessObjectAsync d
         var request = JsonConvert.DeserializeObject<OrganizationRequest>(requestBody, new JsonSerializerSettings
         {
             Converters = { new OrganizationRequestConverter(), new ParameterCollectionConverter() },
-            TypeNameHandling = TypeNameHandling.Auto,
+            TypeNameHandling = TypeNameHandling.None,
         });
 
         if (request == null)
@@ -124,8 +124,8 @@ app.MapPost("/execute", async (HttpContext context, DataverseAccessObjectAsync d
                 Schema = new OpenApiSchema
                 {
                     Type = "object",
-                    Properties = new Dictionary<string, OpenApiSchema>
-(StringComparer.Ordinal) {
+                    Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                    {
                         ["RequestName"] = new OpenApiSchema { Type = "string" },
                         ["Parameters"] = new OpenApiSchema { Type = "object" },
                     },

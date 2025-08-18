@@ -9,6 +9,7 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
 {
     public override ParameterCollection ReadJson(JsonReader reader, Type objectType, ParameterCollection? existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
+        ArgumentNullException.ThrowIfNull(reader);
         var parameters = new ParameterCollection();
 
         if (reader.TokenType == JsonToken.Null)
@@ -27,6 +28,8 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
 
     public override void WriteJson(JsonWriter writer, ParameterCollection? value, JsonSerializer serializer)
     {
+        ArgumentNullException.ThrowIfNull(writer);
+        ArgumentNullException.ThrowIfNull(serializer);
         if (value == null)
         {
             writer.WriteNull();
@@ -65,73 +68,63 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
     {
         var jObject = (JObject)token;
 
-        // Check if this is an EntityReference
-        if (jObject.ContainsKey("LogicalName") && jObject.ContainsKey("Id"))
+        return TryDeserializeEntityReference(jObject) ??
+               TryDeserializeEntity(jObject, serializer) ??
+               TryDeserializeOptionSetValue(jObject) ??
+               TryDeserializeMoneyValue(jObject) ??
+               TryDeserializeColumnSet(jObject) ??
+               DeserializeGenericObject(jObject, serializer);
+    }
+
+    private static EntityReference? TryDeserializeEntityReference(JObject jObject)
+    {
+        if (!jObject.ContainsKey("LogicalName") || !jObject.ContainsKey("Id"))
+            return null;
+
+        var logicalName = jObject["LogicalName"]?.Value<string>();
+        var idToken = jObject["Id"];
+        var name = jObject["Name"]?.Value<string>();
+
+        var id = ParseGuidToken(idToken);
+
+        if (!string.IsNullOrEmpty(logicalName) && id.HasValue)
         {
-            var logicalName = jObject["LogicalName"]?.Value<string>();
-            var idToken = jObject["Id"];
-            var name = jObject["Name"]?.Value<string>();
+            return new EntityReference(logicalName, id.Value) { Name = name };
+        }
 
-            Guid? id = null;
-            if (idToken != null)
-            {
-                if (idToken.Type == JTokenType.String)
-                {
-                    if (Guid.TryParse(idToken.Value<string>(), out var parsedGuid))
-                    {
-                        id = parsedGuid;
-                    }
-                }
-                else if (idToken.Type == JTokenType.Guid)
-                {
-                    id = idToken.Value<Guid>();
-                }
-            }
+        return null;
+    }
 
-            if (!string.IsNullOrEmpty(logicalName) && id.HasValue)
+    private static Entity? TryDeserializeEntity(JObject jObject, JsonSerializer serializer)
+    {
+        if (!jObject.ContainsKey("LogicalName") || !jObject.ContainsKey("Attributes"))
+            return null;
+
+        var logicalName = jObject["LogicalName"]?.Value<string>();
+        if (string.IsNullOrEmpty(logicalName))
+            return null;
+
+        var entity = new Entity(logicalName);
+
+        var id = ParseGuidToken(jObject["Id"]);
+        if (id.HasValue)
+        {
+            entity.Id = id.Value;
+        }
+
+        if (jObject["Attributes"] is JObject attributes)
+        {
+            foreach (var attr in attributes.Properties())
             {
-                return new EntityReference(logicalName, id.Value) { Name = name };
+                entity[attr.Name] = DeserializeValue(attr.Value, serializer);
             }
         }
 
-        // Check if this is an Entity
-        if (jObject.ContainsKey("LogicalName") && jObject.ContainsKey("Attributes"))
-        {
-            var logicalName = jObject["LogicalName"]?.Value<string>();
-            if (!string.IsNullOrEmpty(logicalName))
-            {
-                var entity = new Entity(logicalName);
+        return entity;
+    }
 
-                var idToken = jObject["Id"];
-                if (idToken != null)
-                {
-                    if (idToken.Type == JTokenType.String)
-                    {
-                        if (Guid.TryParse(idToken.Value<string>(), out var parsedGuid))
-                        {
-                            entity.Id = parsedGuid;
-                        }
-                    }
-                    else if (idToken.Type == JTokenType.Guid)
-                    {
-                        entity.Id = idToken.Value<Guid>();
-                    }
-                }
-
-                var attributes = jObject["Attributes"] as JObject;
-                if (attributes != null)
-                {
-                    foreach (var attr in attributes.Properties())
-                    {
-                        entity[attr.Name] = DeserializeValue(attr.Value, serializer);
-                    }
-                }
-
-                return entity;
-            }
-        }
-
-        // Check if this is an OptionSetValue
+    private static OptionSetValue? TryDeserializeOptionSetValue(JObject jObject)
+    {
         if (jObject.ContainsKey("Value") && jObject.Count == 1)
         {
             var value = jObject["Value"]?.Value<int>();
@@ -141,7 +134,11 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
             }
         }
 
-        // Check if this is a Money value
+        return null;
+    }
+
+    private static Money? TryDeserializeMoneyValue(JObject jObject)
+    {
         if (jObject.ContainsKey("Value") && jObject.Count == 1)
         {
             var value = jObject["Value"]?.Value<decimal>();
@@ -151,39 +148,44 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
             }
         }
 
-        // Check if this is a ColumnSet
-        if (jObject.ContainsKey("AllColumns") || jObject.ContainsKey("Columns"))
+        return null;
+    }
+
+    private static Microsoft.Xrm.Sdk.Query.ColumnSet? TryDeserializeColumnSet(JObject jObject)
+    {
+        if (!jObject.ContainsKey("AllColumns") && !jObject.ContainsKey("Columns"))
+            return null;
+
+        var columnSet = new Microsoft.Xrm.Sdk.Query.ColumnSet();
+
+        if (jObject["AllColumns"] != null)
         {
-            var columnSet = new Microsoft.Xrm.Sdk.Query.ColumnSet();
-
-            if (jObject["AllColumns"] != null)
-            {
-                columnSet.AllColumns = jObject["AllColumns"]!.Value<bool>();
-            }
-
-            if (jObject["Columns"] is JArray columnsArray)
-            {
-                foreach (var column in columnsArray)
-                {
-                    var columnName = column.Value<string>();
-                    if (!string.IsNullOrEmpty(columnName))
-                    {
-                        columnSet.Columns.Add(columnName);
-                    }
-                }
-            }
-
-            return columnSet;
+            columnSet.AllColumns = jObject["AllColumns"]!.Value<bool>();
         }
 
-        // For other objects, try to deserialize using the default serializer
+        if (jObject["Columns"] is JArray columnsArray)
+        {
+            foreach (var column in columnsArray)
+            {
+                var columnName = column.Value<string>();
+                if (!string.IsNullOrEmpty(columnName))
+                {
+                    columnSet.Columns.Add(columnName);
+                }
+            }
+        }
+
+        return columnSet;
+    }
+
+    private static object DeserializeGenericObject(JObject jObject, JsonSerializer serializer)
+    {
         try
         {
-            return jObject.ToObject<object>(serializer);
+            return jObject.ToObject<object>(serializer) ?? new Dictionary<string, object?>(StringComparer.Ordinal);
         }
         catch
         {
-            // If that fails, return as a dictionary
             var dict = new Dictionary<string, object?>(StringComparer.Ordinal);
             foreach (var property in jObject.Properties())
             {
@@ -194,7 +196,20 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
         }
     }
 
-    private static object DeserializeArray(JToken token, JsonSerializer serializer)
+    private static Guid? ParseGuidToken(JToken? idToken)
+    {
+        if (idToken == null)
+            return null;
+
+        return idToken.Type switch
+        {
+            JTokenType.String when Guid.TryParse(idToken.Value<string>(), out var parsedGuid) => parsedGuid,
+            JTokenType.Guid => idToken.Value<Guid>(),
+            _ => null,
+        };
+    }
+
+    private static object?[] DeserializeArray(JToken token, JsonSerializer serializer)
     {
         var jArray = (JArray)token;
         var result = new List<object?>();
@@ -218,70 +233,90 @@ public class ParameterCollectionConverter : JsonConverter<ParameterCollection>
         switch (value)
         {
             case EntityReference entityRef:
-                writer.WriteStartObject();
-                writer.WritePropertyName("LogicalName");
-                writer.WriteValue(entityRef.LogicalName);
-                writer.WritePropertyName("Id");
-                writer.WriteValue(entityRef.Id);
-                if (!string.IsNullOrEmpty(entityRef.Name))
-                {
-                    writer.WritePropertyName("Name");
-                    writer.WriteValue(entityRef.Name);
-                }
-
-                writer.WriteEndObject();
+                SerializeEntityReference(writer, entityRef);
                 break;
-
             case Entity entity:
-                writer.WriteStartObject();
-                writer.WritePropertyName("LogicalName");
-                writer.WriteValue(entity.LogicalName);
-                writer.WritePropertyName("Id");
-                writer.WriteValue(entity.Id);
-                writer.WritePropertyName("Attributes");
-                writer.WriteStartObject();
-                foreach (var attr in entity.Attributes)
-                {
-                    writer.WritePropertyName(attr.Key);
-                    SerializeValue(writer, attr.Value, serializer);
-                }
-
-                writer.WriteEndObject();
-                writer.WriteEndObject();
+                SerializeEntity(writer, entity, serializer);
                 break;
-
             case OptionSetValue optionSet:
-                writer.WriteStartObject();
-                writer.WritePropertyName("Value");
-                writer.WriteValue(optionSet.Value);
-                writer.WriteEndObject();
+                SerializeOptionSetValue(writer, optionSet);
                 break;
-
             case Money money:
-                writer.WriteStartObject();
-                writer.WritePropertyName("Value");
-                writer.WriteValue(money.Value);
-                writer.WriteEndObject();
+                SerializeMoneyValue(writer, money);
                 break;
-
             case Microsoft.Xrm.Sdk.Query.ColumnSet columnSet:
-                writer.WriteStartObject();
-                writer.WritePropertyName("AllColumns");
-                writer.WriteValue(columnSet.AllColumns);
-                writer.WritePropertyName("Columns");
-                writer.WriteStartArray();
-                foreach (var column in columnSet.Columns)
-                {
-                    writer.WriteValue(column);
-                }
-
-                writer.WriteEndArray();
-                writer.WriteEndObject();
+                SerializeColumnSet(writer, columnSet);
                 break;
-
             default:
                 serializer.Serialize(writer, value);
                 break;
         }
+    }
+
+    private static void SerializeEntityReference(JsonWriter writer, EntityReference entityRef)
+    {
+        writer.WriteStartObject();
+        writer.WritePropertyName("LogicalName");
+        writer.WriteValue(entityRef.LogicalName);
+        writer.WritePropertyName("Id");
+        writer.WriteValue(entityRef.Id);
+        if (!string.IsNullOrEmpty(entityRef.Name))
+        {
+            writer.WritePropertyName("Name");
+            writer.WriteValue(entityRef.Name);
+        }
+
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeEntity(JsonWriter writer, Entity entity, JsonSerializer serializer)
+    {
+        writer.WriteStartObject();
+        writer.WritePropertyName("LogicalName");
+        writer.WriteValue(entity.LogicalName);
+        writer.WritePropertyName("Id");
+        writer.WriteValue(entity.Id);
+        writer.WritePropertyName("Attributes");
+        writer.WriteStartObject();
+        foreach (var attr in entity.Attributes)
+        {
+            writer.WritePropertyName(attr.Key);
+            SerializeValue(writer, attr.Value, serializer);
+        }
+
+        writer.WriteEndObject();
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeOptionSetValue(JsonWriter writer, OptionSetValue optionSet)
+    {
+        writer.WriteStartObject();
+        writer.WritePropertyName("Value");
+        writer.WriteValue(optionSet.Value);
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeMoneyValue(JsonWriter writer, Money money)
+    {
+        writer.WriteStartObject();
+        writer.WritePropertyName("Value");
+        writer.WriteValue(money.Value);
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeColumnSet(JsonWriter writer, Microsoft.Xrm.Sdk.Query.ColumnSet columnSet)
+    {
+        writer.WriteStartObject();
+        writer.WritePropertyName("AllColumns");
+        writer.WriteValue(columnSet.AllColumns);
+        writer.WritePropertyName("Columns");
+        writer.WriteStartArray();
+        foreach (var column in columnSet.Columns)
+        {
+            writer.WriteValue(column);
+        }
+
+        writer.WriteEndArray();
+        writer.WriteEndObject();
     }
 }

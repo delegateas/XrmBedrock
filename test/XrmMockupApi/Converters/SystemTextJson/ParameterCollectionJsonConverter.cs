@@ -36,6 +36,9 @@ public class ParameterCollectionJsonConverter : JsonConverter<ParameterCollectio
 
     public override void Write(Utf8JsonWriter writer, ParameterCollection value, JsonSerializerOptions options)
     {
+        ArgumentNullException.ThrowIfNull(writer);
+        ArgumentNullException.ThrowIfNull(value);
+
         writer.WriteStartObject();
 
         foreach (var entry in value)
@@ -62,7 +65,7 @@ public class ParameterCollectionJsonConverter : JsonConverter<ParameterCollectio
         };
     }
 
-    private static object? DeserializeObject(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    private static Dictionary<string, object?> DeserializeObject(ref Utf8JsonReader reader, JsonSerializerOptions options)
     {
         var obj = new Dictionary<string, object?>(StringComparer.Ordinal);
 
@@ -84,7 +87,7 @@ public class ParameterCollectionJsonConverter : JsonConverter<ParameterCollectio
         return obj;
     }
 
-    private static object DeserializeArray(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    private static object?[] DeserializeArray(ref Utf8JsonReader reader, JsonSerializerOptions options)
     {
         var list = new List<object?>();
 
@@ -112,62 +115,82 @@ public class ParameterCollectionJsonConverter : JsonConverter<ParameterCollectio
         switch (value)
         {
             case EntityReference entityRef:
-                writer.WriteStartObject();
-                writer.WriteString("LogicalName", entityRef.LogicalName);
-                writer.WriteString("Id", entityRef.Id.ToString());
-                if (!string.IsNullOrEmpty(entityRef.Name))
-                {
-                    writer.WriteString("Name", entityRef.Name);
-                }
-
-                writer.WriteEndObject();
+                SerializeEntityReference(writer, entityRef);
                 break;
-
             case Entity entity:
-                writer.WriteStartObject();
-                writer.WriteString("LogicalName", entity.LogicalName);
-                writer.WriteString("Id", entity.Id.ToString());
-                writer.WritePropertyName("Attributes");
-                writer.WriteStartObject();
-                foreach (var attr in entity.Attributes)
-                {
-                    writer.WritePropertyName(attr.Key);
-                    SerializeValue(writer, attr.Value, options);
-                }
-
-                writer.WriteEndObject();
-                writer.WriteEndObject();
+                SerializeEntity(writer, entity, options);
                 break;
-
             case OptionSetValue optionSet:
-                writer.WriteStartObject();
-                writer.WriteNumber("Value", optionSet.Value);
-                writer.WriteEndObject();
+                SerializeOptionSetValue(writer, optionSet);
                 break;
-
             case Money money:
-                writer.WriteStartObject();
-                writer.WriteNumber("Value", money.Value);
-                writer.WriteEndObject();
+                SerializeMoneyValue(writer, money);
                 break;
-
             case Microsoft.Xrm.Sdk.Query.ColumnSet columnSet:
-                writer.WriteStartObject();
-                writer.WriteBoolean("AllColumns", columnSet.AllColumns);
-                writer.WritePropertyName("Columns");
-                writer.WriteStartArray();
-                foreach (var column in columnSet.Columns)
-                {
-                    writer.WriteStringValue(column);
-                }
-
-                writer.WriteEndArray();
-                writer.WriteEndObject();
+                SerializeColumnSet(writer, columnSet);
                 break;
-
             default:
                 JsonSerializer.Serialize(writer, value, options);
                 break;
         }
+    }
+
+    private static void SerializeEntityReference(Utf8JsonWriter writer, EntityReference entityRef)
+    {
+        writer.WriteStartObject();
+        writer.WriteString("LogicalName", entityRef.LogicalName);
+        writer.WriteString("Id", entityRef.Id.ToString());
+        if (!string.IsNullOrEmpty(entityRef.Name))
+        {
+            writer.WriteString("Name", entityRef.Name);
+        }
+
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeEntity(Utf8JsonWriter writer, Entity entity, JsonSerializerOptions options)
+    {
+        writer.WriteStartObject();
+        writer.WriteString("LogicalName", entity.LogicalName);
+        writer.WriteString("Id", entity.Id.ToString());
+        writer.WritePropertyName("Attributes");
+        writer.WriteStartObject();
+        foreach (var attr in entity.Attributes)
+        {
+            writer.WritePropertyName(attr.Key);
+            SerializeValue(writer, attr.Value, options);
+        }
+
+        writer.WriteEndObject();
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeOptionSetValue(Utf8JsonWriter writer, OptionSetValue optionSet)
+    {
+        writer.WriteStartObject();
+        writer.WriteNumber("Value", optionSet.Value);
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeMoneyValue(Utf8JsonWriter writer, Money money)
+    {
+        writer.WriteStartObject();
+        writer.WriteNumber("Value", money.Value);
+        writer.WriteEndObject();
+    }
+
+    private static void SerializeColumnSet(Utf8JsonWriter writer, Microsoft.Xrm.Sdk.Query.ColumnSet columnSet)
+    {
+        writer.WriteStartObject();
+        writer.WriteBoolean("AllColumns", columnSet.AllColumns);
+        writer.WritePropertyName("Columns");
+        writer.WriteStartArray();
+        foreach (var column in columnSet.Columns)
+        {
+            writer.WriteStringValue(column);
+        }
+
+        writer.WriteEndArray();
+        writer.WriteEndObject();
     }
 }
