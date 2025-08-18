@@ -13,4 +13,6 @@ variables:
   FsiPath: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools\fsi.exe'
   BuildPlatform: 'any cpu'
   BuildConfiguration: 'release'
+  # Container Registry
+  ContainerRegistry: '$(ResourceGroupName)acr'
   

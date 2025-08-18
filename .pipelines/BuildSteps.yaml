@@ -39,6 +39,19 @@ steps:
         Dataverse/test/*/*.csproj
       arguments: '--no-build --configuration $(BuildConfiguration)'
 
+  # Docker build and push for XrmMockupApi
+  - task: Docker@2
+    displayName: 'Build XrmMockupApi Docker image'
+    condition: eq(variables['DeployXrmMockupApi'], true)
+    inputs:
+      containerRegistry: '$(ContainerRegistry)'
+      repository: 'xrmmockupapi'
+      command: 'buildAndPush'
+      Dockerfile: 'test/XrmMockupApi/Dockerfile'
+      tags: |
+        $(Build.BuildNumber)
+        latest
+
   - task: PowerShell@2
     displayName: Validate Main Bicep file
     inputs:

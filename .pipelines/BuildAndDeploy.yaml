@@ -31,6 +31,13 @@ parameters:
       - false
       - true
     default: true
+  - name: "deployXrmMockupApi"
+    displayName: "Deploy XrmMockupApi Container"
+    type: boolean
+    values:
+      - false
+      - true
+    default: false
   # - name: "deployExampleApi"
   #   displayName: "Deploy Example Api"
   #   type: boolean
@@ -51,6 +58,8 @@ variables:
   - template: Dataverse/variables.yml
   - name: DeployFunctions
     value: ${{ eq(parameters.deployEconomyAreaFA, true) }} # Wrap in an or-statement if you have multiple function apps to deploy
+  - name: DeployXrmMockupApi
+    value: ${{ eq(parameters.deployXrmMockupApi, true) }}
   # - name: DeployAppServices
   #   value: eq(parameters.deployExampleApi, true)
 
@@ -69,7 +78,7 @@ stages:
           vmImage: "windows-latest"
         steps:
           - template: BuildSteps.yaml
-          - ${{ if or(eq(variables.DeployFunctions, true), eq(parameters.deployInfrastructure, true)) }}: # , variables.DeployAppServices, true
+          - ${{ if or(eq(variables.DeployFunctions, true), eq(parameters.deployInfrastructure, true), eq(variables.DeployXrmMockupApi, true)) }}: # , variables.DeployAppServices, true
               - template: Azure/PublishArtifacts.yml
           - ${{ if eq(parameters.deployDataverse, true) }}:
               - template: Dataverse/PublishArtifacts.yml
@@ -97,6 +106,11 @@ stages:
           serviceConnectionName: "DEV"
           params: ${{parameters}}
       - template: Azure/deploy-FA.yml
+        parameters:
+          environment: Dev
+          serviceConnectionName: "DEV"
+          params: ${{parameters}}
+      - template: Azure/deploy-XrmMockupApi.yml
         parameters:
           environment: Dev
           serviceConnectionName: "DEV"

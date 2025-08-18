@@ -172,6 +172,15 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
 }
 
+module containerRegistry 'modules/containerRegistry.bicep' = {
+  name: 'containerRegistry'
+  params: {
+    name: '${replace(namingSuffix, '-', '')}acr'
+    location: location
+    adminUserEnabled: true
+  }
+}
+
 var storageQueueContributorRoleId = '974c5e8b-45b9-4653-ba55-5f855dd0fb88'
 resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   scope: storageAccount

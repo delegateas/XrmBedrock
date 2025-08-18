@@ -1,0 +1,106 @@
+parameters:
+  environment:
+  serviceConnectionName:
+  params:
+
+jobs:
+- deployment: Deploy_XrmMockupApi_${{parameters.environment}}
+  displayName: Deploy XrmMockupApi to ${{parameters.environment}}
+  condition: eq(${{ parameters.params.deployXrmMockupApi }}, true)
+  environment: ${{parameters.environment}}
+  dependsOn: Deploy_Infrastructure
+  variables:
+  - group: ${{parameters.environment}}
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - download: current
+          artifact: Scripts
+          displayName: Download artifacts
+
+        - task: AzureCLI@2
+          displayName: 'Deploy XrmMockupApi Container Instance'
+          inputs:
+            azureSubscription: '${{ parameters.serviceConnectionName }}'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              # Set variables
+              RESOURCE_GROUP_NAME="$(ResourceGroupName)"
+              CONTAINER_REGISTRY_NAME="${RESOURCE_GROUP_NAME}acr"
+              CONTAINER_NAME="xrmmockupapi-$(echo ${{ parameters.environment }} | tr '[:upper:]' '[:lower:]')"
+              IMAGE_NAME="${CONTAINER_REGISTRY_NAME}.azurecr.io/xrmmockupapi:$(Build.BuildNumber)"
+              
+              echo "Deploying container instance: $CONTAINER_NAME"
+              echo "Using image: $IMAGE_NAME"
+              echo "Resource group: $RESOURCE_GROUP_NAME"
+              
+              # Deploy Container Instance
+              az container create \
+                --resource-group "$RESOURCE_GROUP_NAME" \
+                --name "$CONTAINER_NAME" \
+                --image "$IMAGE_NAME" \
+                --registry-login-server "${CONTAINER_REGISTRY_NAME}.azurecr.io" \
+                --registry-username "$(az acr credential show --name $CONTAINER_REGISTRY_NAME --query username -o tsv)" \
+                --registry-password "$(az acr credential show --name $CONTAINER_REGISTRY_NAME --query passwords[0].value -o tsv)" \
+                --cpu 1 \
+                --memory 2 \
+                --ports 8080 \
+                --dns-name-label "$CONTAINER_NAME" \
+                --environment-variables \
+                  ASPNETCORE_ENVIRONMENT=${{ parameters.environment }} \
+                --restart-policy Always
+              
+              # Get the FQDN
+              FQDN=$(az container show --resource-group "$RESOURCE_GROUP_NAME" --name "$CONTAINER_NAME" --query ipAddress.fqdn -o tsv)
+              echo "Container deployed successfully!"
+              echo "Access URL: http://$FQDN:8080"
+              echo "Health check: http://$FQDN:8080/health"
+              echo "Swagger UI: http://$FQDN:8080/swagger"
+
+        - task: AzureCLI@2
+          displayName: 'Verify Deployment'
+          inputs:
+            azureSubscription: '${{ parameters.serviceConnectionName }}'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              RESOURCE_GROUP_NAME="$(ResourceGroupName)"
+              CONTAINER_NAME="xrmmockupapi-$(echo ${{ parameters.environment }} | tr '[:upper:]' '[:lower:]')"
+              
+              # Wait for container to be in running state
+              echo "Waiting for container to start..."
+              sleep 30
+              
+              # Check container status
+              STATUS=$(az container show --resource-group "$RESOURCE_GROUP_NAME" --name "$CONTAINER_NAME" --query instanceView.state -o tsv)
+              echo "Container status: $STATUS"
+              
+              if [ "$STATUS" != "Running" ]; then
+                echo "Container failed to start. Checking logs..."
+                az container logs --resource-group "$RESOURCE_GROUP_NAME" --name "$CONTAINER_NAME"
+                exit 1
+              fi
+              
+              # Test health endpoint
+              FQDN=$(az container show --resource-group "$RESOURCE_GROUP_NAME" --name "$CONTAINER_NAME" --query ipAddress.fqdn -o tsv)
+              echo "Testing health endpoint..."
+              
+              # Wait a bit more for the application to fully start
+              sleep 30
+              
+              # Test the health endpoint with retry
+              for i in {1..5}; do
+                if curl -f "http://$FQDN:8080/health"; then
+                  echo "Health check passed!"
+                  break
+                elif [ $i -eq 5 ]; then
+                  echo "Health check failed after 5 attempts"
+                  az container logs --resource-group "$RESOURCE_GROUP_NAME" --name "$CONTAINER_NAME"
+                  exit 1
+                else
+                  echo "Health check attempt $i failed, retrying in 10 seconds..."
+                  sleep 10
+                fi
+              done
