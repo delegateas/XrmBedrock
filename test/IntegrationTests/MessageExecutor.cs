@@ -15,7 +15,8 @@ public class MessageExecutor
     public MessageExecutor()
     {
         messages = new List<AwaitingMessage>();
-        // Add your Azure Function references here
+
+        // TODO: Add your Azure Function references here
     }
 
     public void StoreMessage(AwaitingMessage message) => messages.Add(message);
@@ -24,14 +25,7 @@ public class MessageExecutor
     {
         foreach (var message in messages)
         {
-            // Add your queue message handling logic here
-            // Example:
-            // switch (message.QueueName)
-            // {
-            //     case "YourQueueName":
-            //         await YourFunction.Run(GetMessage<YourMessageType>(message.SerializedMessage));
-            //         break;
-            // }
+            // TODO: Add your queue message handling logic here
             await Task.CompletedTask;
         }
 
@@ -40,6 +34,8 @@ public class MessageExecutor
 
     protected static T GetMessage<T>(string serializedMessage)
     {
+        ArgumentNullException.ThrowIfNull(serializedMessage);
+
         var message =
             JsonConvert.DeserializeObject<T>(
                Encoding.UTF8.GetString(

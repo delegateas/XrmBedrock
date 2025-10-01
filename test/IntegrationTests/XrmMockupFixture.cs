@@ -31,8 +31,8 @@ public class XrmMockupFixture
         var settings = new XrmMockupSettings
         {
             BasePluginTypes = new Type[] { typeof(Plugin) },
-            // Add your custom API types here:
-            // BaseCustomApiTypes = new Tuple<string, Type>[] { new("prefix", typeof(YourCustomAPI)) },
+
+            // TODO: Add your custom API types here
             EnableProxyTypes = true,
             IncludeAllWorkflows = false,
             MetadataDirectoryPath = "..\\..\\..\\..\\SharedTest\\MetadataGenerated",
@@ -44,11 +44,7 @@ public class XrmMockupFixture
         MessageExecutor = new MessageExecutor();
         Server = WireMockServer.Start();
 
-        // Add your queue endpoints here:
-        // AddQueueEndpoints(new List<string>
-        // {
-        //     "YourQueueName",
-        // });
+        // TODO: Add your queue endpoints here
 
         // Create any data needed for the tests
         var envVarDefinition = new EnvironmentVariableDefinition
@@ -68,8 +64,11 @@ public class XrmMockupFixture
     /// <summary>
     /// Catches any messages send to the queues and stores them in the MessageExecutor
     /// </summary>
+    /// <param name="queuenames">The queue names to register endpoints for</param>
     protected void AddQueueEndpoints(IEnumerable<string> queuenames)
     {
+        ArgumentNullException.ThrowIfNull(queuenames);
+
         foreach (var queuename in queuenames)
         {
             Server
