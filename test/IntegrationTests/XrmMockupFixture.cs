@@ -51,12 +51,12 @@ public class XrmMockupFixture
         });
 
         // Create any data needed for the tests
-        var envVarDefinition = new EnvironmentVariableDefinition()
+        var envVarDefinition = new EnvironmentVariableDefinition
         {
             SchemaName = "mgs_AzureStorageAccountUrl",
         };
         envVarDefinition.Id = AdminDao.Create(envVarDefinition);
-        AdminDao.Create(new EnvironmentVariableValue()
+        AdminDao.Create(new EnvironmentVariableValue
         {
             EnvironmentVariableDefinitionId = envVarDefinition.ToEntityReference(),
             Value = Server.Url,
@@ -79,7 +79,7 @@ public class XrmMockupFixture
                 .WithCallback(req =>
                 {
                     MessageExecutor.StoreMessage(new AwaitingMessage(queuename, req.Body ?? string.Empty));
-                    return new ResponseMessage()
+                    return new ResponseMessage
                     {
                         StatusCode = System.Net.HttpStatusCode.Created,
                     };

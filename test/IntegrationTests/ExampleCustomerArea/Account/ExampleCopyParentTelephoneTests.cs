@@ -13,11 +13,11 @@ public class ExampleCopyParentTelephoneTests : TestBase
     public void Should_Copy_Telephone1_From_Parent_When_Not_Set()
     {
         // Arrange
-        var parentAccount = Producer.ProduceValidAccount(new Account() { Telephone1 = "+1234567890", });
+        var parentAccount = Producer.ProduceValidAccount(new Account { Telephone1 = "+1234567890", });
 
         // Act
         // Telephone1 is not set on the new account
-        var newAccount = Producer.ProduceValidAccount(new Account() { ParentAccountId = parentAccount.ToEntityReference(), });
+        var newAccount = Producer.ProduceValidAccount(new Account { ParentAccountId = parentAccount.ToEntityReference(), });
 
         // Assert
         var createdAccountTelephone = AdminDao.Retrieve<Account, string>(newAccount.Id, a => a.Telephone1);
@@ -28,11 +28,11 @@ public class ExampleCopyParentTelephoneTests : TestBase
     public void Should_Not_Copy_Telephone1_From_Parent_When_Already_Set()
     {
         // Arrange
-        var parentAccount = Producer.ProduceValidAccount(new Account() { Telephone1 = "+1234567890", });
+        var parentAccount = Producer.ProduceValidAccount(new Account { Telephone1 = "+1234567890", });
 
         // Act
         // Telephone1 is set on the new account
-        var newAccount = Producer.ProduceValidAccount(new Account() { ParentAccountId = parentAccount.ToEntityReference(), Telephone1 = "+0987654321", });
+        var newAccount = Producer.ProduceValidAccount(new Account { ParentAccountId = parentAccount.ToEntityReference(), Telephone1 = "+0987654321", });
 
         // Assert
         var createdAccountTelephone = AdminDao.Retrieve<Account, string>(newAccount.Id, a => a.Telephone1);

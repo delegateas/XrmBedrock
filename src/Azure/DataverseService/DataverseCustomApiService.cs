@@ -16,7 +16,7 @@ public class DataverseCustomApiService : IDataverseCustomApiService
 
     public Task CreateTransactions(CreateTransactionsRequest request) => dao.ExecuteAsync(new OrganizationRequest("mgs_CreateTransactions")
     {
-        Parameters = new ParameterCollection()
+        Parameters = new ParameterCollection
         {
             new KeyValuePair<string, object>("Payload", JsonConvert.SerializeObject(request)),
         },

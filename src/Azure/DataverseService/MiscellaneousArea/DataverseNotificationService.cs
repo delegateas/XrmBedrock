@@ -22,7 +22,7 @@ public class DataverseNotificationService : IDataverseNotificationService
         var record = client.Retrieve(recordRef.LogicalName, recordRef.Id, new ColumnSet("ownerid"));
         var owner = record.GetAttributeValue<EntityReference>("ownerid");
 
-        var request = new OrganizationRequest()
+        var request = new OrganizationRequest
         {
             RequestName = "SendAppNotification",
             Parameters = new ParameterCollection

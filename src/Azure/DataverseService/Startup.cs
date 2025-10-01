@@ -36,7 +36,9 @@ public static class Startup
 
         logger.LogTrace("Using managed identity to connect to Dataverse.");
         if (clientId != null)
+        {
             logger.LogInformation($"Client ID found: {clientId}");
+        }
 
         var dataverseUrl = configuration.GetValue<string>("DataverseUrl");
         var cache = provider.GetService<IMemoryCache>();

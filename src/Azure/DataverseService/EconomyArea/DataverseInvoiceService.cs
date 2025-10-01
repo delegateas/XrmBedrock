@@ -40,7 +40,7 @@ public class DataverseInvoiceService : IDataverseInvoiceService
         var groupedTransactions = ungroupedTransactions.GroupBy(x => x.ContactId);
         foreach (var group in groupedTransactions)
         {
-            var invoice = new mgs_Invoice()
+            var invoice = new mgs_Invoice
             {
                 mgs_InvoiceCollection = new EntityReference(mgs_InvoiceCollection.EntityLogicalName, invoiceCollectionId),
                 mgs_Contact = new EntityReference(Contact.EntityLogicalName, group.Key),

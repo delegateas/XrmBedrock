@@ -25,7 +25,7 @@ internal sealed class EnvironmentConfig
 
     public static EnvironmentConfig Create(Environment env)
     {
-        return new EnvironmentConfig()
+        return new EnvironmentConfig
         {
             CurrentEnvironment = env,
             Dao = GetDao(env),

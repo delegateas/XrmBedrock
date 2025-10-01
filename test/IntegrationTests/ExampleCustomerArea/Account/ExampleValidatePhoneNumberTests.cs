@@ -25,9 +25,13 @@ public class ExampleValidatePhoneNumberTests : TestBase
         // Assert
         var fetchedPhoneNumber = AdminDao.Retrieve<Account, string>(accountId, a => a.Telephone1);
         if (string.IsNullOrEmpty(phoneNumber))
+        {
             fetchedPhoneNumber.Should().BeNull();
+        }
         else
+        {
             fetchedPhoneNumber.Should().Be(phoneNumber);
+        }
     }
 
     [Theory]

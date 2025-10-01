@@ -14,10 +14,10 @@ public class InvoiceGenerationTests : TestBase
     public async Task TestInvoiceGeneration()
     {
         // Create a subscription using the producer with specific values
-        var subscription = Producer.ProduceValidSubscription(new mgs_Subscription()
+        var subscription = Producer.ProduceValidSubscription(new mgs_Subscription
         {
             mgs_StartDate = DateTime.Now.AddMonths(-1),
-            mgs_Product = Producer.ProduceValidProduct(new mgs_Product()
+            mgs_Product = Producer.ProduceValidProduct(new mgs_Product
             {
                 mgs_BillingInterval = mgs_billinginterval.Monthly,
             }).ToEntityReference(),

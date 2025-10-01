@@ -70,7 +70,9 @@ public class ExampleCustomerService // Missing an interface here? We actually do
         {
             var parentAccountPhone = adminDao.Retrieve<Account, string>(targetAccount.ParentAccountId.Id, a => a.Telephone1);
             if (!string.IsNullOrWhiteSpace(parentAccountPhone))
+            {
                 targetAccount.Telephone1 = parentAccountPhone;
+            }
         }
     }
 

@@ -21,7 +21,7 @@ public class ExampleValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var task = Producer.ConstructValidTask(new Task()
+        var task = Producer.ConstructValidTask(new Task
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),
@@ -39,7 +39,7 @@ public class ExampleValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var task = Producer.ConstructValidTask(new Task()
+        var task = Producer.ConstructValidTask(new Task
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),
@@ -58,7 +58,7 @@ public class ExampleValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var task = Producer.ConstructValidTask(new Task()
+        var task = Producer.ConstructValidTask(new Task
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),
@@ -77,7 +77,7 @@ public class ExampleValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var task = Producer.ConstructValidTask(new Task()
+        var task = Producer.ConstructValidTask(new Task
         {
             ScheduledStart = DateTime.Now.Date.AddHours(10),
             RegardingObjectId = account.ToEntityReference(),
@@ -96,7 +96,7 @@ public class ExampleValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var task = Producer.ConstructValidTask(new Task()
+        var task = Producer.ConstructValidTask(new Task
         {
             ScheduledStart = DateTime.Now.Date.AddHours(3),
             RegardingObjectId = account.ToEntityReference(),
