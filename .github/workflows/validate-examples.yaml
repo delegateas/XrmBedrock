@@ -1,0 +1,88 @@
+name: Validate Example Branches
+
+on:
+  push:
+    branches:
+      - main
+      - 'examples/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-framework:
+    if: github.ref == 'refs/heads/main' || github.base_ref == 'main'
+    runs-on: windows-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+      - name: Test
+        run: dotnet test --no-build --configuration Release
+
+  sync-examples:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: validate-framework
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [examples/starter]
+    runs-on: windows-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge main into example branch
+        run: |
+          git fetch origin main
+          git merge origin/main --no-edit
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build example
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test example
+        run: dotnet test --no-build --configuration Release
+
+      - name: Push merged branch
+        run: git push origin ${{ matrix.branch }}
+
+  validate-example-changes:
+    if: startsWith(github.ref, 'refs/heads/examples/')
+    runs-on: windows-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+      - name: Test
+        run: dotnet test --no-build --configuration Release
