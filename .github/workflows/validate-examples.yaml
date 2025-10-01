@@ -19,6 +19,10 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.x
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Add signtool.exe to path for build
         run: |
           $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\" `
@@ -73,6 +77,11 @@ jobs:
         with:
           dotnet-version: 8.x
 
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
       - name: Add signtool.exe to path for build
         run: |
           $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\" `
@@ -113,6 +122,10 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.x
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Add signtool.exe to path for build
         run: |
           $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\" `
