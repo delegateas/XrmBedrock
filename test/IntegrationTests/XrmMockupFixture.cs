@@ -1,7 +1,6 @@
 using Azure.DataverseService.Foundation.Dao;
 using Dataverse.Plugins;
 using DG.Tools.XrmMockup;
-using SharedDomain;
 using SharedTest;
 using WireMock;
 using WireMock.RequestBuilders;
@@ -32,7 +31,8 @@ public class XrmMockupFixture
         var settings = new XrmMockupSettings
         {
             BasePluginTypes = new Type[] { typeof(Plugin) },
-            BaseCustomApiTypes = new Tuple<string, Type>[] { new("mgs", typeof(CustomAPI)) },
+            // Add your custom API types here:
+            // BaseCustomApiTypes = new Tuple<string, Type>[] { new("prefix", typeof(YourCustomAPI)) },
             EnableProxyTypes = true,
             IncludeAllWorkflows = false,
             MetadataDirectoryPath = "..\\..\\..\\..\\SharedTest\\MetadataGenerated",
@@ -41,14 +41,14 @@ public class XrmMockupFixture
         xrm = XrmMockup365.GetInstance(settings);
         AdminDao = new DataverseAccessObjectAsync(xrm.GetAdminService(), Substitute.For<ILogger>());
         Producer = new DataProducer(AdminDao);
-        MessageExecutor = new MessageExecutor(AdminDao);
+        MessageExecutor = new MessageExecutor();
         Server = WireMockServer.Start();
 
-        // Make sure all queues are added here
-        AddQueueEndpoints(new List<string>
-        {
-            QueueNames.CreateInvoicesQueue,
-        });
+        // Add your queue endpoints here:
+        // AddQueueEndpoints(new List<string>
+        // {
+        //     "YourQueueName",
+        // });
 
         // Create any data needed for the tests
         var envVarDefinition = new EnvironmentVariableDefinition
@@ -68,7 +68,7 @@ public class XrmMockupFixture
     /// <summary>
     /// Catches any messages send to the queues and stores them in the MessageExecutor
     /// </summary>
-    private void AddQueueEndpoints(IEnumerable<string> queuenames)
+    protected void AddQueueEndpoints(IEnumerable<string> queuenames)
     {
         foreach (var queuename in queuenames)
         {
