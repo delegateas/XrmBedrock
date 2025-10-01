@@ -13,13 +13,17 @@ jobs:
   validate-framework:
     if: github.ref == 'refs/heads/main' || github.base_ref == 'main'
     runs-on: windows-latest
-    environment: dev
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.x
+      - name: Copy Setup files
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+          ./Setup/copyInitialSetup.ps1
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -35,7 +39,6 @@ jobs:
       matrix:
         branch: [examples/starter]
     runs-on: windows-latest
-    environment: dev
     steps:
       - uses: actions/checkout@v4
         with:
@@ -58,6 +61,12 @@ jobs:
         with:
           dotnet-version: 8.x
 
+      - name: Copy Setup files
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+          ./Setup/copyInitialSetup.ps1
+
       - name: Restore dependencies
         run: dotnet restore
 
@@ -73,13 +82,17 @@ jobs:
   validate-example-changes:
     if: startsWith(github.ref, 'refs/heads/examples/')
     runs-on: windows-latest
-    environment: dev
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.x
+      - name: Copy Setup files
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+          ./Setup/copyInitialSetup.ps1
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
