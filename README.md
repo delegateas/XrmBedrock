@@ -1,4 +1,5 @@
 # XrmBedrock
+<!-- Testing CI validation for example branches -->
 This project serves as a template for Dataverse projects. This project aims to make it easy to work with Dataverse and Azure together. This project shows that modern development paradigms are applicable to Dataverse.
 
 This template will be updated. The current list is as follows
