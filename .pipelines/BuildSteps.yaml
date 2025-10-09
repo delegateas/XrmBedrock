@@ -1,45 +1,45 @@
 steps:
   - task: DotNetCoreCLI@2
-    displayName: "dotnet restore"
+    displayName: 'dotnet restore'
     inputs:
       command: restore
 
   - task: UseDotNet@2
-    displayName: "Use .Net 8"
+    displayName: 'Use .Net 8'
     inputs:
       version: 8.x
 
   - task: PowerShell@2
-    displayName: "Add ClickOnce SignTool to PATH"
+    displayName: 'Add ClickOnce SignTool to PATH'
     inputs:
-      targetType: "inline"
+      targetType: 'inline'
       script: Write-Host "##vso[task.setvariable variable=PATH;]${env:PATH};`"C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool`";`"C:\Program Files\Microsoft SDKs\ClickOnce\SignTool`"";
 
   - script: '"$(FsiPath)" "$(DaxifPath)/GenerateCSharpContext.fsx" $(AuthParams)'
-    displayName: "Update C# context"
+    displayName: 'Update C# context'
 
   - script: '"$(FsiPath)" "$(DaxifPath)/GenerateTypeScriptContext.fsx" $(AuthParams)'
-    displayName: "Update TS context"
+    displayName: 'Update TS context'
 
   - task: DotNetCoreCLI@2
-    displayName: "dotnet build"
+    displayName: 'dotnet build'
     inputs:
       command: build
       arguments: --no-restore --configuration $(BuildConfiguration)
 
   - task: DotNetCoreCLI@2
-    displayName: "dotnet test (all in /test)"
+    displayName: 'dotnet test (all in /test)'
     inputs:
       command: test
-      projects: |
+      projects: | 
         Azure/test/*/*.csproj
         Dataverse/test/*/*.csproj
-      arguments: "--no-build --configuration $(BuildConfiguration)"
+      arguments: '--no-build --configuration $(BuildConfiguration)'
 
   - task: PowerShell@2
     displayName: Validate Main Bicep file
     inputs:
       targetType: inline
-      script: "az bicep build --file $(System.DefaultWorkingDirectory)/Infrastructure/main.bicep"
+      script: 'az bicep build --file $(System.DefaultWorkingDirectory)/Infrastructure/main.bicep'
 
   - template: Azure/Validate-DIF-Template.yml
