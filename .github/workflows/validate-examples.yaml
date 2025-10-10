@@ -15,31 +15,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x
-      - name: Setup Node 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Add signtool.exe to path for build
-        run: |
-          $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\" `
-                        -Recurse -Filter signtool.exe `
-                        | Where-Object { $_.FullName -match '\\x64\\' } `
-                        | Sort-Object LastWriteTime -Descending `
-                        | Select-Object -First 1 -ExpandProperty DirectoryName
-          if (-not $signtool) {
-            throw "signtool.exe (x64) was not found!"
-          }
-          echo "PATH=$signtool;${{ env.PATH }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "Located signtool at: $PATH"
-      - name: Copy Setup files
-        shell: pwsh
-        run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-          ./Setup/copyInitialSetup.ps1
+      - uses: ./.github/actions/setup-build-env
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -74,34 +50,7 @@ jobs:
           git fetch origin main
           git merge origin/main --no-edit
 
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x
-
-      - name: Setup Node 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Add signtool.exe to path for build
-        run: |
-          $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\" `
-                        -Recurse -Filter signtool.exe `
-                        | Where-Object { $_.FullName -match '\\x64\\' } `
-                        | Sort-Object LastWriteTime -Descending `
-                        | Select-Object -First 1 -ExpandProperty DirectoryName
-          if (-not $signtool) {
-            throw "signtool.exe (x64) was not found!"
-          }
-          echo "PATH=$signtool;${{ env.PATH }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "Located signtool at: $PATH"
-
-      - name: Copy Setup files
-        shell: pwsh
-        run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-          ./Setup/copyInitialSetup.ps1
+      - uses: ./.github/actions/setup-build-env
 
       - name: Restore dependencies
         run: dotnet restore
@@ -121,31 +70,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x
-      - name: Setup Node 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Add signtool.exe to path for build
-        run: |
-          $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\" `
-                        -Recurse -Filter signtool.exe `
-                        | Where-Object { $_.FullName -match '\\x64\\' } `
-                        | Sort-Object LastWriteTime -Descending `
-                        | Select-Object -First 1 -ExpandProperty DirectoryName
-          if (-not $signtool) {
-            throw "signtool.exe (x64) was not found!"
-          }
-          echo "PATH=$signtool;${{ env.PATH }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "Located signtool at: $PATH"
-      - name: Copy Setup files
-        shell: pwsh
-        run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-          ./Setup/copyInitialSetup.ps1
+      - uses: ./.github/actions/setup-build-env
       - name: Restore dependencies
         run: dotnet restore
       - name: Build

@@ -18,18 +18,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-
-    # Copy Setup files to the correct location
-    - name: Copy Setup files
-      shell: pwsh
-      run: |
-        Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-        ./Setup/copyInitialSetup.ps1
+    - uses: ./.github/actions/setup-build-env
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe

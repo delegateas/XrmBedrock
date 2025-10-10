@@ -21,28 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x
-
-      - name: Add signtool.exe to path for build
-        run: |
-          $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\" `
-                        -Recurse -Filter signtool.exe `
-                        | Where-Object { $_.FullName -match '\\x64\\' } `
-                        | Sort-Object LastWriteTime -Descending `
-                        | Select-Object -First 1 -ExpandProperty DirectoryName
-          if (-not $signtool) {
-            throw "signtool.exe (x64) was not found!"
-          }
-          echo "PATH=$signtool;${{ env.PATH }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "Located signtool at: $PATH"
-
-      - name: Setup Node 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - uses: ./.github/actions/setup-build-env
 
       - name: Restore dependencies
         run: dotnet restore
