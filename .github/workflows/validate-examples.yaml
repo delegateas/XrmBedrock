@@ -63,11 +63,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure git
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Merge main into example branch
+        shell: bash
         run: |
           git fetch origin main
           git merge origin/main --no-edit
@@ -111,6 +113,7 @@ jobs:
         run: dotnet test --no-build --configuration Release
 
       - name: Push merged branch
+        shell: bash
         run: git push origin ${{ matrix.branch }}
 
   validate-example-changes:
