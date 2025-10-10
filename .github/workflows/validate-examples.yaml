@@ -23,6 +23,43 @@ jobs:
       - name: Test
         run: dotnet test --no-build --configuration Release
 
+  validate-examples-against-pr:
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    runs-on: windows-latest
+    needs: validate-framework
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [examples/starter]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+
+      - name: Configure git
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch PR branch and merge into example
+        shell: bash
+        run: |
+          git fetch origin ${{ github.head_ref }}
+          git merge origin/${{ github.head_ref }} --no-edit
+
+      - uses: ./.github/actions/setup-build-env
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build example with PR changes
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test example with PR changes
+        run: dotnet test --no-build --configuration Release
+
   sync-examples:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: validate-framework
