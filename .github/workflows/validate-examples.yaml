@@ -4,14 +4,12 @@ on:
   push:
     branches:
       - main
-      - 'examples/**'
   pull_request:
     branches:
       - main
 
 jobs:
   validate-framework:
-    if: github.ref == 'refs/heads/main' || github.base_ref == 'main'
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,14 +21,29 @@ jobs:
       - name: Test
         run: dotnet test --no-build --configuration Release
 
-  validate-examples-against-pr:
-    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+  discover-examples:
+    runs-on: ubuntu-latest
+    outputs:
+      branches: ${{ steps.get-branches.outputs.branches }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get example branches
+        id: get-branches
+        run: |
+          branches=$(git ls-remote --heads origin | grep "refs/heads/examples/" | sed 's|.*refs/heads/||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "branches=$branches" >> $GITHUB_OUTPUT
+          echo "Found branches: $branches"
+
+  validate-examples:
+    if: always()
     runs-on: windows-latest
-    needs: validate-framework
+    needs: [validate-framework, discover-examples]
     strategy:
       fail-fast: false
       matrix:
-        branch: [examples/starter]
+        branch: ${{ fromJson(needs.discover-examples.outputs.branches) }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,49 +56,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Fetch PR branch and merge into example
+      - name: Merge changes into example
         shell: bash
         run: |
-          git fetch origin ${{ github.head_ref }}
-          git merge origin/${{ github.head_ref }} --no-edit
-
-      - uses: ./.github/actions/setup-build-env
-
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build example with PR changes
-        run: dotnet build --no-restore --configuration Release
-
-      - name: Test example with PR changes
-        run: dotnet test --no-build --configuration Release
-
-  sync-examples:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: validate-framework
-    strategy:
-      fail-fast: false
-      matrix:
-        branch: [examples/starter]
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ matrix.branch }}
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Configure git
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Merge main into example branch
-        shell: bash
-        run: |
-          git fetch origin main
-          git merge origin/main --no-edit
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            git fetch origin ${{ github.head_ref }}
+            git merge origin/${{ github.head_ref }} --no-edit
+          else
+            git fetch origin main
+            git merge origin/main --no-edit
+          fi
 
       - uses: ./.github/actions/setup-build-env
 
@@ -99,18 +79,6 @@ jobs:
         run: dotnet test --no-build --configuration Release
 
       - name: Push merged branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         shell: bash
         run: git push origin ${{ matrix.branch }}
-
-  validate-example-changes:
-    if: startsWith(github.ref, 'refs/heads/examples/')
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-build-env
-      - name: Restore dependencies
-        run: dotnet restore
-      - name: Build
-        run: dotnet build --no-restore --configuration Release
-      - name: Test
-        run: dotnet test --no-build --configuration Release
