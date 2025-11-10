@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace DataverseLogic.Azure;
 
-public class AzureService : IAzureService
+public class AzureService
 {
 #pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
     private readonly AzureConfig azureConfig;

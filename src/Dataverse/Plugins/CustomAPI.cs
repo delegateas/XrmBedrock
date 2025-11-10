@@ -1,8 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.ServiceModel;
-using Microsoft.Xrm.Sdk;
-
 // MainCustomAPIConfig      : UniqueName, IsFunction, EnabledForWorkflow, AllowedCustomProcessingStepType, BindingType, BoundEntityLogicalName
 // ExtendedCustomAPIConfig  : PluginType, OwnerId, OwnerType, IsCustomizable, IsPrivate, ExecutePrivilegeName, Description
 // RequestParameterConfig   : Name, UniqueName, DisplayName, IsCustomizable, IsOptional, LogicalEntityName, Type
@@ -11,11 +6,11 @@ using MainCustomAPIConfig = System.Tuple<string, bool, int, int, int, string>;
 using ExtendedCustomAPIConfig = System.Tuple<string, string, string, bool, bool, string, string>;
 using RequestParameterConfig = System.Tuple<string, string, string, bool, bool, string, int>; // TODO: Add description maybe
 using ResponsePropertyConfig = System.Tuple<string, string, string, bool, string, int>; // TODO
+using Microsoft.Xrm.Sdk;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using DataverseLogic;
-using SharedDataverseLogic;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.ServiceModel;
 
 namespace DataverseRegistration;
 

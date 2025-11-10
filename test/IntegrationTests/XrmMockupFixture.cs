@@ -1,88 +1,34 @@
-using Azure.DataverseService.Foundation.Dao;
-using Dataverse.Plugins;
+using DataverseRegistration;
 using DG.Tools.XrmMockup;
-using SharedTest;
-using WireMock;
-using WireMock.RequestBuilders;
-using WireMock.Server;
-using XrmBedrock.SharedContext;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace IntegrationTests;
 
 public class XrmMockupFixture
 {
-    public const string SnapshotName = "ConfigBase";
+    private static readonly object SettingsLock = new object();
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private static XrmMockupSettings sharedSettings;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
-    private readonly XrmMockup365 xrm;
-
-    public XrmMockup365 Xrm => xrm;
-
-    public DataverseAccessObjectAsync AdminDao { get; private set; }
-
-    public DataProducer Producer { get; private set; }
-
-    public WireMockServer Server { get; private set; }
-
-    public MessageExecutor MessageExecutor { get; private set; }
+#pragma warning disable CA1822 // Mark members as static
+    public XrmMockupSettings Settings => sharedSettings;
+#pragma warning restore CA1822 // Mark members as static
 
     public XrmMockupFixture()
     {
-        var settings = new XrmMockupSettings
+        lock (SettingsLock)
         {
-            BasePluginTypes = new Type[] { typeof(Plugin) },
-
-            // TODO: Add your custom API types here
-            EnableProxyTypes = true,
-            IncludeAllWorkflows = false,
-            MetadataDirectoryPath = "..\\..\\..\\..\\SharedTest\\MetadataGenerated",
-        };
-
-        xrm = XrmMockup365.GetInstance(settings);
-        AdminDao = new DataverseAccessObjectAsync(xrm.GetAdminService(), Substitute.For<ILogger>());
-        Producer = new DataProducer(AdminDao);
-        MessageExecutor = new MessageExecutor();
-        Server = WireMockServer.Start();
-
-        // TODO: Add your queue endpoints here
-
-        // Create any data needed for the tests
-        var envVarDefinition = new EnvironmentVariableDefinition
-        {
-            SchemaName = "mgs_AzureStorageAccountUrl",
-        };
-        envVarDefinition.Id = AdminDao.Create(envVarDefinition);
-        AdminDao.Create(new EnvironmentVariableValue
-        {
-            EnvironmentVariableDefinitionId = envVarDefinition.ToEntityReference(),
-            Value = Server.Url,
-        });
-
-        Xrm.TakeSnapshot(SnapshotName);
-    }
-
-    /// <summary>
-    /// Catches any messages send to the queues and stores them in the MessageExecutor
-    /// </summary>
-    /// <param name="queuenames">The queue names to register endpoints for</param>
-    protected void AddQueueEndpoints(IEnumerable<string> queuenames)
-    {
-        ArgumentNullException.ThrowIfNull(queuenames);
-
-        foreach (var queuename in queuenames)
-        {
-            Server
-                .Given(Request.Create().WithPath($"/{queuename}/messages").UsingPost())
-                .AtPriority(100)
-                .RespondWith(WireMock.ResponseBuilders.Response.Create()
-                .WithCallback(req =>
+            if (sharedSettings == null)
+            {
+                sharedSettings = new XrmMockupSettings
                 {
-                    MessageExecutor.StoreMessage(new AwaitingMessage(queuename, req.Body ?? string.Empty));
-                    return new ResponseMessage
-                    {
-                        StatusCode = System.Net.HttpStatusCode.Created,
-                    };
-                }));
+                    BasePluginTypes = new Type[] { typeof(Plugin) },
+                    BaseCustomApiTypes = new Tuple<string, Type>[] { new("demo", typeof(CustomAPI)) },
+                    EnableProxyTypes = true,
+                    IncludeAllWorkflows = false,
+                    MetadataDirectoryPath = "..\\..\\..\\..\\SharedTest\\MetadataGenerated",
+                };
+            }
         }
     }
 }

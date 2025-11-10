@@ -1,7 +1,7 @@
 using DataverseLogic.Utility;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Dataverse.Plugins.Utility;
+namespace DataverseRegistration.Utility;
 
 /// <summary>
 /// This plugin is responsible for autopublishing duplicate detection rules on PublishAll.

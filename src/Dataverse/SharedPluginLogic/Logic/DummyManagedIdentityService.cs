@@ -1,6 +1,6 @@
 using Microsoft.Xrm.Sdk;
 
-namespace Dataverse.Plugins;
+namespace DataverseLogic;
 
 internal sealed class DummyManagedIdentityService : IManagedIdentityService
 {
