@@ -1,15 +1,11 @@
 using SharedContext.Dao;
+using XrmBedrock.SharedContext;
 
 namespace SharedTest;
 
-/// <summary>
-/// Helper for producing data for tests.
-/// </summary>
-public partial class DataProducer
+public class DataProducer
 {
-#pragma warning disable S4487 // Unread "private" fields should be removed
     private readonly IDataverseAccessObject adminDao;
-#pragma warning restore S4487 // Unread "private" fields should be removed
 
     public DataProducer(IDataverseAccessObject adminDao)
     {
@@ -37,4 +33,10 @@ public partial class DataProducer
             return GetUniqueNumber();
         }
     }
+
+    internal DuplicateRule ProduceValidDuplicateRule(DuplicateRule? duplicateRule) =>
+        adminDao.Producer(duplicateRule, e =>
+        {
+            e.EnsureValue(x => x.Name, $"Test Duplicate Rule {GetUniqueNumber()}");
+        });
 }

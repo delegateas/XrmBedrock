@@ -15,7 +15,7 @@ public class AutopublishDuplicateRulesOnPublishAll : Plugin
         RegisterPluginStep<AnyEntity>(
             EventOperation.PublishAll,
             ExecutionStage.PostOperation,
-            provider => provider.GetRequiredService<IDuplicateRuleService>().AutopublishRules())
+            provider => provider.GetRequiredService<DuplicateRuleService>().AutopublishRules())
             .SetExecutionMode(ExecutionMode.Asynchronous);
     }
 }

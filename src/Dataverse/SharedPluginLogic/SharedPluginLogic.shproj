@@ -21,7 +21,6 @@
     <Compile Include="Logic\StaticExtensions.cs" />
     <Compile Include="Logic\Utility\DuplicateRuleService.cs" />
     <Compile Include="Logic\Utility\EntityUtilityService.cs" />
-    <Compile Include="Logic\Utility\IDuplicateRuleService.cs" />
     <Compile Include="Logic\_Dao\AdminDataverseAccessObjectService.cs" />
     <Compile Include="Logic\_Dao\UserDataverseAccessObjectService.cs" />
     <Compile Include="Registrations\DataverseLogger.cs" />

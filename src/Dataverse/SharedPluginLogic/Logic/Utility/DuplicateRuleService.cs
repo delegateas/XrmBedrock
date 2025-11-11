@@ -6,7 +6,7 @@ using XrmBedrock.SharedContext;
 
 namespace DataverseLogic.Utility;
 
-public class DuplicateRuleService : IDuplicateRuleService
+public class DuplicateRuleService
 {
     private readonly ILogger logger;
     private readonly IAdminDataverseAccessObjectService adminDao;
