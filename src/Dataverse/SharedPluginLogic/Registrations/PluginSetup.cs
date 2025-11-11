@@ -1,6 +1,7 @@
 using DataverseLogic;
 using DataverseLogic.ActivityArea;
 using DataverseLogic.Azure;
+using DataverseLogic.CustomerArea;
 using DataverseLogic.Utility;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -30,6 +31,7 @@ internal static class PluginSetup
         // Dataverse Logic (lexicografical order please)
         // Add your custom service registrations here
         services.AddActivityArea();
+        services.AddCustomerArea();
     }
 
     internal static ServiceProvider BuildServiceProvider(this IServiceProvider serviceProvider, string className)

@@ -1,4 +1,3 @@
-using DG.Tools.XrmMockup;
 using Microsoft.Xrm.Sdk;
 using Task = XrmBedrock.SharedContext.Task;
 
@@ -33,14 +32,13 @@ public class ValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var otherUser = CreateUser(Guid.NewGuid(), Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator);
 
         // Act
         var act = () => UserDao.Producer(new Task
         {
             RegardingObjectId = account.ToEntityReference(),
             ScheduledStart = new DateTime(2025, 1, 1, 3, 0, 0, DateTimeKind.Utc),
-            OwnerId = otherUser.ToEntityReference(),
+            OwnerId = OtherUserReference,
         });
 
         // Assert
@@ -52,14 +50,13 @@ public class ValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var otherUser = CreateUser(Guid.NewGuid(), Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator);
 
         // Act
         var act = () => UserDao.Producer(new Task
         {
             RegardingObjectId = account.ToEntityReference(),
             ScheduledStart = new DateTime(2025, 1, 1, 10, 0, 0, DateTimeKind.Utc),
-            OwnerId = otherUser.ToEntityReference(),
+            OwnerId = OtherUserReference,
         });
 
         // Assert
@@ -77,12 +74,10 @@ public class ValidateTaskTests : TestBase
             ScheduledStart = new DateTime(2025, 1, 1, 3, 0, 0, DateTimeKind.Utc),
         });
 
-        var otherUser = CreateUser(Guid.NewGuid(), Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator);
-
         // Act
         var act = () => UserDao.Update(new Task(task.Id)
         {
-            OwnerId = otherUser.ToEntityReference(),
+            OwnerId = OtherUserReference,
         });
 
         // Assert

@@ -21,6 +21,7 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
     private readonly WireMockServer server;
     private readonly IDataverseAccessObject userDao;
     private readonly Guid userIdOfUserDao;
+    private readonly EntityReference otherUserReference;
 
     protected XrmMockup365 Xrm => xrm;
 
@@ -39,6 +40,8 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
 
     protected Guid UserIdOfUserDao => userIdOfUserDao;
 
+    protected EntityReference OtherUserReference => otherUserReference;
+
     public TestBase(XrmMockupFixture fixture)
     {
         ArgumentNullException.ThrowIfNull(fixture);
@@ -52,6 +55,9 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         CreateUser(userIdOfUserDao, Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator);
         var userService = Xrm.CreateOrganizationService(userIdOfUserDao);
         userDao = new DataverseAccessObject(userService, logger);
+
+        var otherUser = CreateUser(Guid.NewGuid(), Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator);
+        otherUserReference = otherUser.ToEntityReference();
 
         adminDao = new DataverseAccessObjectAsync(xrm.GetAdminService(), Substitute.For<ILogger>());
         producer = new DataProducer(AdminDao);
