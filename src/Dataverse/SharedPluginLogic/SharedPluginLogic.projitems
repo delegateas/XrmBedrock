@@ -21,7 +21,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logic\StaticExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Utility\DuplicateRuleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Utility\EntityUtilityService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Logic\Utility\IDuplicateRuleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\_Dao\AdminDataverseAccessObjectService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\_Dao\UserDataverseAccessObjectService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registrations\DataverseLogger.cs" />

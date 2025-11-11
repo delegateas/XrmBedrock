@@ -17,7 +17,7 @@ internal static class PluginSetup
         services.AddAzureConfig();
 
         // Utility
-        services.AddScoped<IDuplicateRuleService, DuplicateRuleService>();
+        services.AddScoped<DuplicateRuleService>();
 
         // Dao objects
         services.AddScoped<IAdminDataverseAccessObjectService, AdminDataverseAccessObjectService>();
