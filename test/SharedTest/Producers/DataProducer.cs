@@ -1,12 +1,15 @@
 using SharedContext.Dao;
-using XrmBedrock.SharedContext;
-using Task = XrmBedrock.SharedContext.Task;
 
 namespace SharedTest;
 
-public class DataProducer
+/// <summary>
+/// Helper for producing data for tests.
+/// </summary>
+public partial class DataProducer
 {
+#pragma warning disable S4487 // Unread "private" fields should be removed
     private readonly IDataverseAccessObject adminDao;
+#pragma warning restore S4487 // Unread "private" fields should be removed
 
     public DataProducer(IDataverseAccessObject adminDao)
     {
