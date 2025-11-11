@@ -1,49 +1,63 @@
 ---
-description: Main entry point for AI-based development and developer reference
-globs: 
+description: Quick start guide for AI assistants working on this codebase
+globs:
 alwaysApply: true
 ---
 
-# 🚨 CRITICAL: Read AI Rules First
+# Development Guide
 
-**BEFORE making ANY code changes, you MUST read and follow the rules in the `.ai_rules` folder.**
+This is a .NET solution with Azure backend components, Dataverse backend and frontend components.
 
-## Essential Rule Files
+## Working with this Codebase
 
-**⚠️ MANDATORY READING**: These files contain critical development patterns and standards:
+This project uses specialized **slash commands** and **AI agents** to streamline development:
 
-1. **START HERE**: [.ai_rules/main.md](.ai_rules/main.md) - Core development strategy and architecture overview
-2. **Backend**: [.ai_rules/backend/backend.md](.ai_rules/backend/backend.md) - C# coding standards and patterns  
-3. **Azure**: [.ai_rules/backend/azure.md](.ai_rules/backend/azure.md) - Functions and API development
-4. **Dataverse**: [.ai_rules/backend/dao.md](.ai_rules/backend/dao.md) - Data access patterns
-5. **Plugins**: [.ai_rules/backend/plugin.md](.ai_rules/backend/plugin.md) - Plugin development rules
-6. **Frontend**: [.ai_rules/frontend/frontend.md](.ai_rules/frontend/frontend.md) - JavaScript/TypeScript rules
-7. **Testing**: [.ai_rules/test/integrationtest.md](.ai_rules/test/integrationtest.md) - Test requirements
+- Agents will automatically handle area-specific tasks following project standards
+- All specialized tooling enforces consistent patterns and best practices
 
-## Build & Test Commands
+## Build & Test
+
+Always validate changes before completing work:
 
 ```bash
-# Build solution (REQUIRED before submitting)
+# Build the solution
 dotnet build --configuration Release
 
-# Run tests (REQUIRED after any changes)
+# Run tests
 dotnet test --configuration Release
 ```
 
-## Key Architectural Patterns
+## Development Workflow
 
-- **Error Handling**: Use OneOf pattern (`OneOf<TSuccess, TError>`)
-- **Naming**: Follow established domain/area patterns (e.g., CustomerArea, ConfigurationArea)
-- **Data Access**: Use DAO patterns defined in SharedContext
-- **Testing**: Write integration tests for all new functionality
+1. Understand the requirement
+2. Use appropriate slash commands or let agents handle specialized tasks
+3. Build and test to ensure quality
+4. Follow established patterns in the codebase
 
-## Critical Reminders
+**Quality standards are enforced** - ensure your changes build successfully and pass all tests.
 
-- **Rule violations** = code gets reverted
-- **Missing build/test** = changes get rejected  
-- Follow established patterns in each domain/area
-- Never skip the build/test validation
+## Project Structure
 
-**⚠️ WARNING**: Code that doesn't follow these rules gets reverted. The rules contain critical architectural decisions, naming conventions, and patterns that ensure code quality and consistency across the entire solution.
+This is a mono repository with multiple connected systems. All these systems use Dataverse as their main storage system, and is therefore tightly connected to that data model.
 
-**Read the rules. Follow the rules. Test your changes.**
+- [.config](.config): Contains dotnet tools used in the project.
+- [.pipelines](.pipeline): Azure Devops yaml definitions.
+- [src](src): Contains application code:
+  - [Azure](src/Azure): Contains several projects that provide outside access to Dataverse or do Asynchronous business logic.
+    - [DataverseService](src/Azure/DataverseService): Contains all services that contact from Azure to Dataverse.
+    - [*FunctionApp](src/Azure/*FunctionApp): Azure Function App that uses services from DataverseService.
+    - [*Api](src/Azure/*Api): Minimal Api Web App that uses services from DataverseService.
+  - [Dataverse](src/Dataverse): Contains the code running in Dataverse.
+    - [SharedPluginLogic](src/Dataverse/SharedPluginLogic): A shared code project. Provides plugin code for the synchronous business logic.
+    - [WebResources](src/Dataverse/WebResources): Provides frontend code for Dataverse.
+    - [Plugins](src/Dataverse/Plugins): Read only! A .NET 4.6.2 class library. The output of this project will be deployed to Dataverse. Uses the output of SharedPluginLogic.
+    - [PluginsNetCore](src/Dataverse/PluginsNetCore): Read only! A modern .NET class library. The output of this project will be used in tests. Uses the output of SharedPluginLogic. No files should be added to this project directly.
+  - [Shared](src/Shared): Contains code that is shared between Azure and Dataverse business logic.
+    - [SharedDomain](src/Shared/SharedDomain): A shared code project. Contains any backend domain classes used to communicate between Azure and Dataverse. This project should only contain domain classes used for this purpose. Domain classes that are used exclusively in either Azure or Dataverse should be defined there instead of this shared place.
+    - [SharedDataverseLogic](src/Shared/SharedDataverseLogic): A shared code project. Contains any backend business logic that is used both in Azure and Dataverse.
+    - [SharedContext](src/Shared/SharedContext): Read only! A shared code project. Contains the proxy classes that are generated from Dataverse. This defines the tables, attributes, and relations available in Dataverse.
+    - [NetCoreContext](src/Shared/NetCoreContext): Read only! A class library that exposes the files in SharedContext as a newer .NET.
+- [test](test): Contains all tests for the application code.
+  - [IntegrationTests](test/IntegrationTests): Contains tests that run Azure and Dataverse business logic together locally.
+  - [SharedTest](test/SharedTest): Contains the files shared between test projects.
+- [Infrastructure](Infrastructure): Azure Bicep scripts (IaC).

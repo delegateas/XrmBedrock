@@ -7,7 +7,10 @@
       "Bash(dotnet format:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(sed:*)",
+      "Bash(dir:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }
