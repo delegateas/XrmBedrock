@@ -9,6 +9,8 @@
     <Import_RootNamespace>Source</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\ActivityArea\ActivityService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\ActivityArea\AddServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ArgumentNullExceptionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\AzureConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\AzureConfigSetter.cs" />
@@ -23,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Utility\EntityUtilityService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\_Dao\AdminDataverseAccessObjectService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\_Dao\UserDataverseAccessObjectService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Registrations\ActivityArea\ValidateTask.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registrations\DataverseLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\DummyManagedIdentityService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registrations\Utility\AutopublishDuplicateRulesOnPublishAll.cs" />

@@ -1,4 +1,5 @@
 using DataverseLogic;
+using DataverseLogic.ActivityArea;
 using DataverseLogic.Azure;
 using DataverseLogic.Utility;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ internal static class PluginSetup
 
         // Dataverse Logic (lexicografical order please)
         // Add your custom service registrations here
+        services.AddActivityArea();
     }
 
     internal static ServiceProvider BuildServiceProvider(this IServiceProvider serviceProvider, string className)

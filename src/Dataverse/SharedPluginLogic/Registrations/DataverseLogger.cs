@@ -1,13 +1,13 @@
 using Microsoft.Extensions.Logging;
-using SharedDataverseLogic;
+using Microsoft.Xrm.Sdk;
 
 namespace DataverseRegistration;
 
 public class DataverseLogger : ILogger
 {
-    private readonly IExtendedTracingService service;
+    private readonly ITracingService service;
 
-    public DataverseLogger(IExtendedTracingService service)
+    public DataverseLogger(ITracingService service)
     {
         if (service is null)
         {
@@ -48,9 +48,9 @@ public class DataverseLogger : ILogger
 public class DataverseLogger<T> : ILogger<T>
 #pragma warning restore SA1402 // File may only contain a single type
 {
-    private readonly IExtendedTracingService service;
+    private readonly ITracingService service;
 
-    public DataverseLogger(IExtendedTracingService service)
+    public DataverseLogger(ITracingService service)
     {
         if (service is null)
         {

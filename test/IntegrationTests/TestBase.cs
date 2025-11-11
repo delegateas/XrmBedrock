@@ -43,6 +43,8 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
     {
         ArgumentNullException.ThrowIfNull(fixture);
 
+        xrm = XrmMockup365.GetInstance(fixture.Settings);
+
         // Setting up a user DAO for testing stuff that depends on the user context
         using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Trace));
         var logger = loggerFactory.CreateLogger<TestBase>();
@@ -51,7 +53,6 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         var userService = Xrm.CreateOrganizationService(userIdOfUserDao);
         userDao = new DataverseAccessObject(userService, logger);
 
-        xrm = XrmMockup365.GetInstance(fixture.Settings);
         adminDao = new DataverseAccessObjectAsync(xrm.GetAdminService(), Substitute.For<ILogger>());
         producer = new DataProducer(AdminDao);
         messageExecutor = new MessageExecutor();
