@@ -1,8 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.ServiceModel;
-using Microsoft.Xrm.Sdk;
-
 // MainCustomAPIConfig      : UniqueName, IsFunction, EnabledForWorkflow, AllowedCustomProcessingStepType, BindingType, BoundEntityLogicalName
 // ExtendedCustomAPIConfig  : PluginType, OwnerId, OwnerType, IsCustomizable, IsPrivate, ExecutePrivilegeName, Description
 // RequestParameterConfig   : Name, UniqueName, DisplayName, IsCustomizable, IsOptional, LogicalEntityName, Type
@@ -11,13 +6,13 @@ using MainCustomAPIConfig = System.Tuple<string, bool, int, int, int, string>;
 using ExtendedCustomAPIConfig = System.Tuple<string, string, string, bool, bool, string, string>;
 using RequestParameterConfig = System.Tuple<string, string, string, bool, bool, string, int>; // TODO: Add description maybe
 using ResponsePropertyConfig = System.Tuple<string, string, string, bool, string, int>; // TODO
+using Microsoft.Xrm.Sdk;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using DataverseLogic;
-using SharedDataverseLogic;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.ServiceModel;
 
-namespace Dataverse.Plugins;
+namespace DataverseRegistration;
 
 /// <summary>
 /// Base class for all CustomAPIs.
@@ -64,31 +59,11 @@ public class CustomAPI : IPlugin
             throw new ArgumentNullException("serviceProvider");
         }
 
-        var tracingService = serviceProvider.GetService<ITracingService>() ?? throw new Exception("Unable to get Tracing service");
-        var pluginTelemetryLogger = serviceProvider.GetService<Microsoft.Xrm.Sdk.PluginTelemetry.ILogger>();
-        var extendedTracingService = new ExtendedTracingService(tracingService, pluginTelemetryLogger);
-        if (pluginTelemetryLogger == null)
-            extendedTracingService.Trace("Unable to get PluginTelemetryLogger");
-        extendedTracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Entered {0}.Execute()", this.ChildClassName));
-        var context = serviceProvider.GetService<IPluginExecutionContext>() ?? throw new Exception("Unable to get PluginBase Execution Context");
-        var organizationServiceFactory = serviceProvider.GetService<IOrganizationServiceFactory>() ?? throw new Exception("Unable to get service factory");
-        var managedIdentity = serviceProvider.GetService<IManagedIdentityService>() ?? new DummyManagedIdentityService();
+        var localServiceProvider = serviceProvider.BuildServiceProvider(this.ChildClassName);
+        var tracingService = localServiceProvider.GetRequiredService<ITracingService>();
+        var context = localServiceProvider.GetRequiredService<IPluginExecutionContext>();
 
-        // Create a new service collection and add the relevant services
-        var services = new ServiceCollection();
-        services.AddScoped(x => context);
-        services.AddScoped(x => tracingService);
-        services.AddScoped<IExtendedTracingService>(x => extendedTracingService);
-        services.AddScoped(x => organizationServiceFactory);
-        services.AddScoped(x => managedIdentity);
-        services.AddScoped<ILogger, DataverseLogger>();
-        services.TryAdd(ServiceDescriptor.Scoped(typeof(ILogger<>), typeof(DataverseLogger<>)));
-
-        services.SetupCustomDependencies();
-
-        var localServiceProvider = services.BuildServiceProvider();
-
-        extendedTracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Entered {0}.Execute()", this.ChildClassName));
+        tracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Entered {0}.Execute()", this.ChildClassName));
 
         try
         {
@@ -110,14 +85,14 @@ public class CustomAPI : IPlugin
         }
         catch (FaultException<OrganizationServiceFault> e)
         {
-            extendedTracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Exception: {0}", e.ToString()));
+            tracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Exception: {0}", e.ToString()));
 
             // Handle the exception.
             throw;
         }
         finally
         {
-            extendedTracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Exiting {0}.Execute()", this.ChildClassName));
+            tracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Exiting {0}.Execute()", this.ChildClassName));
         }
     }
 

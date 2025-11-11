@@ -1,11 +1,4 @@
-using DataverseService;
-using DataverseService.EconomyArea;
-using DataverseService.Foundation.Dao;
-using EconomyAreaFunctionApp;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SharedDomain;
-using SharedDomain.EconomyArea;
 using System.Globalization;
 using System.Text;
 
@@ -19,12 +12,11 @@ public class MessageExecutor
 {
     private List<AwaitingMessage> messages;
 
-    private CreateInvoices CreateInvoicesFunction { get; }
-
-    public MessageExecutor(IDataverseAccessObjectAsync adminDao)
+    public MessageExecutor()
     {
         messages = new List<AwaitingMessage>();
-        CreateInvoicesFunction = new CreateInvoices(Substitute.For<ILogger<CreateInvoices>>(), new DataverseInvoiceService(adminDao, new DataverseCustomApiService(adminDao)));
+
+        // TODO: Add your Azure Function references here
     }
 
     public void StoreMessage(AwaitingMessage message) => messages.Add(message);
@@ -33,19 +25,17 @@ public class MessageExecutor
     {
         foreach (var message in messages)
         {
-            switch (message.QueueName)
-            {
-                case QueueNames.CreateInvoicesQueue:
-                    await CreateInvoicesFunction.Run(GetMessage<CreateInvoicesMessage>(message.SerializedMessage));
-                    break;
-            }
+            // TODO: Add your queue message handling logic here
+            await Task.CompletedTask;
         }
 
         messages = new List<AwaitingMessage>();
     }
 
-    private static T GetMessage<T>(string serializedMessage)
+    protected static T GetMessage<T>(string serializedMessage)
     {
+        ArgumentNullException.ThrowIfNull(serializedMessage);
+
         var message =
             JsonConvert.DeserializeObject<T>(
                Encoding.UTF8.GetString(
