@@ -57,9 +57,7 @@ internal static class ExecutionContextExtensions
         where TE : Entity
     {
         if (!context.InputParameters.TryGetValue("Target", out Entity target))
-        {
             throw new InvalidOperationException("Message had no target. Make sure the request is of type Create or Update");
-        }
 
         return target.ToEntity<TE>();
     }
