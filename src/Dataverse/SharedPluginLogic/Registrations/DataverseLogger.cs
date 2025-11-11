@@ -10,9 +10,7 @@ public class DataverseLogger : ILogger
     public DataverseLogger(ITracingService service)
     {
         if (service is null)
-        {
             throw new ArgumentNullException(nameof(service));
-        }
 
         this.service = service;
     }
@@ -30,14 +28,10 @@ public class DataverseLogger : ILogger
         Func<TState, Exception?, string> formatter)
     {
         if (!IsEnabled(logLevel))
-        {
             return;
-        }
 
         if (formatter is null)
-        {
             throw new ArgumentNullException(nameof(formatter));
-        }
 
         service.Trace($"[{eventId.Id,2}: {logLevel,-12}]");
         service.Trace($"{formatter(state, exception)}");
@@ -53,9 +47,7 @@ public class DataverseLogger<T> : ILogger<T>
     public DataverseLogger(ITracingService service)
     {
         if (service is null)
-        {
             throw new ArgumentNullException(nameof(service));
-        }
 
         this.service = service;
     }
@@ -73,14 +65,10 @@ public class DataverseLogger<T> : ILogger<T>
         Func<TState, Exception?, string> formatter)
     {
         if (!IsEnabled(logLevel))
-        {
             return;
-        }
 
         if (formatter is null)
-        {
             throw new ArgumentNullException(nameof(formatter));
-        }
 
         service.Trace($"[{eventId.Id,2}: {logLevel,-12}]");
         service.Trace($"{formatter(state, exception)}");

@@ -56,9 +56,7 @@ public class AzureService
 
         if (resp.StatusCode == System.Net.HttpStatusCode.OK ||
             resp.StatusCode == System.Net.HttpStatusCode.Created)
-        {
             return;
-        }
 
         var serializer = new XmlSerializer(typeof(StorageQueueError));
         var respBody = await resp.Content.ReadAsStreamAsync();
@@ -86,9 +84,7 @@ public class AzureService
 
         tracingService.Trace($"Response {resp.StatusCode}");
         if (resp.StatusCode != System.Net.HttpStatusCode.OK)
-        {
             throw new InvalidPluginExecutionException($"Failed to call target. Status code: {resp.StatusCode}");
-        }
 
         return await resp.Content.ReadAsStringAsync();
     }

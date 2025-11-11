@@ -17,9 +17,7 @@ public class SimpleLogger : ILogger
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter)
     {
         if (!IsEnabled(logLevel))
-        {
             return;
-        }
 
         // Simple log output
         if (exception != null && formatter != null)

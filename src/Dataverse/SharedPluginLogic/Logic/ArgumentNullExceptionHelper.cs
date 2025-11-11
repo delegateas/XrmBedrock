@@ -12,16 +12,12 @@ public static class ArgumentNullExceptionHelper
     public static void ThrowIfNull(object? value, string paramName)
     {
         if (value == null)
-        {
             throw new ArgumentNullException(paramName);
-        }
     }
 
     public static void ThrowIfNull(object? value, string paramName, string message)
     {
         if (value == null)
-        {
             throw new ArgumentNullException(paramName, message);
-        }
     }
 }

@@ -23,9 +23,7 @@ internal static class Program
         Environment result;
         var envStr = ConfigurationManager.AppSettings["Environment"];
         if (string.IsNullOrWhiteSpace(envStr) || !Enum.TryParse(envStr, out result))
-        {
             throw new ConfigurationErrorsException("Environment not specified in App.config or could not be parsed as EnvironmentEnum");
-        }
 
         return result;
     }
@@ -38,9 +36,7 @@ internal static class Program
     {
         var envStr = ConfigurationManager.AppSettings["JobClassName"];
         if (string.IsNullOrWhiteSpace(envStr))
-        {
             throw new ConfigurationErrorsException("JobClassName not specified in App.config");
-        }
 
         Type t = Type.GetType(envStr);
         return (IJob)Activator.CreateInstance(t);

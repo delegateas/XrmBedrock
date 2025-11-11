@@ -21,9 +21,7 @@ public class DataverseImageService
         var entity = GetEntity(entityId, entityName, attributeName);
 
         if (entity.Attributes.TryGetValue(attributeName, out var imageObject) && imageObject is byte[] imageBytes)
-        {
             return Convert.ToBase64String(imageBytes);
-        }
 
         return default(NotFound);
     }

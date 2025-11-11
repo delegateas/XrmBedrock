@@ -11,14 +11,10 @@ internal static class CsvHelper
         where T : class, new()
     {
         if (string.IsNullOrWhiteSpace(folderPath))
-        {
             throw new ArgumentException("File path is empty", nameof(folderPath));
-        }
 
         if (string.IsNullOrWhiteSpace(fileName))
-        {
             throw new ArgumentException("File name is empty", nameof(fileName));
-        }
 
         var filePath = Path.Combine(folderPath, fileName);
 
@@ -101,9 +97,7 @@ internal static class CsvHelper
         var properties = typeof(T).GetProperties();
 
         if (attributeStrings.Length != properties.Length)
-        {
             throw new InvalidDataException("Number of columns in csv does not match number of properties in class");
-        }
 
         T returnval = new T();
         for (int i = 0; i < attributeStrings.Length; ++i)
@@ -122,9 +116,7 @@ internal static class CsvHelper
         {
             case TypeCode.Int32:
                 if (type.IsEnum)
-                {
                     return Enum.Parse(type, s);
-                }
 
                 return int.Parse(s, CultureInfo.InvariantCulture);
             case TypeCode.Int64:
@@ -141,14 +133,10 @@ internal static class CsvHelper
                 return decimal.Parse(s, CultureInfo.InvariantCulture);
             case TypeCode.Object:
                 if (Nullable.GetUnderlyingType(type) != null && !string.IsNullOrEmpty(s))
-                {
                     return FromString(Nullable.GetUnderlyingType(type), s);
-                }
 
                 if (Guid.TryParse(s, out Guid res))
-                {
                     return res;
-                }
 
                 return TypeDescriptor.GetConverter(type).ConvertFromString(null, CultureInfo.InvariantCulture, s);
 
