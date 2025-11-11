@@ -9,9 +9,12 @@
     <Import_RootNamespace>SharedTest</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)DataProducer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataProducerStaticExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Producers\DataProducer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Producers\DataProducerStaticExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MetadataGenerated\TypeDeclarations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SimpleLogger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Producers\" />
   </ItemGroup>
 </Project>
