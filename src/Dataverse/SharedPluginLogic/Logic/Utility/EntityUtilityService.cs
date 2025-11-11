@@ -19,21 +19,15 @@ public static class EntityUtilityService
       where T : Entity
     {
         if (entity == null)
-        {
             throw new ArgumentNullException(nameof(entity), "Entity cannot be null.");
-        }
 
         if (propertySelector == null)
-        {
             throw new ArgumentNullException(nameof(propertySelector), "Property selector cannot be null.");
-        }
 
         var propertyValue = propertySelector(entity);
 
         if (propertyValue == null)
-        {
             throw new InvalidPluginExecutionException($"Property value is null of '{nameof(propertySelector)}'.");
-        }
 
         return propertyValue;
     }

@@ -9,14 +9,10 @@ public static class StaticExtensions
     public static T? GetOrDefault<T>(this ParameterCollection keyValueCollection, string key)
     {
         if (keyValueCollection == null)
-        {
             return default;
-        }
 
         if (keyValueCollection.TryGetValue(key, out var value))
-        {
             return (T)value;
-        }
 
         return default;
     }
@@ -34,9 +30,7 @@ public static class StaticExtensions
             foreach (var attr in target.Attributes)
             {
                 if (attributeExceptions.Contains(attr.Key, StringComparer.OrdinalIgnoreCase))
-                {
                     continue;
-                }
 
                 copyEntity[attr.Key] = attr.Value;
             }
