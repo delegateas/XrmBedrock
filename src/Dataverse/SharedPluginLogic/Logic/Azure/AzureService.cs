@@ -1,8 +1,5 @@
 using Microsoft.Xrm.Sdk;
-using Newtonsoft.Json;
 using SharedDataverseLogic;
-using SharedDomain;
-using SharedDomain.EconomyArea;
 #if NET462
 using System.Net.Http;
 #endif
@@ -12,11 +9,13 @@ using System.Xml.Serialization;
 
 namespace DataverseLogic.Azure;
 
-public class AzureService : IAzureService
+public class AzureService
 {
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
     private readonly AzureConfig azureConfig;
     private readonly IExtendedTracingService tracingService;
     private readonly IManagedIdentityService managedIdentityService;
+#pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
     private static readonly string[] StorageScopes = new string[] { "https://storage.azure.com/.default" };
 
     public AzureService(AzureConfig azureConfig, IExtendedTracingService tracingService, IManagedIdentityService managedIdentityService)
@@ -26,11 +25,10 @@ public class AzureService : IAzureService
         this.managedIdentityService = managedIdentityService;
     }
 
-    // Strongly typed way of sending messages to the storage queue
-    public void SendCreateInvoicesMessage(CreateInvoicesMessage message) => SendStorageQueueMessage(QueueNames.CreateInvoicesQueue, JsonConvert.SerializeObject(message));
-
     // Generic way of sending messages to the storage queue
-    private void SendStorageQueueMessage(string queueName, string message)
+#pragma warning disable S1144 // Unused private types or members should be removed
+    protected void SendStorageQueueMessage(string queueName, string message)
+#pragma warning restore S1144 // Unused private types or members should be removed
     {
         var connectionString = $"{azureConfig.StorageAccountUrl}{queueName}/messages";
         try

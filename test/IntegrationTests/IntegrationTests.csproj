@@ -14,11 +14,11 @@
     <PackageReference Include="WireMock.Net" Version="1.5.62" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
-    <PackageReference Include="XrmMockup365" Version="1.14.1" />
+    <PackageReference Include="XrmMockup365" Version="1.17.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Azure\EconomyAreaFunctionApp\EconomyAreaFunctionApp.csproj" />
+    <ProjectReference Include="..\..\src\Azure\DataverseService\DataverseService.csproj" />
     <ProjectReference Include="..\..\src\Dataverse\PluginsNetCore\PluginsNetCore.csproj" />
   </ItemGroup>
 

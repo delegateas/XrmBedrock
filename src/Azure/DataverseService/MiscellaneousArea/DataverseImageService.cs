@@ -1,12 +1,13 @@
 using DataverseService.Foundation.Dao;
-using DataverseService.Foundation.Exception;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
+using OneOf;
+using OneOf.Types;
 
 namespace DataverseService.UtilityArea;
 
-public class DataverseImageService : IDataverseImageService
+public class DataverseImageService
 {
     private readonly IDataverseAccessObjectAsync adminDao;
 
@@ -15,7 +16,7 @@ public class DataverseImageService : IDataverseImageService
         this.adminDao = adminDao;
     }
 
-    public string SetImageAttributeAsBase64(Guid entityId, string entityName, string attributeName)
+    public OneOf<string, NotFound> SetImageAttributeAsBase64(Guid entityId, string entityName, string attributeName)
     {
         var entity = GetEntity(entityId, entityName, attributeName);
 
@@ -24,7 +25,7 @@ public class DataverseImageService : IDataverseImageService
             return Convert.ToBase64String(imageBytes);
         }
 
-        throw new CouldNotFetchProfilePictureException($"Failed to fetch profile picture for member {entityId}");
+        return default(NotFound);
     }
 
     private Entity GetEntity(Guid entityId, string entityName, string attributeName)

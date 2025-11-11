@@ -6,7 +6,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace DataverseService.UtilityArea;
 
-public class DataverseNotificationService : IDataverseNotificationService
+public class DataverseNotificationService
 {
     private readonly IOrganizationServiceAsync2 client;
 

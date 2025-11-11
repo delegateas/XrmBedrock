@@ -9,9 +9,6 @@
     <Import_RootNamespace>SharedDataverseLogic</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ConfigurationNotFoundException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ConfigurationPropertyNullException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataverseConfigurationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IExtendedTracingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\DateTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\StringExtensions.cs" />
