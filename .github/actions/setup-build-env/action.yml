@@ -3,10 +3,10 @@ description: 'Sets up .NET, Node, signtool, and initializes setup files'
 runs:
   using: 'composite'
   steps:
-    - name: Setup .NET 8
+    - name: Setup .NET 10
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.x
+        dotnet-version: 10.x
 
     - name: Setup Node 18
       uses: actions/setup-node@v4
