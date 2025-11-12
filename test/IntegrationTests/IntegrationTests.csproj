@@ -11,7 +11,7 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="WireMock.Net" Version="1.5.62" />
+    <PackageReference Include="WireMock.Net" Version="1.15.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
     <PackageReference Include="XrmMockup365" Version="1.17.2" />

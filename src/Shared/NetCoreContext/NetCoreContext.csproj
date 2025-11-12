@@ -9,7 +9,7 @@
   <Import Project="..\SharedDomain\SharedDomain.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.2" />
+    <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.10" />
   </ItemGroup>
 
 </Project>
