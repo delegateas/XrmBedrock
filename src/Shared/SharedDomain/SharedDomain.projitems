@@ -10,5 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CultureInfoHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)economyarea\CreateInvoicesMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)economyarea\CreateTransactionsRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)EconomyArea\" />
   </ItemGroup>
 </Project>

@@ -374,3 +374,4 @@ MigrationBackup/
 
 # Mac
 .DS_Store
+/src/Tools/Daxif/username.txt
