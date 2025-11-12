@@ -15,5 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)EconomyArea\" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueueNames.cs" />
   </ItemGroup>
 </Project>
