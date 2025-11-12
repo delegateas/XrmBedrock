@@ -4,6 +4,7 @@ using DG.Tools.XrmMockup;
 using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
+using SharedDomain;
 using SharedTest;
 using WireMock;
 using WireMock.RequestBuilders;
@@ -57,7 +58,7 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         messageExecutor = new MessageExecutor();
         server = WireMockServer.Start();
 
-        AddQueueEndpoints(TestBaseQueueDefinitions.QueueNames);
+        AddQueueEndpoints(QueueNames.AllQueues);
 
         // Create any data needed for the tests
         var envVarDefinition = new EnvironmentVariableDefinition
