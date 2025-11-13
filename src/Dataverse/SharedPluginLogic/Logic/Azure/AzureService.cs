@@ -1,5 +1,4 @@
 using Microsoft.Xrm.Sdk;
-using SharedDataverseLogic;
 #if NET462
 using System.Net.Http;
 #endif
