@@ -1,4 +1,8 @@
+using DataverseService.Foundation.Dao;
+using EconomyAreaFunctionApp;
 using Newtonsoft.Json;
+using SharedDomain;
+using SharedTest;
 using System.Globalization;
 using System.Text;
 
@@ -10,13 +14,14 @@ namespace IntegrationTests;
 /// </summary>
 public class MessageExecutor
 {
-    private List<AwaitingMessage> messages;
+    private readonly List<AwaitingMessage> messages;
+    private readonly CreateInvoices createInvoices;
 
-    public MessageExecutor()
+    public MessageExecutor(IDataverseAccessObjectAsync adminDao)
     {
         messages = new List<AwaitingMessage>();
 
-        // TODO: Add your Azure Function references here
+        createInvoices = new CreateInvoices(new SimpleLogger<CreateInvoices>(), new DataverseService.EconomyArea.DataverseInvoiceService(adminDao));
     }
 
     public void StoreMessage(AwaitingMessage message) => messages.Add(message);
@@ -25,11 +30,15 @@ public class MessageExecutor
     {
         foreach (var message in messages)
         {
-            // TODO: Add your queue message handling logic here
-            await Task.CompletedTask;
+            switch (message.QueueName)
+            {
+                case QueueNames.CreateInvoicesQueue:
+                {
+                    await createInvoices.Run(GetMessage<SharedDomain.EconomyArea.CreateInvoicesMessage>(message.SerializedMessage));
+                    break;
+                }
+            }
         }
-
-        messages = new List<AwaitingMessage>();
     }
 
     protected static T GetMessage<T>(string serializedMessage)

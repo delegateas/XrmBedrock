@@ -1,5 +1,6 @@
 using DataverseService.Foundation.Dao;
 using Microsoft.Xrm.Sdk;
+using Newtonsoft.Json;
 using XrmBedrock.SharedContext;
 using Task = System.Threading.Tasks.Task;
 
@@ -71,7 +72,7 @@ public class DataverseInvoiceService
         {
             await adminDao.ExecuteAsync(new OrganizationRequest("ctx_CreateTransactions")
             {
-                Parameters = { { "Payload", new SharedDomain.EconomyArea.CreateTransactionsRequest(subscription.Id, invoiceUntil) } },
+                Parameters = { { "Payload", JsonConvert.SerializeObject(new SharedDomain.EconomyArea.CreateTransactionsRequest(subscription.Id, invoiceUntil)) } },
             });
         }
     }
