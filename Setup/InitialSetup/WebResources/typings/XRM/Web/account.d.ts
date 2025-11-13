@@ -96,18 +96,9 @@ declare namespace XDT {
     marketingonly?: boolean | null;
     merged?: boolean | null;
     modifiedon?: Date | null;
-    msdyn_gdproptout?: boolean | null;
-    msdyn_primarytimezone?: number | null;
     name?: string | null;
     numberofemployees?: number | null;
     onholdtime?: number | null;
-    opendeals?: number | null;
-    opendeals_date?: Date | null;
-    opendeals_state?: number | null;
-    openrevenue?: number | null;
-    openrevenue_base?: number | null;
-    openrevenue_date?: Date | null;
-    openrevenue_state?: number | null;
     overriddencreatedon?: Date | null;
     ownershipcode?: account_ownershipcode | null;
     participatesinworkflow?: boolean | null;
@@ -127,7 +118,6 @@ declare namespace XDT {
     statecode?: account_statecode | null;
     statuscode?: account_statuscode | null;
     stockexchange?: string | null;
-    teamsfollowed?: number | null;
     telephone1?: string | null;
     telephone2?: string | null;
     telephone3?: string | null;
@@ -142,39 +132,29 @@ declare namespace XDT {
     websiteurl?: string | null;
   }
   interface Account_Relationships {
-    CreatedAccount_BulkOperationLogs2?: BulkOperationLog_Result[] | null;
-    SourceAccount_BulkOperationLogs?: BulkOperationLog_Result[] | null;
-    account_PostFollows?: PostFollow_Result[] | null;
     account_activity_parties?: ActivityParty_Result[] | null;
     account_connections1?: Connection_Result[] | null;
     account_connections2?: Connection_Result[] | null;
     account_master_account?: Account_Result[] | null;
     account_parent_account?: Account_Result[] | null;
     contact_customer_accounts?: Contact_Result[] | null;
+    ctx_account_ctx_invoice_112?: ctx_Invoice_Result[] | null;
+    ctx_account_ctx_subscription_367?: ctx_Subscription_Result[] | null;
     msa_account_managingpartner?: Account_Result[] | null;
     msa_contact_managingpartner?: Contact_Result[] | null;
-    msdyn_account_msdyn_accountkpiitem_accountid?: msdyn_accountkpiitem_Result[] | null;
   }
   interface Account extends Account_Base, Account_Relationships {
-    defaultpricelevelid_bind$pricelevels?: string | null;
     msa_managingpartnerid_bind$accounts?: string | null;
-    msdyn_accountkpiid_bind$msdyn_accountkpiitems?: string | null;
-    msdyn_salesaccelerationinsightid_bind$msdyn_salesaccelerationinsights?: string | null;
-    msdyn_segmentid_bind$msdyn_segments?: string | null;
     ownerid_bind$systemusers?: string | null;
     ownerid_bind$teams?: string | null;
     parentaccountid_bind$accounts?: string | null;
-    preferredequipmentid_bind$equipments?: string | null;
-    preferredserviceid_bind$services?: string | null;
     preferredsystemuserid_bind$systemusers?: string | null;
     primarycontactid_bind$contacts?: string | null;
     sla_account_sla_bind$slas?: string | null;
     stageid_processstage_bind$processstages?: string | null;
-    territoryid_bind$territories?: string | null;
     transactioncurrencyid_bind$transactioncurrencies?: string | null;
   }
   interface Account_Create extends Account {
-    originatingleadid_bind$leads?: string | null;
   }
   interface Account_Update extends Account {
   }
@@ -252,7 +232,6 @@ declare namespace XDT {
     creditonhold: WebAttribute<Account_Select, { creditonhold: boolean | null }, {  }>;
     customersizecode: WebAttribute<Account_Select, { customersizecode: account_customersizecode | null }, { customersizecode_formatted?: string }>;
     customertypecode: WebAttribute<Account_Select, { customertypecode: account_customertypecode | null }, { customertypecode_formatted?: string }>;
-    defaultpricelevelid_guid: WebAttribute<Account_Select, { defaultpricelevelid_guid: string | null }, { defaultpricelevelid_formatted?: string }>;
     description: WebAttribute<Account_Select, { description: string | null }, {  }>;
     donotbulkemail: WebAttribute<Account_Select, { donotbulkemail: boolean | null }, {  }>;
     donotbulkpostalmail: WebAttribute<Account_Select, { donotbulkpostalmail: boolean | null }, {  }>;
@@ -284,22 +263,9 @@ declare namespace XDT {
     modifiedon: WebAttribute<Account_Select, { modifiedon: Date | null }, { modifiedon_formatted?: string }>;
     modifiedonbehalfby_guid: WebAttribute<Account_Select, { modifiedonbehalfby_guid: string | null }, { modifiedonbehalfby_formatted?: string }>;
     msa_managingpartnerid_guid: WebAttribute<Account_Select, { msa_managingpartnerid_guid: string | null }, { msa_managingpartnerid_formatted?: string }>;
-    msdyn_accountkpiid_guid: WebAttribute<Account_Select, { msdyn_accountkpiid_guid: string | null }, { msdyn_accountkpiid_formatted?: string }>;
-    msdyn_gdproptout: WebAttribute<Account_Select, { msdyn_gdproptout: boolean | null }, {  }>;
-    msdyn_primarytimezone: WebAttribute<Account_Select, { msdyn_primarytimezone: number | null }, {  }>;
-    msdyn_salesaccelerationinsightid_guid: WebAttribute<Account_Select, { msdyn_salesaccelerationinsightid_guid: string | null }, { msdyn_salesaccelerationinsightid_formatted?: string }>;
-    msdyn_segmentid_guid: WebAttribute<Account_Select, { msdyn_segmentid_guid: string | null }, { msdyn_segmentid_formatted?: string }>;
     name: WebAttribute<Account_Select, { name: string | null }, {  }>;
     numberofemployees: WebAttribute<Account_Select, { numberofemployees: number | null }, {  }>;
     onholdtime: WebAttribute<Account_Select, { onholdtime: number | null }, {  }>;
-    opendeals: WebAttribute<Account_Select, { opendeals: number | null }, {  }>;
-    opendeals_date: WebAttribute<Account_Select, { opendeals_date: Date | null }, { opendeals_date_formatted?: string }>;
-    opendeals_state: WebAttribute<Account_Select, { opendeals_state: number | null }, {  }>;
-    openrevenue: WebAttribute<Account_Select, { openrevenue: number | null; transactioncurrencyid_guid: string | null }, { openrevenue_formatted?: string; transactioncurrencyid_formatted?: string }>;
-    openrevenue_base: WebAttribute<Account_Select, { openrevenue_base: number | null; transactioncurrencyid_guid: string | null }, { openrevenue_base_formatted?: string; transactioncurrencyid_formatted?: string }>;
-    openrevenue_date: WebAttribute<Account_Select, { openrevenue_date: Date | null }, { openrevenue_date_formatted?: string }>;
-    openrevenue_state: WebAttribute<Account_Select, { openrevenue_state: number | null }, {  }>;
-    originatingleadid_guid: WebAttribute<Account_Select, { originatingleadid_guid: string | null }, { originatingleadid_formatted?: string }>;
     overriddencreatedon: WebAttribute<Account_Select, { overriddencreatedon: Date | null }, { overriddencreatedon_formatted?: string }>;
     ownerid_guid: WebAttribute<Account_Select, { ownerid_guid: string | null }, { ownerid_formatted?: string }>;
     ownershipcode: WebAttribute<Account_Select, { ownershipcode: account_ownershipcode | null }, { ownershipcode_formatted?: string }>;
@@ -312,8 +278,6 @@ declare namespace XDT {
     preferredappointmentdaycode: WebAttribute<Account_Select, { preferredappointmentdaycode: account_preferredappointmentdaycode | null }, { preferredappointmentdaycode_formatted?: string }>;
     preferredappointmenttimecode: WebAttribute<Account_Select, { preferredappointmenttimecode: account_preferredappointmenttimecode | null }, { preferredappointmenttimecode_formatted?: string }>;
     preferredcontactmethodcode: WebAttribute<Account_Select, { preferredcontactmethodcode: account_preferredcontactmethodcode | null }, { preferredcontactmethodcode_formatted?: string }>;
-    preferredequipmentid_guid: WebAttribute<Account_Select, { preferredequipmentid_guid: string | null }, { preferredequipmentid_formatted?: string }>;
-    preferredserviceid_guid: WebAttribute<Account_Select, { preferredserviceid_guid: string | null }, { preferredserviceid_formatted?: string }>;
     preferredsystemuserid_guid: WebAttribute<Account_Select, { preferredsystemuserid_guid: string | null }, { preferredsystemuserid_formatted?: string }>;
     primarycontactid_guid: WebAttribute<Account_Select, { primarycontactid_guid: string | null }, { primarycontactid_formatted?: string }>;
     primarysatoriid: WebAttribute<Account_Select, { primarysatoriid: string | null }, {  }>;
@@ -330,12 +294,10 @@ declare namespace XDT {
     statecode: WebAttribute<Account_Select, { statecode: account_statecode | null }, { statecode_formatted?: string }>;
     statuscode: WebAttribute<Account_Select, { statuscode: account_statuscode | null }, { statuscode_formatted?: string }>;
     stockexchange: WebAttribute<Account_Select, { stockexchange: string | null }, {  }>;
-    teamsfollowed: WebAttribute<Account_Select, { teamsfollowed: number | null }, {  }>;
     telephone1: WebAttribute<Account_Select, { telephone1: string | null }, {  }>;
     telephone2: WebAttribute<Account_Select, { telephone2: string | null }, {  }>;
     telephone3: WebAttribute<Account_Select, { telephone3: string | null }, {  }>;
     territorycode: WebAttribute<Account_Select, { territorycode: account_territorycode | null }, { territorycode_formatted?: string }>;
-    territoryid_guid: WebAttribute<Account_Select, { territoryid_guid: string | null }, { territoryid_formatted?: string }>;
     tickersymbol: WebAttribute<Account_Select, { tickersymbol: string | null }, {  }>;
     timespentbymeonemailandmeetings: WebAttribute<Account_Select, { timespentbymeonemailandmeetings: string | null }, {  }>;
     timezoneruleversionnumber: WebAttribute<Account_Select, { timezoneruleversionnumber: number | null }, {  }>;
@@ -419,7 +381,6 @@ declare namespace XDT {
     creditonhold: boolean;
     customersizecode: account_customersizecode;
     customertypecode: account_customertypecode;
-    defaultpricelevelid_guid: XQW.Guid;
     description: string;
     donotbulkemail: boolean;
     donotbulkpostalmail: boolean;
@@ -451,22 +412,9 @@ declare namespace XDT {
     modifiedon: Date;
     modifiedonbehalfby_guid: XQW.Guid;
     msa_managingpartnerid_guid: XQW.Guid;
-    msdyn_accountkpiid_guid: XQW.Guid;
-    msdyn_gdproptout: boolean;
-    msdyn_primarytimezone: number;
-    msdyn_salesaccelerationinsightid_guid: XQW.Guid;
-    msdyn_segmentid_guid: XQW.Guid;
     name: string;
     numberofemployees: number;
     onholdtime: number;
-    opendeals: number;
-    opendeals_date: Date;
-    opendeals_state: number;
-    openrevenue: number;
-    openrevenue_base: number;
-    openrevenue_date: Date;
-    openrevenue_state: number;
-    originatingleadid_guid: XQW.Guid;
     overriddencreatedon: Date;
     ownerid_guid: XQW.Guid;
     ownershipcode: account_ownershipcode;
@@ -479,8 +427,6 @@ declare namespace XDT {
     preferredappointmentdaycode: account_preferredappointmentdaycode;
     preferredappointmenttimecode: account_preferredappointmenttimecode;
     preferredcontactmethodcode: account_preferredcontactmethodcode;
-    preferredequipmentid_guid: XQW.Guid;
-    preferredserviceid_guid: XQW.Guid;
     preferredsystemuserid_guid: XQW.Guid;
     primarycontactid_guid: XQW.Guid;
     primarysatoriid: string;
@@ -497,12 +443,10 @@ declare namespace XDT {
     statecode: account_statecode;
     statuscode: account_statuscode;
     stockexchange: string;
-    teamsfollowed: number;
     telephone1: string;
     telephone2: string;
     telephone3: string;
     territorycode: account_territorycode;
-    territoryid_guid: XQW.Guid;
     tickersymbol: string;
     timespentbymeonemailandmeetings: string;
     timezoneruleversionnumber: number;
@@ -513,21 +457,18 @@ declare namespace XDT {
     websiteurl: string;
   }
   interface Account_Expand {
-    CreatedAccount_BulkOperationLogs2: WebExpand<Account_Expand, BulkOperationLog_Select, BulkOperationLog_Filter, { CreatedAccount_BulkOperationLogs2: BulkOperationLog_Result[] }>;
-    SourceAccount_BulkOperationLogs: WebExpand<Account_Expand, BulkOperationLog_Select, BulkOperationLog_Filter, { SourceAccount_BulkOperationLogs: BulkOperationLog_Result[] }>;
-    account_PostFollows: WebExpand<Account_Expand, PostFollow_Select, PostFollow_Filter, { account_PostFollows: PostFollow_Result[] }>;
     account_activity_parties: WebExpand<Account_Expand, ActivityParty_Select, ActivityParty_Filter, { account_activity_parties: ActivityParty_Result[] }>;
     account_connections1: WebExpand<Account_Expand, Connection_Select, Connection_Filter, { account_connections1: Connection_Result[] }>;
     account_connections2: WebExpand<Account_Expand, Connection_Select, Connection_Filter, { account_connections2: Connection_Result[] }>;
     account_master_account: WebExpand<Account_Expand, Account_Select, Account_Filter, { account_master_account: Account_Result[] }>;
     account_parent_account: WebExpand<Account_Expand, Account_Select, Account_Filter, { account_parent_account: Account_Result[] }>;
     contact_customer_accounts: WebExpand<Account_Expand, Contact_Select, Contact_Filter, { contact_customer_accounts: Contact_Result[] }>;
+    ctx_account_ctx_invoice_112: WebExpand<Account_Expand, ctx_Invoice_Select, ctx_Invoice_Filter, { ctx_account_ctx_invoice_112: ctx_Invoice_Result[] }>;
+    ctx_account_ctx_subscription_367: WebExpand<Account_Expand, ctx_Subscription_Select, ctx_Subscription_Filter, { ctx_account_ctx_subscription_367: ctx_Subscription_Result[] }>;
     masterid: WebExpand<Account_Expand, Account_Select, Account_Filter, { masterid: Account_Result }>;
     msa_account_managingpartner: WebExpand<Account_Expand, Account_Select, Account_Filter, { msa_account_managingpartner: Account_Result[] }>;
     msa_contact_managingpartner: WebExpand<Account_Expand, Contact_Select, Contact_Filter, { msa_contact_managingpartner: Contact_Result[] }>;
     msa_managingpartnerid: WebExpand<Account_Expand, Account_Select, Account_Filter, { msa_managingpartnerid: Account_Result }>;
-    msdyn_account_msdyn_accountkpiitem_accountid: WebExpand<Account_Expand, msdyn_accountkpiitem_Select, msdyn_accountkpiitem_Filter, { msdyn_account_msdyn_accountkpiitem_accountid: msdyn_accountkpiitem_Result[] }>;
-    msdyn_accountkpiid: WebExpand<Account_Expand, msdyn_accountkpiitem_Select, msdyn_accountkpiitem_Filter, { msdyn_accountkpiid: msdyn_accountkpiitem_Result }>;
     parentaccountid: WebExpand<Account_Expand, Account_Select, Account_Filter, { parentaccountid: Account_Result }>;
     primarycontactid: WebExpand<Account_Expand, Contact_Select, Contact_Filter, { primarycontactid: Contact_Result }>;
   }
@@ -556,7 +497,6 @@ declare namespace XDT {
     creditlimit_formatted?: string;
     customersizecode_formatted?: string;
     customertypecode_formatted?: string;
-    defaultpricelevelid_formatted?: string;
     industrycode_formatted?: string;
     lastonholdtime_formatted?: string;
     lastusedincampaign_formatted?: string;
@@ -568,14 +508,6 @@ declare namespace XDT {
     modifiedon_formatted?: string;
     modifiedonbehalfby_formatted?: string;
     msa_managingpartnerid_formatted?: string;
-    msdyn_accountkpiid_formatted?: string;
-    msdyn_salesaccelerationinsightid_formatted?: string;
-    msdyn_segmentid_formatted?: string;
-    opendeals_date_formatted?: string;
-    openrevenue_base_formatted?: string;
-    openrevenue_date_formatted?: string;
-    openrevenue_formatted?: string;
-    originatingleadid_formatted?: string;
     overriddencreatedon_formatted?: string;
     ownerid_formatted?: string;
     ownershipcode_formatted?: string;
@@ -587,8 +519,6 @@ declare namespace XDT {
     preferredappointmentdaycode_formatted?: string;
     preferredappointmenttimecode_formatted?: string;
     preferredcontactmethodcode_formatted?: string;
-    preferredequipmentid_formatted?: string;
-    preferredserviceid_formatted?: string;
     preferredsystemuserid_formatted?: string;
     primarycontactid_formatted?: string;
     revenue_base_formatted?: string;
@@ -599,7 +529,6 @@ declare namespace XDT {
     statecode_formatted?: string;
     statuscode_formatted?: string;
     territorycode_formatted?: string;
-    territoryid_formatted?: string;
     transactioncurrencyid_formatted?: string;
   }
   interface Account_Result extends Account_Base, Account_Relationships {
@@ -607,50 +536,39 @@ declare namespace XDT {
     createdby_guid: string | null;
     createdbyexternalparty_guid: string | null;
     createdonbehalfby_guid: string | null;
-    defaultpricelevelid_guid: string | null;
     masterid_guid: string | null;
     modifiedby_guid: string | null;
     modifiedbyexternalparty_guid: string | null;
     modifiedonbehalfby_guid: string | null;
     msa_managingpartnerid_guid: string | null;
-    msdyn_accountkpiid_guid: string | null;
-    msdyn_salesaccelerationinsightid_guid: string | null;
-    msdyn_segmentid_guid: string | null;
-    originatingleadid_guid: string | null;
     ownerid_guid: string | null;
     owningbusinessunit_guid: string | null;
     owningteam_guid: string | null;
     owninguser_guid: string | null;
     parentaccountid_guid: string | null;
-    preferredequipmentid_guid: string | null;
-    preferredserviceid_guid: string | null;
     preferredsystemuserid_guid: string | null;
     primarycontactid_guid: string | null;
     slaid_guid: string | null;
     slainvokedid_guid: string | null;
-    territoryid_guid: string | null;
     transactioncurrencyid_guid: string | null;
   }
   interface Account_RelatedOne {
     masterid: WebMappingRetrieve<XDT.Account_Select,XDT.Account_Expand,XDT.Account_Filter,XDT.Account_Fixed,XDT.Account_Result,XDT.Account_FormattedResult>;
     msa_managingpartnerid: WebMappingRetrieve<XDT.Account_Select,XDT.Account_Expand,XDT.Account_Filter,XDT.Account_Fixed,XDT.Account_Result,XDT.Account_FormattedResult>;
-    msdyn_accountkpiid: WebMappingRetrieve<XDT.msdyn_accountkpiitem_Select,XDT.msdyn_accountkpiitem_Expand,XDT.msdyn_accountkpiitem_Filter,XDT.msdyn_accountkpiitem_Fixed,XDT.msdyn_accountkpiitem_Result,XDT.msdyn_accountkpiitem_FormattedResult>;
     parentaccountid: WebMappingRetrieve<XDT.Account_Select,XDT.Account_Expand,XDT.Account_Filter,XDT.Account_Fixed,XDT.Account_Result,XDT.Account_FormattedResult>;
     primarycontactid: WebMappingRetrieve<XDT.Contact_Select,XDT.Contact_Expand,XDT.Contact_Filter,XDT.Contact_Fixed,XDT.Contact_Result,XDT.Contact_FormattedResult>;
   }
   interface Account_RelatedMany {
-    CreatedAccount_BulkOperationLogs2: WebMappingRetrieve<XDT.BulkOperationLog_Select,XDT.BulkOperationLog_Expand,XDT.BulkOperationLog_Filter,XDT.BulkOperationLog_Fixed,XDT.BulkOperationLog_Result,XDT.BulkOperationLog_FormattedResult>;
-    SourceAccount_BulkOperationLogs: WebMappingRetrieve<XDT.BulkOperationLog_Select,XDT.BulkOperationLog_Expand,XDT.BulkOperationLog_Filter,XDT.BulkOperationLog_Fixed,XDT.BulkOperationLog_Result,XDT.BulkOperationLog_FormattedResult>;
-    account_PostFollows: WebMappingRetrieve<XDT.PostFollow_Select,XDT.PostFollow_Expand,XDT.PostFollow_Filter,XDT.PostFollow_Fixed,XDT.PostFollow_Result,XDT.PostFollow_FormattedResult>;
     account_activity_parties: WebMappingRetrieve<XDT.ActivityParty_Select,XDT.ActivityParty_Expand,XDT.ActivityParty_Filter,XDT.ActivityParty_Fixed,XDT.ActivityParty_Result,XDT.ActivityParty_FormattedResult>;
     account_connections1: WebMappingRetrieve<XDT.Connection_Select,XDT.Connection_Expand,XDT.Connection_Filter,XDT.Connection_Fixed,XDT.Connection_Result,XDT.Connection_FormattedResult>;
     account_connections2: WebMappingRetrieve<XDT.Connection_Select,XDT.Connection_Expand,XDT.Connection_Filter,XDT.Connection_Fixed,XDT.Connection_Result,XDT.Connection_FormattedResult>;
     account_master_account: WebMappingRetrieve<XDT.Account_Select,XDT.Account_Expand,XDT.Account_Filter,XDT.Account_Fixed,XDT.Account_Result,XDT.Account_FormattedResult>;
     account_parent_account: WebMappingRetrieve<XDT.Account_Select,XDT.Account_Expand,XDT.Account_Filter,XDT.Account_Fixed,XDT.Account_Result,XDT.Account_FormattedResult>;
     contact_customer_accounts: WebMappingRetrieve<XDT.Contact_Select,XDT.Contact_Expand,XDT.Contact_Filter,XDT.Contact_Fixed,XDT.Contact_Result,XDT.Contact_FormattedResult>;
+    ctx_account_ctx_invoice_112: WebMappingRetrieve<XDT.ctx_Invoice_Select,XDT.ctx_Invoice_Expand,XDT.ctx_Invoice_Filter,XDT.ctx_Invoice_Fixed,XDT.ctx_Invoice_Result,XDT.ctx_Invoice_FormattedResult>;
+    ctx_account_ctx_subscription_367: WebMappingRetrieve<XDT.ctx_Subscription_Select,XDT.ctx_Subscription_Expand,XDT.ctx_Subscription_Filter,XDT.ctx_Subscription_Fixed,XDT.ctx_Subscription_Result,XDT.ctx_Subscription_FormattedResult>;
     msa_account_managingpartner: WebMappingRetrieve<XDT.Account_Select,XDT.Account_Expand,XDT.Account_Filter,XDT.Account_Fixed,XDT.Account_Result,XDT.Account_FormattedResult>;
     msa_contact_managingpartner: WebMappingRetrieve<XDT.Contact_Select,XDT.Contact_Expand,XDT.Contact_Filter,XDT.Contact_Fixed,XDT.Contact_Result,XDT.Contact_FormattedResult>;
-    msdyn_account_msdyn_accountkpiitem_accountid: WebMappingRetrieve<XDT.msdyn_accountkpiitem_Select,XDT.msdyn_accountkpiitem_Expand,XDT.msdyn_accountkpiitem_Filter,XDT.msdyn_accountkpiitem_Fixed,XDT.msdyn_accountkpiitem_Result,XDT.msdyn_accountkpiitem_FormattedResult>;
   }
 }
 interface WebEntitiesRetrieve {
