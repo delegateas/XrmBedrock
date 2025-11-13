@@ -56,143 +56,120 @@ declare namespace XDT {
   }
   interface Contact_Update extends Contact {
   }
-  interface mgs_Invoice_Base extends WebEntity {
+  interface ctx_Invoice_Base extends WebEntity {
   }
-  interface mgs_Invoice_Fixed extends WebEntity_Fixed {
-    mgs_invoiceid: string;
+  interface ctx_Invoice_Fixed extends WebEntity_Fixed {
+    ctx_invoiceid: string;
   }
-  interface mgs_Invoice extends mgs_Invoice_Base, mgs_Invoice_Relationships {
+  interface ctx_Invoice extends ctx_Invoice_Base, ctx_Invoice_Relationships {
   }
-  interface mgs_Invoice_Relationships {
+  interface ctx_Invoice_Relationships {
   }
-  interface mgs_Invoice_Result extends mgs_Invoice_Base, mgs_Invoice_Relationships {
+  interface ctx_Invoice_Result extends ctx_Invoice_Base, ctx_Invoice_Relationships {
   }
-  interface mgs_Invoice_FormattedResult {
+  interface ctx_Invoice_FormattedResult {
   }
-  interface mgs_Invoice_Select {
+  interface ctx_Invoice_Select {
   }
-  interface mgs_Invoice_Expand {
+  interface ctx_Invoice_Expand {
   }
-  interface mgs_Invoice_Filter {
+  interface ctx_Invoice_Filter {
   }
-  interface mgs_Invoice_Create extends mgs_Invoice {
+  interface ctx_Invoice_Create extends ctx_Invoice {
   }
-  interface mgs_Invoice_Update extends mgs_Invoice {
+  interface ctx_Invoice_Update extends ctx_Invoice {
   }
-  interface mgs_InvoiceCollection_Base extends WebEntity {
+  interface ctx_InvoiceCollection_Base extends WebEntity {
   }
-  interface mgs_InvoiceCollection_Fixed extends WebEntity_Fixed {
-    mgs_invoicecollectionid: string;
+  interface ctx_InvoiceCollection_Fixed extends WebEntity_Fixed {
+    ctx_invoicecollectionid: string;
   }
-  interface mgs_InvoiceCollection extends mgs_InvoiceCollection_Base, mgs_InvoiceCollection_Relationships {
+  interface ctx_InvoiceCollection extends ctx_InvoiceCollection_Base, ctx_InvoiceCollection_Relationships {
   }
-  interface mgs_InvoiceCollection_Relationships {
+  interface ctx_InvoiceCollection_Relationships {
   }
-  interface mgs_InvoiceCollection_Result extends mgs_InvoiceCollection_Base, mgs_InvoiceCollection_Relationships {
+  interface ctx_InvoiceCollection_Result extends ctx_InvoiceCollection_Base, ctx_InvoiceCollection_Relationships {
   }
-  interface mgs_InvoiceCollection_FormattedResult {
+  interface ctx_InvoiceCollection_FormattedResult {
   }
-  interface mgs_InvoiceCollection_Select {
+  interface ctx_InvoiceCollection_Select {
   }
-  interface mgs_InvoiceCollection_Expand {
+  interface ctx_InvoiceCollection_Expand {
   }
-  interface mgs_InvoiceCollection_Filter {
+  interface ctx_InvoiceCollection_Filter {
   }
-  interface mgs_InvoiceCollection_Create extends mgs_InvoiceCollection {
+  interface ctx_InvoiceCollection_Create extends ctx_InvoiceCollection {
   }
-  interface mgs_InvoiceCollection_Update extends mgs_InvoiceCollection {
+  interface ctx_InvoiceCollection_Update extends ctx_InvoiceCollection {
   }
-  interface mgs_Product_Base extends WebEntity {
+  interface ctx_Product_Base extends WebEntity {
   }
-  interface mgs_Product_Fixed extends WebEntity_Fixed {
-    mgs_productid: string;
+  interface ctx_Product_Fixed extends WebEntity_Fixed {
+    ctx_productid: string;
   }
-  interface mgs_Product extends mgs_Product_Base, mgs_Product_Relationships {
+  interface ctx_Product extends ctx_Product_Base, ctx_Product_Relationships {
   }
-  interface mgs_Product_Relationships {
+  interface ctx_Product_Relationships {
   }
-  interface mgs_Product_Result extends mgs_Product_Base, mgs_Product_Relationships {
+  interface ctx_Product_Result extends ctx_Product_Base, ctx_Product_Relationships {
   }
-  interface mgs_Product_FormattedResult {
+  interface ctx_Product_FormattedResult {
   }
-  interface mgs_Product_Select {
+  interface ctx_Product_Select {
   }
-  interface mgs_Product_Expand {
+  interface ctx_Product_Expand {
   }
-  interface mgs_Product_Filter {
+  interface ctx_Product_Filter {
   }
-  interface mgs_Product_Create extends mgs_Product {
+  interface ctx_Product_Create extends ctx_Product {
   }
-  interface mgs_Product_Update extends mgs_Product {
+  interface ctx_Product_Update extends ctx_Product {
   }
-  interface mgs_Subscription_Base extends WebEntity {
+  interface ctx_Subscription_Base extends WebEntity {
   }
-  interface mgs_Subscription_Fixed extends WebEntity_Fixed {
-    mgs_subscriptionid: string;
+  interface ctx_Subscription_Fixed extends WebEntity_Fixed {
+    ctx_subscriptionid: string;
   }
-  interface mgs_Subscription extends mgs_Subscription_Base, mgs_Subscription_Relationships {
+  interface ctx_Subscription extends ctx_Subscription_Base, ctx_Subscription_Relationships {
   }
-  interface mgs_Subscription_Relationships {
+  interface ctx_Subscription_Relationships {
   }
-  interface mgs_Subscription_Result extends mgs_Subscription_Base, mgs_Subscription_Relationships {
+  interface ctx_Subscription_Result extends ctx_Subscription_Base, ctx_Subscription_Relationships {
   }
-  interface mgs_Subscription_FormattedResult {
+  interface ctx_Subscription_FormattedResult {
   }
-  interface mgs_Subscription_Select {
+  interface ctx_Subscription_Select {
   }
-  interface mgs_Subscription_Expand {
+  interface ctx_Subscription_Expand {
   }
-  interface mgs_Subscription_Filter {
+  interface ctx_Subscription_Filter {
   }
-  interface mgs_Subscription_Create extends mgs_Subscription {
+  interface ctx_Subscription_Create extends ctx_Subscription {
   }
-  interface mgs_Subscription_Update extends mgs_Subscription {
+  interface ctx_Subscription_Update extends ctx_Subscription {
   }
-  interface mgs_Transaction_Base extends WebEntity {
+  interface ctx_Transaction_Base extends WebEntity {
   }
-  interface mgs_Transaction_Fixed extends WebEntity_Fixed {
-    mgs_transactionid: string;
+  interface ctx_Transaction_Fixed extends WebEntity_Fixed {
+    ctx_transactionid: string;
   }
-  interface mgs_Transaction extends mgs_Transaction_Base, mgs_Transaction_Relationships {
+  interface ctx_Transaction extends ctx_Transaction_Base, ctx_Transaction_Relationships {
   }
-  interface mgs_Transaction_Relationships {
+  interface ctx_Transaction_Relationships {
   }
-  interface mgs_Transaction_Result extends mgs_Transaction_Base, mgs_Transaction_Relationships {
+  interface ctx_Transaction_Result extends ctx_Transaction_Base, ctx_Transaction_Relationships {
   }
-  interface mgs_Transaction_FormattedResult {
+  interface ctx_Transaction_FormattedResult {
   }
-  interface mgs_Transaction_Select {
+  interface ctx_Transaction_Select {
   }
-  interface mgs_Transaction_Expand {
+  interface ctx_Transaction_Expand {
   }
-  interface mgs_Transaction_Filter {
+  interface ctx_Transaction_Filter {
   }
-  interface mgs_Transaction_Create extends mgs_Transaction {
+  interface ctx_Transaction_Create extends ctx_Transaction {
   }
-  interface mgs_Transaction_Update extends mgs_Transaction {
-  }
-  interface BulkOperationLog_Base extends WebEntity {
-  }
-  interface BulkOperationLog_Fixed extends WebEntity_Fixed {
-    bulkoperationlogid: string;
-  }
-  interface BulkOperationLog extends BulkOperationLog_Base, BulkOperationLog_Relationships {
-  }
-  interface BulkOperationLog_Relationships {
-  }
-  interface BulkOperationLog_Result extends BulkOperationLog_Base, BulkOperationLog_Relationships {
-  }
-  interface BulkOperationLog_FormattedResult {
-  }
-  interface BulkOperationLog_Select {
-  }
-  interface BulkOperationLog_Expand {
-  }
-  interface BulkOperationLog_Filter {
-  }
-  interface BulkOperationLog_Create extends BulkOperationLog {
-  }
-  interface BulkOperationLog_Update extends BulkOperationLog {
+  interface ctx_Transaction_Update extends ctx_Transaction {
   }
   interface ActivityParty_Base extends WebEntity {
   }
@@ -239,74 +216,5 @@ declare namespace XDT {
   interface Connection_Create extends Connection {
   }
   interface Connection_Update extends Connection {
-  }
-  interface msdyn_accountkpiitem_Base extends WebEntity {
-  }
-  interface msdyn_accountkpiitem_Fixed extends WebEntity_Fixed {
-    msdyn_accountkpiitemid: string;
-  }
-  interface msdyn_accountkpiitem extends msdyn_accountkpiitem_Base, msdyn_accountkpiitem_Relationships {
-  }
-  interface msdyn_accountkpiitem_Relationships {
-  }
-  interface msdyn_accountkpiitem_Result extends msdyn_accountkpiitem_Base, msdyn_accountkpiitem_Relationships {
-  }
-  interface msdyn_accountkpiitem_FormattedResult {
-  }
-  interface msdyn_accountkpiitem_Select {
-  }
-  interface msdyn_accountkpiitem_Expand {
-  }
-  interface msdyn_accountkpiitem_Filter {
-  }
-  interface msdyn_accountkpiitem_Create extends msdyn_accountkpiitem {
-  }
-  interface msdyn_accountkpiitem_Update extends msdyn_accountkpiitem {
-  }
-  interface msdyn_contactkpiitem_Base extends WebEntity {
-  }
-  interface msdyn_contactkpiitem_Fixed extends WebEntity_Fixed {
-    msdyn_contactkpiitemid: string;
-  }
-  interface msdyn_contactkpiitem extends msdyn_contactkpiitem_Base, msdyn_contactkpiitem_Relationships {
-  }
-  interface msdyn_contactkpiitem_Relationships {
-  }
-  interface msdyn_contactkpiitem_Result extends msdyn_contactkpiitem_Base, msdyn_contactkpiitem_Relationships {
-  }
-  interface msdyn_contactkpiitem_FormattedResult {
-  }
-  interface msdyn_contactkpiitem_Select {
-  }
-  interface msdyn_contactkpiitem_Expand {
-  }
-  interface msdyn_contactkpiitem_Filter {
-  }
-  interface msdyn_contactkpiitem_Create extends msdyn_contactkpiitem {
-  }
-  interface msdyn_contactkpiitem_Update extends msdyn_contactkpiitem {
-  }
-  interface PostFollow_Base extends WebEntity {
-  }
-  interface PostFollow_Fixed extends WebEntity_Fixed {
-    postfollowid: string;
-  }
-  interface PostFollow extends PostFollow_Base, PostFollow_Relationships {
-  }
-  interface PostFollow_Relationships {
-  }
-  interface PostFollow_Result extends PostFollow_Base, PostFollow_Relationships {
-  }
-  interface PostFollow_FormattedResult {
-  }
-  interface PostFollow_Select {
-  }
-  interface PostFollow_Expand {
-  }
-  interface PostFollow_Filter {
-  }
-  interface PostFollow_Create extends PostFollow {
-  }
-  interface PostFollow_Update extends PostFollow {
   }
 }

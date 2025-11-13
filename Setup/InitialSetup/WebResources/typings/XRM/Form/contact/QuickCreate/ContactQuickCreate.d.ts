@@ -17,7 +17,6 @@ declare namespace Form.contact.QuickCreate {
       get(name: "address1_line2"): Xrm.Attribute<string>;
       get(name: "address1_postalcode"): Xrm.Attribute<string>;
       get(name: "birthdate"): Xrm.DateAttribute | null;
-      get(name: "businesscard"): Xrm.Attribute<any>;
       get(name: "description"): Xrm.Attribute<string>;
       get(name: "emailaddress1"): Xrm.Attribute<string>;
       get(name: "familystatuscode"): Xrm.OptionSetAttribute<contact_familystatuscode> | null;
@@ -43,7 +42,6 @@ declare namespace Form.contact.QuickCreate {
       get(name: "address1_line1"): Xrm.StringControl;
       get(name: "address1_line2"): Xrm.StringControl;
       get(name: "address1_postalcode"): Xrm.StringControl;
-      get(name: "businesscard"): Xrm.Control<Xrm.Attribute<any>>;
       get(name: "description"): Xrm.StringControl;
       get(name: "emailaddress1"): Xrm.StringControl;
       get(name: "firstname"): Xrm.StringControl;
@@ -70,6 +68,12 @@ declare namespace Form.contact.QuickCreate {
       get(index: number): Xrm.BaseControl;
       get(chooser: (item: Xrm.BaseControl, index: number) => boolean): Xrm.BaseControl[];
     }
+    interface QuickViewForms extends Xrm.QuickViewFormCollectionBase {
+      get(name: string): undefined;
+      get(): Xrm.QuickViewFormBase[];
+      get(index: number): Xrm.QuickViewFormBase;
+      get(chooser: (item: Xrm.QuickViewFormBase, index: number) => boolean): Xrm.QuickViewFormBase[];
+    }
     interface Tabs extends Xrm.TabCollectionBase {
       get(name: "tab_1"): Xrm.PageTab<Tabs.tab_1>;
       get(name: string): undefined;
@@ -78,13 +82,12 @@ declare namespace Form.contact.QuickCreate {
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface ContactQuickCreate extends Xrm.PageBase<ContactQuickCreate.Attributes,ContactQuickCreate.Tabs,ContactQuickCreate.Controls> {
+  interface ContactQuickCreate extends Xrm.PageBase<ContactQuickCreate.Attributes,ContactQuickCreate.Tabs,ContactQuickCreate.Controls,ContactQuickCreate.QuickViewForms> {
     getAttribute(attributeName: "address1_city"): Xrm.Attribute<string>;
     getAttribute(attributeName: "address1_line1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "address1_line2"): Xrm.Attribute<string>;
     getAttribute(attributeName: "address1_postalcode"): Xrm.Attribute<string>;
     getAttribute(attributeName: "birthdate"): Xrm.DateAttribute | null;
-    getAttribute(attributeName: "businesscard"): Xrm.Attribute<any>;
     getAttribute(attributeName: "description"): Xrm.Attribute<string>;
     getAttribute(attributeName: "emailaddress1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "familystatuscode"): Xrm.OptionSetAttribute<contact_familystatuscode> | null;
@@ -101,11 +104,11 @@ declare namespace Form.contact.QuickCreate {
     getAttribute(attributeName: "telephone1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "websiteurl"): Xrm.Attribute<string> | null;
     getAttribute(attributeName: string): undefined;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "address1_city"): Xrm.StringControl;
     getControl(controlName: "address1_line1"): Xrm.StringControl;
     getControl(controlName: "address1_line2"): Xrm.StringControl;
     getControl(controlName: "address1_postalcode"): Xrm.StringControl;
-    getControl(controlName: "businesscard"): Xrm.Control<Xrm.Attribute<any>>;
     getControl(controlName: "description"): Xrm.StringControl;
     getControl(controlName: "emailaddress1"): Xrm.StringControl;
     getControl(controlName: "firstname"): Xrm.StringControl;
@@ -128,5 +131,6 @@ declare namespace Form.contact.QuickCreate {
     getControl(controlName: "parentcustomerid"): Xrm.LookupControl<"account" | "contact">;
     getControl(controlName: "telephone1"): Xrm.StringControl;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }

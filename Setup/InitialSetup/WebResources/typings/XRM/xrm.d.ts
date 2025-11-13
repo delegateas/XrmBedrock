@@ -12,6 +12,12 @@ declare namespace Xrm {
     BulkEdit = 6,
   }
 
+  namespace Collection {
+    interface MatchingDelegate<T> {
+      (item: T, index?: number): boolean;
+    }
+  }
+
   /**
    * Interface for an option set value.
    */
@@ -47,7 +53,7 @@ declare namespace Xrm {
   /**
    * Interface for an entity reference for the Xrm.Page context.
    */
-  interface EntityReference<T extends string> {
+  interface EntityReference<T extends string|number> {
     id: string;
     entityType: T;
     name?: string | null;
@@ -77,7 +83,7 @@ declare namespace Xrm {
      * @param item The current object.
      * @param index The index of the current object.
      */
-    (item: T, index: number): any;
+    (item: T, index: number): any; //eslint-disable-line @typescript-eslint/no-explicit-any
   }
 
   /**
@@ -124,43 +130,56 @@ declare namespace Xrm {
   /**
    * A collection of attributes.
    */
-  interface AttributeCollection extends Collection<Attribute<any>> {}
+  interface AttributeCollection extends Collection<Attribute<any>> {} //eslint-disable-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-explicit-any
 
   /**
    * A collection of controls.
    */
 
-  interface ControlCollection extends Collection<AnyControl> {}
+  interface ControlCollection extends Collection<AnyControl> {} //eslint-disable-line @typescript-eslint/no-empty-interface
 
   /**
    * A collection of sections.
    */
-  interface SectionCollection extends Collection<PageSection> {}
+  interface SectionCollection extends Collection<PageSection> {} //eslint-disable-line @typescript-eslint/no-empty-interface
 
   /**
    * A collection of tabs.
    */
-  interface TabCollection extends Collection<PageTab<SectionCollection>> {}
+  interface TabCollection extends Collection<PageTab<SectionCollection>> { } //eslint-disable-line @typescript-eslint/no-empty-interface
 
   /**
    * A collection of attributes.
    */
-  interface AttributeCollectionBase extends CollectionBase<Attribute<any>> {}
+  interface AttributeCollectionBase extends CollectionBase<Attribute<any>> {} //eslint-disable-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-explicit-any
 
   /**
    * A collection of controls.
    */
-  interface ControlCollectionBase extends CollectionBase<AnyControl> {}
+  interface ControlCollectionBase extends CollectionBase<AnyControl> {} //eslint-disable-line @typescript-eslint/no-empty-interface
 
   /**
    * A collection of sections.
    */
-  interface SectionCollectionBase extends CollectionBase<PageSection> {}
+  interface SectionCollectionBase extends CollectionBase<PageSection> {} //eslint-disable-line @typescript-eslint/no-empty-interface
 
   /**
    * A collection of tabs.
    */
-  interface TabCollectionBase extends CollectionBase<PageTab<SectionCollectionBase>> {}
+  interface TabCollectionBase extends CollectionBase<PageTab<SectionCollectionBase>> { } //eslint-disable-line @typescript-eslint/no-empty-interface
+
+  /**
+   * A collection of QuickViewForms.
+   */
+  interface QuickViewFormCollection extends Collection<QuickViewFormBase> { } //eslint-disable-line @typescript-eslint/no-empty-interface
+
+  /**
+   * A collection of QuickViewForms
+  */
+  interface QuickViewFormCollectionBase extends CollectionBase<QuickViewFormBase> { } //eslint-disable-line @typescript-eslint/no-empty-interface
+
+  interface QuickViewForm<T extends TabCollectionBase, C extends ControlCollectionBase> { } //eslint-disable-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
+  interface QuickViewFormBase extends QuickViewForm<TabCollectionBase, ControlCollectionBase> { } //eslint-disable-line @typescript-eslint/no-empty-interface
 
   type AttributeType = "boolean" | "datetime" | "decimal" | "double" | "integer" | "lookup" | "memo" | "money" | "optionset" | "string" | "multiselectoptionset";
 
@@ -219,7 +238,7 @@ declare namespace Xrm {
     /**
      * Get a reference to the Xrm.Page.data.entity object that is the parent to all attributes.
      */
-    getParent(): PageEntity<Collection<Attribute<any>>>;
+    getParent(): PageEntity<Collection<Attribute<any>>>; //eslint-disable-line @typescript-eslint/no-explicit-any
 
     /**
      * Returns an object with three Boolean properties corresponding to privileges indicating if the user can create,
@@ -233,14 +252,14 @@ declare namespace Xrm {
      *
      * @param functionRef The event handler for the on change event.
      */
-    addOnChange(functionRef: (context?: ExecutionContext<this, undefined>) => any): void;
+    addOnChange(functionRef: (context?: ExecutionContext<this, undefined>) => any): void; //eslint-disable-line @typescript-eslint/no-explicit-any
 
     /**
      * Removes a function from the OnChange event hander for an attribute.
      *
      * @param functionRef The event handler for the on change event.
      */
-    removeOnChange(functionRef: Function): void;
+    removeOnChange(functionRef: Function): void; //eslint-disable-line @typescript-eslint/ban-types
 
     /**
      * Causes the OnChange event to occur on the attribute so that any script associated to that event can execute.
@@ -404,6 +423,7 @@ declare namespace Xrm {
     setVisible(visible: boolean): void;
   }
 
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
   interface Control<T extends Xrm.Attribute<any>> extends BaseControl {
     /**
      * Get the attribute this control is bound to.
@@ -455,7 +475,7 @@ declare namespace Xrm {
     /**
      * Returns the object in the form that represents an IFRAME or WebResource.
      */
-    getObject(): any;
+    getObject(): any; //eslint-disable-line @typescript-eslint/no-explicit-any
 
     /**
      * Returns the current URL being displayed in an IFRAME or WebResource.
@@ -500,6 +520,7 @@ declare namespace Xrm {
   /**
    * Interface for a DateTime form control.
    */
+  //eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DateControl extends Control<Attribute<Date>> {}
 
   /**
@@ -532,6 +553,7 @@ declare namespace Xrm {
   /**
    * Interface for a SubGrid form control.
    */
+  //eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface SubGridControl<T extends string> extends BaseControl {
     /**
      * Refreshes the data displayed in a subgrid.
@@ -542,7 +564,13 @@ declare namespace Xrm {
   /**
    * Type to be be used for iterating over a list of controls and being able to interact with all of them with precursory checks for undefined
    */
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
   type AnyControl = BaseControl & Partial<Control<any> & WebResourceControl & IFrameControl & LookupControl<string> & SubGridControl<string> & DateControl & OptionSetControl<any>>;
+  
+  const enum ViewTypeNumber {
+    SavedQuery = 1039,
+    UserQuery = 4230,
+  }
 
   /**
    * Remarks:
@@ -552,7 +580,7 @@ declare namespace Xrm {
     /**
      * Use this method to get a reference to the current view.
      */
-    getCurrentView(): Xrm.EntityReference<string>;
+    getCurrentView(): EntityReference<ViewTypeNumber>;
 
     /**
      * Use this method to determine whether the view selector is visible.
@@ -562,17 +590,19 @@ declare namespace Xrm {
     /**
      * Use this method to set the current view.
      */
-    setCurrentView(reference: Xrm.EntityReference<string>): void;
+    setCurrentView(reference: EntityReference<ViewTypeNumber>): void;
   }
 
   /**
    * Interface for a string form control.
    */
+  //eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface StringControl extends Control<Attribute<string>> {}
 
   /**
    * Interface for a number form control.
    */
+  //eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface NumberControl extends Control<NumberAttribute> {}
 
   /**
@@ -590,6 +620,7 @@ declare namespace Xrm {
      * @param functionRef Reference to a function. It will be added to the bottom of the event handler pipeline.
      *                  The execution context is automatically set to be passed as the first parameter passed to event handlers set using this method.
      */
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     addOnSave(functionRef: (context?: SaveEventContext<this>) => any): void;
 
     /**
@@ -597,7 +628,7 @@ declare namespace Xrm {
      *
      * @param functionRef Reference to a function that was added to the OnSave event.
      */
-    removeOnSave(functionRef: Function): void;
+    removeOnSave(functionRef: Function): void; //eslint-disable-line @typescript-eslint/ban-types
 
     /**
      * Returns a string representing the GUID id value for the record.
@@ -647,16 +678,17 @@ declare namespace Xrm {
      * @param key Key for the value
      * @param value The value to be stored
      */
-    setSharedVariable(key: string, value: any): void;
+    setSharedVariable(key: string, value: any): void; //eslint-disable-line @typescript-eslint/no-explicit-any
 
     /**
      * Retrieves a variable set using setSharedVariable.
      *
      * @param key Key for the desired value
      */
-    getSharedVariable(key: string): any;
+    getSharedVariable(key: string): any; //eslint-disable-line @typescript-eslint/no-explicit-any
   }
 
+  //eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface SaveEventContext<T> extends ExecutionContext<T, SaveEventArgs> { }
 
   interface SaveEventArgs {
@@ -907,7 +939,7 @@ declare namespace Xrm {
     /**
      * Returns the Xrm.Page.ui object.
      */
-    getParent(): UiModule<Collection<PageTab<Collection<PageSection>>>, Collection<BaseControl>>;
+    getParent(): UiModule<Collection<PageTab<Collection<PageSection>>>, Collection<BaseControl>, Collection<QuickViewFormBase>>;
 
     /**
      * Returns the tab label.
@@ -942,7 +974,8 @@ declare namespace Xrm {
   /**
    * Interface for the ui of a form.
    */
-  interface UiModule<T extends TabCollectionBase, U extends ControlCollectionBase> {
+  //eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface UiModule<T extends TabCollectionBase, C extends ControlCollectionBase, Q extends QuickViewFormCollectionBase = QuickViewFormCollectionBase> {
     /**
      * Collection of tabs on the page.
      */
@@ -951,12 +984,18 @@ declare namespace Xrm {
     /**
      * Collection of controls on the page.
      */
-    controls: U;
+    controls: C;
 
     /**
      * Navigation for the page.
      */
-    navigation: navigation;
+    navigation: Navigation;
+
+    /**
+     * Use the formSelector.getCurrentItem method to retrieve information about the form currently in use and the formSelector.items
+     * collection containing information about all the forms available for the user.
+     */
+    formSelector: FormSelector;
 
     /**
      * Method to get the form context for the record.
@@ -968,12 +1007,6 @@ declare namespace Xrm {
      * Method to close the form.
      */
     close(): void;
-
-    /**
-     * Use the formSelector.getCurrentItem method to retrieve information about the form currently in use and the formSelector.items
-     * collection containing information about all the forms available for the user.
-     */
-    formSelector: FormSelector;
 
     /**
      * Method to get the control object that currently has focus on the form. Web Resource and IFRAME controls are not returned by this method.
@@ -1026,7 +1059,7 @@ declare namespace Xrm {
     navigate(): void;
   }
 
-  interface navigation {
+  interface Navigation {
     /**
      * Navigation items for the page.
      */
@@ -1046,6 +1079,7 @@ declare namespace Xrm {
 
     /**
      * Sets the label for the item.
+     * @param label The new label for the item.
      */
     setLabel(label: string): void;
 
@@ -1056,11 +1090,13 @@ declare namespace Xrm {
 
     /**
      * Returns a value that indicates whether the item is currently visible.
+     * Returns true if the item is visible; false otherwise..
      */
     getVisible(): boolean;
 
     /**
      * Sets a value that indicates whether the item is visible.
+     * @param visible Specify true or false to indicate whether the item is visible or not.
      */
     setVisible(visible: boolean): void;
   }
@@ -1088,22 +1124,22 @@ declare namespace Xrm {
   /**
    * Interface for the base of an Xrm.Page
    */
-  interface PageBase<T extends AttributeCollectionBase, U extends TabCollectionBase, V extends ControlCollectionBase> {
+  interface PageBase<A extends AttributeCollectionBase, T extends TabCollectionBase, C extends ControlCollectionBase, Q extends QuickViewFormCollectionBase = QuickViewFormCollectionBase> {
     /**
      * Data on the page.
      */
-    data: Xrm.DataModule<T>;
+    data: Xrm.DataModule<A>;
 
     /**
      * UI of the page.
      */
-    ui: Xrm.UiModule<U, V>;
+    ui: Xrm.UiModule<T, C, Q>;
 
     /**
      * Returns string with current page URL.
      */
     getUrl(): string;
-  }
+    }
 
   /**
    * Interface for a generic Xrm.Page
@@ -1112,7 +1148,7 @@ declare namespace Xrm {
     /**
      * Generic getAttribute
      */
-    getAttribute(attrName: string): Xrm.Attribute<any> | undefined;
+    getAttribute(attrName: string): Xrm.Attribute<any> | undefined; //eslint-disable-line @typescript-eslint/no-explicit-any
 
     /**
      * Generic getControl
@@ -1125,7 +1161,8 @@ type BaseXrm = typeof Xrm;
 /**
  * Client-side xRM object model.
  */
-interface Xrm<T extends Xrm.PageBase<Xrm.AttributeCollectionBase, Xrm.TabCollectionBase, Xrm.ControlCollectionBase>> extends BaseXrm {
+//eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface Xrm<T extends Xrm.PageBase<Xrm.AttributeCollectionBase, Xrm.TabCollectionBase, Xrm.ControlCollectionBase, Xrm.QuickViewFormCollectionBase>> extends BaseXrm {
   /**
    * Various utility functions can be found here.
    */
@@ -1133,7 +1170,7 @@ interface Xrm<T extends Xrm.PageBase<Xrm.AttributeCollectionBase, Xrm.TabCollect
 }
 
 declare namespace Xrm {
-  var Utility: Utility;
+  let Utility: Utility;
 
   /**
    * Interface for a Lookup which is used by some Xrm.Utility functions.
@@ -1165,6 +1202,8 @@ declare namespace Xrm {
     openInNewWindow: boolean;
   }
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\xrm.d.ts" />
 declare namespace Xrm {
   interface BaseControl {
     /**
@@ -1195,11 +1234,13 @@ declare namespace Xrm {
     /**
      * Use this method to apply changes to lookups based on values current just as the user is about to view results for the lookup.
      */
+    // eslint-disable-next-line @typescript-eslint/ban-types
     addPreSearch(handler: Function): void;
 
     /**
      * Use this method to remove event handler functions that have previously been set for the PreSearch event.
      */
+    // eslint-disable-next-line @typescript-eslint/ban-types
     removePreSearch(handler: Function): void;
   }
 
@@ -1210,6 +1251,7 @@ declare namespace Xrm {
     setShowTime(doShow: boolean): void;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface PageEntity<T extends AttributeCollectionBase> {
     /**
      * Gets a string for the value of the primary attribute of the entity.
@@ -1217,6 +1259,7 @@ declare namespace Xrm {
     getPrimaryAttributeValue(): string;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface BaseAttribute<T> {
     /**
      * Determine whether a lookup attribute represents a partylist lookup.
@@ -1224,7 +1267,8 @@ declare namespace Xrm {
     getIsPartyList(): boolean;
   }
 
-  interface UiModule<T extends TabCollectionBase, U extends ControlCollectionBase> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface UiModule<T extends TabCollectionBase, C extends ControlCollectionBase, Q extends QuickViewFormCollectionBase = QuickViewFormCollectionBase> {
     /**
      * Use this method to remove form level notifications.
      *
@@ -1266,11 +1310,14 @@ declare namespace Xrm {
     client: client;
   }
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\xrm.d.ts" />
 declare namespace Xrm {
   /**
    * Interface for the ui of a form.
    */
-  interface UiModule<T extends TabCollectionBase, U extends ControlCollectionBase> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface UiModule<T extends TabCollectionBase, C extends ControlCollectionBase, Q extends QuickViewFormCollectionBase = QuickViewFormCollectionBase> {
     /**
      * Access UI controls for the business process flow on the form.
      */
@@ -1299,12 +1346,15 @@ declare namespace Xrm {
     setVisible(visible: boolean): void;
   }
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\xrm.d.ts" />
 declare namespace Xrm {
   interface SubGridControl<T extends string> extends BaseControl {
     /**
      * Add event handlers to this event to run every time the subgrid refreshes.
      * This includes when users sort the values by clicking the column headings.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     addOnLoad(functionRef: (context?: ExecutionContext<this, any>) => any): void;
 
     /**
@@ -1325,6 +1375,7 @@ declare namespace Xrm {
     /**
      * Use this method to remove event handlers from the GridControl.OnLoad event.
      */
+    // eslint-disable-next-line @typescript-eslint/ban-types
     removeOnLoad(reference: Function): void;
 
     /**
@@ -1398,13 +1449,17 @@ declare namespace Xrm {
     getShowTime(): boolean;
   }
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\xrm.d.ts" />
 declare namespace Xrm {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface PageTab<T extends SectionCollectionBase> {
     /**
      * Add an event handler on tab state change.
      *
      * @param reference Event handler for tab state change.
      */
+    // eslint-disable-next-line @typescript-eslint/ban-types
     addTabStateChange(reference: Function): void;
   }
 
@@ -1468,6 +1523,7 @@ declare namespace Xrm {
   /**
    * Interface for the data of a form.
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface DataModule<T extends AttributeCollectionBase> {
     /**
      * Access various functionality for a business process flow.
@@ -1487,8 +1543,10 @@ declare namespace Xrm {
     getDirection(): ProcessStageChangeDirection;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface StageSelectedContext extends ExecutionContext<Stage, StageSelectedEventArguments> { }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface StageChangeContext extends ExecutionContext<Stage, StageChangeEventArguments> { }
 
   /**
@@ -1522,6 +1580,7 @@ declare namespace Xrm {
      *                    OR
      *      - The record hasn’t been saved yet.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setActiveStage(stageId: string, callback?: (stringVal: ProcessStageSetAnswer) => any): void;
 
     /**
@@ -1538,6 +1597,7 @@ declare namespace Xrm {
      *      The enabled processes are filtered according to the user’s privileges. The list of enabled processes is the same ones a user can see in the UI
      *      if they want to change the process manually.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     getEnabledProcesses(callback: (enabledProcesses: ProcessContainer) => any): void;
 
     /**
@@ -1551,6 +1611,7 @@ declare namespace Xrm {
      *
      * @param handler The function will be added to the bottom of the event handler pipeline.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     addOnStageChange(handler: (context?: StageChangeContext) => any): void;
 
     /**
@@ -1558,6 +1619,7 @@ declare namespace Xrm {
      *
      * @param handler If an anonymous function is set using the addOnStageChange method it cannot be removed using this method.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     removeOnStageChange(handler: (context?: StageChangeContext) => any): void;
 
     /**
@@ -1566,6 +1628,7 @@ declare namespace Xrm {
      *
      * @param handler The function will be added to the bottom of the event handler pipeline.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     addOnStageSelected(handler: (context?: StageSelectedContext) => any): void;
 
     /**
@@ -1573,6 +1636,7 @@ declare namespace Xrm {
      *
      * @param handler If an anonymous function is set using the addOnStageSelected method it cannot be removed using this method.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     removeOnStageSelected(handler: (context?: StageSelectedContext) => any): void;
 
     /**
@@ -1587,6 +1651,7 @@ declare namespace Xrm {
      *      "invalid": The operation failed because the selected stage isn’t the same as the active stage.
      *      "dirtyForm": This value will be returned if the data in the page is not saved.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     moveNext(callback?: (stringVal: ProcessStageMoveAnswer) => any): void;
 
     /**
@@ -1601,6 +1666,7 @@ declare namespace Xrm {
      *      "invalid": The operation failed because the selected stage isn’t the same as the active stage.
      *      "dirtyForm": This value will be returned if the data in the page is not saved.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     movePrevious(callback?: (stringVal: ProcessStageMoveAnswer) => any): void;
   }
 
@@ -1614,6 +1680,9 @@ declare namespace Xrm {
     getOptions(): Option<T>[];
   }
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\xrm.d.ts" />
+
 //Function helper type for a function that can be set to be called by a view column to show an image with a tooltip instead of the ordinary data
 type TooltipFunc = (rowData: string, lcid: LCID) => [WebResourceImage, string];
 
@@ -1661,6 +1730,7 @@ declare namespace Xrm {
     /**
      * Command action
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     action: () => any;
   }
 
@@ -1691,6 +1761,7 @@ declare namespace Xrm {
     fireOnKeyPress(): void;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface GridEntity<T extends string> {
     /**
      * Returns the GUID of the record.
@@ -1703,11 +1774,13 @@ declare namespace Xrm {
      * Returns a collection of the related entities for this record.
      * TODO: Unsure as to what type of elements are returned in the collection.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     getRelatedEntities(): GridCollection<any>;
 
     isInHierarchy(): boolean;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-interface 
   interface ProcessStatusChangeContext extends ExecutionContext<Process, any> { }
 
   interface ProcessModule {
@@ -1721,6 +1794,7 @@ declare namespace Xrm {
      *                anonymous function if you may later want to remove the
      *                event handler.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     addOnProcessStatusChange(handler: (context?: ProcessStatusChangeContext) => any): void;
 
     /**
@@ -1728,6 +1802,7 @@ declare namespace Xrm {
      * @param handler If an anonymous function is set using the addOnProcessStatusChange method it
      *                cannot be removed using this method.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     removeOnProcessStatusChange(handler: (context?: ProcessStatusChangeContext) => any): void;
 
     /**
@@ -1750,15 +1825,18 @@ declare namespace Xrm {
      * @param status The new status. The values can be active, aborted, or finished.
      * @param callbackFunction A function to call when the operation is complete. This callback function is passed the new status as a string value.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setStatus(status: ProcessStatus, callbackFunction?: (status: ProcessStatus) => any): ProcessStatus;
   }
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\xrm.d.ts" />
+
 declare namespace Xrm {
-    var Device: Device;
-    var Encoding: Encoding;
-    var Navigation: Navigation;
-    //var UI: UI;
-    var WebApi: WebApi;
+    let Device: Device;
+    let Encoding: Encoding;
+    let Navigation: Navigation;
+    let WebApi: WebApi;
 
     interface ImageOptions {
         /**
@@ -1834,8 +1912,8 @@ declare namespace Xrm {
     /**
      * Interface for geo location object acquired through Xrm.Device.getCurrentPosition
      */
-    interface GeoObject {
-        coords: any;
+  interface GeoObject {
+        coords: any; // eslint-disable-line @typescript-eslint/no-explicit-any
         timestamp: number;
     }
 
@@ -1999,7 +2077,18 @@ declare namespace Xrm {
         message?: string;
     }
 
-    const enum OpenFileOptions {
+    /**
+     * An object describing whether to open or save the file
+     */
+    interface OpenFileOptions {
+        /**
+         * If you do not specify this parameter, by default 1 (open) is passed.
+         * This parameter is only supported on Unified Interface
+         */
+        openMode?: OpenFileOptionsOpenMode;
+    }
+
+    const enum OpenFileOptionsOpenMode {
         Open = 1,
         Save = 2,
     }
@@ -2252,7 +2341,7 @@ declare namespace Xrm {
 
     interface WebResource {
         /**
-         * The type of the page.
+         * Specify "webresource".
          */
         pageType: "webresource";
 
@@ -2266,7 +2355,40 @@ declare namespace Xrm {
          */
         data?: string;
     }
+    interface Dashboard {
+        /**
+         * Specify "dashboard"
+         */
+        pageType: "dashboard";
 
+        /**
+         * The ID of the dashboard to load. If you don't specify the ID, navigates to the default dashboard.
+         */
+        dashboardId?: string;
+    }
+    
+    interface CustomPage {
+        /**
+         * The type of the page.
+         */
+        pageType: "custom";
+
+        /**
+         * The logical name of the custom page to open.
+         */
+        name: string;
+
+        /**
+         * The logical name of the table to be made available in the custom page via Param("entityName").
+         */
+        entityName?: string;
+
+        /**
+         * ID of the table record to be made available in the custom page via Param("recordId").
+         */
+        recordId?: string;
+    }
+    
     const enum NavigationOptionsTarget {
         PageInline = 1,
         Dialog = 2,
@@ -2308,12 +2430,12 @@ declare namespace Xrm {
         height?: number | SizeValue;
 
         /**
-         * Number. Specify 1 to open the dialog in center; 2 to open the dialog on the side. Default is 1 (center).
+         * Specify 1 to open the dialog in center; 2 to open the dialog on the side. Default is 1 (center).
          */
         position?: NavigationOptionsPosition;
 
         /**
-         * String. The dialog title on top of the center or side dialog.
+         * The dialog title on top of the center or side dialog.
          */
         title?: string;
     }
@@ -2327,7 +2449,7 @@ declare namespace Xrm {
          * @param pageInput Input about the page to navigate to. The object definition changes depending on the type of page to navigate to: entity list or HTML web resource.
          * @param navigationOptions Options for navigating to a page: whether to open inline or in a dialog. If you don't specify this parameter, page is opened inline by default.
          */
-        navigateTo(pageInput: EntityRecord | EntityList | WebResource, navigationOptions?: NavigationOptions): Promise<undefined>;
+        navigateTo(pageInput: EntityRecord | EntityList | WebResource | Dashboard | CustomPage, navigationOptions?: NavigationOptions): Promise<undefined>;
 
         /**
          * Displays an alert dialog containing a message and a button.
@@ -2363,6 +2485,7 @@ declare namespace Xrm {
          * @param formParameters A dictionary object that passes extra parameters to the form.
          * See examples at: https://docs.microsoft.com/en-us/dynamics365/customer-engagement/developer/set-field-values-using-parameters-passed-form
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         openForm(entityFormOptions: EntityFormOptions, formParameters?: any): Then<OpenFormResult | undefined>;
 
         /**
@@ -2385,12 +2508,8 @@ declare namespace Xrm {
     /**
      * Contains methods for displaying and hiding app-level global notifications.
      */
-    interface UI {
-        /**
-         * addGlobalNotification();
-         * clearGlobalNotification();
-         */
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface UI { }
 
     interface WebApiBase {
         /**
@@ -2418,6 +2537,7 @@ declare namespace Xrm {
          * @param options OData system query options, $select and $expand, to retrieve your data.
          * See examples at: https://docs.microsoft.com/en-us/dynamics365/customer-engagement/developer/clientapi/reference/xrm-webapi/retrieverecord
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         retrieveRecord(entityLogicalName: string, id: string, options?: string): Promise<any>;
 
         /**
@@ -2429,6 +2549,7 @@ declare namespace Xrm {
          * @param maxPageSize Specify a positive number that indicates the number of entity records to be returned per page. If you do not specify this parameter, the default value is passed as 5000.
          * If the number of records being retrieved is more than the specified maxPageSize value, nextLink attribute in the returned promise object will contain a link to retrieve the next set of entities.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         retrieveMultipleRecords(entityLogicalName: string, options?: string, maxPageSize?: number): Promise<any>;
 
         /**
@@ -2451,6 +2572,7 @@ declare namespace Xrm {
         isAvailableOffline(entityLogicalName: string): boolean;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface WebApiResponse extends Response { }
 
     interface WebApiOnline extends WebApiBase {
@@ -2460,6 +2582,7 @@ declare namespace Xrm {
          * @param request Object that will be passed to the Web API endpoint to execute an action, function, or CRUD request.
          * The object exposes a getMetadata method that lets you define the metadata for the action, function or CRUD request you want to execute.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         execute(request: any): Promise<WebApiResponse>;
 
         /**
@@ -2470,6 +2593,7 @@ declare namespace Xrm {
          * We recommend using XrmQuery instead of this interface.
          * @param requests An array of requests and changesets. Requests are the same as for execute. Changesets are arrays of requests that will be executed in transaction.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         executeMultiple(requests: any): Promise<WebApiResponse[]>;
     }
 
@@ -2565,6 +2689,7 @@ declare namespace Xrm {
          * @param entityName The logical name of the entity.
          * @param attributes The attributes to get metadata for.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         getEntityMetadata(entityName: string, attributes?: string[]): Promise<any>;
 
         /**
@@ -2590,6 +2715,7 @@ declare namespace Xrm {
          * @param name of the process action to invoke.
          * @param parameters An object containing input parameters for the action. You define an object using key:value pairs of items, where key is of String type.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         invokeProcessAction(name: string, parameters?: any): Promise<undefined>;
 
         /**
@@ -2612,8 +2738,10 @@ declare namespace Xrm {
         showProgressIndicator(message: string): void;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-explicit-any
     interface PreProcessStatusChangeContext extends ExecutionContext<Process, any> { }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface PreStageChangeContext extends ExecutionContext<Stage, StageChangeEventArguments> { }
 
     interface ProcessInstanceContext {
@@ -2637,12 +2765,14 @@ declare namespace Xrm {
          *                event handler.
          * This client API is only supported on the Unified Client. The legacy web client does not support this client API.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnPreProcessStatusChange(handler: (context?: PreProcessStatusChangeContext) => any): void;
 
         /**
          * Removes an event handler from the OnPreProcessStatusChange event.
          * @param handler The function to be removed from the OnPreProcessStatusChange event.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         removeOnPreProcessStatusChange(handler: (context?: PreProcessStatusChangeContext) => any): void;
 
         /**
@@ -2656,12 +2786,14 @@ declare namespace Xrm {
          *                event handler.
          * This client API is only supported on the Unified Client. The legacy web client does not support this client API.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnPreStageChange(handler: (context?: PreStageChangeContext) => any): void;
 
         /**
          * Removes an event handler from the OnPreStageChange event.
          * @param handler The function to be removed from the OnPreStageChange event.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         removeOnPreStageChange(handler: (context?: PreStageChangeContext) => any): void;
 
         /**
@@ -2669,6 +2801,7 @@ declare namespace Xrm {
          * @param handler The callback function is passed an object with the following attributes
          *                and their corresponding values as the key: value pair.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         getProcessInstances(callbackFunction: (context?: ProcessInstanceContext) => any): void;
 
         /**
@@ -2676,6 +2809,7 @@ declare namespace Xrm {
          * @param processInstanceid The Id of the process instance to set as the active instance.
          * @param callbackFunction A function to call when the operation is complete. This callback function is passed either string "succes" or "invalid" to indicate whether the operation succeeded:
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setActiveProcessInstance(processInstanceId: string, callbackFunction?: (succesOrInvalid: "success" | "invalid") => any): void;
 
         /**
@@ -2685,14 +2819,16 @@ declare namespace Xrm {
          * @param callback A function to call when the operation is complete. This callback function is passed one of the following string
          *    values to indicate whether the operation succeeded. Is "success" or "invalid".
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setActiveProcess(processId: string, callback?: (successOrInvalid: "success" | "invalid") => any): void;
     }
 
     /**
      * Form executionContext
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface ExecutionContext<TSource, TArgs> {
-        getFormContext(): Xrm.PageBase<Xrm.AttributeCollectionBase, Xrm.TabCollectionBase, Xrm.ControlCollectionBase>;
+        getFormContext(): Xrm.PageBase<Xrm.AttributeCollectionBase, Xrm.TabCollectionBase, Xrm.ControlCollectionBase, Xrm.QuickViewFormCollectionBase>;
     }
 
     interface SaveOptions {
@@ -2715,6 +2851,7 @@ declare namespace Xrm {
         /**
          * Adds a function to be called when form data is loaded.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnLoad(myFunction: (context?: OnLoadEventContext) => any): void;
 
         /**
@@ -2730,6 +2867,7 @@ declare namespace Xrm {
         /**
          * Removes a function to be called when form data is loaded.
          */
+        // eslint-disable-next-line @typescript-eslint/ban-types
         removeOnLoad(myFunction: Function): void;
 
         /**
@@ -2758,6 +2896,7 @@ declare namespace Xrm {
     /**
      * Interface for the entity on a form.
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface PageEntity<T extends AttributeCollectionBase> {
         /**
          * Returns a lookup value that references the record.
@@ -2778,6 +2917,7 @@ declare namespace Xrm {
     /**
      * Interface for an standard entity attribute.
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Attribute<T> {
 
         /**
@@ -2789,18 +2929,21 @@ declare namespace Xrm {
     /**
      * Interface for the ui of a form.
      */
-    interface UiModule<T extends TabCollectionBase, U extends ControlCollectionBase> {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    interface UiModule<T extends TabCollectionBase, C extends ControlCollectionBase, Q extends QuickViewFormCollectionBase = QuickViewFormCollectionBase> {
         /**
          * Adds a function to be called on the form OnLoad event.
          * @param myFunction The function to be executed on the form OnLoad event. The function will be added to the bottom of the event handler pipeline.
          * The execution context is automatically passed as the first parameter to the function. See Execution context for more information.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnLoad(myFunction: (context?: OnLoadEventContext) => any): void;
 
         /**
          * Removes a function from the form OnLoad event.
          * @param myFunction The function to be removed from the form OnLoad event.
          */
+        // eslint-disable-next-line @typescript-eslint/ban-types
         removeOnLoad(myFunction: Function): void;
     }
 
@@ -3048,6 +3191,7 @@ declare namespace Xrm {
         MobileApplication = 1,
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface SubGridControl<T extends string> extends BaseControl {
         /**
          * Gets the FetchXML query that represents the current data, including filtered and sorted data, in the grid control.
@@ -3102,9 +3246,11 @@ declare namespace Xrm {
         attributes: GridCollection<GridEntityAttribute<T>>;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-interface
     interface GridCollection<T> {
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-interface
     interface GridEntityAttribute<T extends string> {
     }
 
@@ -3112,7 +3258,7 @@ declare namespace Xrm {
 
     interface actionsObject {
         message?: string;
-        actions?: Function[];
+        actions?: Function[]; // eslint-disable-line @typescript-eslint/ban-types
     }
 
     interface AddNotificationObject {
@@ -3124,6 +3270,12 @@ declare namespace Xrm {
 
     interface BaseControl {
         addNotification(notification: AddNotificationObject): void;
+    }
+    interface ExternalControl {
+        /**
+         * Returns the content window that represents an IFRAME or web resource.
+         */
+        getContentWindow(): Promise<any>;
     }
 
     interface NavigationBehaviorObject {
@@ -3157,15 +3309,203 @@ declare namespace Xrm {
     }
 }
 
-
-interface Xrm<T extends Xrm.PageBase<Xrm.AttributeCollectionBase, Xrm.TabCollectionBase, Xrm.ControlCollectionBase>> extends BaseXrm {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface Xrm<T extends Xrm.PageBase<Xrm.AttributeCollectionBase, Xrm.TabCollectionBase, Xrm.ControlCollectionBase, Xrm.QuickViewFormCollectionBase>> extends BaseXrm {
     Device: Xrm.Device;
     Encoding: Xrm.Encoding;
     Navigation: Xrm.Navigation;
     //UI: Xrm.UI;
     WebApi: Xrm.WebApi;
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\xrm.d.ts" />
+
 declare namespace Xrm {
+    let App: App;
+    let Panel: Panel;
+    interface App {
+        // --------------------------------------------------------------------------------------
+        //  TODO:  app app.appSidePane
+        //  TODO: Xrm.app implementation of methods. interface and generation of data needs to be set up
+        // --------------------------------------------------------------------------------------
+        appSidePane: AppSidePane;
+
+        sidePanes: SidePanes;
+
+        /**
+         * Displays an error, information, warning, or success notification for an app, and lets you specify actions to
+         * execute based on the notification.
+         * @param notification The notification object to add.
+         * @return On success, returns a promise object containing a GUID value to uniquely identify the notification as described earlier in the description of the successCallback parameter.
+         */
+        addGlobalNotification(notification: AppNotification): Promise<string>;
+
+        /**
+         * Clears a notification in the app.
+         * @param uniqueId The ID to use to clear a specific notification that was set using addGlobalNotification.
+         */
+        clearGlobalNotification(uniqueId: string): Promise<undefined>;
+    }
+    interface AppNotification {
+        /**
+         * Optional, lebel for action in message and function to execute when label is clicked
+         */
+        action?: AppAction;
+
+        /**
+         * Defines the level of notification.
+         */
+        level: LevelValue;
+        /**
+         * The message to display in the notification.
+         */
+        message: string;
+
+        /**
+         * Indicates whether or not the user can close or dismiss the notification.
+         * If you don't specify this parameter, users can't close or dismiss the notification by default.
+         */
+        showCloseButton?: boolean;
+
+        /**
+         * Defines the type of notification. Currently, only a value of 2 is supported,
+         * which displays a message bar at the top of the app.
+         */
+        type: number;
+    }
+    interface AppAction {
+        /**
+         * The label for the action in the message.
+         */
+        actionLabel?: string;
+
+        /**
+         *  Function reference. The function to execute when the action label is clicked.
+         */
+        eventHandler?: Function; // eslint-disable-line @typescript-eslint/ban-types
+    }
+    const enum LevelValue {
+        Succes = 1,
+        Error = 2,
+        Warning = 3,
+        Information = 4,
+    }
+
+    interface SidePaneProperties {
+        /**
+         * The title of the pane. Used in pane header and for tooltip.
+         */
+        title?: string;
+
+        /**
+         * The ID of the new pane. If the value is not passed, the ID value is auto-generated.
+         */
+        paneId?: string;
+
+        /**
+         * Whether the pane header will show a close button or not.
+         */
+        canClose?: boolean;
+
+        /**
+         * The path of the icon to show in the panel switcher control.
+         */
+        imageSrc?: string;
+
+        /**
+         * The width of the pane in pixels.
+         */
+        width?: number;
+
+        /**
+         * Hides the pane and tab.
+         */
+        hidden?: boolean;
+
+        /**
+         * Prevents the pane from unmounting when it is hidden.
+         */
+        alwaysRender?: boolean;
+
+        /**
+         * Prevents the badge from getting cleared when the pane becomes selected.
+         */
+        keepBadgeOnSelect?: boolean;
+    }
+
+    interface AppSidePane extends SidePaneProperties {
+        /**
+         * Closes the side pane and removes it from the side bar.
+         */
+        close(): Promise<undefined>;
+
+        /**
+         * Specify whether the pane should be selected or expanded.
+         */
+        select(): void;
+
+        /**
+         * Opens a page within the selected pane. This is similar to the navigateTo method.
+         */
+        navigate(pageInput: EntityRecord | EntityList | WebResource | Dashboard): Promise<undefined>;
+    }
+
+    const enum SidePaneState {
+        Collapsed = 0,
+        Expanded = 1,
+    }
+
+    interface SidePanes {
+        /**
+         * Provides all the information to create side panes.
+         */
+        createPane(paneOptions?: SidePaneOptions): Promise<AppSidePane>;
+
+        /**
+         * returns the appSidePane object
+         */
+        getAllPanes(): Collection<AppSidePane>;
+
+        /**
+         * returns the appSidePane object
+         */
+        getPane(paneId: string): AppSidePane;
+        /**
+         * returns the appSidePane object
+         */
+        getSelectedPane(): AppSidePane;
+
+        /**
+         * Returns whether the selected pane is collapsed or expanded.
+         */
+        state: SidePaneState
+    }
+
+    interface SidePaneOptions extends SidePaneProperties {
+        /**
+         *  Hides the header pane, including the title and close button. Default value is false.
+         */
+        hideHeader?: boolean;
+
+        /**
+         * When set to false, the created pane is not selected and leaves the existing pane selected.
+         * It also does not expand the pane if collapsed.
+         */
+        isSelected?: boolean;
+    }
+
+    /**
+     * Provides a method to display a web page in the side pane of model-driven apps form.
+     */
+    interface Panel {
+        /**
+         * Displays the web page represented by a URL in the static area in the side pane, which appears on all
+         * pages in the model-driven apps web client.
+         * @param url URL of the page to be loaded in the side pane static area.
+         * @param title Title of the side pane static area.
+         */
+        loadPanel(url: string, title: string): Promise<undefined>;
+    }
     /**
      * Lookup-like type object for userSettings.roles.
      */
@@ -3176,12 +3516,14 @@ declare namespace Xrm {
 
     interface userSettings {
         /**
-         * Collection of lookup-like objects containing the GUID and display name of each of the security role or teams that the user is associated with.
+         * Collection of lookup-like objects containing the GUID and display name of each of the security role or teams
+         * that the user is associated with.
          */
         roles: Collection<Role>;
 
         /**
-         * Returns an array of strings that represent the GUID values of each of the security role privilege that the user is associated with or any teams that the user is associated with.
+         * Returns an array of strings that represent the GUID values of each of the security role privilege that the
+         * user is associated with or any teams that the user is associated with.
          */
         securityRolePrivileges: string[]
     }
@@ -3189,8 +3531,8 @@ declare namespace Xrm {
     /**
      * Interface for an standard entity attribute.
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Attribute<T> {
-
         /**
          * Sets a value for an attribute to determine whether it is valid or invalid with a message.
          */
@@ -3210,7 +3552,8 @@ declare namespace Xrm {
         getDataLoadState(): LoadState;
     }
 
-    interface OnLoadEventContext extends ExecutionContext<UiModule<TabCollectionBase, ControlCollectionBase>, LoadEventArgs> { }
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface OnLoadEventContext extends ExecutionContext<UiModule<TabCollectionBase, ControlCollectionBase, QuickViewFormCollectionBase>, LoadEventArgs> {}
 
     interface LookupTagValue extends Lookup {
         /**
@@ -3218,6 +3561,7 @@ declare namespace Xrm {
          */
         fieldName: string;
     }
+    // TODO make sure it works
 
     interface OnLookupTagClickEventArgs {
         /**
@@ -3226,7 +3570,8 @@ declare namespace Xrm {
         getTagValue(): LookupTagValue;
 
         /**
-         * Returns a value indicating whether the lookup tag click event has been canceled because the preventDefault method was used in this event hander or a previous event handler.
+         * Returns a value indicating whether the lookup tag click event has been canceled because the preventDefault
+         * method was used in this event handler or a previous event handler.
          */
         isDefaultPrevented(): boolean;
 
@@ -3236,17 +3581,20 @@ declare namespace Xrm {
         preventDefault(): void;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-explicit-any
     interface OnLookupTagClickContext extends ExecutionContext<any, OnLookupTagClickEventArgs> { }
 
     interface LookupControl<T extends string> extends Control<LookupAttribute<T>> {
         /**
          * Adds an event handler to the OnLookupTagClick event.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnLookupTagClick(myFunction: (context?: OnLookupTagClickContext) => any): void;
 
         /**
          * Removes an event handler from the OnLookupTagClick event.
          */
+        // eslint-disable-next-line @typescript-eslint/ban-types
         removeOnLookupTagClick(functionRef: Function): void;
     }
 
@@ -3255,6 +3603,249 @@ declare namespace Xrm {
          * Sets a value that indicates whether the control is visible.
          */
         setVisible(visibility: boolean): void;
+
+        /**
+         * Return a value that indicates whether the form is currently visible
+         */
+        getVisible(): boolean;
+    }
+
+    /**
+     * Interface for the ui of a form.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    interface UiModule<T extends TabCollectionBase, C extends ControlCollectionBase, Q extends QuickViewFormCollectionBase = QuickViewFormCollectionBase> {
+        /**
+         * Method to cause the ribbon to re-evaluate data that controls what is displayed in it.
+         */
+        /**
+         * Provides information on how to set the visibility of header section.
+         */
+        headerSection: HeaderSection;
+
+        /**
+         * Provides information on how to set the visibility of footer section.
+         */
+        footerSection: FooterSection;
+        /**
+         * Provides objects and methods to interact with the business process flow control on a form.
+         * More information: formContext.ui.process
+         */
+        process: UiProcessModule;
+
+        /**
+         * Provides methods to access all the quick view controls and its constituent controls on the
+         * model-driven apps forms when using the new form rendering engine (also called "turbo forms").
+         * A quick view control is a quick view form added to a main form in model-driven apps that enables
+         * you to view information about a related table record within the main form. Data in constituent
+         * controls in a quick view control cannot be edited.
+         * The quickForms collection provides access to all the quick view controls on a form, and supports all
+         * the standard methods of the collections. See Collections) for information about the collection methods.
+         *
+         * You can retrieve a quick view control in the quickForms collection by using the get method by specifying
+         * either the index value (integer) or name (string) of the quick view control as the argument:
+         */
+        quickForms: Q;
+
+        /**
+         * A tab is a group of sections on a page. It contains properties and methods to manipulate tabs
+         * as well as access to sections within the tab through the sections collection.
+         */
+        tabs: T;
+        /**
+         * Sets the name of the table to be displayed on the form.
+         * @param tableName Name of the table to be displayed on the form.
+         */
+        setFormEntityName(tableName: string): void;
+
+        /**
+         * Displays form level notifications.
+         * You can display any number of notifications and they will be displayed until they are removed using clearFormNotification.
+         * The height of the notification area is limited so each new message will be added to the top.
+         * Users can scroll down to view older messages that have not yet been removed.
+         * @param messageText The text of the notification message.
+         * @param level The level of the message, which defines how the message will be displayed. Specify one of the following values:
+         * ERROR : Notification will use the system error icon.
+         * WARNING : Notification will use the system warning icon.
+         * INFO : Notification will use the system info icon.
+         * @param uniqueId A unique identifier for the message that can be used later with clearFormNotification to remove the notification.
+         * returns true if the method succeeded; false otherwise.
+         */
+        setFormNotification(messageText: string, level: string, uniqueId: string): boolean;
+
+        /**
+         * Removes form level notifications.
+         * @param uniqueId A unique identifier for the message to be cleared that was set using the setFormNotification method.
+         * returns true if the method succeeded, false otherwise.
+         */
+        clearFormNotification(uniqueId: string): boolean;
+        /**
+         * Adds a function to be called on the form OnLoad event.
+         * @param onLoadFunction The function to be executed on the form OnLoad event.
+         * The function will be added to the bottom of the event handler pipeline.
+         * The execution context is automatically passed as the first parameter to the function.
+         * See Execution context for more information.
+         */
+        addOnLoad(onLoadFunction: (context?: OnLoadEventContext) => any): void; // eslint-disable-line @typescript-eslint/no-explicit-any
+        /**
+         * Removes a function from the form OnLoad event.
+         * @param onLoadFunction The function to be removed from the form OnLoad event.
+         */
+        removeOnLoad(onLoadFunction: Function): void; // eslint-disable-line @typescript-eslint/ban-types
+    }
+
+    interface HeaderSection {
+        /**
+         * Returns the header's body visibility.
+         */
+        getBodyVisible(): boolean;
+
+        /**
+         * Returns the command bar visibility.
+         */
+        getCommandBarVisible(): boolean;
+
+        /**
+         * Returns the tab navigator visibility.
+         */
+        getTabNavigatorVisible(): boolean;
+
+        /**
+         * Sets the header's body visibility.
+         * @param isVisible Specify true to show the body; false to hide the body.
+         */
+        setBodyVisible(isVisible: boolean): void;
+
+        /**
+         * Sets the command bar visibility.
+         * @param isVisible Specify true to show the command bar; false to hide the command bar.
+         */
+        setCommandBarVisible(isVisible: boolean): void;
+
+        /**
+         * Sets the tab navigator visibility.
+         * @param isVisible Specify true to show the tab navigator; false to hide the tab navigator.
+         */
+        setTabNavigatorVisible(isVisible: boolean): void;
+    }
+
+    interface FooterSection {
+        /**
+         * Returns the footer section visibility
+         * returns true if the footer section is visible; false otherwise.
+         */
+        getVisible(): boolean;
+
+        /**
+         * Sets the visibility of the footer section
+         * @param isVisible Specify true to show the footer section; false to hide the footer section.
+         */
+
+        setVisible(isVisible: boolean): void;
+    }
+
+    interface UiProcessModule {
+        /**
+         * Retrieves the display state for the business process control.
+         * Returns "expanded" or "collapsed" on the legacy web client; returns "expanded", "collapsed", or "floating" on Unified Interface.
+         */
+        getDisplayState(): CollapsableDisplayState;
+
+        /**
+         * Returns a value indicating whether the business process control is visible.
+         * returns true if the control is visible; false otherwise.
+         */
+        getVisible(): boolean;
+
+        /**
+         * Reflows the UI of the business process control. Parameters are optional
+         * @param updateUI Specify true to update the UI of the process control; false otherwise.
+         * @param parentStage Specify the ID of the parent stage in the GUID format.
+         * @param nextStage Specify the ID of the next stage in the GUID format.
+         */
+        reflow(updateUI?: boolean, parentStage?: string, nextStage?: string): void;
+
+        /**
+         * Sets the display state of the business process control.
+         * @param state Specify "expanded", "collapsed", or "floating". The value "floating" is not supported on the web client.
+         */
+        setDisplayState(state: string): void;
+
+        /**
+         * Shows or hides the business process control.
+         * @param visibility Specify true to show the control; false to hide the control.
+         */
+        setVisible(visibility: boolean): void;
+    }
+    
+    interface QuickViewForm<T extends TabCollectionBase, C extends ControlCollectionBase> extends PageBase<AttributeCollectionBase, T, C, QuickViewFormCollectionBase> {
+        /**
+         * Returns a string value that categorizes quick view controls.
+         * For a quick view control, the method returns "quickform".
+         * For a constituent control in a quick view control, the method returns the actual category of the control.
+         */
+        getControlType(): string;
+
+        /**
+         * Gets a boolean value indicating whether the control is disabled.
+         * true if disabled; false otherwise.
+         */
+        getDisabled(): boolean;
+
+        /**
+         * Returns the label for the quick view control.
+         */
+        getLabel(): string;
+
+        /**
+         * Returns the name assigned to the quick view control.
+         */
+        getName(): string;
+
+        /**
+         * Returns a reference to the section object that contains the control.
+         */
+        getParent(): any; // eslint-disable-line @typescript-eslint/no-explicit-any
+        // TODO figure out return type, could be something like (PageSection<Collection<QuickViewControl>>));
+        /**
+         * Returns a value that indicates whether the quick view control is currently visible.
+         * Returns true if the control is visible; false otherwise.
+         */
+        getVisible(): boolean;
+
+        /**
+         * Returns whether the data binding for the constituent controls in a quick view control is complete.
+         * true if the data binding for a constituent control is complete; false otherwise.
+         */
+        isLoaded(): boolean;
+
+        /**
+         * Refreshes the data displayed in a quick view control.
+         */
+        refresh(): void;
+
+        /**
+         * Sets the state of the control to either enabled or disabled.
+         * @param disabled Specify true or false to disable or enable the control.
+         */
+        setDisabled(disabled: boolean): void;
+
+        /**
+         * Sets focus on the control.
+         */
+        setFocus(): void;
+
+        /**
+         * Sets the label for the quick view control.
+         * @param label The new label of the quick view control.
+         */
+        setLabel(label: string): void;
+
+        /**
+         * Displays or hides a control.
+         * @param visible Specify true or false to display or hide the control.
+         */
+        setVisible(visible: boolean): void;
     }
 
     type KBSeachControlMode = "Inline" | "Popout";
@@ -3338,18 +3929,21 @@ declare namespace Xrm {
          * Add an event handler to the PostSearch event.
          * @param functionRef The function to add.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnPostSearch(functionRef: (context?: ExecutionContext<this, undefined>) => any): void;
 
         /**
          * Add an event handler to the OnResultOpened event.
          * @param functionRef The function to add.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnResultOpened(functionRef: (context?: ExecutionContext<this, undefined>) => any): void;
 
         /**
          * Add an event handler to the OnSelection event.
          * @param functionRef The function to add.
          */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         addOnSelection(functionRef: (context?: ExecutionContext<this, undefined>) => any): void;
 
         /**
@@ -3381,19 +3975,19 @@ declare namespace Xrm {
          * Use this method to remove an event handler from the PostSearch event.
          * @param functionRef The function to remove.
          */
-        removeOnPostSearch(functionRef: Function): void;
+        removeOnPostSearch(functionRef: Function): void; // eslint-disable-line @typescript-eslint/ban-types
 
         /**
          * Remove an event handler from the OnResultOpened event.
          * @param functionRef The function to remove.
          */
-        removeOnResultOpened(functionRef: Function): void;
+        removeOnResultOpened(functionRef: Function): void; // eslint-disable-line @typescript-eslint/ban-types
 
         /**
          * Remove an event handler from the OnSelection event.
          * @param functionRef The function to remove.
          */
-        removeOnSelection(functionRef: Function): void;
+        removeOnSelection(functionRef: Function): void; // eslint-disable-line @typescript-eslint/ban-types
 
         /**
          * Set the text used as the search criteria for the knowledge base management control.
@@ -3402,12 +3996,172 @@ declare namespace Xrm {
         setSearchQuery(text: string): void;
     }
 
+    interface SaveEventArgs {
+        /**
+         * Cancels the save operation if the event handler has a script error, returns a rejected promise for an async event handler or the operation times out.
+         */
+        preventDefaultOnError(): void;
+    }
+
+    interface PostSaveEventContext extends ExecutionContext<null, PostSaveEventArgs> { }
+
+    interface PostSaveEventArgs {
+        /**
+         * Use this method to know information about a table being saved/updated. It returns table ID, and table name if success.
+         */
+        getEntityReference(): EntityReference<string>;
+
+        /**
+         * Use this method to know the error details on why a table save failed.
+         */
+        getSaveErrorInfo(): any | null; // TODO: Figure out proper typing
+
+        /**
+         * Use this method to know whether the OnSave operation is successful or failed.
+         */
+        getIsSaveSuccess(): boolean;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface PageEntity<T extends AttributeCollectionBase> {
         /**
          * Adds a function to be called when save event has completed; either successfully or with a failure.
          * @param functionRef The function to add to the PostSave event.
          * The execution context is automatically passed as the first parameter to this function.
          */
-        addOnPostSave(functionRef: (context?: SaveEventContext<this>) => any): void;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        addOnPostSave(functionRef: (context?: PostSaveEventContext) => any): void;
+    }
+
+    /**
+     * Different Content Types
+     */
+    type TabsContentType = "cardSections" | "singleComponent";
+    interface PageTab<T extends SectionCollectionBase> {
+        /**
+         * Collection of sections within this tab.
+         */
+        sections: T;
+
+        /**
+         * Adds a function to be called when the TabStateChange event occurs.
+         * @param tabStateChangeFunction The function to be executed on the TabStateChange event.
+         * The function will be added to the bottom of the event handler pipeline.
+         * The execution context is automatically passed as the first parameter to the function.
+         * See Execution context for more information.
+         */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        addTabStateChange(tabStateChangeFunction: (context?: ExecutionContext<this, any>) => any): void;
+
+        /**
+         * Returns the content type.
+         * only supported on unified interface
+         * Returns "cardSections" or "singleComponent".
+         */
+        getContentType(): TabsContentType;
+        /**
+         * Removes a function to be called when the TabStateChange event occurs.
+         * @param tabStateChangeFunction The function to be removed from the TabStateChange event.
+         */
+        removeTabStateChange(tabStateChangeFunction: Function): void; // eslint-disable-line @typescript-eslint/ban-types
+        /**
+         * Sets the content type.
+         * only supported on unified interface
+         * @param contentType Defines the content type. It has the following parameters:
+         * cardSections: The default tab behavior.
+         * singleComponent: Maximizes the content of the first component in the tab.
+         */
+        setContentType(contentType: TabsContentType): void;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface OnRecordSelectEventContext extends ExecutionContext<UiModule<TabCollectionBase, ControlCollectionBase, QuickViewFormCollectionBase>, undefined> {
+    }
+
+    const enum WebApiOperationType {
+        Action = 0,
+        Function,
+        CRUD,
+    }
+
+    const enum WebApiStructuralProperty {
+        Unknown = 0,
+        PrimitiveType,
+        ComplexType,
+        EnumerationType,
+        Collection,
+        EntityType,
+    }
+
+    interface WebApiEnumProperty {
+        name: string,
+        value: number,
+    }
+
+    interface WebApiParameterType {
+        /**
+         * The fully qualified name of the parameter type.
+         */
+        typeName: string,
+
+        /**
+         * The metadata for enum types.
+         */
+        enumProperties?: WebApiEnumProperty[],
+
+        /**
+         * The category of the parameter type.
+         */
+        structuralProperty: WebApiStructuralProperty
+    }
+
+    interface WebApiMetadataObject {
+        /**
+         * The name of the bound parameter for the action or function to execute.
+         */
+        boundParameter?: null | undefined | "entity",
+
+        /**
+         * Name of the action, function, or one of the following values if you are executing a CRUD request: "Create", "Retrieve", "Update", or "Delete".
+         */
+        operationName?: string
+
+        /**
+         * Indicates the type of operation you are executing
+         */
+        operationType?: WebApiOperationType,
+
+        /**
+         * The metadata for parameter types
+         */
+        parameterTypes: { [key: string]: WebApiParameterType }
+    }
+
+    interface WebApiRequest {
+        getMetadata(): WebApiMetadataObject
+    }
+
+    type ChangeSetRequest = WebApiRequest[];
+
+    type ExecuteMultipleRequests = (WebApiRequest | ChangeSetRequest[])[];
+
+    interface WebApiOnline extends WebApiBase {
+        /**
+         * Execute a single action, function, or CRUD operation.
+         * We recommend using XrmQuery instead of this interface.
+         * @param request Object that will be passed to the Web API endpoint to execute an action, function, or CRUD request.
+         * The object exposes a getMetadata method that lets you define the metadata for the action, function or CRUD request you want to execute.
+         */
+        execute(request: WebApiRequest): Promise<WebApiResponse>;
+
+        /**
+         * Execute a collection of action, function, or CRUD operations.
+         * If you want to execute multiple requests in a transaction, you must pass in a change set as a parameter to this method.
+         * Change sets represent a collection of operations that are executed in a transaction.
+         * You can also pass in individual requests and change sets together as parameters to this method.
+         * We recommend using XrmQuery instead of this interface.
+         * @param requests An array of requests and changesets. Requests are the same as for execute. Changesets are arrays of requests that will be executed in transaction.
+         */
+        executeMultiple(requests: ExecuteMultipleRequests): Promise<WebApiResponse[]>;
     }
 }

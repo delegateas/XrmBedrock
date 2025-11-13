@@ -37,13 +37,6 @@ declare namespace Form.contact.Main {
         get(index: number): Xrm.PageSection;
         get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
       }
-      interface tab_recordwall extends Xrm.SectionCollectionBase {
-        get(name: "tab_recordwall_section_1"): Xrm.PageSection;
-        get(name: string): undefined;
-        get(): Xrm.PageSection[];
-        get(index: number): Xrm.PageSection;
-        get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
-      }
       interface webauthentication extends Xrm.SectionCollectionBase {
         get(name: "{f0ef7388-9001-dd11-86da-0003ff48c0db}_section_4"): Xrm.PageSection;
         get(name: "{f0ef7388-9001-dd11-86da-0003ff48c0db}_section_5"): Xrm.PageSection;
@@ -77,14 +70,14 @@ declare namespace Form.contact.Main {
       get(name: "adx_identity_securitystamp"): Xrm.Attribute<string>;
       get(name: "adx_identity_twofactorenabled"): Xrm.OptionSetAttribute<boolean>;
       get(name: "adx_identity_username"): Xrm.Attribute<string>;
-      get(name: "adx_timezone"): Xrm.Attribute<any>;
+      get(name: "adx_timezone"): Xrm.NumberAttribute;
       get(name: "anniversary"): Xrm.DateAttribute;
       get(name: "assistantname"): Xrm.Attribute<string>;
       get(name: "assistantphone"): Xrm.Attribute<string>;
       get(name: "birthdate"): Xrm.DateAttribute;
       get(name: "creditlimit"): Xrm.NumberAttribute;
       get(name: "creditonhold"): Xrm.OptionSetAttribute<boolean>;
-      get(name: "defaultpricelevelid"): Xrm.LookupAttribute<"pricelevel">;
+      get(name: "defaultpricelevelid"): Xrm.LookupAttribute<"NoAttribute">;
       get(name: "department"): Xrm.Attribute<string>;
       get(name: "description"): Xrm.Attribute<string>;
       get(name: "donotbulkemail"): Xrm.OptionSetAttribute<boolean>;
@@ -123,7 +116,6 @@ declare namespace Form.contact.Main {
       get(chooser: (item: Xrm.Attribute<any>, index: number) => boolean): Xrm.Attribute<any>[];
     }
     interface Controls extends Xrm.ControlCollectionBase {
-      get(name: "WebResource_RecordWall"): Xrm.WebResourceControl;
       get(name: "accountrolecode"): Xrm.OptionSetControl<contact_accountrolecode>;
       get(name: "address1_addresstypecode"): Xrm.OptionSetControl<contact_address1_addresstypecode>;
       get(name: "address1_city"): Xrm.StringControl;
@@ -148,7 +140,7 @@ declare namespace Form.contact.Main {
       get(name: "adx_identity_securitystamp"): Xrm.StringControl;
       get(name: "adx_identity_twofactorenabled"): Xrm.OptionSetControl<boolean>;
       get(name: "adx_identity_username"): Xrm.StringControl;
-      get(name: "adx_timezone"): Xrm.Control<Xrm.Attribute<any>>;
+      get(name: "adx_timezone"): Xrm.Control<Xrm.NumberAttribute>;
       get(name: "anniversary"): Xrm.DateControl;
       get(name: "assistantname"): Xrm.StringControl;
       get(name: "assistantphone"): Xrm.StringControl;
@@ -156,7 +148,7 @@ declare namespace Form.contact.Main {
       get(name: "contactactivitiesgrid"): Xrm.SubGridControl<"activitypointer">;
       get(name: "creditlimit"): Xrm.NumberControl;
       get(name: "creditonhold"): Xrm.OptionSetControl<boolean>;
-      get(name: "defaultpricelevelid"): Xrm.LookupControl<"pricelevel">;
+      get(name: "defaultpricelevelid"): Xrm.LookupControl<"NoAttribute">;
       get(name: "department"): Xrm.StringControl;
       get(name: "description"): Xrm.StringControl;
       get(name: "donotbulkemail"): Xrm.OptionSetControl<boolean>;
@@ -208,12 +200,17 @@ declare namespace Form.contact.Main {
       get(index: number): Xrm.BaseControl;
       get(chooser: (item: Xrm.BaseControl, index: number) => boolean): Xrm.BaseControl[];
     }
+    interface QuickViewForms extends Xrm.QuickViewFormCollectionBase {
+      get(name: string): undefined;
+      get(): Xrm.QuickViewFormBase[];
+      get(index: number): Xrm.QuickViewFormBase;
+      get(chooser: (item: Xrm.QuickViewFormBase, index: number) => boolean): Xrm.QuickViewFormBase[];
+    }
     interface Tabs extends Xrm.TabCollectionBase {
       get(name: "administration"): Xrm.PageTab<Tabs.administration>;
       get(name: "details"): Xrm.PageTab<Tabs.details>;
       get(name: "general"): Xrm.PageTab<Tabs.general>;
       get(name: "notes and activities"): Xrm.PageTab<Tabs.notesandactivities>;
-      get(name: "tab_recordwall"): Xrm.PageTab<Tabs.tab_recordwall>;
       get(name: "web authentication"): Xrm.PageTab<Tabs.webauthentication>;
       get(name: string): undefined;
       get(): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
@@ -221,7 +218,7 @@ declare namespace Form.contact.Main {
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface PortalContactEnhanced extends Xrm.PageBase<PortalContactEnhanced.Attributes,PortalContactEnhanced.Tabs,PortalContactEnhanced.Controls> {
+  interface PortalContactEnhanced extends Xrm.PageBase<PortalContactEnhanced.Attributes,PortalContactEnhanced.Tabs,PortalContactEnhanced.Controls,PortalContactEnhanced.QuickViewForms> {
     getAttribute(attributeName: "accountrolecode"): Xrm.OptionSetAttribute<contact_accountrolecode>;
     getAttribute(attributeName: "address1_addresstypecode"): Xrm.OptionSetAttribute<contact_address1_addresstypecode>;
     getAttribute(attributeName: "address1_city"): Xrm.Attribute<string>;
@@ -245,14 +242,14 @@ declare namespace Form.contact.Main {
     getAttribute(attributeName: "adx_identity_securitystamp"): Xrm.Attribute<string>;
     getAttribute(attributeName: "adx_identity_twofactorenabled"): Xrm.OptionSetAttribute<boolean>;
     getAttribute(attributeName: "adx_identity_username"): Xrm.Attribute<string>;
-    getAttribute(attributeName: "adx_timezone"): Xrm.Attribute<any>;
+    getAttribute(attributeName: "adx_timezone"): Xrm.NumberAttribute;
     getAttribute(attributeName: "anniversary"): Xrm.DateAttribute;
     getAttribute(attributeName: "assistantname"): Xrm.Attribute<string>;
     getAttribute(attributeName: "assistantphone"): Xrm.Attribute<string>;
     getAttribute(attributeName: "birthdate"): Xrm.DateAttribute;
     getAttribute(attributeName: "creditlimit"): Xrm.NumberAttribute;
     getAttribute(attributeName: "creditonhold"): Xrm.OptionSetAttribute<boolean>;
-    getAttribute(attributeName: "defaultpricelevelid"): Xrm.LookupAttribute<"pricelevel">;
+    getAttribute(attributeName: "defaultpricelevelid"): Xrm.LookupAttribute<"NoAttribute">;
     getAttribute(attributeName: "department"): Xrm.Attribute<string>;
     getAttribute(attributeName: "description"): Xrm.Attribute<string>;
     getAttribute(attributeName: "donotbulkemail"): Xrm.OptionSetAttribute<boolean>;
@@ -286,7 +283,7 @@ declare namespace Form.contact.Main {
     getAttribute(attributeName: "transactioncurrencyid"): Xrm.LookupAttribute<"transactioncurrency">;
     getAttribute(attributeName: "websiteurl"): Xrm.Attribute<string> | null;
     getAttribute(attributeName: string): undefined;
-    getControl(controlName: "WebResource_RecordWall"): Xrm.WebResourceControl;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "accountrolecode"): Xrm.OptionSetControl<contact_accountrolecode>;
     getControl(controlName: "address1_addresstypecode"): Xrm.OptionSetControl<contact_address1_addresstypecode>;
     getControl(controlName: "address1_city"): Xrm.StringControl;
@@ -311,7 +308,7 @@ declare namespace Form.contact.Main {
     getControl(controlName: "adx_identity_securitystamp"): Xrm.StringControl;
     getControl(controlName: "adx_identity_twofactorenabled"): Xrm.OptionSetControl<boolean>;
     getControl(controlName: "adx_identity_username"): Xrm.StringControl;
-    getControl(controlName: "adx_timezone"): Xrm.Control<Xrm.Attribute<any>>;
+    getControl(controlName: "adx_timezone"): Xrm.Control<Xrm.NumberAttribute>;
     getControl(controlName: "anniversary"): Xrm.DateControl;
     getControl(controlName: "assistantname"): Xrm.StringControl;
     getControl(controlName: "assistantphone"): Xrm.StringControl;
@@ -319,7 +316,7 @@ declare namespace Form.contact.Main {
     getControl(controlName: "contactactivitiesgrid"): Xrm.SubGridControl<"activitypointer">;
     getControl(controlName: "creditlimit"): Xrm.NumberControl;
     getControl(controlName: "creditonhold"): Xrm.OptionSetControl<boolean>;
-    getControl(controlName: "defaultpricelevelid"): Xrm.LookupControl<"pricelevel">;
+    getControl(controlName: "defaultpricelevelid"): Xrm.LookupControl<"NoAttribute">;
     getControl(controlName: "department"): Xrm.StringControl;
     getControl(controlName: "description"): Xrm.StringControl;
     getControl(controlName: "donotbulkemail"): Xrm.OptionSetControl<boolean>;
@@ -367,5 +364,6 @@ declare namespace Form.contact.Main {
     getControl(controlName: "telephone2"): Xrm.StringControl;
     getControl(controlName: "transactioncurrencyid"): Xrm.LookupControl<"transactioncurrency">;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }

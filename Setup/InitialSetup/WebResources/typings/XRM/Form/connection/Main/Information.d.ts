@@ -23,9 +23,9 @@ declare namespace Form.connection.Main {
       get(name: "effectiveend"): Xrm.DateAttribute;
       get(name: "effectivestart"): Xrm.DateAttribute;
       get(name: "ownerid"): Xrm.LookupAttribute<"systemuser" | "team">;
-      get(name: "record1id"): Xrm.Attribute<any>;
+      get(name: "record1id"): Xrm.LookupAttribute<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
       get(name: "record1roleid"): Xrm.LookupAttribute<"connectionrole">;
-      get(name: "record2id"): Xrm.Attribute<any>;
+      get(name: "record2id"): Xrm.LookupAttribute<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
       get(name: "record2roleid"): Xrm.LookupAttribute<"connectionrole">;
       get(name: "statecode"): Xrm.OptionSetAttribute<connection_statecode>;
       get(name: string): undefined;
@@ -38,16 +38,22 @@ declare namespace Form.connection.Main {
       get(name: "effectiveend"): Xrm.DateControl;
       get(name: "effectivestart"): Xrm.DateControl;
       get(name: "footer_statecode"): Xrm.OptionSetControl<connection_statecode>;
-      get(name: "header_record1id"): Xrm.Control<Xrm.Attribute<any>>;
+      get(name: "header_record1id"): Xrm.LookupControl<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
       get(name: "ownerid"): Xrm.LookupControl<"systemuser" | "team">;
-      get(name: "record1id"): Xrm.Control<Xrm.Attribute<any>>;
+      get(name: "record1id"): Xrm.LookupControl<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
       get(name: "record1roleid"): Xrm.LookupControl<"connectionrole">;
-      get(name: "record2id"): Xrm.Control<Xrm.Attribute<any>>;
+      get(name: "record2id"): Xrm.LookupControl<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
       get(name: "record2roleid"): Xrm.LookupControl<"connectionrole">;
       get(name: string): undefined;
       get(): Xrm.BaseControl[];
       get(index: number): Xrm.BaseControl;
       get(chooser: (item: Xrm.BaseControl, index: number) => boolean): Xrm.BaseControl[];
+    }
+    interface QuickViewForms extends Xrm.QuickViewFormCollectionBase {
+      get(name: string): undefined;
+      get(): Xrm.QuickViewFormBase[];
+      get(index: number): Xrm.QuickViewFormBase;
+      get(chooser: (item: Xrm.QuickViewFormBase, index: number) => boolean): Xrm.QuickViewFormBase[];
     }
     interface Tabs extends Xrm.TabCollectionBase {
       get(name: "details"): Xrm.PageTab<Tabs.details>;
@@ -58,27 +64,29 @@ declare namespace Form.connection.Main {
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface Information extends Xrm.PageBase<Information.Attributes,Information.Tabs,Information.Controls> {
+  interface Information extends Xrm.PageBase<Information.Attributes,Information.Tabs,Information.Controls,Information.QuickViewForms> {
     getAttribute(attributeName: "description"): Xrm.Attribute<string>;
     getAttribute(attributeName: "effectiveend"): Xrm.DateAttribute;
     getAttribute(attributeName: "effectivestart"): Xrm.DateAttribute;
     getAttribute(attributeName: "ownerid"): Xrm.LookupAttribute<"systemuser" | "team">;
-    getAttribute(attributeName: "record1id"): Xrm.Attribute<any>;
+    getAttribute(attributeName: "record1id"): Xrm.LookupAttribute<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
     getAttribute(attributeName: "record1roleid"): Xrm.LookupAttribute<"connectionrole">;
-    getAttribute(attributeName: "record2id"): Xrm.Attribute<any>;
+    getAttribute(attributeName: "record2id"): Xrm.LookupAttribute<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
     getAttribute(attributeName: "record2roleid"): Xrm.LookupAttribute<"connectionrole">;
     getAttribute(attributeName: "statecode"): Xrm.OptionSetAttribute<connection_statecode>;
     getAttribute(attributeName: string): undefined;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "description"): Xrm.StringControl;
     getControl(controlName: "effectiveend"): Xrm.DateControl;
     getControl(controlName: "effectivestart"): Xrm.DateControl;
     getControl(controlName: "footer_statecode"): Xrm.OptionSetControl<connection_statecode>;
-    getControl(controlName: "header_record1id"): Xrm.Control<Xrm.Attribute<any>>;
+    getControl(controlName: "header_record1id"): Xrm.LookupControl<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
     getControl(controlName: "ownerid"): Xrm.LookupControl<"systemuser" | "team">;
-    getControl(controlName: "record1id"): Xrm.Control<Xrm.Attribute<any>>;
+    getControl(controlName: "record1id"): Xrm.LookupControl<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
     getControl(controlName: "record1roleid"): Xrm.LookupControl<"connectionrole">;
-    getControl(controlName: "record2id"): Xrm.Control<Xrm.Attribute<any>>;
+    getControl(controlName: "record2id"): Xrm.LookupControl<"account" | "activitypointer" | "adx_invitation" | "adx_inviteredemption" | "appointment" | "channelaccessprofilerule" | "contact" | "email" | "fax" | "goal" | "knowledgearticle" | "knowledgebaserecord" | "letter" | "mspp_publishingstatetransitionrule" | "mspp_shortcut" | "mspp_website" | "phonecall" | "position" | "processsession" | "recurringappointmentmaster" | "socialactivity" | "socialprofile" | "systemuser" | "task" | "team" | "territory">;
     getControl(controlName: "record2roleid"): Xrm.LookupControl<"connectionrole">;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }

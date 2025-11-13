@@ -30,46 +30,19 @@ declare namespace XDT {
     activityid_adx_inviteredemption_activityparty_bind$adx_inviteredemptions?: string | null;
     activityid_adx_portalcomment_activityparty_bind$adx_portalcomments?: string | null;
     activityid_appointment_bind$appointments?: string | null;
-    activityid_campaignactivity_bind$campaignactivities?: string | null;
-    activityid_campaignresponse_bind$campaignresponses?: string | null;
     activityid_chat_activityparty_bind$chats?: string | null;
     activityid_email_bind$emails?: string | null;
     activityid_fax_bind$faxes?: string | null;
-    activityid_incidentresolution_bind$incidentresolutions?: string | null;
     activityid_letter_bind$letters?: string | null;
-    activityid_msdyn_copilottranscript_activityparty_bind$msdyn_copilottranscripts?: string | null;
-    activityid_msdyn_ocliveworkitem_activityparty_bind$msdyn_ocliveworkitems?: string | null;
-    activityid_msdyn_ocsession_activityparty_bind$msdyn_ocsessions?: string | null;
-    activityid_msfp_alert_activityparty_bind$msfp_alerts?: string | null;
-    activityid_msfp_surveyinvite_activityparty_bind$msfp_surveyinvites?: string | null;
-    activityid_msfp_surveyresponse_activityparty_bind$msfp_surveyresponses?: string | null;
-    activityid_opportunityclose_bind$opportunitycloses?: string | null;
-    activityid_orderclose_bind$ordercloses?: string | null;
     activityid_phonecall_bind$phonecalls?: string | null;
-    activityid_quoteclose_bind$quotecloses?: string | null;
     activityid_recurringappointmentmaster_bind$recurringappointmentmasters?: string | null;
-    activityid_serviceappointment_bind$serviceappointments?: string | null;
     activityid_socialactivity_bind$socialactivities?: string | null;
     activityid_task_bind$tasks?: string | null;
     partyid_account_bind$accounts?: string | null;
-    partyid_bulkoperation_bind$bulkoperations?: string | null;
-    partyid_campaign_bind$campaigns?: string | null;
-    partyid_campaignactivity_bind$campaignactivities?: string | null;
     partyid_contact_bind$contacts?: string | null;
-    partyid_contract_bind$contracts?: string | null;
-    partyid_entitlement_bind$entitlements?: string | null;
-    partyid_equipment_bind$equipments?: string | null;
-    partyid_incident_bind$incidents?: string | null;
-    partyid_invoice_bind$invoices?: string | null;
     partyid_knowledgearticle_bind$knowledgearticles?: string | null;
-    partyid_lead_bind$leads?: string | null;
-    partyid_msdyn_salessuggestion_bind$msdyn_salessuggestions?: string | null;
-    partyid_opportunity_bind$opportunities?: string | null;
     partyid_queue_bind$queues?: string | null;
-    partyid_quote_bind$quotes?: string | null;
-    partyid_salesorder_bind$salesorders?: string | null;
     partyid_systemuser_bind$systemusers?: string | null;
-    resourcespecid_bind$resourcespecs?: string | null;
   }
   interface ActivityParty_Create extends ActivityParty {
   }
@@ -95,7 +68,6 @@ declare namespace XDT {
     owninguser: WebAttribute<ActivityParty_Select, { owninguser: string | null }, {  }>;
     participationtypemask: WebAttribute<ActivityParty_Select, { participationtypemask: activityparty_participationtypemask | null }, { participationtypemask_formatted?: string }>;
     partyid_guid: WebAttribute<ActivityParty_Select, { partyid_guid: string | null }, { partyid_formatted?: string }>;
-    resourcespecid_guid: WebAttribute<ActivityParty_Select, { resourcespecid_guid: string | null }, { resourcespecid_formatted?: string }>;
     scheduledend: WebAttribute<ActivityParty_Select, { scheduledend: Date | null }, { scheduledend_formatted?: string }>;
     scheduledstart: WebAttribute<ActivityParty_Select, { scheduledstart: Date | null }, { scheduledstart_formatted?: string }>;
     unresolvedpartyname: WebAttribute<ActivityParty_Select, { unresolvedpartyname: string | null }, {  }>;
@@ -121,7 +93,6 @@ declare namespace XDT {
     owninguser: XQW.Guid;
     participationtypemask: activityparty_participationtypemask;
     partyid_guid: XQW.Guid;
-    resourcespecid_guid: XQW.Guid;
     scheduledend: Date;
     scheduledstart: Date;
     unresolvedpartyname: string;
@@ -137,7 +108,6 @@ declare namespace XDT {
     ownerid_formatted?: string;
     participationtypemask_formatted?: string;
     partyid_formatted?: string;
-    resourcespecid_formatted?: string;
     scheduledend_formatted?: string;
     scheduledstart_formatted?: string;
   }
@@ -146,7 +116,6 @@ declare namespace XDT {
     activityid_guid: string | null;
     ownerid_guid: string | null;
     partyid_guid: string | null;
-    resourcespecid_guid: string | null;
   }
   interface ActivityParty_RelatedOne {
     partyid_account: WebMappingRetrieve<XDT.Account_Select,XDT.Account_Expand,XDT.Account_Filter,XDT.Account_Fixed,XDT.Account_Result,XDT.Account_FormattedResult>;

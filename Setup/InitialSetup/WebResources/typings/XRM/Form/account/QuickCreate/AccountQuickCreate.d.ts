@@ -43,6 +43,12 @@ declare namespace Form.account.QuickCreate {
       get(index: number): Xrm.BaseControl;
       get(chooser: (item: Xrm.BaseControl, index: number) => boolean): Xrm.BaseControl[];
     }
+    interface QuickViewForms extends Xrm.QuickViewFormCollectionBase {
+      get(name: string): undefined;
+      get(): Xrm.QuickViewFormBase[];
+      get(index: number): Xrm.QuickViewFormBase;
+      get(chooser: (item: Xrm.QuickViewFormBase, index: number) => boolean): Xrm.QuickViewFormBase[];
+    }
     interface Tabs extends Xrm.TabCollectionBase {
       get(name: "tab_1"): Xrm.PageTab<Tabs.tab_1>;
       get(name: string): undefined;
@@ -51,7 +57,7 @@ declare namespace Form.account.QuickCreate {
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface AccountQuickCreate extends Xrm.PageBase<AccountQuickCreate.Attributes,AccountQuickCreate.Tabs,AccountQuickCreate.Controls> {
+  interface AccountQuickCreate extends Xrm.PageBase<AccountQuickCreate.Attributes,AccountQuickCreate.Tabs,AccountQuickCreate.Controls,AccountQuickCreate.QuickViewForms> {
     getAttribute(attributeName: "address1_city"): Xrm.Attribute<string>;
     getAttribute(attributeName: "address1_line1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "address1_line2"): Xrm.Attribute<string>;
@@ -63,6 +69,7 @@ declare namespace Form.account.QuickCreate {
     getAttribute(attributeName: "revenue"): Xrm.NumberAttribute;
     getAttribute(attributeName: "telephone1"): Xrm.Attribute<string>;
     getAttribute(attributeName: string): undefined;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "address1_city"): Xrm.StringControl;
     getControl(controlName: "address1_line1"): Xrm.StringControl;
     getControl(controlName: "address1_line2"): Xrm.StringControl;
@@ -74,5 +81,6 @@ declare namespace Form.account.QuickCreate {
     getControl(controlName: "revenue"): Xrm.NumberControl;
     getControl(controlName: "telephone1"): Xrm.StringControl;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }
