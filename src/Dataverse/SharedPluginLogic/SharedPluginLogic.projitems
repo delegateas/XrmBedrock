@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\AzureService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\IsExternalInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\StorageQueueError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\AddServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\EconomyArea\InvoiceCollectionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\transactioncalculation\dto\TransactionPeriod.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\transactioncalculation\ITransactionCalculationService.cs" />
