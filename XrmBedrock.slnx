@@ -1,0 +1,28 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Tools/Tools.csproj" />
+  </Folder>
+  <Folder Name="/src/Azure/">
+    <Project Path="src/Azure/DataverseService/DataverseService.csproj" />
+    <Project Path="src/Shared/NetCoreContext/NetCoreContext.csproj" />
+  </Folder>
+  <Folder Name="/src/Dataverse/">
+    <Project Path="src/Dataverse/ConsoleJobs/ConsoleJobs.csproj" />
+    <Project Path="src/Dataverse/Plugins/Plugins.csproj" />
+    <Project Path="src/Dataverse/PluginsNetCore/PluginsNetCore.csproj" />
+    <Project Path="src/Dataverse/SharedPluginLogic/SharedPluginLogic.shproj" />
+    <Project Path="src/Dataverse/WebResources/WebResources.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/SharedContext/SharedContext.shproj" />
+    <Project Path="src/Shared/SharedDataverseLogic/SharedDataverseLogic.shproj" />
+    <Project Path="src/Shared/SharedDomain/SharedDomain.shproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/IntegrationTests/IntegrationTests.csproj" />
+    <Project Path="test/SharedTest/SharedTest.shproj" />
+  </Folder>
+</Solution>
