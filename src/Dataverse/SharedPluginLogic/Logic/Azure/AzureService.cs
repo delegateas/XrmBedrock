@@ -13,12 +13,12 @@ public class AzureService
 {
 #pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
     private readonly AzureConfig azureConfig;
-    private readonly IExtendedTracingService tracingService;
+    private readonly ITracingService tracingService;
     private readonly IManagedIdentityService managedIdentityService;
 #pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
     private static readonly string[] StorageScopes = new string[] { "https://storage.azure.com/.default" };
 
-    public AzureService(AzureConfig azureConfig, IExtendedTracingService tracingService, IManagedIdentityService managedIdentityService)
+    public AzureService(AzureConfig azureConfig, ITracingService tracingService, IManagedIdentityService managedIdentityService)
     {
         this.azureConfig = azureConfig;
         this.tracingService = tracingService;
