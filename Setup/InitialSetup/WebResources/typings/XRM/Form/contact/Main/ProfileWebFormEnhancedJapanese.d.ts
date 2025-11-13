@@ -1,13 +1,6 @@
 declare namespace Form.contact.Main {
   namespace ProfileWebFormEnhancedJapanese {
     namespace Tabs {
-      interface tab_recordwall extends Xrm.SectionCollectionBase {
-        get(name: "tab_recordwall_section_1"): Xrm.PageSection;
-        get(name: string): undefined;
-        get(): Xrm.PageSection[];
-        get(index: number): Xrm.PageSection;
-        get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
-      }
     }
     interface Attributes extends Xrm.AttributeCollectionBase {
       get(name: "adx_organizationname"): Xrm.Attribute<string>;
@@ -38,7 +31,6 @@ declare namespace Form.contact.Main {
       get(chooser: (item: Xrm.Attribute<any>, index: number) => boolean): Xrm.Attribute<any>[];
     }
     interface Controls extends Xrm.ControlCollectionBase {
-      get(name: "WebResource_RecordWall"): Xrm.WebResourceControl;
       get(name: "adx_organizationname"): Xrm.StringControl;
       get(name: "adx_publicprofilecopy"): Xrm.StringControl;
       get(name: "emailaddress1"): Xrm.StringControl;
@@ -71,15 +63,20 @@ declare namespace Form.contact.Main {
       get(index: number): Xrm.BaseControl;
       get(chooser: (item: Xrm.BaseControl, index: number) => boolean): Xrm.BaseControl[];
     }
+    interface QuickViewForms extends Xrm.QuickViewFormCollectionBase {
+      get(name: string): undefined;
+      get(): Xrm.QuickViewFormBase[];
+      get(index: number): Xrm.QuickViewFormBase;
+      get(chooser: (item: Xrm.QuickViewFormBase, index: number) => boolean): Xrm.QuickViewFormBase[];
+    }
     interface Tabs extends Xrm.TabCollectionBase {
-      get(name: "tab_recordwall"): Xrm.PageTab<Tabs.tab_recordwall>;
       get(name: string): undefined;
       get(): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
       get(index: number): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>;
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface ProfileWebFormEnhancedJapanese extends Xrm.PageBase<ProfileWebFormEnhancedJapanese.Attributes,ProfileWebFormEnhancedJapanese.Tabs,ProfileWebFormEnhancedJapanese.Controls> {
+  interface ProfileWebFormEnhancedJapanese extends Xrm.PageBase<ProfileWebFormEnhancedJapanese.Attributes,ProfileWebFormEnhancedJapanese.Tabs,ProfileWebFormEnhancedJapanese.Controls,ProfileWebFormEnhancedJapanese.QuickViewForms> {
     getAttribute(attributeName: "adx_organizationname"): Xrm.Attribute<string>;
     getAttribute(attributeName: "adx_publicprofilecopy"): Xrm.Attribute<string>;
     getAttribute(attributeName: "birthdate"): Xrm.DateAttribute | null;
@@ -103,7 +100,7 @@ declare namespace Form.contact.Main {
     getAttribute(attributeName: "yomifirstname"): Xrm.Attribute<string>;
     getAttribute(attributeName: "yomilastname"): Xrm.Attribute<string>;
     getAttribute(attributeName: string): undefined;
-    getControl(controlName: "WebResource_RecordWall"): Xrm.WebResourceControl;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "adx_organizationname"): Xrm.StringControl;
     getControl(controlName: "adx_publicprofilecopy"): Xrm.StringControl;
     getControl(controlName: "emailaddress1"): Xrm.StringControl;
@@ -132,5 +129,6 @@ declare namespace Form.contact.Main {
     getControl(controlName: "yomifirstname"): Xrm.StringControl;
     getControl(controlName: "yomilastname"): Xrm.StringControl;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }

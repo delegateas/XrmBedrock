@@ -4,7 +4,8 @@ declare namespace XrmQuery {
      * @param entityPicker Function to select which entity-type should be targeted.
      * @param id GUID of the wanted record.
      */
-    function retrieve<ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRetrieve) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>, id: string): XQW.RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
+    function retrieve<ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRetrieve) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id: string): XQW.RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
     /**
      * Instantiates specification of a query that can retrieve multiple records of a certain entity.
      * @param entityPicker Function to select which entity should be targeted.
@@ -16,27 +17,31 @@ declare namespace XrmQuery {
      * @param id GUID of the record of which the related record should be retrieved.
      * @param relatedPicker Function to select which navigation property points to the related record.
      */
-    function retrieveRelated<ISingle, ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, id: string, relatedPicker: (x: ISingle) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>): XQW.RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
+    function retrieveRelated<ISingle, ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id: string, relatedPicker: (x: ISingle) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>): XQW.RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
     /**
      * Instantiates specification of a query that can retrieve multiple related records of a given record.
      * @param entityPicker  Function to select which entity-type the related records should be retrieved from.
      * @param id GUID of the record of which the related records should be retrieved.
      * @param relatedPicker Function to select which navigation property points to the related records.
      */
-    function retrieveRelatedMultiple<IMultiple, ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, id: string, relatedPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, IExpand, IFilter, IFixed, Result, FormattedResult>): XQW.RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>;
+    function retrieveRelatedMultiple<IMultiple, ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id: string, relatedPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, IExpand, IFilter, IFixed, Result, FormattedResult>): XQW.RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>;
     /**
      * Instantiates a query that can create a record.
      * @param entityPicker Function to select which entity-type should be created.
      * @param record Object of the record to be created.
      */
-    function create<ICreate>(entityPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<ICreate, any, any>, record?: ICreate): XQW.CreateRecord<ICreate>;
+    function create<ICreate>(entityPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<ICreate, any, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    record?: ICreate): XQW.CreateRecord<ICreate>;
     /**
      * Instantiates a query that can update a specific record.
      * @param entityPicker Function to select which entity-type should be updated.
      * @param id GUID of the record to be updated.
      * @param record Object containing the attributes to be updated.
      */
-    function update<IUpdate>(entityPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, IUpdate, any>, id?: string, record?: IUpdate): XQW.UpdateRecord<IUpdate>;
+    function update<IUpdate>(entityPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, IUpdate, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id?: string, record?: IUpdate): XQW.UpdateRecord<IUpdate>;
     /**
      * Instantiates a query that can associate two specific records with a N:1 relation.
      * @param entityPicker Function to select the entity-type of the source entity.
@@ -45,7 +50,9 @@ declare namespace XrmQuery {
      * @param targetId GUID of the target entity.
      * @param relationPicker Function to select which N:1 relation (lookup-field) should be used to associate.
      */
-    function associateSingle<ISingle, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, targetId: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>): XQW.AssociateRecordSingle<ISingle, ISelect>;
+    function associateSingle<ISingle, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    targetId: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>): XQW.AssociateRecordSingle<ISingle, ISelect>;
     /**
      * Instantiates a query that can associate two specific records with a N:N or 1:N relation.
      * @param entityPicker Function to select the entity-type of the source entity.
@@ -54,14 +61,17 @@ declare namespace XrmQuery {
      * @param targetId GUID of the target entity.
      * @param relationPicker Function to select which N:N or 1:N relation should be used to associate.
      */
-    function associateCollection<IMultiple, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, targetId: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>): XQW.AssociateRecordCollection<IMultiple, ISelect>;
+    function associateCollection<IMultiple, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    targetId: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>): XQW.AssociateRecordCollection<IMultiple, ISelect>;
     /**
      * Instantiates a query that can disassociate two specific records with a N:1 relation.
      * @param entityPicker Function to select the entity-type of the source entity.
      * @param id GUID of the source entity.
      * @param relationPicker Function to select which N:1 relation (lookup-field) should be used to disassociate.
      */
-    function disassociateSingle<ISingle, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, id: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>): XQW.DisassociateRecord<ISelect>;
+    function disassociateSingle<ISingle, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>): XQW.DisassociateRecord<ISelect>;
     /**
      * Instantiates a query that can disassociate two specific records with a N:N or 1:N relation.
      * @param entityPicker Function to select the entity-type of the source entity.
@@ -69,13 +79,16 @@ declare namespace XrmQuery {
      * @param relationPicker Function to select which N:N or 1:N relation should be used to disassociate.
      * @param targetId GUID of the target entity.
      */
-    function disassociateCollection<IMultiple, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, id: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>, targetId: string): XQW.DisassociateRecord<ISelect>;
+    function disassociateCollection<IMultiple, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    targetId: string): XQW.DisassociateRecord<ISelect>;
     /**
      * Instantiates a query that can delete a specific record.
      * @param entityPicker Function to select which entity-type should be deleted.
      * @param id GUID of the record to be updated.
      */
-    function deleteRecord(entityPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, any>, id?: string): XQW.DeleteRecord;
+    function deleteRecord(entityPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+    id?: string): XQW.DeleteRecord;
     /**
      * Makes XrmQuery use the given custom url to access the Web API.
      * @param url The url targeting the API. For example: '/api/data/v8.2/'
@@ -131,7 +144,7 @@ interface WebEntitiesRelated {
 }
 interface WebEntitiesCUDA {
 }
-declare var GetGlobalContext: any;
+declare let GetGlobalContext: any;
 interface WebMappingRetrieve<ISelect, IExpand, IFilter, IFixed, Result, FormattedResult> {
     __WebMappingRetrieve: ISelect;
 }
@@ -149,6 +162,15 @@ interface WebExpand<IExpand, ChildSelect, ChildFilter, Result> {
 }
 interface WebFilter {
     __WebFilter: any;
+}
+interface ExplicitQuery {
+    select?: string;
+    expand?: string;
+    filter?: string;
+    orderby?: string;
+    skip?: string;
+    top?: string;
+    [key: string]: string | undefined;
 }
 declare const enum SortOrder {
     Ascending = 1,
@@ -192,12 +214,14 @@ declare namespace XQW {
         private id?;
         private relatedNav?;
         static Get<ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRetrieve) => WebMappingRetrieve<ISelect, IExpand, IFilter, IFixed, Result, FormattedResult>): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>;
-        static Related<IMultiple, ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, id: string, relatedPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, IExpand, IFilter, IFixed, Result, FormattedResult>): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>;
+        static Related<IMultiple, ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        id: string, relatedPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, IExpand, IFilter, IFixed, Result, FormattedResult>): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, FormattedResult, Result>;
         private constructor();
         protected handleResponse(req: XMLHttpRequest, successCallback: (r: Result[]) => any, errorCallback: (e: Error) => any): void;
         getFirst(successCallback: (r: Result | null) => any, errorCallback?: (e: Error) => any): void;
         promiseFirst(): Promise<Result>;
         getQueryString(): string;
+        private addOption;
         select<R1, F1, R2, F2, R3, F3, R4, F4, R5, F5, R6, F6, R7, F7, R8, F8, R9, F9, R10, F10, R11, F11, R12, F12, R13, F13, R14, F14, R15, F15>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>, WebAttribute<ISelect, R3, F3>, WebAttribute<ISelect, R4, F4>, WebAttribute<ISelect, R5, F5>, WebAttribute<ISelect, R6, F6>, WebAttribute<ISelect, R7, F7>, WebAttribute<ISelect, R8, F8>, WebAttribute<ISelect, R9, F9>, WebAttribute<ISelect, R10, F10>, WebAttribute<ISelect, R11, F11>, WebAttribute<ISelect, R12, F12>, WebAttribute<ISelect, R13, F13>, WebAttribute<ISelect, R14, F14>, WebAttribute<ISelect, R15, F15>]): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10 & F11 & F12 & F13 & F14 & F15, IFixed & R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10 & R11 & R12 & R13 & R14 & R15>;
         select<R1, F1, R2, F2, R3, F3, R4, F4, R5, F5, R6, F6, R7, F7, R8, F8, R9, F9, R10, F10, R11, F11, R12, F12, R13, F13, R14, F14>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>, WebAttribute<ISelect, R3, F3>, WebAttribute<ISelect, R4, F4>, WebAttribute<ISelect, R5, F5>, WebAttribute<ISelect, R6, F6>, WebAttribute<ISelect, R7, F7>, WebAttribute<ISelect, R8, F8>, WebAttribute<ISelect, R9, F9>, WebAttribute<ISelect, R10, F10>, WebAttribute<ISelect, R11, F11>, WebAttribute<ISelect, R12, F12>, WebAttribute<ISelect, R13, F13>, WebAttribute<ISelect, R14, F14>]): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10 & F11 & F12 & F13 & F14, IFixed & R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10 & R11 & R12 & R13 & R14>;
         select<R1, F1, R2, F2, R3, F3, R4, F4, R5, F5, R6, F6, R7, F7, R8, F8, R9, F9, R10, F10, R11, F11, R12, F12, R13, F13>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>, WebAttribute<ISelect, R3, F3>, WebAttribute<ISelect, R4, F4>, WebAttribute<ISelect, R5, F5>, WebAttribute<ISelect, R6, F6>, WebAttribute<ISelect, R7, F7>, WebAttribute<ISelect, R8, F8>, WebAttribute<ISelect, R9, F9>, WebAttribute<ISelect, R10, F10>, WebAttribute<ISelect, R11, F11>, WebAttribute<ISelect, R12, F12>, WebAttribute<ISelect, R13, F13>]): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10 & F11 & F12 & F13, IFixed & R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10 & R11 & R12 & R13>;
@@ -228,6 +252,7 @@ declare namespace XQW {
         selectMore<R1, F1, R2, F2, R3, F3>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>, WebAttribute<ISelect, R3, F3>]): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, F1 & F2 & F3, Result & R1 & R2 & R3>;
         selectMore<R1, F1, R2, F2>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>]): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, F1 & F2, Result & R1 & R2>;
         selectMore<R1, F1>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>]): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, F1, Result & R1>;
+        explicit(query: ExplicitQuery): this;
         expand<IExpSelect, IExpFilter, IExpResult>(exps: (x: IExpand) => WebExpand<IExpand, IExpSelect, IExpFilter, IExpResult>, selectVarFunc?: (x: IExpSelect) => WebAttribute<IExpSelect, any, any>[]): RetrieveMultipleRecords<ISelect, IExpand, IFilter, IFixed, FormattedResult, IExpResult & Result>;
         filter(filter: (x: IFilter) => WebFilter): this;
         orFilter(filter: (x: IFilter) => WebFilter): this;
@@ -254,15 +279,16 @@ declare namespace XQW {
          * Sets up the query to filter the entity using the predefined-query.
          * @param xml The query in FetchXML format
          */
-        usePredefinedQuery(type: "savedQuery", guid: string): Query<Result[]>;
-        usePredefinedQuery(type: "userQuery", guid: string): Query<Result[]>;
+        usePredefinedQuery(type: "savedQuery" | "userQuery", guid: string): Query<Result[]>;
     }
     class RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result> extends Query<Result> {
         private entitySetName;
         private id;
         private relatedNav?;
-        static Related<ISingle, ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, id: string, relatedPicker: (x: ISingle) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>): RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
-        static Get<ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRetrieve) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>, id: string): RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
+        static Related<ISingle, ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        id: string, relatedPicker: (x: ISingle) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>): RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
+        static Get<ISelect, IExpand, IFixed, FormattedResult, Result>(entityPicker: (x: WebEntitiesRetrieve) => WebMappingRetrieve<ISelect, IExpand, any, IFixed, Result, FormattedResult>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        id: string): RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, Result>;
         private constructor();
         protected handleResponse(req: XMLHttpRequest, successCallback: (r: Result) => any, errorCallback: (e: Error) => any): void;
         select<R1, F1, R2, F2, R3, F3, R4, F4, R5, F5, R6, F6, R7, F7, R8, F8, R9, F9, R10, F10, R11, F11, R12, F12, R13, F13, R14, F14, R15, F15>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>, WebAttribute<ISelect, R3, F3>, WebAttribute<ISelect, R4, F4>, WebAttribute<ISelect, R5, F5>, WebAttribute<ISelect, R6, F6>, WebAttribute<ISelect, R7, F7>, WebAttribute<ISelect, R8, F8>, WebAttribute<ISelect, R9, F9>, WebAttribute<ISelect, R10, F10>, WebAttribute<ISelect, R11, F11>, WebAttribute<ISelect, R12, F12>, WebAttribute<ISelect, R13, F13>, WebAttribute<ISelect, R14, F14>, WebAttribute<ISelect, R15, F15>]): RetrieveRecord<ISelect, IExpand, IFixed, F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10 & F11 & F12 & F13 & F14 & F15, IFixed & R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10 & R11 & R12 & R13 & R14 & R15>;
@@ -295,7 +321,8 @@ declare namespace XQW {
         selectMore<R1, F1, R2, F2, R3, F3>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>, WebAttribute<ISelect, R3, F3>]): RetrieveRecord<ISelect, IExpand, IFixed, F1 & F2 & F3, Result & R1 & R2 & R3>;
         selectMore<R1, F1, R2, F2>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>, WebAttribute<ISelect, R2, F2>]): RetrieveRecord<ISelect, IExpand, IFixed, F1 & F2, Result & R1 & R2>;
         selectMore<R1, F1>(vars: (x: ISelect) => [WebAttribute<ISelect, R1, F1>]): RetrieveRecord<ISelect, IExpand, IFixed, F1, Result & R1>;
-        expand<IExpSelect, IExpFilter, IExpResult>(exps: (x: IExpand) => WebExpand<IExpand, IExpSelect, IExpFilter, IExpResult>, selectVarFunc?: (x: IExpSelect) => WebAttribute<IExpSelect, any, any>[], optArgs?: ExpandOptions<IExpSelect, IExpFilter>): RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, IExpResult & Result>;
+        expand<IExpSelect, IExpFilter, IExpResult>(exps: (x: IExpand) => WebExpand<IExpand, IExpSelect, IExpFilter, IExpResult>, selectVarFunc?: (x: IExpSelect) => WebAttribute<IExpSelect, any, any>[], //eslint-disable-line @typescript-eslint/no-explicit-any
+        optArgs?: ExpandOptions<IExpSelect, IExpFilter>): RetrieveRecord<ISelect, IExpand, IFixed, FormattedResult, IExpResult & Result>;
         getQueryString(): string;
         /**
          * Sets a header that lets you retrieve formatted values as well. Should be used after using select and expand of attributes.
@@ -304,7 +331,7 @@ declare namespace XQW {
         /**
          * Sets a header that lets you retrieve formatted values and lookup properties as well. Should be used after using select and expand of attributes.
          */
-        includeFormattedValuesAndLookupProperties(): Query<(FormattedResult & Result)[]>;
+        includeFormattedValuesAndLookupProperties(): Query<(FormattedResult & Result)>;
     }
     /**
      * Contains information about a Create query
@@ -348,7 +375,9 @@ declare namespace XQW {
         private targetId;
         private relation;
         private record;
-        constructor(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, targetid: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>);
+        constructor(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        targetid: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>);
         protected handleResponse(req: XMLHttpRequest, successCallback: (x?: undefined) => any): void;
         setData(id: string, record: any): this;
         protected getObjectToSend: () => string;
@@ -363,7 +392,9 @@ declare namespace XQW {
         private targetId;
         private relation;
         private record;
-        constructor(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, targetid: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>);
+        constructor(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        id: string, entityTargetPicker: (x: WebEntitiesCUDA) => WebMappingCUDA<any, any, ISelect>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        targetid: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>);
         protected handleResponse(req: XMLHttpRequest, successCallback: (x?: undefined) => any): void;
         setData(id: string, record: any): this;
         protected getObjectToSend: () => string;
@@ -377,8 +408,11 @@ declare namespace XQW {
         private targetid?;
         private relation;
         private targetId;
-        static Single<ISingle, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, id: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>): DisassociateRecord<ISelect>;
-        static Collection<IMultiple, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, id: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>, targetId: string): DisassociateRecord<ISelect>;
+        static Single<ISingle, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<ISingle, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        id: string, relationPicker: (x: ISingle) => WebMappingRetrieve<ISelect, any, any, any, any, any>): DisassociateRecord<ISelect>;
+        static Collection<IMultiple, ISelect>(entityPicker: (x: WebEntitiesRelated) => WebMappingRelated<any, IMultiple>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        id: string, relationPicker: (x: IMultiple) => WebMappingRetrieve<ISelect, any, any, any, any, any>, //eslint-disable-line @typescript-eslint/no-explicit-any
+        targetId: string): DisassociateRecord<ISelect>;
         constructor(entityName: string, id: string, rel: string, targetid?: string | undefined);
         protected handleResponse(req: XMLHttpRequest, successCallback: (x?: undefined) => any): void;
         setId(id: string): this;
@@ -387,6 +421,8 @@ declare namespace XQW {
     function getDefaultUrl(v: string): string;
     function getApiUrl(): string;
 }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="..\Dist\dg.xrmquery.web.d.ts" />
 declare namespace Filter {
   function $in<T extends string | number | XQW.Guid>(val: T, listVal: T[]): WebFilter;
   function notIn<T extends string | number | XQW.Guid>(val: T, listVal: T[]): WebFilter;

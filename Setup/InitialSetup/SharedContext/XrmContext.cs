@@ -309,11 +309,6 @@ namespace XrmBedrock.SharedContext {
             set;
         }
         
-        EntityReference DefaultPriceLevelId {
-            get;
-            set;
-        }
-        
         string Description {
             get;
             set;
@@ -436,28 +431,8 @@ namespace XrmBedrock.SharedContext {
             set;
         }
         
-        bool? msdyn_gdproptout {
-            get;
-            set;
-        }
-        
-        int? msdyn_PrimaryTimeZone {
-            get;
-            set;
-        }
-        
-        EntityReference msdyn_segmentid {
-            get;
-            set;
-        }
-        
         int? OnHoldTime {
             get;
-        }
-        
-        EntityReference OriginatingLeadId {
-            get;
-            set;
         }
         
         DateTime? OverriddenCreatedOn {
@@ -487,16 +462,6 @@ namespace XrmBedrock.SharedContext {
             set;
         }
         
-        EntityReference PreferredEquipmentId {
-            get;
-            set;
-        }
-        
-        EntityReference PreferredServiceId {
-            get;
-            set;
-        }
-        
         EntityReference PreferredSystemUserId {
             get;
             set;
@@ -517,11 +482,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         Guid? StageId {
-            get;
-            set;
-        }
-        
-        int? TeamsFollowed {
             get;
             set;
         }
@@ -1699,21 +1659,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Choose the default price list associated with the account to make sure the correct product prices for this customer are applied in sales opportunities, quotes, and orders.</para>
-        /// <para>Display Name: Price List</para>
-        /// </summary>
-        [AttributeLogicalName("defaultpricelevelid")]
-        [DisplayName("Price List")]
-        public EntityReference DefaultPriceLevelId {
-            get {
-                return GetAttributeValue<EntityReference>("defaultpricelevelid");
-            }
-            set {
-                SetAttributeValue("defaultpricelevelid", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Type additional information to describe the account, such as an excerpt from the company's website.</para>
         /// <para>Display Name: Description</para>
         /// </summary>
@@ -2173,108 +2118,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Number of open opportunities against an account and its child accounts.</para>
-        /// <para>Display Name: Open Deals</para>
-        /// </summary>
-        [AttributeLogicalName("opendeals")]
-        [DisplayName("Open Deals")]
-        [Range(-2147483648, 2147483647)]
-        public int? OpenDeals {
-            get {
-                return GetAttributeValue<int?>("opendeals");
-            }
-        }
-        
-        /// <summary>
-        /// <para>Last Updated time of rollup field Open Deals.</para>
-        /// <para>Display Name: Open Deals (Last Updated On)</para>
-        /// </summary>
-        [AttributeLogicalName("opendeals_date")]
-        [DisplayName("Open Deals (Last Updated On)")]
-        public DateTime? OpenDeals_Date {
-            get {
-                return GetAttributeValue<DateTime?>("opendeals_date");
-            }
-        }
-        
-        /// <summary>
-        /// <para>State of rollup field Open Deals.</para>
-        /// <para>Display Name: Open Deals (State)</para>
-        /// </summary>
-        [AttributeLogicalName("opendeals_state")]
-        [DisplayName("Open Deals (State)")]
-        [Range(-2147483648, 2147483647)]
-        public int? OpenDeals_State {
-            get {
-                return GetAttributeValue<int?>("opendeals_state");
-            }
-        }
-        
-        /// <summary>
-        /// <para>Sum of open revenue against an account and its child accounts.</para>
-        /// <para>Display Name: Open Revenue</para>
-        /// </summary>
-        [AttributeLogicalName("openrevenue")]
-        [DisplayName("Open Revenue")]
-        public decimal? OpenRevenue {
-            get {
-                return GetMoneyValue("openrevenue");
-            }
-        }
-        
-        /// <summary>
-        /// <para>Value of the Open Revenue in base currency.</para>
-        /// <para>Display Name: Open Revenue (Base)</para>
-        /// </summary>
-        [AttributeLogicalName("openrevenue_base")]
-        [DisplayName("Open Revenue (Base)")]
-        public decimal? OpenRevenue_Base {
-            get {
-                return GetMoneyValue("openrevenue_base");
-            }
-        }
-        
-        /// <summary>
-        /// <para>Last Updated time of rollup field Open Revenue.</para>
-        /// <para>Display Name: Open Revenue (Last Updated On)</para>
-        /// </summary>
-        [AttributeLogicalName("openrevenue_date")]
-        [DisplayName("Open Revenue (Last Updated On)")]
-        public DateTime? OpenRevenue_Date {
-            get {
-                return GetAttributeValue<DateTime?>("openrevenue_date");
-            }
-        }
-        
-        /// <summary>
-        /// <para>State of rollup field Open Revenue.</para>
-        /// <para>Display Name: Open Revenue (State)</para>
-        /// </summary>
-        [AttributeLogicalName("openrevenue_state")]
-        [DisplayName("Open Revenue (State)")]
-        [Range(-2147483648, 2147483647)]
-        public int? OpenRevenue_State {
-            get {
-                return GetAttributeValue<int?>("openrevenue_state");
-            }
-        }
-        
-        /// <summary>
-        /// <para>Shows the lead that the account was created from if the account was created by converting a lead in Microsoft Dynamics 365. This is used to relate the account to data on the originating lead for use in reporting and analytics.</para>
-        /// <para>Display Name: Originating Lead</para>
-        /// </summary>
-        [AttributeLogicalName("originatingleadid")]
-        [DisplayName("Originating Lead")]
-        public EntityReference OriginatingLeadId {
-            get {
-                return GetAttributeValue<EntityReference>("originatingleadid");
-            }
-            set {
-                SetAttributeValue("originatingleadid", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Date and time that the record was migrated.</para>
         /// <para>Display Name: Record Created On</para>
         /// </summary>
@@ -2442,36 +2285,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetOptionSetValue("preferredcontactmethodcode", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Choose the account's preferred service facility or equipment to make sure services are scheduled correctly for the customer.</para>
-        /// <para>Display Name: Preferred Facility/Equipment</para>
-        /// </summary>
-        [AttributeLogicalName("preferredequipmentid")]
-        [DisplayName("Preferred Facility/Equipment")]
-        public EntityReference PreferredEquipmentId {
-            get {
-                return GetAttributeValue<EntityReference>("preferredequipmentid");
-            }
-            set {
-                SetAttributeValue("preferredequipmentid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Choose the account's preferred service for reference when you schedule service activities.</para>
-        /// <para>Display Name: Preferred Service</para>
-        /// </summary>
-        [AttributeLogicalName("preferredserviceid")]
-        [DisplayName("Preferred Service")]
-        public EntityReference PreferredServiceId {
-            get {
-                return GetAttributeValue<EntityReference>("preferredserviceid");
-            }
-            set {
-                SetAttributeValue("preferredserviceid", value);
             }
         }
         
@@ -2731,22 +2544,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Number of users or conversations followed the record</para>
-        /// <para>Display Name: TeamsFollowed</para>
-        /// </summary>
-        [AttributeLogicalName("teamsfollowed")]
-        [DisplayName("TeamsFollowed")]
-        [Range(-2147483648, 2147483647)]
-        public int? TeamsFollowed {
-            get {
-                return GetAttributeValue<int?>("teamsfollowed");
-            }
-            set {
-                SetAttributeValue("teamsfollowed", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Type the main phone number for this account.</para>
         /// <para>Display Name: Main Phone</para>
         /// </summary>
@@ -2806,21 +2603,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetOptionSetValue("territorycode", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Choose the sales region or territory for the account to make sure the account is assigned to the correct representative and for use in segmentation and analysis.</para>
-        /// <para>Display Name: Territory</para>
-        /// </summary>
-        [AttributeLogicalName("territoryid")]
-        [DisplayName("Territory")]
-        public EntityReference TerritoryId {
-            get {
-                return GetAttributeValue<EntityReference>("territoryid");
-            }
-            set {
-                SetAttributeValue("territoryid", value);
             }
         }
         
@@ -2975,81 +2757,6 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
-        /// <summary>
-        /// <para>Indicates the primary time zone that the client works on.</para>
-        /// <para>Display Name: Primary Time Zone</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_primarytimezone")]
-        [DisplayName("Primary Time Zone")]
-        [Range(-1500, 1500)]
-        public int? msdyn_PrimaryTimeZone {
-            get {
-                return GetAttributeValue<int?>("msdyn_primarytimezone");
-            }
-            set {
-                SetAttributeValue("msdyn_primarytimezone", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: KPI</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_accountkpiid")]
-        [DisplayName("KPI")]
-        public EntityReference msdyn_accountkpiid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_accountkpiid");
-            }
-            set {
-                SetAttributeValue("msdyn_accountkpiid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Describes whether account is opted out or not</para>
-        /// <para>Display Name: GDPR Optout</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_gdproptout")]
-        [DisplayName("GDPR Optout")]
-        public bool? msdyn_gdproptout {
-            get {
-                return GetAttributeValue<bool?>("msdyn_gdproptout");
-            }
-            set {
-                SetAttributeValue("msdyn_gdproptout", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Sales Acceleration Insights ID</para>
-        /// <para>Display Name: Sales Acceleration Insights ID</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_salesaccelerationinsightid")]
-        [DisplayName("Sales Acceleration Insights ID")]
-        public EntityReference msdyn_salesaccelerationinsightid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_salesaccelerationinsightid");
-            }
-            set {
-                SetAttributeValue("msdyn_salesaccelerationinsightid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Unique identifier for Segment associated with account.</para>
-        /// <para>Display Name: Segment Id</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_segmentid")]
-        [DisplayName("Segment Id")]
-        public EntityReference msdyn_segmentid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_segmentid");
-            }
-            set {
-                SetAttributeValue("msdyn_segmentid", value);
-            }
-        }
-        
         [RelationshipSchemaName("Account_Annotation")]
         public IEnumerable<Annotation> Account_Annotation {
             get {
@@ -3151,6 +2858,26 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetRelatedEntities("contact_customer_accounts", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("ctx_account_ctx_invoice_112")]
+        public IEnumerable<ctx_Invoice> ctx_account_ctx_invoice_112 {
+            get {
+                return GetRelatedEntities<ctx_Invoice>("ctx_account_ctx_invoice_112", null);
+            }
+            set {
+                SetRelatedEntities("ctx_account_ctx_invoice_112", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("ctx_account_ctx_subscription_367")]
+        public IEnumerable<ctx_Subscription> ctx_account_ctx_subscription_367 {
+            get {
+                return GetRelatedEntities<ctx_Subscription>("ctx_account_ctx_subscription_367", null);
+            }
+            set {
+                SetRelatedEntities("ctx_account_ctx_subscription_367", null, value);
             }
         }
         
@@ -3651,21 +3378,6 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
-        /// <summary>
-        /// <para>Determines whether annotation record was autonomously created on conversation wrap up for the linked case record.</para>
-        /// <para>Display Name: Is autonomously created</para>
-        /// </summary>
-        [AttributeLogicalName("isautonomouslycreated")]
-        [DisplayName("Is autonomously created")]
-        public bool? isAutonomouslyCreated {
-            get {
-                return GetAttributeValue<bool?>("isautonomouslycreated");
-            }
-            set {
-                SetAttributeValue("isautonomouslycreated", value);
-            }
-        }
-        
         [AttributeLogicalName("objectid")]
         [RelationshipSchemaName("Account_Annotation")]
         public Account Account_Annotation {
@@ -3762,28 +3474,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetRelatedEntity("lk_annotationbase_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("objectid")]
-        [RelationshipSchemaName("mgs_invoice_Annotations")]
-        public mgs_Invoice mgs_invoice_Annotations {
-            get {
-                return GetRelatedEntity<mgs_Invoice>("mgs_invoice_Annotations", null);
-            }
-            set {
-                SetRelatedEntity("mgs_invoice_Annotations", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("objectid")]
-        [RelationshipSchemaName("mgs_transaction_Annotations")]
-        public mgs_Transaction mgs_transaction_Annotations {
-            get {
-                return GetRelatedEntity<mgs_Transaction>("mgs_transaction_Annotations", null);
-            }
-            set {
-                SetRelatedEntity("mgs_transaction_Annotations", null, value);
             }
         }
         
@@ -5289,37 +4979,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Stores Image of the Business Card</para>
-        /// <para>Display Name: Business Card</para>
-        /// </summary>
-        [AttributeLogicalName("businesscard")]
-        [DisplayName("Business Card")]
-        public string BusinessCard {
-            get {
-                return GetAttributeValue<string>("businesscard");
-            }
-            set {
-                SetAttributeValue("businesscard", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Stores Business Card Control Properties.</para>
-        /// <para>Display Name: BusinessCardAttributes</para>
-        /// </summary>
-        [AttributeLogicalName("businesscardattributes")]
-        [DisplayName("BusinessCardAttributes")]
-        [MaxLength(4000)]
-        public string BusinessCardAttributes {
-            get {
-                return GetAttributeValue<string>("businesscardattributes");
-            }
-            set {
-                SetAttributeValue("businesscardattributes", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Type a callback phone number for this contact.</para>
         /// <para>Display Name: Callback Number</para>
         /// </summary>
@@ -5484,21 +5143,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetOptionSetValue("customertypecode", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Choose the default price list associated with the contact to make sure the correct product prices for this customer are applied in sales opportunities, quotes, and orders.</para>
-        /// <para>Display Name: Price List</para>
-        /// </summary>
-        [AttributeLogicalName("defaultpricelevelid")]
-        [DisplayName("Price List")]
-        public EntityReference DefaultPriceLevelId {
-            get {
-                return GetAttributeValue<EntityReference>("defaultpricelevelid");
-            }
-            set {
-                SetAttributeValue("defaultpricelevelid", value);
             }
         }
         
@@ -6215,21 +5859,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Shows the lead that the contact was created if the contact was created by converting a lead in Microsoft Dynamics 365. This is used to relate the contact to the data on the originating lead for use in reporting and analytics.</para>
-        /// <para>Display Name: Originating Lead</para>
-        /// </summary>
-        [AttributeLogicalName("originatingleadid")]
-        [DisplayName("Originating Lead")]
-        public EntityReference OriginatingLeadId {
-            get {
-                return GetAttributeValue<EntityReference>("originatingleadid");
-            }
-            set {
-                SetAttributeValue("originatingleadid", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Date and time that the record was migrated.</para>
         /// <para>Display Name: Record Created On</para>
         /// </summary>
@@ -6410,36 +6039,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetOptionSetValue("preferredcontactmethodcode", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Choose the contact's preferred service facility or equipment to make sure services are scheduled correctly for the customer.</para>
-        /// <para>Display Name: Preferred Facility/Equipment</para>
-        /// </summary>
-        [AttributeLogicalName("preferredequipmentid")]
-        [DisplayName("Preferred Facility/Equipment")]
-        public EntityReference PreferredEquipmentId {
-            get {
-                return GetAttributeValue<EntityReference>("preferredequipmentid");
-            }
-            set {
-                SetAttributeValue("preferredequipmentid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Choose the contact's preferred service to make sure services are scheduled correctly for the customer.</para>
-        /// <para>Display Name: Preferred Service</para>
-        /// </summary>
-        [AttributeLogicalName("preferredserviceid")]
-        [DisplayName("Preferred Service")]
-        public EntityReference PreferredServiceId {
-            get {
-                return GetAttributeValue<EntityReference>("preferredserviceid");
-            }
-            set {
-                SetAttributeValue("preferredserviceid", value);
             }
         }
         
@@ -6633,22 +6232,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("suffix", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Number of users or conversations followed the record</para>
-        /// <para>Display Name: TeamsFollowed</para>
-        /// </summary>
-        [AttributeLogicalName("teamsfollowed")]
-        [DisplayName("TeamsFollowed")]
-        [Range(-2147483648, 2147483647)]
-        public int? TeamsFollowed {
-            get {
-                return GetAttributeValue<int?>("teamsfollowed");
-            }
-            set {
-                SetAttributeValue("teamsfollowed", value);
             }
         }
         
@@ -7194,52 +6777,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Indicates the primary time zone that the contact works on.</para>
-        /// <para>Display Name: Primary Time Zone</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_primarytimezone")]
-        [DisplayName("Primary Time Zone")]
-        [Range(-1500, 1500)]
-        public int? msdyn_PrimaryTimeZone {
-            get {
-                return GetAttributeValue<int?>("msdyn_primarytimezone");
-            }
-            set {
-                SetAttributeValue("msdyn_primarytimezone", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Maps to contact KPI records</para>
-        /// <para>Display Name: KPI</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_contactkpiid")]
-        [DisplayName("KPI")]
-        public EntityReference msdyn_contactkpiid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_contactkpiid");
-            }
-            set {
-                SetAttributeValue("msdyn_contactkpiid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Indicate buying influence using labels</para>
-        /// <para>Display Name: Decision influence labels</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_decisioninfluencetag")]
-        [DisplayName("Decision influence labels")]
-        public Contact_msdyn_decisioninfluencetag? msdyn_decisioninfluencetag {
-            get {
-                return GetOptionSetValue<Contact_msdyn_decisioninfluencetag>("msdyn_decisioninfluencetag");
-            }
-            set {
-                SetOptionSetValue("msdyn_decisioninfluencetag", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Indicates that the contact has opted out of web tracking.</para>
         /// <para>Display Name: Disable Web Tracking</para>
         /// </summary>
@@ -7251,36 +6788,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("msdyn_disablewebtracking", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Describes whether contact is opted out or not</para>
-        /// <para>Display Name: GDPR Optout</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_gdproptout")]
-        [DisplayName("GDPR Optout")]
-        public bool? msdyn_gdproptout {
-            get {
-                return GetAttributeValue<bool?>("msdyn_gdproptout");
-            }
-            set {
-                SetAttributeValue("msdyn_gdproptout", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Describes if the contact is an assistant in org chart</para>
-        /// <para>Display Name: Is Assistant</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_isassistantinorgchart")]
-        [DisplayName("Is Assistant")]
-        public bool? msdyn_isassistantinorgchart {
-            get {
-                return GetAttributeValue<bool?>("msdyn_isassistantinorgchart");
-            }
-            set {
-                SetAttributeValue("msdyn_isassistantinorgchart", value);
             }
         }
         
@@ -7315,21 +6822,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Whether or not the contact belongs to the associated account</para>
-        /// <para>Display Name: Not at Company Flag</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_orgchangestatus")]
-        [DisplayName("Not at Company Flag")]
-        public Contact_msdyn_orgchangestatus? msdyn_orgchangestatus {
-            get {
-                return GetOptionSetValue<Contact_msdyn_orgchangestatus>("msdyn_orgchangestatus");
-            }
-            set {
-                SetOptionSetValue("msdyn_orgchangestatus", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Indicates the date and time that the person agreed to the portal terms and conditions.</para>
         /// <para>Display Name: Portal Terms Agreement Date</para>
         /// </summary>
@@ -7341,21 +6833,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("msdyn_portaltermsagreementdate", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Unique identifier for Segment associated with contact.</para>
-        /// <para>Display Name: Segment Id</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_segmentid")]
-        [DisplayName("Segment Id")]
-        public EntityReference msdyn_segmentid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_segmentid");
-            }
-            set {
-                SetAttributeValue("msdyn_segmentid", value);
             }
         }
         
@@ -7468,6 +6945,26 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
+        [RelationshipSchemaName("ctx_contact_ctx_invoice_112")]
+        public IEnumerable<ctx_Invoice> ctx_contact_ctx_invoice_112 {
+            get {
+                return GetRelatedEntities<ctx_Invoice>("ctx_contact_ctx_invoice_112", null);
+            }
+            set {
+                SetRelatedEntities("ctx_contact_ctx_invoice_112", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("ctx_contact_ctx_subscription_367")]
+        public IEnumerable<ctx_Subscription> ctx_contact_ctx_subscription_367 {
+            get {
+                return GetRelatedEntities<ctx_Subscription>("ctx_contact_ctx_subscription_367", null);
+            }
+            set {
+                SetRelatedEntities("ctx_contact_ctx_subscription_367", null, value);
+            }
+        }
+        
         [AttributeLogicalName("createdonbehalfby")]
         [RelationshipSchemaName("lk_contact_createdonbehalfby")]
         public SystemUser lk_contact_createdonbehalfby {
@@ -7509,26 +7006,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetRelatedEntity("lk_contactbase_modifiedby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_invoice_Contact_contact")]
-        public IEnumerable<mgs_Invoice> mgs_invoice_Contact_contact {
-            get {
-                return GetRelatedEntities<mgs_Invoice>("mgs_invoice_Contact_contact", null);
-            }
-            set {
-                SetRelatedEntities("mgs_invoice_Contact_contact", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_subscription_Contact_contact")]
-        public IEnumerable<mgs_Subscription> mgs_subscription_Contact_contact {
-            get {
-                return GetRelatedEntities<mgs_Subscription>("mgs_subscription_Contact_contact", null);
-            }
-            set {
-                SetRelatedEntities("mgs_subscription_Contact_contact", null, value);
             }
         }
         
@@ -8346,6 +7823,21 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
+        /// <para>A JSON object describing the options for the input control that should be presented to the user for setting the current value of the Environment variable.</para>
+        /// <para>Display Name: Input Control Config</para>
+        /// </summary>
+        [AttributeLogicalName("inputcontrolconfig")]
+        [DisplayName("Input Control Config")]
+        public string InputControlConfig {
+            get {
+                return GetAttributeValue<string>("inputcontrolconfig");
+            }
+            set {
+                SetAttributeValue("inputcontrolconfig", value);
+            }
+        }
+        
+        /// <summary>
         /// <para>Version in which the form is introduced.</para>
         /// <para>Display Name: Introduced Version</para>
         /// </summary>
@@ -8400,6 +7892,22 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("isrequired", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Clicking on this url will take the user to a webpage which further explains the environment variable being populated.</para>
+        /// <para>Display Name: Learn More Url</para>
+        /// </summary>
+        [AttributeLogicalName("learnmoreurl")]
+        [DisplayName("Learn More Url")]
+        [MaxLength(2000)]
+        public string LearnMoreUrl {
+            get {
+                return GetAttributeValue<string>("learnmoreurl");
+            }
+            set {
+                SetAttributeValue("learnmoreurl", value);
             }
         }
         
@@ -8803,22 +8311,22 @@ namespace XrmBedrock.SharedContext {
         /// <summary>
         /// <para>Retrieves the record using the alternate key called 'Environment Variable Definition Key'</para>
         /// </summary>
-        public static EnvironmentVariableDefinition Retrieve_DefinitionKey(IOrganizationService service, string SchemaName, DateTime OverwriteTime, componentstate ComponentState, params Expression<Func<EnvironmentVariableDefinition,object>>[] attrs) {
+        public static EnvironmentVariableDefinition Retrieve_DefinitionKey(IOrganizationService service, componentstate ComponentState, string SchemaName, DateTime OverwriteTime, params Expression<Func<EnvironmentVariableDefinition,object>>[] attrs) {
             KeyAttributeCollection keys = new KeyAttributeCollection();
+            keys.Add("componentstate", ComponentState);
             keys.Add("schemaname", SchemaName);
             keys.Add("overwritetime", OverwriteTime);
-            keys.Add("componentstate", ComponentState);
             return Retrieve_AltKey(service, keys, attrs);
         }
         
         /// <summary>
         /// <para>Set values for the alternate key called 'Environment Variable Definition Key'</para>
         /// </summary>
-        public void AltKey_DefinitionKey(string SchemaName, DateTime OverwriteTime, componentstate ComponentState) {
+        public void AltKey_DefinitionKey(componentstate ComponentState, string SchemaName, DateTime OverwriteTime) {
             KeyAttributes.Clear();
+            KeyAttributes.Add("componentstate", ComponentState);
             KeyAttributes.Add("schemaname", SchemaName);
             KeyAttributes.Add("overwritetime", OverwriteTime);
-            KeyAttributes.Add("componentstate", ComponentState);
         }
     }
     
@@ -9518,20 +9026,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Display Name: Email Signature</para>
-        /// </summary>
-        [AttributeLogicalName("emailsignature")]
-        [DisplayName("Email Signature")]
-        public EntityReference EmailSignature {
-            get {
-                return GetAttributeValue<EntityReference>("emailsignature");
-            }
-            set {
-                SetAttributeValue("emailsignature", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>This attribute is no longer used. The data is now in the Mailbox.UserName attribute.</para>
         /// <para>Display Name: User Name (Obsolete)</para>
         /// </summary>
@@ -9939,217 +9433,6 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
-        /// <summary>
-        /// <para>Link assignment input contract with queue.</para>
-        /// <para>Display Name: Assignment Input Contract Id</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_assignmentinputcontractid")]
-        [DisplayName("Assignment Input Contract Id")]
-        public EntityReference msdyn_assignmentinputcontractid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_assignmentinputcontractid");
-            }
-            set {
-                SetAttributeValue("msdyn_assignmentinputcontractid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: Assignment Strategy</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_assignmentstrategy")]
-        [DisplayName("Assignment Strategy")]
-        public msdyn_queueassignmentstrategy? msdyn_assignmentstrategy {
-            get {
-                return GetOptionSetValue<msdyn_queueassignmentstrategy>("msdyn_assignmentstrategy");
-            }
-            set {
-                SetOptionSetValue("msdyn_assignmentstrategy", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Define overflow rules for work items after it enters queue</para>
-        /// <para>Display Name: Inqueue Overflow Ruleset</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_inqueueoverflowrulesetid")]
-        [DisplayName("Inqueue Overflow Ruleset")]
-        public EntityReference msdyn_inqueueoverflowrulesetid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_inqueueoverflowrulesetid");
-            }
-            set {
-                SetAttributeValue("msdyn_inqueueoverflowrulesetid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: intentfamilyid</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_intentfamilyid")]
-        [DisplayName("intentfamilyid")]
-        public EntityReference msdyn_intentfamilyid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_intentfamilyid");
-            }
-            set {
-                SetAttributeValue("msdyn_intentfamilyid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Shows whether the queue is set as default or not.</para>
-        /// <para>Display Name: Is Default Queue</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_isdefaultqueue")]
-        [DisplayName("Is Default Queue")]
-        public bool? msdyn_isdefaultqueue {
-            get {
-                return GetAttributeValue<bool?>("msdyn_isdefaultqueue");
-            }
-            set {
-                SetAttributeValue("msdyn_isdefaultqueue", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Shows whether the queue is used as Omnichannel queue for work distribution.</para>
-        /// <para>Display Name: Is Omnichannel queue</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_isomnichannelqueue")]
-        [DisplayName("Is Omnichannel queue")]
-        public bool? msdyn_isomnichannelqueue {
-            get {
-                return GetAttributeValue<bool?>("msdyn_isomnichannelqueue");
-            }
-            set {
-                SetAttributeValue("msdyn_isomnichannelqueue", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Maximum queue size</para>
-        /// <para>Display Name: Maximum queue size</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_maxqueuesize")]
-        [DisplayName("Maximum queue size")]
-        [Range(0, 2147483647)]
-        public int? msdyn_maxqueuesize {
-            get {
-                return GetAttributeValue<int?>("msdyn_maxqueuesize");
-            }
-            set {
-                SetAttributeValue("msdyn_maxqueuesize", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Unique identifier for Operating hour associated with Queue</para>
-        /// <para>Display Name: Operating Hours</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_operatinghourid")]
-        [DisplayName("Operating Hours")]
-        public EntityReference msdyn_operatinghourid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_operatinghourid");
-            }
-            set {
-                SetAttributeValue("msdyn_operatinghourid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Setting to enable/disable periodic processing of a queue</para>
-        /// <para>Display Name: Enable Operating Hours Based Assignment for Queue</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_operatinghoursbasedassignment")]
-        [DisplayName("Enable Operating Hours Based Assignment for Queue")]
-        public bool? msdyn_operatinghoursbasedassignment {
-            get {
-                return GetAttributeValue<bool?>("msdyn_operatinghoursbasedassignment");
-            }
-            set {
-                SetAttributeValue("msdyn_operatinghoursbasedassignment", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Define overflow rules for work items before it enters queue</para>
-        /// <para>Display Name: Prequeue Overflow Ruleset</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_prequeueoverflowrulesetid")]
-        [DisplayName("Prequeue Overflow Ruleset")]
-        public EntityReference msdyn_prequeueoverflowrulesetid {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_prequeueoverflowrulesetid");
-            }
-            set {
-                SetAttributeValue("msdyn_prequeueoverflowrulesetid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Priority of the queue to indicate conversation assignment order to the agent.</para>
-        /// <para>Display Name: Priority</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_priority")]
-        [DisplayName("Priority")]
-        [Range(1, 2147483647)]
-        public int? msdyn_priority {
-            get {
-                return GetAttributeValue<int?>("msdyn_priority");
-            }
-            set {
-                SetAttributeValue("msdyn_priority", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Setting to enable/disable periodic processing of a queue</para>
-        /// <para>Display Name: Enable Periodic Processing of Queue</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_processqueueperiodically")]
-        [DisplayName("Enable Periodic Processing of Queue")]
-        public bool? msdyn_processqueueperiodically {
-            get {
-                return GetAttributeValue<bool?>("msdyn_processqueueperiodically");
-            }
-            set {
-                SetAttributeValue("msdyn_processqueueperiodically", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Defines the type of channels handled by this queue</para>
-        /// <para>Display Name: Queue type</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_queuetype")]
-        [DisplayName("Queue type")]
-        public msdyn_queuetype? msdyn_queuetype {
-            get {
-                return GetOptionSetValue<msdyn_queuetype>("msdyn_queuetype");
-            }
-            set {
-                SetOptionSetValue("msdyn_queuetype", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Unique Name for the entity.</para>
-        /// <para>Display Name: Unique Name</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_uniquename")]
-        [DisplayName("Unique Name")]
-        [MaxLength(128)]
-        public string msdyn_uniquename {
-            get {
-                return GetAttributeValue<string>("msdyn_uniquename");
-            }
-            set {
-                SetAttributeValue("msdyn_uniquename", value);
-            }
-        }
-        
         [AttributeLogicalName("createdonbehalfby")]
         [RelationshipSchemaName("lk_queue_createdonbehalfby")]
         public SystemUser lk_queue_createdonbehalfby {
@@ -10477,6 +9760,21 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("description", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Tells whether the view can retrieve data from all cluster partitions.</para>
+        /// <para>Display Name: Default</para>
+        /// </summary>
+        [AttributeLogicalName("enablecrosspartition")]
+        [DisplayName("Default")]
+        public bool? EnableCrossPartition {
+            get {
+                return GetAttributeValue<bool?>("enablecrosspartition");
+            }
+            set {
+                SetAttributeValue("enablecrosspartition", value);
             }
         }
         
@@ -12128,6 +11426,21 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
+        /// <para>Bypasses the selected user from IP firewall restriction</para>
+        /// <para>Display Name: To bypass IP firewall restriction on the user</para>
+        /// </summary>
+        [AttributeLogicalName("isallowedbyipfirewall")]
+        [DisplayName("To bypass IP firewall restriction on the user")]
+        public bool? IsAllowedByIpFirewall {
+            get {
+                return GetAttributeValue<bool?>("isallowedbyipfirewall");
+            }
+            set {
+                SetAttributeValue("isallowedbyipfirewall", value);
+            }
+        }
+        
+        /// <summary>
         /// <para>Information about whether the user is enabled.</para>
         /// <para>Display Name: Status</para>
         /// </summary>
@@ -12618,21 +11931,6 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Site at which the user is located.</para>
-        /// <para>Display Name: Site</para>
-        /// </summary>
-        [AttributeLogicalName("siteid")]
-        [DisplayName("Site")]
-        public EntityReference SiteId {
-            get {
-                return GetAttributeValue<EntityReference>("siteid");
-            }
-            set {
-                SetAttributeValue("siteid", value);
-            }
-        }
-        
-        /// <summary>
         /// <para>Skill set of the user.</para>
         /// <para>Display Name: Skills</para>
         /// </summary>
@@ -12660,6 +11958,21 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("stageid", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>The type of user</para>
+        /// <para>Display Name: System Managed User Type</para>
+        /// </summary>
+        [AttributeLogicalName("systemmanagedusertype")]
+        [DisplayName("System Managed User Type")]
+        public SystemUser_SystemManagedUserType? SystemManagedUserType {
+            get {
+                return GetOptionSetValue<SystemUser_SystemManagedUserType>("systemmanagedusertype");
+            }
+            set {
+                SetOptionSetValue("systemmanagedusertype", value);
             }
         }
         
@@ -12904,223 +12217,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("yomimiddlename", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Type of user - Application user or Bot application user</para>
-        /// <para>Display Name: User type</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_agentType")]
-        [DisplayName("User type")]
-        public SystemUser_msdyn_AgentType? msdyn_AgentType {
-            get {
-                return GetOptionSetValue<SystemUser_msdyn_AgentType>("msdyn_agentType");
-            }
-            set {
-                SetOptionSetValue("msdyn_agentType", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Application ID of the bot.</para>
-        /// <para>Display Name: Bot application ID</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_botapplicationid")]
-        [DisplayName("Bot application ID")]
-        [MaxLength(100)]
-        public string msdyn_BotApplicationId {
-            get {
-                return GetAttributeValue<string>("msdyn_botapplicationid");
-            }
-            set {
-                SetAttributeValue("msdyn_botapplicationid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>BOT User Description</para>
-        /// <para>Display Name: Description</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_botdescription")]
-        [DisplayName("Description")]
-        public string msdyn_BotDescription {
-            get {
-                return GetAttributeValue<string>("msdyn_botdescription");
-            }
-            set {
-                SetAttributeValue("msdyn_botdescription", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Bot User Endpoint</para>
-        /// <para>Display Name: Endpoint</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_botendpoint")]
-        [DisplayName("Endpoint")]
-        [MaxLength(100)]
-        public string msdyn_BotEndpoint {
-            get {
-                return GetAttributeValue<string>("msdyn_botendpoint");
-            }
-            set {
-                SetAttributeValue("msdyn_botendpoint", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Indicates the type of bot</para>
-        /// <para>Display Name: Bot Provider</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_botprovider")]
-        [DisplayName("Bot Provider")]
-        public SystemUser_msdyn_BotProvider? msdyn_BotProvider {
-            get {
-                return GetOptionSetValue<SystemUser_msdyn_BotProvider>("msdyn_botprovider");
-            }
-            set {
-                SetOptionSetValue("msdyn_botprovider", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Bot User Secret Keys</para>
-        /// <para>Display Name: Secret Keys</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_botsecretkeys")]
-        [DisplayName("Secret Keys")]
-        [MaxLength(100)]
-        public string msdyn_BotSecretKeys {
-            get {
-                return GetAttributeValue<string>("msdyn_botsecretkeys");
-            }
-            set {
-                SetAttributeValue("msdyn_botsecretkeys", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Capacity associated with the User.</para>
-        /// <para>Display Name: Capacity</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_capacity")]
-        [DisplayName("Capacity")]
-        [Range(0, 2147483647)]
-        public int? msdyn_Capacity {
-            get {
-                return GetAttributeValue<int?>("msdyn_capacity");
-            }
-            set {
-                SetAttributeValue("msdyn_capacity", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Unique identifier for Presence associated with User.</para>
-        /// <para>Display Name: Default Presence</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_defaultpresenceiduser")]
-        [DisplayName("Default Presence")]
-        public EntityReference msdyn_DefaultPresenceIdUser {
-            get {
-                return GetAttributeValue<EntityReference>("msdyn_defaultpresenceiduser");
-            }
-            set {
-                SetAttributeValue("msdyn_defaultpresenceiduser", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Environment Id of the CDS environment that owns the bot user.</para>
-        /// <para>Display Name: Owning Environment Id</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_owningenvironmentid")]
-        [DisplayName("Owning Environment Id")]
-        [MaxLength(500)]
-        public string msdyn_OwningEnvironmentId {
-            get {
-                return GetAttributeValue<string>("msdyn_owningenvironmentid");
-            }
-            set {
-                SetAttributeValue("msdyn_owningenvironmentid", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Type of user - CRM or BOT user</para>
-        /// <para>Display Name: Type</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_usertype")]
-        [DisplayName("Type")]
-        public SystemUser_msdyn_UserType? msdyn_UserType {
-            get {
-                return GetOptionSetValue<SystemUser_msdyn_UserType>("msdyn_usertype");
-            }
-            set {
-                SetOptionSetValue("msdyn_usertype", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Bot handle</para>
-        /// <para>Display Name: Bot handle</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_bothandle")]
-        [DisplayName("Bot handle")]
-        [MaxLength(100)]
-        public string msdyn_bothandle {
-            get {
-                return GetAttributeValue<string>("msdyn_bothandle");
-            }
-            set {
-                SetAttributeValue("msdyn_bothandle", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Describes whether user is opted out or not</para>
-        /// <para>Display Name: GDPR Optout</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_gdproptout")]
-        [DisplayName("GDPR Optout")]
-        public bool? msdyn_gdproptout {
-            get {
-                return GetAttributeValue<bool?>("msdyn_gdproptout");
-            }
-            set {
-                SetAttributeValue("msdyn_gdproptout", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Field to bind grid wrapper control</para>
-        /// <para>Display Name: Grid Wrapper Control field</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_gridwrappercontrolfield")]
-        [DisplayName("Grid Wrapper Control field")]
-        [MaxLength(4000)]
-        public string msdyn_gridwrappercontrolfield {
-            get {
-                return GetAttributeValue<string>("msdyn_gridwrappercontrolfield");
-            }
-            set {
-                SetAttributeValue("msdyn_gridwrappercontrolfield", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Check if swarm is enabled for the experts.</para>
-        /// <para>Display Name: Expert Enabled Swarm</para>
-        /// </summary>
-        [AttributeLogicalName("msdyn_isexpertenabledforswarm")]
-        [DisplayName("Expert Enabled Swarm")]
-        public bool? msdyn_isexpertenabledforswarm {
-            get {
-                return GetAttributeValue<bool?>("msdyn_isexpertenabledforswarm");
-            }
-            set {
-                SetAttributeValue("msdyn_isexpertenabledforswarm", value);
             }
         }
         
@@ -13419,6 +12515,206 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
+        [RelationshipSchemaName("lk_ctx_invoice_createdby")]
+        public IEnumerable<ctx_Invoice> lk_ctx_invoice_createdby {
+            get {
+                return GetRelatedEntities<ctx_Invoice>("lk_ctx_invoice_createdby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoice_createdby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_invoice_createdonbehalfby")]
+        public IEnumerable<ctx_Invoice> lk_ctx_invoice_createdonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Invoice>("lk_ctx_invoice_createdonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoice_createdonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_invoice_modifiedby")]
+        public IEnumerable<ctx_Invoice> lk_ctx_invoice_modifiedby {
+            get {
+                return GetRelatedEntities<ctx_Invoice>("lk_ctx_invoice_modifiedby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoice_modifiedby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_invoice_modifiedonbehalfby")]
+        public IEnumerable<ctx_Invoice> lk_ctx_invoice_modifiedonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Invoice>("lk_ctx_invoice_modifiedonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoice_modifiedonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_invoicecollection_createdby")]
+        public IEnumerable<ctx_InvoiceCollection> lk_ctx_invoicecollection_createdby {
+            get {
+                return GetRelatedEntities<ctx_InvoiceCollection>("lk_ctx_invoicecollection_createdby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoicecollection_createdby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_invoicecollection_createdonbehalfby")]
+        public IEnumerable<ctx_InvoiceCollection> lk_ctx_invoicecollection_createdonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_InvoiceCollection>("lk_ctx_invoicecollection_createdonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoicecollection_createdonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_invoicecollection_modifiedby")]
+        public IEnumerable<ctx_InvoiceCollection> lk_ctx_invoicecollection_modifiedby {
+            get {
+                return GetRelatedEntities<ctx_InvoiceCollection>("lk_ctx_invoicecollection_modifiedby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoicecollection_modifiedby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_invoicecollection_modifiedonbehalfby")]
+        public IEnumerable<ctx_InvoiceCollection> lk_ctx_invoicecollection_modifiedonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_InvoiceCollection>("lk_ctx_invoicecollection_modifiedonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_invoicecollection_modifiedonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_product_createdby")]
+        public IEnumerable<ctx_Product> lk_ctx_product_createdby {
+            get {
+                return GetRelatedEntities<ctx_Product>("lk_ctx_product_createdby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_product_createdby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_product_createdonbehalfby")]
+        public IEnumerable<ctx_Product> lk_ctx_product_createdonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Product>("lk_ctx_product_createdonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_product_createdonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_product_modifiedby")]
+        public IEnumerable<ctx_Product> lk_ctx_product_modifiedby {
+            get {
+                return GetRelatedEntities<ctx_Product>("lk_ctx_product_modifiedby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_product_modifiedby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_product_modifiedonbehalfby")]
+        public IEnumerable<ctx_Product> lk_ctx_product_modifiedonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Product>("lk_ctx_product_modifiedonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_product_modifiedonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_subscription_createdby")]
+        public IEnumerable<ctx_Subscription> lk_ctx_subscription_createdby {
+            get {
+                return GetRelatedEntities<ctx_Subscription>("lk_ctx_subscription_createdby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_subscription_createdby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_subscription_createdonbehalfby")]
+        public IEnumerable<ctx_Subscription> lk_ctx_subscription_createdonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Subscription>("lk_ctx_subscription_createdonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_subscription_createdonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_subscription_modifiedby")]
+        public IEnumerable<ctx_Subscription> lk_ctx_subscription_modifiedby {
+            get {
+                return GetRelatedEntities<ctx_Subscription>("lk_ctx_subscription_modifiedby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_subscription_modifiedby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_subscription_modifiedonbehalfby")]
+        public IEnumerable<ctx_Subscription> lk_ctx_subscription_modifiedonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Subscription>("lk_ctx_subscription_modifiedonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_subscription_modifiedonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_transaction_createdby")]
+        public IEnumerable<ctx_Transaction> lk_ctx_transaction_createdby {
+            get {
+                return GetRelatedEntities<ctx_Transaction>("lk_ctx_transaction_createdby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_transaction_createdby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_transaction_createdonbehalfby")]
+        public IEnumerable<ctx_Transaction> lk_ctx_transaction_createdonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Transaction>("lk_ctx_transaction_createdonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_transaction_createdonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_transaction_modifiedby")]
+        public IEnumerable<ctx_Transaction> lk_ctx_transaction_modifiedby {
+            get {
+                return GetRelatedEntities<ctx_Transaction>("lk_ctx_transaction_modifiedby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_transaction_modifiedby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_ctx_transaction_modifiedonbehalfby")]
+        public IEnumerable<ctx_Transaction> lk_ctx_transaction_modifiedonbehalfby {
+            get {
+                return GetRelatedEntities<ctx_Transaction>("lk_ctx_transaction_modifiedonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_ctx_transaction_modifiedonbehalfby", null, value);
+            }
+        }
+        
         [RelationshipSchemaName("lk_duplicaterule_createdonbehalfby")]
         public IEnumerable<DuplicateRule> lk_duplicaterule_createdonbehalfby {
             get {
@@ -13536,206 +12832,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetRelatedEntities("lk_environmentvariablevalue_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoice_createdby")]
-        public IEnumerable<mgs_Invoice> lk_mgs_invoice_createdby {
-            get {
-                return GetRelatedEntities<mgs_Invoice>("lk_mgs_invoice_createdby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoice_createdby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoice_createdonbehalfby")]
-        public IEnumerable<mgs_Invoice> lk_mgs_invoice_createdonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Invoice>("lk_mgs_invoice_createdonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoice_createdonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoice_modifiedby")]
-        public IEnumerable<mgs_Invoice> lk_mgs_invoice_modifiedby {
-            get {
-                return GetRelatedEntities<mgs_Invoice>("lk_mgs_invoice_modifiedby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoice_modifiedby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoice_modifiedonbehalfby")]
-        public IEnumerable<mgs_Invoice> lk_mgs_invoice_modifiedonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Invoice>("lk_mgs_invoice_modifiedonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoice_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoicecollection_createdby")]
-        public IEnumerable<mgs_InvoiceCollection> lk_mgs_invoicecollection_createdby {
-            get {
-                return GetRelatedEntities<mgs_InvoiceCollection>("lk_mgs_invoicecollection_createdby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoicecollection_createdby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoicecollection_createdonbehalfby")]
-        public IEnumerable<mgs_InvoiceCollection> lk_mgs_invoicecollection_createdonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_InvoiceCollection>("lk_mgs_invoicecollection_createdonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoicecollection_createdonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoicecollection_modifiedby")]
-        public IEnumerable<mgs_InvoiceCollection> lk_mgs_invoicecollection_modifiedby {
-            get {
-                return GetRelatedEntities<mgs_InvoiceCollection>("lk_mgs_invoicecollection_modifiedby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoicecollection_modifiedby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_invoicecollection_modifiedonbehalfby")]
-        public IEnumerable<mgs_InvoiceCollection> lk_mgs_invoicecollection_modifiedonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_InvoiceCollection>("lk_mgs_invoicecollection_modifiedonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_invoicecollection_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_product_createdby")]
-        public IEnumerable<mgs_Product> lk_mgs_product_createdby {
-            get {
-                return GetRelatedEntities<mgs_Product>("lk_mgs_product_createdby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_product_createdby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_product_createdonbehalfby")]
-        public IEnumerable<mgs_Product> lk_mgs_product_createdonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Product>("lk_mgs_product_createdonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_product_createdonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_product_modifiedby")]
-        public IEnumerable<mgs_Product> lk_mgs_product_modifiedby {
-            get {
-                return GetRelatedEntities<mgs_Product>("lk_mgs_product_modifiedby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_product_modifiedby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_product_modifiedonbehalfby")]
-        public IEnumerable<mgs_Product> lk_mgs_product_modifiedonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Product>("lk_mgs_product_modifiedonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_product_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_subscription_createdby")]
-        public IEnumerable<mgs_Subscription> lk_mgs_subscription_createdby {
-            get {
-                return GetRelatedEntities<mgs_Subscription>("lk_mgs_subscription_createdby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_subscription_createdby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_subscription_createdonbehalfby")]
-        public IEnumerable<mgs_Subscription> lk_mgs_subscription_createdonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Subscription>("lk_mgs_subscription_createdonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_subscription_createdonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_subscription_modifiedby")]
-        public IEnumerable<mgs_Subscription> lk_mgs_subscription_modifiedby {
-            get {
-                return GetRelatedEntities<mgs_Subscription>("lk_mgs_subscription_modifiedby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_subscription_modifiedby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_subscription_modifiedonbehalfby")]
-        public IEnumerable<mgs_Subscription> lk_mgs_subscription_modifiedonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Subscription>("lk_mgs_subscription_modifiedonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_subscription_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_transaction_createdby")]
-        public IEnumerable<mgs_Transaction> lk_mgs_transaction_createdby {
-            get {
-                return GetRelatedEntities<mgs_Transaction>("lk_mgs_transaction_createdby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_transaction_createdby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_transaction_createdonbehalfby")]
-        public IEnumerable<mgs_Transaction> lk_mgs_transaction_createdonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Transaction>("lk_mgs_transaction_createdonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_transaction_createdonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_transaction_modifiedby")]
-        public IEnumerable<mgs_Transaction> lk_mgs_transaction_modifiedby {
-            get {
-                return GetRelatedEntities<mgs_Transaction>("lk_mgs_transaction_modifiedby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_transaction_modifiedby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("lk_mgs_transaction_modifiedonbehalfby")]
-        public IEnumerable<mgs_Transaction> lk_mgs_transaction_modifiedonbehalfby {
-            get {
-                return GetRelatedEntities<mgs_Transaction>("lk_mgs_transaction_modifiedonbehalfby", null);
-            }
-            set {
-                SetRelatedEntities("lk_mgs_transaction_modifiedonbehalfby", null, value);
             }
         }
         
@@ -13980,6 +13076,56 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
+        [RelationshipSchemaName("user_ctx_invoice")]
+        public IEnumerable<ctx_Invoice> user_ctx_invoice {
+            get {
+                return GetRelatedEntities<ctx_Invoice>("user_ctx_invoice", null);
+            }
+            set {
+                SetRelatedEntities("user_ctx_invoice", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("user_ctx_invoicecollection")]
+        public IEnumerable<ctx_InvoiceCollection> user_ctx_invoicecollection {
+            get {
+                return GetRelatedEntities<ctx_InvoiceCollection>("user_ctx_invoicecollection", null);
+            }
+            set {
+                SetRelatedEntities("user_ctx_invoicecollection", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("user_ctx_product")]
+        public IEnumerable<ctx_Product> user_ctx_product {
+            get {
+                return GetRelatedEntities<ctx_Product>("user_ctx_product", null);
+            }
+            set {
+                SetRelatedEntities("user_ctx_product", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("user_ctx_subscription")]
+        public IEnumerable<ctx_Subscription> user_ctx_subscription {
+            get {
+                return GetRelatedEntities<ctx_Subscription>("user_ctx_subscription", null);
+            }
+            set {
+                SetRelatedEntities("user_ctx_subscription", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("user_ctx_transaction")]
+        public IEnumerable<ctx_Transaction> user_ctx_transaction {
+            get {
+                return GetRelatedEntities<ctx_Transaction>("user_ctx_transaction", null);
+            }
+            set {
+                SetRelatedEntities("user_ctx_transaction", null, value);
+            }
+        }
+        
         [RelationshipSchemaName("user_environmentvariabledefinition")]
         public IEnumerable<EnvironmentVariableDefinition> user_environmentvariabledefinition {
             get {
@@ -13987,56 +13133,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetRelatedEntities("user_environmentvariabledefinition", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("user_mgs_invoice")]
-        public IEnumerable<mgs_Invoice> user_mgs_invoice {
-            get {
-                return GetRelatedEntities<mgs_Invoice>("user_mgs_invoice", null);
-            }
-            set {
-                SetRelatedEntities("user_mgs_invoice", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("user_mgs_invoicecollection")]
-        public IEnumerable<mgs_InvoiceCollection> user_mgs_invoicecollection {
-            get {
-                return GetRelatedEntities<mgs_InvoiceCollection>("user_mgs_invoicecollection", null);
-            }
-            set {
-                SetRelatedEntities("user_mgs_invoicecollection", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("user_mgs_product")]
-        public IEnumerable<mgs_Product> user_mgs_product {
-            get {
-                return GetRelatedEntities<mgs_Product>("user_mgs_product", null);
-            }
-            set {
-                SetRelatedEntities("user_mgs_product", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("user_mgs_subscription")]
-        public IEnumerable<mgs_Subscription> user_mgs_subscription {
-            get {
-                return GetRelatedEntities<mgs_Subscription>("user_mgs_subscription", null);
-            }
-            set {
-                SetRelatedEntities("user_mgs_subscription", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("user_mgs_transaction")]
-        public IEnumerable<mgs_Transaction> user_mgs_transaction {
-            get {
-                return GetRelatedEntities<mgs_Transaction>("user_mgs_transaction", null);
-            }
-            set {
-                SetRelatedEntities("user_mgs_transaction", null, value);
             }
         }
         
@@ -14623,21 +13719,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("scheduledstart", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Choose the service that is associated with this activity.</para>
-        /// <para>Display Name: Service</para>
-        /// </summary>
-        [AttributeLogicalName("serviceid")]
-        [DisplayName("Service")]
-        public EntityReference ServiceId {
-            get {
-                return GetAttributeValue<EntityReference>("serviceid");
-            }
-            set {
-                SetAttributeValue("serviceid", value);
             }
         }
         
@@ -15506,34 +14587,6 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
-        /// <summary>
-        /// <para>Display Name: field</para>
-        /// </summary>
-        [AttributeLogicalName("enhancededitorhtml")]
-        [DisplayName("field")]
-        public string enhancededitorhtml {
-            get {
-                return GetAttributeValue<string>("enhancededitorhtml");
-            }
-            set {
-                SetAttributeValue("enhancededitorhtml", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: isenhancededitorenabled</para>
-        /// </summary>
-        [AttributeLogicalName("isenhancededitorenabled")]
-        [DisplayName("isenhancededitorenabled")]
-        public bool? isenhancededitorenabled {
-            get {
-                return GetAttributeValue<bool?>("isenhancededitorenabled");
-            }
-            set {
-                SetAttributeValue("isenhancededitorenabled", value);
-            }
-        }
-        
         [AttributeLogicalName("createdby")]
         [RelationshipSchemaName("lk_templatebase_createdby")]
         public SystemUser lk_templatebase_createdby {
@@ -15605,7 +14658,7 @@ namespace XrmBedrock.SharedContext {
         
         public const string EntityLogicalName = "appnotification";
         
-        public const int EntityTypeCode = 10258;
+        public const int EntityTypeCode = 10325;
         
         public appnotification() : 
                 base(EntityLogicalName) {
@@ -16078,39 +15131,39 @@ namespace XrmBedrock.SharedContext {
     }
     
     /// <summary>
-    /// <para>This table contains records of invoice information</para>
+    /// <para>This table contains invoice details</para>
     /// <para>Display Name: Invoice</para>
     /// </summary>
-    [EntityLogicalName("mgs_invoice")]
+    [EntityLogicalName("ctx_invoice")]
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     [DataContract()]
-    public partial class mgs_Invoice : ExtendedEntity<mgs_InvoiceState, mgs_Invoice_statuscode> {
+    public partial class ctx_Invoice : ExtendedEntity<ctx_InvoiceState, ctx_Invoice_statuscode> {
         
-        public const string EntityLogicalName = "mgs_invoice";
+        public const string EntityLogicalName = "ctx_invoice";
         
-        public const int EntityTypeCode = 11144;
+        public const int EntityTypeCode = 10469;
         
-        public mgs_Invoice() : 
+        public ctx_Invoice() : 
                 base(EntityLogicalName) {
         }
         
-        public mgs_Invoice(Guid Id) : 
+        public ctx_Invoice(Guid Id) : 
                 base(EntityLogicalName, Id) {
         }
         
         private string DebuggerDisplay {
             get {
-                return GetDebuggerDisplay("mgs_invoice1");
+                return GetDebuggerDisplay("ctx_invoicenumber");
             }
         }
         
-        [AttributeLogicalName("mgs_invoiceid")]
+        [AttributeLogicalName("ctx_invoiceid")]
         public override Guid Id {
             get {
                 return base.Id;
             }
             set {
-                SetId("mgs_invoiceid", value);
+                SetId("ctx_invoiceid", value);
             }
         }
         
@@ -16118,14 +15171,14 @@ namespace XrmBedrock.SharedContext {
         /// <para>Unique identifier for entity instances</para>
         /// <para>Display Name: Invoice</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoiceid")]
+        [AttributeLogicalName("ctx_invoiceid")]
         [DisplayName("Invoice")]
-        public Guid? mgs_InvoiceId {
+        public Guid? ctx_InvoiceId {
             get {
-                return GetAttributeValue<Guid?>("mgs_invoiceid");
+                return GetAttributeValue<Guid?>("ctx_invoiceid");
             }
             set {
-                SetId("mgs_invoiceid", value);
+                SetId("ctx_invoiceid", value);
             }
         }
         
@@ -16162,18 +15215,6 @@ namespace XrmBedrock.SharedContext {
         public EntityReference CreatedOnBehalfBy {
             get {
                 return GetAttributeValue<EntityReference>("createdonbehalfby");
-            }
-        }
-        
-        /// <summary>
-        /// <para>Exchange rate for the currency associated with the entity with respect to the base currency.</para>
-        /// <para>Display Name: Exchange Rate</para>
-        /// </summary>
-        [AttributeLogicalName("exchangerate")]
-        [DisplayName("Exchange Rate")]
-        public decimal? ExchangeRate {
-            get {
-                return GetAttributeValue<decimal?>("exchangerate");
             }
         }
         
@@ -16296,17 +15337,17 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Display Name: Invoice</para>
+        /// <para>Display Name: Invoice Number</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoice1")]
-        [DisplayName("Invoice")]
+        [AttributeLogicalName("ctx_invoicenumber")]
+        [DisplayName("Invoice Number")]
         [MaxLength(850)]
         public string PrimaryNameField {
             get {
-                return GetAttributeValue<string>("mgs_invoice1");
+                return GetAttributeValue<string>("ctx_invoicenumber");
             }
             set {
-                SetAttributeValue("mgs_invoice1", value);
+                SetAttributeValue("ctx_invoicenumber", value);
             }
         }
         
@@ -16323,21 +15364,6 @@ namespace XrmBedrock.SharedContext {
             }
             set {
                 SetAttributeValue("timezoneruleversionnumber", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Unique identifier of the currency associated with the entity.</para>
-        /// <para>Display Name: Currency</para>
-        /// </summary>
-        [AttributeLogicalName("transactioncurrencyid")]
-        [DisplayName("Currency")]
-        public EntityReference TransactionCurrencyId {
-            get {
-                return GetAttributeValue<EntityReference>("transactioncurrencyid");
-            }
-            set {
-                SetAttributeValue("transactioncurrencyid", value);
             }
         }
         
@@ -16370,85 +15396,45 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Display Name: Contact</para>
+        /// <para>Display Name: Customer</para>
         /// </summary>
-        [AttributeLogicalName("mgs_contact")]
-        [DisplayName("Contact")]
-        public EntityReference mgs_Contact {
+        [AttributeLogicalName("ctx_customer")]
+        [DisplayName("Customer")]
+        public EntityReference ctx_Customer {
             get {
-                return GetAttributeValue<EntityReference>("mgs_contact");
+                return GetAttributeValue<EntityReference>("ctx_customer");
             }
             set {
-                SetAttributeValue("mgs_contact", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: Invoice</para>
-        /// </summary>
-        [AttributeLogicalName("mgs_invoice1")]
-        [DisplayName("Invoice")]
-        [MaxLength(850)]
-        public string mgs_Invoice1 {
-            get {
-                return GetAttributeValue<string>("mgs_invoice1");
-            }
-            set {
-                SetAttributeValue("mgs_invoice1", value);
+                SetAttributeValue("ctx_customer", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Invoice Collection</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoicecollection")]
+        [AttributeLogicalName("ctx_invoicecollection")]
         [DisplayName("Invoice Collection")]
-        public EntityReference mgs_InvoiceCollection {
+        public EntityReference ctx_InvoiceCollection {
             get {
-                return GetAttributeValue<EntityReference>("mgs_invoicecollection");
+                return GetAttributeValue<EntityReference>("ctx_invoicecollection");
             }
             set {
-                SetAttributeValue("mgs_invoicecollection", value);
+                SetAttributeValue("ctx_invoicecollection", value);
             }
         }
         
         /// <summary>
-        /// <para>Display Name: Invoice Date</para>
+        /// <para>Display Name: Invoice Number</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoicedate")]
-        [DisplayName("Invoice Date")]
-        public DateTime? mgs_InvoiceDate {
+        [AttributeLogicalName("ctx_invoicenumber")]
+        [DisplayName("Invoice Number")]
+        [MaxLength(850)]
+        public string ctx_InvoiceNumber {
             get {
-                return GetAttributeValue<DateTime?>("mgs_invoicedate");
+                return GetAttributeValue<string>("ctx_invoicenumber");
             }
             set {
-                SetAttributeValue("mgs_invoicedate", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: Total Amount</para>
-        /// </summary>
-        [AttributeLogicalName("mgs_totalamount")]
-        [DisplayName("Total Amount")]
-        public decimal? mgs_TotalAmount {
-            get {
-                return GetMoneyValue("mgs_totalamount");
-            }
-            set {
-                SetMoneyValue("mgs_totalamount", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Value of the Total Amount in base currency.</para>
-        /// <para>Display Name: Total Amount (Base)</para>
-        /// </summary>
-        [AttributeLogicalName("mgs_totalamount_base")]
-        [DisplayName("Total Amount (Base)")]
-        public decimal? mgs_totalamount_Base {
-            get {
-                return GetMoneyValue("mgs_totalamount_base");
+                SetAttributeValue("ctx_invoicenumber", value);
             }
         }
         
@@ -16458,9 +15444,9 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statecode")]
         [DisplayName("Status")]
-        public mgs_InvoiceState? statecode {
+        public ctx_InvoiceState? statecode {
             get {
-                return GetOptionSetValue<mgs_InvoiceState>("statecode");
+                return GetOptionSetValue<ctx_InvoiceState>("statecode");
             }
             set {
                 SetOptionSetValue("statecode", value);
@@ -16473,113 +15459,114 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statuscode")]
         [DisplayName("Status Reason")]
-        public mgs_Invoice_statuscode? statuscode {
+        public ctx_Invoice_statuscode? statuscode {
             get {
-                return GetOptionSetValue<mgs_Invoice_statuscode>("statuscode");
+                return GetOptionSetValue<ctx_Invoice_statuscode>("statuscode");
             }
             set {
                 SetOptionSetValue("statuscode", value);
             }
         }
         
-        [AttributeLogicalName("createdby")]
-        [RelationshipSchemaName("lk_mgs_invoice_createdby")]
-        public SystemUser lk_mgs_invoice_createdby {
+        [RelationshipSchemaName("ctx_Transaction_ctx_Invoice")]
+        public IEnumerable<ctx_Transaction> ctx_Transaction_ctx_Invoice {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoice_createdby", null);
+                return GetRelatedEntities<ctx_Transaction>("ctx_Transaction_ctx_Invoice", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoice_createdby", null, value);
+                SetRelatedEntities("ctx_Transaction_ctx_Invoice", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("ctx_customer")]
+        [RelationshipSchemaName("ctx_account_ctx_invoice_112")]
+        public Account ctx_account_ctx_invoice_112 {
+            get {
+                return GetRelatedEntity<Account>("ctx_account_ctx_invoice_112", null);
+            }
+            set {
+                SetRelatedEntity("ctx_account_ctx_invoice_112", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("ctx_customer")]
+        [RelationshipSchemaName("ctx_contact_ctx_invoice_112")]
+        public Contact ctx_contact_ctx_invoice_112 {
+            get {
+                return GetRelatedEntity<Contact>("ctx_contact_ctx_invoice_112", null);
+            }
+            set {
+                SetRelatedEntity("ctx_contact_ctx_invoice_112", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("ctx_invoicecollection")]
+        [RelationshipSchemaName("ctx_invoice_InvoiceCollection_ctx_invoicecollection")]
+        public ctx_InvoiceCollection ctx_invoice_InvoiceCollection_ctx_invoicecollection {
+            get {
+                return GetRelatedEntity<ctx_InvoiceCollection>("ctx_invoice_InvoiceCollection_ctx_invoicecollection", null);
+            }
+            set {
+                SetRelatedEntity("ctx_invoice_InvoiceCollection_ctx_invoicecollection", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("createdby")]
+        [RelationshipSchemaName("lk_ctx_invoice_createdby")]
+        public SystemUser lk_ctx_invoice_createdby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoice_createdby", null);
+            }
+            set {
+                SetRelatedEntity("lk_ctx_invoice_createdby", null, value);
             }
         }
         
         [AttributeLogicalName("createdonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_invoice_createdonbehalfby")]
-        public SystemUser lk_mgs_invoice_createdonbehalfby {
+        [RelationshipSchemaName("lk_ctx_invoice_createdonbehalfby")]
+        public SystemUser lk_ctx_invoice_createdonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoice_createdonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoice_createdonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoice_createdonbehalfby", null, value);
+                SetRelatedEntity("lk_ctx_invoice_createdonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedby")]
-        [RelationshipSchemaName("lk_mgs_invoice_modifiedby")]
-        public SystemUser lk_mgs_invoice_modifiedby {
+        [RelationshipSchemaName("lk_ctx_invoice_modifiedby")]
+        public SystemUser lk_ctx_invoice_modifiedby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoice_modifiedby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoice_modifiedby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoice_modifiedby", null, value);
+                SetRelatedEntity("lk_ctx_invoice_modifiedby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_invoice_modifiedonbehalfby")]
-        public SystemUser lk_mgs_invoice_modifiedonbehalfby {
+        [RelationshipSchemaName("lk_ctx_invoice_modifiedonbehalfby")]
+        public SystemUser lk_ctx_invoice_modifiedonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoice_modifiedonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoice_modifiedonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoice_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_invoice_Annotations")]
-        public IEnumerable<Annotation> mgs_invoice_Annotations {
-            get {
-                return GetRelatedEntities<Annotation>("mgs_invoice_Annotations", null);
-            }
-            set {
-                SetRelatedEntities("mgs_invoice_Annotations", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("mgs_contact")]
-        [RelationshipSchemaName("mgs_invoice_Contact_contact")]
-        public Contact mgs_invoice_Contact_contact {
-            get {
-                return GetRelatedEntity<Contact>("mgs_invoice_Contact_contact", null);
-            }
-            set {
-                SetRelatedEntity("mgs_invoice_Contact_contact", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("mgs_invoicecollection")]
-        [RelationshipSchemaName("mgs_invoice_InvoiceCollection_mgs_invoicecollection")]
-        public mgs_InvoiceCollection mgs_invoice_InvoiceCollection_mgs_invoicecollection {
-            get {
-                return GetRelatedEntity<mgs_InvoiceCollection>("mgs_invoice_InvoiceCollection_mgs_invoicecollection", null);
-            }
-            set {
-                SetRelatedEntity("mgs_invoice_InvoiceCollection_mgs_invoicecollection", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_transaction_Invoice_mgs_invoice")]
-        public IEnumerable<mgs_Transaction> mgs_transaction_Invoice_mgs_invoice {
-            get {
-                return GetRelatedEntities<mgs_Transaction>("mgs_transaction_Invoice_mgs_invoice", null);
-            }
-            set {
-                SetRelatedEntities("mgs_transaction_Invoice_mgs_invoice", null, value);
+                SetRelatedEntity("lk_ctx_invoice_modifiedonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("owninguser")]
-        [RelationshipSchemaName("user_mgs_invoice")]
-        public SystemUser user_mgs_invoice {
+        [RelationshipSchemaName("user_ctx_invoice")]
+        public SystemUser user_ctx_invoice {
             get {
-                return GetRelatedEntity<SystemUser>("user_mgs_invoice", null);
+                return GetRelatedEntity<SystemUser>("user_ctx_invoice", null);
             }
             set {
-                SetRelatedEntity("user_mgs_invoice", null, value);
+                SetRelatedEntity("user_ctx_invoice", null, value);
             }
         }
         
-        public static mgs_Invoice Retrieve(IOrganizationService service, Guid id, params Expression<Func<mgs_Invoice,object>>[] attrs) {
+        public static ctx_Invoice Retrieve(IOrganizationService service, Guid id, params Expression<Func<ctx_Invoice,object>>[] attrs) {
             return service.Retrieve(id, attrs);
         }
     }
@@ -16587,36 +15574,36 @@ namespace XrmBedrock.SharedContext {
     /// <summary>
     /// <para>Display Name: Invoice Collection</para>
     /// </summary>
-    [EntityLogicalName("mgs_invoicecollection")]
+    [EntityLogicalName("ctx_invoicecollection")]
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     [DataContract()]
-    public partial class mgs_InvoiceCollection : ExtendedEntity<mgs_InvoiceCollectionState, mgs_InvoiceCollection_statuscode> {
+    public partial class ctx_InvoiceCollection : ExtendedEntity<ctx_InvoiceCollectionState, ctx_InvoiceCollection_statuscode> {
         
-        public const string EntityLogicalName = "mgs_invoicecollection";
+        public const string EntityLogicalName = "ctx_invoicecollection";
         
-        public const int EntityTypeCode = 11051;
+        public const int EntityTypeCode = 10526;
         
-        public mgs_InvoiceCollection() : 
+        public ctx_InvoiceCollection() : 
                 base(EntityLogicalName) {
         }
         
-        public mgs_InvoiceCollection(Guid Id) : 
+        public ctx_InvoiceCollection(Guid Id) : 
                 base(EntityLogicalName, Id) {
         }
         
         private string DebuggerDisplay {
             get {
-                return GetDebuggerDisplay("mgs_name");
+                return GetDebuggerDisplay("ctx_name");
             }
         }
         
-        [AttributeLogicalName("mgs_invoicecollectionid")]
+        [AttributeLogicalName("ctx_invoicecollectionid")]
         public override Guid Id {
             get {
                 return base.Id;
             }
             set {
-                SetId("mgs_invoicecollectionid", value);
+                SetId("ctx_invoicecollectionid", value);
             }
         }
         
@@ -16624,14 +15611,14 @@ namespace XrmBedrock.SharedContext {
         /// <para>Unique identifier for entity instances</para>
         /// <para>Display Name: Invoice Collection</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoicecollectionid")]
+        [AttributeLogicalName("ctx_invoicecollectionid")]
         [DisplayName("Invoice Collection")]
-        public Guid? mgs_InvoiceCollectionId {
+        public Guid? ctx_InvoiceCollectionId {
             get {
-                return GetAttributeValue<Guid?>("mgs_invoicecollectionid");
+                return GetAttributeValue<Guid?>("ctx_invoicecollectionid");
             }
             set {
-                SetId("mgs_invoicecollectionid", value);
+                SetId("ctx_invoicecollectionid", value);
             }
         }
         
@@ -16792,15 +15779,15 @@ namespace XrmBedrock.SharedContext {
         /// <summary>
         /// <para>Display Name: Name</para>
         /// </summary>
-        [AttributeLogicalName("mgs_name")]
+        [AttributeLogicalName("ctx_name")]
         [DisplayName("Name")]
         [MaxLength(850)]
         public string PrimaryNameField {
             get {
-                return GetAttributeValue<string>("mgs_name");
+                return GetAttributeValue<string>("ctx_name");
             }
             set {
-                SetAttributeValue("mgs_name", value);
+                SetAttributeValue("ctx_name", value);
             }
         }
         
@@ -16851,29 +15838,29 @@ namespace XrmBedrock.SharedContext {
         /// <summary>
         /// <para>Display Name: Invoice Until</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoiceuntil")]
+        [AttributeLogicalName("ctx_invoiceuntil")]
         [DisplayName("Invoice Until")]
-        public DateTime? mgs_InvoiceUntil {
+        public DateTime? ctx_InvoiceUntil {
             get {
-                return GetAttributeValue<DateTime?>("mgs_invoiceuntil");
+                return GetAttributeValue<DateTime?>("ctx_invoiceuntil");
             }
             set {
-                SetAttributeValue("mgs_invoiceuntil", value);
+                SetAttributeValue("ctx_invoiceuntil", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Name</para>
         /// </summary>
-        [AttributeLogicalName("mgs_name")]
+        [AttributeLogicalName("ctx_name")]
         [DisplayName("Name")]
         [MaxLength(850)]
-        public string mgs_Name {
+        public string ctx_Name {
             get {
-                return GetAttributeValue<string>("mgs_name");
+                return GetAttributeValue<string>("ctx_name");
             }
             set {
-                SetAttributeValue("mgs_name", value);
+                SetAttributeValue("ctx_name", value);
             }
         }
         
@@ -16883,9 +15870,9 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statecode")]
         [DisplayName("Status")]
-        public mgs_InvoiceCollectionState? statecode {
+        public ctx_InvoiceCollectionState? statecode {
             get {
-                return GetOptionSetValue<mgs_InvoiceCollectionState>("statecode");
+                return GetOptionSetValue<ctx_InvoiceCollectionState>("statecode");
             }
             set {
                 SetOptionSetValue("statecode", value);
@@ -16898,118 +15885,119 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statuscode")]
         [DisplayName("Status Reason")]
-        public mgs_InvoiceCollection_statuscode? statuscode {
+        public ctx_InvoiceCollection_statuscode? statuscode {
             get {
-                return GetOptionSetValue<mgs_InvoiceCollection_statuscode>("statuscode");
+                return GetOptionSetValue<ctx_InvoiceCollection_statuscode>("statuscode");
             }
             set {
                 SetOptionSetValue("statuscode", value);
             }
         }
         
-        [AttributeLogicalName("createdby")]
-        [RelationshipSchemaName("lk_mgs_invoicecollection_createdby")]
-        public SystemUser lk_mgs_invoicecollection_createdby {
+        [RelationshipSchemaName("ctx_invoice_InvoiceCollection_ctx_invoicecollection")]
+        public IEnumerable<ctx_Invoice> ctx_invoice_InvoiceCollection_ctx_invoicecollection {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoicecollection_createdby", null);
+                return GetRelatedEntities<ctx_Invoice>("ctx_invoice_InvoiceCollection_ctx_invoicecollection", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoicecollection_createdby", null, value);
+                SetRelatedEntities("ctx_invoice_InvoiceCollection_ctx_invoicecollection", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("createdby")]
+        [RelationshipSchemaName("lk_ctx_invoicecollection_createdby")]
+        public SystemUser lk_ctx_invoicecollection_createdby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoicecollection_createdby", null);
+            }
+            set {
+                SetRelatedEntity("lk_ctx_invoicecollection_createdby", null, value);
             }
         }
         
         [AttributeLogicalName("createdonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_invoicecollection_createdonbehalfby")]
-        public SystemUser lk_mgs_invoicecollection_createdonbehalfby {
+        [RelationshipSchemaName("lk_ctx_invoicecollection_createdonbehalfby")]
+        public SystemUser lk_ctx_invoicecollection_createdonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoicecollection_createdonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoicecollection_createdonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoicecollection_createdonbehalfby", null, value);
+                SetRelatedEntity("lk_ctx_invoicecollection_createdonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedby")]
-        [RelationshipSchemaName("lk_mgs_invoicecollection_modifiedby")]
-        public SystemUser lk_mgs_invoicecollection_modifiedby {
+        [RelationshipSchemaName("lk_ctx_invoicecollection_modifiedby")]
+        public SystemUser lk_ctx_invoicecollection_modifiedby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoicecollection_modifiedby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoicecollection_modifiedby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoicecollection_modifiedby", null, value);
+                SetRelatedEntity("lk_ctx_invoicecollection_modifiedby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_invoicecollection_modifiedonbehalfby")]
-        public SystemUser lk_mgs_invoicecollection_modifiedonbehalfby {
+        [RelationshipSchemaName("lk_ctx_invoicecollection_modifiedonbehalfby")]
+        public SystemUser lk_ctx_invoicecollection_modifiedonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_invoicecollection_modifiedonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_invoicecollection_modifiedonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_invoicecollection_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_invoice_InvoiceCollection_mgs_invoicecollection")]
-        public IEnumerable<mgs_Invoice> mgs_invoice_InvoiceCollection_mgs_invoicecollection {
-            get {
-                return GetRelatedEntities<mgs_Invoice>("mgs_invoice_InvoiceCollection_mgs_invoicecollection", null);
-            }
-            set {
-                SetRelatedEntities("mgs_invoice_InvoiceCollection_mgs_invoicecollection", null, value);
+                SetRelatedEntity("lk_ctx_invoicecollection_modifiedonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("owninguser")]
-        [RelationshipSchemaName("user_mgs_invoicecollection")]
-        public SystemUser user_mgs_invoicecollection {
+        [RelationshipSchemaName("user_ctx_invoicecollection")]
+        public SystemUser user_ctx_invoicecollection {
             get {
-                return GetRelatedEntity<SystemUser>("user_mgs_invoicecollection", null);
+                return GetRelatedEntity<SystemUser>("user_ctx_invoicecollection", null);
             }
             set {
-                SetRelatedEntity("user_mgs_invoicecollection", null, value);
+                SetRelatedEntity("user_ctx_invoicecollection", null, value);
             }
         }
         
-        public static mgs_InvoiceCollection Retrieve(IOrganizationService service, Guid id, params Expression<Func<mgs_InvoiceCollection,object>>[] attrs) {
+        public static ctx_InvoiceCollection Retrieve(IOrganizationService service, Guid id, params Expression<Func<ctx_InvoiceCollection,object>>[] attrs) {
             return service.Retrieve(id, attrs);
         }
     }
     
     /// <summary>
+    /// <para>This table contains records of product details</para>
     /// <para>Display Name: Product</para>
     /// </summary>
-    [EntityLogicalName("mgs_product")]
+    [EntityLogicalName("ctx_product")]
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     [DataContract()]
-    public partial class mgs_Product : ExtendedEntity<mgs_ProductState, mgs_Product_statuscode> {
+    public partial class ctx_Product : ExtendedEntity<ctx_ProductState, ctx_Product_statuscode> {
         
-        public const string EntityLogicalName = "mgs_product";
+        public const string EntityLogicalName = "ctx_product";
         
-        public const int EntityTypeCode = 10959;
+        public const int EntityTypeCode = 10507;
         
-        public mgs_Product() : 
+        public ctx_Product() : 
                 base(EntityLogicalName) {
         }
         
-        public mgs_Product(Guid Id) : 
+        public ctx_Product(Guid Id) : 
                 base(EntityLogicalName, Id) {
         }
         
         private string DebuggerDisplay {
             get {
-                return GetDebuggerDisplay("mgs_name");
+                return GetDebuggerDisplay("ctx_name");
             }
         }
         
-        [AttributeLogicalName("mgs_productid")]
+        [AttributeLogicalName("ctx_productid")]
         public override Guid Id {
             get {
                 return base.Id;
             }
             set {
-                SetId("mgs_productid", value);
+                SetId("ctx_productid", value);
             }
         }
         
@@ -17017,14 +16005,14 @@ namespace XrmBedrock.SharedContext {
         /// <para>Unique identifier for entity instances</para>
         /// <para>Display Name: Product</para>
         /// </summary>
-        [AttributeLogicalName("mgs_productid")]
+        [AttributeLogicalName("ctx_productid")]
         [DisplayName("Product")]
-        public Guid? mgs_ProductId {
+        public Guid? ctx_ProductId {
             get {
-                return GetAttributeValue<Guid?>("mgs_productid");
+                return GetAttributeValue<Guid?>("ctx_productid");
             }
             set {
-                SetId("mgs_productid", value);
+                SetId("ctx_productid", value);
             }
         }
         
@@ -17197,15 +16185,15 @@ namespace XrmBedrock.SharedContext {
         /// <summary>
         /// <para>Display Name: Name</para>
         /// </summary>
-        [AttributeLogicalName("mgs_name")]
+        [AttributeLogicalName("ctx_name")]
         [DisplayName("Name")]
         [MaxLength(850)]
         public string PrimaryNameField {
             get {
-                return GetAttributeValue<string>("mgs_name");
+                return GetAttributeValue<string>("ctx_name");
             }
             set {
-                SetAttributeValue("mgs_name", value);
+                SetAttributeValue("ctx_name", value);
             }
         }
         
@@ -17271,43 +16259,43 @@ namespace XrmBedrock.SharedContext {
         /// <summary>
         /// <para>Display Name: Billing Interval</para>
         /// </summary>
-        [AttributeLogicalName("mgs_billinginterval")]
+        [AttributeLogicalName("ctx_billinginterval")]
         [DisplayName("Billing Interval")]
-        public mgs_billinginterval? mgs_BillingInterval {
+        public ctx_billinginterval? ctx_BillingInterval {
             get {
-                return GetOptionSetValue<mgs_billinginterval>("mgs_billinginterval");
+                return GetOptionSetValue<ctx_billinginterval>("ctx_billinginterval");
             }
             set {
-                SetOptionSetValue("mgs_billinginterval", value);
+                SetOptionSetValue("ctx_billinginterval", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Name</para>
         /// </summary>
-        [AttributeLogicalName("mgs_name")]
+        [AttributeLogicalName("ctx_name")]
         [DisplayName("Name")]
         [MaxLength(850)]
-        public string mgs_Name {
+        public string ctx_Name {
             get {
-                return GetAttributeValue<string>("mgs_name");
+                return GetAttributeValue<string>("ctx_name");
             }
             set {
-                SetAttributeValue("mgs_name", value);
+                SetAttributeValue("ctx_name", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Price</para>
         /// </summary>
-        [AttributeLogicalName("mgs_price")]
+        [AttributeLogicalName("ctx_price")]
         [DisplayName("Price")]
-        public decimal? mgs_Price {
+        public decimal? ctx_Price {
             get {
-                return GetMoneyValue("mgs_price");
+                return GetMoneyValue("ctx_price");
             }
             set {
-                SetMoneyValue("mgs_price", value);
+                SetMoneyValue("ctx_price", value);
             }
         }
         
@@ -17315,11 +16303,11 @@ namespace XrmBedrock.SharedContext {
         /// <para>Value of the Price in base currency.</para>
         /// <para>Display Name: Price (Base)</para>
         /// </summary>
-        [AttributeLogicalName("mgs_price_base")]
+        [AttributeLogicalName("ctx_price_base")]
         [DisplayName("Price (Base)")]
-        public decimal? mgs_price_Base {
+        public decimal? ctx_price_Base {
             get {
-                return GetMoneyValue("mgs_price_base");
+                return GetMoneyValue("ctx_price_base");
             }
         }
         
@@ -17329,9 +16317,9 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statecode")]
         [DisplayName("Status")]
-        public mgs_ProductState? statecode {
+        public ctx_ProductState? statecode {
             get {
-                return GetOptionSetValue<mgs_ProductState>("statecode");
+                return GetOptionSetValue<ctx_ProductState>("statecode");
             }
             set {
                 SetOptionSetValue("statecode", value);
@@ -17344,119 +16332,119 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statuscode")]
         [DisplayName("Status Reason")]
-        public mgs_Product_statuscode? statuscode {
+        public ctx_Product_statuscode? statuscode {
             get {
-                return GetOptionSetValue<mgs_Product_statuscode>("statuscode");
+                return GetOptionSetValue<ctx_Product_statuscode>("statuscode");
             }
             set {
                 SetOptionSetValue("statuscode", value);
             }
         }
         
-        [AttributeLogicalName("createdby")]
-        [RelationshipSchemaName("lk_mgs_product_createdby")]
-        public SystemUser lk_mgs_product_createdby {
+        [RelationshipSchemaName("ctx_Subscription_ctx_Product")]
+        public IEnumerable<ctx_Subscription> ctx_Subscription_ctx_Product {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_product_createdby", null);
+                return GetRelatedEntities<ctx_Subscription>("ctx_Subscription_ctx_Product", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_product_createdby", null, value);
+                SetRelatedEntities("ctx_Subscription_ctx_Product", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("createdby")]
+        [RelationshipSchemaName("lk_ctx_product_createdby")]
+        public SystemUser lk_ctx_product_createdby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_ctx_product_createdby", null);
+            }
+            set {
+                SetRelatedEntity("lk_ctx_product_createdby", null, value);
             }
         }
         
         [AttributeLogicalName("createdonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_product_createdonbehalfby")]
-        public SystemUser lk_mgs_product_createdonbehalfby {
+        [RelationshipSchemaName("lk_ctx_product_createdonbehalfby")]
+        public SystemUser lk_ctx_product_createdonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_product_createdonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_product_createdonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_product_createdonbehalfby", null, value);
+                SetRelatedEntity("lk_ctx_product_createdonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedby")]
-        [RelationshipSchemaName("lk_mgs_product_modifiedby")]
-        public SystemUser lk_mgs_product_modifiedby {
+        [RelationshipSchemaName("lk_ctx_product_modifiedby")]
+        public SystemUser lk_ctx_product_modifiedby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_product_modifiedby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_product_modifiedby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_product_modifiedby", null, value);
+                SetRelatedEntity("lk_ctx_product_modifiedby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_product_modifiedonbehalfby")]
-        public SystemUser lk_mgs_product_modifiedonbehalfby {
+        [RelationshipSchemaName("lk_ctx_product_modifiedonbehalfby")]
+        public SystemUser lk_ctx_product_modifiedonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_product_modifiedonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_product_modifiedonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_product_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_subscription_Product_mgs_product")]
-        public IEnumerable<mgs_Subscription> mgs_subscription_Product_mgs_product {
-            get {
-                return GetRelatedEntities<mgs_Subscription>("mgs_subscription_Product_mgs_product", null);
-            }
-            set {
-                SetRelatedEntities("mgs_subscription_Product_mgs_product", null, value);
+                SetRelatedEntity("lk_ctx_product_modifiedonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("owninguser")]
-        [RelationshipSchemaName("user_mgs_product")]
-        public SystemUser user_mgs_product {
+        [RelationshipSchemaName("user_ctx_product")]
+        public SystemUser user_ctx_product {
             get {
-                return GetRelatedEntity<SystemUser>("user_mgs_product", null);
+                return GetRelatedEntity<SystemUser>("user_ctx_product", null);
             }
             set {
-                SetRelatedEntity("user_mgs_product", null, value);
+                SetRelatedEntity("user_ctx_product", null, value);
             }
         }
         
-        public static mgs_Product Retrieve(IOrganizationService service, Guid id, params Expression<Func<mgs_Product,object>>[] attrs) {
+        public static ctx_Product Retrieve(IOrganizationService service, Guid id, params Expression<Func<ctx_Product,object>>[] attrs) {
             return service.Retrieve(id, attrs);
         }
     }
     
     /// <summary>
-    /// <para>Entity description</para>
+    /// <para>This table contains subscription details including start and end dates, linked product and customer</para>
     /// <para>Display Name: Subscription</para>
     /// </summary>
-    [EntityLogicalName("mgs_subscription")]
+    [EntityLogicalName("ctx_subscription")]
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     [DataContract()]
-    public partial class mgs_Subscription : ExtendedEntity<mgs_SubscriptionState, mgs_Subscription_statuscode> {
+    public partial class ctx_Subscription : ExtendedEntity<ctx_SubscriptionState, ctx_Subscription_statuscode> {
         
-        public const string EntityLogicalName = "mgs_subscription";
+        public const string EntityLogicalName = "ctx_subscription";
         
-        public const int EntityTypeCode = 11060;
+        public const int EntityTypeCode = 10525;
         
-        public mgs_Subscription() : 
+        public ctx_Subscription() : 
                 base(EntityLogicalName) {
         }
         
-        public mgs_Subscription(Guid Id) : 
+        public ctx_Subscription(Guid Id) : 
                 base(EntityLogicalName, Id) {
         }
         
         private string DebuggerDisplay {
             get {
-                return GetDebuggerDisplay("mgs_subscriptionname");
+                return GetDebuggerDisplay("ctx_name");
             }
         }
         
-        [AttributeLogicalName("mgs_subscriptionid")]
+        [AttributeLogicalName("ctx_subscriptionid")]
         public override Guid Id {
             get {
                 return base.Id;
             }
             set {
-                SetId("mgs_subscriptionid", value);
+                SetId("ctx_subscriptionid", value);
             }
         }
         
@@ -17464,14 +16452,14 @@ namespace XrmBedrock.SharedContext {
         /// <para>Unique identifier for entity instances</para>
         /// <para>Display Name: Subscription</para>
         /// </summary>
-        [AttributeLogicalName("mgs_subscriptionid")]
+        [AttributeLogicalName("ctx_subscriptionid")]
         [DisplayName("Subscription")]
-        public Guid? mgs_SubscriptionId {
+        public Guid? ctx_SubscriptionId {
             get {
-                return GetAttributeValue<Guid?>("mgs_subscriptionid");
+                return GetAttributeValue<Guid?>("ctx_subscriptionid");
             }
             set {
-                SetId("mgs_subscriptionid", value);
+                SetId("ctx_subscriptionid", value);
             }
         }
         
@@ -17630,17 +16618,17 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Display Name: Subscription Name</para>
+        /// <para>Display Name: Name</para>
         /// </summary>
-        [AttributeLogicalName("mgs_subscriptionname")]
-        [DisplayName("Subscription Name")]
+        [AttributeLogicalName("ctx_name")]
+        [DisplayName("Name")]
         [MaxLength(850)]
         public string PrimaryNameField {
             get {
-                return GetAttributeValue<string>("mgs_subscriptionname");
+                return GetAttributeValue<string>("ctx_name");
             }
             set {
-                SetAttributeValue("mgs_subscriptionname", value);
+                SetAttributeValue("ctx_name", value);
             }
         }
         
@@ -17689,87 +16677,87 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Display Name: Contact</para>
+        /// <para>Display Name: Customer</para>
         /// </summary>
-        [AttributeLogicalName("mgs_contact")]
-        [DisplayName("Contact")]
-        public EntityReference mgs_Contact {
+        [AttributeLogicalName("ctx_customer")]
+        [DisplayName("Customer")]
+        public EntityReference ctx_Customer {
             get {
-                return GetAttributeValue<EntityReference>("mgs_contact");
+                return GetAttributeValue<EntityReference>("ctx_customer");
             }
             set {
-                SetAttributeValue("mgs_contact", value);
+                SetAttributeValue("ctx_customer", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: End Date</para>
         /// </summary>
-        [AttributeLogicalName("mgs_enddate")]
+        [AttributeLogicalName("ctx_enddate")]
         [DisplayName("End Date")]
-        public DateTime? mgs_EndDate {
+        public DateTime? ctx_EndDate {
             get {
-                return GetAttributeValue<DateTime?>("mgs_enddate");
+                return GetAttributeValue<DateTime?>("ctx_enddate");
             }
             set {
-                SetAttributeValue("mgs_enddate", value);
+                SetAttributeValue("ctx_enddate", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Invoiced Until</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoiceduntil")]
+        [AttributeLogicalName("ctx_invoiceduntil")]
         [DisplayName("Invoiced Until")]
-        public DateTime? mgs_InvoicedUntil {
+        public DateTime? ctx_InvoicedUntil {
             get {
-                return GetAttributeValue<DateTime?>("mgs_invoiceduntil");
+                return GetAttributeValue<DateTime?>("ctx_invoiceduntil");
             }
             set {
-                SetAttributeValue("mgs_invoiceduntil", value);
+                SetAttributeValue("ctx_invoiceduntil", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Display Name: Name</para>
+        /// </summary>
+        [AttributeLogicalName("ctx_name")]
+        [DisplayName("Name")]
+        [MaxLength(850)]
+        public string ctx_Name {
+            get {
+                return GetAttributeValue<string>("ctx_name");
+            }
+            set {
+                SetAttributeValue("ctx_name", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Product</para>
         /// </summary>
-        [AttributeLogicalName("mgs_product")]
+        [AttributeLogicalName("ctx_product")]
         [DisplayName("Product")]
-        public EntityReference mgs_Product {
+        public EntityReference ctx_Product {
             get {
-                return GetAttributeValue<EntityReference>("mgs_product");
+                return GetAttributeValue<EntityReference>("ctx_product");
             }
             set {
-                SetAttributeValue("mgs_product", value);
+                SetAttributeValue("ctx_product", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Start Date</para>
         /// </summary>
-        [AttributeLogicalName("mgs_startdate")]
+        [AttributeLogicalName("ctx_startdate")]
         [DisplayName("Start Date")]
-        public DateTime? mgs_StartDate {
+        public DateTime? ctx_StartDate {
             get {
-                return GetAttributeValue<DateTime?>("mgs_startdate");
+                return GetAttributeValue<DateTime?>("ctx_startdate");
             }
             set {
-                SetAttributeValue("mgs_startdate", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: Subscription Name</para>
-        /// </summary>
-        [AttributeLogicalName("mgs_subscriptionname")]
-        [DisplayName("Subscription Name")]
-        [MaxLength(850)]
-        public string mgs_SubscriptionName {
-            get {
-                return GetAttributeValue<string>("mgs_subscriptionname");
-            }
-            set {
-                SetAttributeValue("mgs_subscriptionname", value);
+                SetAttributeValue("ctx_startdate", value);
             }
         }
         
@@ -17779,9 +16767,9 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statecode")]
         [DisplayName("Status")]
-        public mgs_SubscriptionState? statecode {
+        public ctx_SubscriptionState? statecode {
             get {
-                return GetOptionSetValue<mgs_SubscriptionState>("statecode");
+                return GetOptionSetValue<ctx_SubscriptionState>("statecode");
             }
             set {
                 SetOptionSetValue("statecode", value);
@@ -17794,141 +16782,152 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statuscode")]
         [DisplayName("Status Reason")]
-        public mgs_Subscription_statuscode? statuscode {
+        public ctx_Subscription_statuscode? statuscode {
             get {
-                return GetOptionSetValue<mgs_Subscription_statuscode>("statuscode");
+                return GetOptionSetValue<ctx_Subscription_statuscode>("statuscode");
             }
             set {
                 SetOptionSetValue("statuscode", value);
             }
         }
         
-        [AttributeLogicalName("createdby")]
-        [RelationshipSchemaName("lk_mgs_subscription_createdby")]
-        public SystemUser lk_mgs_subscription_createdby {
+        [AttributeLogicalName("ctx_product")]
+        [RelationshipSchemaName("ctx_Subscription_ctx_Product")]
+        public ctx_Product ctx_Subscription_ctx_Product {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_subscription_createdby", null);
+                return GetRelatedEntity<ctx_Product>("ctx_Subscription_ctx_Product", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_subscription_createdby", null, value);
+                SetRelatedEntity("ctx_Subscription_ctx_Product", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("ctx_Transaction_ctx_Subscription")]
+        public IEnumerable<ctx_Transaction> ctx_Transaction_ctx_Subscription {
+            get {
+                return GetRelatedEntities<ctx_Transaction>("ctx_Transaction_ctx_Subscription", null);
+            }
+            set {
+                SetRelatedEntities("ctx_Transaction_ctx_Subscription", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("ctx_customer")]
+        [RelationshipSchemaName("ctx_account_ctx_subscription_367")]
+        public Account ctx_account_ctx_subscription_367 {
+            get {
+                return GetRelatedEntity<Account>("ctx_account_ctx_subscription_367", null);
+            }
+            set {
+                SetRelatedEntity("ctx_account_ctx_subscription_367", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("ctx_customer")]
+        [RelationshipSchemaName("ctx_contact_ctx_subscription_367")]
+        public Contact ctx_contact_ctx_subscription_367 {
+            get {
+                return GetRelatedEntity<Contact>("ctx_contact_ctx_subscription_367", null);
+            }
+            set {
+                SetRelatedEntity("ctx_contact_ctx_subscription_367", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("createdby")]
+        [RelationshipSchemaName("lk_ctx_subscription_createdby")]
+        public SystemUser lk_ctx_subscription_createdby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_ctx_subscription_createdby", null);
+            }
+            set {
+                SetRelatedEntity("lk_ctx_subscription_createdby", null, value);
             }
         }
         
         [AttributeLogicalName("createdonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_subscription_createdonbehalfby")]
-        public SystemUser lk_mgs_subscription_createdonbehalfby {
+        [RelationshipSchemaName("lk_ctx_subscription_createdonbehalfby")]
+        public SystemUser lk_ctx_subscription_createdonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_subscription_createdonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_subscription_createdonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_subscription_createdonbehalfby", null, value);
+                SetRelatedEntity("lk_ctx_subscription_createdonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedby")]
-        [RelationshipSchemaName("lk_mgs_subscription_modifiedby")]
-        public SystemUser lk_mgs_subscription_modifiedby {
+        [RelationshipSchemaName("lk_ctx_subscription_modifiedby")]
+        public SystemUser lk_ctx_subscription_modifiedby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_subscription_modifiedby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_subscription_modifiedby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_subscription_modifiedby", null, value);
+                SetRelatedEntity("lk_ctx_subscription_modifiedby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_subscription_modifiedonbehalfby")]
-        public SystemUser lk_mgs_subscription_modifiedonbehalfby {
+        [RelationshipSchemaName("lk_ctx_subscription_modifiedonbehalfby")]
+        public SystemUser lk_ctx_subscription_modifiedonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_subscription_modifiedonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_subscription_modifiedonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_subscription_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("mgs_contact")]
-        [RelationshipSchemaName("mgs_subscription_Contact_contact")]
-        public Contact mgs_subscription_Contact_contact {
-            get {
-                return GetRelatedEntity<Contact>("mgs_subscription_Contact_contact", null);
-            }
-            set {
-                SetRelatedEntity("mgs_subscription_Contact_contact", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("mgs_product")]
-        [RelationshipSchemaName("mgs_subscription_Product_mgs_product")]
-        public mgs_Product mgs_subscription_Product_mgs_product {
-            get {
-                return GetRelatedEntity<mgs_Product>("mgs_subscription_Product_mgs_product", null);
-            }
-            set {
-                SetRelatedEntity("mgs_subscription_Product_mgs_product", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_transaction_Subscription_mgs_subscription")]
-        public IEnumerable<mgs_Transaction> mgs_transaction_Subscription_mgs_subscription {
-            get {
-                return GetRelatedEntities<mgs_Transaction>("mgs_transaction_Subscription_mgs_subscription", null);
-            }
-            set {
-                SetRelatedEntities("mgs_transaction_Subscription_mgs_subscription", null, value);
+                SetRelatedEntity("lk_ctx_subscription_modifiedonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("owninguser")]
-        [RelationshipSchemaName("user_mgs_subscription")]
-        public SystemUser user_mgs_subscription {
+        [RelationshipSchemaName("user_ctx_subscription")]
+        public SystemUser user_ctx_subscription {
             get {
-                return GetRelatedEntity<SystemUser>("user_mgs_subscription", null);
+                return GetRelatedEntity<SystemUser>("user_ctx_subscription", null);
             }
             set {
-                SetRelatedEntity("user_mgs_subscription", null, value);
+                SetRelatedEntity("user_ctx_subscription", null, value);
             }
         }
         
-        public static mgs_Subscription Retrieve(IOrganizationService service, Guid id, params Expression<Func<mgs_Subscription,object>>[] attrs) {
+        public static ctx_Subscription Retrieve(IOrganizationService service, Guid id, params Expression<Func<ctx_Subscription,object>>[] attrs) {
             return service.Retrieve(id, attrs);
         }
     }
     
     /// <summary>
-    /// <para>This table contains records of transaction information</para>
+    /// <para>This table contains transaction details including subscription, start and end dates, and invoice</para>
     /// <para>Display Name: Transaction</para>
     /// </summary>
-    [EntityLogicalName("mgs_transaction")]
+    [EntityLogicalName("ctx_transaction")]
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     [DataContract()]
-    public partial class mgs_Transaction : ExtendedEntity<mgs_TransactionState, mgs_Transaction_statuscode> {
+    public partial class ctx_Transaction : ExtendedEntity<ctx_TransactionState, ctx_Transaction_statuscode> {
         
-        public const string EntityLogicalName = "mgs_transaction";
+        public const string EntityLogicalName = "ctx_transaction";
         
-        public const int EntityTypeCode = 11143;
+        public const int EntityTypeCode = 10489;
         
-        public mgs_Transaction() : 
+        public ctx_Transaction() : 
                 base(EntityLogicalName) {
         }
         
-        public mgs_Transaction(Guid Id) : 
+        public ctx_Transaction(Guid Id) : 
                 base(EntityLogicalName, Id) {
         }
         
         private string DebuggerDisplay {
             get {
-                return GetDebuggerDisplay("mgs_transaction1");
+                return GetDebuggerDisplay("ctx_name");
             }
         }
         
-        [AttributeLogicalName("mgs_transactionid")]
+        [AttributeLogicalName("ctx_transactionid")]
         public override Guid Id {
             get {
                 return base.Id;
             }
             set {
-                SetId("mgs_transactionid", value);
+                SetId("ctx_transactionid", value);
             }
         }
         
@@ -17936,14 +16935,14 @@ namespace XrmBedrock.SharedContext {
         /// <para>Unique identifier for entity instances</para>
         /// <para>Display Name: Transaction</para>
         /// </summary>
-        [AttributeLogicalName("mgs_transactionid")]
+        [AttributeLogicalName("ctx_transactionid")]
         [DisplayName("Transaction")]
-        public Guid? mgs_TransactionId {
+        public Guid? ctx_TransactionId {
             get {
-                return GetAttributeValue<Guid?>("mgs_transactionid");
+                return GetAttributeValue<Guid?>("ctx_transactionid");
             }
             set {
-                SetId("mgs_transactionid", value);
+                SetId("ctx_transactionid", value);
             }
         }
         
@@ -18114,17 +17113,17 @@ namespace XrmBedrock.SharedContext {
         }
         
         /// <summary>
-        /// <para>Display Name: Transaction</para>
+        /// <para>Display Name: Name</para>
         /// </summary>
-        [AttributeLogicalName("mgs_transaction1")]
-        [DisplayName("Transaction")]
+        [AttributeLogicalName("ctx_name")]
+        [DisplayName("Name")]
         [MaxLength(850)]
         public string PrimaryNameField {
             get {
-                return GetAttributeValue<string>("mgs_transaction1");
+                return GetAttributeValue<string>("ctx_name");
             }
             set {
-                SetAttributeValue("mgs_transaction1", value);
+                SetAttributeValue("ctx_name", value);
             }
         }
         
@@ -18190,99 +17189,85 @@ namespace XrmBedrock.SharedContext {
         /// <summary>
         /// <para>Display Name: Amount</para>
         /// </summary>
-        [AttributeLogicalName("mgs_amount")]
+        [AttributeLogicalName("ctx_amount")]
         [DisplayName("Amount")]
-        public decimal? mgs_Amount {
+        public decimal? ctx_Amount {
             get {
-                return GetMoneyValue("mgs_amount");
+                return GetMoneyValue("ctx_amount");
             }
             set {
-                SetMoneyValue("mgs_amount", value);
+                SetMoneyValue("ctx_amount", value);
             }
         }
         
         /// <summary>
-        /// <para>Display Name: End</para>
+        /// <para>Display Name: End Date</para>
         /// </summary>
-        [AttributeLogicalName("mgs_end")]
-        [DisplayName("End")]
-        public DateTime? mgs_End {
+        [AttributeLogicalName("ctx_enddate")]
+        [DisplayName("End Date")]
+        public DateTime? ctx_EndDate {
             get {
-                return GetAttributeValue<DateTime?>("mgs_end");
+                return GetAttributeValue<DateTime?>("ctx_enddate");
             }
             set {
-                SetAttributeValue("mgs_end", value);
+                SetAttributeValue("ctx_enddate", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Invoice</para>
         /// </summary>
-        [AttributeLogicalName("mgs_invoice")]
+        [AttributeLogicalName("ctx_invoice")]
         [DisplayName("Invoice")]
-        public EntityReference mgs_Invoice {
+        public EntityReference ctx_Invoice {
             get {
-                return GetAttributeValue<EntityReference>("mgs_invoice");
+                return GetAttributeValue<EntityReference>("ctx_invoice");
             }
             set {
-                SetAttributeValue("mgs_invoice", value);
+                SetAttributeValue("ctx_invoice", value);
             }
         }
         
         /// <summary>
-        /// <para>Display Name: Start</para>
+        /// <para>Display Name: Name</para>
         /// </summary>
-        [AttributeLogicalName("mgs_start")]
-        [DisplayName("Start")]
-        public DateTime? mgs_Start {
+        [AttributeLogicalName("ctx_name")]
+        [DisplayName("Name")]
+        [MaxLength(850)]
+        public string ctx_Name {
             get {
-                return GetAttributeValue<DateTime?>("mgs_start");
+                return GetAttributeValue<string>("ctx_name");
             }
             set {
-                SetAttributeValue("mgs_start", value);
+                SetAttributeValue("ctx_name", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Display Name: Start Date</para>
+        /// </summary>
+        [AttributeLogicalName("ctx_startdate")]
+        [DisplayName("Start Date")]
+        public DateTime? ctx_StartDate {
+            get {
+                return GetAttributeValue<DateTime?>("ctx_startdate");
+            }
+            set {
+                SetAttributeValue("ctx_startdate", value);
             }
         }
         
         /// <summary>
         /// <para>Display Name: Subscription</para>
         /// </summary>
-        [AttributeLogicalName("mgs_subscription")]
+        [AttributeLogicalName("ctx_subscription")]
         [DisplayName("Subscription")]
-        public EntityReference mgs_Subscription {
+        public EntityReference ctx_Subscription {
             get {
-                return GetAttributeValue<EntityReference>("mgs_subscription");
+                return GetAttributeValue<EntityReference>("ctx_subscription");
             }
             set {
-                SetAttributeValue("mgs_subscription", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: Transaction</para>
-        /// </summary>
-        [AttributeLogicalName("mgs_transaction1")]
-        [DisplayName("Transaction")]
-        [MaxLength(850)]
-        public string mgs_Transaction1 {
-            get {
-                return GetAttributeValue<string>("mgs_transaction1");
-            }
-            set {
-                SetAttributeValue("mgs_transaction1", value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>Display Name: Type</para>
-        /// </summary>
-        [AttributeLogicalName("mgs_type")]
-        [DisplayName("Type")]
-        public mgs_transactiontype? mgs_Type {
-            get {
-                return GetOptionSetValue<mgs_transactiontype>("mgs_type");
-            }
-            set {
-                SetOptionSetValue("mgs_type", value);
+                SetAttributeValue("ctx_subscription", value);
             }
         }
         
@@ -18290,11 +17275,11 @@ namespace XrmBedrock.SharedContext {
         /// <para>Value of the Amount in base currency.</para>
         /// <para>Display Name: Amount (Base)</para>
         /// </summary>
-        [AttributeLogicalName("mgs_amount_base")]
+        [AttributeLogicalName("ctx_amount_base")]
         [DisplayName("Amount (Base)")]
-        public decimal? mgs_amount_Base {
+        public decimal? ctx_amount_Base {
             get {
-                return GetMoneyValue("mgs_amount_base");
+                return GetMoneyValue("ctx_amount_base");
             }
         }
         
@@ -18304,9 +17289,9 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statecode")]
         [DisplayName("Status")]
-        public mgs_TransactionState? statecode {
+        public ctx_TransactionState? statecode {
             get {
-                return GetOptionSetValue<mgs_TransactionState>("statecode");
+                return GetOptionSetValue<ctx_TransactionState>("statecode");
             }
             set {
                 SetOptionSetValue("statecode", value);
@@ -18319,103 +17304,93 @@ namespace XrmBedrock.SharedContext {
         /// </summary>
         [AttributeLogicalName("statuscode")]
         [DisplayName("Status Reason")]
-        public mgs_Transaction_statuscode? statuscode {
+        public ctx_Transaction_statuscode? statuscode {
             get {
-                return GetOptionSetValue<mgs_Transaction_statuscode>("statuscode");
+                return GetOptionSetValue<ctx_Transaction_statuscode>("statuscode");
             }
             set {
                 SetOptionSetValue("statuscode", value);
             }
         }
         
-        [AttributeLogicalName("createdby")]
-        [RelationshipSchemaName("lk_mgs_transaction_createdby")]
-        public SystemUser lk_mgs_transaction_createdby {
+        [AttributeLogicalName("ctx_invoice")]
+        [RelationshipSchemaName("ctx_Transaction_ctx_Invoice")]
+        public ctx_Invoice ctx_Transaction_ctx_Invoice {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_transaction_createdby", null);
+                return GetRelatedEntity<ctx_Invoice>("ctx_Transaction_ctx_Invoice", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_transaction_createdby", null, value);
+                SetRelatedEntity("ctx_Transaction_ctx_Invoice", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("ctx_subscription")]
+        [RelationshipSchemaName("ctx_Transaction_ctx_Subscription")]
+        public ctx_Subscription ctx_Transaction_ctx_Subscription {
+            get {
+                return GetRelatedEntity<ctx_Subscription>("ctx_Transaction_ctx_Subscription", null);
+            }
+            set {
+                SetRelatedEntity("ctx_Transaction_ctx_Subscription", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("createdby")]
+        [RelationshipSchemaName("lk_ctx_transaction_createdby")]
+        public SystemUser lk_ctx_transaction_createdby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_ctx_transaction_createdby", null);
+            }
+            set {
+                SetRelatedEntity("lk_ctx_transaction_createdby", null, value);
             }
         }
         
         [AttributeLogicalName("createdonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_transaction_createdonbehalfby")]
-        public SystemUser lk_mgs_transaction_createdonbehalfby {
+        [RelationshipSchemaName("lk_ctx_transaction_createdonbehalfby")]
+        public SystemUser lk_ctx_transaction_createdonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_transaction_createdonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_transaction_createdonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_transaction_createdonbehalfby", null, value);
+                SetRelatedEntity("lk_ctx_transaction_createdonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedby")]
-        [RelationshipSchemaName("lk_mgs_transaction_modifiedby")]
-        public SystemUser lk_mgs_transaction_modifiedby {
+        [RelationshipSchemaName("lk_ctx_transaction_modifiedby")]
+        public SystemUser lk_ctx_transaction_modifiedby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_transaction_modifiedby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_transaction_modifiedby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_transaction_modifiedby", null, value);
+                SetRelatedEntity("lk_ctx_transaction_modifiedby", null, value);
             }
         }
         
         [AttributeLogicalName("modifiedonbehalfby")]
-        [RelationshipSchemaName("lk_mgs_transaction_modifiedonbehalfby")]
-        public SystemUser lk_mgs_transaction_modifiedonbehalfby {
+        [RelationshipSchemaName("lk_ctx_transaction_modifiedonbehalfby")]
+        public SystemUser lk_ctx_transaction_modifiedonbehalfby {
             get {
-                return GetRelatedEntity<SystemUser>("lk_mgs_transaction_modifiedonbehalfby", null);
+                return GetRelatedEntity<SystemUser>("lk_ctx_transaction_modifiedonbehalfby", null);
             }
             set {
-                SetRelatedEntity("lk_mgs_transaction_modifiedonbehalfby", null, value);
-            }
-        }
-        
-        [RelationshipSchemaName("mgs_transaction_Annotations")]
-        public IEnumerable<Annotation> mgs_transaction_Annotations {
-            get {
-                return GetRelatedEntities<Annotation>("mgs_transaction_Annotations", null);
-            }
-            set {
-                SetRelatedEntities("mgs_transaction_Annotations", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("mgs_invoice")]
-        [RelationshipSchemaName("mgs_transaction_Invoice_mgs_invoice")]
-        public mgs_Invoice mgs_transaction_Invoice_mgs_invoice {
-            get {
-                return GetRelatedEntity<mgs_Invoice>("mgs_transaction_Invoice_mgs_invoice", null);
-            }
-            set {
-                SetRelatedEntity("mgs_transaction_Invoice_mgs_invoice", null, value);
-            }
-        }
-        
-        [AttributeLogicalName("mgs_subscription")]
-        [RelationshipSchemaName("mgs_transaction_Subscription_mgs_subscription")]
-        public mgs_Subscription mgs_transaction_Subscription_mgs_subscription {
-            get {
-                return GetRelatedEntity<mgs_Subscription>("mgs_transaction_Subscription_mgs_subscription", null);
-            }
-            set {
-                SetRelatedEntity("mgs_transaction_Subscription_mgs_subscription", null, value);
+                SetRelatedEntity("lk_ctx_transaction_modifiedonbehalfby", null, value);
             }
         }
         
         [AttributeLogicalName("owninguser")]
-        [RelationshipSchemaName("user_mgs_transaction")]
-        public SystemUser user_mgs_transaction {
+        [RelationshipSchemaName("user_ctx_transaction")]
+        public SystemUser user_ctx_transaction {
             get {
-                return GetRelatedEntity<SystemUser>("user_mgs_transaction", null);
+                return GetRelatedEntity<SystemUser>("user_ctx_transaction", null);
             }
             set {
-                SetRelatedEntity("user_mgs_transaction", null, value);
+                SetRelatedEntity("user_ctx_transaction", null, value);
             }
         }
         
-        public static mgs_Transaction Retrieve(IOrganizationService service, Guid id, params Expression<Func<mgs_Transaction,object>>[] attrs) {
+        public static ctx_Transaction Retrieve(IOrganizationService service, Guid id, params Expression<Func<ctx_Transaction,object>>[] attrs) {
             return service.Retrieve(id, attrs);
         }
     }
@@ -18504,33 +17479,33 @@ namespace XrmBedrock.SharedContext {
             }
         }
         
-        public IQueryable<mgs_Invoice> mgs_InvoiceSet {
+        public IQueryable<ctx_Invoice> ctx_InvoiceSet {
             get {
-                return CreateQuery<mgs_Invoice>();
+                return CreateQuery<ctx_Invoice>();
             }
         }
         
-        public IQueryable<mgs_InvoiceCollection> mgs_InvoiceCollectionSet {
+        public IQueryable<ctx_InvoiceCollection> ctx_InvoiceCollectionSet {
             get {
-                return CreateQuery<mgs_InvoiceCollection>();
+                return CreateQuery<ctx_InvoiceCollection>();
             }
         }
         
-        public IQueryable<mgs_Product> mgs_ProductSet {
+        public IQueryable<ctx_Product> ctx_ProductSet {
             get {
-                return CreateQuery<mgs_Product>();
+                return CreateQuery<ctx_Product>();
             }
         }
         
-        public IQueryable<mgs_Subscription> mgs_SubscriptionSet {
+        public IQueryable<ctx_Subscription> ctx_SubscriptionSet {
             get {
-                return CreateQuery<mgs_Subscription>();
+                return CreateQuery<ctx_Subscription>();
             }
         }
         
-        public IQueryable<mgs_Transaction> mgs_TransactionSet {
+        public IQueryable<ctx_Transaction> ctx_TransactionSet {
             get {
-                return CreateQuery<mgs_Transaction>();
+                return CreateQuery<ctx_Transaction>();
             }
         }
     }
@@ -19484,42 +18459,6 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum Contact_msdyn_decisioninfluencetag {
-        
-        [EnumMember()]
-        [OptionSetMetadata("Decision maker", Index=0, Lcid=1033, Color="#32C100")]
-        Decisionmaker = 0,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Influencer", Index=1, Lcid=1033, Color="#FFD74B")]
-        Influencer = 1,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Blocker", Index=2, Lcid=1033, Color="#FF0000")]
-        Blocker = 2,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Unknown", Index=3, Lcid=1033, Color="#E1DFDD")]
-        Unknown = 3,
-    }
-    
-    [DataContract()]
-    public enum Contact_msdyn_orgchangestatus {
-        
-        [EnumMember()]
-        [OptionSetMetadata("No Feedback", Index=0, Lcid=1033, Color="#0000ff")]
-        NoFeedback = 0,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Not at Company", Index=1, Lcid=1033, Color="#0000ff")]
-        NotatCompany = 1,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Ignore", Index=2, Lcid=1033, Color="#0000ff")]
-        Ignore = 2,
-    }
-    
-    [DataContract()]
     public enum DuplicateRuleState {
         
         [EnumMember()]
@@ -19535,887 +18474,598 @@ namespace XrmBedrock.SharedContext {
     public enum DuplicateRule_BaseEntityTypeCode {
         
         [EnumMember()]
-        [OptionSetMetadata("Account", Index=898, Lcid=1033, Description="Business that represents a customer or potential customer. The company that is bi" +
+        [OptionSetMetadata("Account", Index=508, Lcid=1033, Description="Business that represents a customer or potential customer. The company that is bi" +
             "lled in business transactions.")]
         Account = 1,
         
         [EnumMember()]
-        [OptionSetMetadata("Contact", Index=960, Lcid=1033, Description="Person with whom a business unit has a relationship, such as customer, supplier, " +
+        [OptionSetMetadata("Contact", Index=386, Lcid=1033, Description="Person with whom a business unit has a relationship, such as customer, supplier, " +
             "and colleague.")]
         Contact = 2,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity", Index=550, Lcid=1033, Description="Potential revenue-generating event, or sale to an account, which needs to be trac" +
-            "ked through a sales process to completion.")]
-        Opportunity = 3,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead", Index=757, Lcid=1033, Description="Prospect or potential sales opportunity. Leads are converted into accounts, conta" +
-            "cts, or opportunities when they are qualified. Otherwise, they are deleted or ar" +
-            "chived.")]
-        Lead = 4,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Note", Index=912, Lcid=1033, Description="Note that is attached to one or more objects, including other notes.")]
+        [OptionSetMetadata("Note", Index=489, Lcid=1033, Description="Note that is attached to one or more objects, including other notes.")]
         Note = 5,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Unit Map", Index=968, Lcid=1033, Description="Stores mapping attributes for business units.")]
+        [OptionSetMetadata("Business Unit Map", Index=540, Lcid=1033, Description="Stores mapping attributes for business units.")]
         BusinessUnitMap = 6,
         
         [EnumMember()]
-        [OptionSetMetadata("Owner", Index=584, Lcid=1033, Description="Group of undeleted system users and undeleted teams. Owners can be used to contro" +
+        [OptionSetMetadata("Owner", Index=25, Lcid=1033, Description="Group of undeleted system users and undeleted teams. Owners can be used to contro" +
             "l access to specific objects.")]
         Owner = 7,
         
         [EnumMember()]
-        [OptionSetMetadata("User", Index=366, Lcid=1033, Description="Person with access to the Microsoft CRM system and who owns objects in the Micros" +
+        [OptionSetMetadata("User", Index=198, Lcid=1033, Description="Person with access to the Microsoft CRM system and who owns objects in the Micros" +
             "oft CRM database.")]
         User = 8,
         
         [EnumMember()]
-        [OptionSetMetadata("Team", Index=473, Lcid=1033, Description="Collection of system users that routinely collaborate. Teams can be used to simpl" +
+        [OptionSetMetadata("Team", Index=194, Lcid=1033, Description="Collection of system users that routinely collaborate. Teams can be used to simpl" +
             "ify record sharing and provide team members with common access to organization d" +
             "ata when team members belong to different Business Units.")]
         Team = 9,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Unit", Index=967, Lcid=1033, Description="Business, division, or department in the Microsoft Dynamics 365 database.")]
+        [OptionSetMetadata("Business Unit", Index=538, Lcid=1033, Description="Business, division, or department in the Microsoft Dynamics 365 database.")]
         BusinessUnit = 10,
         
         [EnumMember()]
-        [OptionSetMetadata("System User Principal", Index=476, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("System User Principal", Index=200, Lcid=1033, Description="For internal use only.")]
         SystemUserPrincipal = 14,
         
         [EnumMember()]
-        [OptionSetMetadata("AccountLeads", Index=896, Lcid=1033, Description="description.")]
-        AccountLeads = 16,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactInvoices", Index=961, Lcid=1033)]
-        ContactInvoices = 17,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactQuotes", Index=958, Lcid=1033)]
-        ContactQuotes = 18,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactOrders", Index=957, Lcid=1033)]
-        ContactOrders = 19,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Contract Contact", Index=388, Lcid=1033, Description="Item in a Service contract.")]
-        ServiceContractContact = 20,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ProductSalesLiterature", Index=643, Lcid=1033)]
-        ProductSalesLiterature = 21,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactLeads", Index=959, Lcid=1033)]
-        ContactLeads = 22,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LeadCompetitors", Index=765, Lcid=1033)]
-        LeadCompetitors = 24,
-        
-        [EnumMember()]
-        [OptionSetMetadata("OpportunityCompetitors", Index=546, Lcid=1033)]
-        OpportunityCompetitors = 25,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CompetitorSalesLiterature", Index=942, Lcid=1033)]
-        CompetitorSalesLiterature = 26,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LeadProduct", Index=766, Lcid=1033)]
-        LeadProduct = 27,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Subscription", Index=344, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription", Index=223, Lcid=1033, Description="For internal use only.")]
         Subscription = 29,
         
         [EnumMember()]
-        [OptionSetMetadata("Filter Template", Index=701, Lcid=1033, Description="Template for a filter.")]
+        [OptionSetMetadata("Filter Template", Index=709, Lcid=1033, Description="Template for a filter.")]
         FilterTemplate = 30,
         
         [EnumMember()]
-        [OptionSetMetadata("Privilege Object Type Code", Index=527, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Privilege Object Type Code", Index=82, Lcid=1033, Description="For internal use only.")]
         PrivilegeObjectTypeCode = 31,
         
         [EnumMember()]
-        [OptionSetMetadata("Sales Process Instance", Index=626, Lcid=1033, Description="Instance of a sales process.")]
-        SalesProcessInstance = 32,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Subscription Synchronization Information", Index=370, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription Synchronization Information", Index=219, Lcid=1033, Description="For internal use only.")]
         SubscriptionSynchronizationInformation = 33,
         
         [EnumMember()]
-        [OptionSetMetadata("Tracking information for deleted entities", Index=368, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Tracking information for deleted entities", Index=218, Lcid=1033, Description="For internal use only.")]
         Trackinginformationfordeletedentities = 35,
         
         [EnumMember()]
-        [OptionSetMetadata("Client update", Index=938, Lcid=1033, Description="Microsoft Dynamics 365 client for Outlook offline database update.")]
+        [OptionSetMetadata("Client update", Index=419, Lcid=1033, Description="Microsoft Dynamics 365 client for Outlook offline database update.")]
         Clientupdate = 36,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Manually Tracked Object", Index=343, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription Manually Tracked Object", Index=224, Lcid=1033, Description="For internal use only.")]
         SubscriptionManuallyTrackedObject = 37,
         
         [EnumMember()]
-        [OptionSetMetadata("SystemUser BusinessUnit Entity Map", Index=362, Lcid=1033, Description="Stores mapping attributes for business units.")]
+        [OptionSetMetadata("SystemUser BusinessUnit Entity Map", Index=199, Lcid=1033, Description="Stores mapping attributes for business units.")]
         SystemUserBusinessUnitEntityMap = 42,
         
         [EnumMember()]
-        [OptionSetMetadata("Field Sharing", Index=541, Lcid=1033, Description="Defines CRM security principals (users and teams) access rights to secured field " +
+        [OptionSetMetadata("Field Sharing", Index=15, Lcid=1033, Description="Defines CRM security principals (users and teams) access rights to secured field " +
             "for an entity instance.")]
         FieldSharing = 44,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Statistic Offline", Index=341, Lcid=1033, Description="Subscription Statistic Offline")]
+        [OptionSetMetadata("Subscription Statistic Offline", Index=220, Lcid=1033, Description="Subscription Statistic Offline")]
         SubscriptionStatisticOffline = 45,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Statistic Outlook", Index=342, Lcid=1033, Description="Subscription Statistic Outlook")]
+        [OptionSetMetadata("Subscription Statistic Outlook", Index=216, Lcid=1033, Description="Subscription Statistic Outlook")]
         SubscriptionStatisticOutlook = 46,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Sync Entry Offline", Index=371, Lcid=1033, Description="Used for offline sync, internal use only.")]
+        [OptionSetMetadata("Subscription Sync Entry Offline", Index=215, Lcid=1033, Description="Used for offline sync, internal use only.")]
         SubscriptionSyncEntryOffline = 47,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Sync Entry Outlook", Index=372, Lcid=1033, Description="Used for outlook sync, internal use only.")]
+        [OptionSetMetadata("Subscription Sync Entry Outlook", Index=217, Lcid=1033, Description="Used for outlook sync, internal use only.")]
         SubscriptionSyncEntryOutlook = 48,
         
         [EnumMember()]
-        [OptionSetMetadata("Position", Index=524, Lcid=1033, Description="Position of a user in the hierarchy")]
+        [OptionSetMetadata("Position", Index=23, Lcid=1033, Description="Position of a user in the hierarchy")]
         Position = 50,
         
         [EnumMember()]
-        [OptionSetMetadata("System User Manager Map", Index=363, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("System User Manager Map", Index=201, Lcid=1033, Description="For internal use only.")]
         SystemUserManagerMap = 51,
         
         [EnumMember()]
-        [OptionSetMetadata("User Search Facet", Index=433, Lcid=1033)]
+        [OptionSetMetadata("User Search Facet", Index=247, Lcid=1033)]
         UserSearchFacet = 52,
         
         [EnumMember()]
-        [OptionSetMetadata("Global Search Configuration", Index=807, Lcid=1033)]
+        [OptionSetMetadata("Global Search Configuration", Index=681, Lcid=1033)]
         GlobalSearchConfiguration = 54,
         
         [EnumMember()]
-        [OptionSetMetadata("FileAttachment", Index=703, Lcid=1033, Description="File Attachment")]
+        [OptionSetMetadata("FileAttachment", Index=707, Lcid=1033, Description="File Attachment")]
         FileAttachment = 55,
         
         [EnumMember()]
-        [OptionSetMetadata("SystemUserAuthorizationChangeTracker", Index=364, Lcid=1033, Description="Internal authorization table to track user authorization changes")]
+        [OptionSetMetadata("SystemUserAuthorizationChangeTracker", Index=197, Lcid=1033, Description="Internal authorization table to track user authorization changes")]
         SystemUserAuthorizationChangeTracker = 60,
         
         [EnumMember()]
-        [OptionSetMetadata("PrincipalEntityBusinessUnitMap", Index=543, Lcid=1033, Description="Internal authorization table to track user authorization changes")]
-        PrincipalEntityBusinessUnitMap = 61,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Record Filter", Index=666, Lcid=1033, Description="Record Access Filter")]
+        [OptionSetMetadata("Record Filter", Index=54, Lcid=1033, Description="Record Access Filter")]
         RecordFilter = 72,
         
         [EnumMember()]
-        [OptionSetMetadata("EntityRecordFilter", Index=682, Lcid=1033, Description="RecordFilter Object Type Codes")]
+        [OptionSetMetadata("EntityRecordFilter", Index=446, Lcid=1033, Description="RecordFilter Object Type Codes")]
         EntityRecordFilter = 73,
         
         [EnumMember()]
-        [OptionSetMetadata("Secured Masking Rule", Index=779, Lcid=1033, Description="Secured Masking Rules to apply to fields.")]
+        [OptionSetMetadata("Secured Masking Rule", Index=668, Lcid=1033, Description="Secured Masking Rules to apply to fields.")]
         SecuredMaskingRule = 74,
         
         [EnumMember()]
-        [OptionSetMetadata("Privilege Checker Run", Index=529, Lcid=1033, Description="Entity to keep track of privilege checker tool runs. Parent entity of privilege c" +
+        [OptionSetMetadata("Privilege Checker Run", Index=80, Lcid=1033, Description="Entity to keep track of privilege checker tool runs. Parent entity of privilege c" +
             "hecker log.")]
         PrivilegeCheckerRun = 75,
         
         [EnumMember()]
-        [OptionSetMetadata("Privilege Checker Log", Index=528, Lcid=1033, Description="Holds information about privilege checks for the user who started (created) a pri" +
+        [OptionSetMetadata("Privilege Checker Log", Index=78, Lcid=1033, Description="Holds information about privilege checks for the user who started (created) a pri" +
             "vilege checker tool run (Privilege Checker Run\'s child entity)")]
         PrivilegeCheckerLog = 76,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Entity Data Provider", Index=676, Lcid=1033, Description="Developers can register plug-ins on a data provider to enable data access for vir" +
+        [OptionSetMetadata("Virtual Entity Data Provider", Index=452, Lcid=1033, Description="Developers can register plug-ins on a data provider to enable data access for vir" +
             "tual entities in the system.")]
         VirtualEntityDataProvider = 78,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Entity Data Source", Index=677, Lcid=1033, Description="Internal entity that stores data source information for all installed providers.")]
+        [OptionSetMetadata("Virtual Entity Data Source", Index=451, Lcid=1033, Description="Internal entity that stores data source information for all installed providers.")]
         VirtualEntityDataSource = 85,
         
         [EnumMember()]
-        [OptionSetMetadata("Team template", Index=480, Lcid=1033, Description="Team template for an entity enabled for automatically created access teams.")]
+        [OptionSetMetadata("Team template", Index=211, Lcid=1033, Description="Team template for an entity enabled for automatically created access teams.")]
         Teamtemplate = 92,
         
         [EnumMember()]
-        [OptionSetMetadata("Social Profile", Index=407, Lcid=1033, Description="This entity is used to store social profile information of its associated account" +
+        [OptionSetMetadata("Social Profile", Index=373, Lcid=1033, Description="This entity is used to store social profile information of its associated account" +
             " and contacts on different social channels.")]
         SocialProfile = 99,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Plan", Index=382, Lcid=1033, Description="Service Plan")]
+        [OptionSetMetadata("Service Plan", Index=301, Lcid=1033, Description="Service Plan")]
         ServicePlan = 101,
         
         [EnumMember()]
-        [OptionSetMetadata("Privileges Removal Setting", Index=525, Lcid=1033, Description="Privileges Removal Setting")]
+        [OptionSetMetadata("Privileges Removal Setting", Index=81, Lcid=1033, Description="Privileges Removal Setting")]
         PrivilegesRemovalSetting = 103,
         
         [EnumMember()]
-        [OptionSetMetadata("Case", Index=830, Lcid=1033, Description="Service request case associated with a contract.")]
-        Case = 112,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Child Incident Count", Index=940, Lcid=1033, Description="For internal use only.")]
-        ChildIncidentCount = 113,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Competitor", Index=945, Lcid=1033, Description="Business competing for the sale represented by a lead or opportunity.")]
-        Competitor = 123,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Indexed Article", Index=750, Lcid=1033, Description="Article indexed for search purposes.")]
+        [OptionSetMetadata("Indexed Article", Index=471, Lcid=1033, Description="Article indexed for search purposes.")]
         IndexedArticle = 126,
         
         [EnumMember()]
-        [OptionSetMetadata("Article", Index=770, Lcid=1033, Description="Structured content that is part of the knowledge base.")]
+        [OptionSetMetadata("Article", Index=755, Lcid=1033, Description="Structured content that is part of the knowledge base.")]
         Article = 127,
         
         [EnumMember()]
-        [OptionSetMetadata("Subject", Index=337, Lcid=1033, Description="Information regarding subjects available in the system.")]
+        [OptionSetMetadata("Subject", Index=221, Lcid=1033, Description="Information regarding subjects available in the system.")]
         Subject = 129,
         
         [EnumMember()]
-        [OptionSetMetadata("Announcement", Index=975, Lcid=1033, Description="Announcement associated with an organization.")]
+        [OptionSetMetadata("Announcement", Index=542, Lcid=1033, Description="Announcement associated with an organization.")]
         Announcement = 132,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity Party", Index=893, Lcid=1033, Description="Person or group associated with an activity. An activity can have multiple activi" +
+        [OptionSetMetadata("Activity Party", Index=504, Lcid=1033, Description="Person or group associated with an activity. An activity can have multiple activi" +
             "ty parties.")]
         ActivityParty = 135,
         
         [EnumMember()]
-        [OptionSetMetadata("User Settings", Index=431, Lcid=1033, Description="User\'s preferred settings.")]
-        UserSettings_2 = 150,
+        [OptionSetMetadata("User Settings", Index=249, Lcid=1033, Description="User\'s preferred settings.")]
+        UserSettings = 150,
         
         [EnumMember()]
-        [OptionSetMetadata("Canvas App", Index=1000, Lcid=1033, Description="An application built through a canvas-based editing experience.")]
+        [OptionSetMetadata("Canvas App", Index=412, Lcid=1033, Description="An application built through a canvas-based editing experience.")]
         CanvasApp = 300,
         
         [EnumMember()]
-        [OptionSetMetadata("Callback Registration", Index=972, Lcid=1033, Description="Callback Registration that stores configuration.")]
+        [OptionSetMetadata("Callback Registration", Index=413, Lcid=1033, Description="Callback Registration that stores configuration.")]
         CallbackRegistration = 301,
         
         [EnumMember()]
-        [OptionSetMetadata("Connector", Index=930, Lcid=1033, Description="Connector Entity to support Solutioning Integration")]
+        [OptionSetMetadata("Connector", Index=384, Lcid=1033, Description="Connector Entity to support Solutioning Integration")]
         Connector = 372,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Instance", Index=926, Lcid=1033, Description="")]
+        [OptionSetMetadata("Connection Instance", Index=391, Lcid=1033, Description="")]
         ConnectionInstance = 373,
         
         [EnumMember()]
-        [OptionSetMetadata("Environment Variable Definition", Index=678, Lcid=1033, Description="Contains information about the settable variable: its type, default value, and et" +
+        [OptionSetMetadata("Environment Variable Definition", Index=700, Lcid=1033, Description="Contains information about the settable variable: its type, default value, and et" +
             "c.")]
         EnvironmentVariableDefinition = 380,
         
         [EnumMember()]
-        [OptionSetMetadata("Environment Variable Value", Index=679, Lcid=1033, Description="Holds the value for the associated EnvironmentVariableDefinition entity.")]
+        [OptionSetMetadata("Environment Variable Value", Index=699, Lcid=1033, Description="Holds the value for the associated EnvironmentVariableDefinition entity.")]
         EnvironmentVariableValue = 381,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Template", Index=1245, Lcid=1033, Description="")]
+        [OptionSetMetadata("AI Template", Index=584, Lcid=1033, Description="")]
         AITemplate = 400,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Model", Index=1240, Lcid=1033, Description="")]
+        [OptionSetMetadata("AI Model", Index=583, Lcid=1033, Description="")]
         AIModel = 401,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Configuration", Index=1250, Lcid=1033, Description="")]
+        [OptionSetMetadata("AI Configuration", Index=610, Lcid=1033, Description="")]
         AIConfiguration = 402,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow", Index=1067, Lcid=1033, Description="")]
+        [OptionSetMetadata("Dataflow", Index=654, Lcid=1033, Description="")]
         Dataflow = 418,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Analytics Config", Index=683, Lcid=1033, Description="This entity contains information about which entities are enabled for Azure Data " +
+        [OptionSetMetadata("Entity Analytics Config", Index=448, Lcid=1033, Description="This entity contains information about which entities are enabled for Azure Data " +
             "Lake Services integration")]
         EntityAnalyticsConfig = 430,
         
         [EnumMember()]
-        [OptionSetMetadata("Image Attribute Configuration", Index=873, Lcid=1033, Description="Store configuration for each image attribute")]
+        [OptionSetMetadata("Image Attribute Configuration", Index=549, Lcid=1033, Description="Store configuration for each image attribute")]
         ImageAttributeConfiguration = 431,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Image Configuration", Index=675, Lcid=1033, Description="Store image configuration for each entity")]
+        [OptionSetMetadata("Entity Image Configuration", Index=447, Lcid=1033, Description="Store image configuration for each entity")]
         EntityImageConfiguration = 432,
         
         [EnumMember()]
-        [OptionSetMetadata("New Process", Index=566, Lcid=1033, Description="New Process Business Process Flow")]
+        [OptionSetMetadata("New Process", Index=163, Lcid=1033, Description="New Process Business Process Flow")]
         NewProcess = 950,
         
         [EnumMember()]
-        [OptionSetMetadata("Translation Process", Index=499, Lcid=1033, Description="Translation Process Business Process Flow")]
+        [OptionSetMetadata("Translation Process", Index=266, Lcid=1033, Description="Translation Process Business Process Flow")]
         TranslationProcess = 951,
         
         [EnumMember()]
-        [OptionSetMetadata("Phone To Case Process", Index=576, Lcid=1033, Description="Phone To Case Process Business Process Flow")]
-        PhoneToCaseProcess = 952,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Opportunity Sales Process", Index=554, Lcid=1033, Description="Opportunity Sales Process Business Process Flow")]
-        OpportunitySalesProcess = 953,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead To Opportunity Sales Process", Index=764, Lcid=1033, Description="Lead To Opportunity Sales Process Business Process Flow")]
-        LeadToOpportunitySalesProcess = 954,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Expired Process", Index=706, Lcid=1033, Description="Expired Process Business Process Flow")]
+        [OptionSetMetadata("Expired Process", Index=698, Lcid=1033, Description="Expired Process Business Process Flow")]
         ExpiredProcess = 955,
         
         [EnumMember()]
-        [OptionSetMetadata("Attachment", Index=899, Lcid=1033, Description="MIME attachment for an activity.")]
-        Attachment_2 = 1001,
+        [OptionSetMetadata("Attachment", Index=502, Lcid=1033, Description="MIME attachment for an activity.")]
+        Attachment = 1001,
         
         [EnumMember()]
-        [OptionSetMetadata("Attachment", Index=877, Lcid=1033, Description="Attachment for an email activity.")]
-        Attachment = 1002,
+        [OptionSetMetadata("Attachment", Index=564, Lcid=1033, Description="Attachment for an email activity.")]
+        Attachment_2 = 1002,
         
         [EnumMember()]
-        [OptionSetMetadata("Internal Address", Index=828, Lcid=1033, Description="Storage of addresses for a user, business unit, or site.")]
+        [OptionSetMetadata("Internal Address", Index=763, Lcid=1033, Description="Storage of addresses for a user, business unit, or site.")]
         InternalAddress = 1003,
         
         [EnumMember()]
-        [OptionSetMetadata("Competitor Address", Index=943, Lcid=1033, Description="Additional addresses for a competitor. The first two addresses are stored in the " +
-            "competitor object.")]
-        CompetitorAddress = 1004,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Competitor Product", Index=941, Lcid=1033, Description="Association between a competitor and a product offered by the competitor.")]
-        CompetitorProduct = 1006,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Image Descriptor", Index=833, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Image Descriptor", Index=749, Lcid=1033, Description="For internal use only.")]
         ImageDescriptor = 1007,
         
         [EnumMember()]
-        [OptionSetMetadata("Contract", Index=965, Lcid=1033, Description="Agreement to provide customer service during a specified amount of time or number" +
-            " of cases.")]
-        Contract = 1010,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contract Line", Index=966, Lcid=1033, Description="Line item in a contract that specifies the type of service a customer is entitled" +
-            " to.")]
-        ContractLine = 1011,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Discount", Index=724, Lcid=1033, Description="Price reduction made from the list price of a product or service based on the qua" +
-            "ntity purchased.")]
-        Discount = 1013,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Article Template", Index=769, Lcid=1033, Description="Template for a knowledge base article that contains the standard attributes of an" +
+        [OptionSetMetadata("Article Template", Index=756, Lcid=1033, Description="Template for a knowledge base article that contains the standard attributes of an" +
             " article.")]
         ArticleTemplate = 1016,
         
         [EnumMember()]
-        [OptionSetMetadata("Lead Address", Index=758, Lcid=1033, Description="Address information for a lead.")]
-        LeadAddress = 1017,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Organization", Index=551, Lcid=1033, Description="Top level of the Microsoft Dynamics 365 business hierarchy. The organization can " +
+        [OptionSetMetadata("Organization", Index=156, Lcid=1033, Description="Top level of the Microsoft Dynamics 365 business hierarchy. The organization can " +
             "be a specific business, holding company, or corporation.")]
         Organization = 1019,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization UI", Index=587, Lcid=1033, Description="Entity customizations including form layout and icons. Includes current and past " +
+        [OptionSetMetadata("Organization UI", Index=34, Lcid=1033, Description="Entity customizations including form layout and icons. Includes current and past " +
             "versions.")]
         OrganizationUI = 1021,
         
         [EnumMember()]
-        [OptionSetMetadata("Price List", Index=545, Lcid=1033, Description="Entity that defines pricing levels.")]
-        PriceList = 1022,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Privilege", Index=535, Lcid=1033, Description="Permission to perform an action in Microsoft CRM. The platform checks for the pri" +
+        [OptionSetMetadata("Privilege", Index=79, Lcid=1033, Description="Permission to perform an action in Microsoft CRM. The platform checks for the pri" +
             "vilege and rejects the attempt if the user does not hold the privilege.")]
         Privilege = 1023,
         
         [EnumMember()]
-        [OptionSetMetadata("Product", Index=531, Lcid=1033, Description="Information about products and their pricing information.")]
-        Product_2 = 1024,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Product Association", Index=644, Lcid=1033, Description="Instance of a product added to a bundle or kit.")]
-        ProductAssociation = 1025,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Price List Item", Index=645, Lcid=1033, Description="Information about how to price a product in the specified price level, including " +
-            "pricing method, rounding option, and discount type based on a specified product " +
-            "unit.")]
-        PriceListItem = 1026,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Product Relationship", Index=641, Lcid=1033, Description="Information about the selling relationship between two products, including the re" +
-            "lationship type, such as up-sell, cross-sell, substitute, or accessory.")]
-        ProductRelationship = 1028,
-        
-        [EnumMember()]
-        [OptionSetMetadata("System Form", Index=365, Lcid=1033, Description="Organization-owned entity customizations including form layout and dashboards.")]
+        [OptionSetMetadata("System Form", Index=214, Lcid=1033, Description="Organization-owned entity customizations including form layout and dashboards.")]
         SystemForm = 1030,
         
         [EnumMember()]
-        [OptionSetMetadata("User Dashboard", Index=492, Lcid=1033, Description="User-owned dashboards.")]
+        [OptionSetMetadata("User Dashboard", Index=277, Lcid=1033, Description="User-owned dashboards.")]
         UserDashboard = 1031,
         
         [EnumMember()]
-        [OptionSetMetadata("Security Role", Index=597, Lcid=1033, Description="Grouping of security privileges. Users are assigned roles that authorize their ac" +
+        [OptionSetMetadata("Security Role", Index=314, Lcid=1033, Description="Grouping of security privileges. Users are assigned roles that authorize their ac" +
             "cess to the Microsoft CRM system.")]
         SecurityRole = 1036,
         
         [EnumMember()]
-        [OptionSetMetadata("Role Template", Index=593, Lcid=1033, Description="Template for a role. Defines initial attributes that will be used when creating a" +
+        [OptionSetMetadata("Role Template", Index=330, Lcid=1033, Description="Template for a role. Defines initial attributes that will be used when creating a" +
             " new role.")]
         RoleTemplate = 1037,
         
         [EnumMember()]
-        [OptionSetMetadata("Sales Literature", Index=628, Lcid=1033, Description="Storage of sales literature, which may contain one or more documents.")]
-        SalesLiterature = 1038,
-        
-        [EnumMember()]
-        [OptionSetMetadata("View", Index=612, Lcid=1033, Description="Saved query against the database.")]
+        [OptionSetMetadata("View", Index=326, Lcid=1033, Description="Saved query against the database.")]
         View = 1039,
         
         [EnumMember()]
-        [OptionSetMetadata("String Map", Index=336, Lcid=1033, Description="Mapping between strings.")]
+        [OptionSetMetadata("String Map", Index=222, Lcid=1033, Description="Mapping between strings.")]
         StringMap = 1043,
         
         [EnumMember()]
-        [OptionSetMetadata("Property", Index=739, Lcid=1033, Description="Information about a product property.")]
-        Property = 1048,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Option Set Item", Index=736, Lcid=1033, Description="Item with a name and value in a property option set type.")]
-        PropertyOptionSetItem = 1049,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Unit", Index=486, Lcid=1033, Description="Unit of measure.")]
-        Unit = 1055,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Unit Group", Index=487, Lcid=1033, Description="Grouping of units.")]
-        UnitGroup = 1056,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Attachment", Index=629, Lcid=1033, Description="Item in the sales literature collection.")]
-        SalesAttachment = 1070,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Address", Index=729, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for an accou" +
+        [OptionSetMetadata("Address", Index=429, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for an accou" +
             "nt or contact.")]
         Address = 1071,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Clients", Index=345, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription Clients", Index=225, Lcid=1033, Description="For internal use only.")]
         SubscriptionClients = 1072,
         
         [EnumMember()]
-        [OptionSetMetadata("Status Map", Index=338, Lcid=1033, Description="Mapping between statuses.")]
+        [OptionSetMetadata("Status Map", Index=286, Lcid=1033, Description="Mapping between statuses.")]
         StatusMap = 1075,
         
         [EnumMember()]
-        [OptionSetMetadata("Discount List", Index=722, Lcid=1033, Description="Type of discount specified as either a percentage or an amount.")]
-        DiscountList = 1080,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Article Comment", Index=768, Lcid=1033, Description="Comment on a knowledge base article.")]
+        [OptionSetMetadata("Article Comment", Index=757, Lcid=1033, Description="Comment on a knowledge base article.")]
         ArticleComment = 1082,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity Product", Index=547, Lcid=1033, Description="Association between an opportunity and a product.")]
-        OpportunityProduct = 1083,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quote", Index=634, Lcid=1033, Description="Formal offer for products and/or services, proposed at specific prices and relate" +
-            "d payment terms, which is sent to a prospective customer.")]
-        Quote = 1084,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quote Product", Index=630, Lcid=1033, Description="Product line item in a quote. The details include such information as product ID," +
-            " description, quantity, and cost.")]
-        QuoteProduct = 1085,
-        
-        [EnumMember()]
-        [OptionSetMetadata("User Fiscal Calendar", Index=491, Lcid=1033, Description="Custom fiscal calendar used for tracking sales quotas.")]
+        [OptionSetMetadata("User Fiscal Calendar", Index=275, Lcid=1033, Description="Custom fiscal calendar used for tracking sales quotas.")]
         UserFiscalCalendar = 1086,
         
         [EnumMember()]
-        [OptionSetMetadata("Order", Index=627, Lcid=1033, Description="Quote that has been accepted.")]
-        Order = 1088,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Order Product", Index=625, Lcid=1033, Description="Line item in a sales order.")]
-        OrderProduct = 1089,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice", Index=826, Lcid=1033, Description="Order that has been billed.")]
-        Invoice_2 = 1090,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice Product", Index=771, Lcid=1033, Description="Line item in an invoice containing detailed billing information for a product.")]
-        InvoiceProduct = 1091,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Authorization Server", Index=878, Lcid=1033, Description="Authorization servers that trust this organization")]
+        [OptionSetMetadata("Authorization Server", Index=535, Lcid=1033, Description="Authorization servers that trust this organization")]
         AuthorizationServer = 1094,
         
         [EnumMember()]
-        [OptionSetMetadata("Partner Application", Index=569, Lcid=1033, Description="Partner applications registered for this organization")]
+        [OptionSetMetadata("Partner Application", Index=27, Lcid=1033, Description="Partner applications registered for this organization")]
         PartnerApplication = 1095,
         
         [EnumMember()]
-        [OptionSetMetadata("System Chart", Index=613, Lcid=1033, Description="System chart attached to an entity.")]
+        [OptionSetMetadata("System Chart", Index=310, Lcid=1033, Description="System chart attached to an entity.")]
         SystemChart = 1111,
         
         [EnumMember()]
-        [OptionSetMetadata("User Chart", Index=434, Lcid=1033, Description="Chart attached to an entity.")]
+        [OptionSetMetadata("User Chart", Index=246, Lcid=1033, Description="Chart attached to an entity.")]
         UserChart = 1112,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Tab To Command Mapping", Index=596, Lcid=1033, Description="A mapping between Tab Ids, and the Commands within those tabs.")]
+        [OptionSetMetadata("Ribbon Tab To Command Mapping", Index=315, Lcid=1033, Description="A mapping between Tab Ids, and the Commands within those tabs.")]
         RibbonTabToCommandMapping = 1113,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Context Group", Index=591, Lcid=1033, Description="Groupings of contextual tabs.")]
+        [OptionSetMetadata("Ribbon Context Group", Index=320, Lcid=1033, Description="Groupings of contextual tabs.")]
         RibbonContextGroup = 1115,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Command", Index=598, Lcid=1033, Description="Ribbon Commands - the command definition, rules, etc.")]
+        [OptionSetMetadata("Ribbon Command", Index=321, Lcid=1033, Description="Ribbon Commands - the command definition, rules, etc.")]
         RibbonCommand = 1116,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Rule", Index=589, Lcid=1033, Description="Ribbon rule definitions, used to enable and disable, show and hide ribbon element" +
+        [OptionSetMetadata("Ribbon Rule", Index=313, Lcid=1033, Description="Ribbon rule definitions, used to enable and disable, show and hide ribbon element" +
             "s.")]
         RibbonRule = 1117,
         
         [EnumMember()]
-        [OptionSetMetadata("Application Ribbons", Index=592, Lcid=1033, Description="Ribbon customizations for the application ribbon and entity ribbon templates.")]
+        [OptionSetMetadata("Application Ribbons", Index=316, Lcid=1033, Description="Ribbon customizations for the application ribbon and entity ribbon templates.")]
         ApplicationRibbons = 1120,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Difference", Index=590, Lcid=1033, Description="All layout customizations to be applied to the ribbons, which contain only the di" +
+        [OptionSetMetadata("Ribbon Difference", Index=312, Lcid=1033, Description="All layout customizations to be applied to the ribbons, which contain only the di" +
             "fferences from the base ribbon.")]
         RibbonDifference = 1130,
         
         [EnumMember()]
-        [OptionSetMetadata("Replication Backlog", Index=668, Lcid=1033, Description="Entity to hold replication backlog tasks. For internal use only.")]
+        [OptionSetMetadata("Replication Backlog", Index=52, Lcid=1033, Description="Entity to hold replication backlog tasks. For internal use only.")]
         ReplicationBacklog = 1140,
         
         [EnumMember()]
-        [OptionSetMetadata("Characteristic", Index=994, Lcid=1033, Description="Skills, education and certifications of resources.")]
-        Characteristic = 1141,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rating Value", Index=638, Lcid=1033, Description="A unique value associated with a rating model that allows providing a user friend" +
-            "ly rating value.")]
-        RatingValue = 1142,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rating Model", Index=631, Lcid=1033, Description="Represents a model to evaluate skills or other related entities.")]
-        RatingModel = 1144,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Booking", Index=862, Lcid=1033, Description="Represents the line details of a resource booking.")]
-        BookableResourceBooking = 1145,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Booking Header", Index=870, Lcid=1033, Description="Reservation entity representing the summary of the associated resource bookings.")]
-        BookableResourceBookingHeader = 1146,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Category", Index=871, Lcid=1033, Description="Categorize resources that have capacity into categories such as roles.")]
-        BookableResourceCategory = 1147,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Characteristic", Index=867, Lcid=1033, Description="Associates resources with their characteristics and specifies the proficiency lev" +
-            "el of a resource for that characteristic.")]
-        BookableResourceCharacteristic = 1148,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Category Assn", Index=869, Lcid=1033, Description="Association entity to model the categorization of resources.")]
-        BookableResourceCategoryAssn = 1149,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource", Index=864, Lcid=1033, Description="Resource that has capacity which can be allocated to work.")]
-        BookableResource = 1150,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Group", Index=868, Lcid=1033, Description="Associates resources with resource groups that they are a member of.")]
-        BookableResourceGroup = 1151,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Booking Status", Index=981, Lcid=1033, Description="Allows creation of multiple sub statuses mapped to a booking status option.")]
-        BookingStatus = 1152,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Document Suggestions", Index=637, Lcid=1033, Description="Document Suggestions")]
+        [OptionSetMetadata("Document Suggestions", Index=88, Lcid=1033, Description="Document Suggestions")]
         DocumentSuggestions = 1189,
         
         [EnumMember()]
-        [OptionSetMetadata("SuggestionCardTemplate", Index=369, Lcid=1033, Description="Templates for Suggestion Card in Grid")]
+        [OptionSetMetadata("SuggestionCardTemplate", Index=226, Lcid=1033, Description="Templates for Suggestion Card in Grid")]
         SuggestionCardTemplate = 1190,
         
         [EnumMember()]
-        [OptionSetMetadata("Field Security Profile", Index=702, Lcid=1033, Description="Profile which defines access level for secured attributes")]
+        [OptionSetMetadata("Field Security Profile", Index=705, Lcid=1033, Description="Profile which defines access level for secured attributes")]
         FieldSecurityProfile = 1200,
         
         [EnumMember()]
-        [OptionSetMetadata("Field Permission", Index=695, Lcid=1033, Description="Group of privileges used to categorize users to provide appropriate access to sec" +
+        [OptionSetMetadata("Field Permission", Index=706, Lcid=1033, Description="Group of privileges used to categorize users to provide appropriate access to sec" +
             "ured columns.")]
         FieldPermission = 1201,
         
         [EnumMember()]
-        [OptionSetMetadata("Team Profiles", Index=481, Lcid=1033, Description="Team Profiles")]
+        [OptionSetMetadata("Team Profiles", Index=210, Lcid=1033, Description="Team Profiles")]
         TeamProfiles = 1203,
         
         [EnumMember()]
-        [OptionSetMetadata("Application", Index=853, Lcid=1033, Description="Application")]
+        [OptionSetMetadata("Application", Index=494, Lcid=1033, Description="Application")]
         Application = 1204,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Property Group", Index=993, Lcid=1033, Description="Group or collection of channel properties provided by the external channel for a " +
+        [OptionSetMetadata("Channel Property Group", Index=427, Lcid=1033, Description="Group or collection of channel properties provided by the external channel for a " +
             "Microsoft Dynamics 365 activity.")]
         ChannelPropertyGroup = 1234,
         
         [EnumMember()]
-        [OptionSetMetadata("Property Association", Index=740, Lcid=1033, Description="Association of a property definition with another entity in the system.")]
-        PropertyAssociation = 1235,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Property", Index=995, Lcid=1033, Description="Instance of a channel property containing its name and corresponding data type.")]
+        [OptionSetMetadata("Channel Property", Index=428, Lcid=1033, Description="Instance of a channel property containing its name and corresponding data type.")]
         ChannelProperty = 1236,
         
         [EnumMember()]
-        [OptionSetMetadata("SocialInsightsConfiguration", Index=400, Lcid=1033, Description="Configuration for the social insights.")]
+        [OptionSetMetadata("SocialInsightsConfiguration", Index=371, Lcid=1033, Description="Configuration for the social insights.")]
         SocialInsightsConfiguration = 1300,
         
         [EnumMember()]
-        [OptionSetMetadata("Saved Organization Insights Configuration", Index=619, Lcid=1033, Description="Saved configuration for the organization insights")]
+        [OptionSetMetadata("Saved Organization Insights Configuration", Index=327, Lcid=1033, Description="Saved configuration for the organization insights")]
         SavedOrganizationInsightsConfiguration = 1309,
         
         [EnumMember()]
-        [OptionSetMetadata("Property Instance", Index=738, Lcid=1033, Description="Instance of a property with its value.")]
-        PropertyInstance = 1333,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sync Attribute Mapping Profile", Index=359, Lcid=1033, Description="Profile which defines sync attribute mapping")]
+        [OptionSetMetadata("Sync Attribute Mapping Profile", Index=229, Lcid=1033, Description="Profile which defines sync attribute mapping")]
         SyncAttributeMappingProfile = 1400,
         
         [EnumMember()]
-        [OptionSetMetadata("Sync Attribute Mapping", Index=361, Lcid=1033, Description="Group of Sync-Attribute Mappings used to provide Attribute mappings during sync f" +
+        [OptionSetMetadata("Sync Attribute Mapping", Index=227, Lcid=1033, Description="Group of Sync-Attribute Mappings used to provide Attribute mappings during sync f" +
             "or a particular user")]
         SyncAttributeMapping = 1401,
         
         [EnumMember()]
-        [OptionSetMetadata("Team Sync-Attribute Mapping Profiles", Index=482, Lcid=1033, Description="Team Sync-Attribute Mapping Profiles")]
+        [OptionSetMetadata("Team Sync-Attribute Mapping Profiles", Index=209, Lcid=1033, Description="Team Sync-Attribute Mapping Profiles")]
         TeamSyncAttributeMappingProfiles = 1403,
         
         [EnumMember()]
-        [OptionSetMetadata("Principal Sync Attribute Map", Index=542, Lcid=1033, Description="Maps security principals (users and teams) to sync attribute mappings.")]
+        [OptionSetMetadata("Principal Sync Attribute Map", Index=47, Lcid=1033, Description="Maps security principals (users and teams) to sync attribute mappings.")]
         PrincipalSyncAttributeMap = 1404,
         
         [EnumMember()]
-        [OptionSetMetadata("Annual Fiscal Calendar", Index=913, Lcid=1033, Description="Year long fiscal calendar of an organization. A span of time during which the fin" +
+        [OptionSetMetadata("Annual Fiscal Calendar", Index=497, Lcid=1033, Description="Year long fiscal calendar of an organization. A span of time during which the fin" +
             "ancial activities of an organization are calculated.")]
         AnnualFiscalCalendar = 2000,
         
         [EnumMember()]
-        [OptionSetMetadata("Semiannual Fiscal Calendar", Index=396, Lcid=1033, Description="Calendar representing the semi-annual span of time during which the financial act" +
+        [OptionSetMetadata("Semiannual Fiscal Calendar", Index=308, Lcid=1033, Description="Calendar representing the semi-annual span of time during which the financial act" +
             "ivities of an organization are calculated.")]
         SemiannualFiscalCalendar = 2001,
         
         [EnumMember()]
-        [OptionSetMetadata("Quarterly Fiscal Calendar", Index=648, Lcid=1033, Description="Quarterly fiscal calendar of an organization. A span of time during which the fin" +
+        [OptionSetMetadata("Quarterly Fiscal Calendar", Index=94, Lcid=1033, Description="Quarterly fiscal calendar of an organization. A span of time during which the fin" +
             "ancial activities of an organization are calculated.")]
         QuarterlyFiscalCalendar = 2002,
         
         [EnumMember()]
-        [OptionSetMetadata("Monthly Fiscal Calendar", Index=1230, Lcid=1033, Description="Monthly fiscal calendar of an organization. A span of time during which the finan" +
+        [OptionSetMetadata("Monthly Fiscal Calendar", Index=600, Lcid=1033, Description="Monthly fiscal calendar of an organization. A span of time during which the finan" +
             "cial activities of an organization are calculated.")]
         MonthlyFiscalCalendar = 2003,
         
         [EnumMember()]
-        [OptionSetMetadata("Fixed Monthly Fiscal Calendar", Index=699, Lcid=1033, Description="Fixed monthly fiscal calendar of an organization. A span of time during which the" +
+        [OptionSetMetadata("Fixed Monthly Fiscal Calendar", Index=708, Lcid=1033, Description="Fixed monthly fiscal calendar of an organization. A span of time during which the" +
             " financial activities of an organization are calculated.")]
         FixedMonthlyFiscalCalendar = 2004,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Template", Index=478, Lcid=1033, Description="Template for an email message that contains the standard attributes of an email m" +
+        [OptionSetMetadata("Email Template", Index=213, Lcid=1033, Description="Template for an email message that contains the standard attributes of an email m" +
             "essage.")]
         EmailTemplate = 2010,
         
         [EnumMember()]
-        [OptionSetMetadata("Contract Template", Index=964, Lcid=1033, Description="Template for a contract containing the standard attributes of a contract.")]
-        ContractTemplate = 2011,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Unresolved Address", Index=500, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Unresolved Address", Index=274, Lcid=1033, Description="For internal use only.")]
         UnresolvedAddress = 2012,
         
         [EnumMember()]
-        [OptionSetMetadata("Territory", Index=479, Lcid=1033, Description="Territory represents sales regions.")]
+        [OptionSetMetadata("Territory", Index=212, Lcid=1033, Description="Territory represents sales regions.")]
         Territory = 2013,
         
         [EnumMember()]
-        [OptionSetMetadata("Theme", Index=465, Lcid=1033, Description="Information that\'s used to set custom visual theme options for client application" +
+        [OptionSetMetadata("Theme", Index=203, Lcid=1033, Description="Information that\'s used to set custom visual theme options for client application" +
             "s.")]
         Theme = 2015,
         
         [EnumMember()]
-        [OptionSetMetadata("User Mapping", Index=490, Lcid=1033, Description="User Mapping")]
+        [OptionSetMetadata("User Mapping", Index=279, Lcid=1033, Description="User Mapping")]
         UserMapping = 2016,
         
         [EnumMember()]
-        [OptionSetMetadata("Queue", Index=646, Lcid=1033, Description="A list of records that require action, such as accounts, activities, and cases.")]
+        [OptionSetMetadata("Queue", Index=93, Lcid=1033, Description="A list of records that require action, such as accounts, activities, and cases.")]
         Queue = 2020,
         
         [EnumMember()]
-        [OptionSetMetadata("QueueItemCount", Index=640, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("QueueItemCount", Index=85, Lcid=1033, Description="For internal use only.")]
         QueueItemCount = 2023,
         
         [EnumMember()]
-        [OptionSetMetadata("QueueMemberCount", Index=633, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("QueueMemberCount", Index=84, Lcid=1033, Description="For internal use only.")]
         QueueMemberCount = 2024,
         
         [EnumMember()]
-        [OptionSetMetadata("License", Index=763, Lcid=1033, Description="Stores information about a Microsoft CRM license.")]
+        [OptionSetMetadata("License", Index=728, Lcid=1033, Description="Stores information about a Microsoft CRM license.")]
         License = 2027,
         
         [EnumMember()]
-        [OptionSetMetadata("Queue Item", Index=647, Lcid=1033, Description="A specific item in a queue, such as a case record or an activity record.")]
+        [OptionSetMetadata("Queue Item", Index=89, Lcid=1033, Description="A specific item in a queue, such as a case record or an activity record.")]
         QueueItem = 2029,
         
         [EnumMember()]
-        [OptionSetMetadata("User Entity UI Settings", Index=484, Lcid=1033, Description="Stores user settings for entity views.")]
+        [OptionSetMetadata("User Entity UI Settings", Index=276, Lcid=1033, Description="Stores user settings for entity views.")]
         UserEntityUISettings = 2500,
         
         [EnumMember()]
-        [OptionSetMetadata("User Entity Instance Data", Index=483, Lcid=1033, Description="Per User item instance data")]
+        [OptionSetMetadata("User Entity Instance Data", Index=280, Lcid=1033, Description="Per User item instance data")]
         UserEntityInstanceData = 2501,
         
         [EnumMember()]
-        [OptionSetMetadata("Integration Status", Index=820, Lcid=1033, Description="Contains integration status information.")]
+        [OptionSetMetadata("Integration Status", Index=760, Lcid=1033, Description="Contains integration status information.")]
         IntegrationStatus = 3000,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Access Profile", Index=989, Lcid=1033, Description="Information about permissions needed to access Dynamics 365 through external chan" +
+        [OptionSetMetadata("Channel Access Profile", Index=425, Lcid=1033, Description="Information about permissions needed to access Dynamics 365 through external chan" +
             "nels.For internal use only")]
         ChannelAccessProfile = 3005,
         
         [EnumMember()]
-        [OptionSetMetadata("External Party", Index=712, Lcid=1033, Description="Information about external parties that need to access Dynamics 365 from external" +
+        [OptionSetMetadata("External Party", Index=695, Lcid=1033, Description="Information about external parties that need to access Dynamics 365 from external" +
             " channels.For internal use only")]
         ExternalParty = 3008,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Role", Index=934, Lcid=1033, Description="Role describing a relationship between a two records.")]
+        [OptionSetMetadata("Connection Role", Index=383, Lcid=1033, Description="Role describing a relationship between a two records.")]
         ConnectionRole = 3231,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Role Object Type Code", Index=932, Lcid=1033, Description="Specifies the entity type that can play specific role in a connection.")]
+        [OptionSetMetadata("Connection Role Object Type Code", Index=382, Lcid=1033, Description="Specifies the entity type that can play specific role in a connection.")]
         ConnectionRoleObjectTypeCode = 3233,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection", Index=925, Lcid=1033, Description="Relationship between two entities.")]
+        [OptionSetMetadata("Connection", Index=392, Lcid=1033, Description="Relationship between two entities.")]
         Connection = 3234,
         
         [EnumMember()]
-        [OptionSetMetadata("Facility/Equipment", Index=708, Lcid=1033, Description="Resource that can be scheduled.")]
-        FacilityEquipment = 4000,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service", Index=394, Lcid=1033, Description="Activity that represents work done to satisfy a customer\'s need.")]
-        Service = 4001,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource", Index=659, Lcid=1033, Description="User or facility/equipment that can be scheduled for a service.")]
-        Resource = 4002,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Calendar", Index=976, Lcid=1033, Description="Calendar used by the scheduling system to define when an appointment or activity " +
+        [OptionSetMetadata("Calendar", Index=541, Lcid=1033, Description="Calendar used by the scheduling system to define when an appointment or activity " +
             "is to occur.")]
         Calendar = 4003,
         
         [EnumMember()]
-        [OptionSetMetadata("Calendar Rule", Index=974, Lcid=1033, Description="Defines free/busy times for a service and for resources or resource groups, such " +
+        [OptionSetMetadata("Calendar Rule", Index=477, Lcid=1033, Description="Defines free/busy times for a service and for resources or resource groups, such " +
             "as working, non-working, vacation, and blocked.")]
         CalendarRule = 4004,
         
         [EnumMember()]
-        [OptionSetMetadata("Scheduling Group", Index=660, Lcid=1033, Description="Resource group or team whose members can be scheduled for a service.")]
-        SchedulingGroup = 4005,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource Specification", Index=657, Lcid=1033, Description="Selection rule that allows the scheduling engine to select a number of resources " +
-            "from a pool of resources. The rules can be associated with a service.")]
-        ResourceSpecification = 4006,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource Group", Index=931, Lcid=1033, Description="Group or collection of people, equipment, and/or facilities that can be scheduled" +
-            ".")]
-        ResourceGroup = 4007,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Site", Index=416, Lcid=1033, Description="Location or branch office where an organization does business. An organization ca" +
-            "n have multiple sites.")]
-        Site = 4009,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource Expansion", Index=656, Lcid=1033, Description="Resource Expansions.")]
-        ResourceExpansion = 4010,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inter Process Lock", Index=827, Lcid=1033, Description="Inter Process Locks.")]
+        [OptionSetMetadata("Inter Process Lock", Index=758, Lcid=1033, Description="Inter Process Locks.")]
         InterProcessLock = 4011,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Hash", Index=745, Lcid=1033, Description="Email activity hashes used for correlation purposes.")]
+        [OptionSetMetadata("Email Hash", Index=430, Lcid=1033, Description="Email activity hashes used for correlation purposes.")]
         EmailHash = 4023,
         
         [EnumMember()]
-        [OptionSetMetadata("Display String Map", Index=721, Lcid=1033, Description="Maps customized display strings to entities.")]
+        [OptionSetMetadata("Display String Map", Index=475, Lcid=1033, Description="Maps customized display strings to entities.")]
         DisplayStringMap = 4101,
         
         [EnumMember()]
-        [OptionSetMetadata("Display String", Index=720, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
+        [OptionSetMetadata("Display String", Index=476, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
         DisplayString = 4102,
         
         [EnumMember()]
-        [OptionSetMetadata("Notification", Index=562, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Notification", Index=164, Lcid=1033, Description="For internal use only.")]
         Notification = 4110,
         
         [EnumMember()]
-        [OptionSetMetadata("Exchange Sync Id Mapping", Index=707, Lcid=1033, Description="The mapping used to keep track of the IDs for items synced between CRM and Exchan" +
+        [OptionSetMetadata("Exchange Sync Id Mapping", Index=703, Lcid=1033, Description="The mapping used to keep track of the IDs for items synced between CRM and Exchan" +
             "ge.")]
         ExchangeSyncIdMapping = 4120,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity", Index=886, Lcid=1033, Description="Task performed, or to be performed, by a user. An activity is any action for whic" +
+        [OptionSetMetadata("Activity", Index=506, Lcid=1033, Description="Task performed, or to be performed, by a user. An activity is any action for whic" +
             "h an entry can be made on a calendar.")]
         Activity = 4200,
         
         [EnumMember()]
-        [OptionSetMetadata("Appointment", Index=849, Lcid=1033, Description="Commitment representing a time interval with start/end times and duration.")]
+        [OptionSetMetadata("Appointment", Index=554, Lcid=1033, Description="Commitment representing a time interval with start/end times and duration.")]
         Appointment = 4201,
         
         [EnumMember()]
-        [OptionSetMetadata("Email", Index=744, Lcid=1033, Description="Activity that is delivered using email protocols.")]
+        [OptionSetMetadata("Email", Index=435, Lcid=1033, Description="Activity that is delivered using email protocols.")]
         Email = 4202,
         
         [EnumMember()]
@@ -20424,5588 +19074,3188 @@ namespace XrmBedrock.SharedContext {
         Fax = 4204,
         
         [EnumMember()]
-        [OptionSetMetadata("Case Resolution", Index=824, Lcid=1033, Description="Special type of activity that includes description of the resolution, billing sta" +
-            "tus, and the duration of the case.")]
-        CaseResolution = 4206,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Letter", Index=762, Lcid=1033, Description="Activity that tracks the delivery of a letter. The activity can contain the elect" +
+        [OptionSetMetadata("Letter", Index=720, Lcid=1033, Description="Activity that tracks the delivery of a letter. The activity can contain the elect" +
             "ronic copy of the letter.")]
         Letter = 4207,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity Close", Index=548, Lcid=1033, Description="Activity that is created automatically when an opportunity is closed, containing " +
-            "information such as the description of the closing and actual revenue.")]
-        OpportunityClose = 4208,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Order Close", Index=553, Lcid=1033, Description="Activity generated automatically when an order is closed.")]
-        OrderClose = 4209,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Phone Call", Index=575, Lcid=1033, Description="Activity to track a telephone call.")]
+        [OptionSetMetadata("Phone Call", Index=42, Lcid=1033, Description="Activity to track a telephone call.")]
         PhoneCall = 4210,
         
         [EnumMember()]
-        [OptionSetMetadata("Quote Close", Index=632, Lcid=1033, Description="Activity generated when a quote is closed.")]
-        QuoteClose = 4211,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Task", Index=477, Lcid=1033, Description="Generic activity representing work needed to be done.")]
+        [OptionSetMetadata("Task", Index=193, Lcid=1033, Description="Generic activity representing work needed to be done.")]
         Task = 4212,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Activity", Index=395, Lcid=1033, Description="Activity offered by the organization to satisfy its customer\'s needs. Each servic" +
-            "e activity includes date, time, duration, and required resources.")]
-        ServiceActivity = 4214,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Commitment", Index=944, Lcid=1033, Description="For internal use only.")]
-        Commitment = 4215,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Social Activity", Index=399, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Social Activity", Index=372, Lcid=1033, Description="For internal use only.")]
         SocialActivity = 4216,
         
         [EnumMember()]
-        [OptionSetMetadata("UntrackedEmail", Index=493, Lcid=1033, Description="Activity that is delivered using UntrackedEmail protocols.")]
+        [OptionSetMetadata("UntrackedEmail", Index=285, Lcid=1033, Description="Activity that is delivered using UntrackedEmail protocols.")]
         UntrackedEmail = 4220,
         
         [EnumMember()]
-        [OptionSetMetadata("Saved View", Index=489, Lcid=1033, Description="Saved database query that is owned by a user.")]
+        [OptionSetMetadata("Saved View", Index=262, Lcid=1033, Description="Saved database query that is owned by a user.")]
         SavedView = 4230,
         
         [EnumMember()]
-        [OptionSetMetadata("Metadata Difference", Index=786, Lcid=1033, Description="Metadata Difference")]
+        [OptionSetMetadata("Metadata Difference", Index=605, Lcid=1033, Description="Metadata Difference")]
         MetadataDifference = 4231,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Data Localized Label", Index=971, Lcid=1033, Description="Business Data Localized Label")]
+        [OptionSetMetadata("Business Data Localized Label", Index=547, Lcid=1033, Description="Business Data Localized Label")]
         BusinessDataLocalizedLabel = 4232,
         
         [EnumMember()]
-        [OptionSetMetadata("Recurrence Rule", Index=664, Lcid=1033, Description="Recurrence Rule represents the pattern of incidence of recurring entities.")]
+        [OptionSetMetadata("Recurrence Rule", Index=56, Lcid=1033, Description="Recurrence Rule represents the pattern of incidence of recurring entities.")]
         RecurrenceRule = 4250,
         
         [EnumMember()]
-        [OptionSetMetadata("Recurring Appointment", Index=662, Lcid=1033, Description="The Master appointment of a recurring appointment series.")]
+        [OptionSetMetadata("Recurring Appointment", Index=58, Lcid=1033, Description="The Master appointment of a recurring appointment series.")]
         RecurringAppointment = 4251,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Search", Index=743, Lcid=1033, Description="Email Address Search Table.")]
+        [OptionSetMetadata("Email Search", Index=432, Lcid=1033, Description="Email Address Search Table.")]
         EmailSearch = 4299,
         
         [EnumMember()]
-        [OptionSetMetadata("Marketing List", Index=792, Lcid=1033, Description="Group of existing or potential customers created for a marketing campaign or othe" +
-            "r sales purposes.")]
-        MarketingList = 4300,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Marketing List Member", Index=793, Lcid=1033, Description="Item in a marketing list.")]
-        MarketingListMember = 4301,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign", Index=973, Lcid=1033, Description="Container for campaign activities and responses, sales literature, products, and " +
-            "lists to create, plan, execute, and track the results of a specific marketing ca" +
-            "mpaign through its life.")]
-        Campaign = 4400,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Response", Index=999, Lcid=1033, Description="Response from an existing or a potential new customer for a campaign.")]
-        CampaignResponse = 4401,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Activity", Index=1002, Lcid=1033, Description="Task performed, or to be performed, by a user for planning or running a campaign." +
-            "")]
-        CampaignActivity = 4402,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Item", Index=1001, Lcid=1033, Description="Work item in a campaign, a list or sales literature.")]
-        CampaignItem = 4403,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Activity Item", Index=1003, Lcid=1033, Description="Work item of a campaign activity, such as a list or sales literature.")]
-        CampaignActivityItem = 4404,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bulk Operation Log", Index=970, Lcid=1033, Description="Log used to track bulk operation execution, successes, and failures.")]
-        BulkOperationLog = 4405,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quick Campaign", Index=977, Lcid=1033, Description="System operation used to perform lengthy and asynchronous operations on large dat" +
-            "a sets, such as distributing a campaign activity or quick campaign.")]
-        QuickCampaign = 4406,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Import", Index=831, Lcid=1033, Description="Status and ownership information for an import job.")]
+        [OptionSetMetadata("Data Import", Index=751, Lcid=1033, Description="Status and ownership information for an import job.")]
         DataImport = 4410,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Map", Index=837, Lcid=1033, Description="Data map used in import.")]
+        [OptionSetMetadata("Data Map", Index=745, Lcid=1033, Description="Data map used in import.")]
         DataMap = 4411,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Source File", Index=840, Lcid=1033, Description="File name of file used for import.")]
+        [OptionSetMetadata("Import Source File", Index=742, Lcid=1033, Description="File name of file used for import.")]
         ImportSourceFile = 4412,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Data", Index=832, Lcid=1033, Description="Unprocessed data from imported files.")]
+        [OptionSetMetadata("Import Data", Index=750, Lcid=1033, Description="Unprocessed data from imported files.")]
         ImportData = 4413,
         
         [EnumMember()]
-        [OptionSetMetadata("Duplicate Detection Rule", Index=747, Lcid=1033, Description="Rule used to identify potential duplicates.")]
+        [OptionSetMetadata("Duplicate Detection Rule", Index=468, Lcid=1033, Description="Rule used to identify potential duplicates.")]
         DuplicateDetectionRule = 4414,
         
         [EnumMember()]
-        [OptionSetMetadata("Duplicate Record", Index=749, Lcid=1033, Description="Potential duplicate record.")]
+        [OptionSetMetadata("Duplicate Record", Index=466, Lcid=1033, Description="Potential duplicate record.")]
         DuplicateRecord = 4415,
         
         [EnumMember()]
-        [OptionSetMetadata("Duplicate Rule Condition", Index=748, Lcid=1033, Description="Condition of a duplicate detection rule.")]
+        [OptionSetMetadata("Duplicate Rule Condition", Index=470, Lcid=1033, Description="Condition of a duplicate detection rule.")]
         DuplicateRuleCondition = 4416,
         
         [EnumMember()]
-        [OptionSetMetadata("Column Mapping", Index=936, Lcid=1033, Description="Mapping for columns in a data map.")]
+        [OptionSetMetadata("Column Mapping", Index=418, Lcid=1033, Description="Mapping for columns in a data map.")]
         ColumnMapping = 4417,
         
         [EnumMember()]
-        [OptionSetMetadata("List Value Mapping", Index=574, Lcid=1033, Description="In a data map, maps list values from the source file to Microsoft Dynamics 365.")]
+        [OptionSetMetadata("List Value Mapping", Index=44, Lcid=1033, Description="In a data map, maps list values from the source file to Microsoft Dynamics 365.")]
         ListValueMapping = 4418,
         
         [EnumMember()]
-        [OptionSetMetadata("Lookup Mapping", Index=790, Lcid=1033, Description="In a data map, maps a lookup attribute in a source file to Microsoft Dynamics 365" +
+        [OptionSetMetadata("Lookup Mapping", Index=735, Lcid=1033, Description="In a data map, maps a lookup attribute in a source file to Microsoft Dynamics 365" +
             ".")]
         LookupMapping = 4419,
         
         [EnumMember()]
-        [OptionSetMetadata("Owner Mapping", Index=577, Lcid=1033, Description="In a data map, maps ownership data from the source file to Microsoft Dynamics 365" +
+        [OptionSetMetadata("Owner Mapping", Index=24, Lcid=1033, Description="In a data map, maps ownership data from the source file to Microsoft Dynamics 365" +
             ".")]
         OwnerMapping = 4420,
         
         [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Booking to Exchange Id Mapping", Index=863, Lcid=1033, Description="The mapping used to keep track of the IDs for items synced between Dynamics 365 B" +
-            "ookable Resource Booking and Exchange.")]
-        BookableResourceBookingtoExchangeIdMapping = 4421,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Import Log", Index=836, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to import." +
+        [OptionSetMetadata("Import Log", Index=743, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to import." +
             "")]
         ImportLog = 4423,
         
         [EnumMember()]
-        [OptionSetMetadata("Bulk Delete Operation", Index=984, Lcid=1033, Description="User-submitted bulk deletion job.")]
+        [OptionSetMetadata("Bulk Delete Operation", Index=548, Lcid=1033, Description="User-submitted bulk deletion job.")]
         BulkDeleteOperation = 4424,
         
         [EnumMember()]
-        [OptionSetMetadata("Bulk Delete Failure", Index=983, Lcid=1033, Description="Record that was not deleted during a bulk deletion job.")]
+        [OptionSetMetadata("Bulk Delete Failure", Index=546, Lcid=1033, Description="Record that was not deleted during a bulk deletion job.")]
         BulkDeleteFailure = 4425,
         
         [EnumMember()]
-        [OptionSetMetadata("Transformation Mapping", Index=503, Lcid=1033, Description="In a data map, maps the transformation of source attributes to Microsoft Dynamics" +
+        [OptionSetMetadata("Transformation Mapping", Index=265, Lcid=1033, Description="In a data map, maps the transformation of source attributes to Microsoft Dynamics" +
             " 365 attributes.")]
         TransformationMapping = 4426,
         
         [EnumMember()]
-        [OptionSetMetadata("Transformation Parameter Mapping", Index=501, Lcid=1033, Description="In a data map, defines parameters for a transformation.")]
+        [OptionSetMetadata("Transformation Parameter Mapping", Index=267, Lcid=1033, Description="In a data map, defines parameters for a transformation.")]
         TransformationParameterMapping = 4427,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Entity Mapping", Index=839, Lcid=1033, Description="Mapping for entities in a data map.")]
+        [OptionSetMetadata("Import Entity Mapping", Index=746, Lcid=1033, Description="Mapping for entities in a data map.")]
         ImportEntityMapping = 4428,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Performance Dashboard", Index=733, Lcid=1033, Description="Data Performance Dashboard.")]
+        [OptionSetMetadata("Data Performance Dashboard", Index=459, Lcid=1033, Description="Data Performance Dashboard.")]
         DataPerformanceDashboard = 4450,
         
         [EnumMember()]
-        [OptionSetMetadata("Office Document", Index=563, Lcid=1033, Description="Used to store Office Documents in database in binary format.")]
+        [OptionSetMetadata("Office Document", Index=166, Lcid=1033, Description="Used to store Office Documents in database in binary format.")]
         OfficeDocument = 4490,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Role", Index=669, Lcid=1033, Description="Relationship between an account or contact and an opportunity.")]
+        [OptionSetMetadata("Relationship Role", Index=48, Lcid=1033, Description="Relationship between an account or contact and an opportunity.")]
         RelationshipRole = 4500,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Role Map", Index=667, Lcid=1033, Description="Mapping of the primary associated objects between which the relationship role is " +
+        [OptionSetMetadata("Relationship Role Map", Index=50, Lcid=1033, Description="Mapping of the primary associated objects between which the relationship role is " +
             "valid.")]
         RelationshipRoleMap = 4501,
         
         [EnumMember()]
-        [OptionSetMetadata("Customer Relationship", Index=728, Lcid=1033, Description="Relationship between a customer and a partner in which either can be an account o" +
+        [OptionSetMetadata("Customer Relationship", Index=461, Lcid=1033, Description="Relationship between a customer and a partner in which either can be an account o" +
             "r contact.")]
         CustomerRelationship = 4502,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity Relationship", Index=730, Lcid=1033, Description="Relationship between an account or contact and an opportunity.")]
-        OpportunityRelationship = 4503,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Template Product", Index=689, Lcid=1033)]
-        EntitlementTemplateProduct = 4545,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auditing", Index=880, Lcid=1033, Description="Track changes to records for analysis, record keeping, and compliance.")]
+        [OptionSetMetadata("Auditing", Index=536, Lcid=1033, Description="Track changes to records for analysis, record keeping, and compliance.")]
         Auditing = 4567,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Client Metadata.", Index=605, Lcid=1033, Description="A ribbon client metadata.")]
+        [OptionSetMetadata("Ribbon Client Metadata.", Index=319, Lcid=1033, Description="A ribbon client metadata.")]
         RibbonClientMetadata = 4579,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Map", Index=681, Lcid=1033, Description="Represents a mapping between two related entities so that data from one record ca" +
+        [OptionSetMetadata("Entity Map", Index=444, Lcid=1033, Description="Represents a mapping between two related entities so that data from one record ca" +
             "n be copied into the form of a new related record.")]
         EntityMap = 4600,
         
         [EnumMember()]
-        [OptionSetMetadata("Attribute Map", Index=874, Lcid=1033, Description="Represents a mapping between attributes where the attribute values should be copi" +
+        [OptionSetMetadata("Attribute Map", Index=533, Lcid=1033, Description="Represents a mapping between attributes where the attribute values should be copi" +
             "ed from a record into the form of a new related record.")]
         AttributeMap = 4601,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Type", Index=516, Lcid=1033, Description="Type that inherits from the IPlugin interface and is contained within a plug-in a" +
+        [OptionSetMetadata("Plug-in Type", Index=40, Lcid=1033, Description="Type that inherits from the IPlugin interface and is contained within a plug-in a" +
             "ssembly.")]
         PluginType = 4602,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Type Statistic", Index=523, Lcid=1033, Description="Plug-in type statistic.")]
+        [OptionSetMetadata("Plug-in Type Statistic", Index=39, Lcid=1033, Description="Plug-in type statistic.")]
         PluginTypeStatistic = 4603,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Assembly", Index=519, Lcid=1033, Description="Assembly that contains one or more plug-in types.")]
+        [OptionSetMetadata("Plug-in Assembly", Index=37, Lcid=1033, Description="Assembly that contains one or more plug-in types.")]
         PluginAssembly = 4605,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message", Index=611, Lcid=1033, Description="Message that is supported by the SDK.")]
+        [OptionSetMetadata("Sdk Message", Index=293, Lcid=1033, Description="Message that is supported by the SDK.")]
         SdkMessage = 4606,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Filter", Index=609, Lcid=1033, Description="Filter that defines which SDK messages are valid for each type of entity.")]
+        [OptionSetMetadata("Sdk Message Filter", Index=295, Lcid=1033, Description="Filter that defines which SDK messages are valid for each type of entity.")]
         SdkMessageFilter = 4607,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Processing Step", Index=617, Lcid=1033, Description="Stage in the execution pipeline that a plug-in is to execute.")]
+        [OptionSetMetadata("Sdk Message Processing Step", Index=296, Lcid=1033, Description="Stage in the execution pipeline that a plug-in is to execute.")]
         SdkMessageProcessingStep = 4608,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Request", Index=614, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Request", Index=287, Lcid=1033, Description="For internal use only.")]
         SdkMessageRequest = 4609,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Response", Index=392, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Response", Index=291, Lcid=1033, Description="For internal use only.")]
         SdkMessageResponse = 4610,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Response Field", Index=393, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Response Field", Index=290, Lcid=1033, Description="For internal use only.")]
         SdkMessageResponseField = 4611,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Pair", Index=610, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Pair", Index=297, Lcid=1033, Description="For internal use only.")]
         SdkMessagePair = 4613,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Request Field", Index=615, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Request Field", Index=289, Lcid=1033, Description="For internal use only.")]
         SdkMessageRequestField = 4614,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Processing Step Image", Index=618, Lcid=1033, Description="Copy of an entity\'s attributes before or after the core system operation.")]
+        [OptionSetMetadata("Sdk Message Processing Step Image", Index=292, Lcid=1033, Description="Copy of an entity\'s attributes before or after the core system operation.")]
         SdkMessageProcessingStepImage = 4615,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Processing Step Secure Configuration", Index=616, Lcid=1033, Description="Non-public custom configuration that is passed to a plug-in\'s constructor.")]
+        [OptionSetMetadata("Sdk Message Processing Step Secure Configuration", Index=288, Lcid=1033, Description="Non-public custom configuration that is passed to a plug-in\'s constructor.")]
         SdkMessageProcessingStepSecureConfiguration = 4616,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Endpoint", Index=381, Lcid=1033, Description="Service endpoint that can be contacted.")]
+        [OptionSetMetadata("Service Endpoint", Index=299, Lcid=1033, Description="Service endpoint that can be contacted.")]
         ServiceEndpoint = 4618,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Trace Log", Index=515, Lcid=1033, Description="Trace and exception information generated by plug-ins and custom workflow activit" +
+        [OptionSetMetadata("Plug-in Trace Log", Index=38, Lcid=1033, Description="Trace and exception information generated by plug-ins and custom workflow activit" +
             "ies.")]
         PluginTraceLog = 4619,
         
         [EnumMember()]
-        [OptionSetMetadata("System Job", Index=876, Lcid=1033, Description="Process whose execution can proceed independently or in the background.")]
+        [OptionSetMetadata("System Job", Index=562, Lcid=1033, Description="Process whose execution can proceed independently or in the background.")]
         SystemJob = 4700,
         
         [EnumMember()]
-        [OptionSetMetadata("Workflow Wait Subscription", Index=421, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Workflow Wait Subscription", Index=261, Lcid=1033, Description="For internal use only.")]
         WorkflowWaitSubscription = 4702,
         
         [EnumMember()]
-        [OptionSetMetadata("Process", Index=423, Lcid=1033, Description="Set of logical rules that define the steps necessary to automate a specific busin" +
+        [OptionSetMetadata("Process", Index=242, Lcid=1033, Description="Set of logical rules that define the steps necessary to automate a specific busin" +
             "ess process, task, or set of actions to be performed.")]
         Process = 4703,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Dependency", Index=422, Lcid=1033, Description="Dependencies for a process.")]
+        [OptionSetMetadata("Process Dependency", Index=258, Lcid=1033, Description="Dependencies for a process.")]
         ProcessDependency = 4704,
         
         [EnumMember()]
-        [OptionSetMetadata("ISV Config", Index=772, Lcid=1033, Description="An XML document used to configure client extension controls.")]
+        [OptionSetMetadata("ISV Config", Index=753, Lcid=1033, Description="An XML document used to configure client extension controls.")]
         ISVConfig = 4705,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Log", Index=420, Lcid=1033, Description="Log used to track process execution.")]
+        [OptionSetMetadata("Process Log", Index=257, Lcid=1033, Description="Log used to track process execution.")]
         ProcessLog = 4706,
         
         [EnumMember()]
-        [OptionSetMetadata("Application File", Index=860, Lcid=1033, Description="Files used by the application")]
+        [OptionSetMetadata("Application File", Index=493, Lcid=1033, Description="Files used by the application")]
         ApplicationFile = 4707,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Statistic", Index=586, Lcid=1033, Description="Statistics measuring the organization\'s usage of the Microsoft Dynamics 365 syste" +
+        [OptionSetMetadata("Organization Statistic", Index=32, Lcid=1033, Description="Statistics measuring the organization\'s usage of the Microsoft Dynamics 365 syste" +
             "m over the past 24 hours.")]
         OrganizationStatistic = 4708,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Map", Index=409, Lcid=1033, Description="XML data used to control the application navigation pane.")]
+        [OptionSetMetadata("Site Map", Index=379, Lcid=1033, Description="XML data used to control the application navigation pane.")]
         SiteMap = 4709,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Session", Index=533, Lcid=1033, Description="Information that is generated when a dialog is run. Every time that you run a dia" +
+        [OptionSetMetadata("Process Session", Index=73, Lcid=1033, Description="Information that is generated when a dialog is run. Every time that you run a dia" +
             "log, a dialog session is created.")]
         ProcessSession = 4710,
         
         [EnumMember()]
-        [OptionSetMetadata("Expander Event", Index=705, Lcid=1033, Description="For internal use only. An event that will be expanded into jobs whose executions " +
+        [OptionSetMetadata("Expander Event", Index=702, Lcid=1033, Description="For internal use only. An event that will be expanded into jobs whose executions " +
             "can proceed in the background.")]
         ExpanderEvent = 4711,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Trigger", Index=530, Lcid=1033, Description="Trigger that invoke a rule.")]
+        [OptionSetMetadata("Process Trigger", Index=76, Lcid=1033, Description="Trigger that invoke a rule.")]
         ProcessTrigger = 4712,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Session", Index=816, Lcid=1033, Description="Entity to store the information that is generated when a Power Automate Desktop f" +
+        [OptionSetMetadata("Flow Session", Index=672, Lcid=1033, Description="Entity to store the information that is generated when a Power Automate Desktop f" +
             "low runs.")]
         FlowSession = 4720,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Stage", Index=534, Lcid=1033, Description="Stage associated with a process.")]
+        [OptionSetMetadata("Process Stage", Index=72, Lcid=1033, Description="Stage associated with a process.")]
         ProcessStage = 4724,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Process Flow Instance", Index=969, Lcid=1033, Description="Active path associated with every Business Process Flow instance")]
+        [OptionSetMetadata("Business Process Flow Instance", Index=539, Lcid=1033, Description="Active path associated with every Business Process Flow instance")]
         BusinessProcessFlowInstance = 4725,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Wizard", Index=436, Lcid=1033, Description="Definition for a Web-based wizard.")]
+        [OptionSetMetadata("Web Wizard", Index=239, Lcid=1033, Description="Definition for a Web-based wizard.")]
         WebWizard = 4800,
         
         [EnumMember()]
-        [OptionSetMetadata("Wizard Page", Index=430, Lcid=1033, Description="Page in a Web-based wizard.")]
+        [OptionSetMetadata("Wizard Page", Index=243, Lcid=1033, Description="Page in a Web-based wizard.")]
         WizardPage = 4802,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Wizard Access Privilege", Index=437, Lcid=1033, Description="Privilege needed to access a Web-based wizard.")]
+        [OptionSetMetadata("Web Wizard Access Privilege", Index=241, Lcid=1033, Description="Privilege needed to access a Web-based wizard.")]
         WebWizardAccessPrivilege = 4803,
         
         [EnumMember()]
-        [OptionSetMetadata("Time Zone Definition", Index=464, Lcid=1033, Description="Time zone definition, including name and time zone code.")]
+        [OptionSetMetadata("Time Zone Definition", Index=207, Lcid=1033, Description="Time zone definition, including name and time zone code.")]
         TimeZoneDefinition = 4810,
         
         [EnumMember()]
-        [OptionSetMetadata("Time Zone Rule", Index=463, Lcid=1033, Description="Definition for time conversion between local time and Coordinated Universal Time " +
+        [OptionSetMetadata("Time Zone Rule", Index=238, Lcid=1033, Description="Definition for time conversion between local time and Coordinated Universal Time " +
             "(UTC) for a particular time zone at a particular time period.")]
         TimeZoneRule = 4811,
         
         [EnumMember()]
-        [OptionSetMetadata("Time Zone Localized Name", Index=462, Lcid=1033, Description="Localized name of the time zone.")]
+        [OptionSetMetadata("Time Zone Localized Name", Index=206, Lcid=1033, Description="Localized name of the time zone.")]
         TimeZoneLocalizedName = 4812,
         
         [EnumMember()]
-        [OptionSetMetadata("Recently Used", Index=639, Lcid=1033, Description="Most recently used data table.")]
+        [OptionSetMetadata("Recently Used", Index=86, Lcid=1033, Description="Most recently used data table.")]
         RecentlyUsed = 5000,
         
         [EnumMember()]
-        [OptionSetMetadata("NL2SQ Registration Information", Index=564, Lcid=1033, Description="Org registration status, AllowedEntity list, and registration error message.")]
+        [OptionSetMetadata("NL2SQ Registration Information", Index=162, Lcid=1033, Description="Org registration status, AllowedEntity list, and registration error message.")]
         NL2SQRegistrationInformation = 5004,
         
         [EnumMember()]
-        [OptionSetMetadata("Entitlement Product", Index=692, Lcid=1033)]
-        EntitlementProduct = 6363,
+        [OptionSetMetadata("Event Expander Breadcrumb", Index=701, Lcid=1033, Description="Table to store breadcrumb records of Event Expander pipeline.")]
+        EventExpanderBreadcrumb = 5006,
         
         [EnumMember()]
-        [OptionSetMetadata("System Application Metadata", Index=358, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("System Application Metadata", Index=230, Lcid=1033, Description="For internal use only.")]
         SystemApplicationMetadata = 7000,
         
         [EnumMember()]
-        [OptionSetMetadata("User Application Metadata", Index=485, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("User Application Metadata", Index=284, Lcid=1033, Description="For internal use only.")]
         UserApplicationMetadata = 7001,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution", Index=408, Lcid=1033, Description="A solution which contains CRM customizations.")]
+        [OptionSetMetadata("Solution", Index=375, Lcid=1033, Description="A solution which contains CRM customizations.")]
         Solution = 7100,
         
         [EnumMember()]
-        [OptionSetMetadata("Publisher", Index=649, Lcid=1033, Description="A publisher of a CRM solution.")]
+        [OptionSetMetadata("Publisher", Index=83, Lcid=1033, Description="A publisher of a CRM solution.")]
         Publisher = 7101,
         
         [EnumMember()]
-        [OptionSetMetadata("Publisher Address", Index=650, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for a publis" +
+        [OptionSetMetadata("Publisher Address", Index=91, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for a publis" +
             "her.")]
         PublisherAddress = 7102,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component", Index=406, Lcid=1033, Description="A component of a CRM solution.")]
+        [OptionSetMetadata("Solution Component", Index=374, Lcid=1033, Description="A component of a CRM solution.")]
         SolutionComponent = 7103,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Definition", Index=351, Lcid=1033, Description="Contains all the information required to process a solution aware entity")]
+        [OptionSetMetadata("Solution Component Definition", Index=343, Lcid=1033, Description="Contains all the information required to process a solution aware entity")]
         SolutionComponentDefinition = 7104,
         
         [EnumMember()]
-        [OptionSetMetadata("Dependency", Index=719, Lcid=1033, Description="A component dependency in CRM.")]
+        [OptionSetMetadata("Dependency", Index=457, Lcid=1033, Description="A component dependency in CRM.")]
         Dependency = 7105,
         
         [EnumMember()]
-        [OptionSetMetadata("Dependency Node", Index=715, Lcid=1033, Description="The representation of a component dependency node in CRM.")]
+        [OptionSetMetadata("Dependency Node", Index=473, Lcid=1033, Description="The representation of a component dependency node in CRM.")]
         DependencyNode = 7106,
         
         [EnumMember()]
-        [OptionSetMetadata("Invalid Dependency", Index=825, Lcid=1033, Description="An invalid dependency in the CRM system.")]
+        [OptionSetMetadata("Invalid Dependency", Index=754, Lcid=1033, Description="An invalid dependency in the CRM system.")]
         InvalidDependency = 7107,
         
         [EnumMember()]
-        [OptionSetMetadata("Dependency Feature", Index=717, Lcid=1033, Description="A dependency feature.")]
+        [OptionSetMetadata("Dependency Feature", Index=465, Lcid=1033, Description="A dependency feature.")]
         DependencyFeature = 7108,
         
         [EnumMember()]
-        [OptionSetMetadata("RuntimeDependency", Index=621, Lcid=1033, Description="Form Level dependencies in CRM.")]
+        [OptionSetMetadata("RuntimeDependency", Index=324, Lcid=1033, Description="Form Level dependencies in CRM.")]
         RuntimeDependency = 7200,
         
         [EnumMember()]
-        [OptionSetMetadata("Entitlement Contact", Index=684, Lcid=1033)]
-        EntitlementContact = 7272,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ElasticFileAttachment", Index=737, Lcid=1033, Description="Elastic File Attachment")]
+        [OptionSetMetadata("ElasticFileAttachment", Index=439, Lcid=1033, Description="Elastic File Attachment")]
         ElasticFileAttachment = 7755,
         
         [EnumMember()]
-        [OptionSetMetadata("Post", Index=522, Lcid=1033, Description="An activity feed post.")]
+        [OptionSetMetadata("Post", Index=7, Lcid=1033, Description="An activity feed post.")]
         Post = 8000,
         
         [EnumMember()]
-        [OptionSetMetadata("Post Role", Index=508, Lcid=1033, Description="Represents the objects with which an activity feed post is associated. For intern" +
+        [OptionSetMetadata("Post Role", Index=5, Lcid=1033, Description="Represents the objects with which an activity feed post is associated. For intern" +
             "al use only.")]
         PostRole = 8001,
         
         [EnumMember()]
-        [OptionSetMetadata("Post Regarding", Index=507, Lcid=1033, Description="Represents which object an activity feed post is regarding. For internal use only" +
+        [OptionSetMetadata("Post Regarding", Index=9, Lcid=1033, Description="Represents which object an activity feed post is regarding. For internal use only" +
             ".")]
         PostRegarding = 8002,
         
         [EnumMember()]
-        [OptionSetMetadata("Follow", Index=521, Lcid=1033, Description="Represents a user following the activity feed of an object.")]
+        [OptionSetMetadata("Follow", Index=8, Lcid=1033, Description="Represents a user following the activity feed of an object.")]
         Follow = 8003,
         
         [EnumMember()]
-        [OptionSetMetadata("Comment", Index=520, Lcid=1033, Description="A comment on an activity feed post.")]
+        [OptionSetMetadata("Comment", Index=6, Lcid=1033, Description="A comment on an activity feed post.")]
         Comment = 8005,
         
         [EnumMember()]
-        [OptionSetMetadata("Like", Index=514, Lcid=1033, Description="A like on an activity feed post.")]
+        [OptionSetMetadata("Like", Index=10, Lcid=1033, Description="A like on an activity feed post.")]
         Like = 8006,
         
         [EnumMember()]
-        [OptionSetMetadata("ACIViewMapper", Index=894, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
+        [OptionSetMetadata("ACIViewMapper", Index=510, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
         ACIViewMapper = 8040,
         
         [EnumMember()]
-        [OptionSetMetadata("Trace", Index=498, Lcid=1033, Description="A trace log.")]
+        [OptionSetMetadata("Trace", Index=273, Lcid=1033, Description="A trace log.")]
         Trace = 8050,
         
         [EnumMember()]
-        [OptionSetMetadata("Trace Association", Index=497, Lcid=1033, Description="Represents the objects with which a trace record is associated. For internal use " +
+        [OptionSetMetadata("Trace Association", Index=271, Lcid=1033, Description="Represents the objects with which a trace record is associated. For internal use " +
             "only.")]
         TraceAssociation = 8051,
         
         [EnumMember()]
-        [OptionSetMetadata("Trace Regarding", Index=496, Lcid=1033, Description="Represents which object a trace record is regarding. For internal use only.")]
+        [OptionSetMetadata("Trace Regarding", Index=272, Lcid=1033, Description="Represents which object a trace record is regarding. For internal use only.")]
         TraceRegarding = 8052,
         
         [EnumMember()]
-        [OptionSetMetadata("Routing Rule Set", Index=622, Lcid=1033, Description="Define Routing Rule to route cases to right people at the right time")]
+        [OptionSetMetadata("Routing Rule Set", Index=332, Lcid=1033, Description="Define Routing Rule to route cases to right people at the right time")]
         RoutingRuleSet = 8181,
         
         [EnumMember()]
-        [OptionSetMetadata("Rule Item", Index=620, Lcid=1033, Description="Please provide the description for entity")]
-        RuleItem_2 = 8199,
+        [OptionSetMetadata("Rule Item", Index=328, Lcid=1033, Description="Please provide the description for entity")]
+        RuleItem = 8199,
         
         [EnumMember()]
-        [OptionSetMetadata("AppModule Metadata", Index=844, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("AppModule Metadata", Index=559, Lcid=1033, Description="For internal use only.")]
         AppModuleMetadata = 8700,
         
         [EnumMember()]
-        [OptionSetMetadata("AppModule Metadata Dependency", Index=845, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("AppModule Metadata Dependency", Index=555, Lcid=1033, Description="For internal use only.")]
         AppModuleMetadataDependency = 8701,
         
         [EnumMember()]
-        [OptionSetMetadata("AppModule Metadata Async Operation", Index=843, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("AppModule Metadata Async Operation", Index=551, Lcid=1033, Description="For internal use only.")]
         AppModuleMetadataAsyncOperation = 8702,
         
         [EnumMember()]
-        [OptionSetMetadata("Hierarchy Rule", Index=805, Lcid=1033, Description="Organization-owned entity customizations including mapping Quick view form with R" +
+        [OptionSetMetadata("Hierarchy Rule", Index=716, Lcid=1033, Description="Organization-owned entity customizations including mapping Quick view form with R" +
             "elationship Id")]
         HierarchyRule = 8840,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-driven App", Index=859, Lcid=1033, Description="A role-based, modular business app that provides task-based functionality for a p" +
+        [OptionSetMetadata("Model-driven App", Index=557, Lcid=1033, Description="A role-based, modular business app that provides task-based functionality for a p" +
             "articular area of work.")]
         ModeldrivenApp = 9006,
         
         [EnumMember()]
-        [OptionSetMetadata("App Module Component", Index=857, Lcid=1033, Description="A component available in a business app such as entity, dashboard, form, view, ch" +
+        [OptionSetMetadata("App Module Component", Index=556, Lcid=1033, Description="A component available in a business app such as entity, dashboard, form, view, ch" +
             "art, and business process.")]
         AppModuleComponent = 9007,
         
         [EnumMember()]
-        [OptionSetMetadata("App Module Roles", Index=841, Lcid=1033, Description="Security roles that have access to a business app.")]
+        [OptionSetMetadata("App Module Roles", Index=550, Lcid=1033, Description="Security roles that have access to a business app.")]
         AppModuleRoles = 9009,
         
         [EnumMember()]
-        [OptionSetMetadata("App Config Master", Index=854, Lcid=1033, Description="Contains the master list of all properties that can be customized for apps in Dyn" +
+        [OptionSetMetadata("App Config Master", Index=491, Lcid=1033, Description="Contains the master list of all properties that can be customized for apps in Dyn" +
             "amics 365. For internal use only.")]
         AppConfigMaster = 9011,
         
         [EnumMember()]
-        [OptionSetMetadata("App Configuration", Index=855, Lcid=1033, Description="Contains a mapping between an app configuration instance and an app, which define" +
+        [OptionSetMetadata("App Configuration", Index=499, Lcid=1033, Description="Contains a mapping between an app configuration instance and an app, which define" +
             "s the properties that can be customized for the app. Optionally, also contains n" +
             "avigation setting for an app. For internal use only.")]
         AppConfiguration = 9012,
         
         [EnumMember()]
-        [OptionSetMetadata("App Configuration Instance", Index=856, Lcid=1033, Description="Contains a property or a list of properties from the app configuration master lis" +
+        [OptionSetMetadata("App Configuration Instance", Index=495, Lcid=1033, Description="Contains a property or a list of properties from the app configuration master lis" +
             "t that can be customized for any app in Dynamics 365. For internal use only.")]
         AppConfigurationInstance = 9013,
         
         [EnumMember()]
-        [OptionSetMetadata("Report", Index=661, Lcid=1033, Description="Data summary in an easy-to-read layout.")]
+        [OptionSetMetadata("Report", Index=51, Lcid=1033, Description="Data summary in an easy-to-read layout.")]
         Report = 9100,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Related Entity", Index=655, Lcid=1033, Description="Entities related to a report. A report can be related to multiple entities.")]
+        [OptionSetMetadata("Report Related Entity", Index=67, Lcid=1033, Description="Entities related to a report. A report can be related to multiple entities.")]
         ReportRelatedEntity = 9101,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Related Category", Index=654, Lcid=1033, Description="Categories related to a report. A report can be related to multiple categories.")]
+        [OptionSetMetadata("Report Related Category", Index=59, Lcid=1033, Description="Categories related to a report. A report can be related to multiple categories.")]
         ReportRelatedCategory = 9102,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Visibility", Index=652, Lcid=1033, Description="Area in which to show a report. A report can be shown in multiple areas.")]
+        [OptionSetMetadata("Report Visibility", Index=70, Lcid=1033, Description="Area in which to show a report. A report can be shown in multiple areas.")]
         ReportVisibility = 9103,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Link", Index=653, Lcid=1033, Description="Links and dependencies between reports. A report may drill through to another rep" +
+        [OptionSetMetadata("Report Link", Index=66, Lcid=1033, Description="Links and dependencies between reports. A report may drill through to another rep" +
             "ort, or it may have another report as a sub-report.")]
         ReportLink = 9104,
         
         [EnumMember()]
-        [OptionSetMetadata("Currency", Index=502, Lcid=1033, Description="Currency in which a financial transaction is carried out.")]
+        [OptionSetMetadata("Currency", Index=263, Lcid=1033, Description="Currency in which a financial transaction is carried out.")]
         Currency = 9105,
         
         [EnumMember()]
-        [OptionSetMetadata("Mail Merge Template", Index=795, Lcid=1033, Description="Template for a mail merge document that contains the standard attributes of that " +
+        [OptionSetMetadata("Mail Merge Template", Index=730, Lcid=1033, Description="Template for a mail merge document that contains the standard attributes of that " +
             "document.")]
         MailMergeTemplate = 9106,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Job", Index=838, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Import Job", Index=741, Lcid=1033, Description="For internal use only.")]
         ImportJob = 9107,
         
         [EnumMember()]
-        [OptionSetMetadata("LocalConfigStore", Index=789, Lcid=1033, Description="")]
+        [OptionSetMetadata("LocalConfigStore", Index=736, Lcid=1033, Description="")]
         LocalConfigStore = 9201,
         
         [EnumMember()]
-        [OptionSetMetadata("Record Creation and Update Rule", Index=963, Lcid=1033, Description="Defines the settings for automatic record creation.")]
+        [OptionSetMetadata("Record Creation and Update Rule", Index=393, Lcid=1033, Description="Defines the settings for automatic record creation.")]
         RecordCreationandUpdateRule = 9300,
         
         [EnumMember()]
-        [OptionSetMetadata("Record Creation and Update Rule Item", Index=956, Lcid=1033, Description="Defines the individual conditions required for creating records automatically.")]
+        [OptionSetMetadata("Record Creation and Update Rule Item", Index=401, Lcid=1033, Description="Defines the individual conditions required for creating records automatically.")]
         RecordCreationandUpdateRuleItem = 9301,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Resource", Index=438, Lcid=1033, Description="Data equivalent to files used in Web development. Web resources provide client-si" +
+        [OptionSetMetadata("Web Resource", Index=240, Lcid=1033, Description="Data equivalent to files used in Web development. Web resources provide client-si" +
             "de components that are used to provide custom user interface elements.")]
         WebResource = 9333,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Access Profile Rule", Index=996, Lcid=1033, Description="Defines the rules for automatically associating channel access profiles to extern" +
+        [OptionSetMetadata("Channel Access Profile Rule", Index=424, Lcid=1033, Description="Defines the rules for automatically associating channel access profiles to extern" +
             "al party records.For internal use only")]
         ChannelAccessProfileRule = 9400,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Access Profile Rule Item", Index=997, Lcid=1033, Description="Defines the rule items of a profile rule set for the automated profile associatio" +
+        [OptionSetMetadata("Channel Access Profile Rule Item", Index=426, Lcid=1033, Description="Defines the rule items of a profile rule set for the automated profile associatio" +
             "n.For internal use only")]
         ChannelAccessProfileRuleItem = 9401,
         
         [EnumMember()]
-        [OptionSetMetadata("SharePoint Site", Index=411, Lcid=1033, Description="SharePoint site from where documents can be managed in Microsoft Dynamics 365.")]
+        [OptionSetMetadata("SharePoint Site", Index=363, Lcid=1033, Description="SharePoint site from where documents can be managed in Microsoft Dynamics 365.")]
         SharePointSite = 9502,
         
         [EnumMember()]
-        [OptionSetMetadata("Sharepoint Document", Index=414, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
+        [OptionSetMetadata("Sharepoint Document", Index=360, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
             "managed in Microsoft Dynamics 365.")]
         SharepointDocument = 9507,
         
         [EnumMember()]
-        [OptionSetMetadata("Document Location", Index=412, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
+        [OptionSetMetadata("Document Location", Index=359, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
             "managed in Microsoft Dynamics 365.")]
         DocumentLocation = 9508,
         
         [EnumMember()]
-        [OptionSetMetadata("SharePoint Data", Index=413, Lcid=1033, Description="SharePoint\'s Data Corresponding to a user , Record , Location and Page")]
+        [OptionSetMetadata("SharePoint Data", Index=364, Lcid=1033, Description="SharePoint\'s Data Corresponding to a user , Record , Location and Page")]
         SharePointData = 9509,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Properties", Index=624, Lcid=1033, Description="Stores properties related to rollup fields.")]
+        [OptionSetMetadata("Rollup Properties", Index=333, Lcid=1033, Description="Stores properties related to rollup fields.")]
         RollupProperties = 9510,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Job", Index=623, Lcid=1033, Description="Stores rollup jobs.")]
+        [OptionSetMetadata("Rollup Job", Index=331, Lcid=1033, Description="Stores rollup jobs.")]
         RollupJob = 9511,
         
         [EnumMember()]
-        [OptionSetMetadata("Goal", Index=808, Lcid=1033, Description="Target objective for a user or a team for a specified time period.")]
+        [OptionSetMetadata("Goal", Index=683, Lcid=1033, Description="Target objective for a user or a team for a specified time period.")]
         Goal = 9600,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Query", Index=806, Lcid=1033, Description="Query that is used to filter the results of the goal rollup.")]
+        [OptionSetMetadata("Rollup Query", Index=685, Lcid=1033, Description="Query that is used to filter the results of the goal rollup.")]
         RollupQuery = 9602,
         
         [EnumMember()]
-        [OptionSetMetadata("Goal Metric", Index=785, Lcid=1033, Description="Type of measurement for a goal, such as money amount or count.")]
+        [OptionSetMetadata("Goal Metric", Index=606, Lcid=1033, Description="Type of measurement for a goal, such as money amount or count.")]
         GoalMetric = 9603,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Field", Index=594, Lcid=1033, Description="Field to be rolled up to calculate the actual and in-progress values against the " +
+        [OptionSetMetadata("Rollup Field", Index=329, Lcid=1033, Description="Field to be rolled up to calculate the actual and in-progress values against the " +
             "goal.")]
         RollupField = 9604,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Server Profile", Index=741, Lcid=1033, Description="Holds the Email Server Profiles of an organization")]
+        [OptionSetMetadata("Email Server Profile", Index=434, Lcid=1033, Description="Holds the Email Server Profiles of an organization")]
         EmailServerProfile = 9605,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox", Index=797, Lcid=1033, Description="")]
+        [OptionSetMetadata("Mailbox", Index=737, Lcid=1033, Description="")]
         Mailbox = 9606,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox Statistics", Index=798, Lcid=1033, Description="Stores data regarding Mailbox processing cycles")]
+        [OptionSetMetadata("Mailbox Statistics", Index=739, Lcid=1033, Description="Stores data regarding Mailbox processing cycles")]
         MailboxStatistics = 9607,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox Auto Tracking Folder", Index=794, Lcid=1033, Description="Stores data about what folders for a mailbox are auto tracked")]
+        [OptionSetMetadata("Mailbox Auto Tracking Folder", Index=734, Lcid=1033, Description="Stores data about what folders for a mailbox are auto tracked")]
         MailboxAutoTrackingFolder = 9608,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox Tracking Category", Index=796, Lcid=1033, Description="Stores data about what categories for a mailbox are tracked")]
+        [OptionSetMetadata("Mailbox Tracking Category", Index=738, Lcid=1033, Description="Stores data about what categories for a mailbox are tracked")]
         MailboxTrackingCategory = 9609,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Configuration", Index=935, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Process Configuration", Index=422, Lcid=1033, Description="For internal use only.")]
         ProcessConfiguration = 9650,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Insights Notification", Index=583, Lcid=1033, Description="Stores data regarding organization insights notification")]
+        [OptionSetMetadata("Organization Insights Notification", Index=29, Lcid=1033, Description="Stores data regarding organization insights notification")]
         OrganizationInsightsNotification = 9690,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Insights Metric", Index=585, Lcid=1033, Description="Stores data regarding organization insights metric")]
+        [OptionSetMetadata("Organization Insights Metric", Index=33, Lcid=1033, Description="Stores data regarding organization insights metric")]
         OrganizationInsightsMetric = 9699,
         
         [EnumMember()]
-        [OptionSetMetadata("Entitlement", Index=688, Lcid=1033, Description="Defines the amount and type of support a customer should receive.")]
-        Entitlement = 9700,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Channel", Index=686, Lcid=1033, Description="Defines the amount and type of support for a channel.")]
-        EntitlementChannel = 9701,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Template", Index=693, Lcid=1033, Description="Contains predefined customer support terms that can be used to created entitlemen" +
-            "ts for customers.")]
-        EntitlementTemplate = 9702,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Template Channel", Index=691, Lcid=1033, Description="Contains predefined support terms for a channel to create entitlements for custom" +
-            "ers.")]
-        EntitlementTemplateChannel = 9703,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Entity Allocation Type Mapping", Index=685, Lcid=1033, Description="Mapping to define which Allocation Types are available for Entity Type to be used" +
-            " on Entitlement")]
-        EntitlementEntityAllocationTypeMapping = 9704,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SLA", Index=402, Lcid=1033, Description="Contains information about the tracked service-level KPIs for cases that belong t" +
+        [OptionSetMetadata("SLA", Index=381, Lcid=1033, Description="Contains information about the tracked service-level KPIs for cases that belong t" +
             "o different customers.")]
         SLA = 9750,
         
         [EnumMember()]
-        [OptionSetMetadata("SLA Item", Index=403, Lcid=1033, Description="Contains information about a tracked support KPI for a specific customer.")]
+        [OptionSetMetadata("SLA Item", Index=380, Lcid=1033, Description="Contains information about a tracked support KPI for a specific customer.")]
         SLAItem = 9751,
         
         [EnumMember()]
-        [OptionSetMetadata("SLA KPI Instance", Index=401, Lcid=1033, Description="Service level agreement (SLA) key performance indicator (KPI) instance that is tr" +
+        [OptionSetMetadata("SLA KPI Instance", Index=376, Lcid=1033, Description="Service level agreement (SLA) key performance indicator (KPI) instance that is tr" +
             "acked for an individual case")]
         SLAKPIInstance = 9752,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control", Index=953, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Custom Control", Index=396, Lcid=1033, Description="For internal use only.")]
         CustomControl = 9753,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control Resource", Index=952, Lcid=1033, Description="Custom Control Resource Id")]
+        [OptionSetMetadata("Custom Control Resource", Index=397, Lcid=1033, Description="Custom Control Resource Id")]
         CustomControlResource = 9754,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control Default Config", Index=951, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Custom Control Default Config", Index=398, Lcid=1033, Description="For internal use only.")]
         CustomControlDefaultConfig = 9755,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity", Index=690, Lcid=1033)]
+        [OptionSetMetadata("Entity", Index=449, Lcid=1033)]
         Entity = 9800,
         
         [EnumMember()]
-        [OptionSetMetadata("Attribute", Index=875, Lcid=1033)]
+        [OptionSetMetadata("Attribute", Index=566, Lcid=1033)]
         Attribute = 9808,
         
         [EnumMember()]
-        [OptionSetMetadata("OptionSet", Index=555, Lcid=1033)]
+        [OptionSetMetadata("OptionSet", Index=157, Lcid=1033)]
         OptionSet = 9809,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Key", Index=674, Lcid=1033)]
+        [OptionSetMetadata("Entity Key", Index=442, Lcid=1033)]
         EntityKey = 9810,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Relationship", Index=680, Lcid=1033)]
+        [OptionSetMetadata("Entity Relationship", Index=445, Lcid=1033)]
         EntityRelationship = 9811,
         
         [EnumMember()]
-        [OptionSetMetadata("Managed Property", Index=780, Lcid=1033)]
+        [OptionSetMetadata("Managed Property", Index=732, Lcid=1033)]
         ManagedProperty = 9812,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Entity", Index=670, Lcid=1033)]
+        [OptionSetMetadata("Relationship Entity", Index=53, Lcid=1033)]
         RelationshipEntity = 9813,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Attribute", Index=671, Lcid=1033, Description="Stores relationship attributes mapping for Multi-predicate relationship")]
+        [OptionSetMetadata("Relationship Attribute", Index=49, Lcid=1033, Description="Stores relationship attributes mapping for Multi-predicate relationship")]
         RelationshipAttribute = 9814,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Index", Index=673, Lcid=1033, Description="Metadata describing index of an entity")]
+        [OptionSetMetadata("Entity Index", Index=443, Lcid=1033, Description="Metadata describing index of an entity")]
         EntityIndex = 9815,
         
         [EnumMember()]
-        [OptionSetMetadata("Index Attribute", Index=822, Lcid=1033, Description="Stores index attributes")]
+        [OptionSetMetadata("Index Attribute", Index=744, Lcid=1033, Description="Stores index attributes")]
         IndexAttribute = 9816,
         
         [EnumMember()]
-        [OptionSetMetadata("Option Set Value", Index=882, Lcid=1033, Description="Option Set Value")]
+        [OptionSetMetadata("Option Set Value", Index=534, Lcid=1033, Description="Option Set Value")]
         OptionSetValue = 9817,
         
         [EnumMember()]
-        [OptionSetMetadata("Secured Masking Column", Index=881, Lcid=1033, Description="Defines secured masking rule for column")]
+        [OptionSetMetadata("Secured Masking Column", Index=532, Lcid=1033, Description="Defines secured masking rule for column")]
         SecuredMaskingColumn = 9820,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile Offline Profile", Index=783, Lcid=1033, Description="Information to administer and manage the data available to mobile devices in offl" +
+        [OptionSetMetadata("Mobile Offline Profile", Index=602, Lcid=1033, Description="Information to administer and manage the data available to mobile devices in offl" +
             "ine mode.")]
         MobileOfflineProfile = 9866,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile Offline Profile Item", Index=1233, Lcid=1033, Description="Information on entity availability to mobile devices in offline mode for a mobile" +
+        [OptionSetMetadata("Mobile Offline Profile Item", Index=597, Lcid=1033, Description="Information on entity availability to mobile devices in offline mode for a mobile" +
             " offline profile item.")]
         MobileOfflineProfileItem = 9867,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile Offline Profile Item Association", Index=1234, Lcid=1033, Description="Information on relationships to be used to follow related entity\'s records for mo" +
+        [OptionSetMetadata("Mobile Offline Profile Item Association", Index=599, Lcid=1033, Description="Information on relationships to be used to follow related entity\'s records for mo" +
             "bile offline profile item.")]
         MobileOfflineProfileItemAssociation = 9868,
         
         [EnumMember()]
-        [OptionSetMetadata("Sync Error", Index=357, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to sync.")]
+        [OptionSetMetadata("Sync Error", Index=231, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to sync.")]
         SyncError = 9869,
         
         [EnumMember()]
-        [OptionSetMetadata("Offline Command Definition", Index=549, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Offline Command Definition", Index=161, Lcid=1033, Description="For internal use only.")]
         OfflineCommandDefinition = 9870,
         
         [EnumMember()]
-        [OptionSetMetadata("Language Provisioning State", Index=759, Lcid=1033, Description="Container for language provisioning checkpoint states")]
+        [OptionSetMetadata("Language Provisioning State", Index=721, Lcid=1033, Description="Container for language provisioning checkpoint states")]
         LanguageProvisioningState = 9875,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Metadata To Process", Index=588, Lcid=1033, Description="Container for Ribbon Metadata To Process")]
+        [OptionSetMetadata("Ribbon Metadata To Process", Index=311, Lcid=1033, Description="Container for Ribbon Metadata To Process")]
         RibbonMetadataToProcess = 9880,
         
         [EnumMember()]
-        [OptionSetMetadata("SolutionHistoryData", Index=347, Lcid=1033, Description="solution history data")]
+        [OptionSetMetadata("SolutionHistoryData", Index=344, Lcid=1033, Description="solution history data")]
         SolutionHistoryData = 9890,
         
         [EnumMember()]
-        [OptionSetMetadata("Navigation Setting", Index=565, Lcid=1033, Description="Navigation Setting: A setting page or group of pages available for configuration " +
+        [OptionSetMetadata("Navigation Setting", Index=155, Lcid=1033, Description="Navigation Setting: A setting page or group of pages available for configuration " +
             "within an app. A record representing a group of pages is regarded as the parent " +
             "navigation setting of one or more other records. For internal use only.")]
         NavigationSetting = 9900,
         
         [EnumMember()]
-        [OptionSetMetadata("MultiEntitySearch", Index=557, Lcid=1033, Description="Multi Entity Search.")]
+        [OptionSetMetadata("MultiEntitySearch", Index=148, Lcid=1033, Description="Multi Entity Search.")]
         MultiEntitySearch = 9910,
         
         [EnumMember()]
-        [OptionSetMetadata("Multi Select Option Value", Index=558, Lcid=1033, Description="Multi Select Option Value")]
+        [OptionSetMetadata("Multi Select Option Value", Index=147, Lcid=1033, Description="Multi Select Option Value")]
         MultiSelectOptionValue = 9912,
         
         [EnumMember()]
-        [OptionSetMetadata("Hierarchy Security Configuration", Index=834, Lcid=1033)]
+        [OptionSetMetadata("Hierarchy Security Configuration", Index=748, Lcid=1033)]
         HierarchySecurityConfiguration = 9919,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Base Record", Index=767, Lcid=1033, Description="Metadata of knowledge base (KB) articles associated with Microsoft Dynamics 365 e" +
+        [OptionSetMetadata("Knowledge Base Record", Index=727, Lcid=1033, Description="Metadata of knowledge base (KB) articles associated with Microsoft Dynamics 365 e" +
             "ntities.")]
         KnowledgeBaseRecord = 9930,
         
         [EnumMember()]
-        [OptionSetMetadata("Incident KnowledgeBaseRecord", Index=823, Lcid=1033)]
-        IncidentKnowledgeBaseRecord = 9931,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Time Stamp Date Mapping", Index=466, Lcid=1033, Description="For internal use only.`")]
+        [OptionSetMetadata("Time Stamp Date Mapping", Index=205, Lcid=1033, Description="For internal use only.`")]
         TimeStampDateMapping = 9932,
         
         [EnumMember()]
-        [OptionSetMetadata("Azure Service Connection", Index=865, Lcid=1033, Description="Stores connection information for an Azure service")]
+        [OptionSetMetadata("Azure Service Connection", Index=531, Lcid=1033, Description="Stores connection information for an Azure service")]
         AzureServiceConnection = 9936,
         
         [EnumMember()]
-        [OptionSetMetadata("Document Template", Index=751, Lcid=1033, Description="Used to store Document Templates in database in binary format.")]
+        [OptionSetMetadata("Document Template", Index=467, Lcid=1033, Description="Used to store Document Templates in database in binary format.")]
         DocumentTemplate = 9940,
         
         [EnumMember()]
-        [OptionSetMetadata("Personal Document Template", Index=568, Lcid=1033, Description="Used to store Personal Document Templates in database in binary format.")]
+        [OptionSetMetadata("Personal Document Template", Index=43, Lcid=1033, Description="Used to store Personal Document Templates in database in binary format.")]
         PersonalDocumentTemplate = 9941,
         
         [EnumMember()]
-        [OptionSetMetadata("Topic Model Configuration", Index=467, Lcid=1033, Description="Configuration settings for identification of topics using text analytics.")]
-        TopicModelConfiguration = 9942,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Topic Model Execution History", Index=468, Lcid=1033, Description="Entity for Topic Model Execution History")]
-        TopicModelExecutionHistory = 9943,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Topic Model", Index=469, Lcid=1033, Description="The model for automatic identification of topics using text analytics.")]
-        TopicModel = 9944,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Text Analytics Entity Mapping", Index=472, Lcid=1033, Description="")]
+        [OptionSetMetadata("Text Analytics Entity Mapping", Index=208, Lcid=1033, Description="")]
         TextAnalyticsEntityMapping = 9945,
         
         [EnumMember()]
-        [OptionSetMetadata("Topic History", Index=471, Lcid=1033, Description="Entity for Topic History")]
-        TopicHistory = 9946,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Search Model", Index=760, Lcid=1033, Description="Configuration for automatic suggestion of knowledge articles using text analytics" +
+        [OptionSetMetadata("Knowledge Search Model", Index=722, Lcid=1033, Description="Configuration for automatic suggestion of knowledge articles using text analytics" +
             " and search")]
         KnowledgeSearchModel = 9947,
         
         [EnumMember()]
-        [OptionSetMetadata("Text Analytics Topic", Index=470, Lcid=1033, Description="Text Analytics Topics")]
-        TextAnalyticsTopic = 9948,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Advanced Similarity Rule", Index=885, Lcid=1033, Description="A text match rule identifies similar records using keywords and key phrases deter" +
+        [OptionSetMetadata("Advanced Similarity Rule", Index=505, Lcid=1033, Description="A text match rule identifies similar records using keywords and key phrases deter" +
             "mined with text analytics")]
         AdvancedSimilarityRule = 9949,
         
         [EnumMember()]
-        [OptionSetMetadata("Office Graph Document", Index=556, Lcid=1033, Description="Office Graph Documents Description")]
+        [OptionSetMetadata("Office Graph Document", Index=165, Lcid=1033, Description="Office Graph Documents Description")]
         OfficeGraphDocument = 9950,
         
         [EnumMember()]
-        [OptionSetMetadata("Similarity Rule", Index=415, Lcid=1033, Description="")]
+        [OptionSetMetadata("Similarity Rule", Index=377, Lcid=1033, Description="")]
         SimilarityRule = 9951,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article", Index=777, Lcid=1033, Description="Organizational knowledge for internal and external use.")]
+        [OptionSetMetadata("Knowledge Article", Index=724, Lcid=1033, Description="Organizational knowledge for internal and external use.")]
         KnowledgeArticle = 9953,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Incident", Index=775, Lcid=1033, Description="Association between an knowledge article and incident.")]
-        KnowledgeArticleIncident = 9954,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Views", Index=774, Lcid=1033, Description="No of times an article is viewed per day")]
+        [OptionSetMetadata("Knowledge Article Views", Index=725, Lcid=1033, Description="No of times an article is viewed per day")]
         KnowledgeArticleViews = 9955,
         
         [EnumMember()]
-        [OptionSetMetadata("Language", Index=761, Lcid=1033, Description="Language")]
-        Language_2 = 9957,
+        [OptionSetMetadata("Language", Index=719, Lcid=1033, Description="Language")]
+        Language = 9957,
         
         [EnumMember()]
-        [OptionSetMetadata("Feedback", Index=694, Lcid=1033, Description="Feedback and rating.")]
+        [OptionSetMetadata("Feedback", Index=710, Lcid=1033, Description="Feedback and rating.")]
         Feedback = 9958,
         
         [EnumMember()]
-        [OptionSetMetadata("Category", Index=990, Lcid=1033, Description="Entity for categorizing records to make it easier for your customers to find them" +
+        [OptionSetMetadata("Category", Index=409, Lcid=1033, Description="Entity for categorizing records to make it easier for your customers to find them" +
             " on portals and through search.")]
         Category = 9959,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Category", Index=773, Lcid=1033, Description="Category for a Knowledge Article.")]
+        [OptionSetMetadata("Knowledge Article Category", Index=723, Lcid=1033, Description="Category for a Knowledge Article.")]
         KnowledgeArticleCategory = 9960,
         
         [EnumMember()]
-        [OptionSetMetadata("DelveActionHub", Index=718, Lcid=1033, Description="Delve Action Hubs Description")]
+        [OptionSetMetadata("DelveActionHub", Index=458, Lcid=1033, Description="Delve Action Hubs Description")]
         DelveActionHub = 9961,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Card", Index=895, Lcid=1033, Description="Action card entity to show action cards.")]
+        [OptionSetMetadata("Action Card", Index=512, Lcid=1033, Description="Action card entity to show action cards.")]
         ActionCard = 9962,
         
         [EnumMember()]
-        [OptionSetMetadata("ActionCardUserState", Index=903, Lcid=1033, Description="")]
+        [OptionSetMetadata("ActionCardUserState", Index=507, Lcid=1033, Description="")]
         ActionCardUserState = 9968,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Card User Settings", Index=902, Lcid=1033, Description="Stores user settings for action cards")]
+        [OptionSetMetadata("Action Card User Settings", Index=511, Lcid=1033, Description="Stores user settings for action cards")]
         ActionCardUserSettings = 9973,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Card Type", Index=1004, Lcid=1033, Description="To provide master data for the card types list. For internal use only")]
+        [OptionSetMetadata("Action Card Type", Index=411, Lcid=1033, Description="To provide master data for the card types list. For internal use only")]
         ActionCardType = 9983,
         
         [EnumMember()]
-        [OptionSetMetadata("Interaction for Email", Index=821, Lcid=1033, Description="")]
+        [OptionSetMetadata("Interaction for Email", Index=761, Lcid=1033, Description="")]
         InteractionforEmail = 9986,
         
         [EnumMember()]
-        [OptionSetMetadata("External Party Item", Index=710, Lcid=1033, Description="Information about external party items that need to access Dynamics 365 from exte" +
+        [OptionSetMetadata("External Party Item", Index=697, Lcid=1033, Description="Information about external party items that need to access Dynamics 365 from exte" +
             "rnal channels.For internal use only")]
         ExternalPartyItem = 9987,
         
         [EnumMember()]
-        [OptionSetMetadata("HolidayWrapper", Index=835, Lcid=1033, Description="")]
+        [OptionSetMetadata("HolidayWrapper", Index=747, Lcid=1033, Description="")]
         HolidayWrapper = 9996,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Signature", Index=742, Lcid=1033, Description="Signature for email message")]
+        [OptionSetMetadata("Email Signature", Index=433, Lcid=1033, Description="Signature for email message")]
         EmailSignature = 9997,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Attribute Configuration", Index=404, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Attribute Configuration", Index=358, Lcid=1033, Description="")]
         SolutionComponentAttributeConfiguration = 10000,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Batch Configuration", Index=405, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Batch Configuration", Index=342, Lcid=1033, Description="")]
         SolutionComponentBatchConfiguration = 10001,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Configuration", Index=350, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Configuration", Index=341, Lcid=1033, Description="")]
         SolutionComponentConfiguration = 10002,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Relationship Configuration", Index=349, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Relationship Configuration", Index=345, Lcid=1033, Description="")]
         SolutionComponentRelationshipConfiguration = 10003,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution History", Index=44, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution History", Index=113, Lcid=1033, Description="")]
         SolutionHistory = 10004,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution History Data Source", Index=42, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution History Data Source", Index=109, Lcid=1033, Description="")]
         SolutionHistoryDataSource = 10005,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Layer", Index=1303, Lcid=1033, Description="")]
+        [OptionSetMetadata("Component Layer", Index=620, Lcid=1033, Description="")]
         ComponentLayer = 10006,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Layer Data Source", Index=1304, Lcid=1033, Description="")]
+        [OptionSetMetadata("Component Layer Data Source", Index=652, Lcid=1033, Description="")]
         ComponentLayerDataSource = 10007,
         
         [EnumMember()]
-        [OptionSetMetadata("Package", Index=570, Lcid=1033, Description="")]
+        [OptionSetMetadata("Package", Index=26, Lcid=1033, Description="")]
         Package = 10008,
         
         [EnumMember()]
-        [OptionSetMetadata("Package History", Index=571, Lcid=1033, Description="")]
+        [OptionSetMetadata("Package History", Index=28, Lcid=1033, Description="")]
         PackageHistory = 10009,
         
         [EnumMember()]
-        [OptionSetMetadata("StageSolutionUpload", Index=340, Lcid=1033, Description="")]
+        [OptionSetMetadata("StageSolutionUpload", Index=350, Lcid=1033, Description="")]
         StageSolutionUpload = 10011,
         
         [EnumMember()]
-        [OptionSetMetadata("ExportSolutionUpload", Index=714, Lcid=1033, Description="")]
+        [OptionSetMetadata("ExportSolutionUpload", Index=693, Lcid=1033, Description="")]
         ExportSolutionUpload = 10012,
         
         [EnumMember()]
-        [OptionSetMetadata("FeatureControlSetting", Index=697, Lcid=1033, Description="featurecontrolsetting")]
+        [OptionSetMetadata("FeatureControlSetting", Index=712, Lcid=1033, Description="featurecontrolsetting")]
         FeatureControlSetting = 10013,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Summary", Index=59, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Summary", Index=114, Lcid=1033, Description="")]
         SolutionComponentSummary = 10014,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Count Summary", Index=60, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Count Summary", Index=107, Lcid=1033, Description="")]
         SolutionComponentCountSummary = 10015,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Data Source", Index=58, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Data Source", Index=115, Lcid=1033, Description="")]
         SolutionComponentDataSource = 10016,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Count Data Source", Index=62, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Count Data Source", Index=99, Lcid=1033, Description="")]
         SolutionComponentCountDataSource = 10017,
         
         [EnumMember()]
-        [OptionSetMetadata("Microsoft Entra ID", Index=897, Lcid=1033, Description="Virtual entity that represents Microsoft Entra ID")]
+        [OptionSetMetadata("Microsoft Entra ID", Index=509, Lcid=1033, Description="Virtual entity that represents Microsoft Entra ID")]
         MicrosoftEntraID = 10018,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Entity", Index=352, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
-        StagedEntity = 10019,
+        [OptionSetMetadata("Staged attribute lookup value", Index=339, Lcid=1033, Description="Stores staged attribute lookup value metadata to be processed asynchronous.")]
+        Stagedattributelookupvalue = 10019,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Entity Attribute", Index=353, Lcid=1033, Description="Stores staged entity attribute metadata to be processed in async.")]
-        StagedEntityAttribute = 10020,
+        [OptionSetMetadata("Staged attribute picklist value", Index=338, Lcid=1033, Description="Stores staged attribute picklist value metadata to be processed asynchronous.")]
+        Stagedattributepicklistvalue = 10020,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Metadata Async Operation", Index=346, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
-        StagedMetadataAsyncOperation = 10021,
+        [OptionSetMetadata("Staged Entity", Index=346, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
+        StagedEntity = 10021,
         
         [EnumMember()]
-        [OptionSetMetadata("Key Vault Reference", Index=776, Lcid=1033, Description="Contains data that refers to an Azure Key Vault containing credentials used to co" +
+        [OptionSetMetadata("Staged Entity Attribute", Index=354, Lcid=1033, Description="Stores staged entity attribute metadata to be processed in async.")]
+        StagedEntityAttribute = 10022,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged entity relationship", Index=353, Lcid=1033, Description="Stores staged entity replationship metadata to be processed asynchronous.")]
+        Stagedentityrelationship = 10023,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged entity relationship relationships", Index=355, Lcid=1033, Description="Stores staged entity replationship relationships metadata to be processed asynchr" +
+            "onous.")]
+        Stagedentityrelationshiprelationships = 10024,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged entity relationship role", Index=357, Lcid=1033, Description="Stores staged entity replationship role metadata to be processed asynchronous.")]
+        Stagedentityrelationshiprole = 10025,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged Metadata Async Operation", Index=356, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
+        StagedMetadataAsyncOperation = 10026,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged optionset", Index=352, Lcid=1033, Description="Stores staged option set metadata to be processed asynchronous.")]
+        Stagedoptionset = 10027,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged relationship", Index=348, Lcid=1033, Description="Stores staged replationship metadata to be processed asynchronous.")]
+        Stagedrelationship_2 = 10028,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged relationship", Index=347, Lcid=1033, Description="Stores staged replationship metadata to be processed asynchronous.")]
+        Stagedrelationship = 10029,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged relationship", Index=351, Lcid=1033, Description="Stores staged replationship metadata to be processed asynchronous.")]
+        Stagedrelationship_3 = 10030,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Key Vault Reference", Index=740, Lcid=1033, Description="Contains data that refers to an Azure Key Vault containing credentials used to co" +
             "nnect to secure web-hosted resources.")]
-        KeyVaultReference = 10022,
+        KeyVaultReference = 10031,
         
         [EnumMember()]
-        [OptionSetMetadata("Managed Identity", Index=782, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
+        [OptionSetMetadata("Managed Identity", Index=733, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
             "to secure web-hosted resources.")]
-        ManagedIdentity = 10023,
+        ManagedIdentity = 10032,
         
         [EnumMember()]
-        [OptionSetMetadata("Catalog", Index=991, Lcid=1033, Description="Entity for cataloging records to make it easier for your customers to find them o" +
+        [OptionSetMetadata("Catalog", Index=408, Lcid=1033, Description="Entity for cataloging records to make it easier for your customers to find them o" +
             "n portals and through search.")]
-        Catalog = 10024,
+        Catalog = 10033,
         
         [EnumMember()]
-        [OptionSetMetadata("Catalog Assignment", Index=992, Lcid=1033, Description="Entity for assigning records to a specific catalog ")]
-        CatalogAssignment = 10025,
+        [OptionSetMetadata("Catalog Assignment", Index=410, Lcid=1033, Description="Entity for assigning records to a specific catalog ")]
+        CatalogAssignment = 10034,
         
         [EnumMember()]
-        [OptionSetMetadata("Internal Catalog Assignment", Index=829, Lcid=1033, Description="")]
-        InternalCatalogAssignment = 10026,
+        [OptionSetMetadata("Internal Catalog Assignment", Index=762, Lcid=1033, Description="")]
+        InternalCatalogAssignment = 10035,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom API", Index=947, Lcid=1033, Description="Entity that defines a custom API")]
-        CustomAPI = 10027,
+        [OptionSetMetadata("Custom API", Index=399, Lcid=1033, Description="Entity that defines a custom API")]
+        CustomAPI = 10036,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom API Request Parameter", Index=954, Lcid=1033, Description="Entity that defines a request parameter for a custom API")]
-        CustomAPIRequestParameter = 10028,
+        [OptionSetMetadata("Custom API Request Parameter", Index=395, Lcid=1033, Description="Entity that defines a request parameter for a custom API")]
+        CustomAPIRequestParameter = 10037,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom API Response Property", Index=955, Lcid=1033, Description="Entity that defines a response property for a custom API ")]
-        CustomAPIResponseProperty = 10029,
+        [OptionSetMetadata("Custom API Response Property", Index=394, Lcid=1033, Description="Entity that defines a response property for a custom API ")]
+        CustomAPIResponseProperty = 10038,
         
         [EnumMember()]
-        [OptionSetMetadata("Plugin Package", Index=517, Lcid=1033, Description="")]
-        PluginPackage = 10030,
+        [OptionSetMetadata("Plugin Package", Index=36, Lcid=1033, Description="")]
+        PluginPackage = 10039,
         
         [EnumMember()]
-        [OptionSetMetadata("NonRelational Data Source", Index=1117, Lcid=1033, Description="")]
-        NonRelationalDataSource = 10031,
+        [OptionSetMetadata("Sensitivity Label", Index=304, Lcid=1033, Description="Virtual entity that represents Sensitivity Labels")]
+        SensitivityLabel = 10040,
         
         [EnumMember()]
-        [OptionSetMetadata("ProvisionLanguageForUser", Index=642, Lcid=1033, Description="")]
-        ProvisionLanguageForUser = 10032,
+        [OptionSetMetadata("NonRelational Data Source", Index=122, Lcid=1033, Description="")]
+        NonRelationalDataSource = 10041,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Object", Index=387, Lcid=1033, Description="A record that is being shared in a real time collaboration session.")]
-        SharedObject = 10033,
+        [OptionSetMetadata("ProvisionLanguageForUser", Index=75, Lcid=1033, Description="")]
+        ProvisionLanguageForUser = 10042,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Workspace", Index=385, Lcid=1033, Description="References a container that stores real-time collaboration data.")]
-        SharedWorkspace = 10034,
+        [OptionSetMetadata("Purview Label Info", Index=90, Lcid=1033, Description="")]
+        PurviewLabelInfo = 10043,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Workspace Access Token", Index=383, Lcid=1033, Description="Contains information about the shared workspace access tokens.")]
-        SharedWorkspaceAccessToken = 10035,
+        [OptionSetMetadata("Purview Label Sync Cache", Index=92, Lcid=1033, Description="Purview Label Sync Cache")]
+        PurviewLabelSyncCache = 10044,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Workspace Pool", Index=384, Lcid=1033, Description="Contains metadata about a container used to store real-time collaboration data. O" +
+        [OptionSetMetadata("Sensitivity Label Attribute Mapping", Index=300, Lcid=1033, Description="Sensitivity Label Attribute Mapping")]
+        SensitivityLabelAttributeMapping = 10045,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Object", Index=365, Lcid=1033, Description="A record that is being shared in a real time collaboration session.")]
+        SharedObject = 10046,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Workspace", Index=367, Lcid=1033, Description="References a container that stores real-time collaboration data.")]
+        SharedWorkspace = 10047,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Workspace Access Token", Index=369, Lcid=1033, Description="Contains information about the shared workspace access tokens.")]
+        SharedWorkspaceAccessToken = 10048,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Workspace Pool", Index=368, Lcid=1033, Description="Contains metadata about a container used to store real-time collaboration data. O" +
             "nce claimed, a sharedworkspace record would be created with copied metadata.")]
-        SharedWorkspacePool = 10036,
+        SharedWorkspacePool = 10049,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Folder", Index=726, Lcid=1033, Description="A folder is a place to store data in Azure Data Lake.")]
-        DataLakeFolder = 10037,
+        [OptionSetMetadata("Data Lake Folder", Index=460, Lcid=1033, Description="A folder is a place to store data in Azure Data Lake.")]
+        DataLakeFolder = 10050,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Folder Permission", Index=727, Lcid=1033, Description="")]
-        DataLakeFolderPermission = 10038,
+        [OptionSetMetadata("Data Lake Folder Permission", Index=462, Lcid=1033, Description="")]
+        DataLakeFolderPermission = 10051,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Workspace", Index=734, Lcid=1033, Description="A workspace is a place to store data in Azure Data Lake.")]
-        DataLakeWorkspace = 10039,
+        [OptionSetMetadata("Data Lake Workspace", Index=464, Lcid=1033, Description="A workspace is a place to store data in Azure Data Lake.")]
+        DataLakeWorkspace = 10052,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Workspace Permission", Index=735, Lcid=1033, Description="")]
-        DataLakeWorkspacePermission = 10040,
+        [OptionSetMetadata("Data Lake Workspace Permission", Index=463, Lcid=1033, Description="")]
+        DataLakeWorkspacePermission = 10053,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Processing configuration", Index=731, Lcid=1033, Description="")]
-        DataProcessingconfiguration = 10041,
+        [OptionSetMetadata("Data Processing configuration", Index=455, Lcid=1033, Description="")]
+        DataProcessingconfiguration = 10054,
         
         [EnumMember()]
-        [OptionSetMetadata("Exported Excel", Index=713, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
+        [OptionSetMetadata("Exported Excel", Index=694, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
             "equests.")]
-        ExportedExcel = 10042,
+        ExportedExcel = 10055,
         
         [EnumMember()]
-        [OptionSetMetadata("RetainedData Excel", Index=602, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
+        [OptionSetMetadata("RetainedData Excel", Index=69, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
             "equests.")]
-        RetainedDataExcel = 10043,
+        RetainedDataExcel = 10056,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Database", Index=377, Lcid=1033, Description="This entity represents an external Synapse database and its associated datalake f" +
+        [OptionSetMetadata("Synapse Database", Index=233, Lcid=1033, Description="This entity represents an external Synapse database and its associated datalake f" +
             "older link.")]
-        SynapseDatabase = 10044,
+        SynapseDatabase = 10057,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link External Table State", Index=375, Lcid=1033, Description="Synapse Link external table states")]
-        SynapseLinkExternalTableState = 10045,
+        [OptionSetMetadata("Synapse Link External Table State", Index=235, Lcid=1033, Description="Synapse Link external table states")]
+        SynapseLinkExternalTableState = 10058,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Profile", Index=373, Lcid=1033, Description="Synapse Link Profile")]
-        SynapseLinkProfile = 10046,
+        [OptionSetMetadata("Synapse Link Profile", Index=237, Lcid=1033, Description="Synapse Link Profile")]
+        SynapseLinkProfile = 10059,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Profile Entity", Index=374, Lcid=1033, Description="Entities associated with the Synapse Link profile")]
-        SynapseLinkProfileEntity = 10047,
+        [OptionSetMetadata("Synapse Link Profile Entity", Index=236, Lcid=1033, Description="Entities associated with the Synapse Link profile")]
+        SynapseLinkProfileEntity = 10060,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Profile Entity State", Index=367, Lcid=1033, Description="Runtime state of the Synapse Link entity")]
-        SynapseLinkProfileEntityState = 10048,
+        [OptionSetMetadata("Synapse Link Profile Entity State", Index=232, Lcid=1033, Description="Runtime state of the Synapse Link entity")]
+        SynapseLinkProfileEntityState = 10061,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Schedule", Index=360, Lcid=1033, Description="Synapse link schedules")]
-        SynapseLinkSchedule = 10049,
+        [OptionSetMetadata("Synapse Link Schedule", Index=228, Lcid=1033, Description="Synapse link schedules")]
+        SynapseLinkSchedule = 10062,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Version", Index=928, Lcid=1033, Description="")]
-        ComponentVersion = 10050,
+        [OptionSetMetadata("Component Changeset Payload", Index=421, Lcid=1033, Description="")]
+        ComponentChangesetPayload = 10063,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Version Data Source", Index=929, Lcid=1033, Description="")]
-        ComponentVersionDataSource = 10051,
+        [OptionSetMetadata("Component Changeset Version", Index=405, Lcid=1033, Description="")]
+        ComponentChangesetVersion = 10064,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Version (Internal)", Index=927, Lcid=1033)]
-        ComponentVersionInternal = 10052,
+        [OptionSetMetadata("Component Version", Index=389, Lcid=1033, Description="")]
+        ComponentVersion = 10065,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Branch", Index=802, Lcid=1033, Description="")]
-        GitBranch = 10053,
+        [OptionSetMetadata("Component Version Data Source", Index=388, Lcid=1033, Description="")]
+        ComponentVersionDataSource = 10066,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Configuration Retrieval Data Source", Index=803, Lcid=1033, Description="")]
-        GitConfigurationRetrievalDataSource = 10054,
+        [OptionSetMetadata("Component Version (Internal)", Index=390, Lcid=1033)]
+        ComponentVersionInternal = 10067,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Organization", Index=801, Lcid=1033, Description="")]
-        GitOrganization = 10055,
+        [OptionSetMetadata("Git Branch", Index=687, Lcid=1033, Description="")]
+        GitBranch = 10068,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Project", Index=799, Lcid=1033, Description="")]
-        GitProject = 10056,
+        [OptionSetMetadata("Git Configuration Retrieval Data Source", Index=689, Lcid=1033, Description="")]
+        GitConfigurationRetrievalDataSource = 10069,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Repository", Index=800, Lcid=1033, Description="")]
-        GitRepository = 10057,
+        [OptionSetMetadata("Git Organization", Index=691, Lcid=1033, Description="")]
+        GitOrganization = 10070,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Branch Configuration", Index=348, Lcid=1033, Description="Stores the source control branch configuration associated with the organization o" +
+        [OptionSetMetadata("Git Project", Index=690, Lcid=1033, Description="")]
+        GitProject = 10071,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Git Repository", Index=686, Lcid=1033, Description="")]
+        GitRepository = 10072,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Git Solution", Index=682, Lcid=1033, Description="")]
+        GitSolution = 10073,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Source Control Branch Configuration", Index=340, Lcid=1033, Description="Stores the source control branch configuration associated with the organization o" +
             "r solution")]
-        SourceControlBranchConfiguration = 10058,
+        SourceControlBranchConfiguration = 10074,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Component", Index=355, Lcid=1033, Description="Stores the Source Control Components associated with the organization or solution" +
+        [OptionSetMetadata("Source Control Component", Index=336, Lcid=1033, Description="Stores the Source Control Components associated with the organization or solution" +
             "")]
-        SourceControlComponent = 10059,
+        SourceControlComponent = 10075,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Component Payload", Index=356, Lcid=1033, Description="Stores the Source Control Component Payloads associated with components.")]
-        SourceControlComponentPayload = 10060,
+        [OptionSetMetadata("Source Control Component Payload", Index=335, Lcid=1033, Description="Stores the Source Control Component Payloads associated with components.")]
+        SourceControlComponentPayload = 10076,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Configuration", Index=354, Lcid=1033, Description="Stores the git configuration associated with the environment ")]
-        SourceControlConfiguration = 10061,
+        [OptionSetMetadata("Source Control Configuration", Index=337, Lcid=1033, Description="Stores the git configuration associated with the environment ")]
+        SourceControlConfiguration = 10077,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Source Control Component", Index=339, Lcid=1033, Description="Stores the source control components that needs to be processed")]
-        StagedSourceControlComponent = 10062,
+        [OptionSetMetadata("Staged Source Control Component", Index=349, Lcid=1033, Description="Stores the source control components that needs to be processed")]
+        StagedSourceControlComponent = 10078,
         
         [EnumMember()]
-        [OptionSetMetadata("DataflowRefreshHistory", Index=1054, Lcid=1033, Description="")]
-        DataflowRefreshHistory = 10063,
+        [OptionSetMetadata("DataflowRefreshHistory", Index=645, Lcid=1033, Description="")]
+        DataflowRefreshHistory = 10079,
         
         [EnumMember()]
-        [OptionSetMetadata("EntityRefreshHistory", Index=1079, Lcid=1033, Description="")]
-        EntityRefreshHistory = 10064,
+        [OptionSetMetadata("EntityRefreshHistory", Index=666, Lcid=1033, Description="")]
+        EntityRefreshHistory = 10080,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Link Setting", Index=386, Lcid=1033, Description="Shared Link Setting")]
-        SharedLinkSetting = 10065,
+        [OptionSetMetadata("Shared Link Setting", Index=366, Lcid=1033, Description="Shared Link Setting")]
+        SharedLinkSetting = 10081,
         
         [EnumMember()]
-        [OptionSetMetadata("DelegatedAuthorization", Index=732, Lcid=1033, Description="Context for delegated authorization.")]
-        DelegatedAuthorization = 10066,
+        [OptionSetMetadata("DelegatedAuthorization", Index=454, Lcid=1033, Description="Context for delegated authorization.")]
+        DelegatedAuthorization = 10082,
         
         [EnumMember()]
-        [OptionSetMetadata("CascadeGrantRevokeAccessRecordsTracker", Index=1005, Lcid=1033, Description="")]
-        CascadeGrantRevokeAccessRecordsTracker = 10068,
+        [OptionSetMetadata("CascadeGrantRevokeAccessRecordsTracker", Index=407, Lcid=1033, Description="")]
+        CascadeGrantRevokeAccessRecordsTracker = 10084,
         
         [EnumMember()]
-        [OptionSetMetadata("CascadeGrantRevokeAccessVersionTracker", Index=998, Lcid=1033, Description="")]
-        CascadeGrantRevokeAccessVersionTracker = 10069,
+        [OptionSetMetadata("CascadeGrantRevokeAccessVersionTracker", Index=406, Lcid=1033, Description="")]
+        CascadeGrantRevokeAccessVersionTracker = 10085,
         
         [EnumMember()]
-        [OptionSetMetadata("RevokeInheritedAccessRecordsTracker", Index=604, Lcid=1033, Description="")]
-        RevokeInheritedAccessRecordsTracker = 10070,
+        [OptionSetMetadata("RevokeInheritedAccessRecordsTracker", Index=317, Lcid=1033, Description="")]
+        RevokeInheritedAccessRecordsTracker = 10086,
         
         [EnumMember()]
-        [OptionSetMetadata("TdsMetadata", Index=475, Lcid=1033, Description="")]
-        TdsMetadata = 10071,
+        [OptionSetMetadata("TdsMetadata", Index=195, Lcid=1033, Description="")]
+        TdsMetadata = 10087,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Element", Index=852, Lcid=1033, Description="Associates a model-driven app with its components.")]
-        ModelDrivenAppElement = 10072,
+        [OptionSetMetadata("Model-Driven App Element", Index=490, Lcid=1033, Description="Associates a model-driven app with its components.")]
+        ModelDrivenAppElement = 10088,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Component Node\'s Edge", Index=858, Lcid=1033, Description="Contains Model-Driven App Component Node\'s Edge Information.")]
-        ModelDrivenAppComponentNodesEdge = 10073,
+        [OptionSetMetadata("Model-Driven App Component Node\'s Edge", Index=558, Lcid=1033, Description="Contains Model-Driven App Component Node\'s Edge Information.")]
+        ModelDrivenAppComponentNodesEdge = 10089,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Component Node", Index=851, Lcid=1033, Description="Contains Model-Driven App Component Node Information")]
-        ModelDrivenAppComponentNode = 10074,
+        [OptionSetMetadata("Model-Driven App Component Node", Index=560, Lcid=1033, Description="Contains Model-Driven App Component Node Information")]
+        ModelDrivenAppComponentNode = 10090,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Setting", Index=850, Lcid=1033, Description="Holds the value for the associated App Setting Definition.")]
-        ModelDrivenAppSetting = 10075,
+        [OptionSetMetadata("Model-Driven App Setting", Index=572, Lcid=1033, Description="Holds the value for the associated App Setting Definition.")]
+        ModelDrivenAppSetting = 10091,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App User Setting", Index=848, Lcid=1033, Description="Holds the value for the associated App User Setting Definition.")]
-        ModelDrivenAppUserSetting = 10076,
+        [OptionSetMetadata("Model-Driven App User Setting", Index=571, Lcid=1033, Description="Holds the value for the associated App User Setting Definition.")]
+        ModelDrivenAppUserSetting = 10092,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Setting", Index=579, Lcid=1033, Description="Holds the value for the associated Organization Setting Definition.")]
-        OrganizationSetting = 10077,
+        [OptionSetMetadata("Organization Setting", Index=30, Lcid=1033, Description="Holds the value for the associated Organization Setting Definition.")]
+        OrganizationSetting = 10093,
         
         [EnumMember()]
-        [OptionSetMetadata("Setting Definition", Index=379, Lcid=1033, Description="Contains Setting Definitions")]
-        SettingDefinition = 10078,
+        [OptionSetMetadata("Setting Definition", Index=334, Lcid=1033, Description="Contains Setting Definitions")]
+        SettingDefinition = 10094,
         
         [EnumMember()]
-        [OptionSetMetadata("CanvasApp Extended Metadata", Index=1007, Lcid=1033, Description="Holds extended metadata values for canvas apps that are not solution aware")]
-        CanvasAppExtendedMetadata = 10079,
+        [OptionSetMetadata("CanvasApp Extended Metadata", Index=414, Lcid=1033, Description="Holds extended metadata values for canvas apps that are not solution aware")]
+        CanvasAppExtendedMetadata = 10095,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Plan Mapping", Index=378, Lcid=1033, Description="Service Plan Mapping")]
-        ServicePlanMapping = 10080,
+        [OptionSetMetadata("Service Plan Mapping", Index=302, Lcid=1033, Description="Service Plan Mapping")]
+        ServicePlanMapping = 10096,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Plan Custom Control", Index=380, Lcid=1033, Description="Service Plan Custom Controls")]
-        ServicePlanCustomControl = 10081,
+        [OptionSetMetadata("Service Plan Custom Control", Index=303, Lcid=1033, Description="Service Plan Custom Controls")]
+        ServicePlanCustomControl = 10097,
         
         [EnumMember()]
-        [OptionSetMetadata("ApplicationUser", Index=861, Lcid=1033, Description="Application User that has non-interactive access to the CDS system")]
-        ApplicationUser = 10083,
+        [OptionSetMetadata("ApplicationUser", Index=525, Lcid=1033, Description="Application User that has non-interactive access to the CDS system")]
+        ApplicationUser = 10099,
         
         [EnumMember()]
-        [OptionSetMetadata("OData v4 Data Source", Index=239, Lcid=1033, Description="Data sources used by the OData v4 data provider to access data from an external w" +
+        [OptionSetMetadata("OData v4 Data Source", Index=124, Lcid=1033, Description="Data sources used by the OData v4 data provider to access data from an external w" +
             "eb service.")]
-        ODatav4DataSource = 10086,
+        ODatav4DataSource = 10102,
         
         [EnumMember()]
-        [OptionSetMetadata("Workflow Binary", Index=424, Lcid=1033, Description="")]
-        WorkflowBinary = 10087,
+        [OptionSetMetadata("Workflow Binary", Index=250, Lcid=1033, Description="")]
+        WorkflowBinary = 10103,
         
         [EnumMember()]
-        [OptionSetMetadata("Credential", Index=946, Lcid=1033, Description="")]
-        Credential = 10088,
+        [OptionSetMetadata("Business Process", Index=543, Lcid=1033, Description="")]
+        BusinessProcess = 10104,
         
         [EnumMember()]
-        [OptionSetMetadata("Desktop Flow Module", Index=723, Lcid=1033, Description="")]
-        DesktopFlowModule = 10089,
+        [OptionSetMetadata("Credential", Index=403, Lcid=1033, Description="")]
+        Credential = 10105,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Capacity Assignment", Index=700, Lcid=1033, Description="Capacity assignment for usage in Power Automate")]
-        FlowCapacityAssignment = 10090,
+        [OptionSetMetadata("Desktop Flow Module", Index=474, Lcid=1033, Description="")]
+        DesktopFlowModule = 10106,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Credential Application", Index=813, Lcid=1033, Description="")]
-        FlowCredentialApplication = 10091,
+        [OptionSetMetadata("Flow Capacity Assignment", Index=676, Lcid=1033, Description="Capacity assignment for usage in Power Automate")]
+        FlowCapacityAssignment = 10107,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Event", Index=814, Lcid=1033, Description="Entity to store the events that happen during usage of Power Automate.")]
-        FlowEvent = 10092,
+        [OptionSetMetadata("Flow Credential Application", Index=675, Lcid=1033, Description="")]
+        FlowCredentialApplication = 10108,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine", Index=810, Lcid=1033, Description="")]
-        FlowMachine = 10093,
+        [OptionSetMetadata("Flow Event", Index=677, Lcid=1033, Description="Entity to store the events that happen during usage of Power Automate.")]
+        FlowEvent = 10109,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Group", Index=811, Lcid=1033, Description="")]
-        FlowMachineGroup = 10094,
+        [OptionSetMetadata("Flow Machine", Index=678, Lcid=1033, Description="")]
+        FlowMachine = 10110,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Image", Index=818, Lcid=1033, Description="")]
-        FlowMachineImage = 10095,
+        [OptionSetMetadata("Flow Machine Group", Index=674, Lcid=1033, Description="")]
+        FlowMachineGroup = 10111,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Image Version", Index=819, Lcid=1033, Description="")]
-        FlowMachineImageVersion = 10096,
+        [OptionSetMetadata("Flow Machine Image", Index=670, Lcid=1033, Description="")]
+        FlowMachineImage = 10112,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Network", Index=817, Lcid=1033, Description="")]
-        FlowMachineNetwork = 10097,
+        [OptionSetMetadata("Flow Machine Image Version", Index=669, Lcid=1033, Description="")]
+        FlowMachineImageVersion = 10113,
         
         [EnumMember()]
-        [OptionSetMetadata("ProcessStageParameter", Index=532, Lcid=1033, Description="")]
-        ProcessStageParameter = 10098,
+        [OptionSetMetadata("Flow Machine Network", Index=671, Lcid=1033, Description="")]
+        FlowMachineNetwork = 10114,
         
         [EnumMember()]
-        [OptionSetMetadata("Work Queue", Index=428, Lcid=1033, Description="")]
-        WorkQueue = 10099,
+        [OptionSetMetadata("Flow Session Binary", Index=680, Lcid=1033, Description="")]
+        FlowSessionBinary = 10115,
         
         [EnumMember()]
-        [OptionSetMetadata("Work Queue Item", Index=429, Lcid=1033, Description="")]
-        WorkQueueItem = 10100,
+        [OptionSetMetadata("ProcessStageParameter", Index=74, Lcid=1033, Description="")]
+        ProcessStageParameter = 10116,
         
         [EnumMember()]
-        [OptionSetMetadata("Desktop Flow Binary", Index=716, Lcid=1033, Description="")]
-        DesktopFlowBinary = 10101,
+        [OptionSetMetadata("Saving Rule", Index=294, Lcid=1033, Description="")]
+        SavingRule = 10117,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Log", Index=812, Lcid=1033)]
-        FlowLog = 10102,
+        [OptionSetMetadata("Tag", Index=196, Lcid=1033, Description="")]
+        Tag = 10118,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Run", Index=815, Lcid=1033, Description="")]
-        FlowRun = 10103,
+        [OptionSetMetadata("Tagged Flow Session", Index=192, Lcid=1033, Description="")]
+        TaggedFlowSession = 10119,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Approval Model", Index=1025, Lcid=1033, Description="The action approval model data attached to an action approval.")]
-        ActionApprovalModel = 10104,
+        [OptionSetMetadata("Tagged Process", Index=191, Lcid=1033, Description="")]
+        TaggedProcess = 10120,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval", Index=1026, Lcid=1033, Description="An approval.")]
-        Approval = 10105,
+        [OptionSetMetadata("Workflow Metadata", Index=259, Lcid=1033, Description="Metadata associated with workflows")]
+        WorkflowMetadata = 10121,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval Request", Index=1019, Lcid=1033, Description="An individual request for approval.")]
-        ApprovalRequest = 10106,
+        [OptionSetMetadata("Work Queue", Index=260, Lcid=1033, Description="")]
+        WorkQueue = 10122,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval Response", Index=1012, Lcid=1033, Description="An individual response to an approval.")]
-        ApprovalResponse = 10107,
+        [OptionSetMetadata("Work Queue Item", Index=256, Lcid=1033, Description="")]
+        WorkQueueItem = 10123,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval Step", Index=1013, Lcid=1033, Description="")]
-        ApprovalStep = 10108,
+        [OptionSetMetadata("Desktop Flow Binary", Index=472, Lcid=1033, Description="")]
+        DesktopFlowBinary = 10124,
         
         [EnumMember()]
-        [OptionSetMetadata("Await All Action Approval Model", Index=1011, Lcid=1033, Description="The await all action approval model data attached to an action approval.")]
-        AwaitAllActionApprovalModel = 10109,
+        [OptionSetMetadata("Flow Aggregation", Index=692, Lcid=1033, Description="")]
+        FlowAggregation = 10125,
         
         [EnumMember()]
-        [OptionSetMetadata("Await All Approval Model", Index=1009, Lcid=1033, Description="The await all approval model data attached to an approval.")]
-        AwaitAllApprovalModel = 10110,
+        [OptionSetMetadata("Flow Log", Index=679, Lcid=1033)]
+        FlowLog = 10126,
         
         [EnumMember()]
-        [OptionSetMetadata("Basic Approval Model Data", Index=1010, Lcid=1033, Description="The basic approval model data attached to an approval.")]
-        BasicApprovalModelData = 10111,
+        [OptionSetMetadata("Flow Run", Index=673, Lcid=1033, Description="")]
+        FlowRun = 10127,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Approval", Index=1017, Lcid=1033, Description="Microsoft Flow data attached to an approval.")]
-        FlowApproval = 10112,
+        [OptionSetMetadata("Approval Process", Index=553, Lcid=1033, Description="Approval Process for Multi-Stage Approvals")]
+        ApprovalProcess = 10128,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Reference", Index=933, Lcid=1033, Description="")]
-        ConnectionReference = 10121,
+        [OptionSetMetadata("Approval Stage Approval", Index=561, Lcid=1033, Description="The approval stage in multi-stage approvals")]
+        ApprovalStageApproval = 10129,
         
         [EnumMember()]
-        [OptionSetMetadata("DVFileSearch", Index=755, Lcid=1033, Description="DVFileSearches Component")]
-        DVFileSearch = 10122,
+        [OptionSetMetadata("Approval Stage Condition", Index=569, Lcid=1033, Description="The condition in multi-stage approvals")]
+        ApprovalStageCondition = 10130,
         
         [EnumMember()]
-        [OptionSetMetadata("DVFileSearchAttribute", Index=756, Lcid=1033, Description="")]
-        DVFileSearchAttribute = 10123,
+        [OptionSetMetadata("Approval Stage Intelligent", Index=568, Lcid=1033, Description="")]
+        ApprovalStageIntelligent = 10131,
         
         [EnumMember()]
-        [OptionSetMetadata("DVFileSearchEntity", Index=754, Lcid=1033, Description="DVFileSearchEntities component.")]
-        DVFileSearchEntity = 10124,
+        [OptionSetMetadata("Approval Stage Order", Index=570, Lcid=1033, Description="The order of the stages in multi-stage approvals.")]
+        ApprovalStageOrder = 10132,
         
         [EnumMember()]
-        [OptionSetMetadata("DVTableSearch", Index=752, Lcid=1033, Description="DVTableSearches component")]
-        DVTableSearch = 10125,
+        [OptionSetMetadata("Action Approval Model", Index=661, Lcid=1033, Description="The action approval model data attached to an action approval.")]
+        ActionApprovalModel = 10133,
         
         [EnumMember()]
-        [OptionSetMetadata("DVTableSearchAttribute", Index=753, Lcid=1033, Description="DVTableSearchAttribute component")]
-        DVTableSearchAttribute = 10126,
+        [OptionSetMetadata("Approval", Index=660, Lcid=1033, Description="An approval.")]
+        Approval = 10134,
         
         [EnumMember()]
-        [OptionSetMetadata("DVTableSearchEntity", Index=746, Lcid=1033, Description="DVTableSearchEntities component")]
-        DVTableSearchEntity = 10127,
+        [OptionSetMetadata("Approval Request", Index=644, Lcid=1033, Description="An individual request for approval.")]
+        ApprovalRequest = 10135,
         
         [EnumMember()]
-        [OptionSetMetadata("AICopilot", Index=889, Lcid=1033, Description="AI Copilot")]
-        AICopilot = 10128,
+        [OptionSetMetadata("Approval Response", Index=628, Lcid=1033, Description="An individual response to an approval.")]
+        ApprovalResponse = 10136,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginAuth", Index=917, Lcid=1033, Description="Entity to store AIPlugin Auth Information")]
-        AIPluginAuth = 10129,
+        [OptionSetMetadata("Approval Step", Index=627, Lcid=1033, Description="")]
+        ApprovalStep = 10137,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Conversation Starter", Index=915, Lcid=1033, Description="Conversation Starters for AI Plugins.")]
-        AIPluginConversationStarter = 10130,
+        [OptionSetMetadata("Await All Action Approval Model", Index=629, Lcid=1033, Description="The await all action approval model data attached to an action approval.")]
+        AwaitAllActionApprovalModel = 10138,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Conversation Starter Mapping", Index=916, Lcid=1033, Description="AIPlugins component")]
-        AIPluginConversationStarterMapping = 10131,
+        [OptionSetMetadata("Await All Approval Model", Index=631, Lcid=1033, Description="The await all approval model data attached to an approval.")]
+        AwaitAllApprovalModel = 10139,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Governance", Index=922, Lcid=1033, Description="")]
-        AIPluginGovernance = 10132,
+        [OptionSetMetadata("Basic Approval Model Data", Index=630, Lcid=1033, Description="The basic approval model data attached to an approval.")]
+        BasicApprovalModelData = 10140,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Governance Extended", Index=920, Lcid=1033, Description="")]
-        AIPluginGovernanceExtended = 10133,
+        [OptionSetMetadata("Flow Approval", Index=626, Lcid=1033, Description="Microsoft Flow data attached to an approval.")]
+        FlowApproval = 10141,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginOperationResponseTemplate", Index=908, Lcid=1033, Description="Content for the AI Plugin Operation Response Template")]
-        AIPluginOperationResponseTemplate = 10134,
+        [OptionSetMetadata("Connection Reference", Index=387, Lcid=1033, Description="")]
+        ConnectionReference = 10150,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginTitle", Index=906, Lcid=1033, Description="AIPlugin Title")]
-        AIPluginTitle = 10135,
+        [OptionSetMetadata("Knowledge Source Consumer", Index=718, Lcid=1033, Description="")]
+        KnowledgeSourceConsumer = 10151,
         
         [EnumMember()]
-        [OptionSetMetadata("SideloadedAIPlugin", Index=418, Lcid=1033, Description="Sideloaded AIPlugins metadata.")]
-        SideloadedAIPlugin = 10136,
+        [OptionSetMetadata("Knowledge Source Profile", Index=717, Lcid=1033, Description="")]
+        KnowledgeSourceProfile = 10152,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPlugin", Index=919, Lcid=1033, Description="AIPlugins component")]
-        AIPlugin = 10137,
+        [OptionSetMetadata("UnstructuredFileSearchEntity", Index=282, Lcid=1033, Description="")]
+        UnstructuredFileSearchEntity = 10153,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginExternalSchema", Index=923, Lcid=1033, Description="AIPluginExternalSchemas component")]
-        AIPluginExternalSchema = 10138,
+        [OptionSetMetadata("UnstructuredFileSearchRecord", Index=281, Lcid=1033, Description="UnstructuredFileSearchRecord")]
+        UnstructuredFileSearchRecord = 10154,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginExternalSchemaProperty", Index=924, Lcid=1033, Description="AIPluginExternalSchemaProperties component")]
-        AIPluginExternalSchemaProperty = 10139,
+        [OptionSetMetadata("UnstructuredFileSearchRecordStatus", Index=283, Lcid=1033, Description="UnstructuredFileSearchRecordStatus")]
+        UnstructuredFileSearchRecordStatus = 10155,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginInstance", Index=921, Lcid=1033, Description="AI Plugin Instances Component")]
-        AIPluginInstance = 10140,
+        [OptionSetMetadata("DVFileSearch", Index=469, Lcid=1033, Description="DVFileSearches Component")]
+        DVFileSearch = 10156,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginOperation", Index=914, Lcid=1033, Description="AIPluginOperations component")]
-        AIPluginOperation = 10141,
+        [OptionSetMetadata("DVFileSearchAttribute", Index=453, Lcid=1033, Description="")]
+        DVFileSearchAttribute = 10157,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginOperationParameter", Index=907, Lcid=1033, Description="Parameter overrides for AI Operation")]
-        AIPluginOperationParameter = 10142,
+        [OptionSetMetadata("DVFileSearchEntity", Index=437, Lcid=1033, Description="DVFileSearchEntities component.")]
+        DVFileSearchEntity = 10158,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginUserSetting", Index=904, Lcid=1033, Description="")]
-        AIPluginUserSetting = 10143,
+        [OptionSetMetadata("DVTableSearch", Index=436, Lcid=1033, Description="DVTableSearches component")]
+        DVTableSearch = 10159,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Event", Index=1244, Lcid=1033, Description="")]
-        AIEvent = 10145,
+        [OptionSetMetadata("DVTableSearchAttribute", Index=438, Lcid=1033, Description="DVTableSearchAttribute component")]
+        DVTableSearchAttribute = 10160,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Feedback Loop", Index=1258, Lcid=1033, Description="")]
-        AIBuilderFeedbackLoop = 10146,
+        [OptionSetMetadata("DVTableSearchEntity", Index=440, Lcid=1033, Description="DVTableSearchEntities component")]
+        DVTableSearchEntity = 10161,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Form Processing Document", Index=1242, Lcid=1033, Description="")]
-        AIFormProcessingDocument = 10147,
+        [OptionSetMetadata("AICopilot", Index=519, Lcid=1033, Description="AI Copilot")]
+        AICopilot = 10162,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Image", Index=1241, Lcid=1033, Description="")]
-        AIObjectDetectionImage = 10148,
+        [OptionSetMetadata("AIPluginAuth", Index=516, Lcid=1033, Description="Entity to store AIPlugin Auth Information")]
+        AIPluginAuth = 10163,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Label", Index=1248, Lcid=1033, Description="")]
-        AIObjectDetectionLabel = 10149,
+        [OptionSetMetadata("AI Plugin Conversation Starter", Index=518, Lcid=1033, Description="Conversation Starters for AI Plugins.")]
+        AIPluginConversationStarter = 10164,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Bounding Box", Index=1249, Lcid=1033, Description="")]
-        AIObjectDetectionBoundingBox = 10150,
+        [OptionSetMetadata("AI Plugin Conversation Starter Mapping", Index=517, Lcid=1033, Description="AIPlugins component")]
+        AIPluginConversationStarterMapping = 10165,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Image Mapping", Index=1247, Lcid=1033, Description="")]
-        AIObjectDetectionImageMapping = 10151,
+        [OptionSetMetadata("AI Plugin Governance", Index=484, Lcid=1033, Description="")]
+        AIPluginGovernance = 10166,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Dataset", Index=1251, Lcid=1033, Description="")]
-        AIBuilderDataset = 10153,
+        [OptionSetMetadata("AI Plugin Governance Extended", Index=486, Lcid=1033, Description="")]
+        AIPluginGovernanceExtended = 10167,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Dataset File", Index=1252, Lcid=1033, Description="")]
-        AIBuilderDatasetFile = 10154,
+        [OptionSetMetadata("AIPluginOperationResponseTemplate", Index=479, Lcid=1033, Description="Content for the AI Plugin Operation Response Template")]
+        AIPluginOperationResponseTemplate = 10168,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Dataset Record", Index=1259, Lcid=1033, Description="")]
-        AIBuilderDatasetRecord = 10155,
+        [OptionSetMetadata("AIPluginTitle", Index=478, Lcid=1033, Description="AIPlugin Title")]
+        AIPluginTitle = 10169,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Datasets Container", Index=1260, Lcid=1033, Description="")]
-        AIBuilderDatasetsContainer = 10156,
+        [OptionSetMetadata("SideloadedAIPlugin", Index=362, Lcid=1033, Description="Sideloaded AIPlugins metadata.")]
+        SideloadedAIPlugin = 10170,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder File", Index=1256, Lcid=1033, Description="")]
-        AIBuilderFile = 10157,
+        [OptionSetMetadata("AIPlugin", Index=514, Lcid=1033, Description="AIPlugins component")]
+        AIPlugin = 10171,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder File Attached Data", Index=1257, Lcid=1033, Description="")]
-        AIBuilderFileAttachedData = 10158,
+        [OptionSetMetadata("AIPluginExternalSchema", Index=501, Lcid=1033, Description="AIPluginExternalSchemas component")]
+        AIPluginExternalSchema = 10172,
         
         [EnumMember()]
-        [OptionSetMetadata("Help Page", Index=1034, Lcid=1033, Description="")]
-        HelpPage = 10159,
+        [OptionSetMetadata("AIPluginExternalSchemaProperty", Index=485, Lcid=1033, Description="AIPluginExternalSchemaProperties component")]
+        AIPluginExternalSchemaProperty = 10173,
         
         [EnumMember()]
-        [OptionSetMetadata("Tour", Index=18, Lcid=1033, Description="")]
-        Tour = 10160,
+        [OptionSetMetadata("AIPluginInstance", Index=488, Lcid=1033, Description="AI Plugin Instances Component")]
+        AIPluginInstance = 10174,
         
         [EnumMember()]
-        [OptionSetMetadata("BotContent", Index=140, Lcid=1033, Description="")]
-        BotContent = 10161,
+        [OptionSetMetadata("AIPluginOperation", Index=487, Lcid=1033, Description="AIPluginOperations component")]
+        AIPluginOperation = 10175,
         
         [EnumMember()]
-        [OptionSetMetadata("ConversationTranscript", Index=962, Lcid=1033, Description="Contains the transcripts of conversations between participants such as customers," +
+        [OptionSetMetadata("AIPluginOperationParameter", Index=483, Lcid=1033, Description="Parameter overrides for AI Operation")]
+        AIPluginOperationParameter = 10176,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AIPluginUserSetting", Index=480, Lcid=1033, Description="")]
+        AIPluginUserSetting = 10177,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Configuration Search", Index=609, Lcid=1033, Description="")]
+        AIConfigurationSearch = 10179,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Data Processing Event", Index=611, Lcid=1033, Description="Events that are triggered by Data Processing.")]
+        DataProcessingEvent = 10180,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Document Template", Index=613, Lcid=1033, Description="Stores AI-powered document templates, including file content, metadata, and owner" +
+            "ship details, to support automated document generation and management scenarios " +
+            "in Power Platform solutions.")]
+        AIDocumentTemplate = 10181,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Event", Index=579, Lcid=1033, Description="")]
+        AIEvent = 10182,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Model Catalog", Index=582, Lcid=1033, Description="This table contains records of AI Model Catalogs used for BYOM")]
+        AIModelCatalog = 10183,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Feedback Loop", Index=619, Lcid=1033, Description="")]
+        AIBuilderFeedbackLoop = 10185,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Form Processing Document", Index=581, Lcid=1033, Description="")]
+        AIFormProcessingDocument = 10186,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Image", Index=578, Lcid=1033, Description="")]
+        AIObjectDetectionImage = 10187,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Label", Index=574, Lcid=1033, Description="")]
+        AIObjectDetectionLabel = 10188,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Bounding Box", Index=573, Lcid=1033, Description="")]
+        AIObjectDetectionBoundingBox = 10189,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Image Mapping", Index=575, Lcid=1033, Description="")]
+        AIObjectDetectionImageMapping = 10190,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Dataset", Index=608, Lcid=1033, Description="")]
+        AIBuilderDataset = 10192,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Dataset File", Index=616, Lcid=1033, Description="")]
+        AIBuilderDatasetFile = 10193,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Dataset Record", Index=615, Lcid=1033, Description="")]
+        AIBuilderDatasetRecord = 10194,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Datasets Container", Index=617, Lcid=1033, Description="")]
+        AIBuilderDatasetsContainer = 10195,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder File", Index=618, Lcid=1033, Description="")]
+        AIBuilderFile = 10196,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder File Attached Data", Index=614, Lcid=1033, Description="")]
+        AIBuilderFileAttachedData = 10197,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Evaluation Configuration", Index=612, Lcid=1033, Description="")]
+        AIEvaluationConfiguration = 10198,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Evaluation Metric", Index=596, Lcid=1033, Description="")]
+        AIEvaluationMetric = 10199,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Evaluation Run", Index=580, Lcid=1033, Description="")]
+        AIEvaluationRun = 10200,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Optimization", Index=577, Lcid=1033, Description="")]
+        AIOptimization = 10201,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Optimization Private Data", Index=576, Lcid=1033, Description="")]
+        AIOptimizationPrivateData = 10202,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Case", Index=592, Lcid=1033, Description="")]
+        AITestCase = 10203,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Case Document", Index=591, Lcid=1033, Description="")]
+        AITestCaseDocument = 10204,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Case Input", Index=593, Lcid=1033, Description="")]
+        AITestCaseInput = 10205,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Run", Index=595, Lcid=1033, Description="")]
+        AITestRun = 10206,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Run Batch", Index=594, Lcid=1033, Description="")]
+        AITestRunBatch = 10207,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Help Page", Index=623, Lcid=1033, Description="")]
+        HelpPage = 10208,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Tour", Index=110, Lcid=1033, Description="")]
+        Tour = 10209,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BotContent", Index=143, Lcid=1033, Description="")]
+        BotContent = 10210,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ConversationTranscript", Index=385, Lcid=1033, Description="Contains the transcripts of conversations between participants such as customers," +
             " Virtual Agents or Human agents.")]
-        ConversationTranscript = 10162,
+        ConversationTranscript = 10211,
         
         [EnumMember()]
-        [OptionSetMetadata("Copilot", Index=982, Lcid=1033, Description="Represents a copilot created in Copilot Studio. https://copilotstudio.microsoft.c" +
+        [OptionSetMetadata("Copilot", Index=526, Lcid=1033, Description="Represents a copilot created in Copilot Studio. https://copilotstudio.microsoft.c" +
             "om/")]
-        Copilot = 10163,
+        Copilot = 10212,
         
         [EnumMember()]
-        [OptionSetMetadata("Copilot component", Index=980, Lcid=1033, Description="Holds key authoring components of a Copilot such a topics, entities, variables, e" +
+        [OptionSetMetadata("Copilot component", Index=528, Lcid=1033, Description="Holds key authoring components of a Copilot such a topics, entities, variables, e" +
             "tc.")]
-        Copilotcomponent = 10164,
+        Copilotcomponent = 10213,
         
         [EnumMember()]
-        [OptionSetMetadata("Copilot component collection", Index=978, Lcid=1033, Description="")]
-        Copilotcomponentcollection = 10165,
+        [OptionSetMetadata("Copilot component collection", Index=530, Lcid=1033, Description="")]
+        Copilotcomponentcollection = 10214,
         
         [EnumMember()]
-        [OptionSetMetadata("Comment", Index=937, Lcid=1033, Description="A collaborative comment on a maker artifact")]
-        Comment_2 = 10176,
+        [OptionSetMetadata("Comment", Index=420, Lcid=1033, Description="A collaborative comment on a maker artifact")]
+        Comment_2 = 10225,
         
         [EnumMember()]
-        [OptionSetMetadata("Governance Configuration", Index=804, Lcid=1033, Description="")]
-        GovernanceConfiguration = 10177,
+        [OptionSetMetadata("Governance Configuration", Index=684, Lcid=1033, Description="")]
+        GovernanceConfiguration = 10226,
         
         [EnumMember()]
-        [OptionSetMetadata("Fabric AISkill", Index=711, Lcid=1033, Description="AISkills published from Fabric.")]
-        FabricAISkill = 10178,
+        [OptionSetMetadata("Fabric AISkill", Index=696, Lcid=1033, Description="AISkills published from Fabric.")]
+        FabricAISkill = 10227,
         
         [EnumMember()]
-        [OptionSetMetadata("App Insights Metadata", Index=1194, Lcid=1033, Description="Metadata for App Insights Platform components")]
-        AppInsightsMetadata = 10179,
+        [OptionSetMetadata("App Insights Metadata", Index=588, Lcid=1033, Description="Metadata for App Insights Platform components")]
+        AppInsightsMetadata = 10228,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow Connection Reference", Index=1061, Lcid=1033, Description="Intersecting table between Dataflow and Connection Reference")]
-        DataflowConnectionReference = 10180,
+        [OptionSetMetadata("Dataflow Connection Reference", Index=646, Lcid=1033, Description="Intersecting table between Dataflow and Connection Reference")]
+        DataflowConnectionReference = 10229,
         
         [EnumMember()]
-        [OptionSetMetadata("Schedule", Index=256, Lcid=1033, Description="Generic refresh schedule")]
-        Schedule = 10181,
+        [OptionSetMetadata("Schedule", Index=96, Lcid=1033, Description="Generic refresh schedule")]
+        Schedule = 10230,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow Template", Index=1055, Lcid=1033, Description="An entity to store information about dataflow templates")]
-        DataflowTemplate = 10182,
+        [OptionSetMetadata("Dataflow Template", Index=647, Lcid=1033, Description="An entity to store information about dataflow templates")]
+        DataflowTemplate = 10231,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow DatalakeFolder", Index=1068, Lcid=1033, Description="")]
-        DataflowDatalakeFolder = 10183,
+        [OptionSetMetadata("Dataflow DatalakeFolder", Index=650, Lcid=1033, Description="")]
+        DataflowDatalakeFolder = 10232,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Movement Service Request", Index=1091, Lcid=1033, Description="Table for Data Movement Service Requests")]
-        DataMovementServiceRequest = 10184,
+        [OptionSetMetadata("Data Movement Service Request", Index=656, Lcid=1033, Description="Table for Data Movement Service Requests")]
+        DataMovementServiceRequest = 10233,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Movement Service Request Status", Index=1092, Lcid=1033, Description="Table for Data Movement Service Request Status")]
-        DataMovementServiceRequestStatus = 10185,
+        [OptionSetMetadata("Data Movement Service Request Status", Index=664, Lcid=1033, Description="Table for Data Movement Service Request Status")]
+        DataMovementServiceRequestStatus = 10234,
         
         [EnumMember()]
-        [OptionSetMetadata("DMS Sync Request", Index=1090, Lcid=1033, Description="An entity to save DMS sync requests.")]
-        DMSSyncRequest = 10186,
+        [OptionSetMetadata("DMS Sync Request", Index=663, Lcid=1033, Description="An entity to save DMS sync requests.")]
+        DMSSyncRequest = 10235,
         
         [EnumMember()]
-        [OptionSetMetadata("DMS Sync Status", Index=1088, Lcid=1033, Description="An entity to save DMS sync statuses.")]
-        DMSSyncStatus = 10187,
+        [OptionSetMetadata("DMS Sync Status", Index=665, Lcid=1033, Description="An entity to save DMS sync statuses.")]
+        DMSSyncStatus = 10236,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Asset Configuration", Index=1107, Lcid=1033, Description="Knowledge asset configurations for data sources configured in knowledge hub.")]
-        KnowledgeAssetConfiguration = 10188,
+        [OptionSetMetadata("Knowledge Asset Configuration", Index=637, Lcid=1033, Description="Knowledge asset configurations for data sources configured in knowledge hub.")]
+        KnowledgeAssetConfiguration = 10237,
         
         [EnumMember()]
-        [OptionSetMetadata("Module Run Detail", Index=1133, Lcid=1033, Description="Result of execution of a MEF model")]
-        ModuleRunDetail = 10189,
+        [OptionSetMetadata("Module Run Detail", Index=120, Lcid=1033, Description="Result of execution of a MEF model")]
+        ModuleRunDetail = 10238,
         
         [EnumMember()]
-        [OptionSetMetadata("QnA", Index=303, Lcid=1033, Description="Question and Answers entity")]
-        QnA = 10190,
+        [OptionSetMetadata("QnA", Index=106, Lcid=1033, Description="Question and Answers entity")]
+        QnA = 10239,
         
         [EnumMember()]
-        [OptionSetMetadata("Salesforce Structured Object", Index=265, Lcid=1033, Description="Entity that represents the Salesforce Structured Object.")]
-        SalesforceStructuredObject = 10191,
+        [OptionSetMetadata("Salesforce Structured Object", Index=101, Lcid=1033, Description="Entity that represents the Salesforce Structured Object.")]
+        SalesforceStructuredObject = 10240,
         
         [EnumMember()]
-        [OptionSetMetadata("Salesforce Structured QnA Config", Index=263, Lcid=1033, Description="Entity that represents the Salesforce Structured QnA Config.")]
-        SalesforceStructuredQnAConfig = 10192,
+        [OptionSetMetadata("Salesforce Structured QnA Config", Index=97, Lcid=1033, Description="Entity that represents the Salesforce Structured QnA Config.")]
+        SalesforceStructuredQnAConfig = 10241,
         
         [EnumMember()]
-        [OptionSetMetadata("Workflow Action Status", Index=23, Lcid=1033, Description="PA Workflows action processing status")]
-        WorkflowActionStatus = 10193,
+        [OptionSetMetadata("Workflow Action Status", Index=111, Lcid=1033, Description="PA Workflows action processing status")]
+        WorkflowActionStatus = 10242,
         
         [EnumMember()]
-        [OptionSetMetadata("FederatedKnowledgeConfiguration", Index=698, Lcid=1033, Description="FederatedKnowledgeConfigurations component")]
-        FederatedKnowledgeConfiguration = 10194,
+        [OptionSetMetadata("Allowed MCP Client", Index=481, Lcid=1033, Description="An MCP client that is allowed to talk to MCP endpoint")]
+        AllowedMCPClient = 10243,
         
         [EnumMember()]
-        [OptionSetMetadata("FederatedKnowledgeEntityConfiguration", Index=696, Lcid=1033, Description="FederatedKnowledgeEntityConfigurations component")]
-        FederatedKnowledgeEntityConfiguration = 10195,
+        [OptionSetMetadata("FederatedKnowledgeCitation", Index=711, Lcid=1033, Description="Records the Federated Knowledge Citation info for UCI view")]
+        FederatedKnowledgeCitation = 10244,
         
         [EnumMember()]
-        [OptionSetMetadata("Form Mapping", Index=1048, Lcid=1033, Description="")]
-        FormMapping = 10196,
+        [OptionSetMetadata("FederatedKnowledgeConfiguration", Index=713, Lcid=1033, Description="FederatedKnowledgeConfigurations component")]
+        FederatedKnowledgeConfiguration = 10245,
         
         [EnumMember()]
-        [OptionSetMetadata("PDF Setting", Index=567, Lcid=1033, Description="PDF Settings to save enabled pdf entities")]
-        PDFSetting = 10197,
+        [OptionSetMetadata("FederatedKnowledgeEntityConfiguration", Index=715, Lcid=1033, Description="FederatedKnowledgeEntityConfigurations component")]
+        FederatedKnowledgeEntityConfiguration = 10246,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity File Attachment", Index=901, Lcid=1033, Description="Attachment entity with data stored in file type attribute")]
-        ActivityFileAttachment = 10198,
+        [OptionSetMetadata("FederatedKnowledgeMetadataRefresh", Index=714, Lcid=1033, Description="Records the Federated Knowledge MetadataRefresh job status")]
+        FederatedKnowledgeMetadataRefresh = 10247,
         
         [EnumMember()]
-        [OptionSetMetadata("Teams chat", Index=939, Lcid=1033, Description="For internal use only. Entity which stores association data of Dynamics 365 recor" +
+        [OptionSetMetadata("IntelligentMemory", Index=759, Lcid=1033, Description="Represents intelligent memories used in the system.")]
+        IntelligentMemory = 10248,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Knowledge FAQ", Index=726, Lcid=1033, Description="Stores Knowledge Frequently Asked Questions")]
+        KnowledgeFAQ = 10249,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Form Mapping", Index=622, Lcid=1033, Description="")]
+        FormMapping = 10250,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Copilot Interactions", Index=653, Lcid=1033, Description="Data table of previous copilot interactions.")]
+        CopilotInteractions = 10251,
+        
+        [EnumMember()]
+        [OptionSetMetadata("PDF Setting", Index=35, Lcid=1033, Description="PDF Settings to save enabled pdf entities")]
+        PDFSetting = 10252,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Activity File Attachment", Index=503, Lcid=1033, Description="Attachment entity with data stored in file type attribute")]
+        ActivityFileAttachment = 10253,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Teams chat", Index=423, Lcid=1033, Description="For internal use only. Entity which stores association data of Dynamics 365 recor" +
             "ds with Microsoft Teams chat")]
-        Teamschat = 10199,
+        Teamschat = 10254,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Configuration", Index=290, Lcid=1033, Description="")]
-        ServiceConfiguration = 10200,
+        [OptionSetMetadata("Service Configuration", Index=98, Lcid=1033, Description="")]
+        ServiceConfiguration = 10255,
         
         [EnumMember()]
-        [OptionSetMetadata("SLA KPI", Index=54, Lcid=1033, Description="")]
-        SLAKPI = 10201,
+        [OptionSetMetadata("SLA KPI", Index=100, Lcid=1033, Description="")]
+        SLAKPI = 10256,
         
         [EnumMember()]
-        [OptionSetMetadata("Integrated search provider", Index=1149, Lcid=1033, Description="Ingest and search files, documents, or articles from data sources outside of your" +
+        [OptionSetMetadata("Integrated search provider", Index=640, Lcid=1033, Description="Ingest and search files, documents, or articles from data sources outside of your" +
             " current Dynamics 365 organization with a unified ranking.")]
-        Integratedsearchprovider = 10202,
+        Integratedsearchprovider = 10257,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Management Setting", Index=1104, Lcid=1033, Description="Setup knowledge management for your organization.")]
-        KnowledgeManagementSetting = 10203,
+        [OptionSetMetadata("Knowledge Management Setting", Index=128, Lcid=1033, Description="Setup knowledge management for your organization.")]
+        KnowledgeManagementSetting = 10258,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Federated Article", Index=1021, Lcid=1033, Description="")]
-        KnowledgeFederatedArticle = 10204,
+        [OptionSetMetadata("Knowledge Federated Article", Index=658, Lcid=1033, Description="")]
+        KnowledgeFederatedArticle = 10259,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Federated Article Incident", Index=1028, Lcid=1033, Description="")]
-        KnowledgeFederatedArticleIncident = 10205,
+        [OptionSetMetadata("Knowledge Federated Article Incident", Index=657, Lcid=1033, Description="")]
+        KnowledgeFederatedArticleIncident = 10260,
         
         [EnumMember()]
-        [OptionSetMetadata("Search provider", Index=1157, Lcid=1033, Description="")]
-        Searchprovider = 10206,
+        [OptionSetMetadata("Search provider", Index=642, Lcid=1033, Description="")]
+        Searchprovider = 10261,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Image", Index=1165, Lcid=1033, Description="")]
-        KnowledgeArticleImage = 10207,
+        [OptionSetMetadata("Knowledge Article Image", Index=633, Lcid=1033, Description="")]
+        KnowledgeArticleImage = 10262,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Configuration", Index=1108, Lcid=1033, Description="Represents the possible settings used in Knowledge management")]
-        KnowledgeConfiguration = 10208,
+        [OptionSetMetadata("Knowledge Configuration", Index=636, Lcid=1033, Description="Represents the possible settings used in Knowledge management")]
+        KnowledgeConfiguration = 10263,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Interaction Insight", Index=1106, Lcid=1033, Description="Knowledge Interaction Insight")]
-        KnowledgeInteractionInsight = 10209,
+        [OptionSetMetadata("Knowledge Interaction Insight", Index=126, Lcid=1033, Description="Knowledge Interaction Insight")]
+        KnowledgeInteractionInsight = 10264,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Search Insight", Index=1113, Lcid=1033, Description="Knowledge Search Insight")]
-        KnowledgeSearchInsight = 10210,
+        [OptionSetMetadata("Knowledge Search Insight", Index=125, Lcid=1033, Description="Knowledge Search Insight")]
+        KnowledgeSearchInsight = 10265,
         
         [EnumMember()]
-        [OptionSetMetadata("Favorite knowledge article", Index=1020, Lcid=1033, Description="Entity for favorite knowledge articles")]
-        Favoriteknowledgearticle = 10211,
+        [OptionSetMetadata("Favorite knowledge article", Index=662, Lcid=1033, Description="Entity for favorite knowledge articles")]
+        Favoriteknowledgearticle = 10266,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge article language setting", Index=1159, Lcid=1033, Description="Allows you to select default language for knowledge authoring.")]
-        Knowledgearticlelanguagesetting = 10212,
+        [OptionSetMetadata("Knowledge article language setting", Index=641, Lcid=1033, Description="Allows you to select default language for knowledge authoring.")]
+        Knowledgearticlelanguagesetting = 10267,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Attachment", Index=1160, Lcid=1033, Description="")]
-        KnowledgeArticleAttachment = 10213,
+        [OptionSetMetadata("Knowledge Article Attachment", Index=643, Lcid=1033, Description="")]
+        KnowledgeArticleAttachment = 10268,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge personalization", Index=1164, Lcid=1033, Description="Allows users to personalize their knowledge search filters and knowledge authorin" +
+        [OptionSetMetadata("Knowledge personalization", Index=638, Lcid=1033, Description="Allows users to personalize their knowledge search filters and knowledge authorin" +
             "g language.")]
-        Knowledgepersonalization = 10214,
+        Knowledgepersonalization = 10269,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Template", Index=1162, Lcid=1033, Description="Organizational Knowledge Article Template for Internal and external creation of K" +
+        [OptionSetMetadata("Knowledge Article Template", Index=635, Lcid=1033, Description="Organizational Knowledge Article Template for Internal and external creation of K" +
             "nowledge Articles.")]
-        KnowledgeArticleTemplate = 10215,
+        KnowledgeArticleTemplate = 10270,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge search personal filter config", Index=1105, Lcid=1033, Description="Allows you to configure and manage personal filter settings.")]
-        Knowledgesearchpersonalfilterconfig = 10216,
+        [OptionSetMetadata("Knowledge search personal filter config", Index=130, Lcid=1033, Description="Allows you to configure and manage personal filter settings.")]
+        Knowledgesearchpersonalfilterconfig = 10271,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge search filter", Index=1112, Lcid=1033, Description="Allows you to configure and manage filter settings.")]
-        Knowledgesearchfilter = 10217,
+        [OptionSetMetadata("Knowledge search filter", Index=129, Lcid=1033, Description="Allows you to configure and manage filter settings.")]
+        Knowledgesearchfilter = 10272,
         
         [EnumMember()]
-        [OptionSetMetadata("SupportUserTable", Index=376, Lcid=1033, Description="")]
-        SupportUserTable = 10219,
+        [OptionSetMetadata("msdyn_historicalcaseharvestbatch", Index=625, Lcid=1033, Description="")]
+        msdyn_historicalcaseharvestbatch = 10274,
         
         [EnumMember()]
-        [OptionSetMetadata("FxExpression", Index=809, Lcid=1033, Description="")]
-        FxExpression = 10220,
+        [OptionSetMetadata("msdyn_historicalcaseharvestrun", Index=624, Lcid=1033, Description="")]
+        msdyn_historicalcaseharvestrun = 10275,
         
         [EnumMember()]
-        [OptionSetMetadata("Function", Index=1046, Lcid=1033, Description="")]
-        Function = 10221,
+        [OptionSetMetadata("Interim Update Knowledge Article", Index=639, Lcid=1033, Description="Interim table to facilitate the update of knowledge articles from knowledge harve" +
+            "sting.")]
+        InterimUpdateKnowledgeArticle = 10276,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in", Index=518, Lcid=1033, Description="")]
-        Plugin = 10222,
+        [OptionSetMetadata("Knowledge Article Custom Entity", Index=634, Lcid=1033, Description="Table to facilitate the linking of knowledge articles to custom entity sources.")]
+        KnowledgeArticleCustomEntity = 10277,
         
         [EnumMember()]
-        [OptionSetMetadata("PowerfxRule", Index=511, Lcid=1033, Description="")]
-        PowerfxRule = 10223,
+        [OptionSetMetadata("Knowledge Harvest Job Record", Index=127, Lcid=1033, Description="Tracking entity record used to trigger the harvesting process for knowledge artic" +
+            "les")]
+        KnowledgeHarvestJobRecord = 10278,
         
         [EnumMember()]
-        [OptionSetMetadata("Planner Business Scenario", Index=572, Lcid=1033, Description="For internal use only. The Business Scenario record to be created in Planner.")]
-        PlannerBusinessScenario = 10224,
+        [OptionSetMetadata("Attribute Cluster Config", Index=565, Lcid=1033, Description="Holds Attribute Cluster configuration for entities")]
+        AttributeClusterConfig = 10279,
         
         [EnumMember()]
-        [OptionSetMetadata("Planner Sync Action", Index=573, Lcid=1033, Description="The Planner Sync Action to be executed.")]
-        PlannerSyncAction = 10225,
+        [OptionSetMetadata("Entity Cluster Configuration", Index=450, Lcid=1033, Description="Holds Entity Cluster configuration for entities")]
+        EntityClusterConfiguration = 10280,
         
         [EnumMember()]
-        [OptionSetMetadata("Ms Graph Resource To Subscription", Index=88, Lcid=1033, Description="For internal use only. The mapping between Ms Graph Resources and Subscriptions.")]
-        MsGraphResourceToSubscription = 10226,
+        [OptionSetMetadata("SupportUserTable", Index=234, Lcid=1033, Description="")]
+        SupportUserTable = 10281,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Entity  Metadata", Index=439, Lcid=1033, Description="Holds  metadata values for virtual entities")]
-        VirtualEntityMetadata = 10227,
+        [OptionSetMetadata("FxExpression", Index=688, Lcid=1033, Description="")]
+        FxExpression = 10282,
         
         [EnumMember()]
-        [OptionSetMetadata("Background Operation", Index=866, Lcid=1033, Description="")]
-        BackgroundOperation = 10228,
+        [OptionSetMetadata("Function", Index=621, Lcid=1033, Description="")]
+        Function = 10283,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Parameter", Index=651, Lcid=1033, Description="")]
-        ReportParameter = 10229,
+        [OptionSetMetadata("Plug-in", Index=41, Lcid=1033, Description="")]
+        Plugin = 10284,
         
         [EnumMember()]
-        [OptionSetMetadata("MobileOfflineProfileExtension", Index=784, Lcid=1033, Description="")]
-        MobileOfflineProfileExtension = 10230,
+        [OptionSetMetadata("PowerfxRule", Index=11, Lcid=1033, Description="")]
+        PowerfxRule = 10285,
         
         [EnumMember()]
-        [OptionSetMetadata("MobileOfflineProfileItemFilter", Index=1232, Lcid=1033, Description="")]
-        MobileOfflineProfileItemFilter = 10231,
+        [OptionSetMetadata("Planner Business Scenario", Index=46, Lcid=1033, Description="For internal use only. The Business Scenario record to be created in Planner.")]
+        PlannerBusinessScenario = 10286,
         
         [EnumMember()]
-        [OptionSetMetadata("TeamMobileOfflineProfileMembership", Index=474, Lcid=1033, Description="")]
-        TeamMobileOfflineProfileMembership = 10232,
+        [OptionSetMetadata("Planner Sync Action", Index=45, Lcid=1033, Description="The Planner Sync Action to be executed.")]
+        PlannerSyncAction = 10287,
         
         [EnumMember()]
-        [OptionSetMetadata("UserMobileOfflineProfileMembership", Index=488, Lcid=1033, Description="")]
-        UserMobileOfflineProfileMembership = 10233,
+        [OptionSetMetadata("MCPServer", Index=604, Lcid=1033, Description="MCPServers component")]
+        MCPServer = 10288,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncSubscription", Index=582, Lcid=1033, Description="")]
-        OrganizationDataSyncSubscription = 10234,
+        [OptionSetMetadata("MCPTool", Index=603, Lcid=1033, Description="MCPTools component")]
+        MCPTool = 10289,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncSubscriptionEntity", Index=580, Lcid=1033, Description="")]
-        OrganizationDataSyncSubscriptionEntity = 10235,
+        [OptionSetMetadata("ToolingGateway", Index=270, Lcid=1033, Description="ToolingGateways component (For Internal use only)")]
+        ToolingGateway = 10290,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncSubscriptionFnoTable", Index=578, Lcid=1033, Description="")]
-        OrganizationDataSyncSubscriptionFnoTable = 10236,
+        [OptionSetMetadata("ToolingGatewayMCPServer", Index=269, Lcid=1033, Description="ToolingGatewayMCPServer component (For Internal use only)")]
+        ToolingGatewayMCPServer = 10291,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncFnoState", Index=552, Lcid=1033, Description="Information regarding data synchronization state")]
-        OrganizationDataSyncFnoState = 10237,
+        [OptionSetMetadata("Email Address Configuration", Index=431, Lcid=1033, Description="Entity which stores configuration metadata for Email Address type fields")]
+        EmailAddressConfiguration = 10292,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncState", Index=581, Lcid=1033, Description="Information regarding data synchronization state")]
-        OrganizationDataSyncState = 10238,
+        [OptionSetMetadata("Ms Graph Resource To Subscription", Index=175, Lcid=1033, Description="For internal use only. The mapping between Ms Graph Resources and Subscriptions.")]
+        MsGraphResourceToSubscription = 10293,
         
         [EnumMember()]
-        [OptionSetMetadata("ArchiveCleanupInfo", Index=846, Lcid=1033, Description="This is Deprecated Entity.")]
-        ArchiveCleanupInfo = 10239,
+        [OptionSetMetadata("Virtual Entity  Metadata", Index=244, Lcid=1033, Description="Holds  metadata values for virtual entities")]
+        VirtualEntityMetadata = 10294,
         
         [EnumMember()]
-        [OptionSetMetadata("ArchiveCleanupOperation", Index=847, Lcid=1033, Description="This is Deprecated Entity.")]
-        ArchiveCleanupOperation = 10240,
+        [OptionSetMetadata("Background Operation", Index=527, Lcid=1033, Description="")]
+        BackgroundOperation = 10295,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveConfig", Index=979, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveConfig = 10241,
+        [OptionSetMetadata("Report Parameter", Index=68, Lcid=1033, Description="")]
+        ReportParameter = 10296,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveFailureDetail", Index=986, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveFailureDetail = 10242,
+        [OptionSetMetadata("MobileOfflineProfileExtension", Index=598, Lcid=1033, Description="")]
+        MobileOfflineProfileExtension = 10297,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveOperation", Index=987, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveOperation = 10243,
+        [OptionSetMetadata("MobileOfflineProfileItemFilter", Index=601, Lcid=1033, Description="")]
+        MobileOfflineProfileItemFilter = 10298,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveOperationDetail", Index=985, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveOperationDetail = 10244,
+        [OptionSetMetadata("TeamMobileOfflineProfileMembership", Index=202, Lcid=1033, Description="")]
+        TeamMobileOfflineProfileMembership = 10299,
         
         [EnumMember()]
-        [OptionSetMetadata("EnableArchivalRequest", Index=687, Lcid=1033, Description="For internal use only.")]
-        EnableArchivalRequest = 10245,
+        [OptionSetMetadata("UserMobileOfflineProfileMembership", Index=278, Lcid=1033, Description="")]
+        UserMobileOfflineProfileMembership = 10300,
         
         [EnumMember()]
-        [OptionSetMetadata("MetadataForArchival", Index=787, Lcid=1033, Description="Holds  metadata values of tables for retention")]
-        MetadataForArchival = 10246,
+        [OptionSetMetadata("OrganizationDataSyncSubscription", Index=159, Lcid=1033, Description="")]
+        OrganizationDataSyncSubscription = 10301,
         
         [EnumMember()]
-        [OptionSetMetadata("ReconciliationEntityInfo", Index=635, Lcid=1033, Description="Table level details of the data lake reconciliation process. For internal use onl" +
+        [OptionSetMetadata("OrganizationDataSyncSubscriptionEntity", Index=95, Lcid=1033, Description="")]
+        OrganizationDataSyncSubscriptionEntity = 10302,
+        
+        [EnumMember()]
+        [OptionSetMetadata("OrganizationDataSyncSubscriptionFnoTable", Index=31, Lcid=1033, Description="")]
+        OrganizationDataSyncSubscriptionFnoTable = 10303,
+        
+        [EnumMember()]
+        [OptionSetMetadata("OrganizationDataSyncFnoState", Index=158, Lcid=1033, Description="Information regarding data synchronization state")]
+        OrganizationDataSyncFnoState = 10304,
+        
+        [EnumMember()]
+        [OptionSetMetadata("OrganizationDataSyncState", Index=160, Lcid=1033, Description="Information regarding data synchronization state")]
+        OrganizationDataSyncState = 10305,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ArchiveCleanupInfo", Index=567, Lcid=1033, Description="This is Deprecated Entity.")]
+        ArchiveCleanupInfo = 10306,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ArchiveCleanupOperation", Index=563, Lcid=1033, Description="This is Deprecated Entity.")]
+        ArchiveCleanupOperation = 10307,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveConfig", Index=529, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveConfig = 10308,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveFailureDetail", Index=537, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveFailureDetail = 10309,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveOperation", Index=545, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveOperation = 10310,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveOperationDetail", Index=544, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveOperationDetail = 10311,
+        
+        [EnumMember()]
+        [OptionSetMetadata("EnableArchivalRequest", Index=441, Lcid=1033, Description="For internal use only.")]
+        EnableArchivalRequest = 10312,
+        
+        [EnumMember()]
+        [OptionSetMetadata("MetadataForArchival", Index=607, Lcid=1033, Description="Holds  metadata values of tables for retention")]
+        MetadataForArchival = 10313,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ReconciliationEntityInfo", Index=87, Lcid=1033, Description="Table level details of the data lake reconciliation process. For internal use onl" +
             "y.")]
-        ReconciliationEntityInfo = 10247,
+        ReconciliationEntityInfo = 10314,
         
         [EnumMember()]
-        [OptionSetMetadata("ReconciliationEntityStepInfo", Index=636, Lcid=1033, Description="Step level details of the data lake reconciliation process. For internal use only" +
+        [OptionSetMetadata("ReconciliationEntityStepInfo", Index=71, Lcid=1033, Description="Step level details of the data lake reconciliation process. For internal use only" +
             ".")]
-        ReconciliationEntityStepInfo = 10248,
+        ReconciliationEntityStepInfo = 10315,
         
         [EnumMember()]
-        [OptionSetMetadata("ReconciliationInfo", Index=665, Lcid=1033, Description="Information about data lake reconciliation operation. For internal use only.")]
-        ReconciliationInfo = 10249,
+        [OptionSetMetadata("ReconciliationInfo", Index=55, Lcid=1033, Description="Information about data lake reconciliation operation. For internal use only.")]
+        ReconciliationInfo = 10316,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionCleanupInfo", Index=603, Lcid=1033, Description="Holds watermark information about retention cleanup operations. For internal use " +
+        [OptionSetMetadata("RetentionCleanupInfo", Index=65, Lcid=1033, Description="Holds watermark information about retention cleanup operations. For internal use " +
             "only.")]
-        RetentionCleanupInfo = 10250,
+        RetentionCleanupInfo = 10317,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionCleanupOperation", Index=601, Lcid=1033, Description="Holds data of cleanup operations such as reconcile and purge.  For internal use o" +
+        [OptionSetMetadata("RetentionCleanupOperation", Index=61, Lcid=1033, Description="Holds data of cleanup operations such as reconcile and purge.  For internal use o" +
             "nly.")]
-        RetentionCleanupOperation = 10251,
+        RetentionCleanupOperation = 10318,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionConfig", Index=599, Lcid=1033, Description="Holds retention policies for a table.")]
-        RetentionConfig = 10252,
+        [OptionSetMetadata("RetentionConfig", Index=60, Lcid=1033, Description="Holds retention policies for a table.")]
+        RetentionConfig = 10319,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionFailureDetail", Index=600, Lcid=1033, Description="Retention failure details.")]
-        RetentionFailureDetail = 10253,
+        [OptionSetMetadata("RetentionFailureDetail", Index=62, Lcid=1033, Description="Retention failure details.")]
+        RetentionFailureDetail = 10320,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionOperation", Index=607, Lcid=1033, Description="Retention policy execution details.")]
-        RetentionOperation = 10254,
+        [OptionSetMetadata("RetentionOperation", Index=64, Lcid=1033, Description="Retention policy execution details.")]
+        RetentionOperation = 10321,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionOperationDetail", Index=608, Lcid=1033, Description="Table level details of retention execution.")]
-        RetentionOperationDetail = 10255,
+        [OptionSetMetadata("RetentionOperationDetail", Index=63, Lcid=1033, Description="Table level details of retention execution.")]
+        RetentionOperationDetail = 10322,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionSuccessDetail", Index=606, Lcid=1033, Description="Retention Success details.")]
-        RetentionSuccessDetail = 10256,
+        [OptionSetMetadata("RetentionSuccessDetail", Index=318, Lcid=1033, Description="Retention Success details.")]
+        RetentionSuccessDetail = 10323,
         
         [EnumMember()]
-        [OptionSetMetadata("CertificateCredential", Index=988, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
+        [OptionSetMetadata("CertificateCredential", Index=417, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
             "to secure web-hosted resources.")]
-        CertificateCredential = 10257,
+        CertificateCredential = 10324,
         
         [EnumMember()]
-        [OptionSetMetadata("Notification", Index=842, Lcid=1033, Description="Notification to be provided to a user.")]
-        Notification_2 = 10258,
+        [OptionSetMetadata("Notification", Index=552, Lcid=1033, Description="Notification to be provided to a user.")]
+        Notification_2 = 10325,
         
         [EnumMember()]
-        [OptionSetMetadata("User Rating", Index=435, Lcid=1033, Description="")]
-        UserRating = 10259,
+        [OptionSetMetadata("User Rating", Index=245, Lcid=1033, Description="")]
+        UserRating = 10326,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile App", Index=1125, Lcid=1033, Description="Mobile App")]
-        MobileApp = 10260,
+        [OptionSetMetadata("Mobile App", Index=121, Lcid=1033, Description="Mobile App")]
+        MobileApp = 10327,
         
         [EnumMember()]
-        [OptionSetMetadata("Insights Store Data Source", Index=1052, Lcid=1033, Description="")]
-        InsightsStoreDataSource = 10261,
+        [OptionSetMetadata("Insights Store Data Source", Index=649, Lcid=1033, Description="")]
+        InsightsStoreDataSource = 10328,
         
         [EnumMember()]
-        [OptionSetMetadata("Insights Store Virtual Entity", Index=1036, Lcid=1033, Description="Insights Store Virtual Entity")]
-        InsightsStoreVirtualEntity = 10262,
+        [OptionSetMetadata("Insights Store Virtual Entity", Index=632, Lcid=1033, Description="Insights Store Virtual Entity")]
+        InsightsStoreVirtualEntity = 10329,
         
         [EnumMember()]
-        [OptionSetMetadata("RoleEditorLayout", Index=595, Lcid=1033, Description="")]
-        RoleEditorLayout = 10263,
+        [OptionSetMetadata("RoleEditorLayout", Index=322, Lcid=1033, Description="")]
+        RoleEditorLayout = 10330,
         
         [EnumMember()]
-        [OptionSetMetadata("Deleted Record Reference", Index=725, Lcid=1033, Description="Deleted Record Reference")]
-        DeletedRecordReference = 10264,
+        [OptionSetMetadata("Deleted Record Reference", Index=456, Lcid=1033, Description="Deleted Record Reference")]
+        DeletedRecordReference = 10331,
         
         [EnumMember()]
-        [OptionSetMetadata("Restore Deleted Records Configuration", Index=663, Lcid=1033, Description="Holds Restore Deleted Records configuration for entities")]
-        RestoreDeletedRecordsConfiguration = 10265,
+        [OptionSetMetadata("Restore Deleted Records Configuration", Index=57, Lcid=1033, Description="Holds Restore Deleted Records configuration for entities")]
+        RestoreDeletedRecordsConfiguration = 10332,
         
         [EnumMember()]
-        [OptionSetMetadata("App Action", Index=911, Lcid=1033, Description="Contains Modern Command Information")]
-        AppAction = 10266,
+        [OptionSetMetadata("App Action", Index=496, Lcid=1033, Description="Contains Modern Command Information")]
+        AppAction = 10333,
         
         [EnumMember()]
-        [OptionSetMetadata("App Action Migration", Index=909, Lcid=1033, Description="")]
-        AppActionMigration = 10267,
+        [OptionSetMetadata("App Action Migration", Index=498, Lcid=1033, Description="")]
+        AppActionMigration = 10334,
         
         [EnumMember()]
-        [OptionSetMetadata("App Action Rule", Index=910, Lcid=1033, Description="")]
-        AppActionRule = 10268,
+        [OptionSetMetadata("App Action Rule", Index=500, Lcid=1033, Description="")]
+        AppActionRule = 10335,
         
         [EnumMember()]
-        [OptionSetMetadata("Card", Index=1008, Lcid=1033, Description="Card")]
-        Card = 10271,
+        [OptionSetMetadata("Card", Index=416, Lcid=1033, Description="Card")]
+        Card = 10338,
         
         [EnumMember()]
-        [OptionSetMetadata("Card State Item", Index=1006, Lcid=1033, Description="")]
-        CardStateItem = 10272,
+        [OptionSetMetadata("Card State Item", Index=415, Lcid=1033, Description="")]
+        CardStateItem = 10339,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity link chat configuration", Index=1080, Lcid=1033, Description="")]
-        Entitylinkchatconfiguration = 10275,
+        [OptionSetMetadata("Entity link chat configuration", Index=667, Lcid=1033, Description="")]
+        Entitylinkchatconfiguration = 10342,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Skill Config", Index=905, Lcid=1033, Description="")]
-        AISkillConfig = 10276,
+        [OptionSetMetadata("SharePoint Managed Identity", Index=361, Lcid=1033, Description="Entity representing a managed identity for SharePoint, used for authentication an" +
+            "d authorization purposes.")]
+        SharePointManagedIdentity = 10343,
         
         [EnumMember()]
-        [OptionSetMetadata("Rich Text Attachment", Index=332, Lcid=1033, Description="Image or file attached to a rich text field")]
-        RichTextAttachment = 10277,
+        [OptionSetMetadata("AI Insight Card", Index=515, Lcid=1033, Description="")]
+        AIInsightCard = 10344,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control Extended Setting", Index=1297, Lcid=1033, Description="")]
-        CustomControlExtendedSetting = 10278,
+        [OptionSetMetadata("AI Skill Config", Index=482, Lcid=1033, Description="")]
+        AISkillConfig = 10345,
         
         [EnumMember()]
-        [OptionSetMetadata("Timeline Pin", Index=12, Lcid=1033, Description="Timeline Pin Record")]
-        TimelinePin = 10279,
+        [OptionSetMetadata("Suggested Action", Index=323, Lcid=1033, Description="This table contains records of suggested actions with execution details.")]
+        SuggestedAction = 10346,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Connector Data Source", Index=1311, Lcid=1033, Description="")]
-        VirtualConnectorDataSource = 10280,
+        [OptionSetMetadata("Suggested Action Criteria", Index=325, Lcid=1033, Description="This table contains records of suggested action criteria.")]
+        SuggestedActionCriteria = 10347,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Table Column Candidate", Index=35, Lcid=1033, Description="")]
-        VirtualTableColumnCandidate = 10281,
+        [OptionSetMetadata("Data Workspace", Index=648, Lcid=1033, Description="Table that stores Data workspace records.")]
+        DataWorkspace = 10348,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Analysis History", Index=173, Lcid=1033, Description="")]
-        PMAnalysisHistory = 10283,
+        [OptionSetMetadata("Plan", Index=123, Lcid=1033, Description="Table that stores plan records.")]
+        Plan = 10349,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Business Rule Automation Config", Index=174, Lcid=1033, Description="")]
-        PMBusinessRuleAutomationConfig = 10284,
+        [OptionSetMetadata("Plan Artifact", Index=131, Lcid=1033, Description="Table that stores the artifact records for a plan.")]
+        PlanArtifact = 10350,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Calendar", Index=203, Lcid=1033, Description="")]
-        PMCalendar = 10285,
+        [OptionSetMetadata("Plan Attachment", Index=139, Lcid=1033, Description="")]
+        PlanAttachment = 10351,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Calendar Version", Index=204, Lcid=1033, Description="")]
-        PMCalendarVersion = 10286,
+        [OptionSetMetadata("Rich Text Attachment", Index=105, Lcid=1033, Description="Image or file attached to a rich text field")]
+        RichTextAttachment = 10352,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Inferred Task", Index=202, Lcid=1033, Description="")]
-        PMInferredTask = 10287,
+        [OptionSetMetadata("Custom Control Extended Setting", Index=655, Lcid=1033, Description="")]
+        CustomControlExtendedSetting = 10353,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process Extended Metadata Version", Index=200, Lcid=1033, Description="")]
-        PMProcessExtendedMetadataVersion = 10288,
+        [OptionSetMetadata("Timeline Pin", Index=108, Lcid=1033, Description="Timeline Pin Record")]
+        TimelinePin = 10354,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process Template", Index=201, Lcid=1033, Description="")]
-        PMProcessTemplate = 10289,
+        [OptionSetMetadata("Virtual Connector Data Source", Index=651, Lcid=1033, Description="")]
+        VirtualConnectorDataSource = 10355,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process User Settings", Index=208, Lcid=1033, Description="")]
-        PMProcessUserSettings = 10290,
+        [OptionSetMetadata("Virtual Table Column Candidate", Index=112, Lcid=1033, Description="")]
+        VirtualTableColumnCandidate = 10356,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process Version", Index=209, Lcid=1033, Description="")]
-        PMProcessVersion = 10291,
+        [OptionSetMetadata("PM Analysis History", Index=138, Lcid=1033, Description="")]
+        PMAnalysisHistory = 10358,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Recording", Index=207, Lcid=1033, Description="")]
-        PMRecording = 10292,
+        [OptionSetMetadata("PM Business Rule Automation Config", Index=140, Lcid=1033, Description="")]
+        PMBusinessRuleAutomationConfig = 10359,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Simulation", Index=205, Lcid=1033, Description="")]
-        PMSimulation = 10293,
+        [OptionSetMetadata("PM Calendar", Index=142, Lcid=1033, Description="")]
+        PMCalendar = 10360,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Template", Index=206, Lcid=1033, Description="")]
-        PMTemplate = 10294,
+        [OptionSetMetadata("PM Calendar Version", Index=141, Lcid=1033, Description="")]
+        PMCalendarVersion = 10361,
         
         [EnumMember()]
-        [OptionSetMetadata("PM View", Index=199, Lcid=1033, Description="")]
-        PMView = 10295,
+        [OptionSetMetadata("PM Inferred Task", Index=137, Lcid=1033, Description="")]
+        PMInferredTask = 10362,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Component", Index=1246, Lcid=1033, Description="")]
-        AnalysisComponent = 10296,
+        [OptionSetMetadata("PM Process Extended Metadata Version", Index=133, Lcid=1033, Description="")]
+        PMProcessExtendedMetadataVersion = 10363,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Job", Index=1191, Lcid=1033, Description="")]
-        AnalysisJob = 10297,
+        [OptionSetMetadata("PM Process Template", Index=132, Lcid=1033, Description="")]
+        PMProcessTemplate = 10364,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Override", Index=1192, Lcid=1033, Description="")]
-        AnalysisOverride = 10298,
+        [OptionSetMetadata("PM Process User Settings", Index=134, Lcid=1033, Description="")]
+        PMProcessUserSettings = 10365,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Result", Index=1190, Lcid=1033, Description="")]
-        AnalysisResult = 10299,
+        [OptionSetMetadata("PM Process Version", Index=136, Lcid=1033, Description="")]
+        PMProcessVersion = 10366,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Result Detail", Index=1188, Lcid=1033, Description="")]
-        AnalysisResultDetail = 10300,
+        [OptionSetMetadata("PM Recording", Index=135, Lcid=1033, Description="")]
+        PMRecording = 10367,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Health Rule", Index=52, Lcid=1033, Description="")]
-        SolutionHealthRule = 10301,
+        [OptionSetMetadata("PM Simulation", Index=119, Lcid=1033, Description="")]
+        PMSimulation = 10368,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Health Rule Argument", Index=45, Lcid=1033, Description="")]
-        SolutionHealthRuleArgument = 10302,
+        [OptionSetMetadata("PM Tab", Index=103, Lcid=1033, Description="")]
+        PMTab = 10369,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Health Rule Set", Index=46, Lcid=1033, Description="Represents a set that owns a number of solution health rules.")]
-        SolutionHealthRuleSet = 10303,
+        [OptionSetMetadata("PM Template", Index=102, Lcid=1033, Description="")]
+        PMTemplate = 10370,
         
         [EnumMember()]
-        [OptionSetMetadata("Power BI Dataset", Index=506, Lcid=1033, Description="")]
-        PowerBIDataset = 10304,
+        [OptionSetMetadata("PM View", Index=104, Lcid=1033, Description="")]
+        PMView = 10371,
         
         [EnumMember()]
-        [OptionSetMetadata("powerbidatasetapdx", Index=504, Lcid=1033, Description="PowerBI Dataset appendix entity - for unmanaged technical attributes")]
-        powerbidatasetapdx = 10305,
+        [OptionSetMetadata("Analysis Component", Index=590, Lcid=1033, Description="")]
+        AnalysisComponent = 10372,
         
         [EnumMember()]
-        [OptionSetMetadata("Power BI Mashup Parameter", Index=505, Lcid=1033, Description="")]
-        PowerBIMashupParameter = 10306,
+        [OptionSetMetadata("Analysis Job", Index=586, Lcid=1033, Description="")]
+        AnalysisJob = 10373,
         
         [EnumMember()]
-        [OptionSetMetadata("Power BI Report", Index=512, Lcid=1033, Description="")]
-        PowerBIReport = 10307,
+        [OptionSetMetadata("Analysis Override", Index=585, Lcid=1033, Description="")]
+        AnalysisOverride = 10374,
         
         [EnumMember()]
-        [OptionSetMetadata("powerbireportapdx", Index=513, Lcid=1033, Description="PowerBI Report appendix entity for unmanaged technical attributes")]
-        powerbireportapdx = 10308,
+        [OptionSetMetadata("Analysis Result", Index=587, Lcid=1033, Description="")]
+        AnalysisResult = 10375,
         
         [EnumMember()]
-        [OptionSetMetadata("File Upload", Index=1029, Lcid=1033, Description="")]
-        FileUpload = 10309,
+        [OptionSetMetadata("Analysis Result Detail", Index=589, Lcid=1033, Description="")]
+        AnalysisResultDetail = 10376,
         
         [EnumMember()]
-        [OptionSetMetadata("MainFewShot", Index=788, Lcid=1033, Description="This fewshot entity will only be updated during solution installation.")]
-        MainFewShot = 10310,
+        [OptionSetMetadata("Solution Health Rule", Index=116, Lcid=1033, Description="")]
+        SolutionHealthRule = 10377,
         
         [EnumMember()]
-        [OptionSetMetadata("MakerFewShot", Index=781, Lcid=1033, Description="This fewshot is updated by maker for testing the queries and by the NL2SQ with th" +
+        [OptionSetMetadata("Solution Health Rule Argument", Index=118, Lcid=1033, Description="")]
+        SolutionHealthRuleArgument = 10378,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Solution Health Rule Set", Index=117, Lcid=1033, Description="Represents a set that owns a number of solution health rules.")]
+        SolutionHealthRuleSet = 10379,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Power BI Dataset", Index=1, Lcid=1033, Description="")]
+        PowerBIDataset = 10380,
+        
+        [EnumMember()]
+        [OptionSetMetadata("powerbidatasetapdx", Index=0, Lcid=1033, Description="PowerBI Dataset appendix entity - for unmanaged technical attributes")]
+        powerbidatasetapdx = 10381,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Power BI Mashup Parameter", Index=2, Lcid=1033, Description="")]
+        PowerBIMashupParameter = 10382,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Power BI Report", Index=4, Lcid=1033, Description="")]
+        PowerBIReport = 10383,
+        
+        [EnumMember()]
+        [OptionSetMetadata("powerbireportapdx", Index=3, Lcid=1033, Description="PowerBI Report appendix entity for unmanaged technical attributes")]
+        powerbireportapdx = 10384,
+        
+        [EnumMember()]
+        [OptionSetMetadata("File Upload", Index=659, Lcid=1033, Description="")]
+        FileUpload = 10385,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AppEntitySearchView", Index=492, Lcid=1033, Description="This table contains records of app entity search views")]
+        AppEntitySearchView = 10386,
+        
+        [EnumMember()]
+        [OptionSetMetadata("MainFewShot", Index=729, Lcid=1033, Description="This fewshot entity will only be updated during solution installation.")]
+        MainFewShot = 10387,
+        
+        [EnumMember()]
+        [OptionSetMetadata("MakerFewShot", Index=731, Lcid=1033, Description="This fewshot is updated by maker for testing the queries and by the NL2SQ with th" +
             "e results")]
-        MakerFewShot = 10311,
+        MakerFewShot = 10388,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchAttributeSettings", Index=391, Lcid=1033, Description="")]
-        SearchAttributeSettings = 10312,
+        [OptionSetMetadata("SearchAttributeSettings", Index=298, Lcid=1033, Description="")]
+        SearchAttributeSettings = 10389,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchCustomAnalyzer", Index=389, Lcid=1033, Description="")]
-        SearchCustomAnalyzer = 10313,
+        [OptionSetMetadata("SearchCustomAnalyzer", Index=306, Lcid=1033, Description="")]
+        SearchCustomAnalyzer = 10390,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchRelationshipSettings", Index=390, Lcid=1033, Description="")]
-        SearchRelationshipSettings = 10314,
+        [OptionSetMetadata("SearchRelationshipSettings", Index=305, Lcid=1033, Description="")]
+        SearchRelationshipSettings = 10391,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchResultsCache", Index=397, Lcid=1033, Description="Cache search results internally")]
-        SearchResultsCache = 10315,
+        [OptionSetMetadata("SearchResultsCache", Index=307, Lcid=1033, Description="Cache search results internally")]
+        SearchResultsCache = 10392,
         
         [EnumMember()]
-        [OptionSetMetadata("Search Telemetry", Index=398, Lcid=1033, Description="Entity to log telemetry that used to improve search quality")]
-        SearchTelemetry = 10316,
+        [OptionSetMetadata("Search Telemetry", Index=309, Lcid=1033, Description="Entity to log telemetry that used to improve search quality")]
+        SearchTelemetry = 10393,
         
         [EnumMember()]
-        [OptionSetMetadata("ViewAsExampleQuestion", Index=432, Lcid=1033, Description="This fewshot is converted by view")]
-        ViewAsExampleQuestion = 10317,
+        [OptionSetMetadata("TextDataRecordsIndexingStatus", Index=204, Lcid=1033, Description="Stores information about unstructured / text data records indexing status")]
+        TextDataRecordsIndexingStatus = 10394,
         
         [EnumMember()]
-        [OptionSetMetadata("CopilotExampleQuestion", Index=949, Lcid=1033, Description="CopilotExampleQuestions Component")]
-        CopilotExampleQuestion = 10318,
+        [OptionSetMetadata("ViewAsExampleQuestion", Index=248, Lcid=1033, Description="This fewshot is converted by view")]
+        ViewAsExampleQuestion = 10395,
         
         [EnumMember()]
-        [OptionSetMetadata("CopilotGlossaryTerm", Index=950, Lcid=1033, Description="CopilotGlossaryTerm Component")]
-        CopilotGlossaryTerm = 10319,
+        [OptionSetMetadata("CopilotExampleQuestion", Index=400, Lcid=1033, Description="CopilotExampleQuestions Component")]
+        CopilotExampleQuestion = 10396,
         
         [EnumMember()]
-        [OptionSetMetadata("CopilotSynonyms", Index=948, Lcid=1033, Description="CopilotSynonyms Component")]
-        CopilotSynonyms = 10320,
+        [OptionSetMetadata("CopilotGlossaryTerm", Index=402, Lcid=1033, Description="CopilotGlossaryTerm Component")]
+        CopilotGlossaryTerm = 10397,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Component", Index=509, Lcid=1033, Description="")]
-        SiteComponent = 10321,
+        [OptionSetMetadata("CopilotSynonyms", Index=404, Lcid=1033, Description="CopilotSynonyms Component")]
+        CopilotSynonyms = 10398,
         
         [EnumMember()]
-        [OptionSetMetadata("Site", Index=510, Lcid=1033, Description="")]
-        Site_2 = 10322,
+        [OptionSetMetadata("Site Component", Index=19, Lcid=1033, Description="")]
+        SiteComponent = 10399,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Language", Index=539, Lcid=1033, Description="")]
-        SiteLanguage = 10323,
+        [OptionSetMetadata("Site", Index=20, Lcid=1033, Description="")]
+        Site = 10400,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Site Published", Index=540, Lcid=1033, Description="")]
-        PowerPagesSitePublished = 10324,
+        [OptionSetMetadata("Site Language", Index=22, Lcid=1033, Description="")]
+        SiteLanguage = 10401,
         
         [EnumMember()]
-        [OptionSetMetadata("External Identity", Index=883, Lcid=1033, Description="")]
-        ExternalIdentity = 10327,
+        [OptionSetMetadata("Power Pages Site Published", Index=21, Lcid=1033, Description="")]
+        PowerPagesSitePublished = 10402,
         
         [EnumMember()]
-        [OptionSetMetadata("Invitation", Index=884, Lcid=1033, Description="Send invitations to existing contacts or email addresses and assign them to web r" +
+        [OptionSetMetadata("Site Source File", Index=16, Lcid=1033, Description="Power Pages Site Source File")]
+        SiteSourceFile = 10403,
+        
+        [EnumMember()]
+        [OptionSetMetadata("External Identity", Index=513, Lcid=1033, Description="")]
+        ExternalIdentity = 10406,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Invitation", Index=521, Lcid=1033, Description="Send invitations to existing contacts or email addresses and assign them to web r" +
             "oles upon redemption.")]
-        Invitation = 10328,
+        Invitation = 10407,
         
         [EnumMember()]
-        [OptionSetMetadata("Invite Redemption", Index=891, Lcid=1033, Description="Holds information about the redemption of an invite.")]
-        InviteRedemption = 10329,
+        [OptionSetMetadata("Invite Redemption", Index=520, Lcid=1033, Description="Holds information about the redemption of an invite.")]
+        InviteRedemption = 10408,
         
         [EnumMember()]
-        [OptionSetMetadata("Portal Comment", Index=892, Lcid=1033, Description="An activity which is used to share information between the user and the customer " +
+        [OptionSetMetadata("Portal Comment", Index=522, Lcid=1033, Description="An activity which is used to share information between the user and the customer " +
             "on the portal.")]
-        PortalComment = 10330,
+        PortalComment = 10409,
         
         [EnumMember()]
-        [OptionSetMetadata("Setting", Index=890, Lcid=1033, Description="")]
-        Setting = 10331,
+        [OptionSetMetadata("Setting", Index=524, Lcid=1033, Description="")]
+        Setting = 10410,
         
         [EnumMember()]
-        [OptionSetMetadata("Multistep Form Session", Index=888, Lcid=1033, Description="Serves as a mechanism to log the occurrence of an incomplete multistep form entry" +
+        [OptionSetMetadata("Multistep Form Session", Index=523, Lcid=1033, Description="Serves as a mechanism to log the occurrence of an incomplete multistep form entry" +
             " for a given user so they can return and complete it later.")]
-        MultistepFormSession = 10332,
+        MultistepFormSession = 10411,
         
         [EnumMember()]
-        [OptionSetMetadata("Ad Placement", Index=85, Lcid=1033, Description="")]
-        AdPlacement = 10336,
+        [OptionSetMetadata("Ad Placement", Index=178, Lcid=1033, Description="")]
+        AdPlacement = 10415,
         
         [EnumMember()]
-        [OptionSetMetadata("Column Permission", Index=92, Lcid=1033, Description="")]
-        ColumnPermission = 10337,
+        [OptionSetMetadata("Column Permission", Index=177, Lcid=1033, Description="")]
+        ColumnPermission = 10416,
         
         [EnumMember()]
-        [OptionSetMetadata("Column Permission Profile", Index=93, Lcid=1033, Description="")]
-        ColumnPermissionProfile = 10338,
+        [OptionSetMetadata("Column Permission Profile", Index=173, Lcid=1033, Description="")]
+        ColumnPermissionProfile = 10417,
         
         [EnumMember()]
-        [OptionSetMetadata("Content Snippet", Index=91, Lcid=1033, Description="Content snippets are inserted in page templates so that any label, text string or" +
+        [OptionSetMetadata("Content Snippet", Index=169, Lcid=1033, Description="Content snippets are inserted in page templates so that any label, text string or" +
             " image in the template can be content-managed.")]
-        ContentSnippet = 10339,
+        ContentSnippet = 10418,
         
         [EnumMember()]
-        [OptionSetMetadata("Basic Form", Index=89, Lcid=1033, Description="Defines the form to render for a given entity type.")]
-        BasicForm = 10340,
+        [OptionSetMetadata("Basic Form", Index=168, Lcid=1033, Description="Defines the form to render for a given entity type.")]
+        BasicForm = 10419,
         
         [EnumMember()]
-        [OptionSetMetadata("Basic Form Metadata", Index=90, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
+        [OptionSetMetadata("Basic Form Metadata", Index=170, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
             "ctionality of form components that is not possible with Dynamics 365 entity and " +
             "form metadata.")]
-        BasicFormMetadata = 10341,
+        BasicFormMetadata = 10420,
         
         [EnumMember()]
-        [OptionSetMetadata("List", Index=119, Lcid=1033, Description="")]
-        List = 10342,
+        [OptionSetMetadata("List", Index=172, Lcid=1033, Description="")]
+        List = 10421,
         
         [EnumMember()]
-        [OptionSetMetadata("Table Permission", Index=120, Lcid=1033, Description="")]
-        TablePermission = 10343,
+        [OptionSetMetadata("Table Permission", Index=171, Lcid=1033, Description="")]
+        TablePermission = 10422,
         
         [EnumMember()]
-        [OptionSetMetadata("Page Template", Index=118, Lcid=1033, Description="URL of the .aspx page used to create new webpages.")]
-        PageTemplate = 10344,
+        [OptionSetMetadata("Page Template", Index=179, Lcid=1033, Description="URL of the .aspx page used to create new webpages.")]
+        PageTemplate = 10423,
         
         [EnumMember()]
-        [OptionSetMetadata("Poll Placement", Index=116, Lcid=1033, Description="")]
-        PollPlacement = 10345,
+        [OptionSetMetadata("Poll Placement", Index=187, Lcid=1033, Description="")]
+        PollPlacement = 10424,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Core Entity DS", Index=117, Lcid=1033, Description="")]
-        PowerPagesCoreEntityDS = 10346,
+        [OptionSetMetadata("Power Pages Core Entity DS", Index=186, Lcid=1033, Description="")]
+        PowerPagesCoreEntityDS = 10425,
         
         [EnumMember()]
-        [OptionSetMetadata("Publishing State", Index=124, Lcid=1033, Description="")]
-        PublishingState = 10347,
+        [OptionSetMetadata("Publishing State", Index=188, Lcid=1033, Description="")]
+        PublishingState = 10426,
         
         [EnumMember()]
-        [OptionSetMetadata("Publishing State Transition Rule", Index=125, Lcid=1033, Description="")]
-        PublishingStateTransitionRule = 10348,
+        [OptionSetMetadata("Publishing State Transition Rule", Index=190, Lcid=1033, Description="")]
+        PublishingStateTransitionRule = 10427,
         
         [EnumMember()]
-        [OptionSetMetadata("Redirect", Index=123, Lcid=1033, Description="")]
-        Redirect = 10349,
+        [OptionSetMetadata("Redirect", Index=189, Lcid=1033, Description="")]
+        Redirect = 10428,
         
         [EnumMember()]
-        [OptionSetMetadata("Shortcut", Index=121, Lcid=1033, Description="")]
-        Shortcut = 10350,
+        [OptionSetMetadata("Shortcut", Index=185, Lcid=1033, Description="")]
+        Shortcut = 10429,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Marker", Index=122, Lcid=1033, Description="Used by web page templates to locate a specific page of content.")]
-        SiteMarker = 10351,
+        [OptionSetMetadata("Site Marker", Index=181, Lcid=1033, Description="Used by web page templates to locate a specific page of content.")]
+        SiteMarker = 10430,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Setting", Index=115, Lcid=1033, Description="Site specific settings or variables refferenced by the web site code files.")]
-        SiteSetting = 10352,
+        [OptionSetMetadata("Site Setting", Index=180, Lcid=1033, Description="Site specific settings or variables refferenced by the web site code files.")]
+        SiteSetting = 10431,
         
         [EnumMember()]
-        [OptionSetMetadata("Web File", Index=108, Lcid=1033, Description="Storage of files used in the web Portals.")]
-        WebFile = 10353,
+        [OptionSetMetadata("Web File", Index=182, Lcid=1033, Description="Storage of files used in the web Portals.")]
+        WebFile = 10432,
         
         [EnumMember()]
-        [OptionSetMetadata("Multistep Form", Index=109, Lcid=1033, Description="Defines the necessary properties and relationships to the other key entities in o" +
+        [OptionSetMetadata("Multistep Form", Index=184, Lcid=1033, Description="Defines the necessary properties and relationships to the other key entities in o" +
             "rder to control the initialization of the form within a web portal.")]
-        MultistepForm = 10354,
+        MultistepForm = 10433,
         
         [EnumMember()]
-        [OptionSetMetadata("Multistep Form Metadata", Index=107, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
+        [OptionSetMetadata("Multistep Form Metadata", Index=183, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
             "ctionality of form fields that is not possible with Dynamics 365 entity and form" +
             " metadata.")]
-        MultistepFormMetadata = 10355,
+        MultistepFormMetadata = 10434,
         
         [EnumMember()]
-        [OptionSetMetadata("Form Step", Index=105, Lcid=1033, Description="Defines the flow logic of the form\'s user experience such as steps and conditiona" +
+        [OptionSetMetadata("Form Step", Index=167, Lcid=1033, Description="Defines the flow logic of the form\'s user experience such as steps and conditiona" +
             "l branching.")]
-        FormStep = 10356,
+        FormStep = 10435,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Link", Index=106, Lcid=1033, Description="A textual or imaged based link to an interal or external URL.")]
-        WebLink = 10357,
+        [OptionSetMetadata("Web Link", Index=151, Lcid=1033, Description="A textual or imaged based link to an interal or external URL.")]
+        WebLink = 10436,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Link Set", Index=113, Lcid=1033, Description="A grouping of web links.")]
-        WebLinkSet = 10358,
+        [OptionSetMetadata("Web Link Set", Index=150, Lcid=1033, Description="A grouping of web links.")]
+        WebLinkSet = 10437,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Page", Index=114, Lcid=1033, Description="Web Page")]
-        WebPage = 10359,
+        [OptionSetMetadata("Web Page", Index=152, Lcid=1033, Description="Web Page")]
+        WebPage = 10438,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Page Access Control Rule", Index=112, Lcid=1033, Description="")]
-        WebPageAccessControlRule = 10360,
+        [OptionSetMetadata("Web Page Access Control Rule", Index=154, Lcid=1033, Description="")]
+        WebPageAccessControlRule = 10439,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Role", Index=110, Lcid=1033, Description="Sets the user\'s role for the Portal.")]
-        WebRole = 10361,
+        [OptionSetMetadata("Web Role", Index=153, Lcid=1033, Description="Sets the user\'s role for the Portal.")]
+        WebRole = 10440,
         
         [EnumMember()]
-        [OptionSetMetadata("Website", Index=111, Lcid=1033, Description="Web Portal")]
-        Website = 10362,
+        [OptionSetMetadata("Website", Index=149, Lcid=1033, Description="Web Portal")]
+        Website = 10441,
         
         [EnumMember()]
-        [OptionSetMetadata("Website Access", Index=560, Lcid=1033, Description="")]
-        WebsiteAccess = 10363,
+        [OptionSetMetadata("Website Access", Index=145, Lcid=1033, Description="")]
+        WebsiteAccess = 10442,
         
         [EnumMember()]
-        [OptionSetMetadata("Website Language", Index=561, Lcid=1033, Description="Languages supported and publishing status for the portal")]
-        WebsiteLanguage = 10364,
+        [OptionSetMetadata("Website Language", Index=144, Lcid=1033, Description="Languages supported and publishing status for the portal")]
+        WebsiteLanguage = 10443,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Template", Index=559, Lcid=1033, Description="")]
-        WebTemplate = 10365,
+        [OptionSetMetadata("Web Template", Index=146, Lcid=1033, Description="")]
+        WebTemplate = 10444,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Scan Report", Index=537, Lcid=1033, Description="Power Pages Scan Report")]
-        PowerPagesScanReport = 10372,
+        [OptionSetMetadata("Power Pages Scan Report", Index=12, Lcid=1033, Description="Power Pages Scan Report")]
+        PowerPagesScanReport = 10451,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Log", Index=538, Lcid=1033, Description="")]
-        PowerPagesLog = 10373,
+        [OptionSetMetadata("PowerPagesDDOSAlert", Index=18, Lcid=1033, Description="Schema for DDOS Alerts on PowerPage Site")]
+        PowerPagesDDOSAlert = 10452,
         
         [EnumMember()]
-        [OptionSetMetadata("PowerPagesManagedIdentity", Index=536, Lcid=1033, Description="")]
-        PowerPagesManagedIdentity = 10374,
+        [OptionSetMetadata("Power Pages Log", Index=17, Lcid=1033, Description="")]
+        PowerPagesLog = 10453,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Site AI Feedback", Index=544, Lcid=1033, Description="")]
-        PowerPagesSiteAIFeedback = 10375,
+        [OptionSetMetadata("PowerPagesManagedIdentity", Index=13, Lcid=1033, Description="")]
+        PowerPagesManagedIdentity = 10454,
         
         [EnumMember()]
-        [OptionSetMetadata("Catalog Submission Files", Index=86, Lcid=1033, Description="Files associated with the package that will be used as part of the submission to " +
+        [OptionSetMetadata("Power Pages Site AI Feedback", Index=14, Lcid=1033, Description="")]
+        PowerPagesSiteAIFeedback = 10455,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Catalog Submission Files", Index=174, Lcid=1033, Description="Files associated with the package that will be used as part of the submission to " +
             "the catalog system.")]
-        CatalogSubmissionFiles = 10380,
+        CatalogSubmissionFiles = 10461,
         
         [EnumMember()]
-        [OptionSetMetadata("Package Submission Store", Index=84, Lcid=1033, Description="Manages submissions to the Catalog and provisioning")]
-        PackageSubmissionStore = 10381,
+        [OptionSetMetadata("Package Submission Store", Index=176, Lcid=1033, Description="Manages submissions to the Catalog and provisioning")]
+        PackageSubmissionStore = 10462,
         
         [EnumMember()]
-        [OptionSetMetadata("signal", Index=419, Lcid=1033, Description="")]
-        signal = 10382,
+        [OptionSetMetadata("indexedtrait", Index=752, Lcid=1033, Description="")]
+        indexedtrait = 10463,
         
         [EnumMember()]
-        [OptionSetMetadata("trait", Index=494, Lcid=1033, Description="")]
-        trait = 10383,
+        [OptionSetMetadata("processor registration", Index=77, Lcid=1033, Description="")]
+        processorregistration = 10464,
         
         [EnumMember()]
-        [OptionSetMetadata("List Operation", Index=791, Lcid=1033, Description="System operation used to perform lengthy and asynchronous list operations on larg" +
-            "e data sets, such as adding members to a list.")]
-        ListOperation = 10384,
+        [OptionSetMetadata("signal", Index=370, Lcid=1033, Description="")]
+        signal = 10465,
         
         [EnumMember()]
-        [OptionSetMetadata("Marketing Form Display Attributes", Index=778, Lcid=1033, Description="Setting to allow customized form for In-app Marketing Form")]
-        MarketingFormDisplayAttributes = 10385,
+        [OptionSetMetadata("signal registration", Index=378, Lcid=1033, Description="")]
+        signalregistration = 10466,
         
         [EnumMember()]
-        [OptionSetMetadata("Database Version", Index=1069, Lcid=1033, Description="Stores the latest database version for a solution, for internal use only.")]
-        DatabaseVersion = 10386,
+        [OptionSetMetadata("trait", Index=268, Lcid=1033, Description="")]
+        trait = 10467,
         
         [EnumMember()]
-        [OptionSetMetadata("Upgrade Run", Index=0, Lcid=1033, Description="Contains logging information about a run of a Package Deployer package that upgra" +
-            "des a solution")]
-        UpgradeRun = 10387,
+        [OptionSetMetadata("trait registration", Index=264, Lcid=1033, Description="")]
+        traitregistration = 10468,
         
         [EnumMember()]
-        [OptionSetMetadata("Upgrade Step", Index=1, Lcid=1033, Description="One step during an upgrade, such as a single method or stored procedure.")]
-        UpgradeStep = 10388,
+        [OptionSetMetadata("Invoice", Index=252, Lcid=1033, Description="This table contains invoice details")]
+        Invoice = 10469,
         
         [EnumMember()]
-        [OptionSetMetadata("Upgrade Version", Index=8, Lcid=1033, Description="Information about upgrading from one release to the next release")]
-        UpgradeVersion = 10389,
+        [OptionSetMetadata("Transaction", Index=255, Lcid=1033, Description="This table contains transaction details including subscription, start and end dat" +
+            "es, and invoice")]
+        Transaction = 10489,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity monitor", Index=900, Lcid=1033, Description="Entity that tracks ARC runtime information.")]
-        Activitymonitor = 10390,
+        [OptionSetMetadata("Product", Index=251, Lcid=1033, Description="This table contains records of product details")]
+        Product = 10507,
         
         [EnumMember()]
-        [OptionSetMetadata("Originating Queue Mapping", Index=188, Lcid=1033, Description="This entity maps entities created by ARC to the queue that was being procesed at " +
-            "that time")]
-        OriginatingQueueMapping = 10391,
+        [OptionSetMetadata("Subscription", Index=253, Lcid=1033, Description="This table contains subscription details including start and end dates, linked pr" +
+            "oduct and customer")]
+        Subscription_2 = 10525,
         
         [EnumMember()]
-        [OptionSetMetadata("Unified Routing Setup Tracker", Index=4, Lcid=1033, Description="Unified Routing Setup Trackers")]
-        UnifiedRoutingSetupTracker = 10392,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Available Times", Index=879, Lcid=1033, Description="")]
-        AvailableTimes = 10393,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Available Times Data Source", Index=872, Lcid=1033, Description="")]
-        AvailableTimesDataSource = 10394,
-        
-        [EnumMember()]
-        [OptionSetMetadata("resource group data source", Index=658, Lcid=1033, Description="")]
-        resourcegroupdatasource = 10395,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Virtual Resource Group Resource", Index=440, Lcid=1033, Description="")]
-        VirtualResourceGroupResource = 10396,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Migration tracker", Index=1127, Lcid=1033, Description="Entity that tracks the migration process of legacy to modern SLA/ARC items")]
-        Migrationtracker = 10397,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Asset Category Template Association", Index=1177, Lcid=1033, Description="")]
-        AssetCategoryTemplateAssociation = 10398,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Asset Template Association", Index=1178, Lcid=1033, Description="")]
-        AssetTemplateAssociation = 10399,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Asset", Index=1295, Lcid=1033, Description="Specify Customer Asset.")]
-        CustomerAsset = 10400,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Asset Attachment", Index=1293, Lcid=1033, Description="Attachments for Customer Asset")]
-        CustomerAssetAttachment = 10403,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Asset Category", Index=1294, Lcid=1033, Description="The Category of Customer Asset.")]
-        CustomerAssetCategory = 10404,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Functional Location", Index=1047, Lcid=1033, Description="")]
-        FunctionalLocation = 10405,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Functional Location Type", Index=1040, Lcid=1033, Description="")]
-        FunctionalLocationType = 10406,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Location Template Association", Index=1102, Lcid=1033, Description="Captures the relationship between a Property Template, which in turns captures a " +
-            "set of Properties, and a Functional Location.")]
-        LocationTemplateAssociation = 10407,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Functional Location Type Template Association", Index=1100, Lcid=1033, Description="")]
-        FunctionalLocationTypeTemplateAssociation = 10408,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Definition", Index=297, Lcid=1033, Description="")]
-        PropertyDefinition = 10409,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Asset Association", Index=298, Lcid=1033, Description="")]
-        PropertyAssetAssociation = 10410,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Location Association", Index=296, Lcid=1033, Description="Captures the relationship between a Property and a Functional Location.")]
-        PropertyLocationAssociation = 10411,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Log", Index=294, Lcid=1033, Description="")]
-        PropertyLog = 10412,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Template Association", Index=295, Lcid=1033, Description="")]
-        PropertyTemplateAssociation = 10413,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template For Properties", Index=14, Lcid=1033, Description="")]
-        TemplateForProperties = 10414,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Warranty", Index=38, Lcid=1033, Description="")]
-        Warranty = 10415,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Alert", Index=1144, Lcid=1033, Description="")]
-        IoTAlert = 10422,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device", Index=1142, Lcid=1033, Description="Represents a connected device that can be registered with an IoT provider.")]
-        IoTDevice = 10423,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Category", Index=1140, Lcid=1033, Description="Used to categorize IoT devices.")]
-        IoTDeviceCategory = 10424,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Command", Index=1141, Lcid=1033, Description="Represents an outgoing message to a device connected to an IoT provider.")]
-        IoTDeviceCommand = 10425,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Command Definition", Index=1170, Lcid=1033, Description="Metadata for commands that a device or a device category supports.")]
-        IoTDeviceCommandDefinition = 10426,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Data History", Index=1171, Lcid=1033, Description="The name of the entity that holds the device data every time a device data pull o" +
-            "ccurs between Dynamics 365 and an IoT provider")]
-        IoTDeviceDataHistory = 10427,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Property", Index=1169, Lcid=1033, Description="Link entity between IoT Device Category and IoT Property Definition. This is used" +
-            " to model properties and tags for devices.")]
-        IoTDeviceProperty = 10428,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Registration History", Index=1167, Lcid=1033, Description="Tracks registration activities on an IoT device.")]
-        IoTDeviceRegistrationHistory = 10429,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Visualization Configuration", Index=1168, Lcid=1033, Description="IoT Device Visualization Configuration")]
-        IoTDeviceVisualizationConfiguration = 10430,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Field Mapping", Index=1175, Lcid=1033, Description="")]
-        IoTFieldMapping = 10431,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Property Definition", Index=1176, Lcid=1033, Description="Defines a device property or a parameter that can be used for one or more command" +
-            " definitions.")]
-        IoTPropertyDefinition = 10432,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Provider", Index=1174, Lcid=1033, Description="The IoT Provider where a device is registered and through which all interactions " +
-            "with the device take place")]
-        IoTProvider = 10433,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Provider Instance", Index=1172, Lcid=1033, Description="An instance of an IoT Provider.")]
-        IoTProviderInstance = 10434,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Settings", Index=1173, Lcid=1033, Description="")]
-        IoTSettings = 10435,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Alert to Case Process", Index=1166, Lcid=1033, Description="Base entity for process IoT to Case Process")]
-        IoTAlerttoCaseProcess = 10438,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook Callable Context", Index=1215, Lcid=1033, Description="")]
-        PlaybookCallableContext = 10440,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook activity", Index=168, Lcid=1033, Description="Stores the details of the activities to be created when a playbook is launched.")]
-        Playbookactivity = 10441,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook activity attribute", Index=169, Lcid=1033, Description="Stores attribute names and values of the playbook activity.")]
-        Playbookactivityattribute = 10442,
-        
-        [EnumMember()]
-        [OptionSetMetadata("[DEPRECATED] Playbook category", Index=176, Lcid=1033, Description="List of categories for which a playbook can be created.")]
-        DEPRECATEDPlaybookcategory = 10443,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook", Index=177, Lcid=1033, Description="Actual instance of a playbook template once it is launched.")]
-        Playbook = 10444,
-        
-        [EnumMember()]
-        [OptionSetMetadata("[DEPRECATED] Playbook template", Index=175, Lcid=1033, Description="Playbook templates contains the definition of the Playbook that helps to standard" +
-            "ize a set of best practices or next best actions.")]
-        DEPRECATEDPlaybooktemplate = 10445,
-        
-        [EnumMember()]
-        [OptionSetMetadata("admin_settings_entity", Index=887, Lcid=1033, Description="")]
-        admin_settings_entity = 10447,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Collab Space Team Association", Index=1305, Lcid=1033, Description="Collab Space Team Association")]
-        CollabSpaceTeamAssociation = 10448,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CRM Connection", Index=1268, Lcid=1033, Description="")]
-        CRMConnection = 10449,
-        
-        [EnumMember()]
-        [OptionSetMetadata("External CRM", Index=1024, Lcid=1033, Description="External CRM - Copilot for Sales")]
-        ExternalCRM = 10450,
-        
-        [EnumMember()]
-        [OptionSetMetadata("External Record", Index=1022, Lcid=1033, Description="External Record - Copilot for Sales")]
-        ExternalRecord = 10451,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Tagged Record", Index=71, Lcid=1033, Description="Tagged Record - Copilot for Sales")]
-        TaggedRecord = 10452,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot for Sales customer list", Index=34, Lcid=1033, Description="")]
-        CopilotforSalescustomerlist = 10453,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivaentitysetting", Index=32, Lcid=1033, Description="Entity level settings for Copilot for Sales")]
-        msdyn_vivaentitysetting = 10454,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivaorgextensioncred", Index=33, Lcid=1033, Description="Org level extension credential for Viva apps")]
-        msdyn_vivaorgextensioncred = 10455,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivaorgsetting", Index=40, Lcid=1033, Description="Org level settings for Copilot for Sales app")]
-        msdyn_vivaorgsetting = 10456,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivausersetting", Index=41, Lcid=1033, Description="User level settings for Copilot for Sales")]
-        msdyn_vivausersetting = 10457,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot Insight", Index=321, Lcid=1033, Description="")]
-        SalesCopilotInsight = 10458,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Org level settings for Sales Copilot apps", Index=266, Lcid=1033, Description="Org level settings for Sales Copilot apps")]
-        OrglevelsettingsforSalesCopilotapps = 10459,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot User Setting", Index=267, Lcid=1033, Description="")]
-        SalesCopilotUserSetting = 10460,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App profile", Index=1195, Lcid=1033, Description="")]
-        Appprofile = 10461,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Extension", Index=1187, Lcid=1033, Description="")]
-        ApplicationExtension = 10462,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Tab Template", Index=1180, Lcid=1033, Description="")]
-        ApplicationTabTemplate = 10463,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App profile role mapping", Index=1181, Lcid=1033, Description="")]
-        Appprofilerolemapping = 10464,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Field", Index=1116, Lcid=1033, Description="")]
-        NotificationField = 10465,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Template", Index=1114, Lcid=1033, Description="")]
-        NotificationTemplate = 10466,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Template", Index=280, Lcid=1033, Description="")]
-        SessionTemplate = 10467,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template Parameter", Index=15, Lcid=1033, Description="")]
-        TemplateParameter = 10468,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Integration Framework v1.0 Provider", Index=1306, Lcid=1033, Description="Entity that holds the configuration data for a channel provider based on Channel " +
-            "Integration Framework v1.0")]
-        ChannelIntegrationFrameworkv10Provider = 10474,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Field (Deprecated)", Index=1312, Lcid=1033, Description="Defines a field (key, templateValue) that needs to be populated in the notificati" +
-            "on body.")]
-        NotificationFieldDeprecated = 10475,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Template (Deprecated)", Index=1310, Lcid=1033, Description="Template for a notification")]
-        NotificationTemplateDeprecated = 10476,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App Parameter Definition (Deprecated)", Index=1337, Lcid=1033, Description="")]
-        AppParameterDefinitionDeprecated = 10477,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Templates (Deprecated)", Index=1308, Lcid=1033, Description="")]
-        SessionTemplatesDeprecated = 10478,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Tab Template (Deprecated)", Index=1309, Lcid=1033, Description="An application tab template with various template parameters defined.")]
-        ApplicationTabTemplateDeprecated = 10479,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Parameter (Deprecated)", Index=1338, Lcid=1033, Description="Template parameter values for a given application template")]
-        ParameterDeprecated = 10480,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template Tag (Deprecated)", Index=11, Lcid=1033, Description="Tags associated with templates. Templates are discovered via tags")]
-        TemplateTagDeprecated = 10481,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Type (Deprecated)", Index=1339, Lcid=1033, Description="Define a UCI pagetype. For each pagetype, define the parameters that need to be a" +
-            " part of the template for this application type")]
-        ApplicationTypeDeprecated = 10482,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Integration Framework v2.0 Provider", Index=1313, Lcid=1033, Description="Entity that holds the configuration data for a third-party voice channel provider" +
-            " based on Channel Integration Framework v2.0")]
-        ChannelIntegrationFrameworkv20Provider = 10491,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Data (Deprecated)", Index=1328, Lcid=1033, Description="Primary entity for a conversation")]
-        ConversationDataDeprecated = 10493,
-        
-        [EnumMember()]
-        [OptionSetMetadata("KPI Event Data", Index=1111, Lcid=1033, Description="Primary entity for a kpi event")]
-        KPIEventData = 10494,
-        
-        [EnumMember()]
-        [OptionSetMetadata("KPI Event Definition", Index=1109, Lcid=1033, Description="Primary entity for defining a KPI event")]
-        KPIEventDefinition = 10495,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Data (Deprecated)", Index=273, Lcid=1033, Description="Primary entity for session data")]
-        SessionDataDeprecated = 10496,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Participant Data (Deprecated)", Index=282, Lcid=1033, Description="")]
-        SessionParticipantDataDeprecated = 10497,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Definition", Index=1316, Lcid=1033, Description="Stores details about a channel definition.")]
-        ChannelDefinition = 10498,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Definition Consent", Index=1314, Lcid=1033, Description="")]
-        ChannelDefinitionConsent = 10499,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Definition Locale", Index=1315, Lcid=1033, Description="")]
-        ChannelDefinitionLocale = 10500,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Instance", Index=1322, Lcid=1033, Description="")]
-        ChannelInstance = 10501,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Instance Account", Index=1323, Lcid=1033, Description="")]
-        ChannelInstanceAccount = 10502,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Message Attachment", Index=1321, Lcid=1033, Description="")]
-        ChannelMessageAttachment = 10503,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Message Context Part", Index=1319, Lcid=1033, Description="Context about channel message")]
-        ChannelMessageContextPart = 10504,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Message Part", Index=1320, Lcid=1033, Description="")]
-        ChannelMessagePart = 10505,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Consuming Application", Index=1335, Lcid=1033, Description="Consuming Application that use Unified Channel")]
-        ConsumingApplication = 10506,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_DefExtendedChannelInstance", Index=1057, Lcid=1033, Description="")]
-        msdyn_DefExtendedChannelInstance = 10507,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_DefExtendedChannelInstanceAccount", Index=1086, Lcid=1033, Description="")]
-        msdyn_DefExtendedChannelInstanceAccount = 10508,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Productivity pane configuration", Index=184, Lcid=1033, Description="")]
-        Productivitypaneconfiguration = 10509,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Pane tab configuration", Index=185, Lcid=1033, Description="")]
-        Panetabconfiguration = 10510,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Pane tool configuration", Index=178, Lcid=1033, Description="")]
-        Panetoolconfiguration = 10511,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent script", Index=313, Lcid=1033, Description="Agent script v2")]
-        Agentscript = 10513,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent script step", Index=314, Lcid=1033, Description="")]
-        Agentscriptstep = 10514,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Input Parameter", Index=305, Lcid=1033, Description="Attributes of action input parameters")]
-        ActionInputParameter = 10516,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Output Parameter", Index=306, Lcid=1033, Description="Attributes of action output parameters")]
-        ActionOutputParameter = 10517,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Action Template", Index=312, Lcid=1033, Description="Attributes for macro action template")]
-        MacroActionTemplate = 10518,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Solution Configuration", Index=311, Lcid=1033, Description="Macro solution related configurations")]
-        MacroSolutionConfiguration = 10519,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Connector", Index=310, Lcid=1033, Description="Attributes for macro connectors")]
-        MacroConnector = 10520,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Run History", Index=1099, Lcid=1033, Description="Stores history of macro runs")]
-        MacroRunHistory = 10521,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Parameter definition", Index=304, Lcid=1033, Description="Macro parameter definitions")]
-        Parameterdefinition = 10522,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Adaptive Card Configuration", Index=1223, Lcid=1033, Description="Adaptive Card Configuration")]
-        AdaptiveCardConfiguration = 10525,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Smartassist configuration", Index=61, Lcid=1033, Description="Stores Smartassist configurations")]
-        Smartassistconfiguration = 10526,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Read Tracker", Index=301, Lcid=1033, Description="Keeps track of the records read by an user in the system")]
-        ReadTracker = 10528,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Read tracking enabled information", Index=299, Lcid=1033, Description="")]
-        Readtrackingenabledinformation = 10529,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams Graph resource Entity", Index=1307, Lcid=1033, Description="Entity which stores collaboration data of Dynamics 365 with Microsoft Teams")]
-        MicrosoftTeamsGraphresourceEntity = 10530,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_msteamssetting", Index=1130, Lcid=1033, Description="")]
-        msdyn_msteamssetting = 10531,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_msteamssettingsv2", Index=1131, Lcid=1033, Description="")]
-        msdyn_msteamssettingsv2 = 10532,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams Collaboration entity", Index=68, Lcid=1033, Description="Entity which stores collaboration data of Dynamics 365 with Microsoft Teams")]
-        MicrosoftTeamsCollaborationentity = 10533,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Teams Dialer Admin settings", Index=69, Lcid=1033, Description="")]
-        TeamsDialerAdminsettings = 10534,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Teams Contact Suggestion by AI", Index=1243, Lcid=1033, Description="")]
-        TeamsContactSuggestionbyAI = 10535,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contact suggestion rule", Index=1343, Lcid=1033, Description="")]
-        Contactsuggestionrule = 10536,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contact suggestion ruleset", Index=1344, Lcid=1033, Description="")]
-        Contactsuggestionruleset = 10537,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams chat association entity", Index=72, Lcid=1033, Description="For internal use only. Entity which stores association data of Dynamics 365 recor" +
-            "ds with Microsoft Teams chat")]
-        MicrosoftTeamschatassociationentity = 10538,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams chat suggestion", Index=70, Lcid=1033, Description="For internal use only")]
-        MicrosoftTeamschatsuggestion = 10539,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Orgchart node entity", Index=187, Lcid=1033, Description="For internal use only. Entity which stores association data of account with conta" +
-            "cts present in the orgchart hierarchy of the account")]
-        MicrosoftOrgchartnodeentity = 10540,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Manual Adjustment History", Index=1221, Lcid=1033, Description="Forecast Manual Adjustment History")]
-        ForecastManualAdjustmentHistory = 10541,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Distributed Lock", Index=1084, Lcid=1033, Description="Distributed Locks")]
-        DistributedLock = 10542,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Delta Change", Index=1073, Lcid=1033, Description="Entity Delta Changes")]
-        EntityDeltaChange = 10543,
-        
-        [EnumMember()]
-        [OptionSetMetadata("File Upload Status Tracker", Index=1027, Lcid=1033, Description="File Upload Status Tracker")]
-        FileUploadStatusTracker = 10544,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast", Index=1016, Lcid=1033, Description="Forecast")]
-        Forecast = 10545,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Configuration", Index=1014, Lcid=1033, Description="")]
-        ForecastConfiguration = 10546,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast definition", Index=1015, Lcid=1033, Description="Defines the parameters used for forecasting.")]
-        Forecastdefinition = 10547,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecasting Cache", Index=1044, Lcid=1033, Description="Forecasting Cache")]
-        ForecastingCache = 10548,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Insights", Index=1045, Lcid=1033, Description="Forecast Insights")]
-        ForecastInsights = 10549,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast", Index=1043, Lcid=1033, Description="Stores sales predictions for your team or organization. For internal use.")]
-        Forecast_2 = 10550,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Prediction Data", Index=1041, Lcid=1033, Description="Forecast Prediction Data")]
-        ForecastPredictionData = 10551,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Prediction Status", Index=1042, Lcid=1033, Description="Forecast Prediction Status")]
-        ForecastPredictionStatus = 10552,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast recurrence", Index=1049, Lcid=1033, Description="Stores recalculation information for each recurrence of the forecast hierarchy. F" +
-            "or internal use.")]
-        Forecastrecurrence = 10553,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recompute Tracker", Index=330, Lcid=1033, Description="")]
-        RecomputeTracker = 10554,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Recurrence", Index=326, Lcid=1033, Description="Forecast Recurrence")]
-        ForecastRecurrence = 10555,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ShareAs Configuration", Index=278, Lcid=1033, Description="ShareAs Configuration")]
-        ShareAsConfiguration = 10556,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer email communication", Index=1301, Lcid=1033, Description="")]
-        Customeremailcommunication = 10557,
-        
-        [EnumMember()]
-        [OptionSetMetadata("GDPRData", Index=1033, Lcid=1033, Description="")]
-        GDPRData = 10558,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ODOSFeatureMetadata", Index=240, Lcid=1033, Description="")]
-        ODOSFeatureMetadata = 10559,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ODOSMetadata", Index=238, Lcid=1033, Description="")]
-        ODOSMetadata = 10560,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recurring Sales Action", Index=327, Lcid=1033, Description="")]
-        RecurringSalesAction = 10561,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recurring Sales Action V2", Index=334, Lcid=1033, Description="")]
-        RecurringSalesActionV2 = 10562,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_relationshipinsightsunifiedconfig", Index=333, Lcid=1033, Description="")]
-        msdyn_relationshipinsightsunifiedconfig = 10563,
-        
-        [EnumMember()]
-        [OptionSetMetadata("siconfig", Index=279, Lcid=1033, Description="")]
-        siconfig = 10564,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SI Key Value Config", Index=56, Lcid=1033, Description="")]
-        SIKeyValueConfig = 10565,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Usage Metric", Index=5, Lcid=1033, Description="")]
-        UsageMetric = 10566,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Regarding", Index=1239, Lcid=1033, Description="")]
-        ActionCardRegarding = 10567,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Role Setting", Index=1237, Lcid=1033, Description="")]
-        ActionCardRoleSetting = 10568,
-        
-        [EnumMember()]
-        [OptionSetMetadata("EntityRankingRule", Index=1081, Lcid=1033, Description="")]
-        EntityRankingRule = 10569,
-        
-        [EnumMember()]
-        [OptionSetMetadata("flowcardtype", Index=1018, Lcid=1033, Description="")]
-        flowcardtype = 10570,
-        
-        [EnumMember()]
-        [OptionSetMetadata("salesinsightssettings", Index=264, Lcid=1033, Description="Storing settings for studio feature")]
-        salesinsightssettings = 10571,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Usage", Index=1238, Lcid=1033, Description="")]
-        ActionCardUsage = 10572,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Usage Aggregation", Index=1235, Lcid=1033, Description="")]
-        ActionCardUsageAggregation = 10573,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auto Capture Rule", Index=1210, Lcid=1033, Description="Auto Capture Rules")]
-        AutoCaptureRule = 10574,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auto Capture Settings", Index=1217, Lcid=1033, Description="Auto Capture Settings")]
-        AutoCaptureSettings = 10575,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UntrackedAppointment", Index=2, Lcid=1033, Description="UntrackedAppointments")]
-        UntrackedAppointment = 10576,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Activity", Index=49, Lcid=1033, Description="Activity suggestions")]
-        SuggestedActivity = 10577,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Activity Data Source", Index=47, Lcid=1033, Description="Suggested Activity Data Sources")]
-        SuggestedActivityDataSource = 10578,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Contact", Index=48, Lcid=1033, Description="Contact suggestions")]
-        SuggestedContact = 10579,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Contacts Data Source", Index=77, Lcid=1033, Description="Suggested contacts data sources")]
-        SuggestedContactsDataSource = 10580,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notes analysis Config", Index=1118, Lcid=1033, Description="")]
-        NotesanalysisConfig = 10581,
-        
-        [EnumMember()]
-        [OptionSetMetadata("icebreakersconfig", Index=1030, Lcid=1033, Description="")]
-        icebreakersconfig = 10582,
-        
-        [EnumMember()]
-        [OptionSetMetadata("dealmanageraccess", Index=1059, Lcid=1033, Description="")]
-        dealmanageraccess = 10583,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Deal manager settings", Index=1060, Lcid=1033, Description="Deal manager settings")]
-        Dealmanagersettings = 10584,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Account KPI Item", Index=1231, Lcid=1033, Description="")]
-        AccountKPIItem = 10585,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Activity Analysis CleanUp State", Index=1229, Lcid=1033, Description="")]
-        ActivityAnalysisCleanUpState = 10586,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Relationship Analytics Config", Index=1222, Lcid=1033, Description="")]
-        RelationshipAnalyticsConfig = 10587,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contact KPI Item", Index=1336, Lcid=1033, Description="")]
-        ContactKPIItem = 10588,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily Kpis for account", Index=1299, Lcid=1033, Description="")]
-        DailyKpisforaccount = 10589,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily kpis for contact", Index=1292, Lcid=1033, Description="")]
-        Dailykpisforcontact = 10590,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily kpis for lead", Index=1285, Lcid=1033, Description="")]
-        Dailykpisforlead = 10591,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily kpis for Opportunity", Index=1286, Lcid=1033, Description="")]
-        DailykpisforOpportunity = 10592,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead KPI Item", Index=1103, Lcid=1033, Description="")]
-        LeadKPIItem = 10593,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Most Contacted", Index=1134, Lcid=1033, Description="Most Contacted")]
-        MostContacted = 10594,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Most Contacted By", Index=1132, Lcid=1033, Description="Most Contacted By")]
-        MostContactedBy = 10595,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Opportunity KPI Item", Index=179, Lcid=1033, Description="")]
-        OpportunityKPIItem = 10596,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Relationship Analytics Metadata", Index=335, Lcid=1033, Description="")]
-        RelationshipAnalyticsMetadata = 10597,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Similar entities feature importance", Index=57, Lcid=1033, Description="")]
-        Similarentitiesfeatureimportance = 10598,
-        
-        [EnumMember()]
-        [OptionSetMetadata("wkwcolleaguesforcompany", Index=31, Lcid=1033, Description="")]
-        wkwcolleaguesforcompany = 10599,
-        
-        [EnumMember()]
-        [OptionSetMetadata("wkwcolleaguesforcontact", Index=24, Lcid=1033, Description="Entity for storing contact introducer")]
-        wkwcolleaguesforcontact = 10600,
-        
-        [EnumMember()]
-        [OptionSetMetadata("wkwconfig", Index=25, Lcid=1033, Description="")]
-        wkwconfig = 10601,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Attribute Influence Statistics", Index=1212, Lcid=1033, Description="")]
-        AttributeInfluenceStatistics = 10602,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Prediction Computation Operation", Index=189, Lcid=1033, Description="")]
-        PredictionComputationOperation = 10603,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Prediction Model Status", Index=190, Lcid=1033, Description="Stores metadata about predictive models")]
-        PredictionModelStatus = 10604,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Prediction Scheduled Operation", Index=197, Lcid=1033, Description="Contains meta-data about the scheduled operations.")]
-        PredictionScheduledOperation = 10605,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predictive Model Score", Index=198, Lcid=1033, Description="")]
-        PredictiveModelScore = 10606,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predictive Score", Index=196, Lcid=1033, Description="")]
-        PredictiveScore = 10607,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predictive Scoring Sync Status", Index=194, Lcid=1033, Description="Internal entity used to store sync status for predictive scoring core entities.")]
-        PredictiveScoringSyncStatus = 10608,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Real Time Scoring", Index=300, Lcid=1033, Description="Stores meta data information for real time scoring.")]
-        RealTimeScoring = 10609,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Real Time Scoring Operation", Index=329, Lcid=1033, Description="Stores metadata for real time scoring job.")]
-        RealTimeScoringOperation = 10610,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Submodel Definition", Index=51, Lcid=1033, Description="Stores metadata about submodels")]
-        SubmodelDefinition = 10611,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Time spent in BPF", Index=19, Lcid=1033, Description="")]
-        TimespentinBPF = 10612,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Training Result", Index=16, Lcid=1033, Description="Stores Training results for the model")]
-        TrainingResult = 10613,
-        
-        [EnumMember()]
-        [OptionSetMetadata("OpportunityModelConfig", Index=180, Lcid=1033, Description="")]
-        OpportunityModelConfig = 10614,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LeadModelConfig", Index=1096, Lcid=1033, Description="")]
-        LeadModelConfig = 10615,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ModelPreviewStatus", Index=1126, Lcid=1033, Description="")]
-        ModelPreviewStatus = 10616,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Profile Album", Index=192, Lcid=1033, Description="Contains user profile images that are stored as attachments and displayed in post" +
-            "s.")]
-        ProfileAlbum = 10617,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Post Configuration", Index=193, Lcid=1033, Description="Enable or disable entities for Activity Feeds and Yammer collaboration.")]
-        PostConfiguration = 10618,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Post Rule Configuration", Index=191, Lcid=1033, Description="Enable or disable system post rules for an entity for Activity Feeds and Yammer.")]
-        PostRuleConfiguration = 10619,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Wall View", Index=39, Lcid=1033, Description="Contains information regarding which views are available for users to display on " +
-            "their personal walls. Only an administrator can specify the views that users can" +
-            " choose from to display on their personal walls.")]
-        WallView = 10620,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Filter", Index=37, Lcid=1033, Description="Contains user personalization information regarding which of the administrator’s " +
-            "selected views to display on a user’s personal wall.")]
-        Filter = 10621,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice alert", Index=152, Lcid=1033, Description="")]
-        CustomerVoicealert = 10622,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice alert rule", Index=153, Lcid=1033, Description="")]
-        CustomerVoicealertrule = 10623,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey email template", Index=98, Lcid=1033, Description="Template for an email message that contains the survey invitation link.")]
-        CustomerVoicesurveyemailtemplate = 10624,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice file response", Index=99, Lcid=1033, Description="Response to a file upload question.")]
-        CustomerVoicefileresponse = 10625,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice localized survey email template", Index=97, Lcid=1033, Description="Stores localized data for email templates.")]
-        CustomerVoicelocalizedsurveyemailtemplate = 10626,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice project", Index=95, Lcid=1033, Description="Set of surveys to collect feedback.")]
-        CustomerVoiceproject = 10627,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey question", Index=96, Lcid=1033, Description="Question in a survey to collect feedback.")]
-        CustomerVoicesurveyquestion = 10628,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey question response", Index=103, Lcid=1033, Description="Response to a question in a survey.")]
-        CustomerVoicesurveyquestionresponse = 10629,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice satisfaction metric", Index=104, Lcid=1033, Description="Satisfaction metric defined for a project.")]
-        CustomerVoicesatisfactionmetric = 10630,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey", Index=102, Lcid=1033, Description="Set of questions to collect feedback.")]
-        CustomerVoicesurvey = 10631,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey invite", Index=100, Lcid=1033, Description="Activity that tracks a survey invitation sent to a person.")]
-        CustomerVoicesurveyinvite = 10632,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey reminder", Index=101, Lcid=1033, Description="Email reminders for surveys created in Customer Voice.")]
-        CustomerVoicesurveyreminder = 10633,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey response", Index=94, Lcid=1033, Description="Response to a survey.")]
-        CustomerVoicesurveyresponse = 10634,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice unsubscribed recipient", Index=87, Lcid=1033, Description="Email address of an unsubscribed respondent.")]
-        CustomerVoiceunsubscribedrecipient = 10635,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Service Key Value Configuration", Index=1267, Lcid=1033, Description="")]
-        CustomerServiceKeyValueConfiguration = 10636,
-        
-        [EnumMember()]
-        [OptionSetMetadata("AddToCalendar style", Index=141, Lcid=1033, Description="")]
-        AddToCalendarstyle = 10637,
-        
-        [EnumMember()]
-        [OptionSetMetadata("basestyle", Index=139, Lcid=1033, Description="")]
-        basestyle = 10638,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Button style", Index=137, Lcid=1033, Description="")]
-        Buttonstyle = 10639,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Code style", Index=138, Lcid=1033, Description="")]
-        Codestyle = 10640,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Column style", Index=145, Lcid=1033, Description="")]
-        Columnstyle = 10641,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Content Block", Index=146, Lcid=1033, Description="")]
-        ContentBlock = 10642,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Divider style", Index=144, Lcid=1033, Description="")]
-        Dividerstyle = 10643,
-        
-        [EnumMember()]
-        [OptionSetMetadata("General styles", Index=142, Lcid=1033, Description="")]
-        Generalstyles = 10644,
-        
-        [EnumMember()]
-        [OptionSetMetadata("imagestyle", Index=143, Lcid=1033, Description="")]
-        imagestyle = 10645,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Layout Style", Index=136, Lcid=1033, Description="")]
-        LayoutStyle = 10646,
-        
-        [EnumMember()]
-        [OptionSetMetadata("QR code style", Index=129, Lcid=1033, Description="")]
-        QRcodestyle = 10647,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Text style", Index=130, Lcid=1033, Description="")]
-        Textstyle = 10648,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Video style", Index=128, Lcid=1033, Description="")]
-        Videostyle = 10649,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App state", Index=1179, Lcid=1033, Description="")]
-        Appstate = 10650,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CSAdminConfig", Index=1266, Lcid=1033, Description="")]
-        CSAdminConfig = 10651,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom API Ruleset Configuration", Index=1296, Lcid=1033, Description="Configuration table for setting up custom APIs for usage inside the Unified routi" +
-            "ng system")]
-        CustomAPIRulesetConfiguration = 10652,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Decision contract", Index=1058, Lcid=1033, Description="Stores information about contract that will be required for ruleset definition")]
-        Decisioncontract = 10653,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Decision rule set", Index=1056, Lcid=1033, Description="Contains list of rules to define demand and assignment behavior")]
-        Decisionruleset = 10654,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rulesetentitymapping", Index=315, Lcid=1033, Description="For internal use only entity used to store an implicit mapping between a ruleset " +
-            "and polymorphic entity")]
-        Rulesetentitymapping = 10655,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing diagnostic item", Index=10, Lcid=1033, Description="The entity used to store unified routing diagnostic data.")]
-        Routingdiagnosticitem = 10656,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing diagnostic", Index=3, Lcid=1033, Description="")]
-        Routingdiagnostic = 10657,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inbox card configuration", Index=1039, Lcid=1033, Description="")]
-        Inboxcardconfiguration = 10658,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inbox Configuration", Index=1037, Lcid=1033, Description="")]
-        InboxConfiguration = 10659,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inbox Entity Configuration", Index=1035, Lcid=1033, Description="")]
-        InboxEntityConfiguration = 10660,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App Profile Copilot Configuration", Index=1193, Lcid=1033, Description="")]
-        AppProfileCopilotConfiguration = 10661,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm", Index=73, Lcid=1033, Description="Tracks the list of swarms created by agents to resolve the customer issues")]
-        Swarm = 10662,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm participant", Index=66, Lcid=1033, Description="Stores the participants information of swarm")]
-        Swarmparticipant = 10663,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm participant rule", Index=67, Lcid=1033, Description="Rules to fetch participants based on their role")]
-        Swarmparticipantrule = 10664,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm role", Index=65, Lcid=1033, Description="Stores the different participant roles and associated role type defined")]
-        Swarmrole = 10665,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm skill", Index=63, Lcid=1033, Description="Stores the skills required for the swarm")]
-        Swarmskill = 10666,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm template", Index=64, Lcid=1033, Description="Entity which stores different templates for the swarm")]
-        Swarmtemplate = 10667,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Autonomous case creation and update rules", Index=1218, Lcid=1033, Description="Autonomous case creation and update rules")]
-        Autonomouscasecreationandupdaterules = 10668,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Attachment", Index=1076, Lcid=1033, Description="")]
-        EntityAttachment = 10669,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Time Tracker", Index=20, Lcid=1033, Description="")]
-        TimeTracker = 10670,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer feedback survey", Index=1302, Lcid=1033, Description="")]
-        Customerfeedbacksurvey = 10671,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer feedback survey invite", Index=1300, Lcid=1033, Description="")]
-        Customerfeedbacksurveyinvite = 10672,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer feedback survey response", Index=1298, Lcid=1033, Description="")]
-        Customerfeedbacksurveyresponse = 10673,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_surveyconfig", Index=79, Lcid=1033, Description="")]
-        msdyn_surveyconfig = 10674,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Survey setting", Index=80, Lcid=1033, Description="")]
-        Surveysetting = 10675,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Master Entity Routing Configuration", Index=1129, Lcid=1033, Description="Defines master routing details for the entity.")]
-        MasterEntityRoutingConfiguration = 10676,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing Rule Set Setting", Index=317, Lcid=1033, Description="")]
-        RoutingRuleSetSetting = 10677,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Configuration", Index=1185, Lcid=1033, Description="")]
-        AssignmentConfiguration = 10678,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Configuration Step", Index=1186, Lcid=1033, Description="")]
-        AssignmentConfigurationStep = 10679,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Capacity Profile", Index=1201, Lcid=1033, Description="Capacity Profiles")]
-        CapacityProfile = 10680,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Overflow Action Config", Index=186, Lcid=1033, Description="Overflow action configurations.")]
-        OverflowActionConfig = 10681,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Preferred Agent", Index=195, Lcid=1033, Description="Preferred Agent Table, table used to store the mapping between the system user an" +
-            "d contact/account")]
-        PreferredAgent = 10682,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Preferred Agent Customer Identity", Index=308, Lcid=1033, Description="Used for storing the table used to identify customer and the corresponding associ" +
-            "ated table")]
-        PreferredAgentCustomerIdentity = 10683,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Preferred Agent Routed Entity", Index=309, Lcid=1033, Description="Preferred Agent Routed table used to store information for routed table name and " +
-            "customer identifying column on the table")]
-        PreferredAgentRoutedEntity = 10684,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing configuration", Index=325, Lcid=1033, Description="Defines routing details for the workstream")]
-        Routingconfiguration = 10685,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing configuration step", Index=318, Lcid=1033, Description="Links the routing configuration with ruleset")]
-        Routingconfigurationstep = 10686,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bot Channel Registration", Index=1120, Lcid=1033, Description="Bot channel registration used for channel integration")]
-        BotChannelRegistration = 10687,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Configuration", Index=221, Lcid=1033, Description="Channel Configuration")]
-        ChannelConfiguration = 10688,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel State Configuration", Index=222, Lcid=1033, Description="Channel State Configuration")]
-        ChannelStateConfiguration = 10689,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Provisioning State", Index=219, Lcid=1033, Description="Provisioning state")]
-        ProvisioningState = 10690,
-        
-        [EnumMember()]
-        [OptionSetMetadata("AdminAppState", Index=1219, Lcid=1033, Description="State for each user in Admin App")]
-        AdminAppState = 10691,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Status history", Index=1253, Lcid=1033, Description="Agent status history entity records any changes to agent’s presence or available " +
-            "capacity.")]
-        AgentStatushistory = 10692,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Power BI Configuration", Index=1189, Lcid=1033, Description="Stores the Power BI configurations for supervisor experience")]
-        PowerBIConfiguration = 10693,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Authentication Settings", Index=1211, Lcid=1033, Description="Stores the settings for user authentication")]
-        AuthenticationSettings = 10694,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auth Settings Entry", Index=1209, Lcid=1033, Description="")]
-        AuthSettingsEntry = 10695,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quick reply", Index=1208, Lcid=1033, Description="Stores the quick replies that agents can use in the conversation control while in" +
-            "teracting with the customers")]
-        Quickreply = 10696,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Routing Context", Index=1317, Lcid=1033, Description="Entity Routing Contexts")]
-        EntityRoutingContext = 10697,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Capability", Index=1318, Lcid=1033, Description="The capability that a channel can enable, such as co-browse, screen sharing.")]
-        ChannelCapability = 10698,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Action", Index=1342, Lcid=1033, Description="The action that can be performed in the conversation.")]
-        ConversationAction = 10699,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Action Locale", Index=1341, Lcid=1033, Description="Localization information associated with the Conversation action.")]
-        ConversationActionLocale = 10700,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Message Block", Index=1324, Lcid=1033, Description=@"A Message Block would constitute a block of messages up till an agent responds (including the messages sent by the agent). A follow up message, after an agent responds, will create another message block, this block again ends with the messages from the agent")]
-        ConversationMessageBlock = 10701,
-        
-        [EnumMember()]
-        [OptionSetMetadata("DeletedConversation", Index=1087, Lcid=1033, Description="Holds id of deleted conversation")]
-        DeletedConversation = 10702,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Deprecated Workstream Entity Configuration", Index=1072, Lcid=1033, Description="Stores entity routing configuration per workstream")]
-        DeprecatedWorkstreamEntityConfiguration = 10703,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity", Index=1077, Lcid=1033, Description="Entity Routing Configuration")]
-        Entity_2 = 10704,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Ongoing conversation (Deprecated)", Index=1095, Lcid=1033, Description="Tracks the interactions between the agents and customer")]
-        OngoingconversationDeprecated = 10705,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Live work item event", Index=1093, Lcid=1033, Description="This entity captures all events corresponding to a live work item.")]
-        Liveworkitemevent = 10706,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work Stream", Index=1094, Lcid=1033, Description="Stores information about the properties of work items that are generated by a uni" +
-            "que channel endpoint")]
-        WorkStream = 10707,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Masking Rule", Index=1128, Lcid=1033, Description="Masking Rules to apply to chat messages.")]
-        MaskingRule = 10708,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auto block rule", Index=1123, Lcid=1033, Description="")]
-        Autoblockrule = 10709,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bot Channel Registration Secret", Index=672, Lcid=1033, Description="")]
-        BotChannelRegistrationSecret = 10710,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel channel api conversation privilege", Index=224, Lcid=1033, Description="Entity for creating privilege for custom apis. The privileges for this entity wil" +
-            "l be used to restrict custom api access.")]
-        Omnichannelchannelapiconversationprivilege = 10711,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel channel api message privilege", Index=225, Lcid=1033, Description="Entity for creating privilege for custom apis. The privileges for this entity wil" +
-            "l be used to restrict custom api access.")]
-        Omnichannelchannelapimessageprivilege = 10712,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel api method mapping", Index=223, Lcid=1033, Description="OC channel api method mapping entity.")]
-        Channelapimethodmapping = 10713,
-        
-        [EnumMember()]
-        [OptionSetMetadata("External context", Index=229, Lcid=1033, Description="")]
-        Externalcontext = 10714,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Flagged spam", Index=230, Lcid=1033, Description="")]
-        Flaggedspam = 10715,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Language", Index=228, Lcid=1033, Description="")]
-        Language = 10716,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation", Index=226, Lcid=1033, Description="Tracks the interaction between the agents and customer")]
-        Conversation = 10717,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Context item value", Index=213, Lcid=1033, Description="Stores context item values for an engagement.")]
-        Contextitemvalue = 10720,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Live Work Item Participant (Deprecated)", Index=214, Lcid=1033, Description="")]
-        LiveWorkItemParticipantDeprecated = 10721,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Sentiment", Index=212, Lcid=1033, Description="Stores the machine learning generated customer sentiment of the communication  be" +
-            "tween the user and the customer")]
-        ConversationSentiment = 10722,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Context variable", Index=210, Lcid=1033, Description="Stores the context variables for a work stream.")]
-        Contextvariable = 10723,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Localization", Index=211, Lcid=1033, Description="Entity used for data localization on CRM org.")]
-        Localization = 10724,
-        
-        [EnumMember()]
-        [OptionSetMetadata("OC Payment Profile", Index=218, Lcid=1033, Description="")]
-        OCPaymentProfile = 10725,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recording", Index=217, Lcid=1033, Description="Records the audio/video session")]
-        Recording = 10726,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Request", Index=215, Lcid=1033, Description="Entity to store Requests across Omnichannel.")]
-        OmnichannelRequest = 10727,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rich message", Index=216, Lcid=1033, Description="Rich messages for Omnichannel integration")]
-        Richmessage = 10728,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rich message map", Index=245, Lcid=1033, Description="Rich messages map for Omnichannel integration")]
-        Richmessagemap = 10729,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rule Item", Index=246, Lcid=1033, Description="Stores the condition and destination including Omnichannel queues or agents")]
-        RuleItem = 10730,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment daily topic", Index=244, Lcid=1033, Description="1. store properties regarding each topic cluster\r\n2. used for dashboard visualiza" +
-            "tion (like topic example) and calculation for topic mapping")]
-        Sentimentdailytopic = 10731,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment daily topic keyword", Index=242, Lcid=1033, Description="1. Store the keyword and frequency for topic clusters\r\n2. Used for word cloud in " +
-            "the dashboard")]
-        Sentimentdailytopickeyword = 10732,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment daily topic trending", Index=243, Lcid=1033, Description="1. Store the day to day topic mapping information\r\n2. Used for dashboard visualiz" +
-            "ation")]
-        Sentimentdailytopictrending = 10733,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session", Index=250, Lcid=1033, Description="Session for interacting with a customer")]
-        Session = 10734,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Participant Event", Index=249, Lcid=1033, Description="Session participant events")]
-        SessionParticipantEvent = 10735,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Sentiment", Index=247, Lcid=1033, Description="Stores the session level sentiment for customer interactions calculated using AI." +
-            "")]
-        SessionSentiment = 10736,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Message", Index=231, Lcid=1033, Description="Stores the system messages sent to the message receiver for various events.")]
-        Message = 10737,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Tag", Index=232, Lcid=1033, Description="Tags for quick categorization")]
-        Tag = 10738,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Geo Location Provider", Index=1115, Lcid=1033, Description="Geo Location Providers")]
-        GeoLocationProvider = 10739,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Configuration", Index=236, Lcid=1033, Description="Configuration for Omnichannel")]
-        OmnichannelConfiguration = 10740,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Personalization", Index=237, Lcid=1033, Description="Stores personalization information of Omnichannel Agent/Supervisor dashboards")]
-        OmnichannelPersonalization = 10741,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Queue (Deprecated)", Index=182, Lcid=1033, Description="Stores omni-channel work items of a specific issue type or a specific team")]
-        OmnichannelQueueDeprecated = 10742,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Sync Config", Index=183, Lcid=1033, Description="Config for entities to be synced to Omnichannel")]
-        OmnichannelSyncConfig = 10743,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Operating Hour", Index=181, Lcid=1033, Description="Stores all the operating hours that are configured for an organization.")]
-        OperatingHour = 10744,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Personal quick reply", Index=171, Lcid=1033, Description="Omnichannel agents\'s personal quick replies")]
-        Personalquickreply = 10745,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Personal sound setting", Index=172, Lcid=1033, Description="Entity to store personalized sound records for the users.")]
-        Personalsoundsetting = 10746,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Persona Security Role Mapping", Index=170, Lcid=1033, Description="")]
-        PersonaSecurityRoleMapping = 10747,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Presence", Index=307, Lcid=1033, Description="Stores presence status information")]
-        Presence = 10748,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Provider", Index=302, Lcid=1033, Description="A list of third-party providers that bring capabilities into the application. ")]
-        Provider = 10749,
-        
-        [EnumMember()]
-        [OptionSetMetadata("RoutingRequest", Index=319, Lcid=1033, Description="Routing request definition entity")]
-        RoutingRequest = 10750,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Search Configuration", Index=257, Lcid=1033, Description="Configuration entity for agent search screen")]
-        SearchConfiguration = 10751,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment analysis", Index=284, Lcid=1033, Description="Sentiment analysis configuration")]
-        Sentimentanalysis = 10752,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session event", Index=274, Lcid=1033, Description="Stores the session events for a session")]
-        Sessionevent = 10753,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session participant", Index=281, Lcid=1033, Description="Users in a session interacting with the customer")]
-        Sessionparticipant = 10754,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Audio File", Index=43, Lcid=1033, Description="Entity to store all audio files for Omnichannel")]
-        AudioFile = 10755,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sound notification setting", Index=50, Lcid=1033, Description="Entity to store the sound notification setting records for channels and other sce" +
-            "narios. ")]
-        Soundnotificationsetting = 10756,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Transcript", Index=17, Lcid=1033, Description="Stores the transcript of the communication  between the user and the customer")]
-        Transcript = 10757,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UR notification template", Index=9, Lcid=1033, Description="The entity stores all the templates used for UR notification.")]
-        URnotificationtemplate = 10758,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UR Notification Template Mapping", Index=7, Lcid=1033, Description="This entity stores the mapping for notification template and workstream.")]
-        URNotificationTemplateMapping = 10759,
-        
-        [EnumMember()]
-        [OptionSetMetadata("User settings", Index=6, Lcid=1033, Description="Parent entity for Omnichannel personalizations")]
-        Usersettings = 10760,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Self service", Index=36, Lcid=1033, Description="Stores each customer action as a record. The actions tracked are before an intera" +
-            "ction is initiated. Agents will see the actions for an interaction in the Self S" +
-            "ervice section of the Customer Summary page, when enabled.")]
-        Selfservice = 10761,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent capacity update history", Index=1227, Lcid=1033, Description="Agent capacity update history entity records any changes to agent capacity agains" +
-            "t a capacity profile")]
-        Agentcapacityupdatehistory = 10768,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Capacity Profile", Index=1216, Lcid=1033, Description="Bookable Resource Capacity Profile")]
-        BookableResourceCapacityProfile = 10769,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work stream capacity profile", Index=1101, Lcid=1033, Description="Work stream capacity profile")]
-        Workstreamcapacityprofile = 10770,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Capacity profile", Index=227, Lcid=1033, Description="Conversation Capacity profile")]
-        ConversationCapacityprofile = 10771,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Capacity Profile Unit", Index=1220, Lcid=1033, Description="Agent Capacity Profile Units holds agent’s available capacity for each capacity p" +
-            "rofile associated.")]
-        AgentCapacityProfileUnit = 10772,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Channel State", Index=1228, Lcid=1033, Description="")]
-        AgentChannelState = 10773,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Status", Index=1255, Lcid=1033, Description="Agent Status holds agent’s status or presence details.")]
-        AgentStatus = 10774,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group", Index=1224, Lcid=1033, Description="Captures unique Agent Groups")]
-        AgentGroup = 10775,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group Membership", Index=1225, Lcid=1033, Description="Captures Members of the Agent Groups")]
-        AgentGroupMembership = 10776,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Characteristic", Index=220, Lcid=1033, Description="Characteristic associated to Omnichannel conversation")]
-        ConversationCharacteristic = 10777,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Characteristic", Index=251, Lcid=1033, Description="Characteristic associated to Omnichannel session")]
-        SessionCharacteristic = 10778,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Skill Attachment Rule", Index=55, Lcid=1033, Description="")]
-        SkillAttachmentRule = 10779,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Attach Skill", Index=53, Lcid=1033, Description="")]
-        AttachSkill = 10780,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Model training details", Index=248, Lcid=1033, Description="Indicates model\'s training details")]
-        Modeltrainingdetails = 10781,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Training data import configuration", Index=241, Lcid=1033, Description="Indicates the training data import configuration")]
-        Trainingdataimportconfiguration = 10782,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Characteristic mapping", Index=234, Lcid=1033, Description="Indicates the mapping of skills from training data to characteristics")]
-        Characteristicmapping = 10783,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Training record", Index=235, Lcid=1033, Description="Indicates individual training record to be used for model training")]
-        Trainingrecord = 10784,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Skill finder model", Index=233, Lcid=1033, Description="Indicates the OmniChannel Model for the corresponding AI model")]
-        Skillfindermodel = 10785,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Effort estimate", Index=1075, Lcid=1033, Description="Entity to persist effort model prediction results")]
-        Effortestimate = 10786,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Effort estimation model", Index=1031, Lcid=1033, Description="Indicates the OmniChannel Model for the corresponding AI model")]
-        Effortestimationmodel = 10787,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Effort model training details", Index=1038, Lcid=1033, Description="Indicates model\'s training details")]
-        Effortmodeltrainingdetails = 10788,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ConversationInsight", Index=1326, Lcid=1033, Description="")]
-        ConversationInsight = 10789,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Active ICD Extension", Index=1236, Lcid=1033, Description="This notes the currently active description and examples for given entity (queue/" +
-            "agent etc.) as selected by the C1 administrator.")]
-        ActiveICDExtension = 10790,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity-Workstream Map", Index=1078, Lcid=1033, Description="This notes the entity (queue, agent etc.) mapped to the workstreams.")]
-        EntityWorkstreamMap = 10791,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ICD Extension", Index=1032, Lcid=1033, Description="Contains ICD related fields that will be generated and kept.")]
-        ICDExtension = 10792,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lock Status", Index=1098, Lcid=1033, Description="")]
-        LockStatus = 10793,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel agent assignment custom api privilege ", Index=1122, Lcid=1033, Description="Entity for creating privilege for agent assignment private custom apis. The privi" +
-            "leges for this entity will be used to restrict custom api access only for FPA ap" +
-            "p user.")]
-        Omnichannelagentassignmentcustomapiprivilege = 10794,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Action Item", Index=1340, Lcid=1033, Description="")]
-        ConversationActionItem = 10795,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Aggregated Insights", Index=1334, Lcid=1033, Description="")]
-        ConversationAggregatedInsights = 10796,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Comment", Index=1327, Lcid=1033, Description="A comment on a specific section in a transcript")]
-        Comment_3 = 10797,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Participant Insights", Index=1325, Lcid=1033, Description="")]
-        ConversationParticipantInsights = 10798,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Participant Sentiment", Index=1332, Lcid=1033, Description="")]
-        ConversationParticipantSentiment = 10799,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Question", Index=1333, Lcid=1033, Description="")]
-        ConversationQuestion = 10800,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Segment Sentiment", Index=1331, Lcid=1033, Description="")]
-        ConversationSegmentSentiment = 10801,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Sentiment", Index=1329, Lcid=1033, Description="")]
-        ConversationSentiment_2 = 10802,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Signal", Index=1330, Lcid=1033, Description="")]
-        ConversationSignal = 10803,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Subject", Index=1275, Lcid=1033, Description="")]
-        ConversationSubject = 10804,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Summary Suggestion", Index=1272, Lcid=1033, Description="")]
-        ConversationSummarySuggestion = 10805,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation System Tag", Index=1273, Lcid=1033, Description="")]
-        ConversationSystemTag = 10806,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Tag", Index=1280, Lcid=1033, Description="")]
-        ConversationTag = 10807,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recording (Deprecated)", Index=328, Lcid=1033, Description="")]
-        RecordingDeprecated = 10808,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SCI Conversation", Index=254, Lcid=1033, Description="")]
-        SCIConversation = 10809,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom Email Highlight", Index=252, Lcid=1033, Description="")]
-        CustomEmailHighlight = 10810,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom Highlight", Index=253, Lcid=1033, Description="Highlight of relevant conversation section")]
-        CustomHighlight = 10811,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom Publisher", Index=260, Lcid=1033, Description="The publisher of the conversation highlight")]
-        CustomPublisher = 10812,
-        
-        [EnumMember()]
-        [OptionSetMetadata("EnvironmentSettings", Index=261, Lcid=1033, Description="SCI environment level settings")]
-        EnvironmentSettings = 10813,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UserSettings", Index=259, Lcid=1033, Description="SCI user level settings")]
-        UserSettings = 10814,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CatalogEventStatusConfiguration", Index=134, Lcid=1033, Description="Status configuration for events in a catalog.")]
-        CatalogEventStatusConfiguration = 10815,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Configuration", Index=135, Lcid=1033, Description="")]
-        Configuration = 10816,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Trigger", Index=133, Lcid=1033, Description="Metadata for Cxp Events")]
-        Trigger = 10817,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Triggers To Sdk Message Processing Steps", Index=131, Lcid=1033, Description="Mapping between CJO Marketing Triggers and Sdk Message Processing Steps")]
-        TriggersToSdkMessageProcessingSteps = 10818,
-        
-        [EnumMember()]
-        [OptionSetMetadata("EventParameterMetadata", Index=132, Lcid=1033, Description="Metadata for Cxp Event Parameters")]
-        EventParameterMetadata = 10819,
-        
-        [EnumMember()]
-        [OptionSetMetadata("TrackingContext", Index=147, Lcid=1033, Description="")]
-        TrackingContext = 10820,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Marketing feature configuration", Index=162, Lcid=1033, Description="")]
-        Marketingfeatureconfiguration = 10821,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdynmkt_experimentv2", Index=161, Lcid=1033, Description="")]
-        msdynmkt_experimentv2 = 10822,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ACS channel instance", Index=126, Lcid=1033, Description="")]
-        ACSchannelinstance = 10823,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ACS channel instance account", Index=127, Lcid=1033, Description="")]
-        ACSchannelinstanceaccount = 10824,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Infobip channel instance", Index=160, Lcid=1033, Description="")]
-        Infobipchannelinstance = 10825,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Infobip channel instance account", Index=158, Lcid=1033, Description="")]
-        Infobipchannelinstanceaccount = 10826,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Link mobility channel instance", Index=159, Lcid=1033, Description="")]
-        Linkmobilitychannelinstance = 10827,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Link mobility channel instance account", Index=166, Lcid=1033, Description="")]
-        Linkmobilitychannelinstanceaccount = 10828,
-        
-        [EnumMember()]
-        [OptionSetMetadata("MockSmsProvider channel instance", Index=164, Lcid=1033, Description="")]
-        MockSmsProviderchannelinstance = 10829,
-        
-        [EnumMember()]
-        [OptionSetMetadata("MockSmsProvider channel instance account", Index=157, Lcid=1033, Description="")]
-        MockSmsProviderchannelinstanceaccount = 10830,
-        
-        [EnumMember()]
-        [OptionSetMetadata("TeleSign channel instance", Index=151, Lcid=1033, Description="")]
-        TeleSignchannelinstance = 10831,
-        
-        [EnumMember()]
-        [OptionSetMetadata("TeleSign channel instance account", Index=149, Lcid=1033, Description="")]
-        TeleSignchannelinstanceaccount = 10832,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Twilio channel instance", Index=148, Lcid=1033, Description="")]
-        Twiliochannelinstance = 10833,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Twilio channel instance account", Index=155, Lcid=1033, Description="")]
-        Twiliochannelinstanceaccount = 10834,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Vibes channel instance", Index=156, Lcid=1033, Description="")]
-        Vibeschannelinstance = 10835,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Vibes channel instance account", Index=154, Lcid=1033, Description="")]
-        Vibeschannelinstanceaccount = 10836,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predefined Placeholder", Index=150, Lcid=1033, Description="")]
-        PredefinedPlaceholder = 10837,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Metadata Entity Relationship", Index=167, Lcid=1033, Description="")]
-        MetadataEntityRelationship = 10838,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Metadata Item", Index=165, Lcid=1033, Description="")]
-        MetadataItem = 10839,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Metadata Store State", Index=163, Lcid=1033, Description="")]
-        MetadataStoreState = 10840,
-        
-        [EnumMember()]
-        [OptionSetMetadata("DigitalSellingActiveTask", Index=1085, Lcid=1033, Description="")]
-        DigitalSellingActiveTask = 10841,
-        
-        [EnumMember()]
-        [OptionSetMetadata("DigitalSellingCompletedTask", Index=1083, Lcid=1033, Description="")]
-        DigitalSellingCompletedTask = 10842,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Tag", Index=262, Lcid=1033, Description="")]
-        SalesTag = 10843,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence", Index=285, Lcid=1033, Description="")]
-        Sequence = 10844,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Stat", Index=292, Lcid=1033, Description="")]
-        SequenceStat = 10845,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Target", Index=293, Lcid=1033, Description="")]
-        SequenceTarget = 10846,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Target Step", Index=291, Lcid=1033, Description="")]
-        SequenceTargetStep = 10847,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Template", Index=289, Lcid=1033, Description="")]
-        SequenceTemplate = 10848,
-        
-        [EnumMember()]
-        [OptionSetMetadata("sabackupdiagnostic", Index=316, Lcid=1033, Description="")]
-        sabackupdiagnostic = 10850,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SABatchRunInstance", Index=323, Lcid=1033, Description="")]
-        SABatchRunInstance = 10851,
-        
-        [EnumMember()]
-        [OptionSetMetadata("salesroutingdiagnostic", Index=270, Lcid=1033, Description="")]
-        salesroutingdiagnostic = 10852,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SARunInstance", Index=255, Lcid=1033, Description="")]
-        SARunInstance = 10853,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Segment", Index=258, Lcid=1033, Description="")]
-        Segment = 10854,
-        
-        [EnumMember()]
-        [OptionSetMetadata("segmentsetting", Index=287, Lcid=1033, Description="")]
-        segmentsetting = 10855,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Segment property", Index=288, Lcid=1033, Description="")]
-        Segmentproperty = 10856,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SegmentsUtil", Index=286, Lcid=1033, Description="")]
-        SegmentsUtil = 10857,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Rule", Index=1182, Lcid=1033, Description="Defines criteria based on which Entities are routed to Users or Sales Team")]
-        AssignmentRule = 10858,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Seller attribute", Index=1183, Lcid=1033, Description="Sales Attribute")]
-        Sellerattribute = 10859,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Seller attribute value", Index=1213, Lcid=1033, Description="Attribute Value of sales person or sales team")]
-        Sellerattributevalue = 10860,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Map", Index=1184, Lcid=1033, Description="")]
-        AssignmentMap = 10861,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Assignment Setting", Index=320, Lcid=1033, Description="")]
-        SalesAssignmentSetting = 10862,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales routing run", Index=268, Lcid=1033, Description="")]
-        Salesroutingrun = 10863,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Extended User Setting", Index=1023, Lcid=1033, Description="")]
-        ExtendedUserSetting = 10865,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales acceleration insights", Index=324, Lcid=1033, Description="Sales acceleration insights")]
-        Salesaccelerationinsights = 10866,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Acceleration settings", Index=322, Lcid=1033, Description="")]
-        SalesAccelerationsettings = 10867,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Insight", Index=269, Lcid=1033, Description="")]
-        Insight = 10868,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work List Suggestion", Index=21, Lcid=1033, Description="")]
-        WorkListSuggestion = 10869,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work list suggestion source", Index=22, Lcid=1033, Description="")]
-        Worklistsuggestionsource = 10870,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work List View Configuration", Index=29, Lcid=1033, Description="Entity to store work list view configurations on filter, icons, sort etc")]
-        WorkListViewConfiguration = 10871,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work Queue Record", Index=30, Lcid=1033, Description="Entity created to store WorkQueue Data Model Records")]
-        WorkQueueRecord = 10872,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work Queue Record State", Index=28, Lcid=1033, Description="Entity created to store WorkQueue Records state")]
-        WorkQueueRecordState = 10873,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work list user setting", Index=26, Lcid=1033, Description="Entity created to store work list user setting")]
-        Worklistusersetting = 10874,
-        
-        [EnumMember()]
-        [OptionSetMetadata("WQDataSource", Index=27, Lcid=1033, Description="")]
-        WQDataSource = 10875,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Assignment Rule", Index=78, Lcid=1033, Description="")]
-        SuggestionAssignmentRule = 10876,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Principal Object Access", Index=74, Lcid=1033, Description="")]
-        SuggestionPrincipalObjectAccess = 10877,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Seller Priority", Index=82, Lcid=1033, Description="")]
-        SuggestionSellerPriority = 10878,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Hygiene Setting Info", Index=1053, Lcid=1033, Description="Data Hygiene Setting Info")]
-        DataHygieneSettingInfo = 10879,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Duplicate Detection Plugin Run", Index=1089, Lcid=1033, Description="Duplicate Detection Plugin Run used to track successful and failure state of the " +
-            "Duplicate Detection Plugin")]
-        DuplicateDetectionPluginRun = 10880,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Duplicate Lead Mapping", Index=1082, Lcid=1033, Description="This enity is used to connect base lead to duplicate leads")]
-        DuplicateLeadMapping = 10881,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead Hygiene Setting", Index=1110, Lcid=1033, Description="Lead Hygiene Setting")]
-        LeadHygieneSetting = 10882,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Linked Entity Attribute Validity", Index=1097, Lcid=1033, Description="")]
-        LinkedEntityAttributeValidity = 10883,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales provisioning request", Index=275, Lcid=1033, Description="")]
-        Salesprovisioningrequest = 10884,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SalesOmnichannel Message", Index=271, Lcid=1033, Description="")]
-        SalesOmnichannelMessage = 10885,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Text message template", Index=272, Lcid=1033, Description="")]
-        Textmessagetemplate = 10886,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Admin Settings (Deprecated)", Index=1196, Lcid=1033, Description="Data Analytics Admin Settings (Deprecated)")]
-        DataAnalyticsAdminSettingsDeprecated = 10887,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Report", Index=1283, Lcid=1033, Description="Data Analytics Reports")]
-        DataAnalyticsReport = 10888,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Insights", Index=1051, Lcid=1033, Description="Analytics and insights feature entity")]
-        Insights = 10889,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales acceleration reports", Index=1063, Lcid=1033, Description="Sales acceleration reports")]
-        Salesaccelerationreports = 10890,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bot Session", Index=1214, Lcid=1033, Description="Bot specific sessions ")]
-        BotSession = 10892,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Automated action rule", Index=1121, Lcid=1033, Description="The omnichannel automated action rules.")]
-        Automatedactionrule = 10893,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Automated action rules mapping", Index=1119, Lcid=1033, Description="The mapping of omnichannel automated action rules.")]
-        Automatedactionrulesmapping = 10894,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Copilot Setting", Index=1226, Lcid=1033, Description="")]
-        AgentCopilotSetting = 10895,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Summarization Setting", Index=1262, Lcid=1033, Description="")]
-        CopilotSummarizationSetting = 10896,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intent", Index=1150, Lcid=1033, Description="Captures the unique natural language intent")]
-        intent = 10897,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intentattribute", Index=1148, Lcid=1033, Description="Captures all possible attributes across all intents")]
-        intentattribute = 10898,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intentattributeset", Index=1147, Lcid=1033, Description="Captures the attributes required to complete a given intent")]
-        intentattributeset = 10899,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intentattribute_entity", Index=1146, Lcid=1033, Description="Associates the value of an intent attribute identified for a given case or conver" +
-            "sation.")]
-        intentattribute_entity = 10900,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Intent Config", Index=1154, Lcid=1033, Description="Configuration that captures the fields needed for intent determination")]
-        IntentConfig = 10901,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intententity", Index=1155, Lcid=1033, Description="Associates an intent to any entity such as case, conversation to capture evolving" +
-            " intent.")]
-        intententity = 10902,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Line of Business", Index=1151, Lcid=1033, Description="")]
-        LineofBusiness = 10903,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentfeature_configuration", Index=1145, Lcid=1033, Description="")]
-        msdyn_intentfeature_configuration = 10904,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Intent Group Condition", Index=1138, Lcid=1033, Description="")]
-        IntentGroupCondition = 10905,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentharvesting_batchjobstatus", Index=1139, Lcid=1033, Description="")]
-        msdyn_intentharvesting_batchjobstatus = 10906,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentharvesting_provisioning_status", Index=1135, Lcid=1033, Description="")]
-        msdyn_intentharvesting_provisioning_status = 10907,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Intent Solution Map", Index=1143, Lcid=1033, Description="Captures Solutions for Intent Groups")]
-        IntentSolutionMap = 10908,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentsolution_mappingconfiguration", Index=1136, Lcid=1033, Description="")]
-        msdyn_intentsolution_mappingconfiguration = 10909,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Enrichment", Index=1202, Lcid=1033, Description="")]
-        CaseEnrichment = 10910,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case follow up and closure configuration", Index=1200, Lcid=1033, Description="")]
-        Casefollowupandclosureconfiguration = 10911,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Suggestion", Index=1198, Lcid=1033, Description="")]
-        CaseSuggestion = 10912,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Suggestion Request Payload", Index=1199, Lcid=1033, Description="")]
-        CaseSuggestionRequestPayload = 10913,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Suggestions Data Souce", Index=1206, Lcid=1033, Description="")]
-        CaseSuggestionsDataSouce = 10914,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Preference For Copilot", Index=1271, Lcid=1033, Description="")]
-        AgentPreferenceForCopilot = 10915,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Interaction", Index=1265, Lcid=1033, Description="")]
-        CopilotInteraction = 10916,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Interaction Data", Index=1263, Lcid=1033, Description="")]
-        CopilotInteractionData = 10917,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot knowledge interaction", Index=1261, Lcid=1033, Description="Record of copilot using knowledge article")]
-        Copilotknowledgeinteraction = 10918,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Transcript", Index=1269, Lcid=1033, Description="")]
-        CopilotTranscript = 10919,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Transcript Data", Index=1270, Lcid=1033, Description="")]
-        CopilotTranscriptData = 10920,
-        
-        [EnumMember()]
-        [OptionSetMetadata("KB Enrichment", Index=1158, Lcid=1033, Description="")]
-        KBEnrichment = 10921,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Suggestion", Index=1163, Lcid=1033, Description="")]
-        KnowledgeArticleSuggestion = 10922,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Suggestion Data Source", Index=1161, Lcid=1033, Description="")]
-        KnowledgeArticleSuggestionDataSource = 10923,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Next Action", Index=1124, Lcid=1033, Description="")]
-        NextAction = 10924,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Copilot Plugin", Index=283, Lcid=1033, Description="")]
-        ServiceCopilotPlugin = 10925,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Copilot Plugin Action", Index=276, Lcid=1033, Description="")]
-        ServiceCopilotPluginAction = 10926,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Copilot Plugin Role", Index=277, Lcid=1033, Description="")]
-        ServiceCopilotPluginRole = 10927,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Interaction", Index=76, Lcid=1033, Description="")]
-        SuggestionInteraction = 10928,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion request payload", Index=75, Lcid=1033, Description="")]
-        Suggestionrequestpayload = 10929,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestions Model Summary", Index=83, Lcid=1033, Description="Suggestions Model Summary entity")]
-        SuggestionsModelSummary = 10930,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestions Setting", Index=81, Lcid=1033, Description="Suggestions settings entity")]
-        SuggestionsSetting = 10931,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics User Customized Report", Index=1284, Lcid=1033, Description="Data Analytics User Customized Report")]
-        DataAnalyticsUserCustomizedReport = 10932,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Dataset", Index=1282, Lcid=1033, Description="Data Analytics Power BI Datasets")]
-        DataAnalyticsDataset = 10933,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Workspace", Index=1071, Lcid=1033, Description="Data Analytics Power BI Workspaces")]
-        DataAnalyticsWorkspace = 10934,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Report Bookmark", Index=331, Lcid=1033, Description="")]
-        ReportBookmark = 10935,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Resource Forecasting", Index=1254, Lcid=1033, Description="Agent Resource Forecasting")]
-        AgentResourceForecasting = 10936,
-        
-        [EnumMember()]
-        [OptionSetMetadata("[Deprecated] Dynamics Customer Service Analytics", Index=1197, Lcid=1033, Description="[Deprecated] Controls access to Analytics Reporting Sitemap in Dynamics Customer " +
-            "Service App")]
-        DeprecatedDynamicsCustomerServiceAnalytics = 10937,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Topic", Index=1207, Lcid=1033, Description="")]
-        CaseTopic = 10938,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Topic Setting", Index=1203, Lcid=1033, Description="Case Topic Setting Entity")]
-        CaseTopicSetting = 10939,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Topic Summary", Index=1204, Lcid=1033, Description="Case Topic Summary Entity")]
-        CaseTopicSummary = 10940,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case topic Incident mapping", Index=1205, Lcid=1033, Description="Cases mapping with the case topics")]
-        CasetopicIncidentmapping = 10941,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Service historical analytics", Index=1291, Lcid=1033, Description="Customer Service historical analytics")]
-        CustomerServicehistoricalanalytics = 10942,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast", Index=1287, Lcid=1033, Description="Case, Conversation Volume Forecast analytics")]
-        Forecast_3 = 10943,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge analytics", Index=1288, Lcid=1033, Description="Knowledge analytics")]
-        Knowledgeanalytics = 10944,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Model Customization analytics", Index=1065, Lcid=1033, Description="Model Customization analytics")]
-        ModelCustomizationanalytics = 10945,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UR RecordRouting Real-time Analytics", Index=1070, Lcid=1033, Description="UR RecordRouting Real-time Analytics")]
-        URRecordRoutingRealtimeAnalytics = 10946,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Summary and Setting", Index=1050, Lcid=1033, Description="")]
-        ForecastSummaryandSetting = 10947,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Keywords Description Suggestion Setting", Index=1156, Lcid=1033, Description="Keywords Description Suggestion settings entity")]
-        KeywordsDescriptionSuggestionSetting = 10948,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Summary Interaction", Index=1276, Lcid=1033, Description="Conversation Summary Interaction Entity")]
-        ConversationSummaryInteraction = 10949,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Summary Setting", Index=1274, Lcid=1033, Description="Conversation Summary Settings Entity")]
-        ConversationSummarySetting = 10950,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Topic", Index=1281, Lcid=1033, Description="")]
-        ConversationTopic = 10951,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Topic Setting", Index=1277, Lcid=1033, Description="Conversation Topic Setting Entity")]
-        ConversationTopicSetting = 10952,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Topic Summary", Index=1278, Lcid=1033, Description="Conversation Topic Summary Entity")]
-        ConversationTopicSummary = 10953,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation topic Conversation mapping", Index=1279, Lcid=1033, Description="Conversation mapping with conversation topics")]
-        ConversationtopicConversationmapping = 10954,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel historical analytics", Index=1066, Lcid=1033, Description="Omnichannel historical analytics")]
-        Omnichannelhistoricalanalytics = 10955,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel voice historical analytics (preview) (Deprecated)", Index=1062, Lcid=1033, Description="Omnichannel voice historical analytics (preview) (Deprecated)")]
-        OmnichannelvoicehistoricalanalyticspreviewDeprecated = 10956,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Realtime analytics", Index=1064, Lcid=1033, Description="Omnichannel Realtime analytics")]
-        OmnichannelRealtimeanalytics = 10957,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Analytics", Index=1290, Lcid=1033, Description="Case, Conversation, Email Copilot interaction analytics")]
-        CopilotAnalytics = 10958,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Product", Index=446, Lcid=1033, Description="")]
-        Product = 10959,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template Rule Set", Index=13, Lcid=1033, Description="Contains template rulesets that can be applied to custom assignment method in a q" +
-            "ueue")]
-        TemplateRuleSet = 11029,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Attribute Prediction Rule", Index=1074, Lcid=1033, Description="")]
-        EntityAttributePredictionRule = 11030,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice Collection", Index=447, Lcid=1033, Description="")]
-        InvoiceCollection = 11051,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Subscription", Index=450, Lcid=1033, Description="Entity description")]
-        Subscription_2 = 11060,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SharePoint Managed Identity", Index=410, Lcid=1033, Description="Entity representing a managed identity for SharePoint, used for authentication an" +
-            "d authorization purposes.")]
-        SharePointManagedIdentity = 11114,
-        
-        [EnumMember()]
-        [OptionSetMetadata("AI Insight Card", Index=918, Lcid=1033, Description="")]
-        AIInsightCard = 11115,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Processor Registration", Index=526, Lcid=1033, Description="")]
-        ProcessorRegistration = 11116,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Signal Registration", Index=417, Lcid=1033, Description="")]
-        SignalRegistration = 11117,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Trait Registration", Index=495, Lcid=1033, Description="")]
-        TraitRegistration = 11118,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Email analytics", Index=1289, Lcid=1033, Description="Email analytics")]
-        Emailanalytics = 11119,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LOB Backfill Status", Index=1153, Lcid=1033, Description="")]
-        LOBBackfillStatus = 11120,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentfamily_harvestingconfiguration", Index=1152, Lcid=1033, Description="")]
-        msdyn_intentfamily_harvestingconfiguration = 11121,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentharvesting_batchjobstatusdetail", Index=1137, Lcid=1033, Description="")]
-        msdyn_intentharvesting_batchjobstatusdetail = 11122,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot assisted case form fill settings", Index=1264, Lcid=1033, Description="Copilot assisted case form fill settings")]
-        Copilotassistedcaseformfillsettings = 11123,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales usage telemetry reports", Index=427, Lcid=1033, Description="Sales usage telemetry reports")]
-        Salesusagetelemetryreports = 11124,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales usage reporting", Index=453, Lcid=1033, Description="Sales usage reporting")]
-        Salesusagereporting = 11125,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Derived insights related entity", Index=425, Lcid=1033, Description="Derived insights related entities")]
-        Derivedinsightsrelatedentity = 11126,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity derived insights", Index=426, Lcid=1033, Description="Entity derived insights")]
-        Entityderivedinsights = 11127,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_rawinsight", Index=455, Lcid=1033, Description="")]
-        msdyn_rawinsight = 11128,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_rawinsightentitylink", Index=456, Lcid=1033, Description="")]
-        msdyn_rawinsightentitylink = 11129,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot Email Insight", Index=454, Lcid=1033, Description="Entity used to keep the actions derived from email")]
-        SalesCopilotEmailInsight = 11130,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot Insight Card State", Index=452, Lcid=1033, Description="This entity used to store actions performed by users on the entity like snooze/di" +
-            "smiss.")]
-        SalesCopilotInsightCardState = 11131,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Interactions", Index=460, Lcid=1033, Description="Data table of previous copilot interactions.")]
-        CopilotInteractions = 11132,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Email Sentiment", Index=461, Lcid=1033, Description="")]
-        EmailSentiment = 11133,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group Language", Index=459, Lcid=1033, Description="Represents the association of user groups with language")]
-        AgentGroupLanguage = 11134,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group Region", Index=457, Lcid=1033, Description="Represents the association of user groups with region")]
-        AgentGroupRegion = 11135,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Language", Index=458, Lcid=1033, Description="Represents the association of users with language ")]
-        AgentLanguage = 11136,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Region", Index=451, Lcid=1033, Description="Represents the association of users with region")]
-        AgentRegion = 11137,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Language Hierarchy", Index=444, Lcid=1033, Description="This entity is used to identify the language preference of end customers. Users a" +
-            "nd user groups are decorated with language, and matched with conversations to ro" +
-            "ute them. Users and user groups decoration also supports hierarchy")]
-        LanguageHierarchy = 11138,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Region", Index=445, Lcid=1033, Description="This entity is used to identify the region of end customers. Users and user group" +
-            "s are decorated with region, and matched with conversations to route them. Users" +
-            " and user groups decoration also supports hierarchy. ")]
-        Region = 11139,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_historicalcaseharvestbatch", Index=443, Lcid=1033, Description="")]
-        msdyn_historicalcaseharvestbatch = 11140,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_historicalcaseharvestrun", Index=441, Lcid=1033, Description="")]
-        msdyn_historicalcaseharvestrun = 11141,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Harvest Job Record", Index=442, Lcid=1033, Description="Tracking entity record used to trigger the harvesting process for knowledge artic" +
-            "les")]
-        KnowledgeHarvestJobRecord = 11142,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Transaction", Index=448, Lcid=1033, Description="This table contains records of transaction information")]
-        Transaction = 11143,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice", Index=449, Lcid=1033, Description="This table contains records of invoice information")]
-        Invoice = 11144,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Event Expander Breadcrumb", Index=709, Lcid=1033, Description="Table to store breadcrumb records of Event Expander pipeline.")]
-        EventExpanderBreadcrumb = 18085,
+        [OptionSetMetadata("Invoice Collection", Index=254, Lcid=1033, Description="")]
+        InvoiceCollection = 10526,
     }
     
     [DataContract()]
     public enum DuplicateRule_MatchingEntityTypeCode {
         
         [EnumMember()]
-        [OptionSetMetadata("Account", Index=898, Lcid=1033, Description="Business that represents a customer or potential customer. The company that is bi" +
+        [OptionSetMetadata("Account", Index=508, Lcid=1033, Description="Business that represents a customer or potential customer. The company that is bi" +
             "lled in business transactions.")]
         Account = 1,
         
         [EnumMember()]
-        [OptionSetMetadata("Contact", Index=960, Lcid=1033, Description="Person with whom a business unit has a relationship, such as customer, supplier, " +
+        [OptionSetMetadata("Contact", Index=386, Lcid=1033, Description="Person with whom a business unit has a relationship, such as customer, supplier, " +
             "and colleague.")]
         Contact = 2,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity", Index=550, Lcid=1033, Description="Potential revenue-generating event, or sale to an account, which needs to be trac" +
-            "ked through a sales process to completion.")]
-        Opportunity = 3,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead", Index=757, Lcid=1033, Description="Prospect or potential sales opportunity. Leads are converted into accounts, conta" +
-            "cts, or opportunities when they are qualified. Otherwise, they are deleted or ar" +
-            "chived.")]
-        Lead = 4,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Note", Index=912, Lcid=1033, Description="Note that is attached to one or more objects, including other notes.")]
+        [OptionSetMetadata("Note", Index=489, Lcid=1033, Description="Note that is attached to one or more objects, including other notes.")]
         Note = 5,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Unit Map", Index=968, Lcid=1033, Description="Stores mapping attributes for business units.")]
+        [OptionSetMetadata("Business Unit Map", Index=540, Lcid=1033, Description="Stores mapping attributes for business units.")]
         BusinessUnitMap = 6,
         
         [EnumMember()]
-        [OptionSetMetadata("Owner", Index=584, Lcid=1033, Description="Group of undeleted system users and undeleted teams. Owners can be used to contro" +
+        [OptionSetMetadata("Owner", Index=25, Lcid=1033, Description="Group of undeleted system users and undeleted teams. Owners can be used to contro" +
             "l access to specific objects.")]
         Owner = 7,
         
         [EnumMember()]
-        [OptionSetMetadata("User", Index=366, Lcid=1033, Description="Person with access to the Microsoft CRM system and who owns objects in the Micros" +
+        [OptionSetMetadata("User", Index=198, Lcid=1033, Description="Person with access to the Microsoft CRM system and who owns objects in the Micros" +
             "oft CRM database.")]
         User = 8,
         
         [EnumMember()]
-        [OptionSetMetadata("Team", Index=473, Lcid=1033, Description="Collection of system users that routinely collaborate. Teams can be used to simpl" +
+        [OptionSetMetadata("Team", Index=194, Lcid=1033, Description="Collection of system users that routinely collaborate. Teams can be used to simpl" +
             "ify record sharing and provide team members with common access to organization d" +
             "ata when team members belong to different Business Units.")]
         Team = 9,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Unit", Index=967, Lcid=1033, Description="Business, division, or department in the Microsoft Dynamics 365 database.")]
+        [OptionSetMetadata("Business Unit", Index=538, Lcid=1033, Description="Business, division, or department in the Microsoft Dynamics 365 database.")]
         BusinessUnit = 10,
         
         [EnumMember()]
-        [OptionSetMetadata("System User Principal", Index=476, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("System User Principal", Index=200, Lcid=1033, Description="For internal use only.")]
         SystemUserPrincipal = 14,
         
         [EnumMember()]
-        [OptionSetMetadata("AccountLeads", Index=896, Lcid=1033, Description="description.")]
-        AccountLeads = 16,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactInvoices", Index=961, Lcid=1033)]
-        ContactInvoices = 17,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactQuotes", Index=958, Lcid=1033)]
-        ContactQuotes = 18,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactOrders", Index=957, Lcid=1033)]
-        ContactOrders = 19,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Contract Contact", Index=388, Lcid=1033, Description="Item in a Service contract.")]
-        ServiceContractContact = 20,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ProductSalesLiterature", Index=643, Lcid=1033)]
-        ProductSalesLiterature = 21,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ContactLeads", Index=959, Lcid=1033)]
-        ContactLeads = 22,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LeadCompetitors", Index=765, Lcid=1033)]
-        LeadCompetitors = 24,
-        
-        [EnumMember()]
-        [OptionSetMetadata("OpportunityCompetitors", Index=546, Lcid=1033)]
-        OpportunityCompetitors = 25,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CompetitorSalesLiterature", Index=942, Lcid=1033)]
-        CompetitorSalesLiterature = 26,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LeadProduct", Index=766, Lcid=1033)]
-        LeadProduct = 27,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Subscription", Index=344, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription", Index=223, Lcid=1033, Description="For internal use only.")]
         Subscription = 29,
         
         [EnumMember()]
-        [OptionSetMetadata("Filter Template", Index=701, Lcid=1033, Description="Template for a filter.")]
+        [OptionSetMetadata("Filter Template", Index=709, Lcid=1033, Description="Template for a filter.")]
         FilterTemplate = 30,
         
         [EnumMember()]
-        [OptionSetMetadata("Privilege Object Type Code", Index=527, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Privilege Object Type Code", Index=82, Lcid=1033, Description="For internal use only.")]
         PrivilegeObjectTypeCode = 31,
         
         [EnumMember()]
-        [OptionSetMetadata("Sales Process Instance", Index=626, Lcid=1033, Description="Instance of a sales process.")]
-        SalesProcessInstance = 32,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Subscription Synchronization Information", Index=370, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription Synchronization Information", Index=219, Lcid=1033, Description="For internal use only.")]
         SubscriptionSynchronizationInformation = 33,
         
         [EnumMember()]
-        [OptionSetMetadata("Tracking information for deleted entities", Index=368, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Tracking information for deleted entities", Index=218, Lcid=1033, Description="For internal use only.")]
         Trackinginformationfordeletedentities = 35,
         
         [EnumMember()]
-        [OptionSetMetadata("Client update", Index=938, Lcid=1033, Description="Microsoft Dynamics 365 client for Outlook offline database update.")]
+        [OptionSetMetadata("Client update", Index=419, Lcid=1033, Description="Microsoft Dynamics 365 client for Outlook offline database update.")]
         Clientupdate = 36,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Manually Tracked Object", Index=343, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription Manually Tracked Object", Index=224, Lcid=1033, Description="For internal use only.")]
         SubscriptionManuallyTrackedObject = 37,
         
         [EnumMember()]
-        [OptionSetMetadata("SystemUser BusinessUnit Entity Map", Index=362, Lcid=1033, Description="Stores mapping attributes for business units.")]
+        [OptionSetMetadata("SystemUser BusinessUnit Entity Map", Index=199, Lcid=1033, Description="Stores mapping attributes for business units.")]
         SystemUserBusinessUnitEntityMap = 42,
         
         [EnumMember()]
-        [OptionSetMetadata("Field Sharing", Index=541, Lcid=1033, Description="Defines CRM security principals (users and teams) access rights to secured field " +
+        [OptionSetMetadata("Field Sharing", Index=15, Lcid=1033, Description="Defines CRM security principals (users and teams) access rights to secured field " +
             "for an entity instance.")]
         FieldSharing = 44,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Statistic Offline", Index=341, Lcid=1033, Description="Subscription Statistic Offline")]
+        [OptionSetMetadata("Subscription Statistic Offline", Index=220, Lcid=1033, Description="Subscription Statistic Offline")]
         SubscriptionStatisticOffline = 45,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Statistic Outlook", Index=342, Lcid=1033, Description="Subscription Statistic Outlook")]
+        [OptionSetMetadata("Subscription Statistic Outlook", Index=216, Lcid=1033, Description="Subscription Statistic Outlook")]
         SubscriptionStatisticOutlook = 46,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Sync Entry Offline", Index=371, Lcid=1033, Description="Used for offline sync, internal use only.")]
+        [OptionSetMetadata("Subscription Sync Entry Offline", Index=215, Lcid=1033, Description="Used for offline sync, internal use only.")]
         SubscriptionSyncEntryOffline = 47,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Sync Entry Outlook", Index=372, Lcid=1033, Description="Used for outlook sync, internal use only.")]
+        [OptionSetMetadata("Subscription Sync Entry Outlook", Index=217, Lcid=1033, Description="Used for outlook sync, internal use only.")]
         SubscriptionSyncEntryOutlook = 48,
         
         [EnumMember()]
-        [OptionSetMetadata("Position", Index=524, Lcid=1033, Description="Position of a user in the hierarchy")]
+        [OptionSetMetadata("Position", Index=23, Lcid=1033, Description="Position of a user in the hierarchy")]
         Position = 50,
         
         [EnumMember()]
-        [OptionSetMetadata("System User Manager Map", Index=363, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("System User Manager Map", Index=201, Lcid=1033, Description="For internal use only.")]
         SystemUserManagerMap = 51,
         
         [EnumMember()]
-        [OptionSetMetadata("User Search Facet", Index=433, Lcid=1033)]
+        [OptionSetMetadata("User Search Facet", Index=247, Lcid=1033)]
         UserSearchFacet = 52,
         
         [EnumMember()]
-        [OptionSetMetadata("Global Search Configuration", Index=807, Lcid=1033)]
+        [OptionSetMetadata("Global Search Configuration", Index=681, Lcid=1033)]
         GlobalSearchConfiguration = 54,
         
         [EnumMember()]
-        [OptionSetMetadata("FileAttachment", Index=703, Lcid=1033, Description="File Attachment")]
+        [OptionSetMetadata("FileAttachment", Index=707, Lcid=1033, Description="File Attachment")]
         FileAttachment = 55,
         
         [EnumMember()]
-        [OptionSetMetadata("SystemUserAuthorizationChangeTracker", Index=364, Lcid=1033, Description="Internal authorization table to track user authorization changes")]
+        [OptionSetMetadata("SystemUserAuthorizationChangeTracker", Index=197, Lcid=1033, Description="Internal authorization table to track user authorization changes")]
         SystemUserAuthorizationChangeTracker = 60,
         
         [EnumMember()]
-        [OptionSetMetadata("PrincipalEntityBusinessUnitMap", Index=543, Lcid=1033, Description="Internal authorization table to track user authorization changes")]
-        PrincipalEntityBusinessUnitMap = 61,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Record Filter", Index=666, Lcid=1033, Description="Record Access Filter")]
+        [OptionSetMetadata("Record Filter", Index=54, Lcid=1033, Description="Record Access Filter")]
         RecordFilter = 72,
         
         [EnumMember()]
-        [OptionSetMetadata("EntityRecordFilter", Index=682, Lcid=1033, Description="RecordFilter Object Type Codes")]
+        [OptionSetMetadata("EntityRecordFilter", Index=446, Lcid=1033, Description="RecordFilter Object Type Codes")]
         EntityRecordFilter = 73,
         
         [EnumMember()]
-        [OptionSetMetadata("Secured Masking Rule", Index=779, Lcid=1033, Description="Secured Masking Rules to apply to fields.")]
+        [OptionSetMetadata("Secured Masking Rule", Index=668, Lcid=1033, Description="Secured Masking Rules to apply to fields.")]
         SecuredMaskingRule = 74,
         
         [EnumMember()]
-        [OptionSetMetadata("Privilege Checker Run", Index=529, Lcid=1033, Description="Entity to keep track of privilege checker tool runs. Parent entity of privilege c" +
+        [OptionSetMetadata("Privilege Checker Run", Index=80, Lcid=1033, Description="Entity to keep track of privilege checker tool runs. Parent entity of privilege c" +
             "hecker log.")]
         PrivilegeCheckerRun = 75,
         
         [EnumMember()]
-        [OptionSetMetadata("Privilege Checker Log", Index=528, Lcid=1033, Description="Holds information about privilege checks for the user who started (created) a pri" +
+        [OptionSetMetadata("Privilege Checker Log", Index=78, Lcid=1033, Description="Holds information about privilege checks for the user who started (created) a pri" +
             "vilege checker tool run (Privilege Checker Run\'s child entity)")]
         PrivilegeCheckerLog = 76,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Entity Data Provider", Index=676, Lcid=1033, Description="Developers can register plug-ins on a data provider to enable data access for vir" +
+        [OptionSetMetadata("Virtual Entity Data Provider", Index=452, Lcid=1033, Description="Developers can register plug-ins on a data provider to enable data access for vir" +
             "tual entities in the system.")]
         VirtualEntityDataProvider = 78,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Entity Data Source", Index=677, Lcid=1033, Description="Internal entity that stores data source information for all installed providers.")]
+        [OptionSetMetadata("Virtual Entity Data Source", Index=451, Lcid=1033, Description="Internal entity that stores data source information for all installed providers.")]
         VirtualEntityDataSource = 85,
         
         [EnumMember()]
-        [OptionSetMetadata("Team template", Index=480, Lcid=1033, Description="Team template for an entity enabled for automatically created access teams.")]
+        [OptionSetMetadata("Team template", Index=211, Lcid=1033, Description="Team template for an entity enabled for automatically created access teams.")]
         Teamtemplate = 92,
         
         [EnumMember()]
-        [OptionSetMetadata("Social Profile", Index=407, Lcid=1033, Description="This entity is used to store social profile information of its associated account" +
+        [OptionSetMetadata("Social Profile", Index=373, Lcid=1033, Description="This entity is used to store social profile information of its associated account" +
             " and contacts on different social channels.")]
         SocialProfile = 99,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Plan", Index=382, Lcid=1033, Description="Service Plan")]
+        [OptionSetMetadata("Service Plan", Index=301, Lcid=1033, Description="Service Plan")]
         ServicePlan = 101,
         
         [EnumMember()]
-        [OptionSetMetadata("Privileges Removal Setting", Index=525, Lcid=1033, Description="Privileges Removal Setting")]
+        [OptionSetMetadata("Privileges Removal Setting", Index=81, Lcid=1033, Description="Privileges Removal Setting")]
         PrivilegesRemovalSetting = 103,
         
         [EnumMember()]
-        [OptionSetMetadata("Case", Index=830, Lcid=1033, Description="Service request case associated with a contract.")]
-        Case = 112,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Child Incident Count", Index=940, Lcid=1033, Description="For internal use only.")]
-        ChildIncidentCount = 113,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Competitor", Index=945, Lcid=1033, Description="Business competing for the sale represented by a lead or opportunity.")]
-        Competitor = 123,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Indexed Article", Index=750, Lcid=1033, Description="Article indexed for search purposes.")]
+        [OptionSetMetadata("Indexed Article", Index=471, Lcid=1033, Description="Article indexed for search purposes.")]
         IndexedArticle = 126,
         
         [EnumMember()]
-        [OptionSetMetadata("Article", Index=770, Lcid=1033, Description="Structured content that is part of the knowledge base.")]
+        [OptionSetMetadata("Article", Index=755, Lcid=1033, Description="Structured content that is part of the knowledge base.")]
         Article = 127,
         
         [EnumMember()]
-        [OptionSetMetadata("Subject", Index=337, Lcid=1033, Description="Information regarding subjects available in the system.")]
+        [OptionSetMetadata("Subject", Index=221, Lcid=1033, Description="Information regarding subjects available in the system.")]
         Subject = 129,
         
         [EnumMember()]
-        [OptionSetMetadata("Announcement", Index=975, Lcid=1033, Description="Announcement associated with an organization.")]
+        [OptionSetMetadata("Announcement", Index=542, Lcid=1033, Description="Announcement associated with an organization.")]
         Announcement = 132,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity Party", Index=893, Lcid=1033, Description="Person or group associated with an activity. An activity can have multiple activi" +
+        [OptionSetMetadata("Activity Party", Index=504, Lcid=1033, Description="Person or group associated with an activity. An activity can have multiple activi" +
             "ty parties.")]
         ActivityParty = 135,
         
         [EnumMember()]
-        [OptionSetMetadata("User Settings", Index=431, Lcid=1033, Description="User\'s preferred settings.")]
-        UserSettings_2 = 150,
+        [OptionSetMetadata("User Settings", Index=249, Lcid=1033, Description="User\'s preferred settings.")]
+        UserSettings = 150,
         
         [EnumMember()]
-        [OptionSetMetadata("Canvas App", Index=1000, Lcid=1033, Description="An application built through a canvas-based editing experience.")]
+        [OptionSetMetadata("Canvas App", Index=412, Lcid=1033, Description="An application built through a canvas-based editing experience.")]
         CanvasApp = 300,
         
         [EnumMember()]
-        [OptionSetMetadata("Callback Registration", Index=972, Lcid=1033, Description="Callback Registration that stores configuration.")]
+        [OptionSetMetadata("Callback Registration", Index=413, Lcid=1033, Description="Callback Registration that stores configuration.")]
         CallbackRegistration = 301,
         
         [EnumMember()]
-        [OptionSetMetadata("Connector", Index=930, Lcid=1033, Description="Connector Entity to support Solutioning Integration")]
+        [OptionSetMetadata("Connector", Index=384, Lcid=1033, Description="Connector Entity to support Solutioning Integration")]
         Connector = 372,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Instance", Index=926, Lcid=1033, Description="")]
+        [OptionSetMetadata("Connection Instance", Index=391, Lcid=1033, Description="")]
         ConnectionInstance = 373,
         
         [EnumMember()]
-        [OptionSetMetadata("Environment Variable Definition", Index=678, Lcid=1033, Description="Contains information about the settable variable: its type, default value, and et" +
+        [OptionSetMetadata("Environment Variable Definition", Index=700, Lcid=1033, Description="Contains information about the settable variable: its type, default value, and et" +
             "c.")]
         EnvironmentVariableDefinition = 380,
         
         [EnumMember()]
-        [OptionSetMetadata("Environment Variable Value", Index=679, Lcid=1033, Description="Holds the value for the associated EnvironmentVariableDefinition entity.")]
+        [OptionSetMetadata("Environment Variable Value", Index=699, Lcid=1033, Description="Holds the value for the associated EnvironmentVariableDefinition entity.")]
         EnvironmentVariableValue = 381,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Template", Index=1245, Lcid=1033, Description="")]
+        [OptionSetMetadata("AI Template", Index=584, Lcid=1033, Description="")]
         AITemplate = 400,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Model", Index=1240, Lcid=1033, Description="")]
+        [OptionSetMetadata("AI Model", Index=583, Lcid=1033, Description="")]
         AIModel = 401,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Configuration", Index=1250, Lcid=1033, Description="")]
+        [OptionSetMetadata("AI Configuration", Index=610, Lcid=1033, Description="")]
         AIConfiguration = 402,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow", Index=1067, Lcid=1033, Description="")]
+        [OptionSetMetadata("Dataflow", Index=654, Lcid=1033, Description="")]
         Dataflow = 418,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Analytics Config", Index=683, Lcid=1033, Description="This entity contains information about which entities are enabled for Azure Data " +
+        [OptionSetMetadata("Entity Analytics Config", Index=448, Lcid=1033, Description="This entity contains information about which entities are enabled for Azure Data " +
             "Lake Services integration")]
         EntityAnalyticsConfig = 430,
         
         [EnumMember()]
-        [OptionSetMetadata("Image Attribute Configuration", Index=873, Lcid=1033, Description="Store configuration for each image attribute")]
+        [OptionSetMetadata("Image Attribute Configuration", Index=549, Lcid=1033, Description="Store configuration for each image attribute")]
         ImageAttributeConfiguration = 431,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Image Configuration", Index=675, Lcid=1033, Description="Store image configuration for each entity")]
+        [OptionSetMetadata("Entity Image Configuration", Index=447, Lcid=1033, Description="Store image configuration for each entity")]
         EntityImageConfiguration = 432,
         
         [EnumMember()]
-        [OptionSetMetadata("New Process", Index=566, Lcid=1033, Description="New Process Business Process Flow")]
+        [OptionSetMetadata("New Process", Index=163, Lcid=1033, Description="New Process Business Process Flow")]
         NewProcess = 950,
         
         [EnumMember()]
-        [OptionSetMetadata("Translation Process", Index=499, Lcid=1033, Description="Translation Process Business Process Flow")]
+        [OptionSetMetadata("Translation Process", Index=266, Lcid=1033, Description="Translation Process Business Process Flow")]
         TranslationProcess = 951,
         
         [EnumMember()]
-        [OptionSetMetadata("Phone To Case Process", Index=576, Lcid=1033, Description="Phone To Case Process Business Process Flow")]
-        PhoneToCaseProcess = 952,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Opportunity Sales Process", Index=554, Lcid=1033, Description="Opportunity Sales Process Business Process Flow")]
-        OpportunitySalesProcess = 953,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead To Opportunity Sales Process", Index=764, Lcid=1033, Description="Lead To Opportunity Sales Process Business Process Flow")]
-        LeadToOpportunitySalesProcess = 954,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Expired Process", Index=706, Lcid=1033, Description="Expired Process Business Process Flow")]
+        [OptionSetMetadata("Expired Process", Index=698, Lcid=1033, Description="Expired Process Business Process Flow")]
         ExpiredProcess = 955,
         
         [EnumMember()]
-        [OptionSetMetadata("Attachment", Index=899, Lcid=1033, Description="MIME attachment for an activity.")]
-        Attachment_2 = 1001,
+        [OptionSetMetadata("Attachment", Index=502, Lcid=1033, Description="MIME attachment for an activity.")]
+        Attachment = 1001,
         
         [EnumMember()]
-        [OptionSetMetadata("Attachment", Index=877, Lcid=1033, Description="Attachment for an email activity.")]
-        Attachment = 1002,
+        [OptionSetMetadata("Attachment", Index=564, Lcid=1033, Description="Attachment for an email activity.")]
+        Attachment_2 = 1002,
         
         [EnumMember()]
-        [OptionSetMetadata("Internal Address", Index=828, Lcid=1033, Description="Storage of addresses for a user, business unit, or site.")]
+        [OptionSetMetadata("Internal Address", Index=763, Lcid=1033, Description="Storage of addresses for a user, business unit, or site.")]
         InternalAddress = 1003,
         
         [EnumMember()]
-        [OptionSetMetadata("Competitor Address", Index=943, Lcid=1033, Description="Additional addresses for a competitor. The first two addresses are stored in the " +
-            "competitor object.")]
-        CompetitorAddress = 1004,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Competitor Product", Index=941, Lcid=1033, Description="Association between a competitor and a product offered by the competitor.")]
-        CompetitorProduct = 1006,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Image Descriptor", Index=833, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Image Descriptor", Index=749, Lcid=1033, Description="For internal use only.")]
         ImageDescriptor = 1007,
         
         [EnumMember()]
-        [OptionSetMetadata("Contract", Index=965, Lcid=1033, Description="Agreement to provide customer service during a specified amount of time or number" +
-            " of cases.")]
-        Contract = 1010,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contract Line", Index=966, Lcid=1033, Description="Line item in a contract that specifies the type of service a customer is entitled" +
-            " to.")]
-        ContractLine = 1011,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Discount", Index=724, Lcid=1033, Description="Price reduction made from the list price of a product or service based on the qua" +
-            "ntity purchased.")]
-        Discount = 1013,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Article Template", Index=769, Lcid=1033, Description="Template for a knowledge base article that contains the standard attributes of an" +
+        [OptionSetMetadata("Article Template", Index=756, Lcid=1033, Description="Template for a knowledge base article that contains the standard attributes of an" +
             " article.")]
         ArticleTemplate = 1016,
         
         [EnumMember()]
-        [OptionSetMetadata("Lead Address", Index=758, Lcid=1033, Description="Address information for a lead.")]
-        LeadAddress = 1017,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Organization", Index=551, Lcid=1033, Description="Top level of the Microsoft Dynamics 365 business hierarchy. The organization can " +
+        [OptionSetMetadata("Organization", Index=156, Lcid=1033, Description="Top level of the Microsoft Dynamics 365 business hierarchy. The organization can " +
             "be a specific business, holding company, or corporation.")]
         Organization = 1019,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization UI", Index=587, Lcid=1033, Description="Entity customizations including form layout and icons. Includes current and past " +
+        [OptionSetMetadata("Organization UI", Index=34, Lcid=1033, Description="Entity customizations including form layout and icons. Includes current and past " +
             "versions.")]
         OrganizationUI = 1021,
         
         [EnumMember()]
-        [OptionSetMetadata("Price List", Index=545, Lcid=1033, Description="Entity that defines pricing levels.")]
-        PriceList = 1022,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Privilege", Index=535, Lcid=1033, Description="Permission to perform an action in Microsoft CRM. The platform checks for the pri" +
+        [OptionSetMetadata("Privilege", Index=79, Lcid=1033, Description="Permission to perform an action in Microsoft CRM. The platform checks for the pri" +
             "vilege and rejects the attempt if the user does not hold the privilege.")]
         Privilege = 1023,
         
         [EnumMember()]
-        [OptionSetMetadata("Product", Index=531, Lcid=1033, Description="Information about products and their pricing information.")]
-        Product_2 = 1024,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Product Association", Index=644, Lcid=1033, Description="Instance of a product added to a bundle or kit.")]
-        ProductAssociation = 1025,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Price List Item", Index=645, Lcid=1033, Description="Information about how to price a product in the specified price level, including " +
-            "pricing method, rounding option, and discount type based on a specified product " +
-            "unit.")]
-        PriceListItem = 1026,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Product Relationship", Index=641, Lcid=1033, Description="Information about the selling relationship between two products, including the re" +
-            "lationship type, such as up-sell, cross-sell, substitute, or accessory.")]
-        ProductRelationship = 1028,
-        
-        [EnumMember()]
-        [OptionSetMetadata("System Form", Index=365, Lcid=1033, Description="Organization-owned entity customizations including form layout and dashboards.")]
+        [OptionSetMetadata("System Form", Index=214, Lcid=1033, Description="Organization-owned entity customizations including form layout and dashboards.")]
         SystemForm = 1030,
         
         [EnumMember()]
-        [OptionSetMetadata("User Dashboard", Index=492, Lcid=1033, Description="User-owned dashboards.")]
+        [OptionSetMetadata("User Dashboard", Index=277, Lcid=1033, Description="User-owned dashboards.")]
         UserDashboard = 1031,
         
         [EnumMember()]
-        [OptionSetMetadata("Security Role", Index=597, Lcid=1033, Description="Grouping of security privileges. Users are assigned roles that authorize their ac" +
+        [OptionSetMetadata("Security Role", Index=314, Lcid=1033, Description="Grouping of security privileges. Users are assigned roles that authorize their ac" +
             "cess to the Microsoft CRM system.")]
         SecurityRole = 1036,
         
         [EnumMember()]
-        [OptionSetMetadata("Role Template", Index=593, Lcid=1033, Description="Template for a role. Defines initial attributes that will be used when creating a" +
+        [OptionSetMetadata("Role Template", Index=330, Lcid=1033, Description="Template for a role. Defines initial attributes that will be used when creating a" +
             " new role.")]
         RoleTemplate = 1037,
         
         [EnumMember()]
-        [OptionSetMetadata("Sales Literature", Index=628, Lcid=1033, Description="Storage of sales literature, which may contain one or more documents.")]
-        SalesLiterature = 1038,
-        
-        [EnumMember()]
-        [OptionSetMetadata("View", Index=612, Lcid=1033, Description="Saved query against the database.")]
+        [OptionSetMetadata("View", Index=326, Lcid=1033, Description="Saved query against the database.")]
         View = 1039,
         
         [EnumMember()]
-        [OptionSetMetadata("String Map", Index=336, Lcid=1033, Description="Mapping between strings.")]
+        [OptionSetMetadata("String Map", Index=222, Lcid=1033, Description="Mapping between strings.")]
         StringMap = 1043,
         
         [EnumMember()]
-        [OptionSetMetadata("Property", Index=739, Lcid=1033, Description="Information about a product property.")]
-        Property = 1048,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Option Set Item", Index=736, Lcid=1033, Description="Item with a name and value in a property option set type.")]
-        PropertyOptionSetItem = 1049,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Unit", Index=486, Lcid=1033, Description="Unit of measure.")]
-        Unit = 1055,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Unit Group", Index=487, Lcid=1033, Description="Grouping of units.")]
-        UnitGroup = 1056,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Attachment", Index=629, Lcid=1033, Description="Item in the sales literature collection.")]
-        SalesAttachment = 1070,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Address", Index=729, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for an accou" +
+        [OptionSetMetadata("Address", Index=429, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for an accou" +
             "nt or contact.")]
         Address = 1071,
         
         [EnumMember()]
-        [OptionSetMetadata("Subscription Clients", Index=345, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Subscription Clients", Index=225, Lcid=1033, Description="For internal use only.")]
         SubscriptionClients = 1072,
         
         [EnumMember()]
-        [OptionSetMetadata("Status Map", Index=338, Lcid=1033, Description="Mapping between statuses.")]
+        [OptionSetMetadata("Status Map", Index=286, Lcid=1033, Description="Mapping between statuses.")]
         StatusMap = 1075,
         
         [EnumMember()]
-        [OptionSetMetadata("Discount List", Index=722, Lcid=1033, Description="Type of discount specified as either a percentage or an amount.")]
-        DiscountList = 1080,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Article Comment", Index=768, Lcid=1033, Description="Comment on a knowledge base article.")]
+        [OptionSetMetadata("Article Comment", Index=757, Lcid=1033, Description="Comment on a knowledge base article.")]
         ArticleComment = 1082,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity Product", Index=547, Lcid=1033, Description="Association between an opportunity and a product.")]
-        OpportunityProduct = 1083,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quote", Index=634, Lcid=1033, Description="Formal offer for products and/or services, proposed at specific prices and relate" +
-            "d payment terms, which is sent to a prospective customer.")]
-        Quote = 1084,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quote Product", Index=630, Lcid=1033, Description="Product line item in a quote. The details include such information as product ID," +
-            " description, quantity, and cost.")]
-        QuoteProduct = 1085,
-        
-        [EnumMember()]
-        [OptionSetMetadata("User Fiscal Calendar", Index=491, Lcid=1033, Description="Custom fiscal calendar used for tracking sales quotas.")]
+        [OptionSetMetadata("User Fiscal Calendar", Index=275, Lcid=1033, Description="Custom fiscal calendar used for tracking sales quotas.")]
         UserFiscalCalendar = 1086,
         
         [EnumMember()]
-        [OptionSetMetadata("Order", Index=627, Lcid=1033, Description="Quote that has been accepted.")]
-        Order = 1088,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Order Product", Index=625, Lcid=1033, Description="Line item in a sales order.")]
-        OrderProduct = 1089,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice", Index=826, Lcid=1033, Description="Order that has been billed.")]
-        Invoice_2 = 1090,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice Product", Index=771, Lcid=1033, Description="Line item in an invoice containing detailed billing information for a product.")]
-        InvoiceProduct = 1091,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Authorization Server", Index=878, Lcid=1033, Description="Authorization servers that trust this organization")]
+        [OptionSetMetadata("Authorization Server", Index=535, Lcid=1033, Description="Authorization servers that trust this organization")]
         AuthorizationServer = 1094,
         
         [EnumMember()]
-        [OptionSetMetadata("Partner Application", Index=569, Lcid=1033, Description="Partner applications registered for this organization")]
+        [OptionSetMetadata("Partner Application", Index=27, Lcid=1033, Description="Partner applications registered for this organization")]
         PartnerApplication = 1095,
         
         [EnumMember()]
-        [OptionSetMetadata("System Chart", Index=613, Lcid=1033, Description="System chart attached to an entity.")]
+        [OptionSetMetadata("System Chart", Index=310, Lcid=1033, Description="System chart attached to an entity.")]
         SystemChart = 1111,
         
         [EnumMember()]
-        [OptionSetMetadata("User Chart", Index=434, Lcid=1033, Description="Chart attached to an entity.")]
+        [OptionSetMetadata("User Chart", Index=246, Lcid=1033, Description="Chart attached to an entity.")]
         UserChart = 1112,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Tab To Command Mapping", Index=596, Lcid=1033, Description="A mapping between Tab Ids, and the Commands within those tabs.")]
+        [OptionSetMetadata("Ribbon Tab To Command Mapping", Index=315, Lcid=1033, Description="A mapping between Tab Ids, and the Commands within those tabs.")]
         RibbonTabToCommandMapping = 1113,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Context Group", Index=591, Lcid=1033, Description="Groupings of contextual tabs.")]
+        [OptionSetMetadata("Ribbon Context Group", Index=320, Lcid=1033, Description="Groupings of contextual tabs.")]
         RibbonContextGroup = 1115,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Command", Index=598, Lcid=1033, Description="Ribbon Commands - the command definition, rules, etc.")]
+        [OptionSetMetadata("Ribbon Command", Index=321, Lcid=1033, Description="Ribbon Commands - the command definition, rules, etc.")]
         RibbonCommand = 1116,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Rule", Index=589, Lcid=1033, Description="Ribbon rule definitions, used to enable and disable, show and hide ribbon element" +
+        [OptionSetMetadata("Ribbon Rule", Index=313, Lcid=1033, Description="Ribbon rule definitions, used to enable and disable, show and hide ribbon element" +
             "s.")]
         RibbonRule = 1117,
         
         [EnumMember()]
-        [OptionSetMetadata("Application Ribbons", Index=592, Lcid=1033, Description="Ribbon customizations for the application ribbon and entity ribbon templates.")]
+        [OptionSetMetadata("Application Ribbons", Index=316, Lcid=1033, Description="Ribbon customizations for the application ribbon and entity ribbon templates.")]
         ApplicationRibbons = 1120,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Difference", Index=590, Lcid=1033, Description="All layout customizations to be applied to the ribbons, which contain only the di" +
+        [OptionSetMetadata("Ribbon Difference", Index=312, Lcid=1033, Description="All layout customizations to be applied to the ribbons, which contain only the di" +
             "fferences from the base ribbon.")]
         RibbonDifference = 1130,
         
         [EnumMember()]
-        [OptionSetMetadata("Replication Backlog", Index=668, Lcid=1033, Description="Entity to hold replication backlog tasks. For internal use only.")]
+        [OptionSetMetadata("Replication Backlog", Index=52, Lcid=1033, Description="Entity to hold replication backlog tasks. For internal use only.")]
         ReplicationBacklog = 1140,
         
         [EnumMember()]
-        [OptionSetMetadata("Characteristic", Index=994, Lcid=1033, Description="Skills, education and certifications of resources.")]
-        Characteristic = 1141,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rating Value", Index=638, Lcid=1033, Description="A unique value associated with a rating model that allows providing a user friend" +
-            "ly rating value.")]
-        RatingValue = 1142,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rating Model", Index=631, Lcid=1033, Description="Represents a model to evaluate skills or other related entities.")]
-        RatingModel = 1144,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Booking", Index=862, Lcid=1033, Description="Represents the line details of a resource booking.")]
-        BookableResourceBooking = 1145,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Booking Header", Index=870, Lcid=1033, Description="Reservation entity representing the summary of the associated resource bookings.")]
-        BookableResourceBookingHeader = 1146,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Category", Index=871, Lcid=1033, Description="Categorize resources that have capacity into categories such as roles.")]
-        BookableResourceCategory = 1147,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Characteristic", Index=867, Lcid=1033, Description="Associates resources with their characteristics and specifies the proficiency lev" +
-            "el of a resource for that characteristic.")]
-        BookableResourceCharacteristic = 1148,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Category Assn", Index=869, Lcid=1033, Description="Association entity to model the categorization of resources.")]
-        BookableResourceCategoryAssn = 1149,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource", Index=864, Lcid=1033, Description="Resource that has capacity which can be allocated to work.")]
-        BookableResource = 1150,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Group", Index=868, Lcid=1033, Description="Associates resources with resource groups that they are a member of.")]
-        BookableResourceGroup = 1151,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Booking Status", Index=981, Lcid=1033, Description="Allows creation of multiple sub statuses mapped to a booking status option.")]
-        BookingStatus = 1152,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Document Suggestions", Index=637, Lcid=1033, Description="Document Suggestions")]
+        [OptionSetMetadata("Document Suggestions", Index=88, Lcid=1033, Description="Document Suggestions")]
         DocumentSuggestions = 1189,
         
         [EnumMember()]
-        [OptionSetMetadata("SuggestionCardTemplate", Index=369, Lcid=1033, Description="Templates for Suggestion Card in Grid")]
+        [OptionSetMetadata("SuggestionCardTemplate", Index=226, Lcid=1033, Description="Templates for Suggestion Card in Grid")]
         SuggestionCardTemplate = 1190,
         
         [EnumMember()]
-        [OptionSetMetadata("Field Security Profile", Index=702, Lcid=1033, Description="Profile which defines access level for secured attributes")]
+        [OptionSetMetadata("Field Security Profile", Index=705, Lcid=1033, Description="Profile which defines access level for secured attributes")]
         FieldSecurityProfile = 1200,
         
         [EnumMember()]
-        [OptionSetMetadata("Field Permission", Index=695, Lcid=1033, Description="Group of privileges used to categorize users to provide appropriate access to sec" +
+        [OptionSetMetadata("Field Permission", Index=706, Lcid=1033, Description="Group of privileges used to categorize users to provide appropriate access to sec" +
             "ured columns.")]
         FieldPermission = 1201,
         
         [EnumMember()]
-        [OptionSetMetadata("Team Profiles", Index=481, Lcid=1033, Description="Team Profiles")]
+        [OptionSetMetadata("Team Profiles", Index=210, Lcid=1033, Description="Team Profiles")]
         TeamProfiles = 1203,
         
         [EnumMember()]
-        [OptionSetMetadata("Application", Index=853, Lcid=1033, Description="Application")]
+        [OptionSetMetadata("Application", Index=494, Lcid=1033, Description="Application")]
         Application = 1204,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Property Group", Index=993, Lcid=1033, Description="Group or collection of channel properties provided by the external channel for a " +
+        [OptionSetMetadata("Channel Property Group", Index=427, Lcid=1033, Description="Group or collection of channel properties provided by the external channel for a " +
             "Microsoft Dynamics 365 activity.")]
         ChannelPropertyGroup = 1234,
         
         [EnumMember()]
-        [OptionSetMetadata("Property Association", Index=740, Lcid=1033, Description="Association of a property definition with another entity in the system.")]
-        PropertyAssociation = 1235,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Property", Index=995, Lcid=1033, Description="Instance of a channel property containing its name and corresponding data type.")]
+        [OptionSetMetadata("Channel Property", Index=428, Lcid=1033, Description="Instance of a channel property containing its name and corresponding data type.")]
         ChannelProperty = 1236,
         
         [EnumMember()]
-        [OptionSetMetadata("SocialInsightsConfiguration", Index=400, Lcid=1033, Description="Configuration for the social insights.")]
+        [OptionSetMetadata("SocialInsightsConfiguration", Index=371, Lcid=1033, Description="Configuration for the social insights.")]
         SocialInsightsConfiguration = 1300,
         
         [EnumMember()]
-        [OptionSetMetadata("Saved Organization Insights Configuration", Index=619, Lcid=1033, Description="Saved configuration for the organization insights")]
+        [OptionSetMetadata("Saved Organization Insights Configuration", Index=327, Lcid=1033, Description="Saved configuration for the organization insights")]
         SavedOrganizationInsightsConfiguration = 1309,
         
         [EnumMember()]
-        [OptionSetMetadata("Property Instance", Index=738, Lcid=1033, Description="Instance of a property with its value.")]
-        PropertyInstance = 1333,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sync Attribute Mapping Profile", Index=359, Lcid=1033, Description="Profile which defines sync attribute mapping")]
+        [OptionSetMetadata("Sync Attribute Mapping Profile", Index=229, Lcid=1033, Description="Profile which defines sync attribute mapping")]
         SyncAttributeMappingProfile = 1400,
         
         [EnumMember()]
-        [OptionSetMetadata("Sync Attribute Mapping", Index=361, Lcid=1033, Description="Group of Sync-Attribute Mappings used to provide Attribute mappings during sync f" +
+        [OptionSetMetadata("Sync Attribute Mapping", Index=227, Lcid=1033, Description="Group of Sync-Attribute Mappings used to provide Attribute mappings during sync f" +
             "or a particular user")]
         SyncAttributeMapping = 1401,
         
         [EnumMember()]
-        [OptionSetMetadata("Team Sync-Attribute Mapping Profiles", Index=482, Lcid=1033, Description="Team Sync-Attribute Mapping Profiles")]
+        [OptionSetMetadata("Team Sync-Attribute Mapping Profiles", Index=209, Lcid=1033, Description="Team Sync-Attribute Mapping Profiles")]
         TeamSyncAttributeMappingProfiles = 1403,
         
         [EnumMember()]
-        [OptionSetMetadata("Principal Sync Attribute Map", Index=542, Lcid=1033, Description="Maps security principals (users and teams) to sync attribute mappings.")]
+        [OptionSetMetadata("Principal Sync Attribute Map", Index=47, Lcid=1033, Description="Maps security principals (users and teams) to sync attribute mappings.")]
         PrincipalSyncAttributeMap = 1404,
         
         [EnumMember()]
-        [OptionSetMetadata("Annual Fiscal Calendar", Index=913, Lcid=1033, Description="Year long fiscal calendar of an organization. A span of time during which the fin" +
+        [OptionSetMetadata("Annual Fiscal Calendar", Index=497, Lcid=1033, Description="Year long fiscal calendar of an organization. A span of time during which the fin" +
             "ancial activities of an organization are calculated.")]
         AnnualFiscalCalendar = 2000,
         
         [EnumMember()]
-        [OptionSetMetadata("Semiannual Fiscal Calendar", Index=396, Lcid=1033, Description="Calendar representing the semi-annual span of time during which the financial act" +
+        [OptionSetMetadata("Semiannual Fiscal Calendar", Index=308, Lcid=1033, Description="Calendar representing the semi-annual span of time during which the financial act" +
             "ivities of an organization are calculated.")]
         SemiannualFiscalCalendar = 2001,
         
         [EnumMember()]
-        [OptionSetMetadata("Quarterly Fiscal Calendar", Index=648, Lcid=1033, Description="Quarterly fiscal calendar of an organization. A span of time during which the fin" +
+        [OptionSetMetadata("Quarterly Fiscal Calendar", Index=94, Lcid=1033, Description="Quarterly fiscal calendar of an organization. A span of time during which the fin" +
             "ancial activities of an organization are calculated.")]
         QuarterlyFiscalCalendar = 2002,
         
         [EnumMember()]
-        [OptionSetMetadata("Monthly Fiscal Calendar", Index=1230, Lcid=1033, Description="Monthly fiscal calendar of an organization. A span of time during which the finan" +
+        [OptionSetMetadata("Monthly Fiscal Calendar", Index=600, Lcid=1033, Description="Monthly fiscal calendar of an organization. A span of time during which the finan" +
             "cial activities of an organization are calculated.")]
         MonthlyFiscalCalendar = 2003,
         
         [EnumMember()]
-        [OptionSetMetadata("Fixed Monthly Fiscal Calendar", Index=699, Lcid=1033, Description="Fixed monthly fiscal calendar of an organization. A span of time during which the" +
+        [OptionSetMetadata("Fixed Monthly Fiscal Calendar", Index=708, Lcid=1033, Description="Fixed monthly fiscal calendar of an organization. A span of time during which the" +
             " financial activities of an organization are calculated.")]
         FixedMonthlyFiscalCalendar = 2004,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Template", Index=478, Lcid=1033, Description="Template for an email message that contains the standard attributes of an email m" +
+        [OptionSetMetadata("Email Template", Index=213, Lcid=1033, Description="Template for an email message that contains the standard attributes of an email m" +
             "essage.")]
         EmailTemplate = 2010,
         
         [EnumMember()]
-        [OptionSetMetadata("Contract Template", Index=964, Lcid=1033, Description="Template for a contract containing the standard attributes of a contract.")]
-        ContractTemplate = 2011,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Unresolved Address", Index=500, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Unresolved Address", Index=274, Lcid=1033, Description="For internal use only.")]
         UnresolvedAddress = 2012,
         
         [EnumMember()]
-        [OptionSetMetadata("Territory", Index=479, Lcid=1033, Description="Territory represents sales regions.")]
+        [OptionSetMetadata("Territory", Index=212, Lcid=1033, Description="Territory represents sales regions.")]
         Territory = 2013,
         
         [EnumMember()]
-        [OptionSetMetadata("Theme", Index=465, Lcid=1033, Description="Information that\'s used to set custom visual theme options for client application" +
+        [OptionSetMetadata("Theme", Index=203, Lcid=1033, Description="Information that\'s used to set custom visual theme options for client application" +
             "s.")]
         Theme = 2015,
         
         [EnumMember()]
-        [OptionSetMetadata("User Mapping", Index=490, Lcid=1033, Description="User Mapping")]
+        [OptionSetMetadata("User Mapping", Index=279, Lcid=1033, Description="User Mapping")]
         UserMapping = 2016,
         
         [EnumMember()]
-        [OptionSetMetadata("Queue", Index=646, Lcid=1033, Description="A list of records that require action, such as accounts, activities, and cases.")]
+        [OptionSetMetadata("Queue", Index=93, Lcid=1033, Description="A list of records that require action, such as accounts, activities, and cases.")]
         Queue = 2020,
         
         [EnumMember()]
-        [OptionSetMetadata("QueueItemCount", Index=640, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("QueueItemCount", Index=85, Lcid=1033, Description="For internal use only.")]
         QueueItemCount = 2023,
         
         [EnumMember()]
-        [OptionSetMetadata("QueueMemberCount", Index=633, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("QueueMemberCount", Index=84, Lcid=1033, Description="For internal use only.")]
         QueueMemberCount = 2024,
         
         [EnumMember()]
-        [OptionSetMetadata("License", Index=763, Lcid=1033, Description="Stores information about a Microsoft CRM license.")]
+        [OptionSetMetadata("License", Index=728, Lcid=1033, Description="Stores information about a Microsoft CRM license.")]
         License = 2027,
         
         [EnumMember()]
-        [OptionSetMetadata("Queue Item", Index=647, Lcid=1033, Description="A specific item in a queue, such as a case record or an activity record.")]
+        [OptionSetMetadata("Queue Item", Index=89, Lcid=1033, Description="A specific item in a queue, such as a case record or an activity record.")]
         QueueItem = 2029,
         
         [EnumMember()]
-        [OptionSetMetadata("User Entity UI Settings", Index=484, Lcid=1033, Description="Stores user settings for entity views.")]
+        [OptionSetMetadata("User Entity UI Settings", Index=276, Lcid=1033, Description="Stores user settings for entity views.")]
         UserEntityUISettings = 2500,
         
         [EnumMember()]
-        [OptionSetMetadata("User Entity Instance Data", Index=483, Lcid=1033, Description="Per User item instance data")]
+        [OptionSetMetadata("User Entity Instance Data", Index=280, Lcid=1033, Description="Per User item instance data")]
         UserEntityInstanceData = 2501,
         
         [EnumMember()]
-        [OptionSetMetadata("Integration Status", Index=820, Lcid=1033, Description="Contains integration status information.")]
+        [OptionSetMetadata("Integration Status", Index=760, Lcid=1033, Description="Contains integration status information.")]
         IntegrationStatus = 3000,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Access Profile", Index=989, Lcid=1033, Description="Information about permissions needed to access Dynamics 365 through external chan" +
+        [OptionSetMetadata("Channel Access Profile", Index=425, Lcid=1033, Description="Information about permissions needed to access Dynamics 365 through external chan" +
             "nels.For internal use only")]
         ChannelAccessProfile = 3005,
         
         [EnumMember()]
-        [OptionSetMetadata("External Party", Index=712, Lcid=1033, Description="Information about external parties that need to access Dynamics 365 from external" +
+        [OptionSetMetadata("External Party", Index=695, Lcid=1033, Description="Information about external parties that need to access Dynamics 365 from external" +
             " channels.For internal use only")]
         ExternalParty = 3008,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Role", Index=934, Lcid=1033, Description="Role describing a relationship between a two records.")]
+        [OptionSetMetadata("Connection Role", Index=383, Lcid=1033, Description="Role describing a relationship between a two records.")]
         ConnectionRole = 3231,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Role Object Type Code", Index=932, Lcid=1033, Description="Specifies the entity type that can play specific role in a connection.")]
+        [OptionSetMetadata("Connection Role Object Type Code", Index=382, Lcid=1033, Description="Specifies the entity type that can play specific role in a connection.")]
         ConnectionRoleObjectTypeCode = 3233,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection", Index=925, Lcid=1033, Description="Relationship between two entities.")]
+        [OptionSetMetadata("Connection", Index=392, Lcid=1033, Description="Relationship between two entities.")]
         Connection = 3234,
         
         [EnumMember()]
-        [OptionSetMetadata("Facility/Equipment", Index=708, Lcid=1033, Description="Resource that can be scheduled.")]
-        FacilityEquipment = 4000,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service", Index=394, Lcid=1033, Description="Activity that represents work done to satisfy a customer\'s need.")]
-        Service = 4001,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource", Index=659, Lcid=1033, Description="User or facility/equipment that can be scheduled for a service.")]
-        Resource = 4002,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Calendar", Index=976, Lcid=1033, Description="Calendar used by the scheduling system to define when an appointment or activity " +
+        [OptionSetMetadata("Calendar", Index=541, Lcid=1033, Description="Calendar used by the scheduling system to define when an appointment or activity " +
             "is to occur.")]
         Calendar = 4003,
         
         [EnumMember()]
-        [OptionSetMetadata("Calendar Rule", Index=974, Lcid=1033, Description="Defines free/busy times for a service and for resources or resource groups, such " +
+        [OptionSetMetadata("Calendar Rule", Index=477, Lcid=1033, Description="Defines free/busy times for a service and for resources or resource groups, such " +
             "as working, non-working, vacation, and blocked.")]
         CalendarRule = 4004,
         
         [EnumMember()]
-        [OptionSetMetadata("Scheduling Group", Index=660, Lcid=1033, Description="Resource group or team whose members can be scheduled for a service.")]
-        SchedulingGroup = 4005,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource Specification", Index=657, Lcid=1033, Description="Selection rule that allows the scheduling engine to select a number of resources " +
-            "from a pool of resources. The rules can be associated with a service.")]
-        ResourceSpecification = 4006,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource Group", Index=931, Lcid=1033, Description="Group or collection of people, equipment, and/or facilities that can be scheduled" +
-            ".")]
-        ResourceGroup = 4007,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Site", Index=416, Lcid=1033, Description="Location or branch office where an organization does business. An organization ca" +
-            "n have multiple sites.")]
-        Site = 4009,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Resource Expansion", Index=656, Lcid=1033, Description="Resource Expansions.")]
-        ResourceExpansion = 4010,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inter Process Lock", Index=827, Lcid=1033, Description="Inter Process Locks.")]
+        [OptionSetMetadata("Inter Process Lock", Index=758, Lcid=1033, Description="Inter Process Locks.")]
         InterProcessLock = 4011,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Hash", Index=745, Lcid=1033, Description="Email activity hashes used for correlation purposes.")]
+        [OptionSetMetadata("Email Hash", Index=430, Lcid=1033, Description="Email activity hashes used for correlation purposes.")]
         EmailHash = 4023,
         
         [EnumMember()]
-        [OptionSetMetadata("Display String Map", Index=721, Lcid=1033, Description="Maps customized display strings to entities.")]
+        [OptionSetMetadata("Display String Map", Index=475, Lcid=1033, Description="Maps customized display strings to entities.")]
         DisplayStringMap = 4101,
         
         [EnumMember()]
-        [OptionSetMetadata("Display String", Index=720, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
+        [OptionSetMetadata("Display String", Index=476, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
         DisplayString = 4102,
         
         [EnumMember()]
-        [OptionSetMetadata("Notification", Index=562, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Notification", Index=164, Lcid=1033, Description="For internal use only.")]
         Notification = 4110,
         
         [EnumMember()]
-        [OptionSetMetadata("Exchange Sync Id Mapping", Index=707, Lcid=1033, Description="The mapping used to keep track of the IDs for items synced between CRM and Exchan" +
+        [OptionSetMetadata("Exchange Sync Id Mapping", Index=703, Lcid=1033, Description="The mapping used to keep track of the IDs for items synced between CRM and Exchan" +
             "ge.")]
         ExchangeSyncIdMapping = 4120,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity", Index=886, Lcid=1033, Description="Task performed, or to be performed, by a user. An activity is any action for whic" +
+        [OptionSetMetadata("Activity", Index=506, Lcid=1033, Description="Task performed, or to be performed, by a user. An activity is any action for whic" +
             "h an entry can be made on a calendar.")]
         Activity = 4200,
         
         [EnumMember()]
-        [OptionSetMetadata("Appointment", Index=849, Lcid=1033, Description="Commitment representing a time interval with start/end times and duration.")]
+        [OptionSetMetadata("Appointment", Index=554, Lcid=1033, Description="Commitment representing a time interval with start/end times and duration.")]
         Appointment = 4201,
         
         [EnumMember()]
-        [OptionSetMetadata("Email", Index=744, Lcid=1033, Description="Activity that is delivered using email protocols.")]
+        [OptionSetMetadata("Email", Index=435, Lcid=1033, Description="Activity that is delivered using email protocols.")]
         Email = 4202,
         
         [EnumMember()]
@@ -26014,4701 +22264,2590 @@ namespace XrmBedrock.SharedContext {
         Fax = 4204,
         
         [EnumMember()]
-        [OptionSetMetadata("Case Resolution", Index=824, Lcid=1033, Description="Special type of activity that includes description of the resolution, billing sta" +
-            "tus, and the duration of the case.")]
-        CaseResolution = 4206,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Letter", Index=762, Lcid=1033, Description="Activity that tracks the delivery of a letter. The activity can contain the elect" +
+        [OptionSetMetadata("Letter", Index=720, Lcid=1033, Description="Activity that tracks the delivery of a letter. The activity can contain the elect" +
             "ronic copy of the letter.")]
         Letter = 4207,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity Close", Index=548, Lcid=1033, Description="Activity that is created automatically when an opportunity is closed, containing " +
-            "information such as the description of the closing and actual revenue.")]
-        OpportunityClose = 4208,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Order Close", Index=553, Lcid=1033, Description="Activity generated automatically when an order is closed.")]
-        OrderClose = 4209,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Phone Call", Index=575, Lcid=1033, Description="Activity to track a telephone call.")]
+        [OptionSetMetadata("Phone Call", Index=42, Lcid=1033, Description="Activity to track a telephone call.")]
         PhoneCall = 4210,
         
         [EnumMember()]
-        [OptionSetMetadata("Quote Close", Index=632, Lcid=1033, Description="Activity generated when a quote is closed.")]
-        QuoteClose = 4211,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Task", Index=477, Lcid=1033, Description="Generic activity representing work needed to be done.")]
+        [OptionSetMetadata("Task", Index=193, Lcid=1033, Description="Generic activity representing work needed to be done.")]
         Task = 4212,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Activity", Index=395, Lcid=1033, Description="Activity offered by the organization to satisfy its customer\'s needs. Each servic" +
-            "e activity includes date, time, duration, and required resources.")]
-        ServiceActivity = 4214,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Commitment", Index=944, Lcid=1033, Description="For internal use only.")]
-        Commitment = 4215,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Social Activity", Index=399, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Social Activity", Index=372, Lcid=1033, Description="For internal use only.")]
         SocialActivity = 4216,
         
         [EnumMember()]
-        [OptionSetMetadata("UntrackedEmail", Index=493, Lcid=1033, Description="Activity that is delivered using UntrackedEmail protocols.")]
+        [OptionSetMetadata("UntrackedEmail", Index=285, Lcid=1033, Description="Activity that is delivered using UntrackedEmail protocols.")]
         UntrackedEmail = 4220,
         
         [EnumMember()]
-        [OptionSetMetadata("Saved View", Index=489, Lcid=1033, Description="Saved database query that is owned by a user.")]
+        [OptionSetMetadata("Saved View", Index=262, Lcid=1033, Description="Saved database query that is owned by a user.")]
         SavedView = 4230,
         
         [EnumMember()]
-        [OptionSetMetadata("Metadata Difference", Index=786, Lcid=1033, Description="Metadata Difference")]
+        [OptionSetMetadata("Metadata Difference", Index=605, Lcid=1033, Description="Metadata Difference")]
         MetadataDifference = 4231,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Data Localized Label", Index=971, Lcid=1033, Description="Business Data Localized Label")]
+        [OptionSetMetadata("Business Data Localized Label", Index=547, Lcid=1033, Description="Business Data Localized Label")]
         BusinessDataLocalizedLabel = 4232,
         
         [EnumMember()]
-        [OptionSetMetadata("Recurrence Rule", Index=664, Lcid=1033, Description="Recurrence Rule represents the pattern of incidence of recurring entities.")]
+        [OptionSetMetadata("Recurrence Rule", Index=56, Lcid=1033, Description="Recurrence Rule represents the pattern of incidence of recurring entities.")]
         RecurrenceRule = 4250,
         
         [EnumMember()]
-        [OptionSetMetadata("Recurring Appointment", Index=662, Lcid=1033, Description="The Master appointment of a recurring appointment series.")]
+        [OptionSetMetadata("Recurring Appointment", Index=58, Lcid=1033, Description="The Master appointment of a recurring appointment series.")]
         RecurringAppointment = 4251,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Search", Index=743, Lcid=1033, Description="Email Address Search Table.")]
+        [OptionSetMetadata("Email Search", Index=432, Lcid=1033, Description="Email Address Search Table.")]
         EmailSearch = 4299,
         
         [EnumMember()]
-        [OptionSetMetadata("Marketing List", Index=792, Lcid=1033, Description="Group of existing or potential customers created for a marketing campaign or othe" +
-            "r sales purposes.")]
-        MarketingList = 4300,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Marketing List Member", Index=793, Lcid=1033, Description="Item in a marketing list.")]
-        MarketingListMember = 4301,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign", Index=973, Lcid=1033, Description="Container for campaign activities and responses, sales literature, products, and " +
-            "lists to create, plan, execute, and track the results of a specific marketing ca" +
-            "mpaign through its life.")]
-        Campaign = 4400,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Response", Index=999, Lcid=1033, Description="Response from an existing or a potential new customer for a campaign.")]
-        CampaignResponse = 4401,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Activity", Index=1002, Lcid=1033, Description="Task performed, or to be performed, by a user for planning or running a campaign." +
-            "")]
-        CampaignActivity = 4402,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Item", Index=1001, Lcid=1033, Description="Work item in a campaign, a list or sales literature.")]
-        CampaignItem = 4403,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Activity Item", Index=1003, Lcid=1033, Description="Work item of a campaign activity, such as a list or sales literature.")]
-        CampaignActivityItem = 4404,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bulk Operation Log", Index=970, Lcid=1033, Description="Log used to track bulk operation execution, successes, and failures.")]
-        BulkOperationLog = 4405,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quick Campaign", Index=977, Lcid=1033, Description="System operation used to perform lengthy and asynchronous operations on large dat" +
-            "a sets, such as distributing a campaign activity or quick campaign.")]
-        QuickCampaign = 4406,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Import", Index=831, Lcid=1033, Description="Status and ownership information for an import job.")]
+        [OptionSetMetadata("Data Import", Index=751, Lcid=1033, Description="Status and ownership information for an import job.")]
         DataImport = 4410,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Map", Index=837, Lcid=1033, Description="Data map used in import.")]
+        [OptionSetMetadata("Data Map", Index=745, Lcid=1033, Description="Data map used in import.")]
         DataMap = 4411,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Source File", Index=840, Lcid=1033, Description="File name of file used for import.")]
+        [OptionSetMetadata("Import Source File", Index=742, Lcid=1033, Description="File name of file used for import.")]
         ImportSourceFile = 4412,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Data", Index=832, Lcid=1033, Description="Unprocessed data from imported files.")]
+        [OptionSetMetadata("Import Data", Index=750, Lcid=1033, Description="Unprocessed data from imported files.")]
         ImportData = 4413,
         
         [EnumMember()]
-        [OptionSetMetadata("Duplicate Detection Rule", Index=747, Lcid=1033, Description="Rule used to identify potential duplicates.")]
+        [OptionSetMetadata("Duplicate Detection Rule", Index=468, Lcid=1033, Description="Rule used to identify potential duplicates.")]
         DuplicateDetectionRule = 4414,
         
         [EnumMember()]
-        [OptionSetMetadata("Duplicate Record", Index=749, Lcid=1033, Description="Potential duplicate record.")]
+        [OptionSetMetadata("Duplicate Record", Index=466, Lcid=1033, Description="Potential duplicate record.")]
         DuplicateRecord = 4415,
         
         [EnumMember()]
-        [OptionSetMetadata("Duplicate Rule Condition", Index=748, Lcid=1033, Description="Condition of a duplicate detection rule.")]
+        [OptionSetMetadata("Duplicate Rule Condition", Index=470, Lcid=1033, Description="Condition of a duplicate detection rule.")]
         DuplicateRuleCondition = 4416,
         
         [EnumMember()]
-        [OptionSetMetadata("Column Mapping", Index=936, Lcid=1033, Description="Mapping for columns in a data map.")]
+        [OptionSetMetadata("Column Mapping", Index=418, Lcid=1033, Description="Mapping for columns in a data map.")]
         ColumnMapping = 4417,
         
         [EnumMember()]
-        [OptionSetMetadata("List Value Mapping", Index=574, Lcid=1033, Description="In a data map, maps list values from the source file to Microsoft Dynamics 365.")]
+        [OptionSetMetadata("List Value Mapping", Index=44, Lcid=1033, Description="In a data map, maps list values from the source file to Microsoft Dynamics 365.")]
         ListValueMapping = 4418,
         
         [EnumMember()]
-        [OptionSetMetadata("Lookup Mapping", Index=790, Lcid=1033, Description="In a data map, maps a lookup attribute in a source file to Microsoft Dynamics 365" +
+        [OptionSetMetadata("Lookup Mapping", Index=735, Lcid=1033, Description="In a data map, maps a lookup attribute in a source file to Microsoft Dynamics 365" +
             ".")]
         LookupMapping = 4419,
         
         [EnumMember()]
-        [OptionSetMetadata("Owner Mapping", Index=577, Lcid=1033, Description="In a data map, maps ownership data from the source file to Microsoft Dynamics 365" +
+        [OptionSetMetadata("Owner Mapping", Index=24, Lcid=1033, Description="In a data map, maps ownership data from the source file to Microsoft Dynamics 365" +
             ".")]
         OwnerMapping = 4420,
         
         [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Booking to Exchange Id Mapping", Index=863, Lcid=1033, Description="The mapping used to keep track of the IDs for items synced between Dynamics 365 B" +
-            "ookable Resource Booking and Exchange.")]
-        BookableResourceBookingtoExchangeIdMapping = 4421,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Import Log", Index=836, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to import." +
+        [OptionSetMetadata("Import Log", Index=743, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to import." +
             "")]
         ImportLog = 4423,
         
         [EnumMember()]
-        [OptionSetMetadata("Bulk Delete Operation", Index=984, Lcid=1033, Description="User-submitted bulk deletion job.")]
+        [OptionSetMetadata("Bulk Delete Operation", Index=548, Lcid=1033, Description="User-submitted bulk deletion job.")]
         BulkDeleteOperation = 4424,
         
         [EnumMember()]
-        [OptionSetMetadata("Bulk Delete Failure", Index=983, Lcid=1033, Description="Record that was not deleted during a bulk deletion job.")]
+        [OptionSetMetadata("Bulk Delete Failure", Index=546, Lcid=1033, Description="Record that was not deleted during a bulk deletion job.")]
         BulkDeleteFailure = 4425,
         
         [EnumMember()]
-        [OptionSetMetadata("Transformation Mapping", Index=503, Lcid=1033, Description="In a data map, maps the transformation of source attributes to Microsoft Dynamics" +
+        [OptionSetMetadata("Transformation Mapping", Index=265, Lcid=1033, Description="In a data map, maps the transformation of source attributes to Microsoft Dynamics" +
             " 365 attributes.")]
         TransformationMapping = 4426,
         
         [EnumMember()]
-        [OptionSetMetadata("Transformation Parameter Mapping", Index=501, Lcid=1033, Description="In a data map, defines parameters for a transformation.")]
+        [OptionSetMetadata("Transformation Parameter Mapping", Index=267, Lcid=1033, Description="In a data map, defines parameters for a transformation.")]
         TransformationParameterMapping = 4427,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Entity Mapping", Index=839, Lcid=1033, Description="Mapping for entities in a data map.")]
+        [OptionSetMetadata("Import Entity Mapping", Index=746, Lcid=1033, Description="Mapping for entities in a data map.")]
         ImportEntityMapping = 4428,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Performance Dashboard", Index=733, Lcid=1033, Description="Data Performance Dashboard.")]
+        [OptionSetMetadata("Data Performance Dashboard", Index=459, Lcid=1033, Description="Data Performance Dashboard.")]
         DataPerformanceDashboard = 4450,
         
         [EnumMember()]
-        [OptionSetMetadata("Office Document", Index=563, Lcid=1033, Description="Used to store Office Documents in database in binary format.")]
+        [OptionSetMetadata("Office Document", Index=166, Lcid=1033, Description="Used to store Office Documents in database in binary format.")]
         OfficeDocument = 4490,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Role", Index=669, Lcid=1033, Description="Relationship between an account or contact and an opportunity.")]
+        [OptionSetMetadata("Relationship Role", Index=48, Lcid=1033, Description="Relationship between an account or contact and an opportunity.")]
         RelationshipRole = 4500,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Role Map", Index=667, Lcid=1033, Description="Mapping of the primary associated objects between which the relationship role is " +
+        [OptionSetMetadata("Relationship Role Map", Index=50, Lcid=1033, Description="Mapping of the primary associated objects between which the relationship role is " +
             "valid.")]
         RelationshipRoleMap = 4501,
         
         [EnumMember()]
-        [OptionSetMetadata("Customer Relationship", Index=728, Lcid=1033, Description="Relationship between a customer and a partner in which either can be an account o" +
+        [OptionSetMetadata("Customer Relationship", Index=461, Lcid=1033, Description="Relationship between a customer and a partner in which either can be an account o" +
             "r contact.")]
         CustomerRelationship = 4502,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity Relationship", Index=730, Lcid=1033, Description="Relationship between an account or contact and an opportunity.")]
-        OpportunityRelationship = 4503,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Template Product", Index=689, Lcid=1033)]
-        EntitlementTemplateProduct = 4545,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auditing", Index=880, Lcid=1033, Description="Track changes to records for analysis, record keeping, and compliance.")]
+        [OptionSetMetadata("Auditing", Index=536, Lcid=1033, Description="Track changes to records for analysis, record keeping, and compliance.")]
         Auditing = 4567,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Client Metadata.", Index=605, Lcid=1033, Description="A ribbon client metadata.")]
+        [OptionSetMetadata("Ribbon Client Metadata.", Index=319, Lcid=1033, Description="A ribbon client metadata.")]
         RibbonClientMetadata = 4579,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Map", Index=681, Lcid=1033, Description="Represents a mapping between two related entities so that data from one record ca" +
+        [OptionSetMetadata("Entity Map", Index=444, Lcid=1033, Description="Represents a mapping between two related entities so that data from one record ca" +
             "n be copied into the form of a new related record.")]
         EntityMap = 4600,
         
         [EnumMember()]
-        [OptionSetMetadata("Attribute Map", Index=874, Lcid=1033, Description="Represents a mapping between attributes where the attribute values should be copi" +
+        [OptionSetMetadata("Attribute Map", Index=533, Lcid=1033, Description="Represents a mapping between attributes where the attribute values should be copi" +
             "ed from a record into the form of a new related record.")]
         AttributeMap = 4601,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Type", Index=516, Lcid=1033, Description="Type that inherits from the IPlugin interface and is contained within a plug-in a" +
+        [OptionSetMetadata("Plug-in Type", Index=40, Lcid=1033, Description="Type that inherits from the IPlugin interface and is contained within a plug-in a" +
             "ssembly.")]
         PluginType = 4602,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Type Statistic", Index=523, Lcid=1033, Description="Plug-in type statistic.")]
+        [OptionSetMetadata("Plug-in Type Statistic", Index=39, Lcid=1033, Description="Plug-in type statistic.")]
         PluginTypeStatistic = 4603,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Assembly", Index=519, Lcid=1033, Description="Assembly that contains one or more plug-in types.")]
+        [OptionSetMetadata("Plug-in Assembly", Index=37, Lcid=1033, Description="Assembly that contains one or more plug-in types.")]
         PluginAssembly = 4605,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message", Index=611, Lcid=1033, Description="Message that is supported by the SDK.")]
+        [OptionSetMetadata("Sdk Message", Index=293, Lcid=1033, Description="Message that is supported by the SDK.")]
         SdkMessage = 4606,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Filter", Index=609, Lcid=1033, Description="Filter that defines which SDK messages are valid for each type of entity.")]
+        [OptionSetMetadata("Sdk Message Filter", Index=295, Lcid=1033, Description="Filter that defines which SDK messages are valid for each type of entity.")]
         SdkMessageFilter = 4607,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Processing Step", Index=617, Lcid=1033, Description="Stage in the execution pipeline that a plug-in is to execute.")]
+        [OptionSetMetadata("Sdk Message Processing Step", Index=296, Lcid=1033, Description="Stage in the execution pipeline that a plug-in is to execute.")]
         SdkMessageProcessingStep = 4608,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Request", Index=614, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Request", Index=287, Lcid=1033, Description="For internal use only.")]
         SdkMessageRequest = 4609,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Response", Index=392, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Response", Index=291, Lcid=1033, Description="For internal use only.")]
         SdkMessageResponse = 4610,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Response Field", Index=393, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Response Field", Index=290, Lcid=1033, Description="For internal use only.")]
         SdkMessageResponseField = 4611,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Pair", Index=610, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Pair", Index=297, Lcid=1033, Description="For internal use only.")]
         SdkMessagePair = 4613,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Request Field", Index=615, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Sdk Message Request Field", Index=289, Lcid=1033, Description="For internal use only.")]
         SdkMessageRequestField = 4614,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Processing Step Image", Index=618, Lcid=1033, Description="Copy of an entity\'s attributes before or after the core system operation.")]
+        [OptionSetMetadata("Sdk Message Processing Step Image", Index=292, Lcid=1033, Description="Copy of an entity\'s attributes before or after the core system operation.")]
         SdkMessageProcessingStepImage = 4615,
         
         [EnumMember()]
-        [OptionSetMetadata("Sdk Message Processing Step Secure Configuration", Index=616, Lcid=1033, Description="Non-public custom configuration that is passed to a plug-in\'s constructor.")]
+        [OptionSetMetadata("Sdk Message Processing Step Secure Configuration", Index=288, Lcid=1033, Description="Non-public custom configuration that is passed to a plug-in\'s constructor.")]
         SdkMessageProcessingStepSecureConfiguration = 4616,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Endpoint", Index=381, Lcid=1033, Description="Service endpoint that can be contacted.")]
+        [OptionSetMetadata("Service Endpoint", Index=299, Lcid=1033, Description="Service endpoint that can be contacted.")]
         ServiceEndpoint = 4618,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in Trace Log", Index=515, Lcid=1033, Description="Trace and exception information generated by plug-ins and custom workflow activit" +
+        [OptionSetMetadata("Plug-in Trace Log", Index=38, Lcid=1033, Description="Trace and exception information generated by plug-ins and custom workflow activit" +
             "ies.")]
         PluginTraceLog = 4619,
         
         [EnumMember()]
-        [OptionSetMetadata("System Job", Index=876, Lcid=1033, Description="Process whose execution can proceed independently or in the background.")]
+        [OptionSetMetadata("System Job", Index=562, Lcid=1033, Description="Process whose execution can proceed independently or in the background.")]
         SystemJob = 4700,
         
         [EnumMember()]
-        [OptionSetMetadata("Workflow Wait Subscription", Index=421, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Workflow Wait Subscription", Index=261, Lcid=1033, Description="For internal use only.")]
         WorkflowWaitSubscription = 4702,
         
         [EnumMember()]
-        [OptionSetMetadata("Process", Index=423, Lcid=1033, Description="Set of logical rules that define the steps necessary to automate a specific busin" +
+        [OptionSetMetadata("Process", Index=242, Lcid=1033, Description="Set of logical rules that define the steps necessary to automate a specific busin" +
             "ess process, task, or set of actions to be performed.")]
         Process = 4703,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Dependency", Index=422, Lcid=1033, Description="Dependencies for a process.")]
+        [OptionSetMetadata("Process Dependency", Index=258, Lcid=1033, Description="Dependencies for a process.")]
         ProcessDependency = 4704,
         
         [EnumMember()]
-        [OptionSetMetadata("ISV Config", Index=772, Lcid=1033, Description="An XML document used to configure client extension controls.")]
+        [OptionSetMetadata("ISV Config", Index=753, Lcid=1033, Description="An XML document used to configure client extension controls.")]
         ISVConfig = 4705,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Log", Index=420, Lcid=1033, Description="Log used to track process execution.")]
+        [OptionSetMetadata("Process Log", Index=257, Lcid=1033, Description="Log used to track process execution.")]
         ProcessLog = 4706,
         
         [EnumMember()]
-        [OptionSetMetadata("Application File", Index=860, Lcid=1033, Description="Files used by the application")]
+        [OptionSetMetadata("Application File", Index=493, Lcid=1033, Description="Files used by the application")]
         ApplicationFile = 4707,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Statistic", Index=586, Lcid=1033, Description="Statistics measuring the organization\'s usage of the Microsoft Dynamics 365 syste" +
+        [OptionSetMetadata("Organization Statistic", Index=32, Lcid=1033, Description="Statistics measuring the organization\'s usage of the Microsoft Dynamics 365 syste" +
             "m over the past 24 hours.")]
         OrganizationStatistic = 4708,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Map", Index=409, Lcid=1033, Description="XML data used to control the application navigation pane.")]
+        [OptionSetMetadata("Site Map", Index=379, Lcid=1033, Description="XML data used to control the application navigation pane.")]
         SiteMap = 4709,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Session", Index=533, Lcid=1033, Description="Information that is generated when a dialog is run. Every time that you run a dia" +
+        [OptionSetMetadata("Process Session", Index=73, Lcid=1033, Description="Information that is generated when a dialog is run. Every time that you run a dia" +
             "log, a dialog session is created.")]
         ProcessSession = 4710,
         
         [EnumMember()]
-        [OptionSetMetadata("Expander Event", Index=705, Lcid=1033, Description="For internal use only. An event that will be expanded into jobs whose executions " +
+        [OptionSetMetadata("Expander Event", Index=702, Lcid=1033, Description="For internal use only. An event that will be expanded into jobs whose executions " +
             "can proceed in the background.")]
         ExpanderEvent = 4711,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Trigger", Index=530, Lcid=1033, Description="Trigger that invoke a rule.")]
+        [OptionSetMetadata("Process Trigger", Index=76, Lcid=1033, Description="Trigger that invoke a rule.")]
         ProcessTrigger = 4712,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Session", Index=816, Lcid=1033, Description="Entity to store the information that is generated when a Power Automate Desktop f" +
+        [OptionSetMetadata("Flow Session", Index=672, Lcid=1033, Description="Entity to store the information that is generated when a Power Automate Desktop f" +
             "low runs.")]
         FlowSession = 4720,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Stage", Index=534, Lcid=1033, Description="Stage associated with a process.")]
+        [OptionSetMetadata("Process Stage", Index=72, Lcid=1033, Description="Stage associated with a process.")]
         ProcessStage = 4724,
         
         [EnumMember()]
-        [OptionSetMetadata("Business Process Flow Instance", Index=969, Lcid=1033, Description="Active path associated with every Business Process Flow instance")]
+        [OptionSetMetadata("Business Process Flow Instance", Index=539, Lcid=1033, Description="Active path associated with every Business Process Flow instance")]
         BusinessProcessFlowInstance = 4725,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Wizard", Index=436, Lcid=1033, Description="Definition for a Web-based wizard.")]
+        [OptionSetMetadata("Web Wizard", Index=239, Lcid=1033, Description="Definition for a Web-based wizard.")]
         WebWizard = 4800,
         
         [EnumMember()]
-        [OptionSetMetadata("Wizard Page", Index=430, Lcid=1033, Description="Page in a Web-based wizard.")]
+        [OptionSetMetadata("Wizard Page", Index=243, Lcid=1033, Description="Page in a Web-based wizard.")]
         WizardPage = 4802,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Wizard Access Privilege", Index=437, Lcid=1033, Description="Privilege needed to access a Web-based wizard.")]
+        [OptionSetMetadata("Web Wizard Access Privilege", Index=241, Lcid=1033, Description="Privilege needed to access a Web-based wizard.")]
         WebWizardAccessPrivilege = 4803,
         
         [EnumMember()]
-        [OptionSetMetadata("Time Zone Definition", Index=464, Lcid=1033, Description="Time zone definition, including name and time zone code.")]
+        [OptionSetMetadata("Time Zone Definition", Index=207, Lcid=1033, Description="Time zone definition, including name and time zone code.")]
         TimeZoneDefinition = 4810,
         
         [EnumMember()]
-        [OptionSetMetadata("Time Zone Rule", Index=463, Lcid=1033, Description="Definition for time conversion between local time and Coordinated Universal Time " +
+        [OptionSetMetadata("Time Zone Rule", Index=238, Lcid=1033, Description="Definition for time conversion between local time and Coordinated Universal Time " +
             "(UTC) for a particular time zone at a particular time period.")]
         TimeZoneRule = 4811,
         
         [EnumMember()]
-        [OptionSetMetadata("Time Zone Localized Name", Index=462, Lcid=1033, Description="Localized name of the time zone.")]
+        [OptionSetMetadata("Time Zone Localized Name", Index=206, Lcid=1033, Description="Localized name of the time zone.")]
         TimeZoneLocalizedName = 4812,
         
         [EnumMember()]
-        [OptionSetMetadata("Recently Used", Index=639, Lcid=1033, Description="Most recently used data table.")]
+        [OptionSetMetadata("Recently Used", Index=86, Lcid=1033, Description="Most recently used data table.")]
         RecentlyUsed = 5000,
         
         [EnumMember()]
-        [OptionSetMetadata("NL2SQ Registration Information", Index=564, Lcid=1033, Description="Org registration status, AllowedEntity list, and registration error message.")]
+        [OptionSetMetadata("NL2SQ Registration Information", Index=162, Lcid=1033, Description="Org registration status, AllowedEntity list, and registration error message.")]
         NL2SQRegistrationInformation = 5004,
         
         [EnumMember()]
-        [OptionSetMetadata("Entitlement Product", Index=692, Lcid=1033)]
-        EntitlementProduct = 6363,
+        [OptionSetMetadata("Event Expander Breadcrumb", Index=701, Lcid=1033, Description="Table to store breadcrumb records of Event Expander pipeline.")]
+        EventExpanderBreadcrumb = 5006,
         
         [EnumMember()]
-        [OptionSetMetadata("System Application Metadata", Index=358, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("System Application Metadata", Index=230, Lcid=1033, Description="For internal use only.")]
         SystemApplicationMetadata = 7000,
         
         [EnumMember()]
-        [OptionSetMetadata("User Application Metadata", Index=485, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("User Application Metadata", Index=284, Lcid=1033, Description="For internal use only.")]
         UserApplicationMetadata = 7001,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution", Index=408, Lcid=1033, Description="A solution which contains CRM customizations.")]
+        [OptionSetMetadata("Solution", Index=375, Lcid=1033, Description="A solution which contains CRM customizations.")]
         Solution = 7100,
         
         [EnumMember()]
-        [OptionSetMetadata("Publisher", Index=649, Lcid=1033, Description="A publisher of a CRM solution.")]
+        [OptionSetMetadata("Publisher", Index=83, Lcid=1033, Description="A publisher of a CRM solution.")]
         Publisher = 7101,
         
         [EnumMember()]
-        [OptionSetMetadata("Publisher Address", Index=650, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for a publis" +
+        [OptionSetMetadata("Publisher Address", Index=91, Lcid=1033, Description="Address and shipping information. Used to store additional addresses for a publis" +
             "her.")]
         PublisherAddress = 7102,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component", Index=406, Lcid=1033, Description="A component of a CRM solution.")]
+        [OptionSetMetadata("Solution Component", Index=374, Lcid=1033, Description="A component of a CRM solution.")]
         SolutionComponent = 7103,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Definition", Index=351, Lcid=1033, Description="Contains all the information required to process a solution aware entity")]
+        [OptionSetMetadata("Solution Component Definition", Index=343, Lcid=1033, Description="Contains all the information required to process a solution aware entity")]
         SolutionComponentDefinition = 7104,
         
         [EnumMember()]
-        [OptionSetMetadata("Dependency", Index=719, Lcid=1033, Description="A component dependency in CRM.")]
+        [OptionSetMetadata("Dependency", Index=457, Lcid=1033, Description="A component dependency in CRM.")]
         Dependency = 7105,
         
         [EnumMember()]
-        [OptionSetMetadata("Dependency Node", Index=715, Lcid=1033, Description="The representation of a component dependency node in CRM.")]
+        [OptionSetMetadata("Dependency Node", Index=473, Lcid=1033, Description="The representation of a component dependency node in CRM.")]
         DependencyNode = 7106,
         
         [EnumMember()]
-        [OptionSetMetadata("Invalid Dependency", Index=825, Lcid=1033, Description="An invalid dependency in the CRM system.")]
+        [OptionSetMetadata("Invalid Dependency", Index=754, Lcid=1033, Description="An invalid dependency in the CRM system.")]
         InvalidDependency = 7107,
         
         [EnumMember()]
-        [OptionSetMetadata("Dependency Feature", Index=717, Lcid=1033, Description="A dependency feature.")]
+        [OptionSetMetadata("Dependency Feature", Index=465, Lcid=1033, Description="A dependency feature.")]
         DependencyFeature = 7108,
         
         [EnumMember()]
-        [OptionSetMetadata("RuntimeDependency", Index=621, Lcid=1033, Description="Form Level dependencies in CRM.")]
+        [OptionSetMetadata("RuntimeDependency", Index=324, Lcid=1033, Description="Form Level dependencies in CRM.")]
         RuntimeDependency = 7200,
         
         [EnumMember()]
-        [OptionSetMetadata("Entitlement Contact", Index=684, Lcid=1033)]
-        EntitlementContact = 7272,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ElasticFileAttachment", Index=737, Lcid=1033, Description="Elastic File Attachment")]
+        [OptionSetMetadata("ElasticFileAttachment", Index=439, Lcid=1033, Description="Elastic File Attachment")]
         ElasticFileAttachment = 7755,
         
         [EnumMember()]
-        [OptionSetMetadata("Post", Index=522, Lcid=1033, Description="An activity feed post.")]
+        [OptionSetMetadata("Post", Index=7, Lcid=1033, Description="An activity feed post.")]
         Post = 8000,
         
         [EnumMember()]
-        [OptionSetMetadata("Post Role", Index=508, Lcid=1033, Description="Represents the objects with which an activity feed post is associated. For intern" +
+        [OptionSetMetadata("Post Role", Index=5, Lcid=1033, Description="Represents the objects with which an activity feed post is associated. For intern" +
             "al use only.")]
         PostRole = 8001,
         
         [EnumMember()]
-        [OptionSetMetadata("Post Regarding", Index=507, Lcid=1033, Description="Represents which object an activity feed post is regarding. For internal use only" +
+        [OptionSetMetadata("Post Regarding", Index=9, Lcid=1033, Description="Represents which object an activity feed post is regarding. For internal use only" +
             ".")]
         PostRegarding = 8002,
         
         [EnumMember()]
-        [OptionSetMetadata("Follow", Index=521, Lcid=1033, Description="Represents a user following the activity feed of an object.")]
+        [OptionSetMetadata("Follow", Index=8, Lcid=1033, Description="Represents a user following the activity feed of an object.")]
         Follow = 8003,
         
         [EnumMember()]
-        [OptionSetMetadata("Comment", Index=520, Lcid=1033, Description="A comment on an activity feed post.")]
+        [OptionSetMetadata("Comment", Index=6, Lcid=1033, Description="A comment on an activity feed post.")]
         Comment = 8005,
         
         [EnumMember()]
-        [OptionSetMetadata("Like", Index=514, Lcid=1033, Description="A like on an activity feed post.")]
+        [OptionSetMetadata("Like", Index=10, Lcid=1033, Description="A like on an activity feed post.")]
         Like = 8006,
         
         [EnumMember()]
-        [OptionSetMetadata("ACIViewMapper", Index=894, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
+        [OptionSetMetadata("ACIViewMapper", Index=510, Lcid=1033, Description="Customized messages for an entity that has been renamed.")]
         ACIViewMapper = 8040,
         
         [EnumMember()]
-        [OptionSetMetadata("Trace", Index=498, Lcid=1033, Description="A trace log.")]
+        [OptionSetMetadata("Trace", Index=273, Lcid=1033, Description="A trace log.")]
         Trace = 8050,
         
         [EnumMember()]
-        [OptionSetMetadata("Trace Association", Index=497, Lcid=1033, Description="Represents the objects with which a trace record is associated. For internal use " +
+        [OptionSetMetadata("Trace Association", Index=271, Lcid=1033, Description="Represents the objects with which a trace record is associated. For internal use " +
             "only.")]
         TraceAssociation = 8051,
         
         [EnumMember()]
-        [OptionSetMetadata("Trace Regarding", Index=496, Lcid=1033, Description="Represents which object a trace record is regarding. For internal use only.")]
+        [OptionSetMetadata("Trace Regarding", Index=272, Lcid=1033, Description="Represents which object a trace record is regarding. For internal use only.")]
         TraceRegarding = 8052,
         
         [EnumMember()]
-        [OptionSetMetadata("Routing Rule Set", Index=622, Lcid=1033, Description="Define Routing Rule to route cases to right people at the right time")]
+        [OptionSetMetadata("Routing Rule Set", Index=332, Lcid=1033, Description="Define Routing Rule to route cases to right people at the right time")]
         RoutingRuleSet = 8181,
         
         [EnumMember()]
-        [OptionSetMetadata("Rule Item", Index=620, Lcid=1033, Description="Please provide the description for entity")]
-        RuleItem_2 = 8199,
+        [OptionSetMetadata("Rule Item", Index=328, Lcid=1033, Description="Please provide the description for entity")]
+        RuleItem = 8199,
         
         [EnumMember()]
-        [OptionSetMetadata("AppModule Metadata", Index=844, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("AppModule Metadata", Index=559, Lcid=1033, Description="For internal use only.")]
         AppModuleMetadata = 8700,
         
         [EnumMember()]
-        [OptionSetMetadata("AppModule Metadata Dependency", Index=845, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("AppModule Metadata Dependency", Index=555, Lcid=1033, Description="For internal use only.")]
         AppModuleMetadataDependency = 8701,
         
         [EnumMember()]
-        [OptionSetMetadata("AppModule Metadata Async Operation", Index=843, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("AppModule Metadata Async Operation", Index=551, Lcid=1033, Description="For internal use only.")]
         AppModuleMetadataAsyncOperation = 8702,
         
         [EnumMember()]
-        [OptionSetMetadata("Hierarchy Rule", Index=805, Lcid=1033, Description="Organization-owned entity customizations including mapping Quick view form with R" +
+        [OptionSetMetadata("Hierarchy Rule", Index=716, Lcid=1033, Description="Organization-owned entity customizations including mapping Quick view form with R" +
             "elationship Id")]
         HierarchyRule = 8840,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-driven App", Index=859, Lcid=1033, Description="A role-based, modular business app that provides task-based functionality for a p" +
+        [OptionSetMetadata("Model-driven App", Index=557, Lcid=1033, Description="A role-based, modular business app that provides task-based functionality for a p" +
             "articular area of work.")]
         ModeldrivenApp = 9006,
         
         [EnumMember()]
-        [OptionSetMetadata("App Module Component", Index=857, Lcid=1033, Description="A component available in a business app such as entity, dashboard, form, view, ch" +
+        [OptionSetMetadata("App Module Component", Index=556, Lcid=1033, Description="A component available in a business app such as entity, dashboard, form, view, ch" +
             "art, and business process.")]
         AppModuleComponent = 9007,
         
         [EnumMember()]
-        [OptionSetMetadata("App Module Roles", Index=841, Lcid=1033, Description="Security roles that have access to a business app.")]
+        [OptionSetMetadata("App Module Roles", Index=550, Lcid=1033, Description="Security roles that have access to a business app.")]
         AppModuleRoles = 9009,
         
         [EnumMember()]
-        [OptionSetMetadata("App Config Master", Index=854, Lcid=1033, Description="Contains the master list of all properties that can be customized for apps in Dyn" +
+        [OptionSetMetadata("App Config Master", Index=491, Lcid=1033, Description="Contains the master list of all properties that can be customized for apps in Dyn" +
             "amics 365. For internal use only.")]
         AppConfigMaster = 9011,
         
         [EnumMember()]
-        [OptionSetMetadata("App Configuration", Index=855, Lcid=1033, Description="Contains a mapping between an app configuration instance and an app, which define" +
+        [OptionSetMetadata("App Configuration", Index=499, Lcid=1033, Description="Contains a mapping between an app configuration instance and an app, which define" +
             "s the properties that can be customized for the app. Optionally, also contains n" +
             "avigation setting for an app. For internal use only.")]
         AppConfiguration = 9012,
         
         [EnumMember()]
-        [OptionSetMetadata("App Configuration Instance", Index=856, Lcid=1033, Description="Contains a property or a list of properties from the app configuration master lis" +
+        [OptionSetMetadata("App Configuration Instance", Index=495, Lcid=1033, Description="Contains a property or a list of properties from the app configuration master lis" +
             "t that can be customized for any app in Dynamics 365. For internal use only.")]
         AppConfigurationInstance = 9013,
         
         [EnumMember()]
-        [OptionSetMetadata("Report", Index=661, Lcid=1033, Description="Data summary in an easy-to-read layout.")]
+        [OptionSetMetadata("Report", Index=51, Lcid=1033, Description="Data summary in an easy-to-read layout.")]
         Report = 9100,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Related Entity", Index=655, Lcid=1033, Description="Entities related to a report. A report can be related to multiple entities.")]
+        [OptionSetMetadata("Report Related Entity", Index=67, Lcid=1033, Description="Entities related to a report. A report can be related to multiple entities.")]
         ReportRelatedEntity = 9101,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Related Category", Index=654, Lcid=1033, Description="Categories related to a report. A report can be related to multiple categories.")]
+        [OptionSetMetadata("Report Related Category", Index=59, Lcid=1033, Description="Categories related to a report. A report can be related to multiple categories.")]
         ReportRelatedCategory = 9102,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Visibility", Index=652, Lcid=1033, Description="Area in which to show a report. A report can be shown in multiple areas.")]
+        [OptionSetMetadata("Report Visibility", Index=70, Lcid=1033, Description="Area in which to show a report. A report can be shown in multiple areas.")]
         ReportVisibility = 9103,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Link", Index=653, Lcid=1033, Description="Links and dependencies between reports. A report may drill through to another rep" +
+        [OptionSetMetadata("Report Link", Index=66, Lcid=1033, Description="Links and dependencies between reports. A report may drill through to another rep" +
             "ort, or it may have another report as a sub-report.")]
         ReportLink = 9104,
         
         [EnumMember()]
-        [OptionSetMetadata("Currency", Index=502, Lcid=1033, Description="Currency in which a financial transaction is carried out.")]
+        [OptionSetMetadata("Currency", Index=263, Lcid=1033, Description="Currency in which a financial transaction is carried out.")]
         Currency = 9105,
         
         [EnumMember()]
-        [OptionSetMetadata("Mail Merge Template", Index=795, Lcid=1033, Description="Template for a mail merge document that contains the standard attributes of that " +
+        [OptionSetMetadata("Mail Merge Template", Index=730, Lcid=1033, Description="Template for a mail merge document that contains the standard attributes of that " +
             "document.")]
         MailMergeTemplate = 9106,
         
         [EnumMember()]
-        [OptionSetMetadata("Import Job", Index=838, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Import Job", Index=741, Lcid=1033, Description="For internal use only.")]
         ImportJob = 9107,
         
         [EnumMember()]
-        [OptionSetMetadata("LocalConfigStore", Index=789, Lcid=1033, Description="")]
+        [OptionSetMetadata("LocalConfigStore", Index=736, Lcid=1033, Description="")]
         LocalConfigStore = 9201,
         
         [EnumMember()]
-        [OptionSetMetadata("Record Creation and Update Rule", Index=963, Lcid=1033, Description="Defines the settings for automatic record creation.")]
+        [OptionSetMetadata("Record Creation and Update Rule", Index=393, Lcid=1033, Description="Defines the settings for automatic record creation.")]
         RecordCreationandUpdateRule = 9300,
         
         [EnumMember()]
-        [OptionSetMetadata("Record Creation and Update Rule Item", Index=956, Lcid=1033, Description="Defines the individual conditions required for creating records automatically.")]
+        [OptionSetMetadata("Record Creation and Update Rule Item", Index=401, Lcid=1033, Description="Defines the individual conditions required for creating records automatically.")]
         RecordCreationandUpdateRuleItem = 9301,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Resource", Index=438, Lcid=1033, Description="Data equivalent to files used in Web development. Web resources provide client-si" +
+        [OptionSetMetadata("Web Resource", Index=240, Lcid=1033, Description="Data equivalent to files used in Web development. Web resources provide client-si" +
             "de components that are used to provide custom user interface elements.")]
         WebResource = 9333,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Access Profile Rule", Index=996, Lcid=1033, Description="Defines the rules for automatically associating channel access profiles to extern" +
+        [OptionSetMetadata("Channel Access Profile Rule", Index=424, Lcid=1033, Description="Defines the rules for automatically associating channel access profiles to extern" +
             "al party records.For internal use only")]
         ChannelAccessProfileRule = 9400,
         
         [EnumMember()]
-        [OptionSetMetadata("Channel Access Profile Rule Item", Index=997, Lcid=1033, Description="Defines the rule items of a profile rule set for the automated profile associatio" +
+        [OptionSetMetadata("Channel Access Profile Rule Item", Index=426, Lcid=1033, Description="Defines the rule items of a profile rule set for the automated profile associatio" +
             "n.For internal use only")]
         ChannelAccessProfileRuleItem = 9401,
         
         [EnumMember()]
-        [OptionSetMetadata("SharePoint Site", Index=411, Lcid=1033, Description="SharePoint site from where documents can be managed in Microsoft Dynamics 365.")]
+        [OptionSetMetadata("SharePoint Site", Index=363, Lcid=1033, Description="SharePoint site from where documents can be managed in Microsoft Dynamics 365.")]
         SharePointSite = 9502,
         
         [EnumMember()]
-        [OptionSetMetadata("Sharepoint Document", Index=414, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
+        [OptionSetMetadata("Sharepoint Document", Index=360, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
             "managed in Microsoft Dynamics 365.")]
         SharepointDocument = 9507,
         
         [EnumMember()]
-        [OptionSetMetadata("Document Location", Index=412, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
+        [OptionSetMetadata("Document Location", Index=359, Lcid=1033, Description="Document libraries or folders on a SharePoint server from where documents can be " +
             "managed in Microsoft Dynamics 365.")]
         DocumentLocation = 9508,
         
         [EnumMember()]
-        [OptionSetMetadata("SharePoint Data", Index=413, Lcid=1033, Description="SharePoint\'s Data Corresponding to a user , Record , Location and Page")]
+        [OptionSetMetadata("SharePoint Data", Index=364, Lcid=1033, Description="SharePoint\'s Data Corresponding to a user , Record , Location and Page")]
         SharePointData = 9509,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Properties", Index=624, Lcid=1033, Description="Stores properties related to rollup fields.")]
+        [OptionSetMetadata("Rollup Properties", Index=333, Lcid=1033, Description="Stores properties related to rollup fields.")]
         RollupProperties = 9510,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Job", Index=623, Lcid=1033, Description="Stores rollup jobs.")]
+        [OptionSetMetadata("Rollup Job", Index=331, Lcid=1033, Description="Stores rollup jobs.")]
         RollupJob = 9511,
         
         [EnumMember()]
-        [OptionSetMetadata("Goal", Index=808, Lcid=1033, Description="Target objective for a user or a team for a specified time period.")]
+        [OptionSetMetadata("Goal", Index=683, Lcid=1033, Description="Target objective for a user or a team for a specified time period.")]
         Goal = 9600,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Query", Index=806, Lcid=1033, Description="Query that is used to filter the results of the goal rollup.")]
+        [OptionSetMetadata("Rollup Query", Index=685, Lcid=1033, Description="Query that is used to filter the results of the goal rollup.")]
         RollupQuery = 9602,
         
         [EnumMember()]
-        [OptionSetMetadata("Goal Metric", Index=785, Lcid=1033, Description="Type of measurement for a goal, such as money amount or count.")]
+        [OptionSetMetadata("Goal Metric", Index=606, Lcid=1033, Description="Type of measurement for a goal, such as money amount or count.")]
         GoalMetric = 9603,
         
         [EnumMember()]
-        [OptionSetMetadata("Rollup Field", Index=594, Lcid=1033, Description="Field to be rolled up to calculate the actual and in-progress values against the " +
+        [OptionSetMetadata("Rollup Field", Index=329, Lcid=1033, Description="Field to be rolled up to calculate the actual and in-progress values against the " +
             "goal.")]
         RollupField = 9604,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Server Profile", Index=741, Lcid=1033, Description="Holds the Email Server Profiles of an organization")]
+        [OptionSetMetadata("Email Server Profile", Index=434, Lcid=1033, Description="Holds the Email Server Profiles of an organization")]
         EmailServerProfile = 9605,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox", Index=797, Lcid=1033, Description="")]
+        [OptionSetMetadata("Mailbox", Index=737, Lcid=1033, Description="")]
         Mailbox = 9606,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox Statistics", Index=798, Lcid=1033, Description="Stores data regarding Mailbox processing cycles")]
+        [OptionSetMetadata("Mailbox Statistics", Index=739, Lcid=1033, Description="Stores data regarding Mailbox processing cycles")]
         MailboxStatistics = 9607,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox Auto Tracking Folder", Index=794, Lcid=1033, Description="Stores data about what folders for a mailbox are auto tracked")]
+        [OptionSetMetadata("Mailbox Auto Tracking Folder", Index=734, Lcid=1033, Description="Stores data about what folders for a mailbox are auto tracked")]
         MailboxAutoTrackingFolder = 9608,
         
         [EnumMember()]
-        [OptionSetMetadata("Mailbox Tracking Category", Index=796, Lcid=1033, Description="Stores data about what categories for a mailbox are tracked")]
+        [OptionSetMetadata("Mailbox Tracking Category", Index=738, Lcid=1033, Description="Stores data about what categories for a mailbox are tracked")]
         MailboxTrackingCategory = 9609,
         
         [EnumMember()]
-        [OptionSetMetadata("Process Configuration", Index=935, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Process Configuration", Index=422, Lcid=1033, Description="For internal use only.")]
         ProcessConfiguration = 9650,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Insights Notification", Index=583, Lcid=1033, Description="Stores data regarding organization insights notification")]
+        [OptionSetMetadata("Organization Insights Notification", Index=29, Lcid=1033, Description="Stores data regarding organization insights notification")]
         OrganizationInsightsNotification = 9690,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Insights Metric", Index=585, Lcid=1033, Description="Stores data regarding organization insights metric")]
+        [OptionSetMetadata("Organization Insights Metric", Index=33, Lcid=1033, Description="Stores data regarding organization insights metric")]
         OrganizationInsightsMetric = 9699,
         
         [EnumMember()]
-        [OptionSetMetadata("Entitlement", Index=688, Lcid=1033, Description="Defines the amount and type of support a customer should receive.")]
-        Entitlement = 9700,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Channel", Index=686, Lcid=1033, Description="Defines the amount and type of support for a channel.")]
-        EntitlementChannel = 9701,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Template", Index=693, Lcid=1033, Description="Contains predefined customer support terms that can be used to created entitlemen" +
-            "ts for customers.")]
-        EntitlementTemplate = 9702,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Template Channel", Index=691, Lcid=1033, Description="Contains predefined support terms for a channel to create entitlements for custom" +
-            "ers.")]
-        EntitlementTemplateChannel = 9703,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement Entity Allocation Type Mapping", Index=685, Lcid=1033, Description="Mapping to define which Allocation Types are available for Entity Type to be used" +
-            " on Entitlement")]
-        EntitlementEntityAllocationTypeMapping = 9704,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SLA", Index=402, Lcid=1033, Description="Contains information about the tracked service-level KPIs for cases that belong t" +
+        [OptionSetMetadata("SLA", Index=381, Lcid=1033, Description="Contains information about the tracked service-level KPIs for cases that belong t" +
             "o different customers.")]
         SLA = 9750,
         
         [EnumMember()]
-        [OptionSetMetadata("SLA Item", Index=403, Lcid=1033, Description="Contains information about a tracked support KPI for a specific customer.")]
+        [OptionSetMetadata("SLA Item", Index=380, Lcid=1033, Description="Contains information about a tracked support KPI for a specific customer.")]
         SLAItem = 9751,
         
         [EnumMember()]
-        [OptionSetMetadata("SLA KPI Instance", Index=401, Lcid=1033, Description="Service level agreement (SLA) key performance indicator (KPI) instance that is tr" +
+        [OptionSetMetadata("SLA KPI Instance", Index=376, Lcid=1033, Description="Service level agreement (SLA) key performance indicator (KPI) instance that is tr" +
             "acked for an individual case")]
         SLAKPIInstance = 9752,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control", Index=953, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Custom Control", Index=396, Lcid=1033, Description="For internal use only.")]
         CustomControl = 9753,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control Resource", Index=952, Lcid=1033, Description="Custom Control Resource Id")]
+        [OptionSetMetadata("Custom Control Resource", Index=397, Lcid=1033, Description="Custom Control Resource Id")]
         CustomControlResource = 9754,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control Default Config", Index=951, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Custom Control Default Config", Index=398, Lcid=1033, Description="For internal use only.")]
         CustomControlDefaultConfig = 9755,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity", Index=690, Lcid=1033)]
+        [OptionSetMetadata("Entity", Index=449, Lcid=1033)]
         Entity = 9800,
         
         [EnumMember()]
-        [OptionSetMetadata("Attribute", Index=875, Lcid=1033)]
+        [OptionSetMetadata("Attribute", Index=566, Lcid=1033)]
         Attribute = 9808,
         
         [EnumMember()]
-        [OptionSetMetadata("OptionSet", Index=555, Lcid=1033)]
+        [OptionSetMetadata("OptionSet", Index=157, Lcid=1033)]
         OptionSet = 9809,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Key", Index=674, Lcid=1033)]
+        [OptionSetMetadata("Entity Key", Index=442, Lcid=1033)]
         EntityKey = 9810,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Relationship", Index=680, Lcid=1033)]
+        [OptionSetMetadata("Entity Relationship", Index=445, Lcid=1033)]
         EntityRelationship = 9811,
         
         [EnumMember()]
-        [OptionSetMetadata("Managed Property", Index=780, Lcid=1033)]
+        [OptionSetMetadata("Managed Property", Index=732, Lcid=1033)]
         ManagedProperty = 9812,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Entity", Index=670, Lcid=1033)]
+        [OptionSetMetadata("Relationship Entity", Index=53, Lcid=1033)]
         RelationshipEntity = 9813,
         
         [EnumMember()]
-        [OptionSetMetadata("Relationship Attribute", Index=671, Lcid=1033, Description="Stores relationship attributes mapping for Multi-predicate relationship")]
+        [OptionSetMetadata("Relationship Attribute", Index=49, Lcid=1033, Description="Stores relationship attributes mapping for Multi-predicate relationship")]
         RelationshipAttribute = 9814,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity Index", Index=673, Lcid=1033, Description="Metadata describing index of an entity")]
+        [OptionSetMetadata("Entity Index", Index=443, Lcid=1033, Description="Metadata describing index of an entity")]
         EntityIndex = 9815,
         
         [EnumMember()]
-        [OptionSetMetadata("Index Attribute", Index=822, Lcid=1033, Description="Stores index attributes")]
+        [OptionSetMetadata("Index Attribute", Index=744, Lcid=1033, Description="Stores index attributes")]
         IndexAttribute = 9816,
         
         [EnumMember()]
-        [OptionSetMetadata("Option Set Value", Index=882, Lcid=1033, Description="Option Set Value")]
+        [OptionSetMetadata("Option Set Value", Index=534, Lcid=1033, Description="Option Set Value")]
         OptionSetValue = 9817,
         
         [EnumMember()]
-        [OptionSetMetadata("Secured Masking Column", Index=881, Lcid=1033, Description="Defines secured masking rule for column")]
+        [OptionSetMetadata("Secured Masking Column", Index=532, Lcid=1033, Description="Defines secured masking rule for column")]
         SecuredMaskingColumn = 9820,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile Offline Profile", Index=783, Lcid=1033, Description="Information to administer and manage the data available to mobile devices in offl" +
+        [OptionSetMetadata("Mobile Offline Profile", Index=602, Lcid=1033, Description="Information to administer and manage the data available to mobile devices in offl" +
             "ine mode.")]
         MobileOfflineProfile = 9866,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile Offline Profile Item", Index=1233, Lcid=1033, Description="Information on entity availability to mobile devices in offline mode for a mobile" +
+        [OptionSetMetadata("Mobile Offline Profile Item", Index=597, Lcid=1033, Description="Information on entity availability to mobile devices in offline mode for a mobile" +
             " offline profile item.")]
         MobileOfflineProfileItem = 9867,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile Offline Profile Item Association", Index=1234, Lcid=1033, Description="Information on relationships to be used to follow related entity\'s records for mo" +
+        [OptionSetMetadata("Mobile Offline Profile Item Association", Index=599, Lcid=1033, Description="Information on relationships to be used to follow related entity\'s records for mo" +
             "bile offline profile item.")]
         MobileOfflineProfileItemAssociation = 9868,
         
         [EnumMember()]
-        [OptionSetMetadata("Sync Error", Index=357, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to sync.")]
+        [OptionSetMetadata("Sync Error", Index=231, Lcid=1033, Description="Failure reason and other detailed information for a record that failed to sync.")]
         SyncError = 9869,
         
         [EnumMember()]
-        [OptionSetMetadata("Offline Command Definition", Index=549, Lcid=1033, Description="For internal use only.")]
+        [OptionSetMetadata("Offline Command Definition", Index=161, Lcid=1033, Description="For internal use only.")]
         OfflineCommandDefinition = 9870,
         
         [EnumMember()]
-        [OptionSetMetadata("Language Provisioning State", Index=759, Lcid=1033, Description="Container for language provisioning checkpoint states")]
+        [OptionSetMetadata("Language Provisioning State", Index=721, Lcid=1033, Description="Container for language provisioning checkpoint states")]
         LanguageProvisioningState = 9875,
         
         [EnumMember()]
-        [OptionSetMetadata("Ribbon Metadata To Process", Index=588, Lcid=1033, Description="Container for Ribbon Metadata To Process")]
+        [OptionSetMetadata("Ribbon Metadata To Process", Index=311, Lcid=1033, Description="Container for Ribbon Metadata To Process")]
         RibbonMetadataToProcess = 9880,
         
         [EnumMember()]
-        [OptionSetMetadata("SolutionHistoryData", Index=347, Lcid=1033, Description="solution history data")]
+        [OptionSetMetadata("SolutionHistoryData", Index=344, Lcid=1033, Description="solution history data")]
         SolutionHistoryData = 9890,
         
         [EnumMember()]
-        [OptionSetMetadata("Navigation Setting", Index=565, Lcid=1033, Description="Navigation Setting: A setting page or group of pages available for configuration " +
+        [OptionSetMetadata("Navigation Setting", Index=155, Lcid=1033, Description="Navigation Setting: A setting page or group of pages available for configuration " +
             "within an app. A record representing a group of pages is regarded as the parent " +
             "navigation setting of one or more other records. For internal use only.")]
         NavigationSetting = 9900,
         
         [EnumMember()]
-        [OptionSetMetadata("MultiEntitySearch", Index=557, Lcid=1033, Description="Multi Entity Search.")]
+        [OptionSetMetadata("MultiEntitySearch", Index=148, Lcid=1033, Description="Multi Entity Search.")]
         MultiEntitySearch = 9910,
         
         [EnumMember()]
-        [OptionSetMetadata("Multi Select Option Value", Index=558, Lcid=1033, Description="Multi Select Option Value")]
+        [OptionSetMetadata("Multi Select Option Value", Index=147, Lcid=1033, Description="Multi Select Option Value")]
         MultiSelectOptionValue = 9912,
         
         [EnumMember()]
-        [OptionSetMetadata("Hierarchy Security Configuration", Index=834, Lcid=1033)]
+        [OptionSetMetadata("Hierarchy Security Configuration", Index=748, Lcid=1033)]
         HierarchySecurityConfiguration = 9919,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Base Record", Index=767, Lcid=1033, Description="Metadata of knowledge base (KB) articles associated with Microsoft Dynamics 365 e" +
+        [OptionSetMetadata("Knowledge Base Record", Index=727, Lcid=1033, Description="Metadata of knowledge base (KB) articles associated with Microsoft Dynamics 365 e" +
             "ntities.")]
         KnowledgeBaseRecord = 9930,
         
         [EnumMember()]
-        [OptionSetMetadata("Incident KnowledgeBaseRecord", Index=823, Lcid=1033)]
-        IncidentKnowledgeBaseRecord = 9931,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Time Stamp Date Mapping", Index=466, Lcid=1033, Description="For internal use only.`")]
+        [OptionSetMetadata("Time Stamp Date Mapping", Index=205, Lcid=1033, Description="For internal use only.`")]
         TimeStampDateMapping = 9932,
         
         [EnumMember()]
-        [OptionSetMetadata("Azure Service Connection", Index=865, Lcid=1033, Description="Stores connection information for an Azure service")]
+        [OptionSetMetadata("Azure Service Connection", Index=531, Lcid=1033, Description="Stores connection information for an Azure service")]
         AzureServiceConnection = 9936,
         
         [EnumMember()]
-        [OptionSetMetadata("Document Template", Index=751, Lcid=1033, Description="Used to store Document Templates in database in binary format.")]
+        [OptionSetMetadata("Document Template", Index=467, Lcid=1033, Description="Used to store Document Templates in database in binary format.")]
         DocumentTemplate = 9940,
         
         [EnumMember()]
-        [OptionSetMetadata("Personal Document Template", Index=568, Lcid=1033, Description="Used to store Personal Document Templates in database in binary format.")]
+        [OptionSetMetadata("Personal Document Template", Index=43, Lcid=1033, Description="Used to store Personal Document Templates in database in binary format.")]
         PersonalDocumentTemplate = 9941,
         
         [EnumMember()]
-        [OptionSetMetadata("Topic Model Configuration", Index=467, Lcid=1033, Description="Configuration settings for identification of topics using text analytics.")]
-        TopicModelConfiguration = 9942,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Topic Model Execution History", Index=468, Lcid=1033, Description="Entity for Topic Model Execution History")]
-        TopicModelExecutionHistory = 9943,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Topic Model", Index=469, Lcid=1033, Description="The model for automatic identification of topics using text analytics.")]
-        TopicModel = 9944,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Text Analytics Entity Mapping", Index=472, Lcid=1033, Description="")]
+        [OptionSetMetadata("Text Analytics Entity Mapping", Index=208, Lcid=1033, Description="")]
         TextAnalyticsEntityMapping = 9945,
         
         [EnumMember()]
-        [OptionSetMetadata("Topic History", Index=471, Lcid=1033, Description="Entity for Topic History")]
-        TopicHistory = 9946,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Search Model", Index=760, Lcid=1033, Description="Configuration for automatic suggestion of knowledge articles using text analytics" +
+        [OptionSetMetadata("Knowledge Search Model", Index=722, Lcid=1033, Description="Configuration for automatic suggestion of knowledge articles using text analytics" +
             " and search")]
         KnowledgeSearchModel = 9947,
         
         [EnumMember()]
-        [OptionSetMetadata("Text Analytics Topic", Index=470, Lcid=1033, Description="Text Analytics Topics")]
-        TextAnalyticsTopic = 9948,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Advanced Similarity Rule", Index=885, Lcid=1033, Description="A text match rule identifies similar records using keywords and key phrases deter" +
+        [OptionSetMetadata("Advanced Similarity Rule", Index=505, Lcid=1033, Description="A text match rule identifies similar records using keywords and key phrases deter" +
             "mined with text analytics")]
         AdvancedSimilarityRule = 9949,
         
         [EnumMember()]
-        [OptionSetMetadata("Office Graph Document", Index=556, Lcid=1033, Description="Office Graph Documents Description")]
+        [OptionSetMetadata("Office Graph Document", Index=165, Lcid=1033, Description="Office Graph Documents Description")]
         OfficeGraphDocument = 9950,
         
         [EnumMember()]
-        [OptionSetMetadata("Similarity Rule", Index=415, Lcid=1033, Description="")]
+        [OptionSetMetadata("Similarity Rule", Index=377, Lcid=1033, Description="")]
         SimilarityRule = 9951,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article", Index=777, Lcid=1033, Description="Organizational knowledge for internal and external use.")]
+        [OptionSetMetadata("Knowledge Article", Index=724, Lcid=1033, Description="Organizational knowledge for internal and external use.")]
         KnowledgeArticle = 9953,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Incident", Index=775, Lcid=1033, Description="Association between an knowledge article and incident.")]
-        KnowledgeArticleIncident = 9954,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Views", Index=774, Lcid=1033, Description="No of times an article is viewed per day")]
+        [OptionSetMetadata("Knowledge Article Views", Index=725, Lcid=1033, Description="No of times an article is viewed per day")]
         KnowledgeArticleViews = 9955,
         
         [EnumMember()]
-        [OptionSetMetadata("Language", Index=761, Lcid=1033, Description="Language")]
-        Language_2 = 9957,
+        [OptionSetMetadata("Language", Index=719, Lcid=1033, Description="Language")]
+        Language = 9957,
         
         [EnumMember()]
-        [OptionSetMetadata("Feedback", Index=694, Lcid=1033, Description="Feedback and rating.")]
+        [OptionSetMetadata("Feedback", Index=710, Lcid=1033, Description="Feedback and rating.")]
         Feedback = 9958,
         
         [EnumMember()]
-        [OptionSetMetadata("Category", Index=990, Lcid=1033, Description="Entity for categorizing records to make it easier for your customers to find them" +
+        [OptionSetMetadata("Category", Index=409, Lcid=1033, Description="Entity for categorizing records to make it easier for your customers to find them" +
             " on portals and through search.")]
         Category = 9959,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Category", Index=773, Lcid=1033, Description="Category for a Knowledge Article.")]
+        [OptionSetMetadata("Knowledge Article Category", Index=723, Lcid=1033, Description="Category for a Knowledge Article.")]
         KnowledgeArticleCategory = 9960,
         
         [EnumMember()]
-        [OptionSetMetadata("DelveActionHub", Index=718, Lcid=1033, Description="Delve Action Hubs Description")]
+        [OptionSetMetadata("DelveActionHub", Index=458, Lcid=1033, Description="Delve Action Hubs Description")]
         DelveActionHub = 9961,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Card", Index=895, Lcid=1033, Description="Action card entity to show action cards.")]
+        [OptionSetMetadata("Action Card", Index=512, Lcid=1033, Description="Action card entity to show action cards.")]
         ActionCard = 9962,
         
         [EnumMember()]
-        [OptionSetMetadata("ActionCardUserState", Index=903, Lcid=1033, Description="")]
+        [OptionSetMetadata("ActionCardUserState", Index=507, Lcid=1033, Description="")]
         ActionCardUserState = 9968,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Card User Settings", Index=902, Lcid=1033, Description="Stores user settings for action cards")]
+        [OptionSetMetadata("Action Card User Settings", Index=511, Lcid=1033, Description="Stores user settings for action cards")]
         ActionCardUserSettings = 9973,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Card Type", Index=1004, Lcid=1033, Description="To provide master data for the card types list. For internal use only")]
+        [OptionSetMetadata("Action Card Type", Index=411, Lcid=1033, Description="To provide master data for the card types list. For internal use only")]
         ActionCardType = 9983,
         
         [EnumMember()]
-        [OptionSetMetadata("Interaction for Email", Index=821, Lcid=1033, Description="")]
+        [OptionSetMetadata("Interaction for Email", Index=761, Lcid=1033, Description="")]
         InteractionforEmail = 9986,
         
         [EnumMember()]
-        [OptionSetMetadata("External Party Item", Index=710, Lcid=1033, Description="Information about external party items that need to access Dynamics 365 from exte" +
+        [OptionSetMetadata("External Party Item", Index=697, Lcid=1033, Description="Information about external party items that need to access Dynamics 365 from exte" +
             "rnal channels.For internal use only")]
         ExternalPartyItem = 9987,
         
         [EnumMember()]
-        [OptionSetMetadata("HolidayWrapper", Index=835, Lcid=1033, Description="")]
+        [OptionSetMetadata("HolidayWrapper", Index=747, Lcid=1033, Description="")]
         HolidayWrapper = 9996,
         
         [EnumMember()]
-        [OptionSetMetadata("Email Signature", Index=742, Lcid=1033, Description="Signature for email message")]
+        [OptionSetMetadata("Email Signature", Index=433, Lcid=1033, Description="Signature for email message")]
         EmailSignature = 9997,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Attribute Configuration", Index=404, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Attribute Configuration", Index=358, Lcid=1033, Description="")]
         SolutionComponentAttributeConfiguration = 10000,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Batch Configuration", Index=405, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Batch Configuration", Index=342, Lcid=1033, Description="")]
         SolutionComponentBatchConfiguration = 10001,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Configuration", Index=350, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Configuration", Index=341, Lcid=1033, Description="")]
         SolutionComponentConfiguration = 10002,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Relationship Configuration", Index=349, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Relationship Configuration", Index=345, Lcid=1033, Description="")]
         SolutionComponentRelationshipConfiguration = 10003,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution History", Index=44, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution History", Index=113, Lcid=1033, Description="")]
         SolutionHistory = 10004,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution History Data Source", Index=42, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution History Data Source", Index=109, Lcid=1033, Description="")]
         SolutionHistoryDataSource = 10005,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Layer", Index=1303, Lcid=1033, Description="")]
+        [OptionSetMetadata("Component Layer", Index=620, Lcid=1033, Description="")]
         ComponentLayer = 10006,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Layer Data Source", Index=1304, Lcid=1033, Description="")]
+        [OptionSetMetadata("Component Layer Data Source", Index=652, Lcid=1033, Description="")]
         ComponentLayerDataSource = 10007,
         
         [EnumMember()]
-        [OptionSetMetadata("Package", Index=570, Lcid=1033, Description="")]
+        [OptionSetMetadata("Package", Index=26, Lcid=1033, Description="")]
         Package = 10008,
         
         [EnumMember()]
-        [OptionSetMetadata("Package History", Index=571, Lcid=1033, Description="")]
+        [OptionSetMetadata("Package History", Index=28, Lcid=1033, Description="")]
         PackageHistory = 10009,
         
         [EnumMember()]
-        [OptionSetMetadata("StageSolutionUpload", Index=340, Lcid=1033, Description="")]
+        [OptionSetMetadata("StageSolutionUpload", Index=350, Lcid=1033, Description="")]
         StageSolutionUpload = 10011,
         
         [EnumMember()]
-        [OptionSetMetadata("ExportSolutionUpload", Index=714, Lcid=1033, Description="")]
+        [OptionSetMetadata("ExportSolutionUpload", Index=693, Lcid=1033, Description="")]
         ExportSolutionUpload = 10012,
         
         [EnumMember()]
-        [OptionSetMetadata("FeatureControlSetting", Index=697, Lcid=1033, Description="featurecontrolsetting")]
+        [OptionSetMetadata("FeatureControlSetting", Index=712, Lcid=1033, Description="featurecontrolsetting")]
         FeatureControlSetting = 10013,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Summary", Index=59, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Summary", Index=114, Lcid=1033, Description="")]
         SolutionComponentSummary = 10014,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Count Summary", Index=60, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Count Summary", Index=107, Lcid=1033, Description="")]
         SolutionComponentCountSummary = 10015,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Data Source", Index=58, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Data Source", Index=115, Lcid=1033, Description="")]
         SolutionComponentDataSource = 10016,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Component Count Data Source", Index=62, Lcid=1033, Description="")]
+        [OptionSetMetadata("Solution Component Count Data Source", Index=99, Lcid=1033, Description="")]
         SolutionComponentCountDataSource = 10017,
         
         [EnumMember()]
-        [OptionSetMetadata("Microsoft Entra ID", Index=897, Lcid=1033, Description="Virtual entity that represents Microsoft Entra ID")]
+        [OptionSetMetadata("Microsoft Entra ID", Index=509, Lcid=1033, Description="Virtual entity that represents Microsoft Entra ID")]
         MicrosoftEntraID = 10018,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Entity", Index=352, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
-        StagedEntity = 10019,
+        [OptionSetMetadata("Staged attribute lookup value", Index=339, Lcid=1033, Description="Stores staged attribute lookup value metadata to be processed asynchronous.")]
+        Stagedattributelookupvalue = 10019,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Entity Attribute", Index=353, Lcid=1033, Description="Stores staged entity attribute metadata to be processed in async.")]
-        StagedEntityAttribute = 10020,
+        [OptionSetMetadata("Staged attribute picklist value", Index=338, Lcid=1033, Description="Stores staged attribute picklist value metadata to be processed asynchronous.")]
+        Stagedattributepicklistvalue = 10020,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Metadata Async Operation", Index=346, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
-        StagedMetadataAsyncOperation = 10021,
+        [OptionSetMetadata("Staged Entity", Index=346, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
+        StagedEntity = 10021,
         
         [EnumMember()]
-        [OptionSetMetadata("Key Vault Reference", Index=776, Lcid=1033, Description="Contains data that refers to an Azure Key Vault containing credentials used to co" +
+        [OptionSetMetadata("Staged Entity Attribute", Index=354, Lcid=1033, Description="Stores staged entity attribute metadata to be processed in async.")]
+        StagedEntityAttribute = 10022,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged entity relationship", Index=353, Lcid=1033, Description="Stores staged entity replationship metadata to be processed asynchronous.")]
+        Stagedentityrelationship = 10023,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged entity relationship relationships", Index=355, Lcid=1033, Description="Stores staged entity replationship relationships metadata to be processed asynchr" +
+            "onous.")]
+        Stagedentityrelationshiprelationships = 10024,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged entity relationship role", Index=357, Lcid=1033, Description="Stores staged entity replationship role metadata to be processed asynchronous.")]
+        Stagedentityrelationshiprole = 10025,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged Metadata Async Operation", Index=356, Lcid=1033, Description="Stores staged entity metadata to be processed before fully created.")]
+        StagedMetadataAsyncOperation = 10026,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged optionset", Index=352, Lcid=1033, Description="Stores staged option set metadata to be processed asynchronous.")]
+        Stagedoptionset = 10027,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged relationship", Index=348, Lcid=1033, Description="Stores staged replationship metadata to be processed asynchronous.")]
+        Stagedrelationship_2 = 10028,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged relationship", Index=347, Lcid=1033, Description="Stores staged replationship metadata to be processed asynchronous.")]
+        Stagedrelationship = 10029,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Staged relationship", Index=351, Lcid=1033, Description="Stores staged replationship metadata to be processed asynchronous.")]
+        Stagedrelationship_3 = 10030,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Key Vault Reference", Index=740, Lcid=1033, Description="Contains data that refers to an Azure Key Vault containing credentials used to co" +
             "nnect to secure web-hosted resources.")]
-        KeyVaultReference = 10022,
+        KeyVaultReference = 10031,
         
         [EnumMember()]
-        [OptionSetMetadata("Managed Identity", Index=782, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
+        [OptionSetMetadata("Managed Identity", Index=733, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
             "to secure web-hosted resources.")]
-        ManagedIdentity = 10023,
+        ManagedIdentity = 10032,
         
         [EnumMember()]
-        [OptionSetMetadata("Catalog", Index=991, Lcid=1033, Description="Entity for cataloging records to make it easier for your customers to find them o" +
+        [OptionSetMetadata("Catalog", Index=408, Lcid=1033, Description="Entity for cataloging records to make it easier for your customers to find them o" +
             "n portals and through search.")]
-        Catalog = 10024,
+        Catalog = 10033,
         
         [EnumMember()]
-        [OptionSetMetadata("Catalog Assignment", Index=992, Lcid=1033, Description="Entity for assigning records to a specific catalog ")]
-        CatalogAssignment = 10025,
+        [OptionSetMetadata("Catalog Assignment", Index=410, Lcid=1033, Description="Entity for assigning records to a specific catalog ")]
+        CatalogAssignment = 10034,
         
         [EnumMember()]
-        [OptionSetMetadata("Internal Catalog Assignment", Index=829, Lcid=1033, Description="")]
-        InternalCatalogAssignment = 10026,
+        [OptionSetMetadata("Internal Catalog Assignment", Index=762, Lcid=1033, Description="")]
+        InternalCatalogAssignment = 10035,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom API", Index=947, Lcid=1033, Description="Entity that defines a custom API")]
-        CustomAPI = 10027,
+        [OptionSetMetadata("Custom API", Index=399, Lcid=1033, Description="Entity that defines a custom API")]
+        CustomAPI = 10036,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom API Request Parameter", Index=954, Lcid=1033, Description="Entity that defines a request parameter for a custom API")]
-        CustomAPIRequestParameter = 10028,
+        [OptionSetMetadata("Custom API Request Parameter", Index=395, Lcid=1033, Description="Entity that defines a request parameter for a custom API")]
+        CustomAPIRequestParameter = 10037,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom API Response Property", Index=955, Lcid=1033, Description="Entity that defines a response property for a custom API ")]
-        CustomAPIResponseProperty = 10029,
+        [OptionSetMetadata("Custom API Response Property", Index=394, Lcid=1033, Description="Entity that defines a response property for a custom API ")]
+        CustomAPIResponseProperty = 10038,
         
         [EnumMember()]
-        [OptionSetMetadata("Plugin Package", Index=517, Lcid=1033, Description="")]
-        PluginPackage = 10030,
+        [OptionSetMetadata("Plugin Package", Index=36, Lcid=1033, Description="")]
+        PluginPackage = 10039,
         
         [EnumMember()]
-        [OptionSetMetadata("NonRelational Data Source", Index=1117, Lcid=1033, Description="")]
-        NonRelationalDataSource = 10031,
+        [OptionSetMetadata("Sensitivity Label", Index=304, Lcid=1033, Description="Virtual entity that represents Sensitivity Labels")]
+        SensitivityLabel = 10040,
         
         [EnumMember()]
-        [OptionSetMetadata("ProvisionLanguageForUser", Index=642, Lcid=1033, Description="")]
-        ProvisionLanguageForUser = 10032,
+        [OptionSetMetadata("NonRelational Data Source", Index=122, Lcid=1033, Description="")]
+        NonRelationalDataSource = 10041,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Object", Index=387, Lcid=1033, Description="A record that is being shared in a real time collaboration session.")]
-        SharedObject = 10033,
+        [OptionSetMetadata("ProvisionLanguageForUser", Index=75, Lcid=1033, Description="")]
+        ProvisionLanguageForUser = 10042,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Workspace", Index=385, Lcid=1033, Description="References a container that stores real-time collaboration data.")]
-        SharedWorkspace = 10034,
+        [OptionSetMetadata("Purview Label Info", Index=90, Lcid=1033, Description="")]
+        PurviewLabelInfo = 10043,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Workspace Access Token", Index=383, Lcid=1033, Description="Contains information about the shared workspace access tokens.")]
-        SharedWorkspaceAccessToken = 10035,
+        [OptionSetMetadata("Purview Label Sync Cache", Index=92, Lcid=1033, Description="Purview Label Sync Cache")]
+        PurviewLabelSyncCache = 10044,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Workspace Pool", Index=384, Lcid=1033, Description="Contains metadata about a container used to store real-time collaboration data. O" +
+        [OptionSetMetadata("Sensitivity Label Attribute Mapping", Index=300, Lcid=1033, Description="Sensitivity Label Attribute Mapping")]
+        SensitivityLabelAttributeMapping = 10045,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Object", Index=365, Lcid=1033, Description="A record that is being shared in a real time collaboration session.")]
+        SharedObject = 10046,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Workspace", Index=367, Lcid=1033, Description="References a container that stores real-time collaboration data.")]
+        SharedWorkspace = 10047,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Workspace Access Token", Index=369, Lcid=1033, Description="Contains information about the shared workspace access tokens.")]
+        SharedWorkspaceAccessToken = 10048,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Shared Workspace Pool", Index=368, Lcid=1033, Description="Contains metadata about a container used to store real-time collaboration data. O" +
             "nce claimed, a sharedworkspace record would be created with copied metadata.")]
-        SharedWorkspacePool = 10036,
+        SharedWorkspacePool = 10049,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Folder", Index=726, Lcid=1033, Description="A folder is a place to store data in Azure Data Lake.")]
-        DataLakeFolder = 10037,
+        [OptionSetMetadata("Data Lake Folder", Index=460, Lcid=1033, Description="A folder is a place to store data in Azure Data Lake.")]
+        DataLakeFolder = 10050,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Folder Permission", Index=727, Lcid=1033, Description="")]
-        DataLakeFolderPermission = 10038,
+        [OptionSetMetadata("Data Lake Folder Permission", Index=462, Lcid=1033, Description="")]
+        DataLakeFolderPermission = 10051,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Workspace", Index=734, Lcid=1033, Description="A workspace is a place to store data in Azure Data Lake.")]
-        DataLakeWorkspace = 10039,
+        [OptionSetMetadata("Data Lake Workspace", Index=464, Lcid=1033, Description="A workspace is a place to store data in Azure Data Lake.")]
+        DataLakeWorkspace = 10052,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Lake Workspace Permission", Index=735, Lcid=1033, Description="")]
-        DataLakeWorkspacePermission = 10040,
+        [OptionSetMetadata("Data Lake Workspace Permission", Index=463, Lcid=1033, Description="")]
+        DataLakeWorkspacePermission = 10053,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Processing configuration", Index=731, Lcid=1033, Description="")]
-        DataProcessingconfiguration = 10041,
+        [OptionSetMetadata("Data Processing configuration", Index=455, Lcid=1033, Description="")]
+        DataProcessingconfiguration = 10054,
         
         [EnumMember()]
-        [OptionSetMetadata("Exported Excel", Index=713, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
+        [OptionSetMetadata("Exported Excel", Index=694, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
             "equests.")]
-        ExportedExcel = 10042,
+        ExportedExcel = 10055,
         
         [EnumMember()]
-        [OptionSetMetadata("RetainedData Excel", Index=602, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
+        [OptionSetMetadata("RetainedData Excel", Index=69, Lcid=1033, Description="A Place holder entity to save excel file for each exportretaineddata custom api r" +
             "equests.")]
-        RetainedDataExcel = 10043,
+        RetainedDataExcel = 10056,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Database", Index=377, Lcid=1033, Description="This entity represents an external Synapse database and its associated datalake f" +
+        [OptionSetMetadata("Synapse Database", Index=233, Lcid=1033, Description="This entity represents an external Synapse database and its associated datalake f" +
             "older link.")]
-        SynapseDatabase = 10044,
+        SynapseDatabase = 10057,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link External Table State", Index=375, Lcid=1033, Description="Synapse Link external table states")]
-        SynapseLinkExternalTableState = 10045,
+        [OptionSetMetadata("Synapse Link External Table State", Index=235, Lcid=1033, Description="Synapse Link external table states")]
+        SynapseLinkExternalTableState = 10058,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Profile", Index=373, Lcid=1033, Description="Synapse Link Profile")]
-        SynapseLinkProfile = 10046,
+        [OptionSetMetadata("Synapse Link Profile", Index=237, Lcid=1033, Description="Synapse Link Profile")]
+        SynapseLinkProfile = 10059,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Profile Entity", Index=374, Lcid=1033, Description="Entities associated with the Synapse Link profile")]
-        SynapseLinkProfileEntity = 10047,
+        [OptionSetMetadata("Synapse Link Profile Entity", Index=236, Lcid=1033, Description="Entities associated with the Synapse Link profile")]
+        SynapseLinkProfileEntity = 10060,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Profile Entity State", Index=367, Lcid=1033, Description="Runtime state of the Synapse Link entity")]
-        SynapseLinkProfileEntityState = 10048,
+        [OptionSetMetadata("Synapse Link Profile Entity State", Index=232, Lcid=1033, Description="Runtime state of the Synapse Link entity")]
+        SynapseLinkProfileEntityState = 10061,
         
         [EnumMember()]
-        [OptionSetMetadata("Synapse Link Schedule", Index=360, Lcid=1033, Description="Synapse link schedules")]
-        SynapseLinkSchedule = 10049,
+        [OptionSetMetadata("Synapse Link Schedule", Index=228, Lcid=1033, Description="Synapse link schedules")]
+        SynapseLinkSchedule = 10062,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Version", Index=928, Lcid=1033, Description="")]
-        ComponentVersion = 10050,
+        [OptionSetMetadata("Component Changeset Payload", Index=421, Lcid=1033, Description="")]
+        ComponentChangesetPayload = 10063,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Version Data Source", Index=929, Lcid=1033, Description="")]
-        ComponentVersionDataSource = 10051,
+        [OptionSetMetadata("Component Changeset Version", Index=405, Lcid=1033, Description="")]
+        ComponentChangesetVersion = 10064,
         
         [EnumMember()]
-        [OptionSetMetadata("Component Version (Internal)", Index=927, Lcid=1033)]
-        ComponentVersionInternal = 10052,
+        [OptionSetMetadata("Component Version", Index=389, Lcid=1033, Description="")]
+        ComponentVersion = 10065,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Branch", Index=802, Lcid=1033, Description="")]
-        GitBranch = 10053,
+        [OptionSetMetadata("Component Version Data Source", Index=388, Lcid=1033, Description="")]
+        ComponentVersionDataSource = 10066,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Configuration Retrieval Data Source", Index=803, Lcid=1033, Description="")]
-        GitConfigurationRetrievalDataSource = 10054,
+        [OptionSetMetadata("Component Version (Internal)", Index=390, Lcid=1033)]
+        ComponentVersionInternal = 10067,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Organization", Index=801, Lcid=1033, Description="")]
-        GitOrganization = 10055,
+        [OptionSetMetadata("Git Branch", Index=687, Lcid=1033, Description="")]
+        GitBranch = 10068,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Project", Index=799, Lcid=1033, Description="")]
-        GitProject = 10056,
+        [OptionSetMetadata("Git Configuration Retrieval Data Source", Index=689, Lcid=1033, Description="")]
+        GitConfigurationRetrievalDataSource = 10069,
         
         [EnumMember()]
-        [OptionSetMetadata("Git Repository", Index=800, Lcid=1033, Description="")]
-        GitRepository = 10057,
+        [OptionSetMetadata("Git Organization", Index=691, Lcid=1033, Description="")]
+        GitOrganization = 10070,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Branch Configuration", Index=348, Lcid=1033, Description="Stores the source control branch configuration associated with the organization o" +
+        [OptionSetMetadata("Git Project", Index=690, Lcid=1033, Description="")]
+        GitProject = 10071,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Git Repository", Index=686, Lcid=1033, Description="")]
+        GitRepository = 10072,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Git Solution", Index=682, Lcid=1033, Description="")]
+        GitSolution = 10073,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Source Control Branch Configuration", Index=340, Lcid=1033, Description="Stores the source control branch configuration associated with the organization o" +
             "r solution")]
-        SourceControlBranchConfiguration = 10058,
+        SourceControlBranchConfiguration = 10074,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Component", Index=355, Lcid=1033, Description="Stores the Source Control Components associated with the organization or solution" +
+        [OptionSetMetadata("Source Control Component", Index=336, Lcid=1033, Description="Stores the Source Control Components associated with the organization or solution" +
             "")]
-        SourceControlComponent = 10059,
+        SourceControlComponent = 10075,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Component Payload", Index=356, Lcid=1033, Description="Stores the Source Control Component Payloads associated with components.")]
-        SourceControlComponentPayload = 10060,
+        [OptionSetMetadata("Source Control Component Payload", Index=335, Lcid=1033, Description="Stores the Source Control Component Payloads associated with components.")]
+        SourceControlComponentPayload = 10076,
         
         [EnumMember()]
-        [OptionSetMetadata("Source Control Configuration", Index=354, Lcid=1033, Description="Stores the git configuration associated with the environment ")]
-        SourceControlConfiguration = 10061,
+        [OptionSetMetadata("Source Control Configuration", Index=337, Lcid=1033, Description="Stores the git configuration associated with the environment ")]
+        SourceControlConfiguration = 10077,
         
         [EnumMember()]
-        [OptionSetMetadata("Staged Source Control Component", Index=339, Lcid=1033, Description="Stores the source control components that needs to be processed")]
-        StagedSourceControlComponent = 10062,
+        [OptionSetMetadata("Staged Source Control Component", Index=349, Lcid=1033, Description="Stores the source control components that needs to be processed")]
+        StagedSourceControlComponent = 10078,
         
         [EnumMember()]
-        [OptionSetMetadata("DataflowRefreshHistory", Index=1054, Lcid=1033, Description="")]
-        DataflowRefreshHistory = 10063,
+        [OptionSetMetadata("DataflowRefreshHistory", Index=645, Lcid=1033, Description="")]
+        DataflowRefreshHistory = 10079,
         
         [EnumMember()]
-        [OptionSetMetadata("EntityRefreshHistory", Index=1079, Lcid=1033, Description="")]
-        EntityRefreshHistory = 10064,
+        [OptionSetMetadata("EntityRefreshHistory", Index=666, Lcid=1033, Description="")]
+        EntityRefreshHistory = 10080,
         
         [EnumMember()]
-        [OptionSetMetadata("Shared Link Setting", Index=386, Lcid=1033, Description="Shared Link Setting")]
-        SharedLinkSetting = 10065,
+        [OptionSetMetadata("Shared Link Setting", Index=366, Lcid=1033, Description="Shared Link Setting")]
+        SharedLinkSetting = 10081,
         
         [EnumMember()]
-        [OptionSetMetadata("DelegatedAuthorization", Index=732, Lcid=1033, Description="Context for delegated authorization.")]
-        DelegatedAuthorization = 10066,
+        [OptionSetMetadata("DelegatedAuthorization", Index=454, Lcid=1033, Description="Context for delegated authorization.")]
+        DelegatedAuthorization = 10082,
         
         [EnumMember()]
-        [OptionSetMetadata("CascadeGrantRevokeAccessRecordsTracker", Index=1005, Lcid=1033, Description="")]
-        CascadeGrantRevokeAccessRecordsTracker = 10068,
+        [OptionSetMetadata("CascadeGrantRevokeAccessRecordsTracker", Index=407, Lcid=1033, Description="")]
+        CascadeGrantRevokeAccessRecordsTracker = 10084,
         
         [EnumMember()]
-        [OptionSetMetadata("CascadeGrantRevokeAccessVersionTracker", Index=998, Lcid=1033, Description="")]
-        CascadeGrantRevokeAccessVersionTracker = 10069,
+        [OptionSetMetadata("CascadeGrantRevokeAccessVersionTracker", Index=406, Lcid=1033, Description="")]
+        CascadeGrantRevokeAccessVersionTracker = 10085,
         
         [EnumMember()]
-        [OptionSetMetadata("RevokeInheritedAccessRecordsTracker", Index=604, Lcid=1033, Description="")]
-        RevokeInheritedAccessRecordsTracker = 10070,
+        [OptionSetMetadata("RevokeInheritedAccessRecordsTracker", Index=317, Lcid=1033, Description="")]
+        RevokeInheritedAccessRecordsTracker = 10086,
         
         [EnumMember()]
-        [OptionSetMetadata("TdsMetadata", Index=475, Lcid=1033, Description="")]
-        TdsMetadata = 10071,
+        [OptionSetMetadata("TdsMetadata", Index=195, Lcid=1033, Description="")]
+        TdsMetadata = 10087,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Element", Index=852, Lcid=1033, Description="Associates a model-driven app with its components.")]
-        ModelDrivenAppElement = 10072,
+        [OptionSetMetadata("Model-Driven App Element", Index=490, Lcid=1033, Description="Associates a model-driven app with its components.")]
+        ModelDrivenAppElement = 10088,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Component Node\'s Edge", Index=858, Lcid=1033, Description="Contains Model-Driven App Component Node\'s Edge Information.")]
-        ModelDrivenAppComponentNodesEdge = 10073,
+        [OptionSetMetadata("Model-Driven App Component Node\'s Edge", Index=558, Lcid=1033, Description="Contains Model-Driven App Component Node\'s Edge Information.")]
+        ModelDrivenAppComponentNodesEdge = 10089,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Component Node", Index=851, Lcid=1033, Description="Contains Model-Driven App Component Node Information")]
-        ModelDrivenAppComponentNode = 10074,
+        [OptionSetMetadata("Model-Driven App Component Node", Index=560, Lcid=1033, Description="Contains Model-Driven App Component Node Information")]
+        ModelDrivenAppComponentNode = 10090,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App Setting", Index=850, Lcid=1033, Description="Holds the value for the associated App Setting Definition.")]
-        ModelDrivenAppSetting = 10075,
+        [OptionSetMetadata("Model-Driven App Setting", Index=572, Lcid=1033, Description="Holds the value for the associated App Setting Definition.")]
+        ModelDrivenAppSetting = 10091,
         
         [EnumMember()]
-        [OptionSetMetadata("Model-Driven App User Setting", Index=848, Lcid=1033, Description="Holds the value for the associated App User Setting Definition.")]
-        ModelDrivenAppUserSetting = 10076,
+        [OptionSetMetadata("Model-Driven App User Setting", Index=571, Lcid=1033, Description="Holds the value for the associated App User Setting Definition.")]
+        ModelDrivenAppUserSetting = 10092,
         
         [EnumMember()]
-        [OptionSetMetadata("Organization Setting", Index=579, Lcid=1033, Description="Holds the value for the associated Organization Setting Definition.")]
-        OrganizationSetting = 10077,
+        [OptionSetMetadata("Organization Setting", Index=30, Lcid=1033, Description="Holds the value for the associated Organization Setting Definition.")]
+        OrganizationSetting = 10093,
         
         [EnumMember()]
-        [OptionSetMetadata("Setting Definition", Index=379, Lcid=1033, Description="Contains Setting Definitions")]
-        SettingDefinition = 10078,
+        [OptionSetMetadata("Setting Definition", Index=334, Lcid=1033, Description="Contains Setting Definitions")]
+        SettingDefinition = 10094,
         
         [EnumMember()]
-        [OptionSetMetadata("CanvasApp Extended Metadata", Index=1007, Lcid=1033, Description="Holds extended metadata values for canvas apps that are not solution aware")]
-        CanvasAppExtendedMetadata = 10079,
+        [OptionSetMetadata("CanvasApp Extended Metadata", Index=414, Lcid=1033, Description="Holds extended metadata values for canvas apps that are not solution aware")]
+        CanvasAppExtendedMetadata = 10095,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Plan Mapping", Index=378, Lcid=1033, Description="Service Plan Mapping")]
-        ServicePlanMapping = 10080,
+        [OptionSetMetadata("Service Plan Mapping", Index=302, Lcid=1033, Description="Service Plan Mapping")]
+        ServicePlanMapping = 10096,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Plan Custom Control", Index=380, Lcid=1033, Description="Service Plan Custom Controls")]
-        ServicePlanCustomControl = 10081,
+        [OptionSetMetadata("Service Plan Custom Control", Index=303, Lcid=1033, Description="Service Plan Custom Controls")]
+        ServicePlanCustomControl = 10097,
         
         [EnumMember()]
-        [OptionSetMetadata("ApplicationUser", Index=861, Lcid=1033, Description="Application User that has non-interactive access to the CDS system")]
-        ApplicationUser = 10083,
+        [OptionSetMetadata("ApplicationUser", Index=525, Lcid=1033, Description="Application User that has non-interactive access to the CDS system")]
+        ApplicationUser = 10099,
         
         [EnumMember()]
-        [OptionSetMetadata("OData v4 Data Source", Index=239, Lcid=1033, Description="Data sources used by the OData v4 data provider to access data from an external w" +
+        [OptionSetMetadata("OData v4 Data Source", Index=124, Lcid=1033, Description="Data sources used by the OData v4 data provider to access data from an external w" +
             "eb service.")]
-        ODatav4DataSource = 10086,
+        ODatav4DataSource = 10102,
         
         [EnumMember()]
-        [OptionSetMetadata("Workflow Binary", Index=424, Lcid=1033, Description="")]
-        WorkflowBinary = 10087,
+        [OptionSetMetadata("Workflow Binary", Index=250, Lcid=1033, Description="")]
+        WorkflowBinary = 10103,
         
         [EnumMember()]
-        [OptionSetMetadata("Credential", Index=946, Lcid=1033, Description="")]
-        Credential = 10088,
+        [OptionSetMetadata("Business Process", Index=543, Lcid=1033, Description="")]
+        BusinessProcess = 10104,
         
         [EnumMember()]
-        [OptionSetMetadata("Desktop Flow Module", Index=723, Lcid=1033, Description="")]
-        DesktopFlowModule = 10089,
+        [OptionSetMetadata("Credential", Index=403, Lcid=1033, Description="")]
+        Credential = 10105,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Capacity Assignment", Index=700, Lcid=1033, Description="Capacity assignment for usage in Power Automate")]
-        FlowCapacityAssignment = 10090,
+        [OptionSetMetadata("Desktop Flow Module", Index=474, Lcid=1033, Description="")]
+        DesktopFlowModule = 10106,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Credential Application", Index=813, Lcid=1033, Description="")]
-        FlowCredentialApplication = 10091,
+        [OptionSetMetadata("Flow Capacity Assignment", Index=676, Lcid=1033, Description="Capacity assignment for usage in Power Automate")]
+        FlowCapacityAssignment = 10107,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Event", Index=814, Lcid=1033, Description="Entity to store the events that happen during usage of Power Automate.")]
-        FlowEvent = 10092,
+        [OptionSetMetadata("Flow Credential Application", Index=675, Lcid=1033, Description="")]
+        FlowCredentialApplication = 10108,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine", Index=810, Lcid=1033, Description="")]
-        FlowMachine = 10093,
+        [OptionSetMetadata("Flow Event", Index=677, Lcid=1033, Description="Entity to store the events that happen during usage of Power Automate.")]
+        FlowEvent = 10109,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Group", Index=811, Lcid=1033, Description="")]
-        FlowMachineGroup = 10094,
+        [OptionSetMetadata("Flow Machine", Index=678, Lcid=1033, Description="")]
+        FlowMachine = 10110,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Image", Index=818, Lcid=1033, Description="")]
-        FlowMachineImage = 10095,
+        [OptionSetMetadata("Flow Machine Group", Index=674, Lcid=1033, Description="")]
+        FlowMachineGroup = 10111,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Image Version", Index=819, Lcid=1033, Description="")]
-        FlowMachineImageVersion = 10096,
+        [OptionSetMetadata("Flow Machine Image", Index=670, Lcid=1033, Description="")]
+        FlowMachineImage = 10112,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Machine Network", Index=817, Lcid=1033, Description="")]
-        FlowMachineNetwork = 10097,
+        [OptionSetMetadata("Flow Machine Image Version", Index=669, Lcid=1033, Description="")]
+        FlowMachineImageVersion = 10113,
         
         [EnumMember()]
-        [OptionSetMetadata("ProcessStageParameter", Index=532, Lcid=1033, Description="")]
-        ProcessStageParameter = 10098,
+        [OptionSetMetadata("Flow Machine Network", Index=671, Lcid=1033, Description="")]
+        FlowMachineNetwork = 10114,
         
         [EnumMember()]
-        [OptionSetMetadata("Work Queue", Index=428, Lcid=1033, Description="")]
-        WorkQueue = 10099,
+        [OptionSetMetadata("Flow Session Binary", Index=680, Lcid=1033, Description="")]
+        FlowSessionBinary = 10115,
         
         [EnumMember()]
-        [OptionSetMetadata("Work Queue Item", Index=429, Lcid=1033, Description="")]
-        WorkQueueItem = 10100,
+        [OptionSetMetadata("ProcessStageParameter", Index=74, Lcid=1033, Description="")]
+        ProcessStageParameter = 10116,
         
         [EnumMember()]
-        [OptionSetMetadata("Desktop Flow Binary", Index=716, Lcid=1033, Description="")]
-        DesktopFlowBinary = 10101,
+        [OptionSetMetadata("Saving Rule", Index=294, Lcid=1033, Description="")]
+        SavingRule = 10117,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Log", Index=812, Lcid=1033)]
-        FlowLog = 10102,
+        [OptionSetMetadata("Tag", Index=196, Lcid=1033, Description="")]
+        Tag = 10118,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Run", Index=815, Lcid=1033, Description="")]
-        FlowRun = 10103,
+        [OptionSetMetadata("Tagged Flow Session", Index=192, Lcid=1033, Description="")]
+        TaggedFlowSession = 10119,
         
         [EnumMember()]
-        [OptionSetMetadata("Action Approval Model", Index=1025, Lcid=1033, Description="The action approval model data attached to an action approval.")]
-        ActionApprovalModel = 10104,
+        [OptionSetMetadata("Tagged Process", Index=191, Lcid=1033, Description="")]
+        TaggedProcess = 10120,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval", Index=1026, Lcid=1033, Description="An approval.")]
-        Approval = 10105,
+        [OptionSetMetadata("Workflow Metadata", Index=259, Lcid=1033, Description="Metadata associated with workflows")]
+        WorkflowMetadata = 10121,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval Request", Index=1019, Lcid=1033, Description="An individual request for approval.")]
-        ApprovalRequest = 10106,
+        [OptionSetMetadata("Work Queue", Index=260, Lcid=1033, Description="")]
+        WorkQueue = 10122,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval Response", Index=1012, Lcid=1033, Description="An individual response to an approval.")]
-        ApprovalResponse = 10107,
+        [OptionSetMetadata("Work Queue Item", Index=256, Lcid=1033, Description="")]
+        WorkQueueItem = 10123,
         
         [EnumMember()]
-        [OptionSetMetadata("Approval Step", Index=1013, Lcid=1033, Description="")]
-        ApprovalStep = 10108,
+        [OptionSetMetadata("Desktop Flow Binary", Index=472, Lcid=1033, Description="")]
+        DesktopFlowBinary = 10124,
         
         [EnumMember()]
-        [OptionSetMetadata("Await All Action Approval Model", Index=1011, Lcid=1033, Description="The await all action approval model data attached to an action approval.")]
-        AwaitAllActionApprovalModel = 10109,
+        [OptionSetMetadata("Flow Aggregation", Index=692, Lcid=1033, Description="")]
+        FlowAggregation = 10125,
         
         [EnumMember()]
-        [OptionSetMetadata("Await All Approval Model", Index=1009, Lcid=1033, Description="The await all approval model data attached to an approval.")]
-        AwaitAllApprovalModel = 10110,
+        [OptionSetMetadata("Flow Log", Index=679, Lcid=1033)]
+        FlowLog = 10126,
         
         [EnumMember()]
-        [OptionSetMetadata("Basic Approval Model Data", Index=1010, Lcid=1033, Description="The basic approval model data attached to an approval.")]
-        BasicApprovalModelData = 10111,
+        [OptionSetMetadata("Flow Run", Index=673, Lcid=1033, Description="")]
+        FlowRun = 10127,
         
         [EnumMember()]
-        [OptionSetMetadata("Flow Approval", Index=1017, Lcid=1033, Description="Microsoft Flow data attached to an approval.")]
-        FlowApproval = 10112,
+        [OptionSetMetadata("Approval Process", Index=553, Lcid=1033, Description="Approval Process for Multi-Stage Approvals")]
+        ApprovalProcess = 10128,
         
         [EnumMember()]
-        [OptionSetMetadata("Connection Reference", Index=933, Lcid=1033, Description="")]
-        ConnectionReference = 10121,
+        [OptionSetMetadata("Approval Stage Approval", Index=561, Lcid=1033, Description="The approval stage in multi-stage approvals")]
+        ApprovalStageApproval = 10129,
         
         [EnumMember()]
-        [OptionSetMetadata("DVFileSearch", Index=755, Lcid=1033, Description="DVFileSearches Component")]
-        DVFileSearch = 10122,
+        [OptionSetMetadata("Approval Stage Condition", Index=569, Lcid=1033, Description="The condition in multi-stage approvals")]
+        ApprovalStageCondition = 10130,
         
         [EnumMember()]
-        [OptionSetMetadata("DVFileSearchAttribute", Index=756, Lcid=1033, Description="")]
-        DVFileSearchAttribute = 10123,
+        [OptionSetMetadata("Approval Stage Intelligent", Index=568, Lcid=1033, Description="")]
+        ApprovalStageIntelligent = 10131,
         
         [EnumMember()]
-        [OptionSetMetadata("DVFileSearchEntity", Index=754, Lcid=1033, Description="DVFileSearchEntities component.")]
-        DVFileSearchEntity = 10124,
+        [OptionSetMetadata("Approval Stage Order", Index=570, Lcid=1033, Description="The order of the stages in multi-stage approvals.")]
+        ApprovalStageOrder = 10132,
         
         [EnumMember()]
-        [OptionSetMetadata("DVTableSearch", Index=752, Lcid=1033, Description="DVTableSearches component")]
-        DVTableSearch = 10125,
+        [OptionSetMetadata("Action Approval Model", Index=661, Lcid=1033, Description="The action approval model data attached to an action approval.")]
+        ActionApprovalModel = 10133,
         
         [EnumMember()]
-        [OptionSetMetadata("DVTableSearchAttribute", Index=753, Lcid=1033, Description="DVTableSearchAttribute component")]
-        DVTableSearchAttribute = 10126,
+        [OptionSetMetadata("Approval", Index=660, Lcid=1033, Description="An approval.")]
+        Approval = 10134,
         
         [EnumMember()]
-        [OptionSetMetadata("DVTableSearchEntity", Index=746, Lcid=1033, Description="DVTableSearchEntities component")]
-        DVTableSearchEntity = 10127,
+        [OptionSetMetadata("Approval Request", Index=644, Lcid=1033, Description="An individual request for approval.")]
+        ApprovalRequest = 10135,
         
         [EnumMember()]
-        [OptionSetMetadata("AICopilot", Index=889, Lcid=1033, Description="AI Copilot")]
-        AICopilot = 10128,
+        [OptionSetMetadata("Approval Response", Index=628, Lcid=1033, Description="An individual response to an approval.")]
+        ApprovalResponse = 10136,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginAuth", Index=917, Lcid=1033, Description="Entity to store AIPlugin Auth Information")]
-        AIPluginAuth = 10129,
+        [OptionSetMetadata("Approval Step", Index=627, Lcid=1033, Description="")]
+        ApprovalStep = 10137,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Conversation Starter", Index=915, Lcid=1033, Description="Conversation Starters for AI Plugins.")]
-        AIPluginConversationStarter = 10130,
+        [OptionSetMetadata("Await All Action Approval Model", Index=629, Lcid=1033, Description="The await all action approval model data attached to an action approval.")]
+        AwaitAllActionApprovalModel = 10138,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Conversation Starter Mapping", Index=916, Lcid=1033, Description="AIPlugins component")]
-        AIPluginConversationStarterMapping = 10131,
+        [OptionSetMetadata("Await All Approval Model", Index=631, Lcid=1033, Description="The await all approval model data attached to an approval.")]
+        AwaitAllApprovalModel = 10139,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Governance", Index=922, Lcid=1033, Description="")]
-        AIPluginGovernance = 10132,
+        [OptionSetMetadata("Basic Approval Model Data", Index=630, Lcid=1033, Description="The basic approval model data attached to an approval.")]
+        BasicApprovalModelData = 10140,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Plugin Governance Extended", Index=920, Lcid=1033, Description="")]
-        AIPluginGovernanceExtended = 10133,
+        [OptionSetMetadata("Flow Approval", Index=626, Lcid=1033, Description="Microsoft Flow data attached to an approval.")]
+        FlowApproval = 10141,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginOperationResponseTemplate", Index=908, Lcid=1033, Description="Content for the AI Plugin Operation Response Template")]
-        AIPluginOperationResponseTemplate = 10134,
+        [OptionSetMetadata("Connection Reference", Index=387, Lcid=1033, Description="")]
+        ConnectionReference = 10150,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginTitle", Index=906, Lcid=1033, Description="AIPlugin Title")]
-        AIPluginTitle = 10135,
+        [OptionSetMetadata("Knowledge Source Consumer", Index=718, Lcid=1033, Description="")]
+        KnowledgeSourceConsumer = 10151,
         
         [EnumMember()]
-        [OptionSetMetadata("SideloadedAIPlugin", Index=418, Lcid=1033, Description="Sideloaded AIPlugins metadata.")]
-        SideloadedAIPlugin = 10136,
+        [OptionSetMetadata("Knowledge Source Profile", Index=717, Lcid=1033, Description="")]
+        KnowledgeSourceProfile = 10152,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPlugin", Index=919, Lcid=1033, Description="AIPlugins component")]
-        AIPlugin = 10137,
+        [OptionSetMetadata("UnstructuredFileSearchEntity", Index=282, Lcid=1033, Description="")]
+        UnstructuredFileSearchEntity = 10153,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginExternalSchema", Index=923, Lcid=1033, Description="AIPluginExternalSchemas component")]
-        AIPluginExternalSchema = 10138,
+        [OptionSetMetadata("UnstructuredFileSearchRecord", Index=281, Lcid=1033, Description="UnstructuredFileSearchRecord")]
+        UnstructuredFileSearchRecord = 10154,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginExternalSchemaProperty", Index=924, Lcid=1033, Description="AIPluginExternalSchemaProperties component")]
-        AIPluginExternalSchemaProperty = 10139,
+        [OptionSetMetadata("UnstructuredFileSearchRecordStatus", Index=283, Lcid=1033, Description="UnstructuredFileSearchRecordStatus")]
+        UnstructuredFileSearchRecordStatus = 10155,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginInstance", Index=921, Lcid=1033, Description="AI Plugin Instances Component")]
-        AIPluginInstance = 10140,
+        [OptionSetMetadata("DVFileSearch", Index=469, Lcid=1033, Description="DVFileSearches Component")]
+        DVFileSearch = 10156,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginOperation", Index=914, Lcid=1033, Description="AIPluginOperations component")]
-        AIPluginOperation = 10141,
+        [OptionSetMetadata("DVFileSearchAttribute", Index=453, Lcid=1033, Description="")]
+        DVFileSearchAttribute = 10157,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginOperationParameter", Index=907, Lcid=1033, Description="Parameter overrides for AI Operation")]
-        AIPluginOperationParameter = 10142,
+        [OptionSetMetadata("DVFileSearchEntity", Index=437, Lcid=1033, Description="DVFileSearchEntities component.")]
+        DVFileSearchEntity = 10158,
         
         [EnumMember()]
-        [OptionSetMetadata("AIPluginUserSetting", Index=904, Lcid=1033, Description="")]
-        AIPluginUserSetting = 10143,
+        [OptionSetMetadata("DVTableSearch", Index=436, Lcid=1033, Description="DVTableSearches component")]
+        DVTableSearch = 10159,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Event", Index=1244, Lcid=1033, Description="")]
-        AIEvent = 10145,
+        [OptionSetMetadata("DVTableSearchAttribute", Index=438, Lcid=1033, Description="DVTableSearchAttribute component")]
+        DVTableSearchAttribute = 10160,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Feedback Loop", Index=1258, Lcid=1033, Description="")]
-        AIBuilderFeedbackLoop = 10146,
+        [OptionSetMetadata("DVTableSearchEntity", Index=440, Lcid=1033, Description="DVTableSearchEntities component")]
+        DVTableSearchEntity = 10161,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Form Processing Document", Index=1242, Lcid=1033, Description="")]
-        AIFormProcessingDocument = 10147,
+        [OptionSetMetadata("AICopilot", Index=519, Lcid=1033, Description="AI Copilot")]
+        AICopilot = 10162,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Image", Index=1241, Lcid=1033, Description="")]
-        AIObjectDetectionImage = 10148,
+        [OptionSetMetadata("AIPluginAuth", Index=516, Lcid=1033, Description="Entity to store AIPlugin Auth Information")]
+        AIPluginAuth = 10163,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Label", Index=1248, Lcid=1033, Description="")]
-        AIObjectDetectionLabel = 10149,
+        [OptionSetMetadata("AI Plugin Conversation Starter", Index=518, Lcid=1033, Description="Conversation Starters for AI Plugins.")]
+        AIPluginConversationStarter = 10164,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Bounding Box", Index=1249, Lcid=1033, Description="")]
-        AIObjectDetectionBoundingBox = 10150,
+        [OptionSetMetadata("AI Plugin Conversation Starter Mapping", Index=517, Lcid=1033, Description="AIPlugins component")]
+        AIPluginConversationStarterMapping = 10165,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Object Detection Image Mapping", Index=1247, Lcid=1033, Description="")]
-        AIObjectDetectionImageMapping = 10151,
+        [OptionSetMetadata("AI Plugin Governance", Index=484, Lcid=1033, Description="")]
+        AIPluginGovernance = 10166,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Dataset", Index=1251, Lcid=1033, Description="")]
-        AIBuilderDataset = 10153,
+        [OptionSetMetadata("AI Plugin Governance Extended", Index=486, Lcid=1033, Description="")]
+        AIPluginGovernanceExtended = 10167,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Dataset File", Index=1252, Lcid=1033, Description="")]
-        AIBuilderDatasetFile = 10154,
+        [OptionSetMetadata("AIPluginOperationResponseTemplate", Index=479, Lcid=1033, Description="Content for the AI Plugin Operation Response Template")]
+        AIPluginOperationResponseTemplate = 10168,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Dataset Record", Index=1259, Lcid=1033, Description="")]
-        AIBuilderDatasetRecord = 10155,
+        [OptionSetMetadata("AIPluginTitle", Index=478, Lcid=1033, Description="AIPlugin Title")]
+        AIPluginTitle = 10169,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder Datasets Container", Index=1260, Lcid=1033, Description="")]
-        AIBuilderDatasetsContainer = 10156,
+        [OptionSetMetadata("SideloadedAIPlugin", Index=362, Lcid=1033, Description="Sideloaded AIPlugins metadata.")]
+        SideloadedAIPlugin = 10170,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder File", Index=1256, Lcid=1033, Description="")]
-        AIBuilderFile = 10157,
+        [OptionSetMetadata("AIPlugin", Index=514, Lcid=1033, Description="AIPlugins component")]
+        AIPlugin = 10171,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Builder File Attached Data", Index=1257, Lcid=1033, Description="")]
-        AIBuilderFileAttachedData = 10158,
+        [OptionSetMetadata("AIPluginExternalSchema", Index=501, Lcid=1033, Description="AIPluginExternalSchemas component")]
+        AIPluginExternalSchema = 10172,
         
         [EnumMember()]
-        [OptionSetMetadata("Help Page", Index=1034, Lcid=1033, Description="")]
-        HelpPage = 10159,
+        [OptionSetMetadata("AIPluginExternalSchemaProperty", Index=485, Lcid=1033, Description="AIPluginExternalSchemaProperties component")]
+        AIPluginExternalSchemaProperty = 10173,
         
         [EnumMember()]
-        [OptionSetMetadata("Tour", Index=18, Lcid=1033, Description="")]
-        Tour = 10160,
+        [OptionSetMetadata("AIPluginInstance", Index=488, Lcid=1033, Description="AI Plugin Instances Component")]
+        AIPluginInstance = 10174,
         
         [EnumMember()]
-        [OptionSetMetadata("BotContent", Index=140, Lcid=1033, Description="")]
-        BotContent = 10161,
+        [OptionSetMetadata("AIPluginOperation", Index=487, Lcid=1033, Description="AIPluginOperations component")]
+        AIPluginOperation = 10175,
         
         [EnumMember()]
-        [OptionSetMetadata("ConversationTranscript", Index=962, Lcid=1033, Description="Contains the transcripts of conversations between participants such as customers," +
+        [OptionSetMetadata("AIPluginOperationParameter", Index=483, Lcid=1033, Description="Parameter overrides for AI Operation")]
+        AIPluginOperationParameter = 10176,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AIPluginUserSetting", Index=480, Lcid=1033, Description="")]
+        AIPluginUserSetting = 10177,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Configuration Search", Index=609, Lcid=1033, Description="")]
+        AIConfigurationSearch = 10179,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Data Processing Event", Index=611, Lcid=1033, Description="Events that are triggered by Data Processing.")]
+        DataProcessingEvent = 10180,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Document Template", Index=613, Lcid=1033, Description="Stores AI-powered document templates, including file content, metadata, and owner" +
+            "ship details, to support automated document generation and management scenarios " +
+            "in Power Platform solutions.")]
+        AIDocumentTemplate = 10181,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Event", Index=579, Lcid=1033, Description="")]
+        AIEvent = 10182,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Model Catalog", Index=582, Lcid=1033, Description="This table contains records of AI Model Catalogs used for BYOM")]
+        AIModelCatalog = 10183,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Feedback Loop", Index=619, Lcid=1033, Description="")]
+        AIBuilderFeedbackLoop = 10185,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Form Processing Document", Index=581, Lcid=1033, Description="")]
+        AIFormProcessingDocument = 10186,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Image", Index=578, Lcid=1033, Description="")]
+        AIObjectDetectionImage = 10187,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Label", Index=574, Lcid=1033, Description="")]
+        AIObjectDetectionLabel = 10188,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Bounding Box", Index=573, Lcid=1033, Description="")]
+        AIObjectDetectionBoundingBox = 10189,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Object Detection Image Mapping", Index=575, Lcid=1033, Description="")]
+        AIObjectDetectionImageMapping = 10190,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Dataset", Index=608, Lcid=1033, Description="")]
+        AIBuilderDataset = 10192,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Dataset File", Index=616, Lcid=1033, Description="")]
+        AIBuilderDatasetFile = 10193,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Dataset Record", Index=615, Lcid=1033, Description="")]
+        AIBuilderDatasetRecord = 10194,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder Datasets Container", Index=617, Lcid=1033, Description="")]
+        AIBuilderDatasetsContainer = 10195,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder File", Index=618, Lcid=1033, Description="")]
+        AIBuilderFile = 10196,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Builder File Attached Data", Index=614, Lcid=1033, Description="")]
+        AIBuilderFileAttachedData = 10197,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Evaluation Configuration", Index=612, Lcid=1033, Description="")]
+        AIEvaluationConfiguration = 10198,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Evaluation Metric", Index=596, Lcid=1033, Description="")]
+        AIEvaluationMetric = 10199,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Evaluation Run", Index=580, Lcid=1033, Description="")]
+        AIEvaluationRun = 10200,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Optimization", Index=577, Lcid=1033, Description="")]
+        AIOptimization = 10201,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Optimization Private Data", Index=576, Lcid=1033, Description="")]
+        AIOptimizationPrivateData = 10202,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Case", Index=592, Lcid=1033, Description="")]
+        AITestCase = 10203,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Case Document", Index=591, Lcid=1033, Description="")]
+        AITestCaseDocument = 10204,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Case Input", Index=593, Lcid=1033, Description="")]
+        AITestCaseInput = 10205,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Run", Index=595, Lcid=1033, Description="")]
+        AITestRun = 10206,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AI Test Run Batch", Index=594, Lcid=1033, Description="")]
+        AITestRunBatch = 10207,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Help Page", Index=623, Lcid=1033, Description="")]
+        HelpPage = 10208,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Tour", Index=110, Lcid=1033, Description="")]
+        Tour = 10209,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BotContent", Index=143, Lcid=1033, Description="")]
+        BotContent = 10210,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ConversationTranscript", Index=385, Lcid=1033, Description="Contains the transcripts of conversations between participants such as customers," +
             " Virtual Agents or Human agents.")]
-        ConversationTranscript = 10162,
+        ConversationTranscript = 10211,
         
         [EnumMember()]
-        [OptionSetMetadata("Copilot", Index=982, Lcid=1033, Description="Represents a copilot created in Copilot Studio. https://copilotstudio.microsoft.c" +
+        [OptionSetMetadata("Copilot", Index=526, Lcid=1033, Description="Represents a copilot created in Copilot Studio. https://copilotstudio.microsoft.c" +
             "om/")]
-        Copilot = 10163,
+        Copilot = 10212,
         
         [EnumMember()]
-        [OptionSetMetadata("Copilot component", Index=980, Lcid=1033, Description="Holds key authoring components of a Copilot such a topics, entities, variables, e" +
+        [OptionSetMetadata("Copilot component", Index=528, Lcid=1033, Description="Holds key authoring components of a Copilot such a topics, entities, variables, e" +
             "tc.")]
-        Copilotcomponent = 10164,
+        Copilotcomponent = 10213,
         
         [EnumMember()]
-        [OptionSetMetadata("Copilot component collection", Index=978, Lcid=1033, Description="")]
-        Copilotcomponentcollection = 10165,
+        [OptionSetMetadata("Copilot component collection", Index=530, Lcid=1033, Description="")]
+        Copilotcomponentcollection = 10214,
         
         [EnumMember()]
-        [OptionSetMetadata("Comment", Index=937, Lcid=1033, Description="A collaborative comment on a maker artifact")]
-        Comment_2 = 10176,
+        [OptionSetMetadata("Comment", Index=420, Lcid=1033, Description="A collaborative comment on a maker artifact")]
+        Comment_2 = 10225,
         
         [EnumMember()]
-        [OptionSetMetadata("Governance Configuration", Index=804, Lcid=1033, Description="")]
-        GovernanceConfiguration = 10177,
+        [OptionSetMetadata("Governance Configuration", Index=684, Lcid=1033, Description="")]
+        GovernanceConfiguration = 10226,
         
         [EnumMember()]
-        [OptionSetMetadata("Fabric AISkill", Index=711, Lcid=1033, Description="AISkills published from Fabric.")]
-        FabricAISkill = 10178,
+        [OptionSetMetadata("Fabric AISkill", Index=696, Lcid=1033, Description="AISkills published from Fabric.")]
+        FabricAISkill = 10227,
         
         [EnumMember()]
-        [OptionSetMetadata("App Insights Metadata", Index=1194, Lcid=1033, Description="Metadata for App Insights Platform components")]
-        AppInsightsMetadata = 10179,
+        [OptionSetMetadata("App Insights Metadata", Index=588, Lcid=1033, Description="Metadata for App Insights Platform components")]
+        AppInsightsMetadata = 10228,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow Connection Reference", Index=1061, Lcid=1033, Description="Intersecting table between Dataflow and Connection Reference")]
-        DataflowConnectionReference = 10180,
+        [OptionSetMetadata("Dataflow Connection Reference", Index=646, Lcid=1033, Description="Intersecting table between Dataflow and Connection Reference")]
+        DataflowConnectionReference = 10229,
         
         [EnumMember()]
-        [OptionSetMetadata("Schedule", Index=256, Lcid=1033, Description="Generic refresh schedule")]
-        Schedule = 10181,
+        [OptionSetMetadata("Schedule", Index=96, Lcid=1033, Description="Generic refresh schedule")]
+        Schedule = 10230,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow Template", Index=1055, Lcid=1033, Description="An entity to store information about dataflow templates")]
-        DataflowTemplate = 10182,
+        [OptionSetMetadata("Dataflow Template", Index=647, Lcid=1033, Description="An entity to store information about dataflow templates")]
+        DataflowTemplate = 10231,
         
         [EnumMember()]
-        [OptionSetMetadata("Dataflow DatalakeFolder", Index=1068, Lcid=1033, Description="")]
-        DataflowDatalakeFolder = 10183,
+        [OptionSetMetadata("Dataflow DatalakeFolder", Index=650, Lcid=1033, Description="")]
+        DataflowDatalakeFolder = 10232,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Movement Service Request", Index=1091, Lcid=1033, Description="Table for Data Movement Service Requests")]
-        DataMovementServiceRequest = 10184,
+        [OptionSetMetadata("Data Movement Service Request", Index=656, Lcid=1033, Description="Table for Data Movement Service Requests")]
+        DataMovementServiceRequest = 10233,
         
         [EnumMember()]
-        [OptionSetMetadata("Data Movement Service Request Status", Index=1092, Lcid=1033, Description="Table for Data Movement Service Request Status")]
-        DataMovementServiceRequestStatus = 10185,
+        [OptionSetMetadata("Data Movement Service Request Status", Index=664, Lcid=1033, Description="Table for Data Movement Service Request Status")]
+        DataMovementServiceRequestStatus = 10234,
         
         [EnumMember()]
-        [OptionSetMetadata("DMS Sync Request", Index=1090, Lcid=1033, Description="An entity to save DMS sync requests.")]
-        DMSSyncRequest = 10186,
+        [OptionSetMetadata("DMS Sync Request", Index=663, Lcid=1033, Description="An entity to save DMS sync requests.")]
+        DMSSyncRequest = 10235,
         
         [EnumMember()]
-        [OptionSetMetadata("DMS Sync Status", Index=1088, Lcid=1033, Description="An entity to save DMS sync statuses.")]
-        DMSSyncStatus = 10187,
+        [OptionSetMetadata("DMS Sync Status", Index=665, Lcid=1033, Description="An entity to save DMS sync statuses.")]
+        DMSSyncStatus = 10236,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Asset Configuration", Index=1107, Lcid=1033, Description="Knowledge asset configurations for data sources configured in knowledge hub.")]
-        KnowledgeAssetConfiguration = 10188,
+        [OptionSetMetadata("Knowledge Asset Configuration", Index=637, Lcid=1033, Description="Knowledge asset configurations for data sources configured in knowledge hub.")]
+        KnowledgeAssetConfiguration = 10237,
         
         [EnumMember()]
-        [OptionSetMetadata("Module Run Detail", Index=1133, Lcid=1033, Description="Result of execution of a MEF model")]
-        ModuleRunDetail = 10189,
+        [OptionSetMetadata("Module Run Detail", Index=120, Lcid=1033, Description="Result of execution of a MEF model")]
+        ModuleRunDetail = 10238,
         
         [EnumMember()]
-        [OptionSetMetadata("QnA", Index=303, Lcid=1033, Description="Question and Answers entity")]
-        QnA = 10190,
+        [OptionSetMetadata("QnA", Index=106, Lcid=1033, Description="Question and Answers entity")]
+        QnA = 10239,
         
         [EnumMember()]
-        [OptionSetMetadata("Salesforce Structured Object", Index=265, Lcid=1033, Description="Entity that represents the Salesforce Structured Object.")]
-        SalesforceStructuredObject = 10191,
+        [OptionSetMetadata("Salesforce Structured Object", Index=101, Lcid=1033, Description="Entity that represents the Salesforce Structured Object.")]
+        SalesforceStructuredObject = 10240,
         
         [EnumMember()]
-        [OptionSetMetadata("Salesforce Structured QnA Config", Index=263, Lcid=1033, Description="Entity that represents the Salesforce Structured QnA Config.")]
-        SalesforceStructuredQnAConfig = 10192,
+        [OptionSetMetadata("Salesforce Structured QnA Config", Index=97, Lcid=1033, Description="Entity that represents the Salesforce Structured QnA Config.")]
+        SalesforceStructuredQnAConfig = 10241,
         
         [EnumMember()]
-        [OptionSetMetadata("Workflow Action Status", Index=23, Lcid=1033, Description="PA Workflows action processing status")]
-        WorkflowActionStatus = 10193,
+        [OptionSetMetadata("Workflow Action Status", Index=111, Lcid=1033, Description="PA Workflows action processing status")]
+        WorkflowActionStatus = 10242,
         
         [EnumMember()]
-        [OptionSetMetadata("FederatedKnowledgeConfiguration", Index=698, Lcid=1033, Description="FederatedKnowledgeConfigurations component")]
-        FederatedKnowledgeConfiguration = 10194,
+        [OptionSetMetadata("Allowed MCP Client", Index=481, Lcid=1033, Description="An MCP client that is allowed to talk to MCP endpoint")]
+        AllowedMCPClient = 10243,
         
         [EnumMember()]
-        [OptionSetMetadata("FederatedKnowledgeEntityConfiguration", Index=696, Lcid=1033, Description="FederatedKnowledgeEntityConfigurations component")]
-        FederatedKnowledgeEntityConfiguration = 10195,
+        [OptionSetMetadata("FederatedKnowledgeCitation", Index=711, Lcid=1033, Description="Records the Federated Knowledge Citation info for UCI view")]
+        FederatedKnowledgeCitation = 10244,
         
         [EnumMember()]
-        [OptionSetMetadata("Form Mapping", Index=1048, Lcid=1033, Description="")]
-        FormMapping = 10196,
+        [OptionSetMetadata("FederatedKnowledgeConfiguration", Index=713, Lcid=1033, Description="FederatedKnowledgeConfigurations component")]
+        FederatedKnowledgeConfiguration = 10245,
         
         [EnumMember()]
-        [OptionSetMetadata("PDF Setting", Index=567, Lcid=1033, Description="PDF Settings to save enabled pdf entities")]
-        PDFSetting = 10197,
+        [OptionSetMetadata("FederatedKnowledgeEntityConfiguration", Index=715, Lcid=1033, Description="FederatedKnowledgeEntityConfigurations component")]
+        FederatedKnowledgeEntityConfiguration = 10246,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity File Attachment", Index=901, Lcid=1033, Description="Attachment entity with data stored in file type attribute")]
-        ActivityFileAttachment = 10198,
+        [OptionSetMetadata("FederatedKnowledgeMetadataRefresh", Index=714, Lcid=1033, Description="Records the Federated Knowledge MetadataRefresh job status")]
+        FederatedKnowledgeMetadataRefresh = 10247,
         
         [EnumMember()]
-        [OptionSetMetadata("Teams chat", Index=939, Lcid=1033, Description="For internal use only. Entity which stores association data of Dynamics 365 recor" +
+        [OptionSetMetadata("IntelligentMemory", Index=759, Lcid=1033, Description="Represents intelligent memories used in the system.")]
+        IntelligentMemory = 10248,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Knowledge FAQ", Index=726, Lcid=1033, Description="Stores Knowledge Frequently Asked Questions")]
+        KnowledgeFAQ = 10249,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Form Mapping", Index=622, Lcid=1033, Description="")]
+        FormMapping = 10250,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Copilot Interactions", Index=653, Lcid=1033, Description="Data table of previous copilot interactions.")]
+        CopilotInteractions = 10251,
+        
+        [EnumMember()]
+        [OptionSetMetadata("PDF Setting", Index=35, Lcid=1033, Description="PDF Settings to save enabled pdf entities")]
+        PDFSetting = 10252,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Activity File Attachment", Index=503, Lcid=1033, Description="Attachment entity with data stored in file type attribute")]
+        ActivityFileAttachment = 10253,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Teams chat", Index=423, Lcid=1033, Description="For internal use only. Entity which stores association data of Dynamics 365 recor" +
             "ds with Microsoft Teams chat")]
-        Teamschat = 10199,
+        Teamschat = 10254,
         
         [EnumMember()]
-        [OptionSetMetadata("Service Configuration", Index=290, Lcid=1033, Description="")]
-        ServiceConfiguration = 10200,
+        [OptionSetMetadata("Service Configuration", Index=98, Lcid=1033, Description="")]
+        ServiceConfiguration = 10255,
         
         [EnumMember()]
-        [OptionSetMetadata("SLA KPI", Index=54, Lcid=1033, Description="")]
-        SLAKPI = 10201,
+        [OptionSetMetadata("SLA KPI", Index=100, Lcid=1033, Description="")]
+        SLAKPI = 10256,
         
         [EnumMember()]
-        [OptionSetMetadata("Integrated search provider", Index=1149, Lcid=1033, Description="Ingest and search files, documents, or articles from data sources outside of your" +
+        [OptionSetMetadata("Integrated search provider", Index=640, Lcid=1033, Description="Ingest and search files, documents, or articles from data sources outside of your" +
             " current Dynamics 365 organization with a unified ranking.")]
-        Integratedsearchprovider = 10202,
+        Integratedsearchprovider = 10257,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Management Setting", Index=1104, Lcid=1033, Description="Setup knowledge management for your organization.")]
-        KnowledgeManagementSetting = 10203,
+        [OptionSetMetadata("Knowledge Management Setting", Index=128, Lcid=1033, Description="Setup knowledge management for your organization.")]
+        KnowledgeManagementSetting = 10258,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Federated Article", Index=1021, Lcid=1033, Description="")]
-        KnowledgeFederatedArticle = 10204,
+        [OptionSetMetadata("Knowledge Federated Article", Index=658, Lcid=1033, Description="")]
+        KnowledgeFederatedArticle = 10259,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Federated Article Incident", Index=1028, Lcid=1033, Description="")]
-        KnowledgeFederatedArticleIncident = 10205,
+        [OptionSetMetadata("Knowledge Federated Article Incident", Index=657, Lcid=1033, Description="")]
+        KnowledgeFederatedArticleIncident = 10260,
         
         [EnumMember()]
-        [OptionSetMetadata("Search provider", Index=1157, Lcid=1033, Description="")]
-        Searchprovider = 10206,
+        [OptionSetMetadata("Search provider", Index=642, Lcid=1033, Description="")]
+        Searchprovider = 10261,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Image", Index=1165, Lcid=1033, Description="")]
-        KnowledgeArticleImage = 10207,
+        [OptionSetMetadata("Knowledge Article Image", Index=633, Lcid=1033, Description="")]
+        KnowledgeArticleImage = 10262,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Configuration", Index=1108, Lcid=1033, Description="Represents the possible settings used in Knowledge management")]
-        KnowledgeConfiguration = 10208,
+        [OptionSetMetadata("Knowledge Configuration", Index=636, Lcid=1033, Description="Represents the possible settings used in Knowledge management")]
+        KnowledgeConfiguration = 10263,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Interaction Insight", Index=1106, Lcid=1033, Description="Knowledge Interaction Insight")]
-        KnowledgeInteractionInsight = 10209,
+        [OptionSetMetadata("Knowledge Interaction Insight", Index=126, Lcid=1033, Description="Knowledge Interaction Insight")]
+        KnowledgeInteractionInsight = 10264,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Search Insight", Index=1113, Lcid=1033, Description="Knowledge Search Insight")]
-        KnowledgeSearchInsight = 10210,
+        [OptionSetMetadata("Knowledge Search Insight", Index=125, Lcid=1033, Description="Knowledge Search Insight")]
+        KnowledgeSearchInsight = 10265,
         
         [EnumMember()]
-        [OptionSetMetadata("Favorite knowledge article", Index=1020, Lcid=1033, Description="Entity for favorite knowledge articles")]
-        Favoriteknowledgearticle = 10211,
+        [OptionSetMetadata("Favorite knowledge article", Index=662, Lcid=1033, Description="Entity for favorite knowledge articles")]
+        Favoriteknowledgearticle = 10266,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge article language setting", Index=1159, Lcid=1033, Description="Allows you to select default language for knowledge authoring.")]
-        Knowledgearticlelanguagesetting = 10212,
+        [OptionSetMetadata("Knowledge article language setting", Index=641, Lcid=1033, Description="Allows you to select default language for knowledge authoring.")]
+        Knowledgearticlelanguagesetting = 10267,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Attachment", Index=1160, Lcid=1033, Description="")]
-        KnowledgeArticleAttachment = 10213,
+        [OptionSetMetadata("Knowledge Article Attachment", Index=643, Lcid=1033, Description="")]
+        KnowledgeArticleAttachment = 10268,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge personalization", Index=1164, Lcid=1033, Description="Allows users to personalize their knowledge search filters and knowledge authorin" +
+        [OptionSetMetadata("Knowledge personalization", Index=638, Lcid=1033, Description="Allows users to personalize their knowledge search filters and knowledge authorin" +
             "g language.")]
-        Knowledgepersonalization = 10214,
+        Knowledgepersonalization = 10269,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Template", Index=1162, Lcid=1033, Description="Organizational Knowledge Article Template for Internal and external creation of K" +
+        [OptionSetMetadata("Knowledge Article Template", Index=635, Lcid=1033, Description="Organizational Knowledge Article Template for Internal and external creation of K" +
             "nowledge Articles.")]
-        KnowledgeArticleTemplate = 10215,
+        KnowledgeArticleTemplate = 10270,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge search personal filter config", Index=1105, Lcid=1033, Description="Allows you to configure and manage personal filter settings.")]
-        Knowledgesearchpersonalfilterconfig = 10216,
+        [OptionSetMetadata("Knowledge search personal filter config", Index=130, Lcid=1033, Description="Allows you to configure and manage personal filter settings.")]
+        Knowledgesearchpersonalfilterconfig = 10271,
         
         [EnumMember()]
-        [OptionSetMetadata("Knowledge search filter", Index=1112, Lcid=1033, Description="Allows you to configure and manage filter settings.")]
-        Knowledgesearchfilter = 10217,
+        [OptionSetMetadata("Knowledge search filter", Index=129, Lcid=1033, Description="Allows you to configure and manage filter settings.")]
+        Knowledgesearchfilter = 10272,
         
         [EnumMember()]
-        [OptionSetMetadata("SupportUserTable", Index=376, Lcid=1033, Description="")]
-        SupportUserTable = 10219,
+        [OptionSetMetadata("msdyn_historicalcaseharvestbatch", Index=625, Lcid=1033, Description="")]
+        msdyn_historicalcaseharvestbatch = 10274,
         
         [EnumMember()]
-        [OptionSetMetadata("FxExpression", Index=809, Lcid=1033, Description="")]
-        FxExpression = 10220,
+        [OptionSetMetadata("msdyn_historicalcaseharvestrun", Index=624, Lcid=1033, Description="")]
+        msdyn_historicalcaseharvestrun = 10275,
         
         [EnumMember()]
-        [OptionSetMetadata("Function", Index=1046, Lcid=1033, Description="")]
-        Function = 10221,
+        [OptionSetMetadata("Interim Update Knowledge Article", Index=639, Lcid=1033, Description="Interim table to facilitate the update of knowledge articles from knowledge harve" +
+            "sting.")]
+        InterimUpdateKnowledgeArticle = 10276,
         
         [EnumMember()]
-        [OptionSetMetadata("Plug-in", Index=518, Lcid=1033, Description="")]
-        Plugin = 10222,
+        [OptionSetMetadata("Knowledge Article Custom Entity", Index=634, Lcid=1033, Description="Table to facilitate the linking of knowledge articles to custom entity sources.")]
+        KnowledgeArticleCustomEntity = 10277,
         
         [EnumMember()]
-        [OptionSetMetadata("PowerfxRule", Index=511, Lcid=1033, Description="")]
-        PowerfxRule = 10223,
+        [OptionSetMetadata("Knowledge Harvest Job Record", Index=127, Lcid=1033, Description="Tracking entity record used to trigger the harvesting process for knowledge artic" +
+            "les")]
+        KnowledgeHarvestJobRecord = 10278,
         
         [EnumMember()]
-        [OptionSetMetadata("Planner Business Scenario", Index=572, Lcid=1033, Description="For internal use only. The Business Scenario record to be created in Planner.")]
-        PlannerBusinessScenario = 10224,
+        [OptionSetMetadata("Attribute Cluster Config", Index=565, Lcid=1033, Description="Holds Attribute Cluster configuration for entities")]
+        AttributeClusterConfig = 10279,
         
         [EnumMember()]
-        [OptionSetMetadata("Planner Sync Action", Index=573, Lcid=1033, Description="The Planner Sync Action to be executed.")]
-        PlannerSyncAction = 10225,
+        [OptionSetMetadata("Entity Cluster Configuration", Index=450, Lcid=1033, Description="Holds Entity Cluster configuration for entities")]
+        EntityClusterConfiguration = 10280,
         
         [EnumMember()]
-        [OptionSetMetadata("Ms Graph Resource To Subscription", Index=88, Lcid=1033, Description="For internal use only. The mapping between Ms Graph Resources and Subscriptions.")]
-        MsGraphResourceToSubscription = 10226,
+        [OptionSetMetadata("SupportUserTable", Index=234, Lcid=1033, Description="")]
+        SupportUserTable = 10281,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Entity  Metadata", Index=439, Lcid=1033, Description="Holds  metadata values for virtual entities")]
-        VirtualEntityMetadata = 10227,
+        [OptionSetMetadata("FxExpression", Index=688, Lcid=1033, Description="")]
+        FxExpression = 10282,
         
         [EnumMember()]
-        [OptionSetMetadata("Background Operation", Index=866, Lcid=1033, Description="")]
-        BackgroundOperation = 10228,
+        [OptionSetMetadata("Function", Index=621, Lcid=1033, Description="")]
+        Function = 10283,
         
         [EnumMember()]
-        [OptionSetMetadata("Report Parameter", Index=651, Lcid=1033, Description="")]
-        ReportParameter = 10229,
+        [OptionSetMetadata("Plug-in", Index=41, Lcid=1033, Description="")]
+        Plugin = 10284,
         
         [EnumMember()]
-        [OptionSetMetadata("MobileOfflineProfileExtension", Index=784, Lcid=1033, Description="")]
-        MobileOfflineProfileExtension = 10230,
+        [OptionSetMetadata("PowerfxRule", Index=11, Lcid=1033, Description="")]
+        PowerfxRule = 10285,
         
         [EnumMember()]
-        [OptionSetMetadata("MobileOfflineProfileItemFilter", Index=1232, Lcid=1033, Description="")]
-        MobileOfflineProfileItemFilter = 10231,
+        [OptionSetMetadata("Planner Business Scenario", Index=46, Lcid=1033, Description="For internal use only. The Business Scenario record to be created in Planner.")]
+        PlannerBusinessScenario = 10286,
         
         [EnumMember()]
-        [OptionSetMetadata("TeamMobileOfflineProfileMembership", Index=474, Lcid=1033, Description="")]
-        TeamMobileOfflineProfileMembership = 10232,
+        [OptionSetMetadata("Planner Sync Action", Index=45, Lcid=1033, Description="The Planner Sync Action to be executed.")]
+        PlannerSyncAction = 10287,
         
         [EnumMember()]
-        [OptionSetMetadata("UserMobileOfflineProfileMembership", Index=488, Lcid=1033, Description="")]
-        UserMobileOfflineProfileMembership = 10233,
+        [OptionSetMetadata("MCPServer", Index=604, Lcid=1033, Description="MCPServers component")]
+        MCPServer = 10288,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncSubscription", Index=582, Lcid=1033, Description="")]
-        OrganizationDataSyncSubscription = 10234,
+        [OptionSetMetadata("MCPTool", Index=603, Lcid=1033, Description="MCPTools component")]
+        MCPTool = 10289,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncSubscriptionEntity", Index=580, Lcid=1033, Description="")]
-        OrganizationDataSyncSubscriptionEntity = 10235,
+        [OptionSetMetadata("ToolingGateway", Index=270, Lcid=1033, Description="ToolingGateways component (For Internal use only)")]
+        ToolingGateway = 10290,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncSubscriptionFnoTable", Index=578, Lcid=1033, Description="")]
-        OrganizationDataSyncSubscriptionFnoTable = 10236,
+        [OptionSetMetadata("ToolingGatewayMCPServer", Index=269, Lcid=1033, Description="ToolingGatewayMCPServer component (For Internal use only)")]
+        ToolingGatewayMCPServer = 10291,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncFnoState", Index=552, Lcid=1033, Description="Information regarding data synchronization state")]
-        OrganizationDataSyncFnoState = 10237,
+        [OptionSetMetadata("Email Address Configuration", Index=431, Lcid=1033, Description="Entity which stores configuration metadata for Email Address type fields")]
+        EmailAddressConfiguration = 10292,
         
         [EnumMember()]
-        [OptionSetMetadata("OrganizationDataSyncState", Index=581, Lcid=1033, Description="Information regarding data synchronization state")]
-        OrganizationDataSyncState = 10238,
+        [OptionSetMetadata("Ms Graph Resource To Subscription", Index=175, Lcid=1033, Description="For internal use only. The mapping between Ms Graph Resources and Subscriptions.")]
+        MsGraphResourceToSubscription = 10293,
         
         [EnumMember()]
-        [OptionSetMetadata("ArchiveCleanupInfo", Index=846, Lcid=1033, Description="This is Deprecated Entity.")]
-        ArchiveCleanupInfo = 10239,
+        [OptionSetMetadata("Virtual Entity  Metadata", Index=244, Lcid=1033, Description="Holds  metadata values for virtual entities")]
+        VirtualEntityMetadata = 10294,
         
         [EnumMember()]
-        [OptionSetMetadata("ArchiveCleanupOperation", Index=847, Lcid=1033, Description="This is Deprecated Entity.")]
-        ArchiveCleanupOperation = 10240,
+        [OptionSetMetadata("Background Operation", Index=527, Lcid=1033, Description="")]
+        BackgroundOperation = 10295,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveConfig", Index=979, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveConfig = 10241,
+        [OptionSetMetadata("Report Parameter", Index=68, Lcid=1033, Description="")]
+        ReportParameter = 10296,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveFailureDetail", Index=986, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveFailureDetail = 10242,
+        [OptionSetMetadata("MobileOfflineProfileExtension", Index=598, Lcid=1033, Description="")]
+        MobileOfflineProfileExtension = 10297,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveOperation", Index=987, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveOperation = 10243,
+        [OptionSetMetadata("MobileOfflineProfileItemFilter", Index=601, Lcid=1033, Description="")]
+        MobileOfflineProfileItemFilter = 10298,
         
         [EnumMember()]
-        [OptionSetMetadata("BulkArchiveOperationDetail", Index=985, Lcid=1033, Description="This is Deprecated Entity.")]
-        BulkArchiveOperationDetail = 10244,
+        [OptionSetMetadata("TeamMobileOfflineProfileMembership", Index=202, Lcid=1033, Description="")]
+        TeamMobileOfflineProfileMembership = 10299,
         
         [EnumMember()]
-        [OptionSetMetadata("EnableArchivalRequest", Index=687, Lcid=1033, Description="For internal use only.")]
-        EnableArchivalRequest = 10245,
+        [OptionSetMetadata("UserMobileOfflineProfileMembership", Index=278, Lcid=1033, Description="")]
+        UserMobileOfflineProfileMembership = 10300,
         
         [EnumMember()]
-        [OptionSetMetadata("MetadataForArchival", Index=787, Lcid=1033, Description="Holds  metadata values of tables for retention")]
-        MetadataForArchival = 10246,
+        [OptionSetMetadata("OrganizationDataSyncSubscription", Index=159, Lcid=1033, Description="")]
+        OrganizationDataSyncSubscription = 10301,
         
         [EnumMember()]
-        [OptionSetMetadata("ReconciliationEntityInfo", Index=635, Lcid=1033, Description="Table level details of the data lake reconciliation process. For internal use onl" +
+        [OptionSetMetadata("OrganizationDataSyncSubscriptionEntity", Index=95, Lcid=1033, Description="")]
+        OrganizationDataSyncSubscriptionEntity = 10302,
+        
+        [EnumMember()]
+        [OptionSetMetadata("OrganizationDataSyncSubscriptionFnoTable", Index=31, Lcid=1033, Description="")]
+        OrganizationDataSyncSubscriptionFnoTable = 10303,
+        
+        [EnumMember()]
+        [OptionSetMetadata("OrganizationDataSyncFnoState", Index=158, Lcid=1033, Description="Information regarding data synchronization state")]
+        OrganizationDataSyncFnoState = 10304,
+        
+        [EnumMember()]
+        [OptionSetMetadata("OrganizationDataSyncState", Index=160, Lcid=1033, Description="Information regarding data synchronization state")]
+        OrganizationDataSyncState = 10305,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ArchiveCleanupInfo", Index=567, Lcid=1033, Description="This is Deprecated Entity.")]
+        ArchiveCleanupInfo = 10306,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ArchiveCleanupOperation", Index=563, Lcid=1033, Description="This is Deprecated Entity.")]
+        ArchiveCleanupOperation = 10307,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveConfig", Index=529, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveConfig = 10308,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveFailureDetail", Index=537, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveFailureDetail = 10309,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveOperation", Index=545, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveOperation = 10310,
+        
+        [EnumMember()]
+        [OptionSetMetadata("BulkArchiveOperationDetail", Index=544, Lcid=1033, Description="This is Deprecated Entity.")]
+        BulkArchiveOperationDetail = 10311,
+        
+        [EnumMember()]
+        [OptionSetMetadata("EnableArchivalRequest", Index=441, Lcid=1033, Description="For internal use only.")]
+        EnableArchivalRequest = 10312,
+        
+        [EnumMember()]
+        [OptionSetMetadata("MetadataForArchival", Index=607, Lcid=1033, Description="Holds  metadata values of tables for retention")]
+        MetadataForArchival = 10313,
+        
+        [EnumMember()]
+        [OptionSetMetadata("ReconciliationEntityInfo", Index=87, Lcid=1033, Description="Table level details of the data lake reconciliation process. For internal use onl" +
             "y.")]
-        ReconciliationEntityInfo = 10247,
+        ReconciliationEntityInfo = 10314,
         
         [EnumMember()]
-        [OptionSetMetadata("ReconciliationEntityStepInfo", Index=636, Lcid=1033, Description="Step level details of the data lake reconciliation process. For internal use only" +
+        [OptionSetMetadata("ReconciliationEntityStepInfo", Index=71, Lcid=1033, Description="Step level details of the data lake reconciliation process. For internal use only" +
             ".")]
-        ReconciliationEntityStepInfo = 10248,
+        ReconciliationEntityStepInfo = 10315,
         
         [EnumMember()]
-        [OptionSetMetadata("ReconciliationInfo", Index=665, Lcid=1033, Description="Information about data lake reconciliation operation. For internal use only.")]
-        ReconciliationInfo = 10249,
+        [OptionSetMetadata("ReconciliationInfo", Index=55, Lcid=1033, Description="Information about data lake reconciliation operation. For internal use only.")]
+        ReconciliationInfo = 10316,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionCleanupInfo", Index=603, Lcid=1033, Description="Holds watermark information about retention cleanup operations. For internal use " +
+        [OptionSetMetadata("RetentionCleanupInfo", Index=65, Lcid=1033, Description="Holds watermark information about retention cleanup operations. For internal use " +
             "only.")]
-        RetentionCleanupInfo = 10250,
+        RetentionCleanupInfo = 10317,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionCleanupOperation", Index=601, Lcid=1033, Description="Holds data of cleanup operations such as reconcile and purge.  For internal use o" +
+        [OptionSetMetadata("RetentionCleanupOperation", Index=61, Lcid=1033, Description="Holds data of cleanup operations such as reconcile and purge.  For internal use o" +
             "nly.")]
-        RetentionCleanupOperation = 10251,
+        RetentionCleanupOperation = 10318,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionConfig", Index=599, Lcid=1033, Description="Holds retention policies for a table.")]
-        RetentionConfig = 10252,
+        [OptionSetMetadata("RetentionConfig", Index=60, Lcid=1033, Description="Holds retention policies for a table.")]
+        RetentionConfig = 10319,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionFailureDetail", Index=600, Lcid=1033, Description="Retention failure details.")]
-        RetentionFailureDetail = 10253,
+        [OptionSetMetadata("RetentionFailureDetail", Index=62, Lcid=1033, Description="Retention failure details.")]
+        RetentionFailureDetail = 10320,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionOperation", Index=607, Lcid=1033, Description="Retention policy execution details.")]
-        RetentionOperation = 10254,
+        [OptionSetMetadata("RetentionOperation", Index=64, Lcid=1033, Description="Retention policy execution details.")]
+        RetentionOperation = 10321,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionOperationDetail", Index=608, Lcid=1033, Description="Table level details of retention execution.")]
-        RetentionOperationDetail = 10255,
+        [OptionSetMetadata("RetentionOperationDetail", Index=63, Lcid=1033, Description="Table level details of retention execution.")]
+        RetentionOperationDetail = 10322,
         
         [EnumMember()]
-        [OptionSetMetadata("RetentionSuccessDetail", Index=606, Lcid=1033, Description="Retention Success details.")]
-        RetentionSuccessDetail = 10256,
+        [OptionSetMetadata("RetentionSuccessDetail", Index=318, Lcid=1033, Description="Retention Success details.")]
+        RetentionSuccessDetail = 10323,
         
         [EnumMember()]
-        [OptionSetMetadata("CertificateCredential", Index=988, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
+        [OptionSetMetadata("CertificateCredential", Index=417, Lcid=1033, Description="Contains data to represent an Azure Active Directory Application used to connect " +
             "to secure web-hosted resources.")]
-        CertificateCredential = 10257,
+        CertificateCredential = 10324,
         
         [EnumMember()]
-        [OptionSetMetadata("Notification", Index=842, Lcid=1033, Description="Notification to be provided to a user.")]
-        Notification_2 = 10258,
+        [OptionSetMetadata("Notification", Index=552, Lcid=1033, Description="Notification to be provided to a user.")]
+        Notification_2 = 10325,
         
         [EnumMember()]
-        [OptionSetMetadata("User Rating", Index=435, Lcid=1033, Description="")]
-        UserRating = 10259,
+        [OptionSetMetadata("User Rating", Index=245, Lcid=1033, Description="")]
+        UserRating = 10326,
         
         [EnumMember()]
-        [OptionSetMetadata("Mobile App", Index=1125, Lcid=1033, Description="Mobile App")]
-        MobileApp = 10260,
+        [OptionSetMetadata("Mobile App", Index=121, Lcid=1033, Description="Mobile App")]
+        MobileApp = 10327,
         
         [EnumMember()]
-        [OptionSetMetadata("Insights Store Data Source", Index=1052, Lcid=1033, Description="")]
-        InsightsStoreDataSource = 10261,
+        [OptionSetMetadata("Insights Store Data Source", Index=649, Lcid=1033, Description="")]
+        InsightsStoreDataSource = 10328,
         
         [EnumMember()]
-        [OptionSetMetadata("Insights Store Virtual Entity", Index=1036, Lcid=1033, Description="Insights Store Virtual Entity")]
-        InsightsStoreVirtualEntity = 10262,
+        [OptionSetMetadata("Insights Store Virtual Entity", Index=632, Lcid=1033, Description="Insights Store Virtual Entity")]
+        InsightsStoreVirtualEntity = 10329,
         
         [EnumMember()]
-        [OptionSetMetadata("RoleEditorLayout", Index=595, Lcid=1033, Description="")]
-        RoleEditorLayout = 10263,
+        [OptionSetMetadata("RoleEditorLayout", Index=322, Lcid=1033, Description="")]
+        RoleEditorLayout = 10330,
         
         [EnumMember()]
-        [OptionSetMetadata("Deleted Record Reference", Index=725, Lcid=1033, Description="Deleted Record Reference")]
-        DeletedRecordReference = 10264,
+        [OptionSetMetadata("Deleted Record Reference", Index=456, Lcid=1033, Description="Deleted Record Reference")]
+        DeletedRecordReference = 10331,
         
         [EnumMember()]
-        [OptionSetMetadata("Restore Deleted Records Configuration", Index=663, Lcid=1033, Description="Holds Restore Deleted Records configuration for entities")]
-        RestoreDeletedRecordsConfiguration = 10265,
+        [OptionSetMetadata("Restore Deleted Records Configuration", Index=57, Lcid=1033, Description="Holds Restore Deleted Records configuration for entities")]
+        RestoreDeletedRecordsConfiguration = 10332,
         
         [EnumMember()]
-        [OptionSetMetadata("App Action", Index=911, Lcid=1033, Description="Contains Modern Command Information")]
-        AppAction = 10266,
+        [OptionSetMetadata("App Action", Index=496, Lcid=1033, Description="Contains Modern Command Information")]
+        AppAction = 10333,
         
         [EnumMember()]
-        [OptionSetMetadata("App Action Migration", Index=909, Lcid=1033, Description="")]
-        AppActionMigration = 10267,
+        [OptionSetMetadata("App Action Migration", Index=498, Lcid=1033, Description="")]
+        AppActionMigration = 10334,
         
         [EnumMember()]
-        [OptionSetMetadata("App Action Rule", Index=910, Lcid=1033, Description="")]
-        AppActionRule = 10268,
+        [OptionSetMetadata("App Action Rule", Index=500, Lcid=1033, Description="")]
+        AppActionRule = 10335,
         
         [EnumMember()]
-        [OptionSetMetadata("Card", Index=1008, Lcid=1033, Description="Card")]
-        Card = 10271,
+        [OptionSetMetadata("Card", Index=416, Lcid=1033, Description="Card")]
+        Card = 10338,
         
         [EnumMember()]
-        [OptionSetMetadata("Card State Item", Index=1006, Lcid=1033, Description="")]
-        CardStateItem = 10272,
+        [OptionSetMetadata("Card State Item", Index=415, Lcid=1033, Description="")]
+        CardStateItem = 10339,
         
         [EnumMember()]
-        [OptionSetMetadata("Entity link chat configuration", Index=1080, Lcid=1033, Description="")]
-        Entitylinkchatconfiguration = 10275,
+        [OptionSetMetadata("Entity link chat configuration", Index=667, Lcid=1033, Description="")]
+        Entitylinkchatconfiguration = 10342,
         
         [EnumMember()]
-        [OptionSetMetadata("AI Skill Config", Index=905, Lcid=1033, Description="")]
-        AISkillConfig = 10276,
+        [OptionSetMetadata("SharePoint Managed Identity", Index=361, Lcid=1033, Description="Entity representing a managed identity for SharePoint, used for authentication an" +
+            "d authorization purposes.")]
+        SharePointManagedIdentity = 10343,
         
         [EnumMember()]
-        [OptionSetMetadata("Rich Text Attachment", Index=332, Lcid=1033, Description="Image or file attached to a rich text field")]
-        RichTextAttachment = 10277,
+        [OptionSetMetadata("AI Insight Card", Index=515, Lcid=1033, Description="")]
+        AIInsightCard = 10344,
         
         [EnumMember()]
-        [OptionSetMetadata("Custom Control Extended Setting", Index=1297, Lcid=1033, Description="")]
-        CustomControlExtendedSetting = 10278,
+        [OptionSetMetadata("AI Skill Config", Index=482, Lcid=1033, Description="")]
+        AISkillConfig = 10345,
         
         [EnumMember()]
-        [OptionSetMetadata("Timeline Pin", Index=12, Lcid=1033, Description="Timeline Pin Record")]
-        TimelinePin = 10279,
+        [OptionSetMetadata("Suggested Action", Index=323, Lcid=1033, Description="This table contains records of suggested actions with execution details.")]
+        SuggestedAction = 10346,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Connector Data Source", Index=1311, Lcid=1033, Description="")]
-        VirtualConnectorDataSource = 10280,
+        [OptionSetMetadata("Suggested Action Criteria", Index=325, Lcid=1033, Description="This table contains records of suggested action criteria.")]
+        SuggestedActionCriteria = 10347,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Table Column Candidate", Index=35, Lcid=1033, Description="")]
-        VirtualTableColumnCandidate = 10281,
+        [OptionSetMetadata("Data Workspace", Index=648, Lcid=1033, Description="Table that stores Data workspace records.")]
+        DataWorkspace = 10348,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Analysis History", Index=173, Lcid=1033, Description="")]
-        PMAnalysisHistory = 10283,
+        [OptionSetMetadata("Plan", Index=123, Lcid=1033, Description="Table that stores plan records.")]
+        Plan = 10349,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Business Rule Automation Config", Index=174, Lcid=1033, Description="")]
-        PMBusinessRuleAutomationConfig = 10284,
+        [OptionSetMetadata("Plan Artifact", Index=131, Lcid=1033, Description="Table that stores the artifact records for a plan.")]
+        PlanArtifact = 10350,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Calendar", Index=203, Lcid=1033, Description="")]
-        PMCalendar = 10285,
+        [OptionSetMetadata("Plan Attachment", Index=139, Lcid=1033, Description="")]
+        PlanAttachment = 10351,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Calendar Version", Index=204, Lcid=1033, Description="")]
-        PMCalendarVersion = 10286,
+        [OptionSetMetadata("Rich Text Attachment", Index=105, Lcid=1033, Description="Image or file attached to a rich text field")]
+        RichTextAttachment = 10352,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Inferred Task", Index=202, Lcid=1033, Description="")]
-        PMInferredTask = 10287,
+        [OptionSetMetadata("Custom Control Extended Setting", Index=655, Lcid=1033, Description="")]
+        CustomControlExtendedSetting = 10353,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process Extended Metadata Version", Index=200, Lcid=1033, Description="")]
-        PMProcessExtendedMetadataVersion = 10288,
+        [OptionSetMetadata("Timeline Pin", Index=108, Lcid=1033, Description="Timeline Pin Record")]
+        TimelinePin = 10354,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process Template", Index=201, Lcid=1033, Description="")]
-        PMProcessTemplate = 10289,
+        [OptionSetMetadata("Virtual Connector Data Source", Index=651, Lcid=1033, Description="")]
+        VirtualConnectorDataSource = 10355,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process User Settings", Index=208, Lcid=1033, Description="")]
-        PMProcessUserSettings = 10290,
+        [OptionSetMetadata("Virtual Table Column Candidate", Index=112, Lcid=1033, Description="")]
+        VirtualTableColumnCandidate = 10356,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Process Version", Index=209, Lcid=1033, Description="")]
-        PMProcessVersion = 10291,
+        [OptionSetMetadata("PM Analysis History", Index=138, Lcid=1033, Description="")]
+        PMAnalysisHistory = 10358,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Recording", Index=207, Lcid=1033, Description="")]
-        PMRecording = 10292,
+        [OptionSetMetadata("PM Business Rule Automation Config", Index=140, Lcid=1033, Description="")]
+        PMBusinessRuleAutomationConfig = 10359,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Simulation", Index=205, Lcid=1033, Description="")]
-        PMSimulation = 10293,
+        [OptionSetMetadata("PM Calendar", Index=142, Lcid=1033, Description="")]
+        PMCalendar = 10360,
         
         [EnumMember()]
-        [OptionSetMetadata("PM Template", Index=206, Lcid=1033, Description="")]
-        PMTemplate = 10294,
+        [OptionSetMetadata("PM Calendar Version", Index=141, Lcid=1033, Description="")]
+        PMCalendarVersion = 10361,
         
         [EnumMember()]
-        [OptionSetMetadata("PM View", Index=199, Lcid=1033, Description="")]
-        PMView = 10295,
+        [OptionSetMetadata("PM Inferred Task", Index=137, Lcid=1033, Description="")]
+        PMInferredTask = 10362,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Component", Index=1246, Lcid=1033, Description="")]
-        AnalysisComponent = 10296,
+        [OptionSetMetadata("PM Process Extended Metadata Version", Index=133, Lcid=1033, Description="")]
+        PMProcessExtendedMetadataVersion = 10363,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Job", Index=1191, Lcid=1033, Description="")]
-        AnalysisJob = 10297,
+        [OptionSetMetadata("PM Process Template", Index=132, Lcid=1033, Description="")]
+        PMProcessTemplate = 10364,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Override", Index=1192, Lcid=1033, Description="")]
-        AnalysisOverride = 10298,
+        [OptionSetMetadata("PM Process User Settings", Index=134, Lcid=1033, Description="")]
+        PMProcessUserSettings = 10365,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Result", Index=1190, Lcid=1033, Description="")]
-        AnalysisResult = 10299,
+        [OptionSetMetadata("PM Process Version", Index=136, Lcid=1033, Description="")]
+        PMProcessVersion = 10366,
         
         [EnumMember()]
-        [OptionSetMetadata("Analysis Result Detail", Index=1188, Lcid=1033, Description="")]
-        AnalysisResultDetail = 10300,
+        [OptionSetMetadata("PM Recording", Index=135, Lcid=1033, Description="")]
+        PMRecording = 10367,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Health Rule", Index=52, Lcid=1033, Description="")]
-        SolutionHealthRule = 10301,
+        [OptionSetMetadata("PM Simulation", Index=119, Lcid=1033, Description="")]
+        PMSimulation = 10368,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Health Rule Argument", Index=45, Lcid=1033, Description="")]
-        SolutionHealthRuleArgument = 10302,
+        [OptionSetMetadata("PM Tab", Index=103, Lcid=1033, Description="")]
+        PMTab = 10369,
         
         [EnumMember()]
-        [OptionSetMetadata("Solution Health Rule Set", Index=46, Lcid=1033, Description="Represents a set that owns a number of solution health rules.")]
-        SolutionHealthRuleSet = 10303,
+        [OptionSetMetadata("PM Template", Index=102, Lcid=1033, Description="")]
+        PMTemplate = 10370,
         
         [EnumMember()]
-        [OptionSetMetadata("Power BI Dataset", Index=506, Lcid=1033, Description="")]
-        PowerBIDataset = 10304,
+        [OptionSetMetadata("PM View", Index=104, Lcid=1033, Description="")]
+        PMView = 10371,
         
         [EnumMember()]
-        [OptionSetMetadata("powerbidatasetapdx", Index=504, Lcid=1033, Description="PowerBI Dataset appendix entity - for unmanaged technical attributes")]
-        powerbidatasetapdx = 10305,
+        [OptionSetMetadata("Analysis Component", Index=590, Lcid=1033, Description="")]
+        AnalysisComponent = 10372,
         
         [EnumMember()]
-        [OptionSetMetadata("Power BI Mashup Parameter", Index=505, Lcid=1033, Description="")]
-        PowerBIMashupParameter = 10306,
+        [OptionSetMetadata("Analysis Job", Index=586, Lcid=1033, Description="")]
+        AnalysisJob = 10373,
         
         [EnumMember()]
-        [OptionSetMetadata("Power BI Report", Index=512, Lcid=1033, Description="")]
-        PowerBIReport = 10307,
+        [OptionSetMetadata("Analysis Override", Index=585, Lcid=1033, Description="")]
+        AnalysisOverride = 10374,
         
         [EnumMember()]
-        [OptionSetMetadata("powerbireportapdx", Index=513, Lcid=1033, Description="PowerBI Report appendix entity for unmanaged technical attributes")]
-        powerbireportapdx = 10308,
+        [OptionSetMetadata("Analysis Result", Index=587, Lcid=1033, Description="")]
+        AnalysisResult = 10375,
         
         [EnumMember()]
-        [OptionSetMetadata("File Upload", Index=1029, Lcid=1033, Description="")]
-        FileUpload = 10309,
+        [OptionSetMetadata("Analysis Result Detail", Index=589, Lcid=1033, Description="")]
+        AnalysisResultDetail = 10376,
         
         [EnumMember()]
-        [OptionSetMetadata("MainFewShot", Index=788, Lcid=1033, Description="This fewshot entity will only be updated during solution installation.")]
-        MainFewShot = 10310,
+        [OptionSetMetadata("Solution Health Rule", Index=116, Lcid=1033, Description="")]
+        SolutionHealthRule = 10377,
         
         [EnumMember()]
-        [OptionSetMetadata("MakerFewShot", Index=781, Lcid=1033, Description="This fewshot is updated by maker for testing the queries and by the NL2SQ with th" +
+        [OptionSetMetadata("Solution Health Rule Argument", Index=118, Lcid=1033, Description="")]
+        SolutionHealthRuleArgument = 10378,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Solution Health Rule Set", Index=117, Lcid=1033, Description="Represents a set that owns a number of solution health rules.")]
+        SolutionHealthRuleSet = 10379,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Power BI Dataset", Index=1, Lcid=1033, Description="")]
+        PowerBIDataset = 10380,
+        
+        [EnumMember()]
+        [OptionSetMetadata("powerbidatasetapdx", Index=0, Lcid=1033, Description="PowerBI Dataset appendix entity - for unmanaged technical attributes")]
+        powerbidatasetapdx = 10381,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Power BI Mashup Parameter", Index=2, Lcid=1033, Description="")]
+        PowerBIMashupParameter = 10382,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Power BI Report", Index=4, Lcid=1033, Description="")]
+        PowerBIReport = 10383,
+        
+        [EnumMember()]
+        [OptionSetMetadata("powerbireportapdx", Index=3, Lcid=1033, Description="PowerBI Report appendix entity for unmanaged technical attributes")]
+        powerbireportapdx = 10384,
+        
+        [EnumMember()]
+        [OptionSetMetadata("File Upload", Index=659, Lcid=1033, Description="")]
+        FileUpload = 10385,
+        
+        [EnumMember()]
+        [OptionSetMetadata("AppEntitySearchView", Index=492, Lcid=1033, Description="This table contains records of app entity search views")]
+        AppEntitySearchView = 10386,
+        
+        [EnumMember()]
+        [OptionSetMetadata("MainFewShot", Index=729, Lcid=1033, Description="This fewshot entity will only be updated during solution installation.")]
+        MainFewShot = 10387,
+        
+        [EnumMember()]
+        [OptionSetMetadata("MakerFewShot", Index=731, Lcid=1033, Description="This fewshot is updated by maker for testing the queries and by the NL2SQ with th" +
             "e results")]
-        MakerFewShot = 10311,
+        MakerFewShot = 10388,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchAttributeSettings", Index=391, Lcid=1033, Description="")]
-        SearchAttributeSettings = 10312,
+        [OptionSetMetadata("SearchAttributeSettings", Index=298, Lcid=1033, Description="")]
+        SearchAttributeSettings = 10389,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchCustomAnalyzer", Index=389, Lcid=1033, Description="")]
-        SearchCustomAnalyzer = 10313,
+        [OptionSetMetadata("SearchCustomAnalyzer", Index=306, Lcid=1033, Description="")]
+        SearchCustomAnalyzer = 10390,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchRelationshipSettings", Index=390, Lcid=1033, Description="")]
-        SearchRelationshipSettings = 10314,
+        [OptionSetMetadata("SearchRelationshipSettings", Index=305, Lcid=1033, Description="")]
+        SearchRelationshipSettings = 10391,
         
         [EnumMember()]
-        [OptionSetMetadata("SearchResultsCache", Index=397, Lcid=1033, Description="Cache search results internally")]
-        SearchResultsCache = 10315,
+        [OptionSetMetadata("SearchResultsCache", Index=307, Lcid=1033, Description="Cache search results internally")]
+        SearchResultsCache = 10392,
         
         [EnumMember()]
-        [OptionSetMetadata("Search Telemetry", Index=398, Lcid=1033, Description="Entity to log telemetry that used to improve search quality")]
-        SearchTelemetry = 10316,
+        [OptionSetMetadata("Search Telemetry", Index=309, Lcid=1033, Description="Entity to log telemetry that used to improve search quality")]
+        SearchTelemetry = 10393,
         
         [EnumMember()]
-        [OptionSetMetadata("ViewAsExampleQuestion", Index=432, Lcid=1033, Description="This fewshot is converted by view")]
-        ViewAsExampleQuestion = 10317,
+        [OptionSetMetadata("TextDataRecordsIndexingStatus", Index=204, Lcid=1033, Description="Stores information about unstructured / text data records indexing status")]
+        TextDataRecordsIndexingStatus = 10394,
         
         [EnumMember()]
-        [OptionSetMetadata("CopilotExampleQuestion", Index=949, Lcid=1033, Description="CopilotExampleQuestions Component")]
-        CopilotExampleQuestion = 10318,
+        [OptionSetMetadata("ViewAsExampleQuestion", Index=248, Lcid=1033, Description="This fewshot is converted by view")]
+        ViewAsExampleQuestion = 10395,
         
         [EnumMember()]
-        [OptionSetMetadata("CopilotGlossaryTerm", Index=950, Lcid=1033, Description="CopilotGlossaryTerm Component")]
-        CopilotGlossaryTerm = 10319,
+        [OptionSetMetadata("CopilotExampleQuestion", Index=400, Lcid=1033, Description="CopilotExampleQuestions Component")]
+        CopilotExampleQuestion = 10396,
         
         [EnumMember()]
-        [OptionSetMetadata("CopilotSynonyms", Index=948, Lcid=1033, Description="CopilotSynonyms Component")]
-        CopilotSynonyms = 10320,
+        [OptionSetMetadata("CopilotGlossaryTerm", Index=402, Lcid=1033, Description="CopilotGlossaryTerm Component")]
+        CopilotGlossaryTerm = 10397,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Component", Index=509, Lcid=1033, Description="")]
-        SiteComponent = 10321,
+        [OptionSetMetadata("CopilotSynonyms", Index=404, Lcid=1033, Description="CopilotSynonyms Component")]
+        CopilotSynonyms = 10398,
         
         [EnumMember()]
-        [OptionSetMetadata("Site", Index=510, Lcid=1033, Description="")]
-        Site_2 = 10322,
+        [OptionSetMetadata("Site Component", Index=19, Lcid=1033, Description="")]
+        SiteComponent = 10399,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Language", Index=539, Lcid=1033, Description="")]
-        SiteLanguage = 10323,
+        [OptionSetMetadata("Site", Index=20, Lcid=1033, Description="")]
+        Site = 10400,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Site Published", Index=540, Lcid=1033, Description="")]
-        PowerPagesSitePublished = 10324,
+        [OptionSetMetadata("Site Language", Index=22, Lcid=1033, Description="")]
+        SiteLanguage = 10401,
         
         [EnumMember()]
-        [OptionSetMetadata("External Identity", Index=883, Lcid=1033, Description="")]
-        ExternalIdentity = 10327,
+        [OptionSetMetadata("Power Pages Site Published", Index=21, Lcid=1033, Description="")]
+        PowerPagesSitePublished = 10402,
         
         [EnumMember()]
-        [OptionSetMetadata("Invitation", Index=884, Lcid=1033, Description="Send invitations to existing contacts or email addresses and assign them to web r" +
+        [OptionSetMetadata("Site Source File", Index=16, Lcid=1033, Description="Power Pages Site Source File")]
+        SiteSourceFile = 10403,
+        
+        [EnumMember()]
+        [OptionSetMetadata("External Identity", Index=513, Lcid=1033, Description="")]
+        ExternalIdentity = 10406,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Invitation", Index=521, Lcid=1033, Description="Send invitations to existing contacts or email addresses and assign them to web r" +
             "oles upon redemption.")]
-        Invitation = 10328,
+        Invitation = 10407,
         
         [EnumMember()]
-        [OptionSetMetadata("Invite Redemption", Index=891, Lcid=1033, Description="Holds information about the redemption of an invite.")]
-        InviteRedemption = 10329,
+        [OptionSetMetadata("Invite Redemption", Index=520, Lcid=1033, Description="Holds information about the redemption of an invite.")]
+        InviteRedemption = 10408,
         
         [EnumMember()]
-        [OptionSetMetadata("Portal Comment", Index=892, Lcid=1033, Description="An activity which is used to share information between the user and the customer " +
+        [OptionSetMetadata("Portal Comment", Index=522, Lcid=1033, Description="An activity which is used to share information between the user and the customer " +
             "on the portal.")]
-        PortalComment = 10330,
+        PortalComment = 10409,
         
         [EnumMember()]
-        [OptionSetMetadata("Setting", Index=890, Lcid=1033, Description="")]
-        Setting = 10331,
+        [OptionSetMetadata("Setting", Index=524, Lcid=1033, Description="")]
+        Setting = 10410,
         
         [EnumMember()]
-        [OptionSetMetadata("Multistep Form Session", Index=888, Lcid=1033, Description="Serves as a mechanism to log the occurrence of an incomplete multistep form entry" +
+        [OptionSetMetadata("Multistep Form Session", Index=523, Lcid=1033, Description="Serves as a mechanism to log the occurrence of an incomplete multistep form entry" +
             " for a given user so they can return and complete it later.")]
-        MultistepFormSession = 10332,
+        MultistepFormSession = 10411,
         
         [EnumMember()]
-        [OptionSetMetadata("Ad Placement", Index=85, Lcid=1033, Description="")]
-        AdPlacement = 10336,
+        [OptionSetMetadata("Ad Placement", Index=178, Lcid=1033, Description="")]
+        AdPlacement = 10415,
         
         [EnumMember()]
-        [OptionSetMetadata("Column Permission", Index=92, Lcid=1033, Description="")]
-        ColumnPermission = 10337,
+        [OptionSetMetadata("Column Permission", Index=177, Lcid=1033, Description="")]
+        ColumnPermission = 10416,
         
         [EnumMember()]
-        [OptionSetMetadata("Column Permission Profile", Index=93, Lcid=1033, Description="")]
-        ColumnPermissionProfile = 10338,
+        [OptionSetMetadata("Column Permission Profile", Index=173, Lcid=1033, Description="")]
+        ColumnPermissionProfile = 10417,
         
         [EnumMember()]
-        [OptionSetMetadata("Content Snippet", Index=91, Lcid=1033, Description="Content snippets are inserted in page templates so that any label, text string or" +
+        [OptionSetMetadata("Content Snippet", Index=169, Lcid=1033, Description="Content snippets are inserted in page templates so that any label, text string or" +
             " image in the template can be content-managed.")]
-        ContentSnippet = 10339,
+        ContentSnippet = 10418,
         
         [EnumMember()]
-        [OptionSetMetadata("Basic Form", Index=89, Lcid=1033, Description="Defines the form to render for a given entity type.")]
-        BasicForm = 10340,
+        [OptionSetMetadata("Basic Form", Index=168, Lcid=1033, Description="Defines the form to render for a given entity type.")]
+        BasicForm = 10419,
         
         [EnumMember()]
-        [OptionSetMetadata("Basic Form Metadata", Index=90, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
+        [OptionSetMetadata("Basic Form Metadata", Index=170, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
             "ctionality of form components that is not possible with Dynamics 365 entity and " +
             "form metadata.")]
-        BasicFormMetadata = 10341,
+        BasicFormMetadata = 10420,
         
         [EnumMember()]
-        [OptionSetMetadata("List", Index=119, Lcid=1033, Description="")]
-        List = 10342,
+        [OptionSetMetadata("List", Index=172, Lcid=1033, Description="")]
+        List = 10421,
         
         [EnumMember()]
-        [OptionSetMetadata("Table Permission", Index=120, Lcid=1033, Description="")]
-        TablePermission = 10343,
+        [OptionSetMetadata("Table Permission", Index=171, Lcid=1033, Description="")]
+        TablePermission = 10422,
         
         [EnumMember()]
-        [OptionSetMetadata("Page Template", Index=118, Lcid=1033, Description="URL of the .aspx page used to create new webpages.")]
-        PageTemplate = 10344,
+        [OptionSetMetadata("Page Template", Index=179, Lcid=1033, Description="URL of the .aspx page used to create new webpages.")]
+        PageTemplate = 10423,
         
         [EnumMember()]
-        [OptionSetMetadata("Poll Placement", Index=116, Lcid=1033, Description="")]
-        PollPlacement = 10345,
+        [OptionSetMetadata("Poll Placement", Index=187, Lcid=1033, Description="")]
+        PollPlacement = 10424,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Core Entity DS", Index=117, Lcid=1033, Description="")]
-        PowerPagesCoreEntityDS = 10346,
+        [OptionSetMetadata("Power Pages Core Entity DS", Index=186, Lcid=1033, Description="")]
+        PowerPagesCoreEntityDS = 10425,
         
         [EnumMember()]
-        [OptionSetMetadata("Publishing State", Index=124, Lcid=1033, Description="")]
-        PublishingState = 10347,
+        [OptionSetMetadata("Publishing State", Index=188, Lcid=1033, Description="")]
+        PublishingState = 10426,
         
         [EnumMember()]
-        [OptionSetMetadata("Publishing State Transition Rule", Index=125, Lcid=1033, Description="")]
-        PublishingStateTransitionRule = 10348,
+        [OptionSetMetadata("Publishing State Transition Rule", Index=190, Lcid=1033, Description="")]
+        PublishingStateTransitionRule = 10427,
         
         [EnumMember()]
-        [OptionSetMetadata("Redirect", Index=123, Lcid=1033, Description="")]
-        Redirect = 10349,
+        [OptionSetMetadata("Redirect", Index=189, Lcid=1033, Description="")]
+        Redirect = 10428,
         
         [EnumMember()]
-        [OptionSetMetadata("Shortcut", Index=121, Lcid=1033, Description="")]
-        Shortcut = 10350,
+        [OptionSetMetadata("Shortcut", Index=185, Lcid=1033, Description="")]
+        Shortcut = 10429,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Marker", Index=122, Lcid=1033, Description="Used by web page templates to locate a specific page of content.")]
-        SiteMarker = 10351,
+        [OptionSetMetadata("Site Marker", Index=181, Lcid=1033, Description="Used by web page templates to locate a specific page of content.")]
+        SiteMarker = 10430,
         
         [EnumMember()]
-        [OptionSetMetadata("Site Setting", Index=115, Lcid=1033, Description="Site specific settings or variables refferenced by the web site code files.")]
-        SiteSetting = 10352,
+        [OptionSetMetadata("Site Setting", Index=180, Lcid=1033, Description="Site specific settings or variables refferenced by the web site code files.")]
+        SiteSetting = 10431,
         
         [EnumMember()]
-        [OptionSetMetadata("Web File", Index=108, Lcid=1033, Description="Storage of files used in the web Portals.")]
-        WebFile = 10353,
+        [OptionSetMetadata("Web File", Index=182, Lcid=1033, Description="Storage of files used in the web Portals.")]
+        WebFile = 10432,
         
         [EnumMember()]
-        [OptionSetMetadata("Multistep Form", Index=109, Lcid=1033, Description="Defines the necessary properties and relationships to the other key entities in o" +
+        [OptionSetMetadata("Multistep Form", Index=184, Lcid=1033, Description="Defines the necessary properties and relationships to the other key entities in o" +
             "rder to control the initialization of the form within a web portal.")]
-        MultistepForm = 10354,
+        MultistepForm = 10433,
         
         [EnumMember()]
-        [OptionSetMetadata("Multistep Form Metadata", Index=107, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
+        [OptionSetMetadata("Multistep Form Metadata", Index=183, Lcid=1033, Description="Defines the additional behavior modification logic to augment or override the fun" +
             "ctionality of form fields that is not possible with Dynamics 365 entity and form" +
             " metadata.")]
-        MultistepFormMetadata = 10355,
+        MultistepFormMetadata = 10434,
         
         [EnumMember()]
-        [OptionSetMetadata("Form Step", Index=105, Lcid=1033, Description="Defines the flow logic of the form\'s user experience such as steps and conditiona" +
+        [OptionSetMetadata("Form Step", Index=167, Lcid=1033, Description="Defines the flow logic of the form\'s user experience such as steps and conditiona" +
             "l branching.")]
-        FormStep = 10356,
+        FormStep = 10435,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Link", Index=106, Lcid=1033, Description="A textual or imaged based link to an interal or external URL.")]
-        WebLink = 10357,
+        [OptionSetMetadata("Web Link", Index=151, Lcid=1033, Description="A textual or imaged based link to an interal or external URL.")]
+        WebLink = 10436,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Link Set", Index=113, Lcid=1033, Description="A grouping of web links.")]
-        WebLinkSet = 10358,
+        [OptionSetMetadata("Web Link Set", Index=150, Lcid=1033, Description="A grouping of web links.")]
+        WebLinkSet = 10437,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Page", Index=114, Lcid=1033, Description="Web Page")]
-        WebPage = 10359,
+        [OptionSetMetadata("Web Page", Index=152, Lcid=1033, Description="Web Page")]
+        WebPage = 10438,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Page Access Control Rule", Index=112, Lcid=1033, Description="")]
-        WebPageAccessControlRule = 10360,
+        [OptionSetMetadata("Web Page Access Control Rule", Index=154, Lcid=1033, Description="")]
+        WebPageAccessControlRule = 10439,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Role", Index=110, Lcid=1033, Description="Sets the user\'s role for the Portal.")]
-        WebRole = 10361,
+        [OptionSetMetadata("Web Role", Index=153, Lcid=1033, Description="Sets the user\'s role for the Portal.")]
+        WebRole = 10440,
         
         [EnumMember()]
-        [OptionSetMetadata("Website", Index=111, Lcid=1033, Description="Web Portal")]
-        Website = 10362,
+        [OptionSetMetadata("Website", Index=149, Lcid=1033, Description="Web Portal")]
+        Website = 10441,
         
         [EnumMember()]
-        [OptionSetMetadata("Website Access", Index=560, Lcid=1033, Description="")]
-        WebsiteAccess = 10363,
+        [OptionSetMetadata("Website Access", Index=145, Lcid=1033, Description="")]
+        WebsiteAccess = 10442,
         
         [EnumMember()]
-        [OptionSetMetadata("Website Language", Index=561, Lcid=1033, Description="Languages supported and publishing status for the portal")]
-        WebsiteLanguage = 10364,
+        [OptionSetMetadata("Website Language", Index=144, Lcid=1033, Description="Languages supported and publishing status for the portal")]
+        WebsiteLanguage = 10443,
         
         [EnumMember()]
-        [OptionSetMetadata("Web Template", Index=559, Lcid=1033, Description="")]
-        WebTemplate = 10365,
+        [OptionSetMetadata("Web Template", Index=146, Lcid=1033, Description="")]
+        WebTemplate = 10444,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Scan Report", Index=537, Lcid=1033, Description="Power Pages Scan Report")]
-        PowerPagesScanReport = 10372,
+        [OptionSetMetadata("Power Pages Scan Report", Index=12, Lcid=1033, Description="Power Pages Scan Report")]
+        PowerPagesScanReport = 10451,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Log", Index=538, Lcid=1033, Description="")]
-        PowerPagesLog = 10373,
+        [OptionSetMetadata("PowerPagesDDOSAlert", Index=18, Lcid=1033, Description="Schema for DDOS Alerts on PowerPage Site")]
+        PowerPagesDDOSAlert = 10452,
         
         [EnumMember()]
-        [OptionSetMetadata("PowerPagesManagedIdentity", Index=536, Lcid=1033, Description="")]
-        PowerPagesManagedIdentity = 10374,
+        [OptionSetMetadata("Power Pages Log", Index=17, Lcid=1033, Description="")]
+        PowerPagesLog = 10453,
         
         [EnumMember()]
-        [OptionSetMetadata("Power Pages Site AI Feedback", Index=544, Lcid=1033, Description="")]
-        PowerPagesSiteAIFeedback = 10375,
+        [OptionSetMetadata("PowerPagesManagedIdentity", Index=13, Lcid=1033, Description="")]
+        PowerPagesManagedIdentity = 10454,
         
         [EnumMember()]
-        [OptionSetMetadata("Catalog Submission Files", Index=86, Lcid=1033, Description="Files associated with the package that will be used as part of the submission to " +
+        [OptionSetMetadata("Power Pages Site AI Feedback", Index=14, Lcid=1033, Description="")]
+        PowerPagesSiteAIFeedback = 10455,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Catalog Submission Files", Index=174, Lcid=1033, Description="Files associated with the package that will be used as part of the submission to " +
             "the catalog system.")]
-        CatalogSubmissionFiles = 10380,
+        CatalogSubmissionFiles = 10461,
         
         [EnumMember()]
-        [OptionSetMetadata("Package Submission Store", Index=84, Lcid=1033, Description="Manages submissions to the Catalog and provisioning")]
-        PackageSubmissionStore = 10381,
+        [OptionSetMetadata("Package Submission Store", Index=176, Lcid=1033, Description="Manages submissions to the Catalog and provisioning")]
+        PackageSubmissionStore = 10462,
         
         [EnumMember()]
-        [OptionSetMetadata("signal", Index=419, Lcid=1033, Description="")]
-        signal = 10382,
+        [OptionSetMetadata("indexedtrait", Index=752, Lcid=1033, Description="")]
+        indexedtrait = 10463,
         
         [EnumMember()]
-        [OptionSetMetadata("trait", Index=494, Lcid=1033, Description="")]
-        trait = 10383,
+        [OptionSetMetadata("processor registration", Index=77, Lcid=1033, Description="")]
+        processorregistration = 10464,
         
         [EnumMember()]
-        [OptionSetMetadata("List Operation", Index=791, Lcid=1033, Description="System operation used to perform lengthy and asynchronous list operations on larg" +
-            "e data sets, such as adding members to a list.")]
-        ListOperation = 10384,
+        [OptionSetMetadata("signal", Index=370, Lcid=1033, Description="")]
+        signal = 10465,
         
         [EnumMember()]
-        [OptionSetMetadata("Marketing Form Display Attributes", Index=778, Lcid=1033, Description="Setting to allow customized form for In-app Marketing Form")]
-        MarketingFormDisplayAttributes = 10385,
+        [OptionSetMetadata("signal registration", Index=378, Lcid=1033, Description="")]
+        signalregistration = 10466,
         
         [EnumMember()]
-        [OptionSetMetadata("Database Version", Index=1069, Lcid=1033, Description="Stores the latest database version for a solution, for internal use only.")]
-        DatabaseVersion = 10386,
+        [OptionSetMetadata("trait", Index=268, Lcid=1033, Description="")]
+        trait = 10467,
         
         [EnumMember()]
-        [OptionSetMetadata("Upgrade Run", Index=0, Lcid=1033, Description="Contains logging information about a run of a Package Deployer package that upgra" +
-            "des a solution")]
-        UpgradeRun = 10387,
+        [OptionSetMetadata("trait registration", Index=264, Lcid=1033, Description="")]
+        traitregistration = 10468,
         
         [EnumMember()]
-        [OptionSetMetadata("Upgrade Step", Index=1, Lcid=1033, Description="One step during an upgrade, such as a single method or stored procedure.")]
-        UpgradeStep = 10388,
+        [OptionSetMetadata("Invoice", Index=252, Lcid=1033, Description="This table contains invoice details")]
+        Invoice = 10469,
         
         [EnumMember()]
-        [OptionSetMetadata("Upgrade Version", Index=8, Lcid=1033, Description="Information about upgrading from one release to the next release")]
-        UpgradeVersion = 10389,
+        [OptionSetMetadata("Transaction", Index=255, Lcid=1033, Description="This table contains transaction details including subscription, start and end dat" +
+            "es, and invoice")]
+        Transaction = 10489,
         
         [EnumMember()]
-        [OptionSetMetadata("Activity monitor", Index=900, Lcid=1033, Description="Entity that tracks ARC runtime information.")]
-        Activitymonitor = 10390,
+        [OptionSetMetadata("Product", Index=251, Lcid=1033, Description="This table contains records of product details")]
+        Product = 10507,
         
         [EnumMember()]
-        [OptionSetMetadata("Originating Queue Mapping", Index=188, Lcid=1033, Description="This entity maps entities created by ARC to the queue that was being procesed at " +
-            "that time")]
-        OriginatingQueueMapping = 10391,
+        [OptionSetMetadata("Subscription", Index=253, Lcid=1033, Description="This table contains subscription details including start and end dates, linked pr" +
+            "oduct and customer")]
+        Subscription_2 = 10525,
         
         [EnumMember()]
-        [OptionSetMetadata("Unified Routing Setup Tracker", Index=4, Lcid=1033, Description="Unified Routing Setup Trackers")]
-        UnifiedRoutingSetupTracker = 10392,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Available Times", Index=879, Lcid=1033, Description="")]
-        AvailableTimes = 10393,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Available Times Data Source", Index=872, Lcid=1033, Description="")]
-        AvailableTimesDataSource = 10394,
-        
-        [EnumMember()]
-        [OptionSetMetadata("resource group data source", Index=658, Lcid=1033, Description="")]
-        resourcegroupdatasource = 10395,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Virtual Resource Group Resource", Index=440, Lcid=1033, Description="")]
-        VirtualResourceGroupResource = 10396,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Migration tracker", Index=1127, Lcid=1033, Description="Entity that tracks the migration process of legacy to modern SLA/ARC items")]
-        Migrationtracker = 10397,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Asset Category Template Association", Index=1177, Lcid=1033, Description="")]
-        AssetCategoryTemplateAssociation = 10398,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Asset Template Association", Index=1178, Lcid=1033, Description="")]
-        AssetTemplateAssociation = 10399,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Asset", Index=1295, Lcid=1033, Description="Specify Customer Asset.")]
-        CustomerAsset = 10400,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Asset Attachment", Index=1293, Lcid=1033, Description="Attachments for Customer Asset")]
-        CustomerAssetAttachment = 10403,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Asset Category", Index=1294, Lcid=1033, Description="The Category of Customer Asset.")]
-        CustomerAssetCategory = 10404,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Functional Location", Index=1047, Lcid=1033, Description="")]
-        FunctionalLocation = 10405,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Functional Location Type", Index=1040, Lcid=1033, Description="")]
-        FunctionalLocationType = 10406,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Location Template Association", Index=1102, Lcid=1033, Description="Captures the relationship between a Property Template, which in turns captures a " +
-            "set of Properties, and a Functional Location.")]
-        LocationTemplateAssociation = 10407,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Functional Location Type Template Association", Index=1100, Lcid=1033, Description="")]
-        FunctionalLocationTypeTemplateAssociation = 10408,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Definition", Index=297, Lcid=1033, Description="")]
-        PropertyDefinition = 10409,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Asset Association", Index=298, Lcid=1033, Description="")]
-        PropertyAssetAssociation = 10410,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Location Association", Index=296, Lcid=1033, Description="Captures the relationship between a Property and a Functional Location.")]
-        PropertyLocationAssociation = 10411,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Log", Index=294, Lcid=1033, Description="")]
-        PropertyLog = 10412,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Property Template Association", Index=295, Lcid=1033, Description="")]
-        PropertyTemplateAssociation = 10413,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template For Properties", Index=14, Lcid=1033, Description="")]
-        TemplateForProperties = 10414,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Warranty", Index=38, Lcid=1033, Description="")]
-        Warranty = 10415,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Alert", Index=1144, Lcid=1033, Description="")]
-        IoTAlert = 10422,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device", Index=1142, Lcid=1033, Description="Represents a connected device that can be registered with an IoT provider.")]
-        IoTDevice = 10423,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Category", Index=1140, Lcid=1033, Description="Used to categorize IoT devices.")]
-        IoTDeviceCategory = 10424,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Command", Index=1141, Lcid=1033, Description="Represents an outgoing message to a device connected to an IoT provider.")]
-        IoTDeviceCommand = 10425,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Command Definition", Index=1170, Lcid=1033, Description="Metadata for commands that a device or a device category supports.")]
-        IoTDeviceCommandDefinition = 10426,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Data History", Index=1171, Lcid=1033, Description="The name of the entity that holds the device data every time a device data pull o" +
-            "ccurs between Dynamics 365 and an IoT provider")]
-        IoTDeviceDataHistory = 10427,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Property", Index=1169, Lcid=1033, Description="Link entity between IoT Device Category and IoT Property Definition. This is used" +
-            " to model properties and tags for devices.")]
-        IoTDeviceProperty = 10428,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Registration History", Index=1167, Lcid=1033, Description="Tracks registration activities on an IoT device.")]
-        IoTDeviceRegistrationHistory = 10429,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Device Visualization Configuration", Index=1168, Lcid=1033, Description="IoT Device Visualization Configuration")]
-        IoTDeviceVisualizationConfiguration = 10430,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Field Mapping", Index=1175, Lcid=1033, Description="")]
-        IoTFieldMapping = 10431,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Property Definition", Index=1176, Lcid=1033, Description="Defines a device property or a parameter that can be used for one or more command" +
-            " definitions.")]
-        IoTPropertyDefinition = 10432,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Provider", Index=1174, Lcid=1033, Description="The IoT Provider where a device is registered and through which all interactions " +
-            "with the device take place")]
-        IoTProvider = 10433,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Provider Instance", Index=1172, Lcid=1033, Description="An instance of an IoT Provider.")]
-        IoTProviderInstance = 10434,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Settings", Index=1173, Lcid=1033, Description="")]
-        IoTSettings = 10435,
-        
-        [EnumMember()]
-        [OptionSetMetadata("IoT Alert to Case Process", Index=1166, Lcid=1033, Description="Base entity for process IoT to Case Process")]
-        IoTAlerttoCaseProcess = 10438,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook Callable Context", Index=1215, Lcid=1033, Description="")]
-        PlaybookCallableContext = 10440,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook activity", Index=168, Lcid=1033, Description="Stores the details of the activities to be created when a playbook is launched.")]
-        Playbookactivity = 10441,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook activity attribute", Index=169, Lcid=1033, Description="Stores attribute names and values of the playbook activity.")]
-        Playbookactivityattribute = 10442,
-        
-        [EnumMember()]
-        [OptionSetMetadata("[DEPRECATED] Playbook category", Index=176, Lcid=1033, Description="List of categories for which a playbook can be created.")]
-        DEPRECATEDPlaybookcategory = 10443,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Playbook", Index=177, Lcid=1033, Description="Actual instance of a playbook template once it is launched.")]
-        Playbook = 10444,
-        
-        [EnumMember()]
-        [OptionSetMetadata("[DEPRECATED] Playbook template", Index=175, Lcid=1033, Description="Playbook templates contains the definition of the Playbook that helps to standard" +
-            "ize a set of best practices or next best actions.")]
-        DEPRECATEDPlaybooktemplate = 10445,
-        
-        [EnumMember()]
-        [OptionSetMetadata("admin_settings_entity", Index=887, Lcid=1033, Description="")]
-        admin_settings_entity = 10447,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Collab Space Team Association", Index=1305, Lcid=1033, Description="Collab Space Team Association")]
-        CollabSpaceTeamAssociation = 10448,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CRM Connection", Index=1268, Lcid=1033, Description="")]
-        CRMConnection = 10449,
-        
-        [EnumMember()]
-        [OptionSetMetadata("External CRM", Index=1024, Lcid=1033, Description="External CRM - Copilot for Sales")]
-        ExternalCRM = 10450,
-        
-        [EnumMember()]
-        [OptionSetMetadata("External Record", Index=1022, Lcid=1033, Description="External Record - Copilot for Sales")]
-        ExternalRecord = 10451,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Tagged Record", Index=71, Lcid=1033, Description="Tagged Record - Copilot for Sales")]
-        TaggedRecord = 10452,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot for Sales customer list", Index=34, Lcid=1033, Description="")]
-        CopilotforSalescustomerlist = 10453,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivaentitysetting", Index=32, Lcid=1033, Description="Entity level settings for Copilot for Sales")]
-        msdyn_vivaentitysetting = 10454,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivaorgextensioncred", Index=33, Lcid=1033, Description="Org level extension credential for Viva apps")]
-        msdyn_vivaorgextensioncred = 10455,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivaorgsetting", Index=40, Lcid=1033, Description="Org level settings for Copilot for Sales app")]
-        msdyn_vivaorgsetting = 10456,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_vivausersetting", Index=41, Lcid=1033, Description="User level settings for Copilot for Sales")]
-        msdyn_vivausersetting = 10457,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot Insight", Index=321, Lcid=1033, Description="")]
-        SalesCopilotInsight = 10458,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Org level settings for Sales Copilot apps", Index=266, Lcid=1033, Description="Org level settings for Sales Copilot apps")]
-        OrglevelsettingsforSalesCopilotapps = 10459,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot User Setting", Index=267, Lcid=1033, Description="")]
-        SalesCopilotUserSetting = 10460,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App profile", Index=1195, Lcid=1033, Description="")]
-        Appprofile = 10461,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Extension", Index=1187, Lcid=1033, Description="")]
-        ApplicationExtension = 10462,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Tab Template", Index=1180, Lcid=1033, Description="")]
-        ApplicationTabTemplate = 10463,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App profile role mapping", Index=1181, Lcid=1033, Description="")]
-        Appprofilerolemapping = 10464,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Field", Index=1116, Lcid=1033, Description="")]
-        NotificationField = 10465,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Template", Index=1114, Lcid=1033, Description="")]
-        NotificationTemplate = 10466,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Template", Index=280, Lcid=1033, Description="")]
-        SessionTemplate = 10467,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template Parameter", Index=15, Lcid=1033, Description="")]
-        TemplateParameter = 10468,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Integration Framework v1.0 Provider", Index=1306, Lcid=1033, Description="Entity that holds the configuration data for a channel provider based on Channel " +
-            "Integration Framework v1.0")]
-        ChannelIntegrationFrameworkv10Provider = 10474,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Field (Deprecated)", Index=1312, Lcid=1033, Description="Defines a field (key, templateValue) that needs to be populated in the notificati" +
-            "on body.")]
-        NotificationFieldDeprecated = 10475,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notification Template (Deprecated)", Index=1310, Lcid=1033, Description="Template for a notification")]
-        NotificationTemplateDeprecated = 10476,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App Parameter Definition (Deprecated)", Index=1337, Lcid=1033, Description="")]
-        AppParameterDefinitionDeprecated = 10477,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Templates (Deprecated)", Index=1308, Lcid=1033, Description="")]
-        SessionTemplatesDeprecated = 10478,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Tab Template (Deprecated)", Index=1309, Lcid=1033, Description="An application tab template with various template parameters defined.")]
-        ApplicationTabTemplateDeprecated = 10479,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Parameter (Deprecated)", Index=1338, Lcid=1033, Description="Template parameter values for a given application template")]
-        ParameterDeprecated = 10480,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template Tag (Deprecated)", Index=11, Lcid=1033, Description="Tags associated with templates. Templates are discovered via tags")]
-        TemplateTagDeprecated = 10481,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Application Type (Deprecated)", Index=1339, Lcid=1033, Description="Define a UCI pagetype. For each pagetype, define the parameters that need to be a" +
-            " part of the template for this application type")]
-        ApplicationTypeDeprecated = 10482,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Integration Framework v2.0 Provider", Index=1313, Lcid=1033, Description="Entity that holds the configuration data for a third-party voice channel provider" +
-            " based on Channel Integration Framework v2.0")]
-        ChannelIntegrationFrameworkv20Provider = 10491,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Data (Deprecated)", Index=1328, Lcid=1033, Description="Primary entity for a conversation")]
-        ConversationDataDeprecated = 10493,
-        
-        [EnumMember()]
-        [OptionSetMetadata("KPI Event Data", Index=1111, Lcid=1033, Description="Primary entity for a kpi event")]
-        KPIEventData = 10494,
-        
-        [EnumMember()]
-        [OptionSetMetadata("KPI Event Definition", Index=1109, Lcid=1033, Description="Primary entity for defining a KPI event")]
-        KPIEventDefinition = 10495,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Data (Deprecated)", Index=273, Lcid=1033, Description="Primary entity for session data")]
-        SessionDataDeprecated = 10496,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Participant Data (Deprecated)", Index=282, Lcid=1033, Description="")]
-        SessionParticipantDataDeprecated = 10497,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Definition", Index=1316, Lcid=1033, Description="Stores details about a channel definition.")]
-        ChannelDefinition = 10498,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Definition Consent", Index=1314, Lcid=1033, Description="")]
-        ChannelDefinitionConsent = 10499,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Definition Locale", Index=1315, Lcid=1033, Description="")]
-        ChannelDefinitionLocale = 10500,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Instance", Index=1322, Lcid=1033, Description="")]
-        ChannelInstance = 10501,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Instance Account", Index=1323, Lcid=1033, Description="")]
-        ChannelInstanceAccount = 10502,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Message Attachment", Index=1321, Lcid=1033, Description="")]
-        ChannelMessageAttachment = 10503,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Message Context Part", Index=1319, Lcid=1033, Description="Context about channel message")]
-        ChannelMessageContextPart = 10504,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Message Part", Index=1320, Lcid=1033, Description="")]
-        ChannelMessagePart = 10505,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Consuming Application", Index=1335, Lcid=1033, Description="Consuming Application that use Unified Channel")]
-        ConsumingApplication = 10506,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_DefExtendedChannelInstance", Index=1057, Lcid=1033, Description="")]
-        msdyn_DefExtendedChannelInstance = 10507,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_DefExtendedChannelInstanceAccount", Index=1086, Lcid=1033, Description="")]
-        msdyn_DefExtendedChannelInstanceAccount = 10508,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Productivity pane configuration", Index=184, Lcid=1033, Description="")]
-        Productivitypaneconfiguration = 10509,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Pane tab configuration", Index=185, Lcid=1033, Description="")]
-        Panetabconfiguration = 10510,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Pane tool configuration", Index=178, Lcid=1033, Description="")]
-        Panetoolconfiguration = 10511,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent script", Index=313, Lcid=1033, Description="Agent script v2")]
-        Agentscript = 10513,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent script step", Index=314, Lcid=1033, Description="")]
-        Agentscriptstep = 10514,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Input Parameter", Index=305, Lcid=1033, Description="Attributes of action input parameters")]
-        ActionInputParameter = 10516,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Output Parameter", Index=306, Lcid=1033, Description="Attributes of action output parameters")]
-        ActionOutputParameter = 10517,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Action Template", Index=312, Lcid=1033, Description="Attributes for macro action template")]
-        MacroActionTemplate = 10518,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Solution Configuration", Index=311, Lcid=1033, Description="Macro solution related configurations")]
-        MacroSolutionConfiguration = 10519,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Connector", Index=310, Lcid=1033, Description="Attributes for macro connectors")]
-        MacroConnector = 10520,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Macro Run History", Index=1099, Lcid=1033, Description="Stores history of macro runs")]
-        MacroRunHistory = 10521,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Parameter definition", Index=304, Lcid=1033, Description="Macro parameter definitions")]
-        Parameterdefinition = 10522,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Adaptive Card Configuration", Index=1223, Lcid=1033, Description="Adaptive Card Configuration")]
-        AdaptiveCardConfiguration = 10525,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Smartassist configuration", Index=61, Lcid=1033, Description="Stores Smartassist configurations")]
-        Smartassistconfiguration = 10526,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Read Tracker", Index=301, Lcid=1033, Description="Keeps track of the records read by an user in the system")]
-        ReadTracker = 10528,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Read tracking enabled information", Index=299, Lcid=1033, Description="")]
-        Readtrackingenabledinformation = 10529,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams Graph resource Entity", Index=1307, Lcid=1033, Description="Entity which stores collaboration data of Dynamics 365 with Microsoft Teams")]
-        MicrosoftTeamsGraphresourceEntity = 10530,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_msteamssetting", Index=1130, Lcid=1033, Description="")]
-        msdyn_msteamssetting = 10531,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_msteamssettingsv2", Index=1131, Lcid=1033, Description="")]
-        msdyn_msteamssettingsv2 = 10532,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams Collaboration entity", Index=68, Lcid=1033, Description="Entity which stores collaboration data of Dynamics 365 with Microsoft Teams")]
-        MicrosoftTeamsCollaborationentity = 10533,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Teams Dialer Admin settings", Index=69, Lcid=1033, Description="")]
-        TeamsDialerAdminsettings = 10534,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Teams Contact Suggestion by AI", Index=1243, Lcid=1033, Description="")]
-        TeamsContactSuggestionbyAI = 10535,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contact suggestion rule", Index=1343, Lcid=1033, Description="")]
-        Contactsuggestionrule = 10536,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contact suggestion ruleset", Index=1344, Lcid=1033, Description="")]
-        Contactsuggestionruleset = 10537,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams chat association entity", Index=72, Lcid=1033, Description="For internal use only. Entity which stores association data of Dynamics 365 recor" +
-            "ds with Microsoft Teams chat")]
-        MicrosoftTeamschatassociationentity = 10538,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Teams chat suggestion", Index=70, Lcid=1033, Description="For internal use only")]
-        MicrosoftTeamschatsuggestion = 10539,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Microsoft Orgchart node entity", Index=187, Lcid=1033, Description="For internal use only. Entity which stores association data of account with conta" +
-            "cts present in the orgchart hierarchy of the account")]
-        MicrosoftOrgchartnodeentity = 10540,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Manual Adjustment History", Index=1221, Lcid=1033, Description="Forecast Manual Adjustment History")]
-        ForecastManualAdjustmentHistory = 10541,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Distributed Lock", Index=1084, Lcid=1033, Description="Distributed Locks")]
-        DistributedLock = 10542,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Delta Change", Index=1073, Lcid=1033, Description="Entity Delta Changes")]
-        EntityDeltaChange = 10543,
-        
-        [EnumMember()]
-        [OptionSetMetadata("File Upload Status Tracker", Index=1027, Lcid=1033, Description="File Upload Status Tracker")]
-        FileUploadStatusTracker = 10544,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast", Index=1016, Lcid=1033, Description="Forecast")]
-        Forecast = 10545,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Configuration", Index=1014, Lcid=1033, Description="")]
-        ForecastConfiguration = 10546,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast definition", Index=1015, Lcid=1033, Description="Defines the parameters used for forecasting.")]
-        Forecastdefinition = 10547,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecasting Cache", Index=1044, Lcid=1033, Description="Forecasting Cache")]
-        ForecastingCache = 10548,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Insights", Index=1045, Lcid=1033, Description="Forecast Insights")]
-        ForecastInsights = 10549,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast", Index=1043, Lcid=1033, Description="Stores sales predictions for your team or organization. For internal use.")]
-        Forecast_2 = 10550,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Prediction Data", Index=1041, Lcid=1033, Description="Forecast Prediction Data")]
-        ForecastPredictionData = 10551,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Prediction Status", Index=1042, Lcid=1033, Description="Forecast Prediction Status")]
-        ForecastPredictionStatus = 10552,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast recurrence", Index=1049, Lcid=1033, Description="Stores recalculation information for each recurrence of the forecast hierarchy. F" +
-            "or internal use.")]
-        Forecastrecurrence = 10553,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recompute Tracker", Index=330, Lcid=1033, Description="")]
-        RecomputeTracker = 10554,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Recurrence", Index=326, Lcid=1033, Description="Forecast Recurrence")]
-        ForecastRecurrence = 10555,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ShareAs Configuration", Index=278, Lcid=1033, Description="ShareAs Configuration")]
-        ShareAsConfiguration = 10556,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer email communication", Index=1301, Lcid=1033, Description="")]
-        Customeremailcommunication = 10557,
-        
-        [EnumMember()]
-        [OptionSetMetadata("GDPRData", Index=1033, Lcid=1033, Description="")]
-        GDPRData = 10558,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ODOSFeatureMetadata", Index=240, Lcid=1033, Description="")]
-        ODOSFeatureMetadata = 10559,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ODOSMetadata", Index=238, Lcid=1033, Description="")]
-        ODOSMetadata = 10560,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recurring Sales Action", Index=327, Lcid=1033, Description="")]
-        RecurringSalesAction = 10561,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recurring Sales Action V2", Index=334, Lcid=1033, Description="")]
-        RecurringSalesActionV2 = 10562,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_relationshipinsightsunifiedconfig", Index=333, Lcid=1033, Description="")]
-        msdyn_relationshipinsightsunifiedconfig = 10563,
-        
-        [EnumMember()]
-        [OptionSetMetadata("siconfig", Index=279, Lcid=1033, Description="")]
-        siconfig = 10564,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SI Key Value Config", Index=56, Lcid=1033, Description="")]
-        SIKeyValueConfig = 10565,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Usage Metric", Index=5, Lcid=1033, Description="")]
-        UsageMetric = 10566,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Regarding", Index=1239, Lcid=1033, Description="")]
-        ActionCardRegarding = 10567,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Role Setting", Index=1237, Lcid=1033, Description="")]
-        ActionCardRoleSetting = 10568,
-        
-        [EnumMember()]
-        [OptionSetMetadata("EntityRankingRule", Index=1081, Lcid=1033, Description="")]
-        EntityRankingRule = 10569,
-        
-        [EnumMember()]
-        [OptionSetMetadata("flowcardtype", Index=1018, Lcid=1033, Description="")]
-        flowcardtype = 10570,
-        
-        [EnumMember()]
-        [OptionSetMetadata("salesinsightssettings", Index=264, Lcid=1033, Description="Storing settings for studio feature")]
-        salesinsightssettings = 10571,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Usage", Index=1238, Lcid=1033, Description="")]
-        ActionCardUsage = 10572,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Action Card Usage Aggregation", Index=1235, Lcid=1033, Description="")]
-        ActionCardUsageAggregation = 10573,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auto Capture Rule", Index=1210, Lcid=1033, Description="Auto Capture Rules")]
-        AutoCaptureRule = 10574,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auto Capture Settings", Index=1217, Lcid=1033, Description="Auto Capture Settings")]
-        AutoCaptureSettings = 10575,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UntrackedAppointment", Index=2, Lcid=1033, Description="UntrackedAppointments")]
-        UntrackedAppointment = 10576,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Activity", Index=49, Lcid=1033, Description="Activity suggestions")]
-        SuggestedActivity = 10577,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Activity Data Source", Index=47, Lcid=1033, Description="Suggested Activity Data Sources")]
-        SuggestedActivityDataSource = 10578,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Contact", Index=48, Lcid=1033, Description="Contact suggestions")]
-        SuggestedContact = 10579,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggested Contacts Data Source", Index=77, Lcid=1033, Description="Suggested contacts data sources")]
-        SuggestedContactsDataSource = 10580,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Notes analysis Config", Index=1118, Lcid=1033, Description="")]
-        NotesanalysisConfig = 10581,
-        
-        [EnumMember()]
-        [OptionSetMetadata("icebreakersconfig", Index=1030, Lcid=1033, Description="")]
-        icebreakersconfig = 10582,
-        
-        [EnumMember()]
-        [OptionSetMetadata("dealmanageraccess", Index=1059, Lcid=1033, Description="")]
-        dealmanageraccess = 10583,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Deal manager settings", Index=1060, Lcid=1033, Description="Deal manager settings")]
-        Dealmanagersettings = 10584,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Account KPI Item", Index=1231, Lcid=1033, Description="")]
-        AccountKPIItem = 10585,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Activity Analysis CleanUp State", Index=1229, Lcid=1033, Description="")]
-        ActivityAnalysisCleanUpState = 10586,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Relationship Analytics Config", Index=1222, Lcid=1033, Description="")]
-        RelationshipAnalyticsConfig = 10587,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contact KPI Item", Index=1336, Lcid=1033, Description="")]
-        ContactKPIItem = 10588,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily Kpis for account", Index=1299, Lcid=1033, Description="")]
-        DailyKpisforaccount = 10589,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily kpis for contact", Index=1292, Lcid=1033, Description="")]
-        Dailykpisforcontact = 10590,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily kpis for lead", Index=1285, Lcid=1033, Description="")]
-        Dailykpisforlead = 10591,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Daily kpis for Opportunity", Index=1286, Lcid=1033, Description="")]
-        DailykpisforOpportunity = 10592,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead KPI Item", Index=1103, Lcid=1033, Description="")]
-        LeadKPIItem = 10593,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Most Contacted", Index=1134, Lcid=1033, Description="Most Contacted")]
-        MostContacted = 10594,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Most Contacted By", Index=1132, Lcid=1033, Description="Most Contacted By")]
-        MostContactedBy = 10595,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Opportunity KPI Item", Index=179, Lcid=1033, Description="")]
-        OpportunityKPIItem = 10596,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Relationship Analytics Metadata", Index=335, Lcid=1033, Description="")]
-        RelationshipAnalyticsMetadata = 10597,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Similar entities feature importance", Index=57, Lcid=1033, Description="")]
-        Similarentitiesfeatureimportance = 10598,
-        
-        [EnumMember()]
-        [OptionSetMetadata("wkwcolleaguesforcompany", Index=31, Lcid=1033, Description="")]
-        wkwcolleaguesforcompany = 10599,
-        
-        [EnumMember()]
-        [OptionSetMetadata("wkwcolleaguesforcontact", Index=24, Lcid=1033, Description="Entity for storing contact introducer")]
-        wkwcolleaguesforcontact = 10600,
-        
-        [EnumMember()]
-        [OptionSetMetadata("wkwconfig", Index=25, Lcid=1033, Description="")]
-        wkwconfig = 10601,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Attribute Influence Statistics", Index=1212, Lcid=1033, Description="")]
-        AttributeInfluenceStatistics = 10602,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Prediction Computation Operation", Index=189, Lcid=1033, Description="")]
-        PredictionComputationOperation = 10603,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Prediction Model Status", Index=190, Lcid=1033, Description="Stores metadata about predictive models")]
-        PredictionModelStatus = 10604,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Prediction Scheduled Operation", Index=197, Lcid=1033, Description="Contains meta-data about the scheduled operations.")]
-        PredictionScheduledOperation = 10605,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predictive Model Score", Index=198, Lcid=1033, Description="")]
-        PredictiveModelScore = 10606,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predictive Score", Index=196, Lcid=1033, Description="")]
-        PredictiveScore = 10607,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predictive Scoring Sync Status", Index=194, Lcid=1033, Description="Internal entity used to store sync status for predictive scoring core entities.")]
-        PredictiveScoringSyncStatus = 10608,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Real Time Scoring", Index=300, Lcid=1033, Description="Stores meta data information for real time scoring.")]
-        RealTimeScoring = 10609,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Real Time Scoring Operation", Index=329, Lcid=1033, Description="Stores metadata for real time scoring job.")]
-        RealTimeScoringOperation = 10610,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Submodel Definition", Index=51, Lcid=1033, Description="Stores metadata about submodels")]
-        SubmodelDefinition = 10611,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Time spent in BPF", Index=19, Lcid=1033, Description="")]
-        TimespentinBPF = 10612,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Training Result", Index=16, Lcid=1033, Description="Stores Training results for the model")]
-        TrainingResult = 10613,
-        
-        [EnumMember()]
-        [OptionSetMetadata("OpportunityModelConfig", Index=180, Lcid=1033, Description="")]
-        OpportunityModelConfig = 10614,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LeadModelConfig", Index=1096, Lcid=1033, Description="")]
-        LeadModelConfig = 10615,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ModelPreviewStatus", Index=1126, Lcid=1033, Description="")]
-        ModelPreviewStatus = 10616,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Profile Album", Index=192, Lcid=1033, Description="Contains user profile images that are stored as attachments and displayed in post" +
-            "s.")]
-        ProfileAlbum = 10617,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Post Configuration", Index=193, Lcid=1033, Description="Enable or disable entities for Activity Feeds and Yammer collaboration.")]
-        PostConfiguration = 10618,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Post Rule Configuration", Index=191, Lcid=1033, Description="Enable or disable system post rules for an entity for Activity Feeds and Yammer.")]
-        PostRuleConfiguration = 10619,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Wall View", Index=39, Lcid=1033, Description="Contains information regarding which views are available for users to display on " +
-            "their personal walls. Only an administrator can specify the views that users can" +
-            " choose from to display on their personal walls.")]
-        WallView = 10620,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Filter", Index=37, Lcid=1033, Description="Contains user personalization information regarding which of the administrator’s " +
-            "selected views to display on a user’s personal wall.")]
-        Filter = 10621,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice alert", Index=152, Lcid=1033, Description="")]
-        CustomerVoicealert = 10622,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice alert rule", Index=153, Lcid=1033, Description="")]
-        CustomerVoicealertrule = 10623,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey email template", Index=98, Lcid=1033, Description="Template for an email message that contains the survey invitation link.")]
-        CustomerVoicesurveyemailtemplate = 10624,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice file response", Index=99, Lcid=1033, Description="Response to a file upload question.")]
-        CustomerVoicefileresponse = 10625,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice localized survey email template", Index=97, Lcid=1033, Description="Stores localized data for email templates.")]
-        CustomerVoicelocalizedsurveyemailtemplate = 10626,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice project", Index=95, Lcid=1033, Description="Set of surveys to collect feedback.")]
-        CustomerVoiceproject = 10627,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey question", Index=96, Lcid=1033, Description="Question in a survey to collect feedback.")]
-        CustomerVoicesurveyquestion = 10628,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey question response", Index=103, Lcid=1033, Description="Response to a question in a survey.")]
-        CustomerVoicesurveyquestionresponse = 10629,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice satisfaction metric", Index=104, Lcid=1033, Description="Satisfaction metric defined for a project.")]
-        CustomerVoicesatisfactionmetric = 10630,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey", Index=102, Lcid=1033, Description="Set of questions to collect feedback.")]
-        CustomerVoicesurvey = 10631,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey invite", Index=100, Lcid=1033, Description="Activity that tracks a survey invitation sent to a person.")]
-        CustomerVoicesurveyinvite = 10632,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey reminder", Index=101, Lcid=1033, Description="Email reminders for surveys created in Customer Voice.")]
-        CustomerVoicesurveyreminder = 10633,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey response", Index=94, Lcid=1033, Description="Response to a survey.")]
-        CustomerVoicesurveyresponse = 10634,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice unsubscribed recipient", Index=87, Lcid=1033, Description="Email address of an unsubscribed respondent.")]
-        CustomerVoiceunsubscribedrecipient = 10635,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Service Key Value Configuration", Index=1267, Lcid=1033, Description="")]
-        CustomerServiceKeyValueConfiguration = 10636,
-        
-        [EnumMember()]
-        [OptionSetMetadata("AddToCalendar style", Index=141, Lcid=1033, Description="")]
-        AddToCalendarstyle = 10637,
-        
-        [EnumMember()]
-        [OptionSetMetadata("basestyle", Index=139, Lcid=1033, Description="")]
-        basestyle = 10638,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Button style", Index=137, Lcid=1033, Description="")]
-        Buttonstyle = 10639,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Code style", Index=138, Lcid=1033, Description="")]
-        Codestyle = 10640,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Column style", Index=145, Lcid=1033, Description="")]
-        Columnstyle = 10641,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Content Block", Index=146, Lcid=1033, Description="")]
-        ContentBlock = 10642,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Divider style", Index=144, Lcid=1033, Description="")]
-        Dividerstyle = 10643,
-        
-        [EnumMember()]
-        [OptionSetMetadata("General styles", Index=142, Lcid=1033, Description="")]
-        Generalstyles = 10644,
-        
-        [EnumMember()]
-        [OptionSetMetadata("imagestyle", Index=143, Lcid=1033, Description="")]
-        imagestyle = 10645,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Layout Style", Index=136, Lcid=1033, Description="")]
-        LayoutStyle = 10646,
-        
-        [EnumMember()]
-        [OptionSetMetadata("QR code style", Index=129, Lcid=1033, Description="")]
-        QRcodestyle = 10647,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Text style", Index=130, Lcid=1033, Description="")]
-        Textstyle = 10648,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Video style", Index=128, Lcid=1033, Description="")]
-        Videostyle = 10649,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App state", Index=1179, Lcid=1033, Description="")]
-        Appstate = 10650,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CSAdminConfig", Index=1266, Lcid=1033, Description="")]
-        CSAdminConfig = 10651,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom API Ruleset Configuration", Index=1296, Lcid=1033, Description="Configuration table for setting up custom APIs for usage inside the Unified routi" +
-            "ng system")]
-        CustomAPIRulesetConfiguration = 10652,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Decision contract", Index=1058, Lcid=1033, Description="Stores information about contract that will be required for ruleset definition")]
-        Decisioncontract = 10653,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Decision rule set", Index=1056, Lcid=1033, Description="Contains list of rules to define demand and assignment behavior")]
-        Decisionruleset = 10654,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rulesetentitymapping", Index=315, Lcid=1033, Description="For internal use only entity used to store an implicit mapping between a ruleset " +
-            "and polymorphic entity")]
-        Rulesetentitymapping = 10655,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing diagnostic item", Index=10, Lcid=1033, Description="The entity used to store unified routing diagnostic data.")]
-        Routingdiagnosticitem = 10656,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing diagnostic", Index=3, Lcid=1033, Description="")]
-        Routingdiagnostic = 10657,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inbox card configuration", Index=1039, Lcid=1033, Description="")]
-        Inboxcardconfiguration = 10658,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inbox Configuration", Index=1037, Lcid=1033, Description="")]
-        InboxConfiguration = 10659,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Inbox Entity Configuration", Index=1035, Lcid=1033, Description="")]
-        InboxEntityConfiguration = 10660,
-        
-        [EnumMember()]
-        [OptionSetMetadata("App Profile Copilot Configuration", Index=1193, Lcid=1033, Description="")]
-        AppProfileCopilotConfiguration = 10661,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm", Index=73, Lcid=1033, Description="Tracks the list of swarms created by agents to resolve the customer issues")]
-        Swarm = 10662,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm participant", Index=66, Lcid=1033, Description="Stores the participants information of swarm")]
-        Swarmparticipant = 10663,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm participant rule", Index=67, Lcid=1033, Description="Rules to fetch participants based on their role")]
-        Swarmparticipantrule = 10664,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm role", Index=65, Lcid=1033, Description="Stores the different participant roles and associated role type defined")]
-        Swarmrole = 10665,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm skill", Index=63, Lcid=1033, Description="Stores the skills required for the swarm")]
-        Swarmskill = 10666,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Swarm template", Index=64, Lcid=1033, Description="Entity which stores different templates for the swarm")]
-        Swarmtemplate = 10667,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Autonomous case creation and update rules", Index=1218, Lcid=1033, Description="Autonomous case creation and update rules")]
-        Autonomouscasecreationandupdaterules = 10668,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Attachment", Index=1076, Lcid=1033, Description="")]
-        EntityAttachment = 10669,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Time Tracker", Index=20, Lcid=1033, Description="")]
-        TimeTracker = 10670,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer feedback survey", Index=1302, Lcid=1033, Description="")]
-        Customerfeedbacksurvey = 10671,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer feedback survey invite", Index=1300, Lcid=1033, Description="")]
-        Customerfeedbacksurveyinvite = 10672,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer feedback survey response", Index=1298, Lcid=1033, Description="")]
-        Customerfeedbacksurveyresponse = 10673,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_surveyconfig", Index=79, Lcid=1033, Description="")]
-        msdyn_surveyconfig = 10674,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Survey setting", Index=80, Lcid=1033, Description="")]
-        Surveysetting = 10675,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Master Entity Routing Configuration", Index=1129, Lcid=1033, Description="Defines master routing details for the entity.")]
-        MasterEntityRoutingConfiguration = 10676,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing Rule Set Setting", Index=317, Lcid=1033, Description="")]
-        RoutingRuleSetSetting = 10677,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Configuration", Index=1185, Lcid=1033, Description="")]
-        AssignmentConfiguration = 10678,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Configuration Step", Index=1186, Lcid=1033, Description="")]
-        AssignmentConfigurationStep = 10679,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Capacity Profile", Index=1201, Lcid=1033, Description="Capacity Profiles")]
-        CapacityProfile = 10680,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Overflow Action Config", Index=186, Lcid=1033, Description="Overflow action configurations.")]
-        OverflowActionConfig = 10681,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Preferred Agent", Index=195, Lcid=1033, Description="Preferred Agent Table, table used to store the mapping between the system user an" +
-            "d contact/account")]
-        PreferredAgent = 10682,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Preferred Agent Customer Identity", Index=308, Lcid=1033, Description="Used for storing the table used to identify customer and the corresponding associ" +
-            "ated table")]
-        PreferredAgentCustomerIdentity = 10683,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Preferred Agent Routed Entity", Index=309, Lcid=1033, Description="Preferred Agent Routed table used to store information for routed table name and " +
-            "customer identifying column on the table")]
-        PreferredAgentRoutedEntity = 10684,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing configuration", Index=325, Lcid=1033, Description="Defines routing details for the workstream")]
-        Routingconfiguration = 10685,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Routing configuration step", Index=318, Lcid=1033, Description="Links the routing configuration with ruleset")]
-        Routingconfigurationstep = 10686,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bot Channel Registration", Index=1120, Lcid=1033, Description="Bot channel registration used for channel integration")]
-        BotChannelRegistration = 10687,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Configuration", Index=221, Lcid=1033, Description="Channel Configuration")]
-        ChannelConfiguration = 10688,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel State Configuration", Index=222, Lcid=1033, Description="Channel State Configuration")]
-        ChannelStateConfiguration = 10689,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Provisioning State", Index=219, Lcid=1033, Description="Provisioning state")]
-        ProvisioningState = 10690,
-        
-        [EnumMember()]
-        [OptionSetMetadata("AdminAppState", Index=1219, Lcid=1033, Description="State for each user in Admin App")]
-        AdminAppState = 10691,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Status history", Index=1253, Lcid=1033, Description="Agent status history entity records any changes to agent’s presence or available " +
-            "capacity.")]
-        AgentStatushistory = 10692,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Power BI Configuration", Index=1189, Lcid=1033, Description="Stores the Power BI configurations for supervisor experience")]
-        PowerBIConfiguration = 10693,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Authentication Settings", Index=1211, Lcid=1033, Description="Stores the settings for user authentication")]
-        AuthenticationSettings = 10694,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auth Settings Entry", Index=1209, Lcid=1033, Description="")]
-        AuthSettingsEntry = 10695,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quick reply", Index=1208, Lcid=1033, Description="Stores the quick replies that agents can use in the conversation control while in" +
-            "teracting with the customers")]
-        Quickreply = 10696,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Routing Context", Index=1317, Lcid=1033, Description="Entity Routing Contexts")]
-        EntityRoutingContext = 10697,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel Capability", Index=1318, Lcid=1033, Description="The capability that a channel can enable, such as co-browse, screen sharing.")]
-        ChannelCapability = 10698,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Action", Index=1342, Lcid=1033, Description="The action that can be performed in the conversation.")]
-        ConversationAction = 10699,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Action Locale", Index=1341, Lcid=1033, Description="Localization information associated with the Conversation action.")]
-        ConversationActionLocale = 10700,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Message Block", Index=1324, Lcid=1033, Description=@"A Message Block would constitute a block of messages up till an agent responds (including the messages sent by the agent). A follow up message, after an agent responds, will create another message block, this block again ends with the messages from the agent")]
-        ConversationMessageBlock = 10701,
-        
-        [EnumMember()]
-        [OptionSetMetadata("DeletedConversation", Index=1087, Lcid=1033, Description="Holds id of deleted conversation")]
-        DeletedConversation = 10702,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Deprecated Workstream Entity Configuration", Index=1072, Lcid=1033, Description="Stores entity routing configuration per workstream")]
-        DeprecatedWorkstreamEntityConfiguration = 10703,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity", Index=1077, Lcid=1033, Description="Entity Routing Configuration")]
-        Entity_2 = 10704,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Ongoing conversation (Deprecated)", Index=1095, Lcid=1033, Description="Tracks the interactions between the agents and customer")]
-        OngoingconversationDeprecated = 10705,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Live work item event", Index=1093, Lcid=1033, Description="This entity captures all events corresponding to a live work item.")]
-        Liveworkitemevent = 10706,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work Stream", Index=1094, Lcid=1033, Description="Stores information about the properties of work items that are generated by a uni" +
-            "que channel endpoint")]
-        WorkStream = 10707,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Masking Rule", Index=1128, Lcid=1033, Description="Masking Rules to apply to chat messages.")]
-        MaskingRule = 10708,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Auto block rule", Index=1123, Lcid=1033, Description="")]
-        Autoblockrule = 10709,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bot Channel Registration Secret", Index=672, Lcid=1033, Description="")]
-        BotChannelRegistrationSecret = 10710,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel channel api conversation privilege", Index=224, Lcid=1033, Description="Entity for creating privilege for custom apis. The privileges for this entity wil" +
-            "l be used to restrict custom api access.")]
-        Omnichannelchannelapiconversationprivilege = 10711,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel channel api message privilege", Index=225, Lcid=1033, Description="Entity for creating privilege for custom apis. The privileges for this entity wil" +
-            "l be used to restrict custom api access.")]
-        Omnichannelchannelapimessageprivilege = 10712,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Channel api method mapping", Index=223, Lcid=1033, Description="OC channel api method mapping entity.")]
-        Channelapimethodmapping = 10713,
-        
-        [EnumMember()]
-        [OptionSetMetadata("External context", Index=229, Lcid=1033, Description="")]
-        Externalcontext = 10714,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Flagged spam", Index=230, Lcid=1033, Description="")]
-        Flaggedspam = 10715,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Language", Index=228, Lcid=1033, Description="")]
-        Language = 10716,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation", Index=226, Lcid=1033, Description="Tracks the interaction between the agents and customer")]
-        Conversation = 10717,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Context item value", Index=213, Lcid=1033, Description="Stores context item values for an engagement.")]
-        Contextitemvalue = 10720,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Live Work Item Participant (Deprecated)", Index=214, Lcid=1033, Description="")]
-        LiveWorkItemParticipantDeprecated = 10721,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Sentiment", Index=212, Lcid=1033, Description="Stores the machine learning generated customer sentiment of the communication  be" +
-            "tween the user and the customer")]
-        ConversationSentiment = 10722,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Context variable", Index=210, Lcid=1033, Description="Stores the context variables for a work stream.")]
-        Contextvariable = 10723,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Localization", Index=211, Lcid=1033, Description="Entity used for data localization on CRM org.")]
-        Localization = 10724,
-        
-        [EnumMember()]
-        [OptionSetMetadata("OC Payment Profile", Index=218, Lcid=1033, Description="")]
-        OCPaymentProfile = 10725,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recording", Index=217, Lcid=1033, Description="Records the audio/video session")]
-        Recording = 10726,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Request", Index=215, Lcid=1033, Description="Entity to store Requests across Omnichannel.")]
-        OmnichannelRequest = 10727,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rich message", Index=216, Lcid=1033, Description="Rich messages for Omnichannel integration")]
-        Richmessage = 10728,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rich message map", Index=245, Lcid=1033, Description="Rich messages map for Omnichannel integration")]
-        Richmessagemap = 10729,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Rule Item", Index=246, Lcid=1033, Description="Stores the condition and destination including Omnichannel queues or agents")]
-        RuleItem = 10730,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment daily topic", Index=244, Lcid=1033, Description="1. store properties regarding each topic cluster\r\n2. used for dashboard visualiza" +
-            "tion (like topic example) and calculation for topic mapping")]
-        Sentimentdailytopic = 10731,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment daily topic keyword", Index=242, Lcid=1033, Description="1. Store the keyword and frequency for topic clusters\r\n2. Used for word cloud in " +
-            "the dashboard")]
-        Sentimentdailytopickeyword = 10732,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment daily topic trending", Index=243, Lcid=1033, Description="1. Store the day to day topic mapping information\r\n2. Used for dashboard visualiz" +
-            "ation")]
-        Sentimentdailytopictrending = 10733,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session", Index=250, Lcid=1033, Description="Session for interacting with a customer")]
-        Session = 10734,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Participant Event", Index=249, Lcid=1033, Description="Session participant events")]
-        SessionParticipantEvent = 10735,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Sentiment", Index=247, Lcid=1033, Description="Stores the session level sentiment for customer interactions calculated using AI." +
-            "")]
-        SessionSentiment = 10736,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Message", Index=231, Lcid=1033, Description="Stores the system messages sent to the message receiver for various events.")]
-        Message = 10737,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Tag", Index=232, Lcid=1033, Description="Tags for quick categorization")]
-        Tag = 10738,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Geo Location Provider", Index=1115, Lcid=1033, Description="Geo Location Providers")]
-        GeoLocationProvider = 10739,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Configuration", Index=236, Lcid=1033, Description="Configuration for Omnichannel")]
-        OmnichannelConfiguration = 10740,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Personalization", Index=237, Lcid=1033, Description="Stores personalization information of Omnichannel Agent/Supervisor dashboards")]
-        OmnichannelPersonalization = 10741,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Queue (Deprecated)", Index=182, Lcid=1033, Description="Stores omni-channel work items of a specific issue type or a specific team")]
-        OmnichannelQueueDeprecated = 10742,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Sync Config", Index=183, Lcid=1033, Description="Config for entities to be synced to Omnichannel")]
-        OmnichannelSyncConfig = 10743,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Operating Hour", Index=181, Lcid=1033, Description="Stores all the operating hours that are configured for an organization.")]
-        OperatingHour = 10744,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Personal quick reply", Index=171, Lcid=1033, Description="Omnichannel agents\'s personal quick replies")]
-        Personalquickreply = 10745,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Personal sound setting", Index=172, Lcid=1033, Description="Entity to store personalized sound records for the users.")]
-        Personalsoundsetting = 10746,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Persona Security Role Mapping", Index=170, Lcid=1033, Description="")]
-        PersonaSecurityRoleMapping = 10747,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Presence", Index=307, Lcid=1033, Description="Stores presence status information")]
-        Presence = 10748,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Provider", Index=302, Lcid=1033, Description="A list of third-party providers that bring capabilities into the application. ")]
-        Provider = 10749,
-        
-        [EnumMember()]
-        [OptionSetMetadata("RoutingRequest", Index=319, Lcid=1033, Description="Routing request definition entity")]
-        RoutingRequest = 10750,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Search Configuration", Index=257, Lcid=1033, Description="Configuration entity for agent search screen")]
-        SearchConfiguration = 10751,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sentiment analysis", Index=284, Lcid=1033, Description="Sentiment analysis configuration")]
-        Sentimentanalysis = 10752,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session event", Index=274, Lcid=1033, Description="Stores the session events for a session")]
-        Sessionevent = 10753,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session participant", Index=281, Lcid=1033, Description="Users in a session interacting with the customer")]
-        Sessionparticipant = 10754,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Audio File", Index=43, Lcid=1033, Description="Entity to store all audio files for Omnichannel")]
-        AudioFile = 10755,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sound notification setting", Index=50, Lcid=1033, Description="Entity to store the sound notification setting records for channels and other sce" +
-            "narios. ")]
-        Soundnotificationsetting = 10756,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Transcript", Index=17, Lcid=1033, Description="Stores the transcript of the communication  between the user and the customer")]
-        Transcript = 10757,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UR notification template", Index=9, Lcid=1033, Description="The entity stores all the templates used for UR notification.")]
-        URnotificationtemplate = 10758,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UR Notification Template Mapping", Index=7, Lcid=1033, Description="This entity stores the mapping for notification template and workstream.")]
-        URNotificationTemplateMapping = 10759,
-        
-        [EnumMember()]
-        [OptionSetMetadata("User settings", Index=6, Lcid=1033, Description="Parent entity for Omnichannel personalizations")]
-        Usersettings = 10760,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Self service", Index=36, Lcid=1033, Description="Stores each customer action as a record. The actions tracked are before an intera" +
-            "ction is initiated. Agents will see the actions for an interaction in the Self S" +
-            "ervice section of the Customer Summary page, when enabled.")]
-        Selfservice = 10761,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent capacity update history", Index=1227, Lcid=1033, Description="Agent capacity update history entity records any changes to agent capacity agains" +
-            "t a capacity profile")]
-        Agentcapacityupdatehistory = 10768,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bookable Resource Capacity Profile", Index=1216, Lcid=1033, Description="Bookable Resource Capacity Profile")]
-        BookableResourceCapacityProfile = 10769,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work stream capacity profile", Index=1101, Lcid=1033, Description="Work stream capacity profile")]
-        Workstreamcapacityprofile = 10770,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Capacity profile", Index=227, Lcid=1033, Description="Conversation Capacity profile")]
-        ConversationCapacityprofile = 10771,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Capacity Profile Unit", Index=1220, Lcid=1033, Description="Agent Capacity Profile Units holds agent’s available capacity for each capacity p" +
-            "rofile associated.")]
-        AgentCapacityProfileUnit = 10772,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Channel State", Index=1228, Lcid=1033, Description="")]
-        AgentChannelState = 10773,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Status", Index=1255, Lcid=1033, Description="Agent Status holds agent’s status or presence details.")]
-        AgentStatus = 10774,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group", Index=1224, Lcid=1033, Description="Captures unique Agent Groups")]
-        AgentGroup = 10775,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group Membership", Index=1225, Lcid=1033, Description="Captures Members of the Agent Groups")]
-        AgentGroupMembership = 10776,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Characteristic", Index=220, Lcid=1033, Description="Characteristic associated to Omnichannel conversation")]
-        ConversationCharacteristic = 10777,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session Characteristic", Index=251, Lcid=1033, Description="Characteristic associated to Omnichannel session")]
-        SessionCharacteristic = 10778,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Skill Attachment Rule", Index=55, Lcid=1033, Description="")]
-        SkillAttachmentRule = 10779,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Attach Skill", Index=53, Lcid=1033, Description="")]
-        AttachSkill = 10780,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Model training details", Index=248, Lcid=1033, Description="Indicates model\'s training details")]
-        Modeltrainingdetails = 10781,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Training data import configuration", Index=241, Lcid=1033, Description="Indicates the training data import configuration")]
-        Trainingdataimportconfiguration = 10782,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Characteristic mapping", Index=234, Lcid=1033, Description="Indicates the mapping of skills from training data to characteristics")]
-        Characteristicmapping = 10783,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Training record", Index=235, Lcid=1033, Description="Indicates individual training record to be used for model training")]
-        Trainingrecord = 10784,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Skill finder model", Index=233, Lcid=1033, Description="Indicates the OmniChannel Model for the corresponding AI model")]
-        Skillfindermodel = 10785,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Effort estimate", Index=1075, Lcid=1033, Description="Entity to persist effort model prediction results")]
-        Effortestimate = 10786,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Effort estimation model", Index=1031, Lcid=1033, Description="Indicates the OmniChannel Model for the corresponding AI model")]
-        Effortestimationmodel = 10787,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Effort model training details", Index=1038, Lcid=1033, Description="Indicates model\'s training details")]
-        Effortmodeltrainingdetails = 10788,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ConversationInsight", Index=1326, Lcid=1033, Description="")]
-        ConversationInsight = 10789,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Active ICD Extension", Index=1236, Lcid=1033, Description="This notes the currently active description and examples for given entity (queue/" +
-            "agent etc.) as selected by the C1 administrator.")]
-        ActiveICDExtension = 10790,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity-Workstream Map", Index=1078, Lcid=1033, Description="This notes the entity (queue, agent etc.) mapped to the workstreams.")]
-        EntityWorkstreamMap = 10791,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ICD Extension", Index=1032, Lcid=1033, Description="Contains ICD related fields that will be generated and kept.")]
-        ICDExtension = 10792,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lock Status", Index=1098, Lcid=1033, Description="")]
-        LockStatus = 10793,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel agent assignment custom api privilege ", Index=1122, Lcid=1033, Description="Entity for creating privilege for agent assignment private custom apis. The privi" +
-            "leges for this entity will be used to restrict custom api access only for FPA ap" +
-            "p user.")]
-        Omnichannelagentassignmentcustomapiprivilege = 10794,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Action Item", Index=1340, Lcid=1033, Description="")]
-        ConversationActionItem = 10795,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Aggregated Insights", Index=1334, Lcid=1033, Description="")]
-        ConversationAggregatedInsights = 10796,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Comment", Index=1327, Lcid=1033, Description="A comment on a specific section in a transcript")]
-        Comment_3 = 10797,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Participant Insights", Index=1325, Lcid=1033, Description="")]
-        ConversationParticipantInsights = 10798,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Participant Sentiment", Index=1332, Lcid=1033, Description="")]
-        ConversationParticipantSentiment = 10799,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Question", Index=1333, Lcid=1033, Description="")]
-        ConversationQuestion = 10800,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Segment Sentiment", Index=1331, Lcid=1033, Description="")]
-        ConversationSegmentSentiment = 10801,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Sentiment", Index=1329, Lcid=1033, Description="")]
-        ConversationSentiment_2 = 10802,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Signal", Index=1330, Lcid=1033, Description="")]
-        ConversationSignal = 10803,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Subject", Index=1275, Lcid=1033, Description="")]
-        ConversationSubject = 10804,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Summary Suggestion", Index=1272, Lcid=1033, Description="")]
-        ConversationSummarySuggestion = 10805,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation System Tag", Index=1273, Lcid=1033, Description="")]
-        ConversationSystemTag = 10806,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Tag", Index=1280, Lcid=1033, Description="")]
-        ConversationTag = 10807,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Recording (Deprecated)", Index=328, Lcid=1033, Description="")]
-        RecordingDeprecated = 10808,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SCI Conversation", Index=254, Lcid=1033, Description="")]
-        SCIConversation = 10809,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom Email Highlight", Index=252, Lcid=1033, Description="")]
-        CustomEmailHighlight = 10810,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom Highlight", Index=253, Lcid=1033, Description="Highlight of relevant conversation section")]
-        CustomHighlight = 10811,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom Publisher", Index=260, Lcid=1033, Description="The publisher of the conversation highlight")]
-        CustomPublisher = 10812,
-        
-        [EnumMember()]
-        [OptionSetMetadata("EnvironmentSettings", Index=261, Lcid=1033, Description="SCI environment level settings")]
-        EnvironmentSettings = 10813,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UserSettings", Index=259, Lcid=1033, Description="SCI user level settings")]
-        UserSettings = 10814,
-        
-        [EnumMember()]
-        [OptionSetMetadata("CatalogEventStatusConfiguration", Index=134, Lcid=1033, Description="Status configuration for events in a catalog.")]
-        CatalogEventStatusConfiguration = 10815,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Configuration", Index=135, Lcid=1033, Description="")]
-        Configuration = 10816,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Trigger", Index=133, Lcid=1033, Description="Metadata for Cxp Events")]
-        Trigger = 10817,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Triggers To Sdk Message Processing Steps", Index=131, Lcid=1033, Description="Mapping between CJO Marketing Triggers and Sdk Message Processing Steps")]
-        TriggersToSdkMessageProcessingSteps = 10818,
-        
-        [EnumMember()]
-        [OptionSetMetadata("EventParameterMetadata", Index=132, Lcid=1033, Description="Metadata for Cxp Event Parameters")]
-        EventParameterMetadata = 10819,
-        
-        [EnumMember()]
-        [OptionSetMetadata("TrackingContext", Index=147, Lcid=1033, Description="")]
-        TrackingContext = 10820,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Marketing feature configuration", Index=162, Lcid=1033, Description="")]
-        Marketingfeatureconfiguration = 10821,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdynmkt_experimentv2", Index=161, Lcid=1033, Description="")]
-        msdynmkt_experimentv2 = 10822,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ACS channel instance", Index=126, Lcid=1033, Description="")]
-        ACSchannelinstance = 10823,
-        
-        [EnumMember()]
-        [OptionSetMetadata("ACS channel instance account", Index=127, Lcid=1033, Description="")]
-        ACSchannelinstanceaccount = 10824,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Infobip channel instance", Index=160, Lcid=1033, Description="")]
-        Infobipchannelinstance = 10825,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Infobip channel instance account", Index=158, Lcid=1033, Description="")]
-        Infobipchannelinstanceaccount = 10826,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Link mobility channel instance", Index=159, Lcid=1033, Description="")]
-        Linkmobilitychannelinstance = 10827,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Link mobility channel instance account", Index=166, Lcid=1033, Description="")]
-        Linkmobilitychannelinstanceaccount = 10828,
-        
-        [EnumMember()]
-        [OptionSetMetadata("MockSmsProvider channel instance", Index=164, Lcid=1033, Description="")]
-        MockSmsProviderchannelinstance = 10829,
-        
-        [EnumMember()]
-        [OptionSetMetadata("MockSmsProvider channel instance account", Index=157, Lcid=1033, Description="")]
-        MockSmsProviderchannelinstanceaccount = 10830,
-        
-        [EnumMember()]
-        [OptionSetMetadata("TeleSign channel instance", Index=151, Lcid=1033, Description="")]
-        TeleSignchannelinstance = 10831,
-        
-        [EnumMember()]
-        [OptionSetMetadata("TeleSign channel instance account", Index=149, Lcid=1033, Description="")]
-        TeleSignchannelinstanceaccount = 10832,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Twilio channel instance", Index=148, Lcid=1033, Description="")]
-        Twiliochannelinstance = 10833,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Twilio channel instance account", Index=155, Lcid=1033, Description="")]
-        Twiliochannelinstanceaccount = 10834,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Vibes channel instance", Index=156, Lcid=1033, Description="")]
-        Vibeschannelinstance = 10835,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Vibes channel instance account", Index=154, Lcid=1033, Description="")]
-        Vibeschannelinstanceaccount = 10836,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Predefined Placeholder", Index=150, Lcid=1033, Description="")]
-        PredefinedPlaceholder = 10837,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Metadata Entity Relationship", Index=167, Lcid=1033, Description="")]
-        MetadataEntityRelationship = 10838,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Metadata Item", Index=165, Lcid=1033, Description="")]
-        MetadataItem = 10839,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Metadata Store State", Index=163, Lcid=1033, Description="")]
-        MetadataStoreState = 10840,
-        
-        [EnumMember()]
-        [OptionSetMetadata("DigitalSellingActiveTask", Index=1085, Lcid=1033, Description="")]
-        DigitalSellingActiveTask = 10841,
-        
-        [EnumMember()]
-        [OptionSetMetadata("DigitalSellingCompletedTask", Index=1083, Lcid=1033, Description="")]
-        DigitalSellingCompletedTask = 10842,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Tag", Index=262, Lcid=1033, Description="")]
-        SalesTag = 10843,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence", Index=285, Lcid=1033, Description="")]
-        Sequence = 10844,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Stat", Index=292, Lcid=1033, Description="")]
-        SequenceStat = 10845,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Target", Index=293, Lcid=1033, Description="")]
-        SequenceTarget = 10846,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Target Step", Index=291, Lcid=1033, Description="")]
-        SequenceTargetStep = 10847,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sequence Template", Index=289, Lcid=1033, Description="")]
-        SequenceTemplate = 10848,
-        
-        [EnumMember()]
-        [OptionSetMetadata("sabackupdiagnostic", Index=316, Lcid=1033, Description="")]
-        sabackupdiagnostic = 10850,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SABatchRunInstance", Index=323, Lcid=1033, Description="")]
-        SABatchRunInstance = 10851,
-        
-        [EnumMember()]
-        [OptionSetMetadata("salesroutingdiagnostic", Index=270, Lcid=1033, Description="")]
-        salesroutingdiagnostic = 10852,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SARunInstance", Index=255, Lcid=1033, Description="")]
-        SARunInstance = 10853,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Segment", Index=258, Lcid=1033, Description="")]
-        Segment = 10854,
-        
-        [EnumMember()]
-        [OptionSetMetadata("segmentsetting", Index=287, Lcid=1033, Description="")]
-        segmentsetting = 10855,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Segment property", Index=288, Lcid=1033, Description="")]
-        Segmentproperty = 10856,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SegmentsUtil", Index=286, Lcid=1033, Description="")]
-        SegmentsUtil = 10857,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Rule", Index=1182, Lcid=1033, Description="Defines criteria based on which Entities are routed to Users or Sales Team")]
-        AssignmentRule = 10858,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Seller attribute", Index=1183, Lcid=1033, Description="Sales Attribute")]
-        Sellerattribute = 10859,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Seller attribute value", Index=1213, Lcid=1033, Description="Attribute Value of sales person or sales team")]
-        Sellerattributevalue = 10860,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Assignment Map", Index=1184, Lcid=1033, Description="")]
-        AssignmentMap = 10861,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Assignment Setting", Index=320, Lcid=1033, Description="")]
-        SalesAssignmentSetting = 10862,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales routing run", Index=268, Lcid=1033, Description="")]
-        Salesroutingrun = 10863,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Extended User Setting", Index=1023, Lcid=1033, Description="")]
-        ExtendedUserSetting = 10865,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales acceleration insights", Index=324, Lcid=1033, Description="Sales acceleration insights")]
-        Salesaccelerationinsights = 10866,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Acceleration settings", Index=322, Lcid=1033, Description="")]
-        SalesAccelerationsettings = 10867,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Insight", Index=269, Lcid=1033, Description="")]
-        Insight = 10868,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work List Suggestion", Index=21, Lcid=1033, Description="")]
-        WorkListSuggestion = 10869,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work list suggestion source", Index=22, Lcid=1033, Description="")]
-        Worklistsuggestionsource = 10870,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work List View Configuration", Index=29, Lcid=1033, Description="Entity to store work list view configurations on filter, icons, sort etc")]
-        WorkListViewConfiguration = 10871,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work Queue Record", Index=30, Lcid=1033, Description="Entity created to store WorkQueue Data Model Records")]
-        WorkQueueRecord = 10872,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work Queue Record State", Index=28, Lcid=1033, Description="Entity created to store WorkQueue Records state")]
-        WorkQueueRecordState = 10873,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Work list user setting", Index=26, Lcid=1033, Description="Entity created to store work list user setting")]
-        Worklistusersetting = 10874,
-        
-        [EnumMember()]
-        [OptionSetMetadata("WQDataSource", Index=27, Lcid=1033, Description="")]
-        WQDataSource = 10875,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Assignment Rule", Index=78, Lcid=1033, Description="")]
-        SuggestionAssignmentRule = 10876,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Principal Object Access", Index=74, Lcid=1033, Description="")]
-        SuggestionPrincipalObjectAccess = 10877,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Seller Priority", Index=82, Lcid=1033, Description="")]
-        SuggestionSellerPriority = 10878,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Hygiene Setting Info", Index=1053, Lcid=1033, Description="Data Hygiene Setting Info")]
-        DataHygieneSettingInfo = 10879,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Duplicate Detection Plugin Run", Index=1089, Lcid=1033, Description="Duplicate Detection Plugin Run used to track successful and failure state of the " +
-            "Duplicate Detection Plugin")]
-        DuplicateDetectionPluginRun = 10880,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Duplicate Lead Mapping", Index=1082, Lcid=1033, Description="This enity is used to connect base lead to duplicate leads")]
-        DuplicateLeadMapping = 10881,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead Hygiene Setting", Index=1110, Lcid=1033, Description="Lead Hygiene Setting")]
-        LeadHygieneSetting = 10882,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Linked Entity Attribute Validity", Index=1097, Lcid=1033, Description="")]
-        LinkedEntityAttributeValidity = 10883,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales provisioning request", Index=275, Lcid=1033, Description="")]
-        Salesprovisioningrequest = 10884,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SalesOmnichannel Message", Index=271, Lcid=1033, Description="")]
-        SalesOmnichannelMessage = 10885,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Text message template", Index=272, Lcid=1033, Description="")]
-        Textmessagetemplate = 10886,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Admin Settings (Deprecated)", Index=1196, Lcid=1033, Description="Data Analytics Admin Settings (Deprecated)")]
-        DataAnalyticsAdminSettingsDeprecated = 10887,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Report", Index=1283, Lcid=1033, Description="Data Analytics Reports")]
-        DataAnalyticsReport = 10888,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Insights", Index=1051, Lcid=1033, Description="Analytics and insights feature entity")]
-        Insights = 10889,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales acceleration reports", Index=1063, Lcid=1033, Description="Sales acceleration reports")]
-        Salesaccelerationreports = 10890,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Bot Session", Index=1214, Lcid=1033, Description="Bot specific sessions ")]
-        BotSession = 10892,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Automated action rule", Index=1121, Lcid=1033, Description="The omnichannel automated action rules.")]
-        Automatedactionrule = 10893,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Automated action rules mapping", Index=1119, Lcid=1033, Description="The mapping of omnichannel automated action rules.")]
-        Automatedactionrulesmapping = 10894,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Copilot Setting", Index=1226, Lcid=1033, Description="")]
-        AgentCopilotSetting = 10895,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Summarization Setting", Index=1262, Lcid=1033, Description="")]
-        CopilotSummarizationSetting = 10896,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intent", Index=1150, Lcid=1033, Description="Captures the unique natural language intent")]
-        intent = 10897,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intentattribute", Index=1148, Lcid=1033, Description="Captures all possible attributes across all intents")]
-        intentattribute = 10898,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intentattributeset", Index=1147, Lcid=1033, Description="Captures the attributes required to complete a given intent")]
-        intentattributeset = 10899,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intentattribute_entity", Index=1146, Lcid=1033, Description="Associates the value of an intent attribute identified for a given case or conver" +
-            "sation.")]
-        intentattribute_entity = 10900,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Intent Config", Index=1154, Lcid=1033, Description="Configuration that captures the fields needed for intent determination")]
-        IntentConfig = 10901,
-        
-        [EnumMember()]
-        [OptionSetMetadata("intententity", Index=1155, Lcid=1033, Description="Associates an intent to any entity such as case, conversation to capture evolving" +
-            " intent.")]
-        intententity = 10902,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Line of Business", Index=1151, Lcid=1033, Description="")]
-        LineofBusiness = 10903,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentfeature_configuration", Index=1145, Lcid=1033, Description="")]
-        msdyn_intentfeature_configuration = 10904,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Intent Group Condition", Index=1138, Lcid=1033, Description="")]
-        IntentGroupCondition = 10905,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentharvesting_batchjobstatus", Index=1139, Lcid=1033, Description="")]
-        msdyn_intentharvesting_batchjobstatus = 10906,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentharvesting_provisioning_status", Index=1135, Lcid=1033, Description="")]
-        msdyn_intentharvesting_provisioning_status = 10907,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Intent Solution Map", Index=1143, Lcid=1033, Description="Captures Solutions for Intent Groups")]
-        IntentSolutionMap = 10908,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentsolution_mappingconfiguration", Index=1136, Lcid=1033, Description="")]
-        msdyn_intentsolution_mappingconfiguration = 10909,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Enrichment", Index=1202, Lcid=1033, Description="")]
-        CaseEnrichment = 10910,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case follow up and closure configuration", Index=1200, Lcid=1033, Description="")]
-        Casefollowupandclosureconfiguration = 10911,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Suggestion", Index=1198, Lcid=1033, Description="")]
-        CaseSuggestion = 10912,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Suggestion Request Payload", Index=1199, Lcid=1033, Description="")]
-        CaseSuggestionRequestPayload = 10913,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Suggestions Data Souce", Index=1206, Lcid=1033, Description="")]
-        CaseSuggestionsDataSouce = 10914,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Preference For Copilot", Index=1271, Lcid=1033, Description="")]
-        AgentPreferenceForCopilot = 10915,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Interaction", Index=1265, Lcid=1033, Description="")]
-        CopilotInteraction = 10916,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Interaction Data", Index=1263, Lcid=1033, Description="")]
-        CopilotInteractionData = 10917,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot knowledge interaction", Index=1261, Lcid=1033, Description="Record of copilot using knowledge article")]
-        Copilotknowledgeinteraction = 10918,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Transcript", Index=1269, Lcid=1033, Description="")]
-        CopilotTranscript = 10919,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Transcript Data", Index=1270, Lcid=1033, Description="")]
-        CopilotTranscriptData = 10920,
-        
-        [EnumMember()]
-        [OptionSetMetadata("KB Enrichment", Index=1158, Lcid=1033, Description="")]
-        KBEnrichment = 10921,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Suggestion", Index=1163, Lcid=1033, Description="")]
-        KnowledgeArticleSuggestion = 10922,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Article Suggestion Data Source", Index=1161, Lcid=1033, Description="")]
-        KnowledgeArticleSuggestionDataSource = 10923,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Next Action", Index=1124, Lcid=1033, Description="")]
-        NextAction = 10924,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Copilot Plugin", Index=283, Lcid=1033, Description="")]
-        ServiceCopilotPlugin = 10925,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Copilot Plugin Action", Index=276, Lcid=1033, Description="")]
-        ServiceCopilotPluginAction = 10926,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Copilot Plugin Role", Index=277, Lcid=1033, Description="")]
-        ServiceCopilotPluginRole = 10927,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion Interaction", Index=76, Lcid=1033, Description="")]
-        SuggestionInteraction = 10928,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestion request payload", Index=75, Lcid=1033, Description="")]
-        Suggestionrequestpayload = 10929,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestions Model Summary", Index=83, Lcid=1033, Description="Suggestions Model Summary entity")]
-        SuggestionsModelSummary = 10930,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Suggestions Setting", Index=81, Lcid=1033, Description="Suggestions settings entity")]
-        SuggestionsSetting = 10931,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics User Customized Report", Index=1284, Lcid=1033, Description="Data Analytics User Customized Report")]
-        DataAnalyticsUserCustomizedReport = 10932,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Dataset", Index=1282, Lcid=1033, Description="Data Analytics Power BI Datasets")]
-        DataAnalyticsDataset = 10933,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Data Analytics Workspace", Index=1071, Lcid=1033, Description="Data Analytics Power BI Workspaces")]
-        DataAnalyticsWorkspace = 10934,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Report Bookmark", Index=331, Lcid=1033, Description="")]
-        ReportBookmark = 10935,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Resource Forecasting", Index=1254, Lcid=1033, Description="Agent Resource Forecasting")]
-        AgentResourceForecasting = 10936,
-        
-        [EnumMember()]
-        [OptionSetMetadata("[Deprecated] Dynamics Customer Service Analytics", Index=1197, Lcid=1033, Description="[Deprecated] Controls access to Analytics Reporting Sitemap in Dynamics Customer " +
-            "Service App")]
-        DeprecatedDynamicsCustomerServiceAnalytics = 10937,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Topic", Index=1207, Lcid=1033, Description="")]
-        CaseTopic = 10938,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Topic Setting", Index=1203, Lcid=1033, Description="Case Topic Setting Entity")]
-        CaseTopicSetting = 10939,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case Topic Summary", Index=1204, Lcid=1033, Description="Case Topic Summary Entity")]
-        CaseTopicSummary = 10940,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Case topic Incident mapping", Index=1205, Lcid=1033, Description="Cases mapping with the case topics")]
-        CasetopicIncidentmapping = 10941,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Service historical analytics", Index=1291, Lcid=1033, Description="Customer Service historical analytics")]
-        CustomerServicehistoricalanalytics = 10942,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast", Index=1287, Lcid=1033, Description="Case, Conversation Volume Forecast analytics")]
-        Forecast_3 = 10943,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge analytics", Index=1288, Lcid=1033, Description="Knowledge analytics")]
-        Knowledgeanalytics = 10944,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Model Customization analytics", Index=1065, Lcid=1033, Description="Model Customization analytics")]
-        ModelCustomizationanalytics = 10945,
-        
-        [EnumMember()]
-        [OptionSetMetadata("UR RecordRouting Real-time Analytics", Index=1070, Lcid=1033, Description="UR RecordRouting Real-time Analytics")]
-        URRecordRoutingRealtimeAnalytics = 10946,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Forecast Summary and Setting", Index=1050, Lcid=1033, Description="")]
-        ForecastSummaryandSetting = 10947,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Keywords Description Suggestion Setting", Index=1156, Lcid=1033, Description="Keywords Description Suggestion settings entity")]
-        KeywordsDescriptionSuggestionSetting = 10948,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Summary Interaction", Index=1276, Lcid=1033, Description="Conversation Summary Interaction Entity")]
-        ConversationSummaryInteraction = 10949,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Summary Setting", Index=1274, Lcid=1033, Description="Conversation Summary Settings Entity")]
-        ConversationSummarySetting = 10950,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Topic", Index=1281, Lcid=1033, Description="")]
-        ConversationTopic = 10951,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Topic Setting", Index=1277, Lcid=1033, Description="Conversation Topic Setting Entity")]
-        ConversationTopicSetting = 10952,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation Topic Summary", Index=1278, Lcid=1033, Description="Conversation Topic Summary Entity")]
-        ConversationTopicSummary = 10953,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation topic Conversation mapping", Index=1279, Lcid=1033, Description="Conversation mapping with conversation topics")]
-        ConversationtopicConversationmapping = 10954,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel historical analytics", Index=1066, Lcid=1033, Description="Omnichannel historical analytics")]
-        Omnichannelhistoricalanalytics = 10955,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel voice historical analytics (preview) (Deprecated)", Index=1062, Lcid=1033, Description="Omnichannel voice historical analytics (preview) (Deprecated)")]
-        OmnichannelvoicehistoricalanalyticspreviewDeprecated = 10956,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Realtime analytics", Index=1064, Lcid=1033, Description="Omnichannel Realtime analytics")]
-        OmnichannelRealtimeanalytics = 10957,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Analytics", Index=1290, Lcid=1033, Description="Case, Conversation, Email Copilot interaction analytics")]
-        CopilotAnalytics = 10958,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Product", Index=446, Lcid=1033, Description="")]
-        Product = 10959,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Template Rule Set", Index=13, Lcid=1033, Description="Contains template rulesets that can be applied to custom assignment method in a q" +
-            "ueue")]
-        TemplateRuleSet = 11029,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity Attribute Prediction Rule", Index=1074, Lcid=1033, Description="")]
-        EntityAttributePredictionRule = 11030,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice Collection", Index=447, Lcid=1033, Description="")]
-        InvoiceCollection = 11051,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Subscription", Index=450, Lcid=1033, Description="Entity description")]
-        Subscription_2 = 11060,
-        
-        [EnumMember()]
-        [OptionSetMetadata("SharePoint Managed Identity", Index=410, Lcid=1033, Description="Entity representing a managed identity for SharePoint, used for authentication an" +
-            "d authorization purposes.")]
-        SharePointManagedIdentity = 11114,
-        
-        [EnumMember()]
-        [OptionSetMetadata("AI Insight Card", Index=918, Lcid=1033, Description="")]
-        AIInsightCard = 11115,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Processor Registration", Index=526, Lcid=1033, Description="")]
-        ProcessorRegistration = 11116,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Signal Registration", Index=417, Lcid=1033, Description="")]
-        SignalRegistration = 11117,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Trait Registration", Index=495, Lcid=1033, Description="")]
-        TraitRegistration = 11118,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Email analytics", Index=1289, Lcid=1033, Description="Email analytics")]
-        Emailanalytics = 11119,
-        
-        [EnumMember()]
-        [OptionSetMetadata("LOB Backfill Status", Index=1153, Lcid=1033, Description="")]
-        LOBBackfillStatus = 11120,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentfamily_harvestingconfiguration", Index=1152, Lcid=1033, Description="")]
-        msdyn_intentfamily_harvestingconfiguration = 11121,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_intentharvesting_batchjobstatusdetail", Index=1137, Lcid=1033, Description="")]
-        msdyn_intentharvesting_batchjobstatusdetail = 11122,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot assisted case form fill settings", Index=1264, Lcid=1033, Description="Copilot assisted case form fill settings")]
-        Copilotassistedcaseformfillsettings = 11123,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales usage telemetry reports", Index=427, Lcid=1033, Description="Sales usage telemetry reports")]
-        Salesusagetelemetryreports = 11124,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales usage reporting", Index=453, Lcid=1033, Description="Sales usage reporting")]
-        Salesusagereporting = 11125,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Derived insights related entity", Index=425, Lcid=1033, Description="Derived insights related entities")]
-        Derivedinsightsrelatedentity = 11126,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity derived insights", Index=426, Lcid=1033, Description="Entity derived insights")]
-        Entityderivedinsights = 11127,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_rawinsight", Index=455, Lcid=1033, Description="")]
-        msdyn_rawinsight = 11128,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_rawinsightentitylink", Index=456, Lcid=1033, Description="")]
-        msdyn_rawinsightentitylink = 11129,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot Email Insight", Index=454, Lcid=1033, Description="Entity used to keep the actions derived from email")]
-        SalesCopilotEmailInsight = 11130,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Sales Copilot Insight Card State", Index=452, Lcid=1033, Description="This entity used to store actions performed by users on the entity like snooze/di" +
-            "smiss.")]
-        SalesCopilotInsightCardState = 11131,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Interactions", Index=460, Lcid=1033, Description="Data table of previous copilot interactions.")]
-        CopilotInteractions = 11132,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Email Sentiment", Index=461, Lcid=1033, Description="")]
-        EmailSentiment = 11133,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group Language", Index=459, Lcid=1033, Description="Represents the association of user groups with language")]
-        AgentGroupLanguage = 11134,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Group Region", Index=457, Lcid=1033, Description="Represents the association of user groups with region")]
-        AgentGroupRegion = 11135,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Language", Index=458, Lcid=1033, Description="Represents the association of users with language ")]
-        AgentLanguage = 11136,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Agent Region", Index=451, Lcid=1033, Description="Represents the association of users with region")]
-        AgentRegion = 11137,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Language Hierarchy", Index=444, Lcid=1033, Description="This entity is used to identify the language preference of end customers. Users a" +
-            "nd user groups are decorated with language, and matched with conversations to ro" +
-            "ute them. Users and user groups decoration also supports hierarchy")]
-        LanguageHierarchy = 11138,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Region", Index=445, Lcid=1033, Description="This entity is used to identify the region of end customers. Users and user group" +
-            "s are decorated with region, and matched with conversations to route them. Users" +
-            " and user groups decoration also supports hierarchy. ")]
-        Region = 11139,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_historicalcaseharvestbatch", Index=443, Lcid=1033, Description="")]
-        msdyn_historicalcaseharvestbatch = 11140,
-        
-        [EnumMember()]
-        [OptionSetMetadata("msdyn_historicalcaseharvestrun", Index=441, Lcid=1033, Description="")]
-        msdyn_historicalcaseharvestrun = 11141,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Knowledge Harvest Job Record", Index=442, Lcid=1033, Description="Tracking entity record used to trigger the harvesting process for knowledge artic" +
-            "les")]
-        KnowledgeHarvestJobRecord = 11142,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Transaction", Index=448, Lcid=1033, Description="This table contains records of transaction information")]
-        Transaction = 11143,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice", Index=449, Lcid=1033, Description="This table contains records of invoice information")]
-        Invoice = 11144,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Event Expander Breadcrumb", Index=709, Lcid=1033, Description="Table to store breadcrumb records of Event Expander pipeline.")]
-        EventExpanderBreadcrumb = 18085,
+        [OptionSetMetadata("Invoice Collection", Index=254, Lcid=1033, Description="")]
+        InvoiceCollection = 10526,
     }
     
     [DataContract()]
@@ -31228,43 +25367,19 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum SystemUser_msdyn_AgentType {
+    public enum SystemUser_SystemManagedUserType {
         
         [EnumMember()]
-        [OptionSetMetadata("Application user", Index=0, Lcid=1033, Color="#0000ff")]
-        Applicationuser = 192350000,
+        [OptionSetMetadata("Entra User", Index=0, Lcid=1033)]
+        EntraUser = 0,
         
         [EnumMember()]
-        [OptionSetMetadata("Bot application user", Index=1, Lcid=1033, Color="#0000ff")]
-        Botapplicationuser = 192350001,
-    }
-    
-    [DataContract()]
-    public enum SystemUser_msdyn_BotProvider {
+        [OptionSetMetadata("C2 User", Index=1, Lcid=1033)]
+        C2User = 1,
         
         [EnumMember()]
-        [OptionSetMetadata("Virtual Agent", Index=0, Lcid=1033, Description="CCI first party Bot", Color="#0000ff")]
-        VirtualAgent = 192350000,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Other", Index=1, Lcid=1033, Description="Other type of bot", Color="#0000ff")]
-        Other = 192350001,
-        
-        [EnumMember()]
-        [OptionSetMetadata("None", Index=2, Lcid=1033, Description="Indicates that the user is not a bot", Color="#0000ff")]
-        None = 192350002,
-    }
-    
-    [DataContract()]
-    public enum SystemUser_msdyn_UserType {
-        
-        [EnumMember()]
-        [OptionSetMetadata("CRM User", Index=0, Lcid=1033, Color="#0000ff")]
-        CRMUser = 192350000,
-        
-        [EnumMember()]
-        [OptionSetMetadata("BOT User", Index=1, Lcid=1033, Color="#0000ff")]
-        BOTUser = 192350001,
+        [OptionSetMetadata("Impersonable Stub User", Index=2, Lcid=1033)]
+        ImpersonableStubUser = 2,
     }
     
     [DataContract()]
@@ -31339,52 +25454,12 @@ namespace XrmBedrock.SharedContext {
         Contact = 2,
         
         [EnumMember()]
-        [OptionSetMetadata("Opportunity", Index=10, Lcid=1033)]
-        Opportunity = 3,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Lead", Index=4, Lcid=1033)]
-        Lead = 4,
-        
-        [EnumMember()]
         [OptionSetMetadata("User", Index=3, Lcid=1033)]
         User = 8,
         
         [EnumMember()]
-        [OptionSetMetadata("Case", Index=6, Lcid=1033)]
-        Case = 112,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Contract", Index=7, Lcid=1033)]
-        Contract = 1010,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quote", Index=11, Lcid=1033)]
-        Quote = 1084,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Order", Index=12, Lcid=1033)]
-        Order = 1088,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Invoice", Index=13, Lcid=1033)]
-        Invoice = 1090,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Activity", Index=8, Lcid=1033)]
-        ServiceActivity = 4214,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Activity", Index=5, Lcid=1033)]
-        CampaignActivity = 4402,
-        
-        [EnumMember()]
         [OptionSetMetadata("System Job", Index=2, Lcid=1033)]
         SystemJob = 4700,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entitlement", Index=9, Lcid=1033)]
-        Entitlement = 9700,
     }
     
     [DataContract()]
@@ -31441,7 +25516,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_InvoiceState {
+    public enum ctx_InvoiceState {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31453,7 +25528,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_Invoice_statuscode {
+    public enum ctx_Invoice_statuscode {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31465,7 +25540,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_InvoiceCollectionState {
+    public enum ctx_InvoiceCollectionState {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31477,7 +25552,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_InvoiceCollection_statuscode {
+    public enum ctx_InvoiceCollection_statuscode {
         
         [EnumMember()]
         [OptionSetMetadata("Draft", Index=0, Lcid=1033, Description="")]
@@ -31488,16 +25563,16 @@ namespace XrmBedrock.SharedContext {
         Inactive = 2,
         
         [EnumMember()]
-        [OptionSetMetadata("Create Invoices", Index=2, Lcid=1033, Description="")]
-        CreateInvoices = 862810001,
+        [OptionSetMetadata("CreateInvoices", Index=2, Lcid=1033, Description="")]
+        CreateInvoices = 770790001,
         
         [EnumMember()]
-        [OptionSetMetadata("Invoices Created", Index=3, Lcid=1033, Description="")]
-        InvoicesCreated = 862810002,
+        [OptionSetMetadata("InvoicesCreated", Index=3, Lcid=1033, Description="")]
+        InvoicesCreated = 770790002,
     }
     
     [DataContract()]
-    public enum mgs_ProductState {
+    public enum ctx_ProductState {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31509,7 +25584,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_Product_statuscode {
+    public enum ctx_Product_statuscode {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31521,7 +25596,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_SubscriptionState {
+    public enum ctx_SubscriptionState {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31533,7 +25608,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_Subscription_statuscode {
+    public enum ctx_Subscription_statuscode {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31545,7 +25620,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_TransactionState {
+    public enum ctx_TransactionState {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31557,7 +25632,7 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum mgs_Transaction_statuscode {
+    public enum ctx_Transaction_statuscode {
         
         [EnumMember()]
         [OptionSetMetadata("Active", Index=0, Lcid=1033)]
@@ -31773,38 +25848,6 @@ namespace XrmBedrock.SharedContext {
     }
     
     [DataContract()]
-    public enum msdyn_queueassignmentstrategy {
-        
-        [EnumMember()]
-        [OptionSetMetadata("Omnichannel Assignment", Index=0, Lcid=1033, Description="", Color="#0000ff")]
-        OmnichannelAssignment = 192350000,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Round Robin", Index=1, Lcid=1033, Description="", Color="#0000ff")]
-        RoundRobin = 192350001,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Custom Assignment Configuration", Index=2, Lcid=1033, Description="", Color="#0000ff")]
-        CustomAssignmentConfiguration = 192350002,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Longest Idle", Index=3, Lcid=1033, Description="", Color="#0000ff")]
-        LongestIdle = 192350003,
-    }
-    
-    [DataContract()]
-    public enum msdyn_queuetype {
-        
-        [EnumMember()]
-        [OptionSetMetadata("Messaging", Index=0, Lcid=1033, Color="#0000ff")]
-        Messaging = 192350000,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Entity", Index=1, Lcid=1033, Color="#0000ff")]
-        Entity = 192350001,
-    }
-    
-    [DataContract()]
     public enum activitypointer_activitytypecode {
         
         [EnumMember()]
@@ -31820,111 +25863,47 @@ namespace XrmBedrock.SharedContext {
         Fax = 4204,
         
         [EnumMember()]
-        [OptionSetMetadata("Case Resolution", Index=13, Lcid=1033)]
-        CaseResolution = 4206,
-        
-        [EnumMember()]
         [OptionSetMetadata("Letter", Index=3, Lcid=1033)]
         Letter = 4207,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Opportunity Close", Index=15, Lcid=1033)]
-        OpportunityClose = 4208,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Order Close", Index=16, Lcid=1033)]
-        OrderClose = 4209,
         
         [EnumMember()]
         [OptionSetMetadata("Phone Call", Index=1, Lcid=1033)]
         PhoneCall = 4210,
         
         [EnumMember()]
-        [OptionSetMetadata("Quote Close", Index=17, Lcid=1033)]
-        QuoteClose = 4211,
-        
-        [EnumMember()]
         [OptionSetMetadata("Task", Index=5, Lcid=1033)]
         Task = 4212,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Service Activity", Index=14, Lcid=1033)]
-        ServiceActivity = 4214,
         
         [EnumMember()]
         [OptionSetMetadata("Recurring Appointment", Index=6, Lcid=1033)]
         RecurringAppointment = 4251,
         
         [EnumMember()]
-        [OptionSetMetadata("Campaign Response", Index=12, Lcid=1033)]
-        CampaignResponse = 4401,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Campaign Activity", Index=11, Lcid=1033)]
-        CampaignActivity = 4402,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Quick Campaign", Index=10, Lcid=1033)]
-        QuickCampaign = 4406,
-        
-        [EnumMember()]
         [OptionSetMetadata("Teams chat", Index=7, Lcid=1033)]
-        Teamschat = 10199,
+        Teamschat = 10254,
         
         [EnumMember()]
         [OptionSetMetadata("Invite Redemption", Index=8, Lcid=1033)]
-        InviteRedemption = 10329,
+        InviteRedemption = 10408,
         
         [EnumMember()]
         [OptionSetMetadata("Portal Comment", Index=9, Lcid=1033)]
-        PortalComment = 10330,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice alert", Index=18, Lcid=1033)]
-        CustomerVoicealert = 10622,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey invite", Index=19, Lcid=1033)]
-        CustomerVoicesurveyinvite = 10632,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Customer Voice survey response", Index=20, Lcid=1033)]
-        CustomerVoicesurveyresponse = 10634,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Conversation", Index=21, Lcid=1033)]
-        Conversation = 10717,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Session", Index=22, Lcid=1033)]
-        Session = 10734,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Copilot Transcript", Index=23, Lcid=1033)]
-        CopilotTranscript = 10919,
+        PortalComment = 10409,
     }
     
     [DataContract()]
-    public enum mgs_billinginterval {
+    public enum ctx_billinginterval {
         
         [EnumMember()]
-        [OptionSetMetadata("Yearly", Index=0, Lcid=1033, Description="")]
-        Yearly = 862810000,
+        [OptionSetMetadata("Monthly", Index=0, Lcid=1033, Description="")]
+        Monthly = 770790000,
         
         [EnumMember()]
-        [OptionSetMetadata("Monthly", Index=1, Lcid=1033, Description="")]
-        Monthly = 862810001,
-    }
-    
-    [DataContract()]
-    public enum mgs_transactiontype {
+        [OptionSetMetadata("Quaterly", Index=1, Lcid=1033, Description="")]
+        Quaterly = 770790001,
         
         [EnumMember()]
-        [OptionSetMetadata("Product", Index=0, Lcid=1033, Description="")]
-        Product = 862810000,
-        
-        [EnumMember()]
-        [OptionSetMetadata("Credit", Index=1, Lcid=1033, Description="")]
-        Credit = 862810001,
+        [OptionSetMetadata("Yearly", Index=2, Lcid=1033, Description="")]
+        Yearly = 770790002,
     }
 }

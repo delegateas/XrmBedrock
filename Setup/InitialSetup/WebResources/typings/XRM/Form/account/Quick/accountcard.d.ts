@@ -2,8 +2,6 @@ declare namespace Form.account.Quick {
   namespace accountcard {
     namespace Tabs {
       interface general extends Xrm.SectionCollectionBase {
-        get(name: "Cases"): Xrm.PageSection;
-        get(name: "Entitlements"): Xrm.PageSection;
         get(name: "information"): Xrm.PageSection;
         get(name: string): undefined;
         get(): Xrm.PageSection[];
@@ -11,20 +9,9 @@ declare namespace Form.account.Quick {
         get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
       }
     }
-    interface Attributes extends Xrm.AttributeCollectionBase {
-      get(name: "emailaddress1"): Xrm.Attribute<string>;
-      get(name: "name"): Xrm.Attribute<string>;
-      get(name: "telephone1"): Xrm.Attribute<string>;
-      get(name: string): undefined;
-      get(): Xrm.Attribute<any>[];
-      get(index: number): Xrm.Attribute<any>;
-      get(chooser: (item: Xrm.Attribute<any>, index: number) => boolean): Xrm.Attribute<any>[];
-    }
     interface Controls extends Xrm.ControlCollectionBase {
-      get(name: "accountcasessgrid"): Xrm.SubGridControl<"incident">;
       get(name: "emailaddress1"): Xrm.StringControl;
       get(name: "name"): Xrm.StringControl;
-      get(name: "subgrid_Entitlement"): Xrm.SubGridControl<"entitlement">;
       get(name: "telephone1"): Xrm.StringControl;
       get(name: string): undefined;
       get(): Xrm.BaseControl[];
@@ -39,16 +26,16 @@ declare namespace Form.account.Quick {
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface accountcard extends Xrm.PageBase<accountcard.Attributes,accountcard.Tabs,accountcard.Controls> {
+  interface accountcard extends Xrm.QuickViewForm<accountcard.Tabs,accountcard.Controls> {
     getAttribute(attributeName: "emailaddress1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "name"): Xrm.Attribute<string>;
     getAttribute(attributeName: "telephone1"): Xrm.Attribute<string>;
     getAttribute(attributeName: string): undefined;
-    getControl(controlName: "accountcasessgrid"): Xrm.SubGridControl<"incident">;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "emailaddress1"): Xrm.StringControl;
     getControl(controlName: "name"): Xrm.StringControl;
-    getControl(controlName: "subgrid_Entitlement"): Xrm.SubGridControl<"entitlement">;
     getControl(controlName: "telephone1"): Xrm.StringControl;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }
