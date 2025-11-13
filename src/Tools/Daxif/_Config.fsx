@@ -27,41 +27,46 @@ let defaultUsername =
     with
         | :? System.IO.FileNotFoundException -> ""
 
+
 module Env =
+  let devUrl = "https://dev.crm4.dynamics.com"
+  let testUrl = "https://test.crm4.dynamics.com"
+  let uatUrl = "https://uat.crm4.dynamics.com"
+  let prodUrl = "https://prod.crm4.dynamics.com"
 
   let dev = 
     Environment.Create(
       name = "Dev",
-      url = "https://dev.crm4.dynamics.com",
+      url = devUrl,
       method = ConnectionType.ConnectionString,
-      connectionString = sprintf @"AuthType=OAuth; url=https://dev.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      connectionString = sprintf @"AuthType=OAuth; url=%s; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" devUrl defaultUsername,
       args = fsi.CommandLineArgs
     )
 
   let test = 
     Environment.Create(
       name = "Test",
-      url = "https://test.crm4.dynamics.com",
+      url = testUrl,
       method = ConnectionType.ConnectionString,
-      connectionString = sprintf @"AuthType=OAuth; url=https://test.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      connectionString = sprintf @"AuthType=OAuth; url=%s; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" testUrl defaultUsername,
       args = fsi.CommandLineArgs
     )
 
   let uat = 
     Environment.Create(
       name = "UAT",
-      url = "https://uat.crm4.dynamics.com",
+      url = uatUrl,
       method = ConnectionType.ConnectionString,
-      connectionString = sprintf @"AuthType=OAuth; url=https://uat.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      connectionString = sprintf @"AuthType=OAuth; url=%s; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" uatUrl defaultUsername,
       args = fsi.CommandLineArgs
     )
 
   let prod = 
     Environment.Create(
       name = "Prod",
-      url = "https://prod.crm4.dynamics.com",
+      url = prodUrl,
       method = ConnectionType.ConnectionString,
-      connectionString = sprintf @"AuthType=OAuth; url=https://prod.crm4.dynamics.com; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" defaultUsername,
+      connectionString = sprintf @"AuthType=OAuth; url=%s; %s; LoginPrompt=Always; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97" prodUrl defaultUsername,
       args = fsi.CommandLineArgs
     )
 
@@ -75,7 +80,7 @@ module SolutionInfo =
   let displayName = @"XrmBedrock"
 
 module PublisherInfo =
-  let prefix = @"demo"
+  let prefix = @"ctx"
   let name = @"XrmBedrock"
   let displayName = @"XrmBedrock"
 

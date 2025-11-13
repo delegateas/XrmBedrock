@@ -10,8 +10,8 @@
   "author": "DG",
   "scripts": {
     "concurrently": "concurrently",
-    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/mgs_Magesoe/out",
-    "clean-all": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/mgs_Magesoe ./src/mgs_Magesoe/out",
+    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/ctx_XrmBedrock/out",
+    "clean-all": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/ctx_XrmBedrock ./src/ctx_XrmBedrock/out",
     "build": "tsc",
     "postbuild": "node esbuild.config.mjs"
   },
