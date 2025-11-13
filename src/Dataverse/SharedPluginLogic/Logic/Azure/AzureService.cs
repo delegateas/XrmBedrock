@@ -1,10 +1,7 @@
 using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
-using SharedDataverseLogic;
 using SharedDomain;
-
 using SharedDomain.EconomyArea;
-
 #if NET462
 using System.Net.Http;
 #endif
