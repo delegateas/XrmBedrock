@@ -1,3 +1,4 @@
+using DataverseService.Foundation.Dao;
 using Newtonsoft.Json;
 using System.Globalization;
 using System.Text;
@@ -10,13 +11,14 @@ namespace IntegrationTests;
 /// </summary>
 public class MessageExecutor
 {
-    private List<AwaitingMessage> messages;
+    private readonly List<AwaitingMessage> messages;
 
-    public MessageExecutor()
+    public MessageExecutor(IDataverseAccessObjectAsync adminDao)
     {
         messages = new List<AwaitingMessage>();
 
-        // TODO: Add your Azure Function references here
+        // TODO: Add your Azure Function references here and use adminDao to create the dataverse services
+        _ = adminDao;
     }
 
     public void StoreMessage(AwaitingMessage message) => messages.Add(message);
@@ -28,8 +30,6 @@ public class MessageExecutor
             // TODO: Add your queue message handling logic here
             await Task.CompletedTask;
         }
-
-        messages = new List<AwaitingMessage>();
     }
 
     protected static T GetMessage<T>(string serializedMessage)
