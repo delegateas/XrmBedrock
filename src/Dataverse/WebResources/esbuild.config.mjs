@@ -9,7 +9,7 @@ import path from 'path';
 const watchMode = (argv.length > 2 && "watch" === argv[2]);
 
 // WebResource Project Directory Path
-const projectDir = "./src/mgs_Magesoe";
+const projectDir = "./src/ctx_XrmBedrock";
 
 // Collect all JS files in the modules directory
 const entryPoints = glob.sync(`${projectDir}/out/**/*.js`).sort();

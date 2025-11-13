@@ -2,44 +2,44 @@
 This project serves as a template for Dataverse projects. This project aims to make it easy to work with Dataverse and Azure together. This project shows that modern development paradigms are applicable to Dataverse.
 
 This template will be updated. The current list is as follows
-* Clean-up DataverseService
-* Better in-code description of examples to increase adoption.
+* Source control deployment
 * New way of handling web resources.
 * Deploying data.
 
 # Initial setup
-This project serves both as a template, but also as a demonstration of how XrmBedrock can be used. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder.
+This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder and `copyInitialSetup.ps1`.
 
-Right after downloading XrmBedrock, you are not able to build the project since it is also used as a demonstration. In order to build, you should first run ``Setup/copyInitialSetup.ps1`` using PowerShell. The script is not signed, so make sure to first run ``Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass``. This copies the context for the demo and you should now be able to build and run all unit tests for the demo. 
+If you want to try it out right away, find an examples branch. Run `Setup/copyInitialSetup.ps1` using PowerShell. The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.
 
 # Getting up and running
 Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.
 
 # Rename file names and folders
-- Rename file ``XrmBedrock.sln``
-- Rename file ``xrmbedrock.snk``
-- Rename folder ``src/Dataverse/Webresources/src/mgs_Magesoe``
+- Rename file `XrmBedrock.slnx` => `ProjectName.slnx`
+- Rename folder `src/Dataverse/Webresources/src/ctx_XrmBedrock` => `src/Dataverse/Webresources/src/prefix_SolutionName`
 
 # Update values in WebResources files
-- Update ``mgs_Magesoe`` to the new folder name in ``src/Dataverse/src/<new folder name>/esbuild.config.mjs``
-- Update ``mgs_Magesoe`` to the new folder name in ``src/Dataverse/src/<new folder name>/package.json``
-- Update ``mgs_Magesoe`` to the new folder name in ``src/Dataverse/src/<new folder name>/tsconfig.json``
+- Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/esbuild.config.mjs``
+- Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/package.json``
+- Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/tsconfig.json``
+
+## Generate new strong name key
+Open the developer terminal in Visual Studio and write: 
+`sn -k nameOfSolution.snk`
 
 ## Update values in Plugins.csproj
 In the ``src/Dataverse/Plugins.csproj`` file, update the following:
-- RootNameSpace
 - AssemblyName
 - AssemblyOriginatorKeyFile
 - Reference to the .snk file in the ``Exec`` element
 
 ## Update DAXIF Config
 In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
+- Env
+  - urls
+  - The pipeline expects environment names Dev, Test, UAT and Prod - make sure that the names of the environment matches what the pipeline excepts, modify it if needed. 
 - SolutionInfo
 - PublisherInfo
-- Environments
-  - url
-  - the url part of the connectionString
-  - The pipeline expects environment names Dev, Test, UAT and Prod - make sure that the names of the environment matches what the pipeline excepts, modify it if needed. 
 - ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
   - add or remove table names based on your solution and needs
 - ``src\Tools\Daxif\GenerateTypeScriptContext.fsx``
@@ -47,14 +47,8 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
 - ``src\Tools\Daxif\username.txt``
   - add your username
 
-## Generate new strong name key
-Open the developer terminal in Visual Studio and write: 
-`sn -k nameOfSolution.snk`
-
-Make sure you have updated the reference to the .snk file in ``src/Dataverse/Plugins.csproj``.
-
 ## Generate a certificate
-TODO: Add a description of what the certificate is used for.
+We generated a self-signed certificate to use with the Dataverse Managed Identity.
 
 - Create a new password (at least 12 randomly generated characters is recommended). 
 - Open an administrator powershell and run the ``Setup/generateNewCertificate.ps1`` file. 
@@ -67,13 +61,7 @@ Set the password in the signing part of the ``src/Dataverse/Plugins.csproj`` fil
 ## Update storage account environment variable
 Create a new environment variable that will contain the storage account url
 
-Update the reference to that variable in ``src\Dataverse\SharedPluginLogic\Logic\Azure\AzureConfigSetter.cs`` 
-
-## Verify solution and delete demo code
-At this point you should still be able to build and run all unit tests. 
-As soon as you run ``GenerateCSharpContext.fsx`` you will get a lot of errors, since the XrmContext will be overwritten and replaced with your solution's context. In order to build again, you need to delete all the demo code...
-
-Remember to delete the Setup folder as well. 
+Update the reference to that variable in ``src\Dataverse\SharedPluginLogic\Logic\Azure\AzureConfigSetter.cs``
 
 # Update files in .pipelines and Infrastructure
 TODO: There should be a dedicated section for pipelines. Here it should be described what the default configurations do and what the prerequisites are.
@@ -161,19 +149,6 @@ The template uses Storage Queue Data Contributor
 
 ## Managed identity
 A managed identity is created by the bicep deploy. This is what Azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
-
-
-# GitHub
-Additionally, this section is relevant if the code repository is hosted and GitHub and you want to use GitHub Actions.
-
-_NB: Only the dataverse parts are converted from Azure DevOps Pipelines to GitHub Actions_.
-
-## Environment
-
-The workflows assume a base environment named `dev` is created with variables `DATAVERSE_APP_ID` and `TENANT_ID` and secrets `CLIENT_SECRET`. The base environemnt URL must be updated in the workflow defintion and the environment specific URLs are constructed from the GitHub environment name.
-
-Remember to "uncomment" the `build-and-test.yaml` workflow trigger.
-
 
 ## TODO
 * Improve validation of infrastructure to be easier to manage
