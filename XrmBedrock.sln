@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34112.27
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11205.157 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugins", "src\Dataverse\Plugins\Plugins.csproj", "{F5E9A7CC-0C50-4AA1-ADA0-F850E46C0736}"
 EndProject
@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{CBAE83
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleJobs", "src\Dataverse\ConsoleJobs\ConsoleJobs.csproj", "{DE037A86-52BC-8FA0-03CE-46B284D82921}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EconomyAreaFunctionApp", "src\Azure\EconomyAreaFunctionApp\EconomyAreaFunctionApp.csproj", "{5591624C-DF97-4813-9D32-0B3BEBDDC779}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{DE037A86-52BC-8FA0-03CE-46B284D82921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE037A86-52BC-8FA0-03CE-46B284D82921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE037A86-52BC-8FA0-03CE-46B284D82921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5591624C-DF97-4813-9D32-0B3BEBDDC779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5591624C-DF97-4813-9D32-0B3BEBDDC779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5591624C-DF97-4813-9D32-0B3BEBDDC779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5591624C-DF97-4813-9D32-0B3BEBDDC779}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{2C2DA732-CDC7-4BFB-A544-FC26B8A1C163} = {4FD2D15A-8A2F-4F5D-BFA5-75662B3BA5D4}
 		{CBAE8321-E969-4809-9783-8EA2BEE8CBD7} = {4FD2D15A-8A2F-4F5D-BFA5-75662B3BA5D4}
 		{DE037A86-52BC-8FA0-03CE-46B284D82921} = {2C2DA732-CDC7-4BFB-A544-FC26B8A1C163}
+		{5591624C-DF97-4813-9D32-0B3BEBDDC779} = {85C7E181-5D26-4579-A03B-48AA2B455D94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {211F19E6-4B7A-419E-A176-9BB15275F84F}

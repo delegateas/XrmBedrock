@@ -1,5 +1,10 @@
 using Microsoft.Xrm.Sdk;
+using Newtonsoft.Json;
 using SharedDataverseLogic;
+using SharedDomain;
+
+using SharedDomain.EconomyArea;
+
 #if NET462
 using System.Net.Http;
 #endif
@@ -24,6 +29,9 @@ public class AzureService
         this.tracingService = tracingService;
         this.managedIdentityService = managedIdentityService;
     }
+
+    // Strongly typed way of sending messages to the storage queue
+    public void SendCreateInvoicesMessage(CreateInvoicesMessage message) => SendStorageQueueMessage(QueueNames.CreateInvoicesQueue, JsonConvert.SerializeObject(message));
 
     // Generic way of sending messages to the storage queue
 #pragma warning disable S1144 // Unused private types or members should be removed

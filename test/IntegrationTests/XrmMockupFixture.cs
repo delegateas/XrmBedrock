@@ -22,8 +22,8 @@ public class XrmMockupFixture
             {
                 sharedSettings = new XrmMockupSettings
                 {
-                    BasePluginTypes = new Type[] { typeof(Plugin) },
-                    BaseCustomApiTypes = new Tuple<string, Type>[] { new("demo", typeof(CustomAPI)) },
+                    BasePluginTypes = [typeof(Plugin)],
+                    BaseCustomApiTypes = [new("ctx", typeof(CustomAPI))],
                     EnableProxyTypes = true,
                     IncludeAllWorkflows = false,
                     MetadataDirectoryPath = "..\\..\\..\\..\\SharedTest\\MetadataGenerated",

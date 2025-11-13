@@ -31,6 +31,6 @@ public class InvoiceCollectionService
             throw new InvalidPluginExecutionException("Invoice Until is required");
 
         // Send Create Invoices message to the storage queue in Azure
-        azureService.SendCreateInvoicesMessage(new SharedDomain.EconomyArea.CreateInvoicesMessage(target.mgs_InvoiceUntil.Value, target.Id));
+        azureService.SendCreateInvoicesMessage(new SharedDomain.EconomyArea.CreateInvoicesMessage(target.ctx_InvoiceUntil.Value, target.Id));
     }
 }

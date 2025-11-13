@@ -1,3 +1,4 @@
+using DataverseLogic.EconomyArea;
 using Microsoft.Extensions.DependencyInjection;
 using XrmBedrock.SharedContext;
 
