@@ -47,6 +47,9 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
 - ``src\Tools\Daxif\username.txt``
   - add your username
 
+## Ready for Dataverse
+At this point your are ready for Dataverse development. The rest of the setup is regarding Azure setup and pipelines. The example pipeline assumes a full Azure and Dataverse setup.
+
 ## Generate a certificate
 We generated a self-signed certificate to use with the Dataverse Managed Identity.
 
