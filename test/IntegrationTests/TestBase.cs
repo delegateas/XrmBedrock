@@ -62,7 +62,7 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
 
         adminDao = new DataverseAccessObjectAsync(xrm.GetAdminService(), Substitute.For<ILogger>());
         producer = new DataProducer(AdminDao);
-        messageExecutor = new MessageExecutor();
+        messageExecutor = new MessageExecutor(AdminDao);
         server = WireMockServer.Start();
 
         AddQueueEndpoints(QueueNames.AllQueues);
