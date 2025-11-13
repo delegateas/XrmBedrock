@@ -36,13 +36,6 @@ declare namespace Form.contact.Main {
         get(index: number): Xrm.PageSection;
         get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
       }
-      interface tab_recordwall extends Xrm.SectionCollectionBase {
-        get(name: "tab_recordwall_section_1"): Xrm.PageSection;
-        get(name: string): undefined;
-        get(): Xrm.PageSection[];
-        get(index: number): Xrm.PageSection;
-        get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
-      }
     }
     interface Attributes extends Xrm.AttributeCollectionBase {
       get(name: "accountrolecode"): Xrm.OptionSetAttribute<contact_accountrolecode>;
@@ -101,7 +94,6 @@ declare namespace Form.contact.Main {
       get(chooser: (item: Xrm.Attribute<any>, index: number) => boolean): Xrm.Attribute<any>[];
     }
     interface Controls extends Xrm.ControlCollectionBase {
-      get(name: "WebResource_RecordWall"): Xrm.WebResourceControl;
       get(name: "accountrolecode"): Xrm.OptionSetControl<contact_accountrolecode>;
       get(name: "address1_addresstypecode"): Xrm.OptionSetControl<contact_address1_addresstypecode>;
       get(name: "address1_city"): Xrm.StringControl;
@@ -171,19 +163,24 @@ declare namespace Form.contact.Main {
       get(index: number): Xrm.BaseControl;
       get(chooser: (item: Xrm.BaseControl, index: number) => boolean): Xrm.BaseControl[];
     }
+    interface QuickViewForms extends Xrm.QuickViewFormCollectionBase {
+      get(name: string): undefined;
+      get(): Xrm.QuickViewFormBase[];
+      get(index: number): Xrm.QuickViewFormBase;
+      get(chooser: (item: Xrm.QuickViewFormBase, index: number) => boolean): Xrm.QuickViewFormBase[];
+    }
     interface Tabs extends Xrm.TabCollectionBase {
       get(name: "administration"): Xrm.PageTab<Tabs.administration>;
       get(name: "details"): Xrm.PageTab<Tabs.details>;
       get(name: "general"): Xrm.PageTab<Tabs.general>;
       get(name: "notes and activities"): Xrm.PageTab<Tabs.notesandactivities>;
-      get(name: "tab_recordwall"): Xrm.PageTab<Tabs.tab_recordwall>;
       get(name: string): undefined;
       get(): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
       get(index: number): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>;
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface Information extends Xrm.PageBase<Information.Attributes,Information.Tabs,Information.Controls> {
+  interface Information extends Xrm.PageBase<Information.Attributes,Information.Tabs,Information.Controls,Information.QuickViewForms> {
     getAttribute(attributeName: "accountrolecode"): Xrm.OptionSetAttribute<contact_accountrolecode>;
     getAttribute(attributeName: "address1_addresstypecode"): Xrm.OptionSetAttribute<contact_address1_addresstypecode>;
     getAttribute(attributeName: "address1_city"): Xrm.Attribute<string>;
@@ -235,7 +232,7 @@ declare namespace Form.contact.Main {
     getAttribute(attributeName: "transactioncurrencyid"): Xrm.LookupAttribute<"transactioncurrency">;
     getAttribute(attributeName: "websiteurl"): Xrm.Attribute<string> | null;
     getAttribute(attributeName: string): undefined;
-    getControl(controlName: "WebResource_RecordWall"): Xrm.WebResourceControl;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "accountrolecode"): Xrm.OptionSetControl<contact_accountrolecode>;
     getControl(controlName: "address1_addresstypecode"): Xrm.OptionSetControl<contact_address1_addresstypecode>;
     getControl(controlName: "address1_city"): Xrm.StringControl;
@@ -301,5 +298,6 @@ declare namespace Form.contact.Main {
     getControl(controlName: "telephone2"): Xrm.StringControl;
     getControl(controlName: "transactioncurrencyid"): Xrm.LookupControl<"transactioncurrency">;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }

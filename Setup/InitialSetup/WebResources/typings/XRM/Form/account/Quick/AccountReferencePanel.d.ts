@@ -10,23 +10,6 @@ declare namespace Form.account.Quick {
         get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
       }
     }
-    interface Attributes extends Xrm.AttributeCollectionBase {
-      get(name: "address1_city"): Xrm.Attribute<string>;
-      get(name: "address1_line1"): Xrm.Attribute<string>;
-      get(name: "address1_line2"): Xrm.Attribute<string>;
-      get(name: "address1_postalcode"): Xrm.Attribute<string>;
-      get(name: "emailaddress1"): Xrm.Attribute<string>;
-      get(name: "name"): Xrm.Attribute<string>;
-      get(name: "numberofemployees"): Xrm.NumberAttribute;
-      get(name: "ownerid"): Xrm.LookupAttribute<"systemuser" | "team">;
-      get(name: "primarycontactid"): Xrm.LookupAttribute<"contact">;
-      get(name: "revenue"): Xrm.NumberAttribute;
-      get(name: "telephone1"): Xrm.Attribute<string>;
-      get(name: string): undefined;
-      get(): Xrm.Attribute<any>[];
-      get(index: number): Xrm.Attribute<any>;
-      get(chooser: (item: Xrm.Attribute<any>, index: number) => boolean): Xrm.Attribute<any>[];
-    }
     interface Controls extends Xrm.ControlCollectionBase {
       get(name: "address1_city"): Xrm.StringControl;
       get(name: "address1_line1"): Xrm.StringControl;
@@ -52,7 +35,7 @@ declare namespace Form.account.Quick {
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface AccountReferencePanel extends Xrm.PageBase<AccountReferencePanel.Attributes,AccountReferencePanel.Tabs,AccountReferencePanel.Controls> {
+  interface AccountReferencePanel extends Xrm.QuickViewForm<AccountReferencePanel.Tabs,AccountReferencePanel.Controls> {
     getAttribute(attributeName: "address1_city"): Xrm.Attribute<string>;
     getAttribute(attributeName: "address1_line1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "address1_line2"): Xrm.Attribute<string>;
@@ -65,6 +48,7 @@ declare namespace Form.account.Quick {
     getAttribute(attributeName: "revenue"): Xrm.NumberAttribute;
     getAttribute(attributeName: "telephone1"): Xrm.Attribute<string>;
     getAttribute(attributeName: string): undefined;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "address1_city"): Xrm.StringControl;
     getControl(controlName: "address1_line1"): Xrm.StringControl;
     getControl(controlName: "address1_line2"): Xrm.StringControl;
@@ -77,5 +61,6 @@ declare namespace Form.account.Quick {
     getControl(controlName: "revenue"): Xrm.NumberControl;
     getControl(controlName: "telephone1"): Xrm.StringControl;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }

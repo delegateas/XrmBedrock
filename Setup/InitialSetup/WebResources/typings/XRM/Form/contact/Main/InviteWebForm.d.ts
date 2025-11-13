@@ -1,13 +1,6 @@
 declare namespace Form.contact.Main {
   namespace InviteWebForm {
     namespace Tabs {
-      interface tab_recordwall extends Xrm.SectionCollectionBase {
-        get(name: "tab_recordwall_section_1"): Xrm.PageSection;
-        get(name: string): undefined;
-        get(): Xrm.PageSection[];
-        get(index: number): Xrm.PageSection;
-        get(chooser: (item: Xrm.PageSection, index: number) => boolean): Xrm.PageSection[];
-      }
     }
     interface Attributes extends Xrm.AttributeCollectionBase {
       get(name: "birthdate"): Xrm.DateAttribute | null;
@@ -31,7 +24,6 @@ declare namespace Form.contact.Main {
       get(chooser: (item: Xrm.Attribute<any>, index: number) => boolean): Xrm.Attribute<any>[];
     }
     interface Controls extends Xrm.ControlCollectionBase {
-      get(name: "WebResource_RecordWall"): Xrm.WebResourceControl;
       get(name: "emailaddress1"): Xrm.StringControl;
       get(name: "firstname"): Xrm.StringControl;
       get(name: "footer_statecode"): Xrm.OptionSetControl<contact_statecode>;
@@ -56,15 +48,20 @@ declare namespace Form.contact.Main {
       get(index: number): Xrm.BaseControl;
       get(chooser: (item: Xrm.BaseControl, index: number) => boolean): Xrm.BaseControl[];
     }
+    interface QuickViewForms extends Xrm.QuickViewFormCollectionBase {
+      get(name: string): undefined;
+      get(): Xrm.QuickViewFormBase[];
+      get(index: number): Xrm.QuickViewFormBase;
+      get(chooser: (item: Xrm.QuickViewFormBase, index: number) => boolean): Xrm.QuickViewFormBase[];
+    }
     interface Tabs extends Xrm.TabCollectionBase {
-      get(name: "tab_recordwall"): Xrm.PageTab<Tabs.tab_recordwall>;
       get(name: string): undefined;
       get(): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
       get(index: number): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>;
       get(chooser: (item: Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>, index: number) => boolean): Xrm.PageTab<Xrm.Collection<Xrm.PageSection>>[];
     }
   }
-  interface InviteWebForm extends Xrm.PageBase<InviteWebForm.Attributes,InviteWebForm.Tabs,InviteWebForm.Controls> {
+  interface InviteWebForm extends Xrm.PageBase<InviteWebForm.Attributes,InviteWebForm.Tabs,InviteWebForm.Controls,InviteWebForm.QuickViewForms> {
     getAttribute(attributeName: "birthdate"): Xrm.DateAttribute | null;
     getAttribute(attributeName: "emailaddress1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "familystatuscode"): Xrm.OptionSetAttribute<contact_familystatuscode> | null;
@@ -81,7 +78,7 @@ declare namespace Form.contact.Main {
     getAttribute(attributeName: "telephone1"): Xrm.Attribute<string>;
     getAttribute(attributeName: "websiteurl"): Xrm.Attribute<string> | null;
     getAttribute(attributeName: string): undefined;
-    getControl(controlName: "WebResource_RecordWall"): Xrm.WebResourceControl;
+    getAttribute(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Attribute<any>>): Xrm.Attribute<any>[];
     getControl(controlName: "emailaddress1"): Xrm.StringControl;
     getControl(controlName: "firstname"): Xrm.StringControl;
     getControl(controlName: "footer_statecode"): Xrm.OptionSetControl<contact_statecode>;
@@ -102,5 +99,6 @@ declare namespace Form.contact.Main {
     getControl(controlName: "ownerid"): Xrm.LookupControl<"systemuser" | "team">;
     getControl(controlName: "telephone1"): Xrm.StringControl;
     getControl(controlName: string): undefined;
+    getControl(delegateFunction: Xrm.Collection.MatchingDelegate<Xrm.Control<any>>): Xrm.Control<any>[];
   }
 }
