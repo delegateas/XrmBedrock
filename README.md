@@ -7,9 +7,11 @@ This template will be updated. The current list is as follows
 * Deploying data.
 
 # Initial setup
-This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder and `copyInitialSetup.ps1`.
+This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup.
 
 If you want to try it out right away, find an examples branch. Run `Setup/copyInitialSetup.ps1` using PowerShell. The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.
+
+It is safe to delete that folder and `copyInitialSetup.ps1`.
 
 # Getting up and running
 Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.
