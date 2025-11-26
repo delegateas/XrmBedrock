@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DataverseConnection" Version="1.1.1" />
+    <PackageReference Include="Azure.Identity" Version="1.13.2" />
+  </ItemGroup>
+
+  <!-- Job files are visible but not compiled - they are run directly with dotnet run -->
+  <ItemGroup>
+    <Compile Remove="Jobs\**\*.cs" />
+    <None Include="Jobs\**\*.cs" />
+  </ItemGroup>
+
+  <Import Project="..\..\Shared\SharedContext\SharedContext.projitems" Label="Shared" />
+</Project>
