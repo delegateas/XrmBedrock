@@ -23,12 +23,12 @@ public static class JobSetup
         ArgumentNullException.ThrowIfNull(args);
         var dataverseUri = args.Length > 0 ? new Uri(args[0]) : new Uri(DefaultUri);
 
-        var credential = new DefaultAzureCredential();
         var services = new ServiceCollection();
         services.AddLogging(builder => builder.AddConsole());
         services.AddDataverseWithOrganizationServices(options =>
         {
-            options.TokenCredential = credential;
+            // Swap with whatever fits you. This uses the token from az login
+            options.TokenCredential = new AzureCliCredential();
             options.DataverseUrl = dataverseUri.ToString();
         });
 
