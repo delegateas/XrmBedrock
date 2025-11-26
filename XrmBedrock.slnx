@@ -11,7 +11,7 @@
     <Project Path="src/Shared/NetCoreContext/NetCoreContext.csproj" />
   </Folder>
   <Folder Name="/src/Dataverse/">
-    <Project Path="src/Dataverse/ConsoleJobs/ConsoleJobs.csproj" />
+    <Project Path="src/Dataverse/AdhocJobs/AdhocJobs.csproj" />
     <Project Path="src/Dataverse/Plugins/Plugins.csproj" />
     <Project Path="src/Dataverse/PluginsNetCore/PluginsNetCore.csproj" />
     <Project Path="src/Dataverse/SharedPluginLogic/SharedPluginLogic.shproj" />
