@@ -1,6 +1,7 @@
 #:package DataverseConnection@1.1.1
 #:package Azure.Identity@1.13.2
 #:project ../BatchJobs.csproj
+#:property PublishAot=false
 
 using BatchJobs;
 
