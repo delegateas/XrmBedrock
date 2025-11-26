@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
 
-namespace BatchJobs;
+namespace AdhocJobs;
 
 public static class JobSetup
 {

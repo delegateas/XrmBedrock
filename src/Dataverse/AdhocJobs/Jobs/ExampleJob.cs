@@ -1,9 +1,9 @@
 #:package DataverseConnection@1.1.1
 #:package Azure.Identity@1.13.2
-#:project ../BatchJobs.csproj
+#:project ../AdhocJobs.csproj
 #:property PublishAot=false
 
-using BatchJobs;
+using AdhocJobs;
 
 var ctx = JobSetup.Initialize(args);
 

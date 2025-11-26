@@ -1,7 +1,7 @@
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
 
-namespace BatchJobs;
+namespace AdhocJobs;
 
 public record JobContext(
     IOrganizationService OrgService,
