@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Features>FileBasedProgram</Features>
+    <NoWarn>$(NoWarn);CA1303</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,5 +10,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.4" />
   </ItemGroup>
 
-  <Import Project="..\..\Shared\SharedContext\SharedContext.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\NetCoreContext\NetCoreContext.csproj" />
+  </ItemGroup>
 </Project>
