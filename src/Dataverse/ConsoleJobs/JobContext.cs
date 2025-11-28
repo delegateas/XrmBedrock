@@ -1,10 +1,12 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
 
-namespace AdhocJobs;
+namespace ConsoleJobs;
 
 public record JobContext(
     IOrganizationService OrgService,
     DataverseAccessObject Dao,
     Uri DataverseUri,
-    IServiceProvider Services);
+    IServiceProvider Services,
+    ILogger Logger);

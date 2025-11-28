@@ -5,14 +5,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
 
-namespace AdhocJobs;
+namespace ConsoleJobs;
 
 public static class JobSetup
 {
-#pragma warning disable S1075 // URIs should not be hardcoded
-    private const string DefaultUri = "https://YOUR-ENV.crm4.dynamics.com";
-#pragma warning restore S1075 // URIs should not be hardcoded
-
     public static JobContext Initialize(string[] args)
     {
         return Initialize(args, null);
@@ -21,7 +17,7 @@ public static class JobSetup
     public static JobContext Initialize(string[] args, Action<IServiceCollection>? configureServices)
     {
         ArgumentNullException.ThrowIfNull(args);
-        var dataverseUri = args.Length > 0 ? new Uri(args[0]) : new Uri(DefaultUri);
+        var dataverseUri = args.Length > 0 ? new Uri(args[0]) : throw new InvalidOperationException("Dataverse Url is needed as the first argument");
 
         var services = new ServiceCollection();
         services.AddLogging(builder => builder.AddConsole());
@@ -36,10 +32,10 @@ public static class JobSetup
 
         var sp = services.BuildServiceProvider();
         var orgService = sp.GetRequiredService<IOrganizationService>();
-        var logger = sp.GetRequiredService<ILoggerFactory>().CreateLogger("BatchJob");
+        var logger = sp.GetRequiredService<ILoggerFactory>().CreateLogger("ConsoleJob");
         var dao = new DataverseAccessObject(orgService, logger);
 
-        var ctx = new JobContext(orgService, dao, dataverseUri, sp);
+        var ctx = new JobContext(orgService, dao, dataverseUri, sp, logger);
 
         logger.LogInformation($"Connected to {ctx.DataverseUri}");
 
