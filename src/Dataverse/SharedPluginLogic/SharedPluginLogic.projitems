@@ -15,14 +15,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\AzureService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\IsExternalInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\Azure\StorageQueueError.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\AddServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\Economyarea\AddServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\EconomyArea\InvoiceCollectionService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\transactioncalculation\dto\TransactionPeriod.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\transactioncalculation\ITransactionCalculationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\transactioncalculation\MonthlyTransactionCalculationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\transactioncalculation\TransactionCalculationFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\transactioncalculation\YearlyTransactionCalculationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)logic\economyarea\TransactionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\Economyarea\Transactioncalculation\dto\TransactionPeriod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\Economyarea\Transactioncalculation\ITransactionCalculationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\Economyarea\Transactioncalculation\MonthlyTransactionCalculationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\Economyarea\Transactioncalculation\TransactionCalculationFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\Economyarea\Transactioncalculation\YearlyTransactionCalculationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\Economyarea\TransactionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ExecutionContextExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ExtendedTracingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\ImageType.cs" />
@@ -33,8 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logic\_Dao\UserDataverseAccessObjectService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registrations\DataverseLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logic\DummyManagedIdentityService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)registrations\economyarea\CreateTransactions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Registrations\EconomyArea\InvoiceCollectionStatusChange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Registrations\Economyarea\CreateTransactions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Registrations\Economyarea\InvoiceCollectionStatusChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registrations\Utility\AutopublishDuplicateRulesOnPublishAll.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registrations\PluginSetup.cs" />
   </ItemGroup>
