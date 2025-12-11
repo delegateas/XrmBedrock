@@ -5,9 +5,9 @@ steps:
       command: restore
 
   - task: UseDotNet@2
-    displayName: 'Use .Net 8'
+    displayName: 'Use .Net 10'
     inputs:
-      version: 8.x
+      version: 10.x
 
   - task: PowerShell@2
     displayName: 'Add ClickOnce SignTool to PATH'
