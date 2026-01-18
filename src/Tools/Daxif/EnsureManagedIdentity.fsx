@@ -40,6 +40,7 @@ managedIdentityRecord.Attributes.Add("applicationid", Guid(appId))
 managedIdentityRecord.Attributes.Add("credentialsource", OptionSetValue(2))
 managedIdentityRecord.Attributes.Add("subjectscope", OptionSetValue(1))
 managedIdentityRecord.Attributes.Add("tenantid", Guid(tenantId))
+managedIdentityRecord.Attributes.Add("version", 1)
 managedIdentityRecord.Id <- proxy.Create(managedIdentityRecord)
 
 let pluginUpdate = Entity(pluginAssembly.LogicalName, pluginAssembly.Id)
