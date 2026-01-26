@@ -8,6 +8,7 @@
   <Folder Name="/src/Azure/">
     <Project Path="src/Azure/DataverseService/DataverseService.csproj" />
     <Project Path="src/Azure/EconomyAreaFunctionApp/EconomyAreaFunctionApp.csproj" />
+    <Project Path="src/Azure/ExternalApi/ExternalApi.csproj" />
     <Project Path="src/Shared/NetCoreContext/NetCoreContext.csproj" />
   </Folder>
   <Folder Name="/src/Dataverse/">
