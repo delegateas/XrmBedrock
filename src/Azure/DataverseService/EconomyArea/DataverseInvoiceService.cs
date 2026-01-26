@@ -10,9 +10,9 @@ public class DataverseInvoiceService
 {
     private readonly IDataverseAccessObjectAsync adminDao;
 
-    public DataverseInvoiceService(IDataverseAccessObjectAsync adminDao)
+    public DataverseInvoiceService(IDataverseAccessObjectAsync dao)
     {
-        this.adminDao = adminDao;
+        this.adminDao = dao;
     }
 
     public async Task CreateInvoices(DateTime invoiceUntil, Guid invoiceCollectionId)
