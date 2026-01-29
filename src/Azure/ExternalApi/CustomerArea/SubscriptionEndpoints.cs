@@ -21,14 +21,7 @@ public static class SubscriptionEndpoints
         group.MapPost("/", CreateSubscription)
             .WithName("CreateSubscription")
             .WithSummary("Create a new subscription")
-            .WithDescription("Creates a new subscription linking a customer to a product. Requires the customer ID, product ID, and start date. Only available to interactive users.")
-            .RequireAuthorization("InteractiveUsers");
-
-        group.MapGet("/admin/{customerId:guid}", GetSubscriptionsForCustomerAdmin)
-            .WithName("GetSubscriptionsForCustomerAdmin")
-            .WithSummary("Get subscriptions for a customer (Admin)")
-            .WithDescription("Admin endpoint to retrieve all subscriptions for a customer. Only accessible via client credentials (service-to-service).")
-            .RequireAuthorization("ClientCredentialsOnly");
+            .WithDescription("Creates a new subscription linking a customer to a product. Requires the customer ID, product ID, and start date. Only available to interactive users.");
     }
 
     public static async Task<Results<Ok<List<SubscriptionDto>>, BadRequest<string>>> GetSubscriptionsForCustomer(
@@ -61,12 +54,5 @@ public static class SubscriptionEndpoints
         return result.Match<Results<Created<Guid>, BadRequest<string>>>(
             subscriptionId => TypedResults.Created($"{RoutesPrefix}/{subscriptionId}", subscriptionId),
             validationError => TypedResults.BadRequest(validationError.Message));
-    }
-
-    public static Task<Results<Ok<List<SubscriptionDto>>, BadRequest<string>>> GetSubscriptionsForCustomerAdmin(
-        Guid customerId,
-        DataverseSubscriptionService service)
-    {
-        return GetSubscriptionsForCustomer(customerId, service);
     }
 }

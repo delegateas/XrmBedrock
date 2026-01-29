@@ -242,41 +242,4 @@ public class SubscriptionEndpointsTests : TestBase
         var subscription = AdminDao.Retrieve<ctx_Subscription>(subscriptionId, s => s.ctx_StartDate);
         subscription.ctx_StartDate.Should().BeCloseTo(futureStartDate, TimeSpan.FromSeconds(1));
     }
-
-    [Fact]
-    public async Task GetSubscriptionsForCustomerAdmin_WithValidCustomer_ReturnsOkWithSubscriptionsList()
-    {
-        // Arrange
-        var customer = Producer.ProduceValidContact(null);
-        var product = Producer.ProduceValidProduct(null);
-        var subscription = Producer.ProduceValidSubscription(new ctx_Subscription
-        {
-            ctx_Customer = customer.ToEntityReference(),
-            ctx_Product = product.ToEntityReference(),
-        });
-
-        // Act
-        var response = await SubscriptionEndpoints.GetSubscriptionsForCustomerAdmin(customer.Id, subscriptionService);
-
-        // Assert
-        response.Result.Should().BeOfType<Ok<List<SubscriptionDto>>>();
-        var okResult = (Ok<List<SubscriptionDto>>)response.Result;
-        okResult.Value.Should().HaveCount(1);
-        okResult.Value![0].SubscriptionId.Should().Be(subscription.Id);
-    }
-
-    [Fact]
-    public async Task GetSubscriptionsForCustomerAdmin_WithEmptyGuid_ReturnsBadRequest()
-    {
-        // Arrange
-        var emptyCustomerId = Guid.Empty;
-
-        // Act
-        var response = await SubscriptionEndpoints.GetSubscriptionsForCustomerAdmin(emptyCustomerId, subscriptionService);
-
-        // Assert
-        response.Result.Should().BeOfType<BadRequest<string>>();
-        var badRequestResult = (BadRequest<string>)response.Result;
-        badRequestResult.Value.Should().Be("Customer ID cannot be empty.");
-    }
 }
