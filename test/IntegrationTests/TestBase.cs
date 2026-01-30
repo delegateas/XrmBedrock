@@ -1,10 +1,11 @@
 using Azure.DataverseService.Foundation.Dao;
 using DataverseService.Foundation.Dao;
 using DG.Tools.XrmMockup;
+using EconomyAreaWorker.Workers;
+using IntegrationTests.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
-using SharedDomain;
 using SharedTest;
 using WireMock;
 using WireMock.RequestBuilders;
@@ -22,6 +23,8 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
     private readonly WireMockServer server;
     private readonly IDataverseAccessObject userDao;
     private readonly Guid userIdOfUserDao;
+    private readonly ExternalApiFactory apiFactory;
+    private readonly WorkerFactory<CreateInvoicesWorker> workerFactory;
 
     protected XrmMockup365 Xrm => xrm;
 
@@ -32,6 +35,8 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
     protected MessageExecutor MessageExecutor => messageExecutor;
 
     protected WireMockServer Server => server;
+
+    protected HttpClient ApiClient { get; }
 
     /// <summary>
     /// This is for testing stuff that depends on the user context
@@ -45,6 +50,20 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         ArgumentNullException.ThrowIfNull(fixture);
 
         xrm = XrmMockup365.GetInstance(fixture.Settings);
+        server = WireMockServer.Start();
+
+        // Create API factory with test services
+        apiFactory = new ExternalApiFactory(xrm, server);
+        ApiClient = apiFactory.CreateClient();
+
+        // Create Worker factory with test services (replaces FunctionsTestHost)
+        workerFactory = new WorkerFactory<CreateInvoicesWorker>(xrm, server);
+
+        // Initialize the factory to populate WorkerRegistrations by accessing Services
+        _ = workerFactory.Services;
+
+        // Create MessageExecutor with auto-discovered registrations
+        messageExecutor = new MessageExecutor(workerFactory.Services, workerFactory.WorkerRegistrations);
 
         // Setting up a user DAO for testing stuff that depends on the user context
         using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Trace));
@@ -54,12 +73,12 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         var userService = Xrm.CreateOrganizationService(userIdOfUserDao);
         userDao = new DataverseAccessObject(userService, logger);
 
+        // Create DAO for test data setup (shares XrmMockup instance)
         adminDao = new DataverseAccessObjectAsync(xrm.GetAdminService(), Substitute.For<ILogger>());
         producer = new DataProducer(AdminDao);
-        messageExecutor = new MessageExecutor(AdminDao);
-        server = WireMockServer.Start();
 
-        AddQueueEndpoints(QueueNames.AllQueues);
+        // Add queue endpoints using auto-discovered queue names from registrations
+        AddQueueEndpoints(workerFactory.WorkerRegistrations.Select(r => r.QueueName));
 
         // Create any data needed for the tests
         var envVarDefinition = new EnvironmentVariableDefinition
@@ -111,6 +130,9 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         if (disposing)
         {
             // free managed resources
+            ApiClient.Dispose();
+            apiFactory.Dispose();
+            workerFactory.Dispose();
             server.Dispose();
         }
     }

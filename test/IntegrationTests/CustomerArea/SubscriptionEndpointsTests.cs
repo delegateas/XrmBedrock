@@ -1,8 +1,7 @@
-using DataverseService.CustomerArea;
+using System.Net;
+using System.Net.Http.Json;
 using DataverseService.CustomerArea.Dto;
-using ExternalApi.CustomerArea;
 using ExternalApi.CustomerArea.Requests;
-using Microsoft.AspNetCore.Http.HttpResults;
 using XrmBedrock.SharedContext;
 using Task = System.Threading.Tasks.Task;
 
@@ -10,12 +9,9 @@ namespace IntegrationTests.CustomerArea;
 
 public class SubscriptionEndpointsTests : TestBase
 {
-    private readonly DataverseSubscriptionService subscriptionService;
-
     public SubscriptionEndpointsTests(XrmMockupFixture fixture)
         : base(fixture)
     {
-        subscriptionService = new DataverseSubscriptionService(AdminDao);
     }
 
     [Fact]
@@ -39,14 +35,14 @@ public class SubscriptionEndpointsTests : TestBase
         });
 
         // Act
-        var response = await SubscriptionEndpoints.GetSubscriptionsForCustomer(customer.Id, subscriptionService);
+        var response = await ApiClient.GetAsync(new Uri($"/api/subscriptions/{customer.Id}", UriKind.Relative));
 
         // Assert
-        response.Result.Should().BeOfType<Ok<List<SubscriptionDto>>>();
-        var okResult = (Ok<List<SubscriptionDto>>)response.Result;
-        okResult.Value.Should().NotBeNull();
-        okResult.Value.Should().HaveCount(1);
-        okResult.Value![0].SubscriptionId.Should().Be(subscription.Id);
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var subscriptions = await response.Content.ReadFromJsonAsync<List<SubscriptionDto>>();
+        subscriptions.Should().NotBeNull();
+        subscriptions.Should().HaveCount(1);
+        subscriptions![0].SubscriptionId.Should().Be(subscription.Id);
     }
 
     [Fact]
@@ -56,12 +52,12 @@ public class SubscriptionEndpointsTests : TestBase
         var emptyCustomerId = Guid.Empty;
 
         // Act
-        var response = await SubscriptionEndpoints.GetSubscriptionsForCustomer(emptyCustomerId, subscriptionService);
+        var response = await ApiClient.GetAsync(new Uri($"/api/subscriptions/{emptyCustomerId}", UriKind.Relative));
 
         // Assert
-        response.Result.Should().BeOfType<BadRequest<string>>();
-        var badRequestResult = (BadRequest<string>)response.Result;
-        badRequestResult.Value.Should().Be("Customer ID cannot be empty.");
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        var errorMessage = await response.Content.ReadAsStringAsync();
+        errorMessage.Should().Be("\"Customer ID cannot be empty.\"");
     }
 
     [Fact]
@@ -71,13 +67,13 @@ public class SubscriptionEndpointsTests : TestBase
         var customer = Producer.ProduceValidContact(null);
 
         // Act
-        var response = await SubscriptionEndpoints.GetSubscriptionsForCustomer(customer.Id, subscriptionService);
+        var response = await ApiClient.GetAsync(new Uri($"/api/subscriptions/{customer.Id}", UriKind.Relative));
 
         // Assert
-        response.Result.Should().BeOfType<Ok<List<SubscriptionDto>>>();
-        var okResult = (Ok<List<SubscriptionDto>>)response.Result;
-        okResult.Value.Should().NotBeNull();
-        okResult.Value.Should().BeEmpty();
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var subscriptions = await response.Content.ReadFromJsonAsync<List<SubscriptionDto>>();
+        subscriptions.Should().NotBeNull();
+        subscriptions.Should().BeEmpty();
     }
 
     [Fact]
@@ -106,12 +102,12 @@ public class SubscriptionEndpointsTests : TestBase
         });
 
         // Act
-        var response = await SubscriptionEndpoints.GetSubscriptionsForCustomer(customer.Id, subscriptionService);
+        var response = await ApiClient.GetAsync(new Uri($"/api/subscriptions/{customer.Id}", UriKind.Relative));
 
         // Assert
-        response.Result.Should().BeOfType<Ok<List<SubscriptionDto>>>();
-        var okResult = (Ok<List<SubscriptionDto>>)response.Result;
-        okResult.Value.Should().HaveCount(3);
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var subscriptions = await response.Content.ReadFromJsonAsync<List<SubscriptionDto>>();
+        subscriptions.Should().HaveCount(3);
     }
 
     [Fact]
@@ -129,16 +125,17 @@ public class SubscriptionEndpointsTests : TestBase
         };
 
         // Act
-        var response = await SubscriptionEndpoints.CreateSubscription(request, subscriptionService);
+        var response = await ApiClient.PostAsJsonAsync("/api/subscriptions", request);
 
         // Assert
-        response.Result.Should().BeOfType<Created<Guid>>();
-        var createdResult = (Created<Guid>)response.Result;
-        createdResult.Value.Should().NotBeEmpty();
-        createdResult.Location.Should().Contain("/api/subscriptions/");
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        response.Headers.Location.Should().NotBeNull();
+        response.Headers.Location!.ToString().Should().Contain("/api/subscriptions/");
+
+        var subscriptionId = await response.Content.ReadFromJsonAsync<Guid>();
+        subscriptionId.Should().NotBeEmpty();
 
         // Verify the subscription was created
-        var subscriptionId = createdResult.Value;
         var subscription = AdminDao.Retrieve<ctx_Subscription>(
             subscriptionId,
             s => s.ctx_Customer,
@@ -160,12 +157,12 @@ public class SubscriptionEndpointsTests : TestBase
         };
 
         // Act
-        var response = await SubscriptionEndpoints.CreateSubscription(request, subscriptionService);
+        var response = await ApiClient.PostAsJsonAsync("/api/subscriptions", request);
 
         // Assert
-        response.Result.Should().BeOfType<BadRequest<string>>();
-        var badRequestResult = (BadRequest<string>)response.Result;
-        badRequestResult.Value.Should().Be("Customer ID cannot be empty.");
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        var errorMessage = await response.Content.ReadAsStringAsync();
+        errorMessage.Should().Be("\"Customer ID cannot be empty.\"");
     }
 
     [Fact]
@@ -181,12 +178,12 @@ public class SubscriptionEndpointsTests : TestBase
         };
 
         // Act
-        var response = await SubscriptionEndpoints.CreateSubscription(request, subscriptionService);
+        var response = await ApiClient.PostAsJsonAsync("/api/subscriptions", request);
 
         // Assert
-        response.Result.Should().BeOfType<BadRequest<string>>();
-        var badRequestResult = (BadRequest<string>)response.Result;
-        badRequestResult.Value.Should().Be("Product ID cannot be empty.");
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        var errorMessage = await response.Content.ReadAsStringAsync();
+        errorMessage.Should().Be("\"Product ID cannot be empty.\"");
     }
 
     [Fact]
@@ -204,13 +201,12 @@ public class SubscriptionEndpointsTests : TestBase
         };
 
         // Act
-        var response = await SubscriptionEndpoints.CreateSubscription(request, subscriptionService);
+        var response = await ApiClient.PostAsJsonAsync("/api/subscriptions", request);
         var afterRequest = DateTime.UtcNow;
 
         // Assert
-        response.Result.Should().BeOfType<Created<Guid>>();
-        var createdResult = (Created<Guid>)response.Result;
-        var subscriptionId = createdResult.Value;
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var subscriptionId = await response.Content.ReadFromJsonAsync<Guid>();
 
         var subscription = AdminDao.Retrieve<ctx_Subscription>(subscriptionId, s => s.ctx_StartDate);
         subscription.ctx_StartDate.Should().BeOnOrAfter(beforeRequest);
@@ -232,12 +228,11 @@ public class SubscriptionEndpointsTests : TestBase
         };
 
         // Act
-        var response = await SubscriptionEndpoints.CreateSubscription(request, subscriptionService);
+        var response = await ApiClient.PostAsJsonAsync("/api/subscriptions", request);
 
         // Assert
-        response.Result.Should().BeOfType<Created<Guid>>();
-        var createdResult = (Created<Guid>)response.Result;
-        var subscriptionId = createdResult.Value;
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var subscriptionId = await response.Content.ReadFromJsonAsync<Guid>();
 
         var subscription = AdminDao.Retrieve<ctx_Subscription>(subscriptionId, s => s.ctx_StartDate);
         subscription.ctx_StartDate.Should().BeCloseTo(futureStartDate, TimeSpan.FromSeconds(1));
