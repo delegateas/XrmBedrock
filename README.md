@@ -13,10 +13,14 @@ If you want to try it out right away, find an examples branch. Run `Setup/copyIn
 
 # Getting up and running
 Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.
+We will use these abbrevations where you will have to the naming you have chosen:
+- `nameOfCodeSolution`: The name you choose to use for the code solution
+- `nameOfDataverseSolution`: The name you choose to use for the dataverse solution in the maker portal
+- `prefix`: The prefix you choose to use for the publisher of your dataverse solution in the maker portal
 
 # Rename file names and folders
-- Rename file `XrmBedrock.slnx` => `ProjectName.slnx`
-- Rename folder `src/Dataverse/Webresources/src/ctx_XrmBedrock` => `src/Dataverse/Webresources/src/prefix_SolutionName`
+- Rename file `XrmBedrock.slnx` => `nameOfCodeSolution.slnx`
+- Rename folder `src/Dataverse/Webresources/src/ctx_XrmBedrock` => `src/Dataverse/Webresources/src/prefix_nameOfDataverseSolution` (or create if none exists)
 
 # Update values in WebResources files
 - Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/esbuild.config.mjs``
@@ -24,11 +28,11 @@ Follow these steps to setup your project correctly. After this you are ready to 
 - Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/tsconfig.json``
 
 ## Generate new strong name key
-Open the developer terminal in Visual Studio and write: 
-`sn -k nameOfSolution.snk`
+Open the developer terminal in Visual Studio and navigate to the root folder of your code solution. Execute: 
+`sn -k nameOfCodeSolution.snk`
 
 ## Update values in Plugins.csproj
-In the ``src/Dataverse/Plugins.csproj`` file, update the following:
+In the ``src/Dataverse/Plugins/Plugins.csproj`` file, update the following where XrmBedrock is mentioned, replace with `nameOfCodeSolution`:
 - AssemblyName
 - AssemblyOriginatorKeyFile
 - Reference to the .snk file in the ``Exec`` element
@@ -40,12 +44,15 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
   - The pipeline expects environment names Dev, Test, UAT and Prod - make sure that the names of the environment matches what the pipeline excepts, modify it if needed. 
 - SolutionInfo
 - PublisherInfo
+
+In each of the files
 - ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
-  - add or remove table names based on your solution and needs
+- ``src\Tools\Daxif\GenerateTestMetadata.fsx``
 - ``src\Tools\Daxif\GenerateTypeScriptContext.fsx``
-  - add or remove table names based on your solution and needs
-- ``src\Tools\Daxif\username.txt``
-  - add your username
+Add or remove table names based on your solution and needs (You can of cause reedit at any time later in your development process)
+
+Create the text file ``src\Tools\Daxif\username.txt``
+  - add your username, it has to be the username that gives you access to the dataverse dev environment
 
 ## Ready for Dataverse
 At this point your are ready for Dataverse development. The rest of the setup is regarding Azure setup and pipelines. The example pipeline assumes a full Azure and Dataverse setup.
@@ -57,9 +64,9 @@ We generated a self-signed certificate to use with the Dataverse Managed Identit
 - Open an administrator powershell and run the ``Setup/generateNewCertificate.ps1`` file. 
 - Use the following commands - remember to update "nameOfSolution" and "someRandomPassword":
   - `Set-ExecutionPolicy Bypass -Scope Process`
-  - `./Setup/generateNewCertificate.ps1 -name "nameOfSolution" -friendlyName "nameOfSolution" -password "someRandomPassword" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
+  - `./Setup/generateNewCertificate.ps1 -name "nameOfCodeSolution" -friendlyName "nameOfCodeSolution" -password "someRandomPassword" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
 
-Set the password in the signing part of the ``src/Dataverse/Plugins.csproj`` file in the ``Exec`` element.
+Set the password in the signing part of the ``src/Dataverse/Plugins/Plugins.csproj`` file in the ``Exec`` element.
 
 ## Update storage account environment variable
 Create a new environment variable that will contain the storage account url

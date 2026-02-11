@@ -1,7 +1,7 @@
 {
   "name": "webresources",
   "version": "1.0.0",
-  "description": "Webresources for XrmBedrock",
+  "description": "Webresources for the Dataverse solution",
   "repository": {
     "type": "git",
     "url": ""
