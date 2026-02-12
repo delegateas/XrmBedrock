@@ -26,7 +26,7 @@ public class XrmMockupFixture
                     BaseCustomApiTypes = new Tuple<string, Type>[] { new("demo", typeof(CustomAPI)) },
                     EnableProxyTypes = true,
                     IncludeAllWorkflows = false,
-                    MetadataDirectoryPath = "..\\..\\..\\..\\SharedTest\\MetadataGenerated",
+                    MetadataDirectoryPath = Path.Combine("..", "..", "..", "..", "SharedTest", "MetadataGenerated"),
                 };
             }
         }
