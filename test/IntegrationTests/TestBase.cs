@@ -1,3 +1,4 @@
+#pragma warning disable SA1210 // Using order varies with project name after template replacement
 using Azure.DataverseService.Foundation.Dao;
 using DataverseService.Foundation.Dao;
 using DG.Tools.XrmMockup;
@@ -10,6 +11,7 @@ using WireMock;
 using WireMock.RequestBuilders;
 using WireMock.Server;
 using XrmBedrock.SharedContext;
+#pragma warning restore SA1210
 
 namespace IntegrationTests;
 

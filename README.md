@@ -6,7 +6,36 @@ This template will be updated. The current list is as follows
 * New way of handling web resources.
 * Deploying data.
 
-# Initial setup
+# Quick start (dotnet new)
+
+1. Install the template from the repository root:
+
+   ```bash
+   dotnet new install .
+   ```
+
+2. Create a new project, replacing each placeholder value with your own:
+
+   ```bash
+   dotnet new xrmbedrock -n MyProject \
+     --publisher-prefix abc \
+     --solution-id mysol \
+     --company-id myco \
+     --org-name MyOrg \
+     --repo-name MyRepo \
+     --dev-url https://myorg-dev.crm4.dynamics.com \
+     --test-url https://myorg-test.crm4.dynamics.com \
+     --uat-url https://myorg-uat.crm4.dynamics.com \
+     --prod-url https://myorg-prod.crm4.dynamics.com \
+     --rg-name myorg-mysol \
+     --username user@myorg.onmicrosoft.com
+   ```
+
+3. Post-setup runs automatically (generates a strong name key, copies initial files, restores tools, and installs npm packages).
+
+To uninstall the template: `dotnet new uninstall .`
+
+# Initial setup (manual)
 This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder and `copyInitialSetup.ps1`.
 
 If you want to try it out right away, find an examples branch. Run `Setup/copyInitialSetup.ps1` using PowerShell. The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.

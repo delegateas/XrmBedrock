@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Delegate A/S",
+  "classifications": ["Dataverse", "Azure", "XRM"],
+  "identity": "DelegateAS.XrmBedrock",
+  "name": "XrmBedrock Dataverse + Azure Project",
+  "shortName": "xrmbedrock",
+  "description": "Template for Dataverse projects with Azure backend",
+  "sourceName": "XrmBedrock",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "symbols": {
+    "publisherPrefix": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse publisher prefix (e.g. 'ctx', 'new')",
+      "defaultValue": "ctx",
+      "isRequired": true
+    },
+    "certPassword": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Password for plugin signing certificate",
+      "defaultValue": "someRandomPassword",
+      "replaces": "someRandomPassword"
+    },
+    "organizationName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Organization name for assembly metadata",
+      "defaultValue": "MGS",
+      "replaces": "MGS"
+    },
+    "repositoryName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Repository name for assembly metadata",
+      "defaultValue": "DEMO",
+      "replaces": "DEMO"
+    },
+    "solutionId": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Azure solution identifier for resource naming (manual replacement needed in Infrastructure/main.bicep)",
+      "defaultValue": "demo"
+    },
+    "companyId": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Company identifier for Azure resource naming (manual replacement needed in Infrastructure/main.bicep)",
+      "defaultValue": "mgs"
+    },
+    "resourceGroupName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Base name for Azure resource groups",
+      "defaultValue": "resourcegroupname",
+      "replaces": "resourcegroupname"
+    },
+    "dataverseUsername": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse dev environment username (e.g. user@org.onmicrosoft.com)",
+      "defaultValue": "",
+      "replaces": "TEMPLATE_DATAVERSE_USERNAME"
+    },
+    "devUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse Dev environment URL",
+      "defaultValue": "https://dev.crm4.dynamics.com",
+      "replaces": "https://dev.crm4.dynamics.com"
+    },
+    "testUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse Test environment URL",
+      "defaultValue": "https://test.crm4.dynamics.com",
+      "replaces": "https://test.crm4.dynamics.com"
+    },
+    "uatUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse UAT environment URL",
+      "defaultValue": "https://uat.crm4.dynamics.com",
+      "replaces": "https://uat.crm4.dynamics.com"
+    },
+    "prodUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse Prod environment URL",
+      "defaultValue": "https://prod.crm4.dynamics.com",
+      "replaces": "https://prod.crm4.dynamics.com"
+    },
+    "nameLower": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "name",
+        "toLower": true
+      },
+      "replaces": "xrmbedrock",
+      "fileRename": "xrmbedrock"
+    },
+    "prefixedName": {
+      "type": "generated",
+      "generator": "join",
+      "replaces": "ctx_XrmBedrock",
+      "fileRename": "ctx_XrmBedrock",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "publisherPrefix" },
+          { "type": "ref", "value": "name" }
+        ],
+        "separator": "_"
+      }
+    },
+    "NET462": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": {
+        "value": "true"
+      }
+    }
+  },
+  "sources": [
+    {
+      "copyOnly": [
+        "**/*.snk",
+        "**/*.pfx",
+        "**/*.dll",
+        "**/*.js.map"
+      ],
+      "modifiers": [
+        {
+          "exclude": [
+            ".git/**",
+            "**/node_modules/**",
+            "xrmbedrock.snk",
+            "plugincert.pfx"
+          ]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "description": "Restore NuGet packages",
+      "manualInstructions": [{ "text": "Run 'dotnet restore'" }],
+      "continueOnError": true
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Run post-template setup (copy initial files, dotnet tool restore, npm install)",
+      "manualInstructions": [{ "text": "Run 'pwsh Setup/postTemplateSetup.ps1'" }],
+      "args": {
+        "executable": "pwsh",
+        "args": "-File Setup/postTemplateSetup.ps1"
+      },
+      "continueOnError": true
+    }
+  ]
+}
