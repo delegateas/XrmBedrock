@@ -44,6 +44,7 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
   - The pipeline expects environment names Dev, Test, UAT and Prod - make sure that the names of the environment matches what the pipeline excepts, modify it if needed. 
 - SolutionInfo
 - PublisherInfo
+- pluginDllName (under Path)
 
 In each of the following files add or remove table names based on your solution and needs (You can of cause re-edit at any time later in your development process)
 - ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
