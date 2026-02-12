@@ -45,11 +45,16 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
 - SolutionInfo
 - PublisherInfo
 
-In each of the files
+In each of the following files add or remove table names based on your solution and needs (You can of cause re-edit at any time later in your development process)
 - ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
+  - Leave these as they are required by some of the features of XrmBedrock
+  `"appnotification"
+  "duplicaterule"
+  "environmentvariabledefinition"
+  "environmentvariablevalue"
+  "systemuser"`
 - ``src\Tools\Daxif\GenerateTestMetadata.fsx``
 - ``src\Tools\Daxif\GenerateTypeScriptContext.fsx``
-Add or remove table names based on your solution and needs (You can of cause reedit at any time later in your development process)
 
 Create the text file ``src\Tools\Daxif\username.txt``
   - add your username, it has to be the username that gives you access to the dataverse dev environment
