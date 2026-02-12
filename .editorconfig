@@ -513,6 +513,7 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 dotnet_diagnostic.CA1308.severity = none	# General ignore, this rule seems broken, we do sometimes need to lowercase stuff! And upper-case is somewhat different...
 dotnet_diagnostic.CA1515.severity = none	# In believing this rule to be a bit too eager - we do need the public over internal classes at some points (correct this if it's wrong)
 dotnet_diagnostic.CA1848.severity = none	# Use the LoggerMessage delegates for high performance logging scenarios
+dotnet_diagnostic.CA1873.severity = none	# Evaluation of this argument may be expensive - same reasoning as CA1848
 dotnet_diagnostic.CA1860.severity = none	# We will accept the use of .Any()
 dotnet_diagnostic.CA2254.severity = none	# We should not log so much that this potential performance optimization will have any effect
 dotnet_diagnostic.SA1208.severity = none	# Ordering of System usings before other usings. This conflicts with the built-in tool in VS to auto-remove unused usings and order the rest on each save of a file
