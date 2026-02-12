@@ -40,7 +40,7 @@
 	</ItemGroup>
 	
 	<!-- ILRepack is only need because DAXIF doesn't support Plugin Packages yet -->
-	<Target Name="ILRepack" AfterTargets="Build">
+	<Target Name="ILRepack" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
 		<ItemGroup>
 			<InputAssemblies Include="$(TargetPath)" />
 			<InputAssemblies Include="$(TargetDir)Microsoft.Bcl.AsyncInterfaces.dll" />
@@ -53,7 +53,7 @@
 		</ItemGroup>
 		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\xrmbedrock.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
   </Target>
-	<Target Name="SignDLL" AfterTargets="ILRepack">
+	<Target Name="SignDLL" AfterTargets="ILRepack" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
 	  <Exec Command="signtool sign /p someRandomPassword /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
 	</Target>
 	<Import Project="..\SharedPluginLogic\SharedPluginLogic.projitems" Label="Shared" />
