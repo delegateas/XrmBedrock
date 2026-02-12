@@ -17,8 +17,7 @@
       "type": "parameter",
       "datatype": "string",
       "description": "Dataverse publisher prefix (e.g. 'ctx', 'new')",
-      "defaultValue": "ctx",
-      "isRequired": true
+      "defaultValue": "ctx"
     },
     "certPassword": {
       "type": "parameter",

@@ -28,10 +28,15 @@ This template will be updated. The current list is as follows
      --uat-url https://myorg-uat.crm4.dynamics.com \
      --prod-url https://myorg-prod.crm4.dynamics.com \
      --rg-name myorg-mysol \
+     --cert-password MySecurePassword123 \
      --username user@myorg.onmicrosoft.com
    ```
 
-3. Post-setup runs automatically (generates a strong name key, copies initial files, restores tools, and installs npm packages).
+3. Post-setup runs automatically (generates a strong name key, copies initial files, restores tools, and installs npm packages). Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
+
+4. Manually replace these values (too short for safe auto-replacement):
+   - `ctx` in `src/Tools/Daxif/_Config.fsx` (publisher prefix)
+   - `demo` and `mgs` in `Infrastructure/main.bicep` (solution/company ID)
 
 To uninstall the template: `dotnet new uninstall .`
 
@@ -84,9 +89,9 @@ We generated a self-signed certificate to use with the Dataverse Managed Identit
 
 - Create a new password (at least 12 randomly generated characters is recommended). 
 - Open an administrator powershell and run the ``Setup/generateNewCertificate.ps1`` file. 
-- Use the following commands - remember to update "nameOfSolution" and "someRandomPassword":
+- Use the following commands - remember to update "nameOfSolution" and the password:
   - `Set-ExecutionPolicy Bypass -Scope Process`
-  - `./Setup/generateNewCertificate.ps1 -name "nameOfSolution" -friendlyName "nameOfSolution" -password "someRandomPassword" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
+  - `./Setup/generateNewCertificate.ps1 -name "nameOfSolution" -friendlyName "nameOfSolution" -password "<your-cert-password>" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
 
 Set the password in the signing part of the ``src/Dataverse/Plugins.csproj`` file in the ``Exec`` element.
 
