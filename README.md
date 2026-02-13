@@ -30,14 +30,17 @@ This template will be updated. The current list is as follows
      --username user@myorg.onmicrosoft.com
    ```
 
-3. Post-setup runs automatically (generates a strong name key, copies initial files, restores tools, and installs npm packages). Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
+3. Post-setup runs automatically (generates a strong name key, restores tools, installs npm packages, and generates Dataverse context files). You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
 
 To uninstall the template: `dotnet new uninstall .`
 
 # Initial setup (manual)
-This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder and `copyInitialSetup.ps1`.
+This project serves both as a template. For examples and demonstrations on how to use it, go to the examples branches. The Dataverse context files (C# proxies, TypeScript typings, and test metadata) are generated from your Dataverse environment during post-template setup using the F# scripts in `src/Tools/Daxif/`. You can regenerate them at any time:
 
-If you want to try it out right away, find an examples branch. Run `Setup/copyInitialSetup.ps1` using PowerShell. The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.
+```bash
+dotnet fsi src/Tools/Daxif/GenerateCSharpContext.fsx
+dotnet fsi src/Tools/Daxif/GenerateTypeScriptContext.fsx
+```
 
 # Getting up and running
 Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.

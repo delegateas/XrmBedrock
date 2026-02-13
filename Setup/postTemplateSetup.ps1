@@ -45,11 +45,6 @@ $ms.Dispose()
 $rsa.Dispose()
 Write-Host "Generated $snkPath"
 
-Write-Host "Copying initial setup files..."
-Copy-Item -Path "Setup/InitialSetup/WebResources" -Destination "src/Dataverse" -Recurse -Force
-Copy-Item -Path "Setup/InitialSetup/SharedTest" -Destination "test" -Recurse -Force
-Copy-Item -Path "Setup/InitialSetup/SharedContext" -Destination "src/Shared" -Recurse -Force
-
 Write-Host "Restoring .NET tools..."
 dotnet tool restore
 
@@ -57,5 +52,10 @@ Write-Host "Installing npm dependencies..."
 Push-Location "src/Dataverse/WebResources"
 npm install
 Pop-Location
+
+Write-Host "Generating Dataverse context from dev environment..."
+Write-Host "You will be prompted to authenticate with your Dataverse environment."
+dotnet fsi src/Tools/Daxif/GenerateCSharpContext.fsx
+dotnet fsi src/Tools/Daxif/GenerateTypeScriptContext.fsx
 
 Write-Host "Post-template setup complete."
