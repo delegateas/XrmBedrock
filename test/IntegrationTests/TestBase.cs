@@ -66,7 +66,7 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         // Create any data needed for the tests
         var envVarDefinition = new EnvironmentVariableDefinition
         {
-            SchemaName = "mgs_AzureStorageAccountUrl",
+            SchemaName = "TPLPREFIX_AzureStorageAccountUrl",
         };
         envVarDefinition.Id = AdminDao.Create(envVarDefinition);
         AdminDao.Create(new EnvironmentVariableValue

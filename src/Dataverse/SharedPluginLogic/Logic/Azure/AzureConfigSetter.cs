@@ -15,7 +15,7 @@ public static class AzureConfigSetter
             var urlFromEnvVar = dao.RetrieveFirst(xrm =>
                 from variable in xrm.EnvironmentVariableValueSet
                 join definition in xrm.EnvironmentVariableDefinitionSet on variable.EnvironmentVariableDefinitionId.Id equals definition.Id
-                where definition.SchemaName == "mgs_AzureStorageAccountUrl"
+                where definition.SchemaName == "TPLPREFIX_AzureStorageAccountUrl"
                 select variable.Value);
 
             var storageAccountUrl = urlFromEnvVar ?? "https://www.microsoft.com/";

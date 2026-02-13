@@ -1,12 +1,10 @@
 {
   "$schema": "http://json.schemastore.org/dotnetcli.host",
   "symbolInfo": {
+    "companyName": { "longName": "company-name", "shortName": "cn" },
     "publisherPrefix": { "longName": "publisher-prefix", "shortName": "pp" },
     "certPassword": { "longName": "cert-password" },
     "solutionId": { "longName": "solution-id", "shortName": "si" },
-    "companyId": { "longName": "company-id", "shortName": "ci" },
-    "organizationName": { "longName": "org-name" },
-    "repositoryName": { "longName": "repo-name" },
     "devUrl": { "longName": "dev-url" },
     "testUrl": { "longName": "test-url" },
     "uatUrl": { "longName": "uat-url" },

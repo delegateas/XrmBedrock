@@ -18,11 +18,9 @@ This template will be updated. The current list is as follows
 
    ```bash
    dotnet new xrmbedrock -n MyProject \
+     --company-name MyOrg \
      --publisher-prefix abc \
      --solution-id mysol \
-     --company-id myco \
-     --org-name MyOrg \
-     --repo-name MyRepo \
      --dev-url https://myorg-dev.crm4.dynamics.com \
      --test-url https://myorg-test.crm4.dynamics.com \
      --uat-url https://myorg-uat.crm4.dynamics.com \
@@ -33,10 +31,6 @@ This template will be updated. The current list is as follows
    ```
 
 3. Post-setup runs automatically (generates a strong name key, copies initial files, restores tools, and installs npm packages). Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
-
-4. Manually replace these values (too short for safe auto-replacement):
-   - `ctx` in `src/Tools/Daxif/_Config.fsx` (publisher prefix)
-   - `demo` and `mgs` in `Infrastructure/main.bicep` (solution/company ID)
 
 To uninstall the template: `dotnet new uninstall .`
 
@@ -50,12 +44,8 @@ Follow these steps to setup your project correctly. After this you are ready to 
 
 # Rename file names and folders
 - Rename file `XrmBedrock.slnx` => `ProjectName.slnx`
-- Rename folder `src/Dataverse/Webresources/src/ctx_XrmBedrock` => `src/Dataverse/Webresources/src/prefix_SolutionName`
 
-# Update values in WebResources files
-- Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/esbuild.config.mjs``
-- Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/package.json``
-- Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/tsconfig.json``
+Note: When using `dotnet new`, folder names and WebResource references are updated automatically via template parameters.
 
 ## Generate new strong name key
 Open the developer terminal in Visual Studio and write: 
@@ -105,7 +95,8 @@ TODO: There should be a dedicated section for pipelines. Here it should be descr
 
 Update values to match your solution:
 - In ``.pipelines/Azure/Validate-DIF-Template`` update the resource group names
-- In ``.pipelines/Infrastructure/main.bicep`` update the ``solutionId``  and ``companyId``
+
+Note: When using `dotnet new`, ``solutionId`` and ``companyId`` in ``Infrastructure/main.bicep`` are set automatically via template parameters.
 
 Tip: To locally validate your main.bicep, run the following commands:
 ``az login``

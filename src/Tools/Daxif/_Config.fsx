@@ -80,7 +80,7 @@ module SolutionInfo =
   let displayName = @"XrmBedrock"
 
 module PublisherInfo =
-  let prefix = @"ctx"
+  let prefix = @"TPLPREFIX"
   let name = @"XrmBedrock"
   let displayName = @"XrmBedrock"
 
@@ -99,7 +99,7 @@ module Path =
   let webResourceProject = srcRoot ++ "Dataverse" ++ @"WebResources"
   let webResourceFolder = webResourceProject ++ @"src" ++ (sprintf "%s_%s" PublisherInfo.prefix SolutionInfo.name)
   
-  let pluginDllName = "ILMerged.XrmBedrock.Dataverse.Plugins"
+  let pluginDllName = "ILMerged.templatecompanyname.templateprojectname.Dataverse.Plugins"
 
   /// Path information used by the SolutionPackager scripts
   module SolutionPack =

@@ -13,11 +13,19 @@
     "type": "solution"
   },
   "symbols": {
+    "companyName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Company name used in assembly names and metadata (e.g. 'Acme')",
+      "defaultValue": "templatecompanyname",
+      "replaces": "templatecompanyname"
+    },
     "publisherPrefix": {
       "type": "parameter",
       "datatype": "string",
       "description": "Dataverse publisher prefix (e.g. 'ctx', 'new')",
-      "defaultValue": "ctx"
+      "defaultValue": "ctx",
+      "replaces": "TPLPREFIX"
     },
     "certPassword": {
       "type": "parameter",
@@ -26,31 +34,12 @@
       "defaultValue": "someRandomPassword",
       "replaces": "someRandomPassword"
     },
-    "organizationName": {
-      "type": "parameter",
-      "datatype": "string",
-      "description": "Organization name for assembly metadata",
-      "defaultValue": "MGS",
-      "replaces": "MGS"
-    },
-    "repositoryName": {
-      "type": "parameter",
-      "datatype": "string",
-      "description": "Repository name for assembly metadata",
-      "defaultValue": "DEMO",
-      "replaces": "DEMO"
-    },
     "solutionId": {
       "type": "parameter",
       "datatype": "string",
-      "description": "Azure solution identifier for resource naming (manual replacement needed in Infrastructure/main.bicep)",
-      "defaultValue": "demo"
-    },
-    "companyId": {
-      "type": "parameter",
-      "datatype": "string",
-      "description": "Company identifier for Azure resource naming (manual replacement needed in Infrastructure/main.bicep)",
-      "defaultValue": "mgs"
+      "description": "Azure solution identifier for resource naming",
+      "defaultValue": "templatesolutionid",
+      "replaces": "templatesolutionid"
     },
     "resourceGroupName": {
       "type": "parameter",
@@ -107,8 +96,8 @@
     "prefixedName": {
       "type": "generated",
       "generator": "join",
-      "replaces": "ctx_XrmBedrock",
-      "fileRename": "ctx_XrmBedrock",
+      "replaces": "TPLPREFIX_templateprojectname",
+      "fileRename": "TPLPREFIX_templateprojectname",
       "parameters": {
         "symbols": [
           { "type": "ref", "value": "publisherPrefix" },
@@ -116,6 +105,26 @@
         ],
         "separator": "_"
       }
+    },
+    "companyNameLower": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "companyName",
+        "toLower": true
+      },
+      "replaces": "templatecompanyid"
+    },
+    "nameExplicit": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "name" }
+        ],
+        "separator": ""
+      },
+      "replaces": "templateprojectname"
     },
     "NET462": {
       "type": "generated",
