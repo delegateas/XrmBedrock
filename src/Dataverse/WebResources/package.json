@@ -10,8 +10,8 @@
   "author": "DG",
   "scripts": {
     "concurrently": "concurrently",
-    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/TPLPREFIX_templateprojectname/out",
-    "clean-all": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/TPLPREFIX_templateprojectname ./src/TPLPREFIX_templateprojectname/out",
+    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/templatepublisherprefix_templateprojectname/out",
+    "clean-all": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/templatepublisherprefix_templateprojectname ./src/templatepublisherprefix_templateprojectname/out",
     "build": "tsc",
     "postbuild": "node esbuild.config.mjs"
   },

@@ -80,7 +80,7 @@ module SolutionInfo =
   let displayName = @"XrmBedrock"
 
 module PublisherInfo =
-  let prefix = @"TPLPREFIX"
+  let prefix = @"templatepublisherprefix"
   let name = @"XrmBedrock"
   let displayName = @"XrmBedrock"
 

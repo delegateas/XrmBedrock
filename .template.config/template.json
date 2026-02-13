@@ -25,14 +25,14 @@
       "datatype": "string",
       "description": "Dataverse publisher prefix (e.g. 'ctx', 'new')",
       "defaultValue": "ctx",
-      "replaces": "TPLPREFIX"
+      "replaces": "templatepublisherprefix"
     },
     "certPassword": {
       "type": "parameter",
       "datatype": "string",
       "description": "Password for plugin signing certificate",
-      "defaultValue": "someRandomPassword",
-      "replaces": "someRandomPassword"
+      "defaultValue": "templatecertpassword",
+      "replaces": "templatecertpassword"
     },
     "solutionId": {
       "type": "parameter",
@@ -44,9 +44,9 @@
     "resourceGroupName": {
       "type": "parameter",
       "datatype": "string",
-      "description": "Base name for Azure resource groups",
-      "defaultValue": "resourcegroupname",
-      "replaces": "resourcegroupname"
+      "description": "Base name for Azure resource groups so ctx becomes rg-ctx-dev, rg-ctx-test, etc.",
+      "defaultValue": "templateresourcegroupname",
+      "replaces": "templateresourcegroupname"
     },
     "dataverseUsername": {
       "type": "parameter",
@@ -96,8 +96,8 @@
     "prefixedName": {
       "type": "generated",
       "generator": "join",
-      "replaces": "TPLPREFIX_templateprojectname",
-      "fileRename": "TPLPREFIX_templateprojectname",
+      "replaces": "templatepublisherprefix_templateprojectname",
+      "fileRename": "templatepublisherprefix_templateprojectname",
       "parameters": {
         "symbols": [
           { "type": "ref", "value": "publisherPrefix" },

@@ -30,85 +30,50 @@ This template will be updated. The current list is as follows
      --username user@myorg.onmicrosoft.com
    ```
 
-3. Post-setup runs automatically (generates a strong name key, restores tools, installs npm packages, and generates Dataverse context files). You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
+3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, generates Dataverse context files, and creates an initial git commit). You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
 
 To uninstall the template: `dotnet new uninstall .`
 
-# Initial setup (manual)
-This project serves both as a template. For examples and demonstrations on how to use it, go to the examples branches. The Dataverse context files (C# proxies, TypeScript typings, and test metadata) are generated from your Dataverse environment during post-template setup using the F# scripts in `src/Tools/Daxif/`. You can regenerate them at any time:
+# Regenerating Dataverse Context
+
+The Dataverse context files (C# proxies, TypeScript typings, and test metadata) are generated from your Dataverse environment during post-template setup using the F# scripts in `src/Tools/Daxif/`. You can regenerate them at any time:
 
 ```bash
 dotnet fsi src/Tools/Daxif/GenerateCSharpContext.fsx
 dotnet fsi src/Tools/Daxif/GenerateTypeScriptContext.fsx
 ```
 
-# Getting up and running
-Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.
+# Azure Setup
 
-# Rename file names and folders
-- Rename file `XrmBedrock.slnx` => `ProjectName.slnx`
+## Federated Credentials
 
-Note: When using `dotnet new`, folder names and WebResource references are updated automatically via template parameters.
+To configure federated credentials for the Dataverse Managed Identity, run the following script. It loads the generated `plugincert.pfx` and prints the issuer, subject, thumbprint, and hash needed for Azure AD configuration:
 
-## Generate new strong name key
-Open the developer terminal in Visual Studio and write: 
-`sn -k nameOfSolution.snk`
+```bash
+pwsh Setup/printFederatedCredentials.ps1 -password "<your-cert-password>" -environmentId "<environment-guid>" -tenantId "<tenant-guid>"
+```
 
-## Update values in Plugins.csproj
-In the ``src/Dataverse/Plugins.csproj`` file, update the following:
-- AssemblyName
-- AssemblyOriginatorKeyFile
-- Reference to the .snk file in the ``Exec`` element
+## Storage account environment variable
 
-## Update DAXIF Config
-In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
-- Env
-  - urls
-  - The pipeline expects environment names Dev, Test, UAT and Prod - make sure that the names of the environment matches what the pipeline excepts, modify it if needed. 
-- SolutionInfo
-- PublisherInfo
-- ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
-  - add or remove table names based on your solution and needs
-- ``src\Tools\Daxif\GenerateTypeScriptContext.fsx``
-  - add or remove table names based on your solution and needs
-- ``src\Tools\Daxif\username.txt``
-  - add your username
+Create a new environment variable that will contain the storage account URL.
 
-## Ready for Dataverse
-At this point your are ready for Dataverse development. The rest of the setup is regarding Azure setup and pipelines. The example pipeline assumes a full Azure and Dataverse setup.
+Update the reference to that variable in `src/Dataverse/SharedPluginLogic/Logic/Azure/AzureConfigSetter.cs`.
 
-## Generate a certificate
-We generated a self-signed certificate to use with the Dataverse Managed Identity.
+## Infrastructure validation
 
-- Create a new password (at least 12 randomly generated characters is recommended). 
-- Open an administrator powershell and run the ``Setup/generateNewCertificate.ps1`` file. 
-- Use the following commands - remember to update "nameOfSolution" and the password:
-  - `Set-ExecutionPolicy Bypass -Scope Process`
-  - `./Setup/generateNewCertificate.ps1 -name "nameOfSolution" -friendlyName "nameOfSolution" -password "<your-cert-password>" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
+To locally validate your `main.bicep`, run:
 
-Set the password in the signing part of the ``src/Dataverse/Plugins.csproj`` file in the ``Exec`` element.
+```bash
+az login
+az deployment group validate --resource-group <your-resource-group> --template-file main.bicep
+```
 
-## Update storage account environment variable
-Create a new environment variable that will contain the storage account url
-
-Update the reference to that variable in ``src\Dataverse\SharedPluginLogic\Logic\Azure\AzureConfigSetter.cs``
-
-# Update files in .pipelines and Infrastructure
-TODO: There should be a dedicated section for pipelines. Here it should be described what the default configurations do and what the prerequisites are.
-
-Update values to match your solution:
-- In ``.pipelines/Azure/Validate-DIF-Template`` update the resource group names
-
-Note: When using `dotnet new`, ``solutionId`` and ``companyId`` in ``Infrastructure/main.bicep`` are set automatically via template parameters.
-
-Tip: To locally validate your main.bicep, run the following commands:
-``az login``
-``az deployment group validate --resource-group <your-resource-group> --template-file main.bicep``
-This will validate the template and show you any errors in the template (which the pipeline won't output)
+Note: When using `dotnet new`, `solutionId` and `companyId` in `Infrastructure/main.bicep` are set automatically via template parameters.
 
 # Azure DevOps
+
 ## Environment
-Under Pipelines > Environment, create an environment per Dataverse environment. 
+Under Pipelines > Environment, create an environment per Dataverse environment.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
 Use these to control approvals of deployments.
 
@@ -126,7 +91,7 @@ The template assumes the following variables exist.
 * AzureClientEAObjectId (Object id of the Enterprise Application related to the App registration)
 
 ## Service Connection
-Under Project Settings > Pipelines > Service connections, create 2 service connections per azure environment of types Power Platform and Azure Resource Manager. 
+Under Project Settings > Pipelines > Service connections, create 2 service connections per azure environment of types Power Platform and Azure Resource Manager.
 A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
 
@@ -134,8 +99,8 @@ Note: The pipeline template uses Dev, Test, UAT, Prod.
 1. Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
 2. Select Workload Identity federation
 3. Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
-4. TenantI Id = Teant Id, can be found in Azure Portal
-5. Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
+4. Tenant Id = Tenant Id, can be found in Azure Portal
+5. Service Connection Name = The name of the service connection (e.g. Dataverse Dev)
 
 Once created:
 1. Copy the service connection id from the url as it is needed in the next step.
@@ -147,7 +112,7 @@ You now need to create a federated credential on your app registration.
 1. Find your app registration in the Azure Portal
 2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
 3. For 'Federated credential scenario' select 'Other issuer'
-4. Issuer = https://vstoken.dev.azure.com/{organizationName} 
+4. Issuer = https://vstoken.dev.azure.com/{organizationName}
 5. Type = Explicit subject identifier
 6. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
 7. Name = Name of your choice (e.g. PipelineDataverse)
@@ -156,12 +121,12 @@ You now need to create a federated credential on your app registration.
 1. Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
 2. Identity type = App registration or managed identity (manual)
 3. Credential = Workload identity federation
-4. Service Connection Name = The name of the service connetion (e.g. Dev)
-5. Directory (tenant) Id = Teant Id, can be found in Azure Portal
+4. Service Connection Name = The name of the service connection (e.g. Dev)
+5. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
 6. Click Next
 7. Copy the Issuer and Subject Identifier for later use
 8. Scope level = Subscription
-9. Subcription ID and Subscription Name can be found in the Azure Portal
+9. Subscription ID and Subscription Name can be found in the Azure Portal
 10. Application (client) ID = The client id of your app registration for the environment.
 
 You now need to create a federated credential on your app registration.
