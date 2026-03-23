@@ -16,6 +16,9 @@ Solution.GenerateCSharpContext(Env.dev, xrmContext, businessDomainFolder,
     SolutionInfo.name
     ],
   entities = [
+    // Add solution entities here
+
+    // Prerequisites for the solution to build
     "account"
     "annotation"
     "appnotification"

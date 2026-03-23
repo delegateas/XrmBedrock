@@ -1,4 +1,4 @@
-﻿(**
+(**
 SolutionUpdateTsContext
 *)
 
@@ -16,7 +16,9 @@ Solution.GenerateTypeScriptContext(Env.dev, xrmDefinitelyTyped, xrmTypings,
     SolutionInfo.name
     ],
   entities = [
-    // eg. "systemuser"
+    // Add solution entities here
+
+    // Prerequisites for the solution to build
     "account"
     "contact"
     ],
