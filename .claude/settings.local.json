@@ -1,0 +1,58 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -sS --connect-timeout 2 http://host.docker.internal:52656/hook/stop?ptyId=0589c095-adf0-4b0d-9cab-77a4f1368974"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -sS --connect-timeout 2 http://host.docker.internal:52656/hook/busy?ptyId=0589c095-adf0-4b0d-9cab-77a4f1368974"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -sS --connect-timeout 2 -X POST -H \"Content-Type: application/json\" -d @- http://host.docker.internal:52656/hook/notification?ptyId=0589c095-adf0-4b0d-9cab-77a4f1368974"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -sS --connect-timeout 2 -X POST -H \"Content-Type: application/json\" -d @- http://host.docker.internal:52656/hook/notification?ptyId=0589c095-adf0-4b0d-9cab-77a4f1368974"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Tool WebSearch is disabled — web traffic is routed through api.anthropic.com and bypasses the container firewall\" >&2; exit 2"
+          }
+        ]
+      }
+    ]
+  },
+  "attribution": {
+    "commit": "\n\nCo-Authored-By: Claude <noreply@anthropic.com> via Conducktor <conducktor@contextand.com>"
+  }
+}

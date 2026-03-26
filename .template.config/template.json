@@ -147,6 +147,8 @@
           "exclude": [
             ".git/**",
             "**/node_modules/**",
+            "**/bin/**",
+            "**/obj/**",
             "xrmbedrock.snk",
             "plugincert.pfx"
           ]
@@ -163,11 +165,11 @@
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "description": "Run post-template setup (copy initial files, dotnet tool restore, npm install)",
-      "manualInstructions": [{ "text": "Run 'pwsh Setup/postTemplateSetup.ps1'" }],
+      "description": "Run post-template setup (generate keys, dotnet tool restore, npm install)",
+      "manualInstructions": [{ "text": "Run 'dotnet run --project Setup/PostSetup'" }],
       "args": {
-        "executable": "pwsh",
-        "args": "-File Setup/postTemplateSetup.ps1"
+        "executable": "dotnet",
+        "args": "run --project Setup/PostSetup"
       },
       "continueOnError": true
     }
