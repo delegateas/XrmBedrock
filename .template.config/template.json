@@ -18,7 +18,8 @@
       "datatype": "string",
       "description": "Company name used in assembly names and metadata (e.g. 'Acme')",
       "defaultValue": "templatecompanyname",
-      "replaces": "templatecompanyname"
+      "replaces": "templatecompanyname",
+      "fileRename": "templatecompanyname"
     },
     "publisherPrefix": {
       "type": "parameter",
@@ -149,7 +150,7 @@
             "**/node_modules/**",
             "**/bin/**",
             "**/obj/**",
-            "xrmbedrock.snk",
+            "templatecompanyname.snk",
             "plugincert.pfx"
           ]
         }

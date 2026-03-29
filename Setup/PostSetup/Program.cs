@@ -48,9 +48,9 @@ string FindProjectRoot()
 
 void GenerateSnk()
 {
-    // Template engine replaces 'xrmbedrock' with the lowercase project name.
+    // Template engine replaces 'templatecompanyname' with the company name.
     Console.WriteLine("Generating strong name key...");
-    var snkPath = "xrmbedrock.snk";
+    var snkPath = "templatecompanyname.snk";
 
     using var rsa = RSA.Create(1024);
     var p = rsa.ExportParameters(true);

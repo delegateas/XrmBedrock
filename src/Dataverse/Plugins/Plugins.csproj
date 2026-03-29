@@ -3,7 +3,7 @@
 		<AssemblyName>templatecompanyname.templateprojectname.Dataverse.Plugins</AssemblyName>
 		<TargetFramework>net462</TargetFramework>
 		<SignAssembly>False</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\..\..\xrmbedrock.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>..\..\..\templatecompanyname.snk</AssemblyOriginatorKeyFile>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
 	
@@ -51,7 +51,7 @@
 			<InputAssemblies Include="$(TargetDir)System.Threading.Tasks.Extensions.dll" />
 			<InputAssemblies Include="$(TargetDir)System.Text.Json.dll" />
 		</ItemGroup>
-		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\xrmbedrock.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
+		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\templatecompanyname.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
   </Target>
 	<Target Name="SignDLL" AfterTargets="ILRepack" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
 	  <Exec Command="signtool sign /p templatecertpassword /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
