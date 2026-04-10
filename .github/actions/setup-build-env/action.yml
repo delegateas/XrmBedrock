@@ -31,4 +31,4 @@ runs:
       shell: pwsh
       run: |
         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-        ./Setup/copyInitialSetup.ps1
+        ./DemoSetup/copyInitialSetup.ps1
