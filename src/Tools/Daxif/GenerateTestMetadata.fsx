@@ -14,9 +14,6 @@ Solution.GenerateXrmMockupMetadata(Env.dev, xrmMockupMetadataGenerator, Path.sol
     SolutionInfo.name
   ],
   entities = [
-    // Add solution entities here
-
-    // Prerequisites for the solution to build
     "account"
     "annotation"
     "appnotification"
