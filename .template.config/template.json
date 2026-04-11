@@ -153,13 +153,22 @@
             "XrmBedrock.Template.csproj",
             "nupkg/**",
             "**/node_modules/**",
-            "**/bin/**",
+            "src/Azure/**/bin/**",
+            "src/Dataverse/**/bin/**",
+            "src/Shared/**/bin/**",
+            "test/**/bin/**",
+            "Setup/**/bin/**",
             "**/obj/**",
             "templatecompanyname.snk",
             "plugincert.pfx"
           ]
         }
       ]
+    },
+    {
+      "source": "src/Tools/Daxif/bin",
+      "target": "src/Tools/Daxif/bin",
+      "copyOnly": [ "**/*" ]
     }
   ],
   "postActions": [
