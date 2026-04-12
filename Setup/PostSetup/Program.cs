@@ -12,27 +12,60 @@ using System.Security.Cryptography.X509Certificates;
 var projectRoot = FindProjectRoot();
 Directory.SetCurrentDirectory(projectRoot);
 
+var logPath = Path.Combine(projectRoot, "PostSetup.log");
+using var logWriter = new StreamWriter(logPath, append: false) { AutoFlush = true };
+
+Log($"Project root: {projectRoot}");
+Log($"Log file: {logPath}");
+
+Step(1, "Generating strong name key and plugin certificate");
 GenerateSnk();
 GeneratePfx();
+
+Step(2, "Restoring dotnet tools");
 RunCommand("dotnet", "tool restore");
+
+Step(3, "Installing npm packages for WebResources");
 RunCommand("npm", "install", Path.Combine("src", "Dataverse", "WebResources"));
 
-Console.WriteLine("Generating Dataverse context from dev environment...");
-Console.WriteLine("You will be prompted to authenticate with your Dataverse environment.");
+Step(4, "Generating Dataverse C# context (requires browser login)");
+Log("A browser window will open for OAuth authentication with your dev Dataverse environment.");
+Log("Complete the login in the browser to continue.");
 RunCommand("dotnet", "fsi src/Tools/Daxif/GenerateCSharpContext.fsx");
+
+Step(5, "Generating Dataverse TypeScript context (requires browser login)");
+Log("A second browser window will open for OAuth authentication.");
+Log("Complete the login in the browser to continue.");
 RunCommand("dotnet", "fsi src/Tools/Daxif/GenerateTypeScriptContext.fsx");
 
-Console.WriteLine("Post-template setup complete.");
-Console.WriteLine("Next steps: initialize a git repository and create an initial commit:");
-Console.WriteLine("  git init && git add -A && git commit -m \"Initial project setup from XrmBedrock template\"");
+Step(6, "Initializing git repository and creating initial commit");
+RunCommand("git", "init");
+RunCommand("git", "add -A");
+RunCommand("git", "commit -m \"Initial project setup from XrmBedrock template\"");
+
+Log();
+Log("Setup complete.");
+
+void Log(string message = "")
+{
+    var line = message.Length > 0 ? $"[PostSetup] {message}" : string.Empty;
+    logWriter.WriteLine(line);
+    try { Console.WriteLine(line); } catch { /* ignore if stdout is broken */ }
+}
+
+void Step(int n, string description)
+{
+    Log();
+    Log($"--- Step {n}: {description} ---");
+}
 
 string FindProjectRoot()
 {
-    // Walk up from the working directory to find the .sln root
+    // Walk up from the working directory to find the .sln/.slnx root
     var dir = Directory.GetCurrentDirectory();
     while (dir != null)
     {
-        if (Directory.GetFiles(dir, "*.sln").Length > 0)
+        if (Directory.GetFiles(dir, "*.sln").Length > 0 || Directory.GetFiles(dir, "*.slnx").Length > 0)
             return dir;
         dir = Directory.GetParent(dir)?.FullName;
     }
@@ -44,7 +77,7 @@ string FindProjectRoot()
 void GenerateSnk()
 {
     // Template engine replaces 'templatecompanyname' with the company name.
-    Console.WriteLine("Generating strong name key...");
+    Log("Generating strong name key...");
     var snkPath = "templatecompanyname.snk";
 
     using var rsa = RSA.Create(1024);
@@ -80,13 +113,13 @@ void GenerateSnk()
 
     bw.Flush();
     File.WriteAllBytes(snkPath, ms.ToArray());
-    Console.WriteLine($"Generated {snkPath}");
+    Log($"Generated {snkPath}");
 }
 
 void GeneratePfx()
 {
     // Template engine replaces 'templatecertpassword' with the cert password and 'xrmbedrock' with the project name.
-    Console.WriteLine("Generating plugin signing certificate...");
+    Log("Generating plugin signing certificate...");
     var pfxPath = "plugincert.pfx";
     var certPassword = "templatecertpassword";
 
@@ -101,18 +134,20 @@ void GeneratePfx()
     using var cert = req.CreateSelfSigned(DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddYears(100));
     var pfxBytes = cert.Export(X509ContentType.Pfx, certPassword);
     File.WriteAllBytes(pfxPath, pfxBytes);
-    Console.WriteLine($"Generated {pfxPath}");
+    Log($"Generated {pfxPath}");
 }
 
 void RunCommand(string command, string arguments, string? workingDirectory = null)
 {
-    Console.WriteLine($"Running: {command} {arguments}");
+    Log($"Running: {command} {arguments}");
 
     // On Windows, commands like npm are .cmd files that need to run through cmd.exe
     var psi = new ProcessStartInfo
     {
         WorkingDirectory = workingDirectory ?? Directory.GetCurrentDirectory(),
         UseShellExecute = false,
+        RedirectStandardOutput = true,
+        RedirectStandardError = true,
     };
 
     if (OperatingSystem.IsWindows())
@@ -131,19 +166,40 @@ void RunCommand(string command, string arguments, string? workingDirectory = nul
         using var process = Process.Start(psi);
         if (process == null)
         {
-            Console.WriteLine($"Warning: Failed to start '{command}'. You may need to run it manually.");
+            Log($"Warning: Failed to start '{command}'. You may need to run it manually.");
             return;
         }
 
+        process.OutputDataReceived += (_, e) =>
+        {
+            if (e.Data != null)
+            {
+                logWriter.WriteLine(e.Data);
+            }
+        };
+        process.ErrorDataReceived += (_, e) =>
+        {
+            if (e.Data != null)
+            {
+                logWriter.WriteLine(e.Data);
+            }
+        };
+        process.BeginOutputReadLine();
+        process.BeginErrorReadLine();
         process.WaitForExit();
+
         if (process.ExitCode != 0)
         {
-            Console.WriteLine($"Warning: '{command} {arguments}' exited with code {process.ExitCode}");
+            Log($"Warning: '{command} {arguments}' exited with code {process.ExitCode}");
+        }
+        else
+        {
+            Log("Done.");
         }
     }
     catch (System.ComponentModel.Win32Exception ex)
     {
-        Console.WriteLine($"Warning: Failed to run '{command} {arguments}': {ex.Message}");
-        Console.WriteLine($"You may need to run it manually.");
+        Log($"Warning: Failed to run '{command} {arguments}': {ex.Message}");
+        Log("You may need to run it manually.");
     }
 }
