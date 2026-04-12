@@ -6,7 +6,7 @@ param existingAppClientObjectId string
 param DataverseUrl string
 
 // Naming (OBS: some resources have limitations to their naming)
-var solutionId = 'templatesolutionid'
+var solutionId = 'templatesolutionname'
 var companyId = 'templatecompanyid'
 var namingSuffix = '${toLower(companyId)}-${toLower(solutionId)}-${toLower(env)}'
 

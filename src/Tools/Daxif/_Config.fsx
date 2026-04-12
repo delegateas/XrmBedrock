@@ -76,8 +76,8 @@ CRM Solution Setup
 ------------------
 *)
 module SolutionInfo =
-  let name = @"XrmBedrock"
-  let displayName = @"XrmBedrock"
+  let name = @"templatesolutionname"
+  let displayName = @"templatesolutionname"
 
 module PublisherInfo =
   let prefix = @"templatepublisherprefix"

@@ -35,12 +35,12 @@
       "defaultValue": "templatecertpassword",
       "replaces": "templatecertpassword"
     },
-    "solutionId": {
+    "solution": {
       "type": "parameter",
       "datatype": "string",
-      "description": "Azure solution identifier for resource naming",
-      "defaultValue": "templatesolutionid",
-      "replaces": "templatesolutionid"
+      "description": "Dataverse solution unique name and display name (e.g. 'MyProject')",
+      "defaultValue": "templatesolutionname",
+      "replaces": "templatesolutionname"
     },
     "resourceGroupName": {
       "type": "parameter",
