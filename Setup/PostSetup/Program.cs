@@ -12,9 +12,6 @@ using System.Security.Cryptography.X509Certificates;
 var projectRoot = FindProjectRoot();
 Directory.SetCurrentDirectory(projectRoot);
 
-Console.WriteLine("Initializing git repository...");
-RunCommand("git", "init -q");
-
 GenerateSnk();
 GeneratePfx();
 RunCommand("dotnet", "tool restore");
@@ -25,11 +22,9 @@ Console.WriteLine("You will be prompted to authenticate with your Dataverse envi
 RunCommand("dotnet", "fsi src/Tools/Daxif/GenerateCSharpContext.fsx");
 RunCommand("dotnet", "fsi src/Tools/Daxif/GenerateTypeScriptContext.fsx");
 
-Console.WriteLine("Creating initial git commit...");
-RunCommand("git", "add -A");
-RunCommand("git", "commit -q -m \"Initial project setup from XrmBedrock template\"");
-
 Console.WriteLine("Post-template setup complete.");
+Console.WriteLine("Next steps: initialize a git repository and create an initial commit:");
+Console.WriteLine("  git init && git add -A && git commit -m \"Initial project setup from XrmBedrock template\"");
 
 string FindProjectRoot()
 {

@@ -30,7 +30,13 @@ This template will be updated. The current list is as follows
      --username user@myorg.onmicrosoft.com
    ```
 
-3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, generates Dataverse context files, and creates an initial git commit). You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
+3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, and generates Dataverse context files). You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
+
+4. Once post-setup completes, initialize git and create the initial commit:
+
+   ```bash
+   git init && git add -A && git commit -m "Initial project setup from XrmBedrock template"
+   ```
 
 To uninstall the template: `dotnet new uninstall .`
 
