@@ -6,7 +6,6 @@
   "name": "XrmBedrock Dataverse + Azure Project",
   "shortName": "xrmbedrock",
   "description": "Template for Dataverse projects with Azure backend",
-  "sourceName": "XrmBedrock",
   "preferNameDirectory": true,
   "tags": {
     "language": "C#",
@@ -90,9 +89,7 @@
       "parameters": {
         "source": "name",
         "toLower": true
-      },
-      "replaces": "xrmbedrock",
-      "fileRename": "xrmbedrock"
+      }
     },
     "prefixedName": {
       "type": "generated",
