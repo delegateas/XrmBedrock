@@ -15,6 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="**\*"
              Exclude="src\Azure\**\bin\**;src\Dataverse\**\bin\**;src\Shared\**\bin\**;test\**\bin\**;Setup\**\bin\**;**\obj\**;**\node_modules\**;**\.git\**;**\.github\**;XrmBedrock.Template.csproj;LICENSE;templatecompanyname.snk;plugincert.pfx" />
   </ItemGroup>
