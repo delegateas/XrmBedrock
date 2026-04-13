@@ -154,6 +154,7 @@
             "src/Dataverse/**/bin/**",
             "src/Shared/**/bin/**",
             "test/**/bin/**",
+            "Setup/InitialSetup/**",
             "Setup/**/bin/**",
             "**/obj/**",
             "templatecompanyname.snk",
