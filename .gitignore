@@ -360,7 +360,7 @@ MigrationBackup/
 /**/Daxif/*.dll
 
 *.daxif
-/src/Dataverse/Tools/Daxif/username.txt
+/src/Tools/Daxif/username.txt
 /src/Dataverse/WebResources/typings/XRM/*
 /src/Dataverse/WebResources/src/**/*.js
 /src/Dataverse/WebResources/src/**/*.map

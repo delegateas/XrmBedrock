@@ -2,9 +2,11 @@ using Microsoft.Xrm.Sdk;
 using Newtonsoft.Json;
 using SharedDomain;
 using SharedDomain.EconomyArea;
+#pragma warning disable IDE0005
 #if NET462
 using System.Net.Http;
 #endif
+#pragma warning restore IDE0005
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
