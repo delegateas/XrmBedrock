@@ -7,17 +7,14 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 10.x
+      - uses: ./.github/actions/setup-build-env
 
       - name: Extract version from tag
         id: version
