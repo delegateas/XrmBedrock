@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Delegate A/S",
+  "classifications": ["Dataverse", "Azure", "XRM"],
+  "identity": "DelegateAS.XrmBedrock",
+  "name": "XrmBedrock Dataverse + Azure Project",
+  "shortName": "xrmbedrock",
+  "description": "Template for Dataverse projects with Azure backend",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "symbols": {
+    "companyName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Company name used in assembly names and metadata (e.g. 'Acme')",
+      "defaultValue": "templatecompanyname",
+      "replaces": "templatecompanyname",
+      "fileRename": "templatecompanyname"
+    },
+    "publisherPrefix": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse publisher prefix (e.g. 'ctx', 'new')",
+      "defaultValue": "ctx",
+      "replaces": "templatepublisherprefix"
+    },
+    "certPassword": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Password for plugin signing certificate",
+      "defaultValue": "templatecertpassword",
+      "replaces": "templatecertpassword"
+    },
+    "solution": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse solution unique name and display name (e.g. 'MyProject')",
+      "defaultValue": "templatesolutionname",
+      "replaces": "templatesolutionname"
+    },
+    "resourceGroupName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Base name for Azure resource groups so ctx becomes rg-ctx-dev, rg-ctx-test, etc.",
+      "defaultValue": "templateresourcegroupname",
+      "replaces": "templateresourcegroupname"
+    },
+    "dataverseUsername": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse dev environment username (e.g. user@org.onmicrosoft.com)",
+      "defaultValue": "",
+      "replaces": "TEMPLATE_DATAVERSE_USERNAME"
+    },
+    "devUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse Dev environment URL",
+      "defaultValue": "https://dev.crm4.dynamics.com",
+      "replaces": "https://dev.crm4.dynamics.com"
+    },
+    "testUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse Test environment URL",
+      "defaultValue": "https://test.crm4.dynamics.com",
+      "replaces": "https://test.crm4.dynamics.com"
+    },
+    "uatUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse UAT environment URL",
+      "defaultValue": "https://uat.crm4.dynamics.com",
+      "replaces": "https://uat.crm4.dynamics.com"
+    },
+    "prodUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Dataverse Prod environment URL",
+      "defaultValue": "https://prod.crm4.dynamics.com",
+      "replaces": "https://prod.crm4.dynamics.com"
+    },
+    "nameLower": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "name",
+        "toLower": true
+      }
+    },
+    "prefixedName": {
+      "type": "generated",
+      "generator": "join",
+      "replaces": "templatepublisherprefix_templateprojectname",
+      "fileRename": "templatepublisherprefix_templateprojectname",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "publisherPrefix" },
+          { "type": "ref", "value": "name" }
+        ],
+        "separator": "_"
+      }
+    },
+    "companyNameLower": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "companyName",
+        "toLower": true
+      },
+      "replaces": "templatecompanyid"
+    },
+    "nameExplicit": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "name" }
+        ],
+        "separator": ""
+      },
+      "replaces": "templateprojectname"
+    },
+    "NET462": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": {
+        "value": "true"
+      }
+    }
+  },
+  "sources": [
+    {
+      "copyOnly": [
+        "**/*.snk",
+        "**/*.pfx",
+        "**/*.dll",
+        "**/*.js.map"
+      ],
+      "modifiers": [
+        {
+          "exclude": [
+            ".git",
+            ".git/**",
+            ".github/**",
+            "LICENSE",
+            "XrmBedrock.Template.csproj",
+            "nupkg/**",
+            "**/node_modules/**",
+            "src/Azure/**/bin/**",
+            "src/Dataverse/**/bin/**",
+            "src/Shared/**/bin/**",
+            "test/**/bin/**",
+            "Setup/InitialSetup/**",
+            "Setup/**/bin/**",
+            "**/obj/**",
+            "templatecompanyname.snk",
+            "plugincert.pfx"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "src/Tools/Daxif/bin",
+      "target": "src/Tools/Daxif/bin",
+      "copyOnly": [ "**/*" ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "description": "Restore NuGet packages",
+      "manualInstructions": [{ "text": "Run 'dotnet restore'" }],
+      "continueOnError": true
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Run post-template setup (generate keys, dotnet tool restore, npm install, git init) — follow progress in PostSetup.log",
+      "manualInstructions": [{ "text": "Run 'dotnet run --project Setup/PostSetup'" }],
+      "args": {
+        "executable": "dotnet",
+        "args": "run --project Setup/PostSetup"
+      },
+      "continueOnError": true
+    }
+  ]
+}
