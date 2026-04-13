@@ -15,11 +15,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-build-env
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore templatecompanyname.slnx
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build templatecompanyname.slnx --no-restore --configuration Release
       - name: Test
-        run: dotnet test --no-build --configuration Release
+        run: dotnet test templatecompanyname.slnx --no-build --configuration Release
 
   discover-examples:
     runs-on: ubuntu-latest
@@ -70,13 +70,13 @@ jobs:
       - uses: ./.github/actions/setup-build-env
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore templatecompanyname.slnx
 
       - name: Build example
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build templatecompanyname.slnx --no-restore --configuration Release
 
       - name: Test example
-        run: dotnet test --no-build --configuration Release
+        run: dotnet test templatecompanyname.slnx --no-build --configuration Release
 
       - name: Push merged branch
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
