@@ -2,8 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup Label="Metadata configuration">
-    <OrganizationName>MGS</OrganizationName>
-    <RepositoryName>DEMO</RepositoryName>
+    <OrganizationName>templatecompanyname</OrganizationName>
   </PropertyGroup>
 
   <!-- Solution wide properties -->

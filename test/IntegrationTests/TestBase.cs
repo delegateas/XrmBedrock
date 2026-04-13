@@ -1,3 +1,4 @@
+#pragma warning disable SA1210 // Using order varies with project name after template replacement
 using Azure.DataverseService.Foundation.Dao;
 using DataverseService.Foundation.Dao;
 using DG.Tools.XrmMockup;
@@ -10,6 +11,7 @@ using WireMock;
 using WireMock.RequestBuilders;
 using WireMock.Server;
 using XrmBedrock.SharedContext;
+#pragma warning restore SA1210
 
 namespace IntegrationTests;
 
@@ -70,7 +72,7 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
         // Create any data needed for the tests
         var envVarDefinition = new EnvironmentVariableDefinition
         {
-            SchemaName = "mgs_AzureStorageAccountUrl",
+            SchemaName = "templatepublisherprefix_AzureStorageAccountUrl",
         };
         envVarDefinition.Id = AdminDao.Create(envVarDefinition);
         AdminDao.Create(new EnvironmentVariableValue
