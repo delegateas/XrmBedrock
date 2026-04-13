@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "curl -sS --connect-timeout 2 http://host.docker.internal:54625/hook/stop?ptyId=bbc06544-0c93-4f1b-894e-8e3784cf80e9"
+            "command": "curl -sS --connect-timeout 2 http://host.docker.internal:57091/hook/stop?ptyId=e01385f8-5d93-4abd-a7e3-8c922ed8cef8"
           }
         ]
       }
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "curl -sS --connect-timeout 2 http://host.docker.internal:54625/hook/busy?ptyId=bbc06544-0c93-4f1b-894e-8e3784cf80e9"
+            "command": "curl -sS --connect-timeout 2 http://host.docker.internal:57091/hook/busy?ptyId=e01385f8-5d93-4abd-a7e3-8c922ed8cef8"
           }
         ]
       }
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "curl -sS --connect-timeout 2 -X POST -H \"Content-Type: application/json\" -d @- http://host.docker.internal:54625/hook/notification?ptyId=bbc06544-0c93-4f1b-894e-8e3784cf80e9"
+            "command": "curl -sS --connect-timeout 2 -X POST -H \"Content-Type: application/json\" -d @- http://host.docker.internal:57091/hook/notification?ptyId=e01385f8-5d93-4abd-a7e3-8c922ed8cef8"
           }
         ]
       },
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "curl -sS --connect-timeout 2 -X POST -H \"Content-Type: application/json\" -d @- http://host.docker.internal:54625/hook/notification?ptyId=bbc06544-0c93-4f1b-894e-8e3784cf80e9"
+            "command": "curl -sS --connect-timeout 2 -X POST -H \"Content-Type: application/json\" -d @- http://host.docker.internal:57091/hook/notification?ptyId=e01385f8-5d93-4abd-a7e3-8c922ed8cef8"
           }
         ]
       }
