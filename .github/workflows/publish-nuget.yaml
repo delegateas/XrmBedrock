@@ -28,7 +28,6 @@ jobs:
           dotnet pack XrmBedrock.Template.csproj
           --configuration Release
           -p:PackageVersion=${{ steps.version.outputs.VERSION }}
-          --no-default-excludes
           --output ./nupkg
 
       - name: Push to NuGet.org
