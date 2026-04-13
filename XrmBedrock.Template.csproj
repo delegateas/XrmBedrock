@@ -12,8 +12,13 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
     <NoWarn>$(NoWarn);NU5100;NU5110;NU5111;NU5119;NU5128</NoWarn>
-    <NoDefaultExcludes>true</NoDefaultExcludes>    
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+    <ItemGroup>                                                                                                          
+      <None Include="README.md" Pack="true" PackagePath="\" />                                                           
+    </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="**\*.cs" />
