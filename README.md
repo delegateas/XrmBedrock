@@ -6,13 +6,10 @@ This template will be updated. The current list is as follows
 * New way of handling web resources.
 * Deploying data.
 
-# Demo setup
-This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. 
-If currently not needed for Demo Setup, it is safe to delete that folder and `Demo Setup` folder.
+# Initial setup
+This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder and `copyInitialSetup.ps1`.
 
-If you want to try it out right away, find an examples branch. Run `Demo Setup/copyInitialSetup.ps1` using PowerShell.
-The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.
-Generated files that are ignored in git are stored for your convenience in Demo Setup/InitialSetup. 
+If you want to try it out right away, find an examples branch. Run `Setup/copyInitialSetup.ps1` using PowerShell. The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.
 
 ---
 ## Prerequisites
@@ -30,7 +27,7 @@ Example:
 7. Verify the new command på open cmd and run "signtool /?" If not found restart computer and try again. 
 
 ---
-# XRMBedroc Solution Template 
+# XRMBedrock Solution Template 
 ## Getting up and running
 Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.
 
