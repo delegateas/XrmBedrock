@@ -6,22 +6,22 @@ parameters:
         {
           environment: "Dev",
           serviceConnectionName: "Dev",
-          resourceGroupName: "rg-resourcegroupname-dev",
+          resourceGroupName: "rg-templateresourcegroupname-dev",
         },
         {
           environment: "Test",
           serviceConnectionName: "Test",
-          resourceGroupName: "rg-resourcegroupname-test",
+          resourceGroupName: "rg-templateresourcegroupname-test",
         },
         {
           environment: "UAT",
           serviceConnectionName: "UAT",
-          resourceGroupName: "rg-resourcegroupname-uat",
+          resourceGroupName: "rg-templateresourcegroupname-uat",
         },
         {
           environment: "Prod",
           serviceConnectionName: "Prod",
-          resourceGroupName: "rg-resourcegroupname-prod",
+          resourceGroupName: "rg-templateresourcegroupname-prod",
         },
       ]
 

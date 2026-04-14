@@ -3,6 +3,7 @@ steps:
     displayName: 'dotnet restore'
     inputs:
       command: restore
+      projects: 'templatecompanyname.slnx'
 
   - task: UseDotNet@2
     displayName: 'Use .Net 10'
@@ -25,6 +26,7 @@ steps:
     displayName: 'dotnet build'
     inputs:
       command: build
+      projects: 'templatecompanyname.slnx'
       arguments: --no-restore --configuration $(BuildConfiguration)
 
   - task: DotNetCoreCLI@2

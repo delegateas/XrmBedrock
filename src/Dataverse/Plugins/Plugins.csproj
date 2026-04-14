@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyName>XrmBedrock.Dataverse.Plugins</AssemblyName>
+		<AssemblyName>templatecompanyname.templateprojectname.Dataverse.Plugins</AssemblyName>
 		<TargetFramework>net462</TargetFramework>
 		<SignAssembly>False</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\..\..\xrmbedrock.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>..\..\..\templatecompanyname.snk</AssemblyOriginatorKeyFile>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
 	
@@ -14,7 +14,7 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.56" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
@@ -51,10 +51,10 @@
 			<InputAssemblies Include="$(TargetDir)System.Threading.Tasks.Extensions.dll" />
 			<InputAssemblies Include="$(TargetDir)System.Text.Json.dll" />
 		</ItemGroup>
-		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\xrmbedrock.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
+		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\templatecompanyname.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
   </Target>
 	<Target Name="SignDLL" AfterTargets="ILRepack" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-	  <Exec Command="signtool sign /p someRandomPassword /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
+	  <Exec Command="signtool sign /p templatecertpassword /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
 	</Target>
 	<Import Project="..\SharedPluginLogic\SharedPluginLogic.projitems" Label="Shared" />
 	<Import Project="..\..\Shared\SharedContext\SharedContext.projitems" Label="Shared" />
