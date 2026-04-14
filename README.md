@@ -6,19 +6,39 @@ This template will be updated. The current list is as follows
 * New way of handling web resources.
 * Deploying data.
 
-# Initial setup
-This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. Generated files that are ignored in git are stored for your convenience in Setup/InitialSetup. It is safe to delete that folder and `copyInitialSetup.ps1`.
+# Demo setup
+This project serves both as a template. For examples and demonstrations on how be used go to the examples branches. 
+If currently not needed for Demo Setup, it is safe to delete that folder and `Demo Setup` folder.
 
-If you want to try it out right away, find an examples branch. Run `Setup/copyInitialSetup.ps1` using PowerShell. The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.
+If you want to try it out right away, find an examples branch. Run `Demo Setup/copyInitialSetup.ps1` using PowerShell.
+The script is not signed, so make sure to first run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. This copies the context for the demo and you should now be able to build and run all unit tests for the demo.
+Generated files that are ignored in git are stored for your convenience in Demo Setup/InitialSetup. 
 
-# Getting up and running
+---
+## Prerequisites
+Signtool is needed to sign the plugin assembly. It is included in the Windows SDK, which can be downloaded here: https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/. 
+
+If Signtool already installed, proceceed too next section. 
+if not; Add signtool to system variables:
+1. Press Win + R, type sysdm.cpl, hit Enter.
+2. Go to Advanced → Environment Variables.
+3. Under System variables, find Path, click Edit.
+4. Click New, paste the folder path (the one containing signtool.exe).
+Example:
+  C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool
+6. Click OK on all dialogs.
+7. Verify the new command på open cmd and run "signtool /?" If not found restart computer and try again. 
+
+---
+# XRMBedroc Solution Template 
+## Getting up and running
 Follow these steps to setup your project correctly. After this you are ready to setup Azure DevOps.
 
-# Rename file names and folders
+## Rename file names and folders
 - Rename file `XrmBedrock.slnx` => `ProjectName.slnx`
 - Rename folder `src/Dataverse/Webresources/src/ctx_XrmBedrock` => `src/Dataverse/Webresources/src/prefix_SolutionName`
 
-# Update values in WebResources files
+## Update values in WebResources files
 - Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/esbuild.config.mjs``
 - Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/package.json``
 - Update ``ctx_XrmBedrock`` to the new folder name in ``src/Dataverse/WebResources/tsconfig.json``
@@ -40,6 +60,9 @@ In the ``src\Tools\Daxif\_Config.fsx`` file, update/configure the following:
   - The pipeline expects environment names Dev, Test, UAT and Prod - make sure that the names of the environment matches what the pipeline excepts, modify it if needed. 
 - SolutionInfo
 - PublisherInfo
+- Change pluginDllName to match the new assembly name in ``src/Dataverse/Plugins.csproj``, with ILMerged prefix.  
+
+Additional in tools folder; 
 - ``src\Tools\Daxif\GenerateDataverseDomain.fsx``
   - add or remove table names based on your solution and needs
 - ``src\Tools\Daxif\GenerateTypeScriptContext.fsx``
@@ -57,7 +80,7 @@ We generated a self-signed certificate to use with the Dataverse Managed Identit
 - Open an administrator powershell and run the ``Setup/generateNewCertificate.ps1`` file. 
 - Use the following commands - remember to update "nameOfSolution" and "someRandomPassword":
   - `Set-ExecutionPolicy Bypass -Scope Process`
-  - `./Setup/generateNewCertificate.ps1 -name "nameOfSolution" -friendlyName "nameOfSolution" -password "someRandomPassword" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -appId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
+  - `./Setup/generateNewCertificate.ps1 -name "nameOfSolution" -friendlyName "nameOfSolution" -password "someRandomPassword" -environmentId "758cc81b-8df9-42cb-9d0a-a59482800d1f" -tenantId "12ec9b01-e104-4af3-b1f5-2ecfc065e1c2"`
 
 Set the password in the signing part of the ``src/Dataverse/Plugins.csproj`` file in the ``Exec`` element.
 
@@ -82,7 +105,7 @@ This will validate the template and show you any errors in the template (which t
 ## Environment
 Under Pipelines > Environment, create an environment per Dataverse environment. 
 Note: The pipeline template uses Dev, Test, UAT, Prod.
-Use these to control approvals of deployments.
+Use these to control approvals of deployments, regarding approval gates etc.
 
 ## Library
 Under Pipelines > Library, create a variable group per environment.
@@ -102,48 +125,55 @@ Under Project Settings > Pipelines > Service connections, create 2 service conne
 A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
 
-### How to create Power Platform service connections with federated credentials
-1. Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
-2. Select Workload Identity federation
-3. Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
-4. TenantI Id = Teant Id, can be found in Azure Portal
-5. Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
+###  How to create Power Platform service connections with federated credentials
+1.	Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
+2.	Select Workload Identity federation
+3.	Fill in the form 
+i Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
+ii Service Principal Id = The application (Client) id of the app registration
+iii TenantI Id = Teant Id, can be found in Azure Portal
+iV Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
 
 Once created:
-1. Copy the service connection id from the url as it is needed in the next step.
-2. Open a new tab and paste https://dev.azure.com/`organization`/`project`/_apis/serviceendpoint/endpoints/`service-connection-id`?api-version=7.1-preview.4
-   1. The `organization` and `project` can be found in the URL from ADO
-3. Find the `workloadIdentityFederationSubject` in the response and copy it for later.
+1.	Copy the Subject identifier as it is needed in the next step.
 
 You now need to create a federated credential on your app registration.
-1. Find your app registration in the Azure Portal
-2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-3. For 'Federated credential scenario' select 'Other issuer'
-4. Issuer = https://vstoken.dev.azure.com/{organizationName} 
-5. Type = Explicit subject identifier
-6. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
-7. Name = Name of your choice (e.g. PipelineDataverse)
+1.	Open up the Azure Portal
+2.	Find your app registration in the Entra ID
+3.	Go to Manage > Certificates & secrets > Federated credentials > + Add credential
+i For 'Federated credential scenario' select 'Other issuer'
+ii Issuer = ADO SP Issuer 
+iii	Type = ADO SP Explicit subject identifier
+iv	Value = Paste the Subject identifier from the earlier step
+v	Name = Name of your choice (e.g. PipelineDataverse)
+4. Save
 
 ### How to create Azure Resource Manager service connections with federated credentials
-1. Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
-2. Identity type = App registration or managed identity (manual)
-3. Credential = Workload identity federation
-4. Service Connection Name = The name of the service connetion (e.g. Dev)
-5. Directory (tenant) Id = Teant Id, can be found in Azure Portal
-6. Click Next
-7. Copy the Issuer and Subject Identifier for later use
-8. Scope level = Subscription
-9. Subcription ID and Subscription Name can be found in the Azure Portal
-10. Application (client) ID = The client id of your app registration for the environment.
+1.	Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
+2.	Identity type = App registration or managed identity (manual)
+3.	Credential = Workload identity federation
+4.	Service Connection Name = The name of the service connetion (e.g. Dev)
+5.	Directory (tenant) Id = Teant Id, can be found in Azure Portal
+6.	Click Next
+7.	Copy the Issuer and Subject Identifier for later use
+8.	Scope level = Subscription
+9.	Subcription ID and Subscription Name can be found in the Azure Portal
+10.	Application (client) ID = The client id of your app registration for the environment.
+
+Here you are not able to verify and save, before the app registration in Azure portal have been modified. 
+So keep as draft for now and head over to the azure portal 
 
 You now need to create a federated credential on your app registration.
-1. Find your app registration in the Azure Portal
-2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-3. For 'Federated credential scenario' select 'Other issuer'
-4. Issuer = Paste the issuer (copied in earlier step)
-5. Type = Explicit subject identifier
-6. Value = Paste the subject (copied in earlier step)
-7. Name = Name of your choice (e.g. Pipeline)
+1.	Find your app registration in the Entra Id
+2.	Go to Manage > Certificates & secrets > Federated credentials > + Add credential
+3.	For 'Federated credential scenario' select 'Other issuer'
+i.	Issuer = Paste the issuer (copied in earlier step)
+ii.	Type = Explicit subject identifier
+iii.	Value = Paste the subject (copied in earlier step)
+iV.	Name = Name of your choice (e.g. Pipeline)
+4. Add the app reg as a owner on the subscription or eventually on the resource group in the subscription
+
+Then head back to ADO and verify and save the service connection.
 
 ## App registration privileges
 Remember to give your app reg permission to assign roles.
@@ -152,6 +182,9 @@ The template uses Storage Queue Data Contributor
 
 ## Managed identity
 A managed identity is created by the bicep deploy. This is what Azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
+
+## Pipeline and PR validation
+Remember to "uncomment" the `build.yaml` workflow trigger, for use of build validation in pull requests.
 
 ## TODO
 * Improve validation of infrastructure to be easier to manage
