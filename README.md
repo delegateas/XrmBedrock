@@ -6,6 +6,23 @@ This template will be updated. The current list is as follows
 * New way of handling web resources.
 * Deploying data.
 
+---
+## Prerequisites
+Signtool is needed to sign the plugin assembly. It is included in the Windows SDK, which can be downloaded here: https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/. 
+
+If Signtool already installed, proceceed too next section. 
+if not; Add signtool to system variables:
+1. Press Win + R, type sysdm.cpl, hit Enter.
+2. Go to Advanced → Environment Variables.
+3. Under System variables, find Path, click Edit.
+4. Click New, paste the folder path (the one containing signtool.exe).
+Example:
+  C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool
+6. Click OK on all dialogs.
+7. Verify the new command på open cmd and run "signtool /?" If not found restart computer and try again
+
+Additionally install [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`)
+
 # Quick start (dotnet new)
 
 1. Install the template from the repository root:
@@ -30,7 +47,8 @@ This template will be updated. The current list is as follows
      --username user@myorg.onmicrosoft.com
    ```
 
-3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, and generates Dataverse context files). You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
+3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, and generates Dataverse context files). 
+   You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
 
 4. Once post-setup completes, initialize git and create the initial commit:
 
@@ -81,7 +99,7 @@ Note: When using `dotnet new`, `solutionId` and `companyId` in `Infrastructure/m
 ## Environment
 Under Pipelines > Environment, create an environment per Dataverse environment.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
-Use these to control approvals of deployments.
+Use these to control approvals of deployments, regarding approval gates etc.
 
 ## Library
 Under Pipelines > Library, create a variable group per environment.
@@ -101,34 +119,33 @@ Under Project Settings > Pipelines > Service connections, create 2 service conne
 A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
 
-### How to create Power Platform service connections with federated credentials
-1. Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
-2. Select Workload Identity federation
-3. Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
-4. Tenant Id = Tenant Id, can be found in Azure Portal
-5. Service Connection Name = The name of the service connection (e.g. Dataverse Dev)
+###  How to create Power Platform service connections with federated credentials
+1.	Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
+2.	Select Workload Identity federation
+3.	Fill in the form 
+i Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
+ii Service Principal Id = The application (Client) id of the app registration
+iii TenantI Id = Teant Id, can be found in Azure Portal
+iV Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
 
 Once created:
-1. Copy the service connection id from the url as it is needed in the next step.
-2. Open a new tab and paste https://dev.azure.com/`organization`/`project`/_apis/serviceendpoint/endpoints/`service-connection-id`?api-version=7.1-preview.4
-   1. The `organization` and `project` can be found in the URL from ADO
-3. Find the `workloadIdentityFederationSubject` in the response and copy it for later.
+1.	Copy the Subject identifier as it is needed in the next step.
 
 You now need to create a federated credential on your app registration.
 1. Find your app registration in the Azure Portal
 2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-3. For 'Federated credential scenario' select 'Other issuer'
-4. Issuer = https://vstoken.dev.azure.com/{organizationName}
-5. Type = Explicit subject identifier
-6. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
-7. Name = Name of your choice (e.g. PipelineDataverse)
+i. For 'Federated credential scenario' select 'Other issuer'
+ii. Issuer = https://vstoken.dev.azure.com/{organizationName}
+iii. Type = Explicit subject identifier
+iV. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
+V. Name = Name of your choice (e.g. PipelineDataverse)
 
 ### How to create Azure Resource Manager service connections with federated credentials
 1. Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
-2. Identity type = App registration or managed identity (manual)
-3. Credential = Workload identity federation
-4. Service Connection Name = The name of the service connection (e.g. Dev)
-5. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
+i. Identity type = App registration or managed identity (manual)
+ii. Credential = Workload identity federation
+iii. Service Connection Name = The name of the service connection (e.g. Dev)
+iV. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
 6. Click Next
 7. Copy the Issuer and Subject Identifier for later use
 8. Scope level = Subscription
@@ -136,13 +153,16 @@ You now need to create a federated credential on your app registration.
 10. Application (client) ID = The client id of your app registration for the environment.
 
 You now need to create a federated credential on your app registration.
-1. Find your app registration in the Azure Portal
-2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-3. For 'Federated credential scenario' select 'Other issuer'
-4. Issuer = Paste the issuer (copied in earlier step)
-5. Type = Explicit subject identifier
-6. Value = Paste the subject (copied in earlier step)
-7. Name = Name of your choice (e.g. Pipeline)
+1.	Find your app registration in the Entra Id
+2.	Go to Manage > Certificates & secrets > Federated credentials > + Add credential
+i.	For 'Federated credential scenario' select 'Other issuer'
+ii.	Issuer = Paste the issuer (copied in earlier step)
+iii.	Type = Explicit subject identifier
+iV.	Value = Paste the subject (copied in earlier step)
+ V.	Name = Name of your choice (e.g. Pipeline)
+4. Add the app reg as a owner on the subscription or eventually on the resource group in the subscription
+
+Then head back to ADO and verify and save the service connection.
 
 ## App registration privileges
 Remember to give your app reg permission to assign roles.
@@ -151,6 +171,9 @@ The template uses Storage Queue Data Contributor
 
 ## Managed identity
 A managed identity is created by the bicep deploy. This is what Azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
+
+## Pipeline and PR validation
+Remember to "uncomment" the `build.yaml` workflow trigger, for use of build validation in pull requests.
 
 ## TODO
 * Improve validation of infrastructure to be easier to manage

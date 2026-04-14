@@ -12,7 +12,7 @@ schedules:
         - master
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: "windows-latest"
 
 name: $(Date:yyyyMMdd)$(Rev:.r)
 
