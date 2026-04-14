@@ -6,6 +6,23 @@ This template will be updated. The current list is as follows
 * New way of handling web resources.
 * Deploying data.
 
+---
+## Prerequisites
+Signtool is needed to sign the plugin assembly. It is included in the Windows SDK, which can be downloaded here: https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/. 
+
+If Signtool already installed, proceceed too next section. 
+if not; Add signtool to system variables:
+1. Press Win + R, type sysdm.cpl, hit Enter.
+2. Go to Advanced → Environment Variables.
+3. Under System variables, find Path, click Edit.
+4. Click New, paste the folder path (the one containing signtool.exe).
+Example:
+  C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool
+6. Click OK on all dialogs.
+7. Verify the new command på open cmd and run "signtool /?" If not found restart computer and try again
+
+Additionally install [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`)
+
 # Quick start (dotnet new)
 
 1. Install the template from the repository root:
@@ -30,7 +47,8 @@ This template will be updated. The current list is as follows
      --username user@myorg.onmicrosoft.com
    ```
 
-3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, and generates Dataverse context files). You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
+3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, and generates Dataverse context files). 
+   You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
 
 4. Once post-setup completes, initialize git and create the initial commit:
 
@@ -116,18 +134,18 @@ Once created:
 You now need to create a federated credential on your app registration.
 1. Find your app registration in the Azure Portal
 2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-3. For 'Federated credential scenario' select 'Other issuer'
-4. Issuer = https://vstoken.dev.azure.com/{organizationName}
-5. Type = Explicit subject identifier
-6. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
-7. Name = Name of your choice (e.g. PipelineDataverse)
+i. For 'Federated credential scenario' select 'Other issuer'
+ii. Issuer = https://vstoken.dev.azure.com/{organizationName}
+iii. Type = Explicit subject identifier
+iV. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
+V. Name = Name of your choice (e.g. PipelineDataverse)
 
 ### How to create Azure Resource Manager service connections with federated credentials
 1. Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
-2. Identity type = App registration or managed identity (manual)
-3. Credential = Workload identity federation
-4. Service Connection Name = The name of the service connection (e.g. Dev)
-5. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
+i. Identity type = App registration or managed identity (manual)
+ii. Credential = Workload identity federation
+iii. Service Connection Name = The name of the service connection (e.g. Dev)
+iV. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
 6. Click Next
 7. Copy the Issuer and Subject Identifier for later use
 8. Scope level = Subscription
@@ -137,11 +155,11 @@ You now need to create a federated credential on your app registration.
 You now need to create a federated credential on your app registration.
 1.	Find your app registration in the Entra Id
 2.	Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-3.	For 'Federated credential scenario' select 'Other issuer'
-i.	Issuer = Paste the issuer (copied in earlier step)
-ii.	Type = Explicit subject identifier
-iii.	Value = Paste the subject (copied in earlier step)
-iV.	Name = Name of your choice (e.g. Pipeline)
+i.	For 'Federated credential scenario' select 'Other issuer'
+ii.	Issuer = Paste the issuer (copied in earlier step)
+iii.	Type = Explicit subject identifier
+iV.	Value = Paste the subject (copied in earlier step)
+ V.	Name = Name of your choice (e.g. Pipeline)
 4. Add the app reg as a owner on the subscription or eventually on the resource group in the subscription
 
 Then head back to ADO and verify and save the service connection.
