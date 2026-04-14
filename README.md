@@ -123,29 +123,28 @@ Note: The pipeline template uses Dev, Test, UAT, Prod.
 1.	Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
 2.	Select Workload Identity federation
 3.	Fill in the form 
-i Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
-ii Service Principal Id = The application (Client) id of the app registration
-iii TenantI Id = Teant Id, can be found in Azure Portal
-iV Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
+4. Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
+5. Service Principal Id = The application (Client) id of the app registration
+6. TenantI Id = Teant Id, can be found in Azure Portal
+7. Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
 
-Once created:
-1.	Copy the Subject identifier as it is needed in the next step.
+Once created: Copy the Subject identifier and issuer as it is needed in the next step.
 
 You now need to create a federated credential on your app registration.
 1. Find your app registration in the Azure Portal
 2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-i. For 'Federated credential scenario' select 'Other issuer'
-ii. Issuer = https://vstoken.dev.azure.com/{organizationName}
-iii. Type = Explicit subject identifier
-iV. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
-V. Name = Name of your choice (e.g. PipelineDataverse)
+3. For 'Federated credential scenario' select 'Other issuer'
+4. Issuer = Paste the 'issuer' from the earlier step
+5. Type = Explicit subject identifier
+6. Value = Paste the 'Subject identifier' from the earlier step
+7. Name = Name of your choice (e.g. PipelineDataverse)
 
 ### How to create Azure Resource Manager service connections with federated credentials
 1. Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
-i. Identity type = App registration or managed identity (manual)
-ii. Credential = Workload identity federation
-iii. Service Connection Name = The name of the service connection (e.g. Dev)
-iV. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
+2. Identity type = App registration or managed identity (manual)
+3. Credential = Workload identity federation
+4. Service Connection Name = The name of the service connection (e.g. Dev)
+5. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
 6. Click Next
 7. Copy the Issuer and Subject Identifier for later use
 8. Scope level = Subscription
@@ -155,12 +154,13 @@ iV. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
 You now need to create a federated credential on your app registration.
 1.	Find your app registration in the Entra Id
 2.	Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-i.	For 'Federated credential scenario' select 'Other issuer'
-ii.	Issuer = Paste the issuer (copied in earlier step)
-iii.	Type = Explicit subject identifier
-iV.	Value = Paste the subject (copied in earlier step)
- V.	Name = Name of your choice (e.g. Pipeline)
-4. Add the app reg as a owner on the subscription or eventually on the resource group in the subscription
+3.	For 'Federated credential scenario' select 'Other issuer'
+4.	Issuer = Paste the issuer (copied in earlier step)
+5.	Type = Explicit subject identifier
+6.	Value = Paste the subject (copied in earlier step)
+7.	Name = Name of your choice (e.g. Pipeline)
+
+8. Add the app reg as a owner on the subscription or eventually on the resource group in the subscription
 
 Then head back to ADO and verify and save the service connection.
 
