@@ -1,0 +1,31 @@
+{
+  "name": "xrmbedrock-pcfs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:pcf": "pcf-scripts build",
+    "build:harness": "node test/harness/esbuild.config.mjs",
+    "serve:harness": "node test/harness/esbuild.config.mjs --serve",
+    "test": "npm run build:harness && playwright test --config test/playwright/playwright.config.ts",
+    "test:headed": "npm run build:harness && playwright test --config test/playwright/playwright.config.ts --headed",
+    "test:report": "playwright show-report test/playwright-report",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "@fluentui/react-components": "^9.46.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.0.0",
+    "@types/powerapps-component-framework": "^1.3.15",
+    "@types/react": "16.14.0",
+    "@types/react-dom": "16.14.0",
+    "esbuild": "^0.21.0",
+    "eslint": "^8.57.0",
+    "pcf-scripts": "^1.36.0",
+    "pcf-start": "^1.36.0",
+    "typescript": "^5.4.0"
+  }
+}

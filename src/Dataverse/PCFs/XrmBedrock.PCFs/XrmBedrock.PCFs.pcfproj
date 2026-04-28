@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ProjectTypeGuids>{4F65AAD9-5749-4A0B-AAD2-AAEB5A3D3CB4};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <PowerAppsTargetsPath>$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\PowerApps</PowerAppsTargetsPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.PowerApps.MSBuild.Pcf" Version="1.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ExcludeDirectories Include="$(MSBuildThisFileDirectory)node_modules\**" />
+    <ExcludeDirectories Include="$(MSBuildThisFileDirectory)test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SampleFieldVanilla\ControlManifest.Input.xml" />
+    <None Include="SampleFieldReact\ControlManifest.Input.xml" />
+    <None Include="SampleDatasetVanilla\ControlManifest.Input.xml" />
+    <None Include="SampleDatasetReact\ControlManifest.Input.xml" />
+  </ItemGroup>
+</Project>
