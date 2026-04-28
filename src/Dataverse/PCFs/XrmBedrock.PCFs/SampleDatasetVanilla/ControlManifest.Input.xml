@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="XrmBedrock"
+           constructor="SampleDatasetVanilla"
+           version="0.0.1"
+           display-name-key="SampleDatasetVanilla_Display_Key"
+           description-key="SampleDatasetVanilla_Desc_Key"
+           control-type="standard">
+    <data-set name="records" display-name-key="records_Display_Key">
+      <property-set name="primaryName"
+                    display-name-key="primaryName_Display_Key"
+                    description-key="primaryName_Desc_Key"
+                    of-type="SingleLine.Text"
+                    usage="bound"
+                    required="true" />
+    </data-set>
+    <resources>
+      <code path="index.ts" order="1" />
+      <css path="css/SampleDatasetVanilla.css" order="1" />
+      <resx path="strings/SampleDatasetVanilla.1033.resx" version="1.0.0" />
+      <resx path="strings/SampleDatasetVanilla.1030.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>

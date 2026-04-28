@@ -1,0 +1,4 @@
+.xrmbedrock-dataset-vanilla { width: 100%; border-collapse: collapse; font: inherit; }
+.xrmbedrock-dataset-vanilla th, .xrmbedrock-dataset-vanilla td { padding: 6px 8px; border-bottom: 1px solid #edebe9; text-align: left; }
+.xrmbedrock-dataset-vanilla tbody tr { cursor: pointer; }
+.xrmbedrock-dataset-vanilla tbody tr:hover { background: #f3f2f1; }

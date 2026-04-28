@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="XrmBedrock"
+           constructor="SampleDatasetReact"
+           version="0.0.1"
+           display-name-key="SampleDatasetReact_Display_Key"
+           description-key="SampleDatasetReact_Desc_Key"
+           control-type="virtual">
+    <external-service-usage enabled="false" />
+    <data-set name="records" display-name-key="records_Display_Key">
+      <property-set name="primaryName"
+                    display-name-key="primaryName_Display_Key"
+                    description-key="primaryName_Desc_Key"
+                    of-type="SingleLine.Text"
+                    usage="bound"
+                    required="true" />
+    </data-set>
+    <resources>
+      <code path="index.ts" order="1" />
+      <platform-library name="React" version="16.14.0" />
+      <platform-library name="Fluent" version="9.46.2" />
+      <resx path="strings/SampleDatasetReact.1033.resx" version="1.0.0" />
+      <resx path="strings/SampleDatasetReact.1030.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>

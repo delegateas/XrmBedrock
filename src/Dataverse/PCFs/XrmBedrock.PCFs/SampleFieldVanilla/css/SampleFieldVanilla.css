@@ -1,0 +1,11 @@
+.xrmbedrock-field-vanilla {
+  width: 100%;
+  padding: 6px 8px;
+  font: inherit;
+  border: 1px solid #c8c6c4;
+  border-radius: 2px;
+}
+.xrmbedrock-field-vanilla:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: -2px;
+}
