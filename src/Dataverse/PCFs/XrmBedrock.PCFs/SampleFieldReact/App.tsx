@@ -30,7 +30,7 @@ export const App: React.FC<AppProps> = ({ value, min, max, onChange }) => {
                 min={min}
                 max={max}
                 onChange={handleChange}
-                input={{ "data-testid": "field-react-input" } as React.InputHTMLAttributes<HTMLInputElement>}
+                input={{ "data-testid": "field-react-input" } as Omit<React.InputHTMLAttributes<HTMLInputElement>, "children">}
             />
         </FluentProvider>
     );
