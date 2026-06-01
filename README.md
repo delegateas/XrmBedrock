@@ -34,16 +34,16 @@ Additionally install [PowerShell Core](https://github.com/PowerShell/PowerShell)
 2. Create a new project, replacing each placeholder value with your own:
 
    ```bash
-   dotnet new xrmbedrock -n MyProject \
-     --company-name MyOrg \
-     --publisher-prefix abc \
-     --solution-id mysol \
-     --dev-url https://myorg-dev.crm4.dynamics.com \
-     --test-url https://myorg-test.crm4.dynamics.com \
-     --uat-url https://myorg-uat.crm4.dynamics.com \
-     --prod-url https://myorg-prod.crm4.dynamics.com \
-     --rg-name myorg-mysol \
-     --cert-password MySecurePassword123 \
+   dotnet new xrmbedrock -n MyProject `
+     --company-name MyOrg `
+     --publisher-prefix abc `
+     --solution mysol `
+     --dev-url https://myorg-dev.crm4.dynamics.com `
+     --test-url https://myorg-test.crm4.dynamics.com `
+     --uat-url https://myorg-uat.crm4.dynamics.com `
+     --prod-url https://myorg-prod.crm4.dynamics.com `
+     --rg-name myorg-mysol `
+     --cert-password MySecurePassword123 `
      --username user@myorg.onmicrosoft.com
    ```
 
