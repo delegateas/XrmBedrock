@@ -27,7 +27,7 @@ steps:
     inputs:
       command: build
       projects: 'templatecompanyname.slnx'
-      arguments: --no-restore --configuration $(BuildConfiguration)
+      arguments: --no-restore --configuration $(BuildConfiguration) -p:PackAndSignPlugin=true
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet test (all in /test)'
