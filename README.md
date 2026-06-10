@@ -8,7 +8,7 @@ This template will be updated. The current list is as follows
 
 ---
 ## Prerequisites
-Signtool is needed to sign the plugin assembly. It is included in the Windows SDK, which can be downloaded here: https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/. 
+Signtool is only needed when you pack and sign the plugin assembly for deployment (i.e. when building with `-p:PackAndSignPlugin=true`, see [Building the plugin](#building-the-plugin)). A regular build does **not** require it. It is included in the Windows SDK, which can be downloaded here: https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/. 
 
 If Signtool already installed, proceceed too next section. 
 if not; Add signtool to system variables:
@@ -22,6 +22,21 @@ Example:
 7. Verify the new command på open cmd and run "signtool /?" If not found restart computer and try again
 
 Additionally install [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`)
+
+## Building the plugin
+By default, builds do **not** pack (ILRepack) or sign the plugin assembly, so a routine build needs no extra tooling:
+
+```
+dotnet build --configuration Release
+```
+
+To produce the deployable, merged and signed DLL, opt in with the `PackAndSignPlugin` property. This requires `signtool` on your PATH (see [Prerequisites](#prerequisites)); ILRepack is restored automatically as a NuGet package:
+
+```
+dotnet build src/Dataverse/Plugins/Plugins.csproj -c Release -p:PackAndSignPlugin=true
+```
+
+**Caveat:** the Daxif deploy scripts expect `ILMerged.templatecompanyname.templateprojectname.Dataverse.Plugins.dll`, which is produced **only** when `-p:PackAndSignPlugin=true` is passed. A plain build does not produce it, so build with the flag before deploying the plugin locally. The pipeline already passes this flag, so CI output is unchanged.
 
 # Quick start (dotnet new)
 
