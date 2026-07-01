@@ -5,13 +5,15 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <!-- Required because Uipath.Workflow is our only realistic option for running System.ServiceModel in .NET core -->
-    <NoWarn>NU1608</NoWarn>
+    <NoWarn>$(NoWarn);NU1608</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="WireMock.Net" Version="1.15.0" />
+    <!-- WireMock.Net drags in Scriban.Signed 5.5.0 (GHSA-24c8-4792-22hx, DoS). Force a patched version. -->
+    <PackageReference Include="Scriban.Signed" Version="7.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
     <PackageReference Include="XrmMockup365" Version="1.17.2" />
