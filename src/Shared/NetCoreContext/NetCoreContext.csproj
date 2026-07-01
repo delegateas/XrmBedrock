@@ -10,6 +10,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" Version="1.2.10" />
+    <!--
+      The Dataverse client (via System.ServiceModel.Primitives) drags in a vulnerable
+      System.Security.Cryptography.Xml 8.0.2 (GHSA-37gx-xxp4-5rgx, GHSA-w3x6-4m5h-cxqf).
+      Pin a patched version; this flows transitively to every project that references
+      NetCoreContext. Remove once the Dataverse client ships a patched dependency graph.
+    -->
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.9" />
   </ItemGroup>
 
 </Project>
