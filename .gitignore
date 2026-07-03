@@ -351,6 +351,12 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+# Claude
+.claude/settings.local.json
+.claude/commands/
+.claude/skills/
+.claude/statusline.sh
+
 # --------------------------------------------------------------------------
 # ----- Above is GitHub VisualStudio.gitignore, below are custom rules -----
 # --------------------------------------------------------------------------
@@ -380,3 +386,4 @@ MigrationBackup/
 
 # Mac
 .DS_Store
+/src/Tools/Daxif/username.txt
