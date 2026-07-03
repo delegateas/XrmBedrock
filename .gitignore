@@ -374,3 +374,9 @@ MigrationBackup/
 
 # Mac
 .DS_Store
+
+# Claude
+.claude/settings.local.json
+.claude/commands/
+.claude/skills/
+.claude/statusline.sh
