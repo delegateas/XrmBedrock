@@ -374,6 +374,7 @@ MigrationBackup/
 
 # Mac
 .DS_Store
+/src/Tools/Daxif/username.txt
 
 # Claude
 .claude/settings.local.json
