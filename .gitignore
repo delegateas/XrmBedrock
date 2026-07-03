@@ -372,12 +372,11 @@ MigrationBackup/
 # JetBrains
 .idea/
 
-# Mac
-.DS_Store
-/src/Tools/Daxif/username.txt
-
 # Claude
 .claude/settings.local.json
 .claude/commands/
 .claude/skills/
 .claude/statusline.sh
+
+# Mac
+.DS_Store
