@@ -2,7 +2,7 @@
 variables:
   ToolsPath: '$(build.sourcesDirectory)/src/Tools'
   DaxifPath: '$(build.sourcesDirectory)/src/Tools/Daxif'
-  ScriptsPath: '$(build.sourcesDirectory)/.pipelines/Dataverse/scripts'
+  ScriptsPath: '$(build.sourcesDirectory)/.pipelines/templates/dataverse/scripts'
   SolutionFile: '$(build.sourcesDirectory)/*.sln'
   AuthParams: '/mfaappid="$(DataverseAppId)" /mfaclientsecret="$(DataverseSecret)" /method="ClientSecret"'
 # Arguments used when authentication are located in Ado Pipeline Variables.
