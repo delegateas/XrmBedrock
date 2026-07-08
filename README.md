@@ -188,7 +188,12 @@ The template uses Storage Queue Data Contributor
 A managed identity is created by the bicep deploy. This is what Azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
 
 ## Pipeline and PR validation
-Remember to "uncomment" the `build.yaml` workflow trigger, for use of build validation in pull requests.
+Remember to "uncomment" the `Build.yaml` workflow trigger, for use of build validation in pull requests.
+
+The Azure DevOps pipelines live in `.pipelines/`. Entry-point pipelines sit at the root; all reusable steps/jobs/stages live under `.pipelines/templates/`:
+
+* `Build.yaml` / `BuildAndDeploy.yaml` — the default pipelines, running build + test in a single job.
+* `Build.Parallel.yaml` / `BuildAndDeploy.Parallel.yaml` — an alternative that scales across many build agents: it splits the work into parallel `Build`, `Analyze`, and `Test` stages, caches NuGet packages, and reuses a published build artifact so tests run without recompiling. The `Test` stage is a single job by default; see the commented `matrix` example in `Build.Parallel.yaml` for how to shard tests across agents. Register whichever pair fits your build capacity.
 
 ## TODO
 * Improve validation of infrastructure to be easier to manage

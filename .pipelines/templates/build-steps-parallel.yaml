@@ -1,0 +1,78 @@
+# Build steps for the parallel (many-agents) pipeline.
+#
+# Differs from build-steps.yaml in three ways so the work can be split across agents:
+#   * Caches the NuGet package folder between runs (faster restores on every agent).
+#   * Does NOT run tests or Bicep validation here — those are separate stages/jobs that
+#     run in parallel (see Build.Parallel.yaml).
+#   * Publishes the built source tree as the 'build_output' artifact so the Test stage
+#     can run 'dotnet test --no-build' without rebuilding (see test-steps.yaml).
+parameters:
+  - name: runAnalyzers
+    type: boolean
+    default: false
+  - name: publishArtifact
+    type: boolean
+    default: true
+
+steps:
+  - task: Cache@2
+    displayName: 'Cache NuGet packages'
+    inputs:
+      key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
+      restoreKeys: |
+        nuget | "$(Agent.OS)"
+      path: $(NUGET_PACKAGES)
+      cacheHitVar: CACHE_RESTORED
+
+  - task: UseDotNet@2
+    displayName: 'Use .Net 10'
+    inputs:
+      version: 10.x
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore'
+    inputs:
+      command: restore
+      projects: 'templatecompanyname.slnx'
+      # For reproducible, cache-friendly restores, commit package lock files
+      # (set <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile> in
+      # Directory.Build.props, commit the generated packages.lock.json files) and add:
+      #   arguments: '--locked-mode'
+
+  - task: PowerShell@2
+    displayName: 'Add ClickOnce SignTool to PATH'
+    inputs:
+      targetType: 'inline'
+      script: Write-Host "##vso[task.setvariable variable=PATH;]${env:PATH};`"C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool`";`"C:\Program Files\Microsoft SDKs\ClickOnce\SignTool`"";
+
+  - script: '"$(FsiPath)" "$(DaxifPath)/GenerateCSharpContext.fsx" $(AuthParams)'
+    displayName: 'Update C# context'
+
+  - script: '"$(FsiPath)" "$(DaxifPath)/GenerateTypeScriptContext.fsx" $(AuthParams)'
+    displayName: 'Update TS context'
+
+  - ${{ if eq(parameters.runAnalyzers, true) }}:
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet build (analyzers on)'
+        inputs:
+          command: build
+          projects: 'templatecompanyname.slnx'
+          arguments: --no-restore --configuration $(BuildConfiguration) -p:PackAndSignPlugin=true -m /p:UseSharedCompilation=true /p:BuildInParallel=true
+
+  - ${{ if eq(parameters.runAnalyzers, false) }}:
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet build (analyzers off)'
+        inputs:
+          command: build
+          projects: 'templatecompanyname.slnx'
+          arguments: --no-restore --configuration $(BuildConfiguration) -p:PackAndSignPlugin=true -m /p:UseSharedCompilation=true /p:BuildInParallel=true /p:RunAnalyzersDuringBuild=false /p:EnforceCodeStyleInBuild=false /p:TreatWarningsAsErrors=false /p:GenerateDocumentationFile=false
+
+  - ${{ if eq(parameters.publishArtifact, true) }}:
+      - script: '"$(FsiPath)" "$(DaxifPath)/GenerateTestMetadata.fsx" $(AuthParams)'
+        displayName: 'Update Test Metadata'
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish build output'
+        inputs:
+          targetPath: '$(Build.SourcesDirectory)'
+          artifactName: 'build_output'

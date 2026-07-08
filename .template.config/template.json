@@ -113,6 +113,15 @@
       },
       "replaces": "templatecompanyid"
     },
+    "solutionNameLower": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "solution",
+        "toLower": true
+      },
+      "replaces": "templatesolutionid"
+    },
     "nameExplicit": {
       "type": "generated",
       "generator": "join",

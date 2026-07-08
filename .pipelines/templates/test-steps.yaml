@@ -1,0 +1,55 @@
+# Test steps for the parallel (many-agents) pipeline.
+#
+# Runs on its own agent: skips checkout, downloads the 'build_output' artifact produced by
+# the Build stage, and runs the tests with '--no-build' so nothing is compiled twice.
+#
+# 'testFilter' is a VSTest --filter expression. Left empty it runs every test. To split the
+# test run across several agents, pass a different filter per shard (see the commented
+# 'matrix' example in Build.Parallel.yaml).
+parameters:
+  - name: testFilter
+    type: string
+    default: ''
+
+steps:
+  - checkout: none
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download build output'
+    inputs:
+      artifactName: 'build_output'
+      targetPath: '$(Build.SourcesDirectory)'
+
+  - task: UseDotNet@2
+    displayName: 'Use .Net 10'
+    inputs:
+      version: 10.x
+      performMultiLevelLookup: true
+
+  - ${{ if eq(parameters.testFilter, '') }}:
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet test'
+        inputs:
+          command: test
+          projects: 'test/IntegrationTests/IntegrationTests.csproj'
+          arguments: '--no-build --configuration $(BuildConfiguration) --logger trx --results-directory $(Agent.TempDirectory)/TestResults --blame-hang-timeout 5m'
+          publishTestResults: false
+
+  - ${{ if ne(parameters.testFilter, '') }}:
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet test (shard)'
+        inputs:
+          command: test
+          projects: 'test/IntegrationTests/IntegrationTests.csproj'
+          arguments: '--no-build --configuration $(BuildConfiguration) --filter "${{ parameters.testFilter }}" --logger trx --results-directory $(Agent.TempDirectory)/TestResults --blame-hang-timeout 5m'
+          publishTestResults: false
+
+  - task: PublishTestResults@2
+    displayName: 'Publish test results'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: '**/*.trx'
+      searchFolder: '$(Agent.TempDirectory)/TestResults'
+      mergeTestResults: true
+      testRunTitle: '$(System.JobDisplayName)'
