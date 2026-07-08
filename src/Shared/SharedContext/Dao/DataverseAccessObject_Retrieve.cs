@@ -234,6 +234,11 @@ public partial class DataverseAccessObject : IDataverseAccessObject
             yield return entity;
         }
 
+        if (query.PageInfo.PageNumber == 0)
+        {
+            query.PageInfo.PageNumber = 1;
+        }
+
         while (resp.MoreRecords)
         {
             query.PageInfo.PageNumber++;
