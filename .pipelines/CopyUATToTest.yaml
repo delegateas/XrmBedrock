@@ -7,7 +7,7 @@ name: $(Date:yyyyMMdd)$(Rev:.r)
 variables:
   - name: BuildConfiguration
     value: 'release'
-  - template: Dataverse/variables.yml
+  - template: templates/dataverse/variables.yaml
 
   ########################################################################################### 
   #######################################    BUILD    ####################################### 
@@ -29,7 +29,7 @@ stages:
         inputs:
           authenticationType: 'PowerPlatformSPN'
           PowerPlatformSPN: 'Dataverse Test'
-          SchemaFile: '$(build.sourcesDirectory)\.pipelines\DataSchema\configschema.xml'
+          SchemaFile: '$(build.sourcesDirectory)\.pipelines\schema\config-schema.xml'
           DataFile: '$(Pipeline.Workspace)\exportdata.zip'
 
       - task: PowerPlatformCopyEnvironment@2

@@ -1,3 +1,11 @@
+# Build + deploy pipeline, "many-agents" variant.
+#
+# Alternative to BuildAndDeploy.yaml. The build phase is split into parallel Build / Analyze /
+# Test stages (see Build.Parallel.yaml for the rationale and the test-sharding notes); the
+# deploy phase is identical to BuildAndDeploy.yaml and reuses the same deploy templates.
+#
+# The top-level pool stays windows-latest: the deploy jobs inherit it and the Dataverse deploy
+# runs F# scripts via $(FsiPath), which only exists on the Windows image.
 trigger: none
 schedules:
   - cron: "30 09 * * *"
@@ -42,6 +50,8 @@ parameters:
 variables:
   - name: BuildConfiguration
     value: "release"
+  - name: NUGET_PACKAGES
+    value: $(Pipeline.Workspace)/.nuget/packages
   - template: templates/dataverse/variables.yaml
   - name: DeployFunctions
     value: ${{ eq(parameters.deployEconomyAreaFA, true) }} # Wrap in an or-statement if you have multiple function apps to deploy
@@ -55,23 +65,77 @@ stages:
     variables:
       - group: Dev
     jobs:
-      - job: Build_And_Test
-        displayName: Build and Test
+      - job: Build
+        displayName: Build
         pool:
           vmImage: "windows-latest"
         steps:
-          - template: templates/build-steps.yaml
+          # Builds and publishes the 'build_output' artifact consumed by the Test stage.
+          - template: templates/build-steps-parallel.yaml
+          # Deployment artifacts ('drop' + 'Scripts') consumed by the deploy stages.
           - ${{ if or(eq(variables.DeployFunctions, true), eq(parameters.deployInfrastructure, true)) }}:
               - template: templates/azure/publish-artifacts.yaml
           - ${{ if eq(parameters.deployDataverse, true) }}:
               - template: templates/dataverse/publish-artifacts.yaml
+
+      - job: Validate_Bicep
+        displayName: Validate Bicep
+        pool:
+          vmImage: "windows-latest"
+        steps:
+          - task: PowerShell@2
+            displayName: Validate Main Bicep file
+            inputs:
+              targetType: inline
+              script: 'az bicep build --file $(System.DefaultWorkingDirectory)/Infrastructure/main.bicep'
+          - template: templates/azure/validate-infrastructure.yaml
+
+  ###########################################################################################
+  #####################################    ANALYZE    #######################################
+  ###########################################################################################
+  - stage: Analyze_Application
+    displayName: Analyze
+    dependsOn: []
+    variables:
+      - group: Dev
+    jobs:
+      - job: Analyze
+        displayName: Analyze
+        pool:
+          vmImage: "windows-latest"
+        steps:
+          - template: templates/build-steps-parallel.yaml
+            parameters:
+              runAnalyzers: true
+              publishArtifact: false
+
+  ###########################################################################################
+  #######################################    TEST    ########################################
+  ###########################################################################################
+  - stage: Test_Application
+    displayName: Test
+    dependsOn: Build_Application
+    variables:
+      - group: Dev
+    jobs:
+      - job: Test
+        displayName: Test
+        pool:
+          vmImage: "windows-latest"
+        # Single test job. See Build.Parallel.yaml for how to shard this across agents with a
+        # matrix strategy and per-shard testFilter.
+        steps:
+          - template: templates/test-steps.yaml
 
   ###########################################################################################
   ####################################### DEPLOY DEV  #######################################
   ###########################################################################################
   - stage: Deploy_Development
     displayName: Deploy to Dev
-    dependsOn: Build_Application
+    dependsOn:
+      - Build_Application
+      - Analyze_Application
+      - Test_Application
     variables:
       - group: Dev
     jobs:

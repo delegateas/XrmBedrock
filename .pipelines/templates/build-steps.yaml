@@ -33,9 +33,7 @@ steps:
     displayName: 'dotnet test (all in /test)'
     inputs:
       command: test
-      projects: | 
-        Azure/test/*/*.csproj
-        Dataverse/test/*/*.csproj
+      projects: 'test/**/*.csproj'
       arguments: '--no-build --configuration $(BuildConfiguration)'
 
   - task: PowerShell@2
@@ -44,4 +42,4 @@ steps:
       targetType: inline
       script: 'az bicep build --file $(System.DefaultWorkingDirectory)/Infrastructure/main.bicep'
 
-  - template: Azure/Validate-DIF-Template.yml
+  - template: azure/validate-infrastructure.yaml
