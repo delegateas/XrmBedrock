@@ -1,0 +1,6 @@
+steps:
+  - template: sync.yaml
+  - template: publish-all.yaml
+  - template: export-solution.yaml
+  - template: publish-daxif-scripts.yaml
+      

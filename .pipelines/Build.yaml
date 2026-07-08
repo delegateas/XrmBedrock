@@ -10,7 +10,7 @@ name: $(Date:yyyyMMdd)$(Rev:.r)
 variables:
   - name: BuildConfiguration
     value: 'release'
-  - template: Dataverse/variables.yml
+  - template: templates/dataverse/variables.yaml
 
   ########################################################################################### 
   #######################################    BUILD    ####################################### 
@@ -26,4 +26,4 @@ stages:
       pool: 
         vmImage: "windows-latest"
       steps:
-        - template: BuildSteps.yaml
+        - template: templates/build-steps.yaml
