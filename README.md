@@ -36,7 +36,7 @@ To produce the deployable, merged and signed DLL, opt in with the `PackAndSignPl
 dotnet build src/Dataverse/Plugins/Plugins.csproj -c Release -p:PackAndSignPlugin=true
 ```
 
-**Caveat:** the Daxif deploy scripts expect `ILMerged.templatecompanyname.templateprojectname.Dataverse.Plugins.dll`, which is produced **only** when `-p:PackAndSignPlugin=true` is passed. A plain build does not produce it, so build with the flag before deploying the plugin locally. The pipeline already passes this flag, so CI output is unchanged.
+**Caveat:** the Daxif deploy scripts expect `Merged.templatecompanyname.templateprojectname.Dataverse.Plugins.dll`, which is produced **only** when `-p:PackAndSignPlugin=true` is passed. A plain build does not produce it, so build with the flag before deploying the plugin locally. The pipeline already passes this flag, so CI output is unchanged.
 
 # Quick start (dotnet new)
 
