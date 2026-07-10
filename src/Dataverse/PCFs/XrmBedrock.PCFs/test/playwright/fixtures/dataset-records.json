@@ -1,0 +1,6 @@
+{
+  "_comment": "Reserved for tests that need richer dataset seeds than the registry default. The four base specs use the registry default seed (Contoso/Fabrikam/Northwind). Populate with { entityName, columns, records } to override via pcf.mount(name, seed).",
+  "entityName": "account",
+  "columns": [],
+  "records": []
+}

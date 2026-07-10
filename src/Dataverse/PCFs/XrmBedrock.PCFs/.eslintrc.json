@@ -1,6 +1,23 @@
 {
-  "extends": ["eslint:recommended"],
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true }
+  },
   "plugins": ["@typescript-eslint"],
-  "ignorePatterns": ["node_modules", "out", "test/harness/dist"]
+  "env": { "browser": true, "es2021": true, "node": true },
+  "ignorePatterns": ["node_modules", "out", "test/harness/dist", "**/generated/**"],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ]
+  }
 }

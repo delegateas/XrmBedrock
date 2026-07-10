@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XrmBedrock PCF Harness</title>
+    <!-- esbuild emits mount.css alongside mount.js when the controls' CSS is imported (see registry.ts). -->
+    <link rel="stylesheet" href="/mount.css" />
+    <style>
+      html, body { margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+      #harness-shell { padding: 16px; max-width: 960px; }
+      #pcf-root { padding: 12px; border: 1px dashed #c8c6c4; min-height: 60px; }
+      #harness-meta { font-size: 12px; color: #605e5c; margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    <div id="harness-shell">
+      <div id="harness-meta" data-testid="harness-meta">Harness loading…</div>
+      <div id="pcf-root" data-testid="pcf-root"></div>
+    </div>
+    <script type="module" src="/mount.js"></script>
+  </body>
+</html>

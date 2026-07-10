@@ -24,7 +24,7 @@
     "@types/react-dom": "^16.9.0",
     "@typescript-eslint/eslint-plugin": "^8.59.1",
     "@typescript-eslint/parser": "^8.59.1",
-    "esbuild": "^0.21.0",
+    "esbuild": "^0.25.8",
     "eslint": "^8.57.0",
     "pcf-scripts": "^1.36.0",
     "pcf-start": "^1.36.0",

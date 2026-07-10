@@ -1,0 +1,13 @@
+# PCF / pcf-scripts build output
+out/
+
+# esbuild harness bundle
+test/harness/dist/
+
+# Playwright artifacts (deterministic paths — regenerated on every run)
+test/playwright-report/
+test/test-results/
+test/junit-results.xml
+
+# Dependencies (also covered by the repo-root .gitignore)
+node_modules/
