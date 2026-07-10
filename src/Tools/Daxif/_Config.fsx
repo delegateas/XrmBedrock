@@ -99,7 +99,7 @@ module Path =
   let webResourceProject = srcRoot ++ "Dataverse" ++ @"WebResources"
   let webResourceFolder = webResourceProject ++ @"src" ++ (sprintf "%s_%s" PublisherInfo.prefix SolutionInfo.name)
   
-  let pluginDllName = "ILMerged.templatecompanyname.templateprojectname.Dataverse.Plugins"
+  let pluginDllName = "Merged.templatecompanyname.templateprojectname.Dataverse.Plugins"
 
   /// Path information used by the SolutionPackager scripts
   module SolutionPack =
