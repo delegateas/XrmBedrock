@@ -19,7 +19,7 @@
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
 	  <Reference Include="System.ComponentModel.DataAnnotations" />
 	  <Reference Include="System.Runtime.Caching" />
 	</ItemGroup>
@@ -40,7 +40,7 @@
 	</ItemGroup>
 	
 	<!-- ILRepack is only need because DAXIF doesn't support Plugin Packages yet -->
-	<Target Name="ILRepack" AfterTargets="Build" Condition="'$(PackAndSignPlugin)' == 'true'">
+	<Target Name="ILRepack" AfterTargets="Build" Condition="'$(TargetFramework)' == 'net462'">
 		<ItemGroup>
 			<InputAssemblies Include="$(TargetPath)" />
 			<InputAssemblies Include="$(TargetDir)Microsoft.Bcl.AsyncInterfaces.dll" />
@@ -48,16 +48,20 @@
 			<InputAssemblies Include="$(TargetDir)Microsoft.Extensions.DependencyInjection.dll" />
 			<InputAssemblies Include="$(TargetDir)Microsoft.Extensions.Logging.Abstractions.dll" />
 			<InputAssemblies Include="$(TargetDir)Newtonsoft.Json.dll" />
+			<InputAssemblies Include="$(TargetDir)SharedContext.dll" />
+			<InputAssemblies Include="$(TargetDir)SharedDataverseLogic.dll" />
+			<InputAssemblies Include="$(TargetDir)SharedDomain.dll" />
 			<InputAssemblies Include="$(TargetDir)System.Threading.Tasks.Extensions.dll" />
 			<InputAssemblies Include="$(TargetDir)System.Text.Json.dll" />
 		</ItemGroup>
 		<Exec Command="$(PkgILRepack)\tools\ILRepack.exe /parallel /keyfile:..\..\..\templatecompanyname.snk /lib:$(TargetDir) /out:$(TargetDir)ILMerged.$(TargetFileName) @(InputAssemblies -> '%(Identity)', ' ')" />
   </Target>
-	<Target Name="SignDLL" AfterTargets="ILRepack" Condition="'$(PackAndSignPlugin)' == 'true'">
+	<Target Name="SignDLL" AfterTargets="ILRepack" Condition="'$(TargetFramework)' == 'net462'">
 	  <Exec Command="signtool sign /p templatecertpassword /f ..\..\..\plugincert.pfx /tr http://timestamp.digicert.com /fd SHA256 /td SHA256 &quot;$(TargetDir)ILMerged.$(TargetFileName)&quot;" />
 	</Target>
-	<Import Project="..\SharedPluginLogic\SharedPluginLogic.projitems" Label="Shared" />
-	<Import Project="..\..\Shared\SharedContext\SharedContext.projitems" Label="Shared" />
-	<Import Project="..\..\Shared\SharedDataverseLogic\SharedDataverseLogic.projitems" Label="Shared" />
-	<Import Project="..\..\Shared\SharedDomain\SharedDomain.projitems" Label="Shared" />
+	<ItemGroup>
+		<ProjectReference Include="..\..\Shared\SharedContext\SharedContext.csproj" />
+		<ProjectReference Include="..\..\Shared\SharedDataverseLogic\SharedDataverseLogic.csproj" />
+		<ProjectReference Include="..\..\Shared\SharedDomain\SharedDomain.csproj" />
+	</ItemGroup>
 </Project>

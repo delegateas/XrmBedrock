@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <Nullable>enable</Nullable>
-    <!--<NoWarn>$(NoWarn);IDE0005,CS1591,CS1573,CS8981</NoWarn>-->
   </PropertyGroup>
 
-  <Import Project="..\..\Shared\SharedDataverseLogic\SharedDataverseLogic.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\SharedContext\SharedContext.csproj" />
+    <ProjectReference Include="..\..\Shared\SharedDataverseLogic\SharedDataverseLogic.csproj" />
+    <ProjectReference Include="..\..\Shared\SharedDomain\SharedDomain.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DataverseConnection" Version="1.1.1" />
@@ -13,7 +16,4 @@
     <PackageReference Include="OneOf" Version="3.0.271" />
   </ItemGroup>
   
-  <ItemGroup>
-    <ProjectReference Include="..\..\Shared\NetCoreContext\NetCoreContext.csproj" />
-  </ItemGroup>
 </Project>

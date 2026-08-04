@@ -13,17 +13,15 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="WireMock.Net" Version="1.15.0" />
     <!-- WireMock.Net drags in Scriban.Signed 5.5.0 (GHSA-24c8-4792-22hx, DoS). Force a patched version. -->
-    <PackageReference Include="Scriban.Signed" Version="7.2.0" />
+    <PackageReference Include="Scriban.Signed" Version="7.2.5" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
-    <PackageReference Include="XrmMockup365" Version="1.17.2" />
+    <PackageReference Include="XrmMockup365" Version="1.17.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Azure\DataverseService\DataverseService.csproj" />
-    <ProjectReference Include="..\..\src\Dataverse\PluginsNetCore\PluginsNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Dataverse\Plugins\Plugins.csproj" />
   </ItemGroup>
-
-  <Import Project="..\SharedTest\SharedTest.projitems" Label="Shared" />
 
 </Project>

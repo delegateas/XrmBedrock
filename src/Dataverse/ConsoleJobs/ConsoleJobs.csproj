@@ -7,10 +7,10 @@
   <ItemGroup>
     <PackageReference Include="DataverseConnection" Version="1.1.1" />
     <PackageReference Include="Azure.Identity" Version="1.13.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\NetCoreContext\NetCoreContext.csproj" />
+    <ProjectReference Include="..\..\Shared\SharedContext\SharedContext.csproj" />
   </ItemGroup>
 </Project>

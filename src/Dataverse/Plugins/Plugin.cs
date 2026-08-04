@@ -3,6 +3,7 @@ using System.Globalization;
 using System.ServiceModel;
 using System.Linq.Expressions;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Client;
 // StepConfig           : className, ExecutionStage, EventOperation, LogicalName
 // ExtendedStepConfig   : Deployment, ExecutionMode, Name, ExecutionOrder, FilteredAttributes, UserContext
 // ImageTuple           : Name, EntityAlias, ImageType, Attributes
@@ -14,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using DataverseLogic;
 using SharedDataverseLogic;
+
+[assembly: ProxyTypesAssembly]
 
 namespace DataverseRegistration;
 
