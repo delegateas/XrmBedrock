@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyName>templatecompanyname.templateprojectname.Dataverse.Plugins</AssemblyName>
-		<TargetFramework>net462</TargetFramework>
+		<TargetFrameworks>net462;net10.0</TargetFrameworks>
 		<SignAssembly>False</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\..\templatecompanyname.snk</AssemblyOriginatorKeyFile>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
