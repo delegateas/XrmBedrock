@@ -1,6 +1,6 @@
 using XrmBedrock.SharedContext;
 
-namespace IntegrationTests.CustomerArea;
+namespace Tests.CustomerArea;
 
 public class CopyParentTelephoneTests : TestBase
 {

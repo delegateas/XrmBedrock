@@ -9,7 +9,7 @@ open DG.Daxif.Common.Utility
 open System.IO
 
 let xrmMockupMetadataGenerator = Path.toolsFolder ++ @"MetadataGenerator\MetadataGenerator365.exe"
-Solution.GenerateXrmMockupMetadata(Env.dev, xrmMockupMetadataGenerator, Path.solutionRoot ++ "test" ++ "SharedTest" ++ "MetadataGenerated",
+Solution.GenerateXrmMockupMetadata(Env.dev, xrmMockupMetadataGenerator, Path.solutionRoot ++ "test" ++ "Tests" ++ "MetadataGenerated",
   solutions = [
     SolutionInfo.name
   ],

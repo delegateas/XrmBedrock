@@ -6,14 +6,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
 using SharedDomain;
-using SharedTest;
 using WireMock;
 using WireMock.RequestBuilders;
 using WireMock.Server;
 using XrmBedrock.SharedContext;
 #pragma warning restore SA1210
 
-namespace IntegrationTests;
+namespace Tests;
 
 public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
 {
