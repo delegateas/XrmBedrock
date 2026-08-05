@@ -1,7 +1,7 @@
 using Microsoft.Xrm.Sdk;
 using System.Linq.Expressions;
 
-namespace SharedTest;
+namespace Tests;
 
 internal static class DataProducerStaticExtensions
 {

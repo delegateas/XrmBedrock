@@ -1,7 +1,7 @@
 using DataverseRegistration;
 using DG.Tools.XrmMockup;
 
-namespace IntegrationTests;
+namespace Tests;
 
 public class XrmMockupFixture
 {

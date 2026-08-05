@@ -6,7 +6,7 @@ using SharedTest;
 using System.Globalization;
 using System.Text;
 
-namespace IntegrationTests;
+namespace Tests;
 
 /// <summary>
 /// Enables the storage of serialized messages to a storage queue

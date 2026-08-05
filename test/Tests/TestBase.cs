@@ -13,7 +13,7 @@ using WireMock.Server;
 using XrmBedrock.SharedContext;
 #pragma warning restore SA1210
 
-namespace IntegrationTests;
+namespace Tests;
 
 public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
 {

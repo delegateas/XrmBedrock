@@ -1,7 +1,7 @@
 using XrmBedrock.SharedContext;
 using Task = System.Threading.Tasks.Task;
 
-namespace IntegrationTests.EconomyArea;
+namespace Tests.EconomyArea;
 
 public class InvoiceGenerationTests : TestBase
 {

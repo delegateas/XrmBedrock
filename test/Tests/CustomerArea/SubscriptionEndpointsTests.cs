@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using XrmBedrock.SharedContext;
 using Task = System.Threading.Tasks.Task;
 
-namespace IntegrationTests.CustomerArea;
+namespace Tests.CustomerArea;
 
 public class SubscriptionEndpointsTests : TestBase
 {

@@ -9,22 +9,18 @@
     <Project Path="src/Azure/DataverseService/DataverseService.csproj" />
     <Project Path="src/Azure/EconomyAreaFunctionApp/EconomyAreaFunctionApp.csproj" />
     <Project Path="src/Azure/ExternalApi/ExternalApi.csproj" />
-    <Project Path="src/Shared/NetCoreContext/NetCoreContext.csproj" />
   </Folder>
   <Folder Name="/src/Dataverse/">
     <Project Path="src/Dataverse/ConsoleJobs/ConsoleJobs.csproj" />
     <Project Path="src/Dataverse/Plugins/Plugins.csproj" />
-    <Project Path="src/Dataverse/PluginsNetCore/PluginsNetCore.csproj" />
-    <Project Path="src/Dataverse/SharedPluginLogic/SharedPluginLogic.shproj" />
     <Project Path="src/Dataverse/WebResources/WebResources.csproj" />
   </Folder>
   <Folder Name="/src/Shared/">
-    <Project Path="src/Shared/SharedContext/SharedContext.shproj" />
-    <Project Path="src/Shared/SharedDataverseLogic/SharedDataverseLogic.shproj" />
-    <Project Path="src/Shared/SharedDomain/SharedDomain.shproj" />
+    <Project Path="src/Shared/SharedContext/SharedContext.csproj" />
+    <Project Path="src/Shared/SharedDataverseLogic/SharedDataverseLogic.csproj" />
+    <Project Path="src/Shared/SharedDomain/SharedDomain.csproj" />
   </Folder>
   <Folder Name="/test/">
-    <Project Path="test/IntegrationTests/IntegrationTests.csproj" />
-    <Project Path="test/SharedTest/SharedTest.shproj" />
+    <Project Path="test/Tests/Tests.csproj" />
   </Folder>
 </Solution>
