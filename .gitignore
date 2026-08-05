@@ -371,6 +371,7 @@ MigrationBackup/
 /src/Dataverse/WebResources/src/**/*.js
 /src/Dataverse/WebResources/src/**/*.map
 /src/Dataverse/WebResources/src/*/lib
+/src/Shared/SharedContext/Generated
 /src/Shared/SharedContext/XrmContext.cs
 /test/Tests/MetadataGenerated
 

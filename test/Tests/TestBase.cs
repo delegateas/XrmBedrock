@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
 using SharedDomain;
-using SharedTest;
 using WireMock;
 using WireMock.RequestBuilders;
 using WireMock.Server;
