@@ -32,6 +32,6 @@ runs:
       run: |
         if (Test-Path "Setup/InitialSetup") {
           Copy-Item -Path "Setup/InitialSetup/WebResources" -Destination "src/Dataverse" -Recurse -Force
-          Copy-Item -Path "Setup/InitialSetup/SharedTest" -Destination "test" -Recurse -Force
+          Copy-Item -Path "Setup/InitialSetup/Tests" -Destination "test" -Recurse -Force
           Copy-Item -Path "Setup/InitialSetup/SharedContext" -Destination "src/Shared" -Recurse -Force
         }
