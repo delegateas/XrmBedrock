@@ -1,7 +1,7 @@
 using Microsoft.Xrm.Sdk;
 using XrmBedrock.SharedContext;
 
-namespace IntegrationTests.CustomerArea;
+namespace Tests.CustomerArea;
 
 public class ValidatePhoneNumberTests : TestBase
 {

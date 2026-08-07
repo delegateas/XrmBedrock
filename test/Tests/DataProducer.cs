@@ -2,7 +2,7 @@ using SharedContext.Dao;
 using XrmBedrock.SharedContext;
 using Task = XrmBedrock.SharedContext.Task;
 
-namespace SharedTest;
+namespace Tests;
 
 public class DataProducer
 {

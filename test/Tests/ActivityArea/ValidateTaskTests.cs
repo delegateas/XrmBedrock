@@ -1,7 +1,7 @@
 using Microsoft.Xrm.Sdk;
 using Task = XrmBedrock.SharedContext.Task;
 
-namespace IntegrationTests.ActivityArea;
+namespace Tests.ActivityArea;
 
 public class ValidateTaskTests : TestBase
 {

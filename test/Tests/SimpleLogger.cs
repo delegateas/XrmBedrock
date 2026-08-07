@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace SharedTest;
+namespace Tests;
 
 public class SimpleLogger : ILogger
 {
