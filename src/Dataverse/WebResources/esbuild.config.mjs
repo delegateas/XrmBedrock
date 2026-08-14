@@ -1,37 +1,48 @@
 import { argv } from "node:process";
 import * as esbuild from "esbuild";
-import * as glob from "glob";
-import { relative, dirname } from "path";
-import { mkdirSync, writeFileSync } from "fs";
-import fs from 'fs';
-import path from 'path';
+import { globSync } from "glob";
+import { dirname, relative } from "node:path";
+import { mkdirSync, readFileSync, watch, writeFileSync } from "node:fs";
 
-const watchMode = (argv.length > 2 && "watch" === argv[2]);
+const watchMode = argv.includes("watch");
 
-// WebResource Project Directory Path
+// WebResource project directory path
 const projectDir = "./src/templatepublisherprefix_templateprojectname";
+const outputDir = `${projectDir}/out`;
+const indexPath = `${outputDir}/_index.js`;
 
-// Collect all JS files in the modules directory
-const entryPoints = glob.sync(`${projectDir}/out/**/*.js`).sort();
+mkdirSync(outputDir, { recursive: true });
 
-// Generate _index.js that imports all modules and XrmQuery
-const indexPath = `${projectDir}/out/_index.js`;
+function refreshIndex() {
+    const entryPoints = globSync(`${outputDir}/**/*.js`, {
+        ignore: indexPath
+    }).sort();
 
-mkdirSync(path.dirname(indexPath), { recursive: true });
+    const importLines = entryPoints
+        .map((file) => `import "./${relative(dirname(indexPath), file).replace(/\\/g, "/")}";`)
+        .join("\n");
 
-let importLines = entryPoints
-    .map(f => `import "./${relative(dirname(indexPath), f).replace(/\\/g, "/")}";`)
-    .join("\n");
+    let currentContents;
+    try {
+        currentContents = readFileSync(indexPath, "utf8");
+    } catch {
+        currentContents = undefined;
+    }
 
-writeFileSync(indexPath, importLines);
+    if (currentContents !== importLines) {
+        writeFileSync(indexPath, importLines);
+    }
+}
 
-// Build options for ESBuild
-// This will bundle into a single WebResourceBundle.js file
+refreshIndex();
+
 const buildOptions = {
     entryPoints: [indexPath],
     bundle: true,
     outfile: `${projectDir}/WebResourceBundle.js`,
-    sourcemap: true,
+    // Keep local debugging self-contained: no separate .map request is needed.
+    sourcemap: "inline",
+    sourcesContent: true,
     format: "cjs",
     logLevel: "info",
     banner: {
@@ -43,6 +54,18 @@ if (watchMode) {
     console.info("Starting ESBuild in watch mode");
     const ctx = await esbuild.context(buildOptions);
     await ctx.watch();
+
+    // esbuild follows files already imported by _index.js. Refreshing the index
+    // also lets watch mode discover newly added or removed TypeScript outputs.
+    let refreshTimer;
+    watch(outputDir, { recursive: true }, (_eventType, fileName) => {
+        if (!fileName?.endsWith(".js") || fileName.endsWith("_index.js")) {
+            return;
+        }
+
+        clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(refreshIndex, 50);
+    });
 } else {
     console.info("Starting ESBuild for a single run");
     await esbuild.build(buildOptions);

@@ -9,16 +9,22 @@
   "license": "UNLICENSED",
   "author": "DG",
   "scripts": {
-    "concurrently": "concurrently",
-    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/templatepublisherprefix_templateprojectname/out",
-    "clean-all": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* ./src/templatepublisherprefix_templateprojectname ./src/templatepublisherprefix_templateprojectname/out",
-    "build": "tsc",
-    "postbuild": "node esbuild.config.mjs"
+    "clean": "node clean.mjs",
+    "clean-all": "node clean.mjs",
+    "predev": "npm run build",
+    "dev": "node concurrently.mjs",
+    "predev:bundle": "npm run build:bundle",
+    "dev:bundle": "node concurrently.mjs bundle",
+    "build": "tsc -p tsconfig.json",
+    "build:bundle": "npm run clean:bundle && tsc -p tsconfig.bundle.json && node esbuild.config.mjs",
+    "serve": "http-server ./src/templatepublisherprefix_templateprojectname -a 127.0.0.1 -p 9999 --cors -c-1",
+    "clean:bundle": "node clean.mjs --bundle-only"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "esbuild": "^0.25.5",
-    "glob": "^11.0.2",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.28.2",
+    "glob": "^11.0.3",
+    "http-server": "^14.1.1",
     "typescript": "^5.8.3"
   }
 }

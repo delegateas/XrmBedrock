@@ -11,15 +11,11 @@
   <Target Name="NpmBuild" BeforeTargets="Build">
     <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
     <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
-    <Exec Command="npm run postbuild" WorkingDirectory="$(ProjectDir)" />
   </Target>
   <Target Name="NpmClean" BeforeTargets="Clean" Condition="'$(IsRebuild)' != 'true'">
     <Exec Command="npm run clean" WorkingDirectory="$(ProjectDir)" />
   </Target>
   <Target Name="NpmCleanAll" BeforeTargets="Clean" Condition="'$(IsRebuild)' == 'true'">
     <Exec Command="npm run clean-all" WorkingDirectory="$(ProjectDir)" />
-  </Target>
-  <Target Name="NpmCleanAfterBuild" AfterTargets="Build">
-    <Exec Command="npm run clean" WorkingDirectory="$(ProjectDir)" />
   </Target>
 </Project>

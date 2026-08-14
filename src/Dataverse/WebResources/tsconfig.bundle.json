@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "module": "none",
-    "inlineSourceMap": true,
+    "module": "ES6",
+    "moduleResolution": "Bundler",
+    "outDir": "./src/templatepublisherprefix_templateprojectname/out",
+    "sourceMap": true,
     "inlineSources": true
   },
   "include": [
