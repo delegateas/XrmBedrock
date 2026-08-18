@@ -177,6 +177,43 @@ public partial class DataverseAccessObject : IDataverseAccessObject
     }
 
     /// <summary>
+    /// Generically retrieves a list of objects by attribute values
+    /// Uses the attributeSelector to determine which attribute to filter on and the values collection to specify which values to match
+    /// </summary>
+    /// <typeparam name="T">Entity type</typeparam>
+    /// <typeparam name="TValue">Type of the attribute value</typeparam>
+    /// <param name="values">Collection of values to match</param>
+    /// <param name="attributeSelector">Expression specifying which attribute to filter on (e.g., x => x.msys_InvoiceNumber)</param>
+    /// <param name="columnExpressions">Optional column expressions to specify which columns to retrieve</param>
+    /// <returns>List of entities matching any of the specified values</returns>
+    public List<T> RetrieveMultipleByAttribute<T, TValue>(IEnumerable<TValue> values, Expression<Func<T, TValue>> attributeSelector, params Expression<Func<T, object>>[] columnExpressions) where T : Entity
+    {
+        var valueArray = values.ToArray();
+        if (valueArray.Length == 0)
+        {
+            return new List<T>();
+        }
+
+        var entityLogicalName = DataverseStaticExtensions.LogicalName<T>();
+        // Convert the generic expression to one that StringOf can handle
+        var attributeName = attributeSelector.ToObjectExpression().StringOf();
+        var columnSet = columnExpressions.ToList().ConvertAll(x => x.StringOf()).ToArray();
+
+        var query = new QueryExpression(entityLogicalName)
+        {
+            ColumnSet = columnSet.Length == 0 ? new ColumnSet(true) : new ColumnSet(columnSet),
+            Criteria = new FilterExpression(),
+        };
+
+        var condition = new ConditionExpression(attributeName, ConditionOperator.In, valueArray);
+        var filter = new FilterExpression();
+        filter.Conditions.Add(condition);
+        query.Criteria.AddFilter(filter);
+
+        return RetrieveList<T>(query, new StackTrace().GetFrame(1).GetMethod().Name);
+    }
+
+    /// <summary>
     /// Generically retrieves a list of objects <typeparamref name="T"/> from XRM.
     /// Note that T does NOT have to be an entity. It can be any class constructed from data based on an XRM query 
     /// </summary>

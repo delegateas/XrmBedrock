@@ -11,16 +11,8 @@ namespace SharedContext.Dao;
 ///
 /// This class is implemented as partial to split an otherwise large file into smaller files.
 /// </summary>
-public partial class DataverseAccessObject : IDataverseAccessObject
+public partial class DataverseAccessObject(IOrganizationService orgService, ILogger logger) : IDataverseAccessObject
 {
-    private readonly IOrganizationService orgService;
-    protected readonly ILogger logger;
-    private readonly CacheHandler cacheHandler;
-
-    public DataverseAccessObject(IOrganizationService orgService, ILogger logger)
-    {
-        this.orgService = orgService;
-        this.logger = logger;
-        cacheHandler = new CacheHandler(MemoryCache.Default, logger);
-    }
+    protected readonly ILogger logger = logger;
+    private readonly CacheHandler cacheHandler = new(MemoryCache.Default, logger);
 }

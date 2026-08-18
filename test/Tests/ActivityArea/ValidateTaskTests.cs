@@ -3,21 +3,17 @@ using Task = XrmBedrock.SharedContext.Task;
 
 namespace Tests.ActivityArea;
 
-public class ValidateTaskTests : TestBase
+public class ValidateTaskTests(XrmMockupFixture fixture) : TestBase(fixture)
 {
-    public ValidateTaskTests(XrmMockupFixture fixture)
-        : base(fixture)
-    {
-    }
-
     [Fact]
     public void TestNoValidationOfOwnTask_Implicit()
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
+        var userProducer = new DataProducer(UserDao, AdminDao);
 
         // Act
-        var act = () => UserDao.Producer(new Task
+        var act = () => userProducer.ProduceValidTask(new Task
         {
             RegardingObjectId = account.ToEntityReference(),
             ScheduledStart = new DateTime(2025, 1, 1, 3, 0, 0, DateTimeKind.Utc),
@@ -32,9 +28,10 @@ public class ValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
+        var userProducer = new DataProducer(UserDao, AdminDao);
 
         // Act
-        var act = () => UserDao.Producer(new Task
+        var act = () => userProducer.ProduceValidTask(new Task
         {
             RegardingObjectId = account.ToEntityReference(),
             ScheduledStart = new DateTime(2025, 1, 1, 3, 0, 0, DateTimeKind.Utc),
@@ -50,9 +47,10 @@ public class ValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
+        var userProducer = new DataProducer(UserDao, AdminDao);
 
         // Act
-        var act = () => UserDao.Producer(new Task
+        var act = () => userProducer.ProduceValidTask(new Task
         {
             RegardingObjectId = account.ToEntityReference(),
             ScheduledStart = new DateTime(2025, 1, 1, 10, 0, 0, DateTimeKind.Utc),
@@ -68,7 +66,8 @@ public class ValidateTaskTests : TestBase
     {
         // Arrange
         var account = Producer.ProduceValidAccount(null);
-        var task = UserDao.Producer(new Task
+        var userProducer = new DataProducer(UserDao, AdminDao);
+        var task = userProducer.ProduceValidTask(new Task
         {
             RegardingObjectId = account.ToEntityReference(),
             ScheduledStart = new DateTime(2025, 1, 1, 3, 0, 0, DateTimeKind.Utc),

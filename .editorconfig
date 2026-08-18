@@ -657,3 +657,6 @@ dotnet_diagnostic.MA0009.severity = none	# With data that comes from Dataverse w
 [src/Dataverse/AdhocJobs/Jobs/**]
 dotnet_diagnostic.MA0048.severity = none	# Job files use top-level statements which generate a Program class, not matching file name
 dotnet_diagnostic.CA1812.severity = none	# Same reason - generated Program class appears never instantiated
+
+[test/Tests/DataProducer/**]
+dotnet_diagnostic.MA0048.severity = none 	# Filenames cannot match when using partial classes

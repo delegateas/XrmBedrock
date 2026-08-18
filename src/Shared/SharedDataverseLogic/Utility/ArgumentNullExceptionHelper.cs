@@ -5,7 +5,7 @@
 **
 =============================================================================*/
 
-namespace DataverseLogic;
+namespace SharedDataverseLogic;
 
 public static class ArgumentNullExceptionHelper
 {
