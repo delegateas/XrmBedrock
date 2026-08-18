@@ -55,5 +55,6 @@ public interface IDataverseAccessObject
     List<T> RetrieveListCachable<T>(string cacheKey, QueryExpression query, [CallerMemberName] string callerMethodName = "") where T : Entity;
     List<T> RetrieveMultipleByIds<T>(IEnumerable<Guid> guids, params Expression<Func<T, object>>[] columnExpressions) where T : Entity;
     List<T> RetrieveMultipleByIds<T>(IEnumerable<Guid> guids, string fieldName, params Expression<Func<T, object>>[] columnExpressions) where T : Entity;
+    List<T> RetrieveMultipleByAttribute<T, TValue>(IEnumerable<TValue> values, Expression<Func<T, TValue>> attributeSelector, params Expression<Func<T, object>>[] columnExpressions) where T : Entity;
     void Update<T>(T entity, [CallerMemberName] string callerMethodName = "") where T : Entity;
 }
