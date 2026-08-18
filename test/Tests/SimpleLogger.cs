@@ -2,6 +2,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Tests;
 
+/// <summary>
+/// This "fake" logger is to be used when a service is tested with explicit instantiation and has a dependency to an ILogger
+/// </summary>
 public class SimpleLogger : ILogger
 {
 #pragma warning disable CS8633 // Nullability in constraints for type parameter doesn't match the constraints for type parameter in implicitly implemented interface method'.

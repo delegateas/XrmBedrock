@@ -1,201 +1,187 @@
-# XrmBedrock
-This project serves as a template for Dataverse projects. This project aims to make it easy to work with Dataverse and Azure together. This project shows that modern development paradigms are applicable to Dataverse.
+# XrmBedrock Examples
 
-This template will be updated. The current list is as follows
-* Source control deployment
-* New way of handling web resources.
-* Deploying data.
+This branch contains practical examples demonstrating XrmBedrock architectural patterns for building Dataverse plugins. These examples serve as learning templates and reference implementations showing best practices for plugin development, business logic organization, and comprehensive testing.
 
----
-## Prerequisites
-Signtool is only needed when you pack and sign the plugin assembly for deployment (i.e. when building with `-p:PackAndSignPlugin=true`, see [Building the plugin](#building-the-plugin)). A regular build does **not** require it. It is included in the Windows SDK, which can be downloaded here: https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/. 
+## What's Included
 
-If Signtool already installed, proceceed too next section. 
-if not; Add signtool to system variables:
-1. Press Win + R, type sysdm.cpl, hit Enter.
-2. Go to Advanced → Environment Variables.
-3. Under System variables, find Path, click Edit.
-4. Click New, paste the folder path (the one containing signtool.exe).
-Example:
-  C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool
-6. Click OK on all dialogs.
-7. Verify the new command på open cmd and run "signtool /?" If not found restart computer and try again
+This repository contains two complete "Area" implementations with multiple plugin scenarios:
 
-Additionally install [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`)
+- **Customer Area** - Account management with 4 different plugin patterns
+- **Activity Area** - Task validation with business rules
 
-## Building the plugin
-By default, builds do **not** pack (ILRepack) or sign the plugin assembly, so a routine build needs no extra tooling:
+Each example includes:
+- Business logic implementation
+- Plugin registration
+- Comprehensive integration tests
+- Dependency injection setup
+
+## Customer Area Examples
+
+Located in `src/Dataverse/SharedPluginLogic/Logic/CustomerArea/`
+
+### 1. ValidatePhoneNumber
+
+**Purpose**: Validates that phone numbers follow a specific format (must start with '+' and contain only digits and spaces)
+
+**Pattern**: Input validation using regex
+
+**Key Files**:
+- Logic: `CustomerService.cs:ValidatePhoneNumber()`
+- Registration: `Registrations/CustomerArea/ValidatePhoneNumber.cs`
+- Tests: `test/IntegrationTests/CustomerArea/ValidatePhoneNumberTests.cs`
+
+**Details**:
+- Execution Stage: PreValidation (runs early to block invalid data)
+- Events: Create and Update on Account entity
+- Demonstrates: Early validation, regex patterns, OneOf error handling
+
+### 2. CreateCreditAssessmentTask
+
+**Purpose**: Automatically creates a task for credit assessment when a new account is marked as "Supplier"
+
+**Pattern**: Automated task creation based on entity type
+
+**Key Files**:
+- Logic: `CustomerService.cs:CreateCreditAssessmentTask()`
+- Registration: `Registrations/CustomerArea/AccountCreditAssessment.cs`
+- Tests: `test/IntegrationTests/CustomerArea/AccountCreditAssessmentTests.cs`
+
+**Details**:
+- Execution Stage: PostOperation (after account is created)
+- Events: Create on Account entity
+- Demonstrates: Conditional entity creation, checking account type, using DAO pattern
+
+### 3. CopyParentTelephone
+
+**Purpose**: Automatically copies telephone number from parent account to child account if not already set
+
+**Pattern**: Parent-child data inheritance
+
+**Key Files**:
+- Logic: `CustomerService.cs:CopyParentTelephone()`
+- Registration: `Registrations/CustomerArea/CopyParentTelephone.cs`
+- Tests: `test/IntegrationTests/CustomerArea/CopyParentTelephoneTests.cs`
+
+**Details**:
+- Execution Stage: PreOperation (modifies target before save)
+- Events: Create on Account entity
+- Demonstrates: Related entity lookups, conditional field copying, null handling
+
+### 4. UpdateTelephoneOnSubaccounts
+
+**Purpose**: Cascades telephone number changes from parent account to all child accounts that have the old phone number
+
+**Pattern**: Cascading updates with conditional logic
+
+**Key Files**:
+- Logic: `CustomerService.cs:UpdateTelephoneOnSubaccounts()`
+- Registration: `Registrations/CustomerArea/UpdateTelephoneOnSubaccounts.cs`
+- Tests: `test/IntegrationTests/CustomerArea/UpdateTelephoneOnSubaccountsTests.cs`
+
+**Details**:
+- Execution Stage: PostOperation (after update completes)
+- Events: Update on Account entity
+- Features: Uses PreImage/PostImage to detect changes, filtered attributes for performance
+- Demonstrates: Change detection, bulk updates, filtering by relationship
+
+## Activity Area Examples
+
+Located in `src/Dataverse/SharedPluginLogic/Logic/ActivityArea/`
+
+### ValidateTaskIsWithinBusinessHours
+
+**Purpose**: Validates that tasks assigned to other users are scheduled within business hours (8 AM - 5 PM)
+
+**Pattern**: Business rule validation with user context checking
+
+**Key Files**:
+- Logic: `ActivityService.cs:ValidateTaskIsWithinBusinessHours()`
+- Registration: `Registrations/ActivityArea/ValidateTask.cs`
+- Tests: `test/IntegrationTests/ActivityArea/ValidateTaskTests.cs`
+
+**Details**:
+- Execution Stage: PreValidation
+- Events: Create and Update on Task entity
+- Logic: Only validates when task owner is different from current user
+- Demonstrates: Time-based validation, user context awareness, filtered attributes, logging
+
+## Key Architectural Patterns Demonstrated
+
+1. **Area-based Organization** - Code organized by business domain (CustomerArea, ActivityArea)
+2. **Service Layer Pattern** - Business logic separated into service classes
+3. **Plugin Registration Pattern** - Clean, fluent API for registering plugin steps
+4. **Execution Stages** - Examples of PreValidation, PreOperation, and PostOperation
+5. **Image Usage** - PreImage and PostImage for detecting changes
+6. **Filtered Attributes** - Performance optimization by triggering only on specific field changes
+7. **Context Handling** - Using `GetTarget()`, `GetTargetMergedWithPreImage()`, `GetRequiredPreImage()`, `GetRequiredPostImage()`
+8. **DAO Pattern** - Using `IAdminDataverseAccessObjectService` for data operations
+9. **Integration Testing** - Comprehensive tests showing how to validate plugin behavior
+10. **Dependency Injection** - Service registration and resolution using Microsoft.Extensions.DependencyInjection
+
+## Getting Started
+
+### Explore the Examples
+
+1. **Read the business logic**: Start with `CustomerService.cs` or `ActivityService.cs`
+2. **Review plugin registrations**: See how plugins are registered in `Registrations/` folders
+3. **Study the tests**: Integration tests demonstrate how each plugin works
+4. **Trace the patterns**: Follow the Area-based structure and DI setup
+
+### File Structure
 
 ```
+src/Dataverse/SharedPluginLogic/
+├── Logic/
+│   ├── ActivityArea/
+│   │   ├── ActivityService.cs          # Business logic
+│   │   └── AddServices.cs              # DI registration
+│   └── CustomerArea/
+│       ├── CustomerService.cs          # Business logic
+│       └── AddServices.cs              # DI registration
+└── Registrations/
+    ├── ActivityArea/
+    │   └── ValidateTask.cs             # Plugin registration
+    └── CustomerArea/
+        ├── AccountCreditAssessment.cs
+        ├── CopyParentTelephone.cs
+        ├── UpdateTelephoneOnSubaccounts.cs
+        └── ValidatePhoneNumber.cs
+
+test/IntegrationTests/
+├── ActivityArea/
+│   └── ValidateTaskTests.cs            # 5 test methods
+└── CustomerArea/
+    ├── AccountCreditAssessmentTests.cs # 3 test methods
+    ├── CopyParentTelephoneTests.cs     # 3 test methods
+    ├── UpdateTelephoneOnSubaccountsTests.cs # 2 test methods
+    └── ValidatePhoneNumberTests.cs     # 2 test methods
+```
+
+### Build and Test
+
+```bash
+# Build the solution
 dotnet build --configuration Release
+
+# Run all integration tests
+dotnet test --configuration Release
 ```
 
-To produce the deployable, merged and signed DLL, opt in with the `PackAndSignPlugin` property. This requires `signtool` on your PATH (see [Prerequisites](#prerequisites)); ILRepack is restored automatically as a NuGet package:
+## How to Use These Examples
 
-```
-dotnet build src/Dataverse/Plugins/Plugins.csproj -c Release -p:PackAndSignPlugin=true
-```
+These examples are designed to be:
 
-**Caveat:** the Daxif deploy scripts expect `ILMerged.templatecompanyname.templateprojectname.Dataverse.Plugins.dll`, which is produced **only** when `-p:PackAndSignPlugin=true` is passed. A plain build does not produce it, so build with the flag before deploying the plugin locally. The pipeline already passes this flag, so CI output is unchanged.
+1. **Learning Templates** - Study them to understand XrmBedrock patterns
+2. **Reference Implementations** - See best practices in action
+3. **Starting Points** - Copy and modify for your own features
+4. **Test Examples** - Learn how to write comprehensive integration tests
 
-# Quick start (dotnet new)
+Each example is intentionally simple but covers common plugin scenarios and demonstrates the full development lifecycle from business logic through plugin registration to integration testing.
 
-1. Install the template from the repository root:
+## What's Next
 
-   ```bash
-   dotnet new install .
-   ```
-
-2. Create a new project, replacing each placeholder value with your own:
-
-   ```bash
-   dotnet new xrmbedrock -n MyProject \
-     --company-name MyOrg \
-     --publisher-prefix abc \
-     --solution-id mysol \
-     --dev-url https://myorg-dev.crm4.dynamics.com \
-     --test-url https://myorg-test.crm4.dynamics.com \
-     --uat-url https://myorg-uat.crm4.dynamics.com \
-     --prod-url https://myorg-prod.crm4.dynamics.com \
-     --rg-name myorg-mysol \
-     --cert-password MySecurePassword123 \
-     --username user@myorg.onmicrosoft.com
-   ```
-
-3. Post-setup runs automatically (generates a strong name key, plugin signing certificate, restores tools, installs npm packages, and generates Dataverse context files). 
-   You will be prompted to authenticate with your Dataverse environment via a browser popup. Requires [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`).
-
-4. Once post-setup completes, initialize git and create the initial commit:
-
-   ```bash
-   git init && git add -A && git commit -m "Initial project setup from XrmBedrock template"
-   ```
-
-To uninstall the template: `dotnet new uninstall .`
-
-# Regenerating Dataverse Context
-
-The Dataverse context files (C# proxies, TypeScript typings, and test metadata) are generated from your Dataverse environment during post-template setup using the F# scripts in `src/Tools/Daxif/`. You can regenerate them at any time:
-
-```bash
-dotnet fsi src/Tools/Daxif/GenerateCSharpContext.fsx
-dotnet fsi src/Tools/Daxif/GenerateTypeScriptContext.fsx
-```
-
-# Azure Setup
-
-## Federated Credentials
-
-To configure federated credentials for the Dataverse Managed Identity, run the following script. It loads the generated `plugincert.pfx` and prints the issuer, subject, thumbprint, and hash needed for Azure AD configuration:
-
-```bash
-pwsh Setup/printFederatedCredentials.ps1 -password "<your-cert-password>" -environmentId "<environment-guid>" -tenantId "<tenant-guid>"
-```
-
-## Storage account environment variable
-
-Create a new environment variable that will contain the storage account URL.
-
-Update the reference to that variable in `src/Dataverse/SharedPluginLogic/Logic/Azure/AzureConfigSetter.cs`.
-
-## Infrastructure validation
-
-To locally validate your `main.bicep`, run:
-
-```bash
-az login
-az deployment group validate --resource-group <your-resource-group> --template-file main.bicep
-```
-
-Note: When using `dotnet new`, `solutionId` and `companyId` in `Infrastructure/main.bicep` are set automatically via template parameters.
-
-# Azure DevOps
-
-## Environment
-Under Pipelines > Environment, create an environment per Dataverse environment.
-Note: The pipeline template uses Dev, Test, UAT, Prod.
-Use these to control approvals of deployments, regarding approval gates etc.
-
-## Library
-Under Pipelines > Library, create a variable group per environment.
-Note: The pipeline template uses Dev, Test, UAT, Prod.
-The template assumes the following variables exist.
-* ResourceGroupName
-* DataverseUrl
-* DataverseAppId (used by pipeline)
-* DataverseSecret (used by pipeline)
-* AzureClientId
-* AzureClientSecret (only used for DAXIF)
-* AzureTenantId (Needed for the managed identity record)
-* AzureClientEAObjectId (Object id of the Enterprise Application related to the App registration)
-
-## Service Connection
-Under Project Settings > Pipelines > Service connections, create 2 service connections per azure environment of types Power Platform and Azure Resource Manager.
-A service connection is used to authorize the pipeline against other services. The goal is to avoid secrets in the pipeline. Use the recommended settings with Workload Federated Credentials.
-Note: The pipeline template uses Dev, Test, UAT, Prod.
-
-###  How to create Power Platform service connections with federated credentials
-1.	Go to Project Settings > Pipelines > Service connections > New service connection > Power Platform
-2.	Select Workload Identity federation
-3.	Fill in the form 
-i Server URL = The URL of the Dataverse environment (https://dev.crm4.dynamics.com)
-ii Service Principal Id = The application (Client) id of the app registration
-iii TenantI Id = Teant Id, can be found in Azure Portal
-iV Service Connection Name = The name of the service connetion (e.g. Dataverse Dev)
-
-Once created:
-1.	Copy the Subject identifier as it is needed in the next step.
-
-You now need to create a federated credential on your app registration.
-1. Find your app registration in the Azure Portal
-2. Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-i. For 'Federated credential scenario' select 'Other issuer'
-ii. Issuer = https://vstoken.dev.azure.com/{organizationName}
-iii. Type = Explicit subject identifier
-iV. Value = Paste the `workloadIdentityFederationSubject` from the earlier step
-V. Name = Name of your choice (e.g. PipelineDataverse)
-
-### How to create Azure Resource Manager service connections with federated credentials
-1. Go to Project Settings > Pipelines > Service connections > New service connection > Azure Resource Manager
-i. Identity type = App registration or managed identity (manual)
-ii. Credential = Workload identity federation
-iii. Service Connection Name = The name of the service connection (e.g. Dev)
-iV. Directory (tenant) Id = Tenant Id, can be found in Azure Portal
-6. Click Next
-7. Copy the Issuer and Subject Identifier for later use
-8. Scope level = Subscription
-9. Subscription ID and Subscription Name can be found in the Azure Portal
-10. Application (client) ID = The client id of your app registration for the environment.
-
-You now need to create a federated credential on your app registration.
-1.	Find your app registration in the Entra Id
-2.	Go to Manage > Certificates & secrets > Federated credentials > + Add credential
-i.	For 'Federated credential scenario' select 'Other issuer'
-ii.	Issuer = Paste the issuer (copied in earlier step)
-iii.	Type = Explicit subject identifier
-iV.	Value = Paste the subject (copied in earlier step)
- V.	Name = Name of your choice (e.g. Pipeline)
-4. Add the app reg as a owner on the subscription or eventually on the resource group in the subscription
-
-Then head back to ADO and verify and save the service connection.
-
-## App registration privileges
-Remember to give your app reg permission to assign roles.
-The easiest method is to add it as owner to the subscription and restrict the role assignment to the ones bicep assigns.
-The template uses Storage Queue Data Contributor
-
-## Managed identity
-A managed identity is created by the bicep deploy. This is what Azure uses to call back into Dataverse. Make sure it is created as an app user. Search for the client id of the managed identity, you will not find it by name.
-
-## Pipeline and PR validation
-Remember to "uncomment" the `Build.yaml` workflow trigger, for use of build validation in pull requests.
-
-The Azure DevOps pipelines live in `.pipelines/`. Entry-point pipelines sit at the root; all reusable steps/jobs/stages live under `.pipelines/templates/`:
-
-* `Build.yaml` / `BuildAndDeploy.yaml` — the default pipelines, running build + test in a single job.
-* `Build.Parallel.yaml` / `BuildAndDeploy.Parallel.yaml` — an alternative that scales across many build agents: it splits the work into parallel `Build`, `Analyze`, and `Test` stages, caches NuGet packages, and reuses a published build artifact so tests run without recompiling. The `Test` stage is a single job by default; see the commented `matrix` example in `Build.Parallel.yaml` for how to shard tests across agents. Register whichever pair fits your build capacity.
-
-## TODO
-* Improve validation of infrastructure to be easier to manage
-* Auto set storage account environment variable
-* Auto user creation for managed identity
+Use these examples as a foundation to:
+- Build your own Areas for different business domains
+- Implement similar patterns for your specific requirements
+- Create comprehensive test suites for your plugins
+- Follow established architectural patterns throughout your solution
