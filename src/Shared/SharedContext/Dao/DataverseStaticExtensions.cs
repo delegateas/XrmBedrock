@@ -23,20 +23,6 @@ public static class DataverseStaticExtensions
         return StaticReflection.GetMemberName<T>(expr).ToLower();
     }
 
-    /// <summary>
-    /// Converts an Expression{Func{T, TSpecific}} to Expression{Func{T, object}} for use with generic Retrieve methods
-    /// </summary>
-    /// <typeparam name="T">The entity type</typeparam>
-    /// <typeparam name="TSpecific">The specific return type of the original expression</typeparam>
-    /// <param name="expr">The expression to convert</param>
-    /// <returns>An expression that returns object instead of the specific type</returns>
-    public static Expression<Func<T, object>> ToObjectExpression<T, TSpecific>(this Expression<Func<T, TSpecific>> expr)
-    {
-        var parameter = expr.Parameters[0];
-        var convertedBody = Expression.Convert(expr.Body, typeof(object));
-        return Expression.Lambda<Func<T, object>>(convertedBody, parameter);
-    }
-
     public static string LogicalName<T>() where T : Entity
     {
         return (Activator.CreateInstance<T>()).LogicalName;
@@ -132,36 +118,6 @@ public static class DataverseStaticExtensions
 
         // Return the length value from the MaxLength attribute
         return maxLengthAttribute.Length;
-    }
-
-    /// <summary>
-    /// For use in comparing two EntityReference objects, as the default comparison is by reference and not by value.
-    /// Use in .Distinct() or .Contains() for example.
-    /// </summary>
-    public sealed class EntityReferenceComparer : IEqualityComparer<EntityReference>
-    {
-        public bool Equals(EntityReference? x, EntityReference? y)
-        {
-            if (x is null && y is null)
-                return true;
-            if (x is null || y is null)
-                return false;
-            return x.LogicalName == y.LogicalName && x.Id == y.Id;
-        }
-
-        public int GetHashCode(EntityReference obj)
-        {
-            if (obj is null)
-                return 0;
-
-            unchecked
-            {
-                int hash = 17;
-                hash = hash * 31 + (obj.LogicalName?.GetHashCode() ?? 0);
-                hash = hash * 31 + obj.Id.GetHashCode();
-                return hash;
-            }
-        }
     }
 
     #region Private classes
