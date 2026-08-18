@@ -47,7 +47,7 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
 
         xrm = XrmMockup365.GetInstance(fixture.Settings);
 
-        // Setting up a user DAO for testing stuff that depends on the user context
+        // Setting up a user DAO for testing stuff that depends on the user context, you probably want to change the role to your basic role or some other role more restricted than the System Administrator role
         using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Trace));
         var logger = loggerFactory.CreateLogger<TestBase>();
         userIdOfUserDao = Guid.NewGuid();
