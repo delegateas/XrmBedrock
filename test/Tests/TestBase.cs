@@ -23,7 +23,6 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
     private readonly WireMockServer server;
     private readonly IDataverseAccessObject userDao;
     private readonly Guid userIdOfUserDao;
-    private readonly EntityReference otherUserReference;
 
     protected XrmMockup365 Xrm => xrm;
 
@@ -42,24 +41,19 @@ public class TestBase : IClassFixture<XrmMockupFixture>, IDisposable
 
     protected Guid UserIdOfUserDao => userIdOfUserDao;
 
-    protected EntityReference OtherUserReference => otherUserReference;
-
     public TestBase(XrmMockupFixture fixture)
     {
         ArgumentNullException.ThrowIfNull(fixture);
 
         xrm = XrmMockup365.GetInstance(fixture.Settings);
 
-        // Setting up a user DAO for testing stuff that depends on the user context, you probably want to change the role to your basic role or some other role more restricted than the System Administrator role
+        // Setting up a user DAO for testing stuff that depends on the user context
         using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Trace));
         var logger = loggerFactory.CreateLogger<TestBase>();
         userIdOfUserDao = Guid.NewGuid();
         CreateUser(userIdOfUserDao, Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator);
         var userService = Xrm.CreateOrganizationService(userIdOfUserDao);
         userDao = new DataverseAccessObject(userService, logger);
-
-        var otherUser = CreateUser(Guid.NewGuid(), Xrm.RootBusinessUnit, SecurityRoles.SystemAdministrator);
-        otherUserReference = otherUser.ToEntityReference();
 
         adminDao = new DataverseAccessObjectAsync(xrm.GetAdminService(), Substitute.For<ILogger>());
         producer = new DataProducer(AdminDao);
