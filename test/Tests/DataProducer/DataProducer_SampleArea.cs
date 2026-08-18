@@ -10,7 +10,7 @@ namespace Tests;
 /// </summary>
 public partial class DataProducer
 {
-    internal Contact ProduceValidContact(Contact? contact) =>
+    internal Contact SampleProduceValidContact(Contact? contact) =>
         dao.Producer(contact, e =>
         {
             e.EnsureValue(x => x.FirstName, $"John");
