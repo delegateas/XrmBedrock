@@ -13,4 +13,13 @@
   <Target Name="NpmCi" BeforeTargets="CoreCompile" Condition="'$(DesignTimeBuild)' != 'true'">
     <Exec Command="npm ci" WorkingDirectory="$(MSBuildProjectDirectory)" />
   </Target>
+  <!-- The JavaScript SDK constructs this path with Windows separators. Its .NET
+       file-generation task treats backslashes as literal filename characters on Unix.
+       Normalize immediately before generation because Sdk.targets sets the property
+       after importing the project and Directory.Build.targets. -->
+  <Target Name="NormalizePackagePropsPath" BeforeTargets="GeneratePackageJsonProps">
+    <PropertyGroup>
+      <PackagePropsPath>$(PackagePropsPath.Replace('\', '/'))</PackagePropsPath>
+    </PropertyGroup>
+  </Target>
 </Project>
