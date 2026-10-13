@@ -24,7 +24,7 @@
     "watch": "node build.mjs --watch"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.5",
     "esbuild": "^0.28.0",
     "glob": "^11.0.2",
     "typescript": "^5.9.0",
