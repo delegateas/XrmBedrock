@@ -1,0 +1,49 @@
+version: 2
+updates:
+  # Keeps .config/dotnet-tools.json up to date for the XrmBedrock template.
+  # Context& tools are proposed as soon as they are published; third-party tools must have been
+  # published for a grace period first, to reduce exposure to compromised or malicious releases.
+  # When adding a tool to dotnet-tools.json, add it to 'allow' and to the Context& or third-party lists below.
+  # Names must match the (lowercase) keys in dotnet-tools.json.
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: daily
+      time: "02:00"
+    allow:
+      - dependency-name: xrmcontext
+      - dependency-name: xrmdefinitelytyped
+      - dependency-name: xrmsync
+      - dependency-name: xrmmockup.metadatagenerator
+      - dependency-name: solutionextender
+      - dependency-name: nswag.consolecore
+      - dependency-name: microsoft.powerapps.cli.tool
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+      exclude:
+        # Context& tools: no grace period
+        - xrmcontext
+        - xrmdefinitelytyped
+        - xrmsync
+        - xrmmockup.metadatagenerator
+        - solutionextender
+    groups:
+      # Major updates fall outside the groups and get a PR per tool
+      context-and-tools:
+        patterns:
+          - xrmcontext
+          - xrmdefinitelytyped
+          - xrmsync
+          - xrmmockup.metadatagenerator
+          - solutionextender
+        update-types:
+          - minor
+          - patch
+      third-party-tools:
+        patterns:
+          - nswag.consolecore
+          - microsoft.powerapps.cli.tool
+        update-types:
+          - minor
+          - patch
