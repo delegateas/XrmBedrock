@@ -15,6 +15,10 @@ dotnet new xrmbedrock -n MyProject --company-name Acme --solution MySolution --p
 Post-setup generates signing keys, restores local dotnet tools, installs npm dependencies,
 generates contexts/test metadata and builds the solution. It stops on failure and prints
 all tool output, including device-code prompts, to the console and `PostSetup.log`.
+The post-setup Release build keeps NuGet vulnerability warnings (`NU1901`–`NU1904`)
+visible without treating them as errors, so setup can complete before packages are fixed.
+All other build checks and normal Release/CI warning policies remain unchanged.
+Fix vulnerable packages before running a normal Release build.
 It preserves existing signing keys when rerun and never creates a git commit automatically.
 For manual setup use `dotnet run --project Setup/PostSetup`; add `-- --skip-generation`
 only when contexts and test metadata have already been generated.
