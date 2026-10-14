@@ -44,7 +44,8 @@ if (!args.Contains("--skip-generation", StringComparer.Ordinal))
 
 Step(7, "Building generated solution");
 var solutionPath = Directory.GetFiles(projectRoot, "*.slnx").Concat(Directory.GetFiles(projectRoot, "*.sln")).Single();
-RunCommand("dotnet", $"build \"{solutionPath}\" --configuration Release");
+Log("NuGet vulnerability warnings remain visible but do not block setup. Fix vulnerable packages before normal Release builds.");
+RunCommand("dotnet", $"build \"{solutionPath}\" --configuration Release -p:PostSetupBuild=true");
 
 Log();
 Log("Setup complete.");
