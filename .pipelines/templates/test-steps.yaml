@@ -31,7 +31,7 @@ steps:
         displayName: 'dotnet test'
         inputs:
           command: test
-          projects: 'test/IntegrationTests/IntegrationTests.csproj'
+          projects: 'test/Tests/Tests.csproj'
           arguments: '--no-build --configuration $(BuildConfiguration) --logger trx --results-directory $(Agent.TempDirectory)/TestResults --blame-hang-timeout 5m'
           publishTestResults: false
 
@@ -40,7 +40,7 @@ steps:
         displayName: 'dotnet test (shard)'
         inputs:
           command: test
-          projects: 'test/IntegrationTests/IntegrationTests.csproj'
+          projects: 'test/Tests/Tests.csproj'
           arguments: '--no-build --configuration $(BuildConfiguration) --filter "${{ parameters.testFilter }}" --logger trx --results-directory $(Agent.TempDirectory)/TestResults --blame-hang-timeout 5m'
           publishTestResults: false
 
