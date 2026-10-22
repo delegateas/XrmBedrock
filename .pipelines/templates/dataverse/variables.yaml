@@ -4,3 +4,4 @@ variables:
   PluginAssembly: 'src/Dataverse/Plugins/bin/Release/net462/Merged.templatecompanyname.templateprojectname.Dataverse.Plugins.dll'
   BuildPlatform: 'any cpu'
   BuildConfiguration: Release
+  DeploymentSettingsPath: "$(build.sourcesDirectory)/.pipelines/deploymentSettings"

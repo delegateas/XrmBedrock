@@ -33,11 +33,13 @@ steps:
         $connection = @('--environment', $environmentUrl, '--auth', 'azcli')
         $folder = [IO.Path]::GetFullPath('$(Pipeline.Workspace)/Dataverse/solutions')
         $zip = Join-Path $folder "$solutionName.zip"
+        $deploymentSettingsFile = "$(DeploymentSettingsPath)/customDeploymentSettings-${{parameters.environment}}.json"
+        if (-not (Test-Path -LiteralPath $deploymentSettingsFile -PathType Leaf)) { throw "Deployment settings file not found: $deploymentSettingsFile" }
 
         if (-not (Test-Path -LiteralPath $zip -PathType Leaf)) { throw "Solution archive not found: $zip" }
         Invoke-Tool solutionextender (@('pre-import', '--zip', $zip, '--apply') + $connection)
         # Wait for successful import before restoring extended metadata.
-        Invoke-Tool pac @('solution', 'import', '--environment', $environmentUrl, '--path', $zip, '--activate-plugins')
+        Invoke-Tool pac @('solution', 'import', '--environment', $environmentUrl, '--path', $zip, '--settings-file', $deploymentSettingsFile, '--activate-plugins')
         Invoke-Tool solutionextender (@('post-import', '--zip', $zip, '--apply', '--reassign-workflows') + $connection)
     env:
       DataverseUrl: $(DataverseUrl)
