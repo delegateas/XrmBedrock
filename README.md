@@ -278,11 +278,18 @@ Use these to control approvals of deployments, regarding approval gates etc.
 Under Pipelines > Library, create a variable group per environment.
 Note: The pipeline template uses Dev, Test, UAT, Prod.
 The template assumes the following variables exist.
-* ResourceGroupName
-* DataverseUrl
-* AzureClientId
+* ResourceGroupName (Name of the _existing_ resource group in Azure)
+* DataverseUrl (Full path of the dataverse instance for the environment)
+* AzureClientId (The Application (client) ID of the App Registration that the Managed Identity is set up with)
 * AzureTenantId (Needed for the managed identity record)
 * AzureClientEAObjectId (Object id of the Enterprise Application related to the App registration)
+
+Regarding the Resource Group
+* You _can_ use the same group for several/all environments as the resources created will have an environment indication in the name but it is recommended to have a resource group pr environment
+
+Regarding the AzureClientEAObjectId:
+* It is needed because it on that "level" that roles are assigned in Azure Entra
+* It is found following the link "Managed application in local directory" on the App Registration in Azure Entra
 
 ## Service Connection
 Create one **Azure Resource Manager** service connection per environment, named
@@ -305,6 +312,21 @@ The Azure DevOps pipelines live in `.pipelines/`. Entry-point pipelines sit at t
 
 * `Build.yaml` / `BuildAndDeploy.yaml` — the default pipelines, running build + test in a single job.
 * `Build.Parallel.yaml` / `BuildAndDeploy.Parallel.yaml` — an alternative that scales across many build agents: it splits the work into parallel `Build`, `Analyze`, and `Test` stages, caches NuGet packages, and reuses a published build artifact so tests run without recompiling. The `Test` stage is a single job by default; see the commented `matrix` example in `Build.Parallel.yaml` for how to shard tests across agents. Register whichever pair fits your build capacity.
+
+## Trouble shooting
+* If you want to deploy plugins from your machine (circumventing the pipeline) you may face these issues
+  * You will need the path to signtool in your PATH environment variable on your machine. It comes with the MS SDKs. Search for signtool.exe on your machine
+  * Avoid spaces in the path to the plugin project (yes, the entire path)
+  * Some users have experienced that VS does not build the plugin project in net462 even though the project file specifies a build to both net10.0 and net462. You can force a build of the project to net 462 using this switch: --framework net462
+* There has been reported incidents of the pipeline not building the plugin in net462 in case you experience that add this step to `\.pipelines\templates\build-steps.yaml`:
+```yaml
+- task: DotNetCoreCLI@2
+    displayName: 'dotnet build plugins only (forcing .NetFramework 4.6.2)'
+    inputs:
+      command: build
+      projects: '$(BasePath)/src/Dataverse/Plugins/Plugins.csproj'
+      arguments: --no-restore --configuration $(BuildConfiguration) -p:PackAndSignPlugin=true --framework net462
+```
 
 ## TODO
 * Improve validation of infrastructure to be easier to manage

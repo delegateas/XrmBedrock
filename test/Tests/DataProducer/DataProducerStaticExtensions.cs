@@ -14,7 +14,7 @@ internal static class DataProducerStaticExtensions
         }
     }
 
-    internal static void EnsureValue<TE, TV>(this TE entity, Expression<Func<TE, TV>> selector, Expression<Func<TV>> defaultvalue)
+    internal static void EnsureValue<TE, TV>(this TE entity, Expression<Func<TE, TV?>> selector, Expression<Func<TV?>> defaultvalue)
         where TE : Entity
         where TV : class
     {

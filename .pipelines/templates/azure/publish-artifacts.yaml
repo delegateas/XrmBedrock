@@ -5,7 +5,7 @@ steps:
       command: publish   
       publishWebProjects: false
       projects: |
-          Azure/src/*/*.csproj
+          src/Azure/*/*.csproj
         
       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
 
