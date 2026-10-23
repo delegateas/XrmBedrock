@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\SharedContext\SharedContext.csproj" />
-    <ProjectReference Include="..\..\Shared\SharedDataverseLogic\SharedDataverseLogic.csproj" />
     <ProjectReference Include="..\..\Shared\SharedDomain\SharedDomain.csproj" />
   </ItemGroup>
 

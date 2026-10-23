@@ -2,10 +2,8 @@ using Azure.Core;
 using Azure.DataverseService.Foundation.Dao;
 using DataverseConnection;
 using DataverseService.Foundation.Dao;
-using DataverseService.Foundation.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Xrm.Sdk;
 using SharedContext.Dao;
 
 namespace DataverseService;
@@ -21,8 +19,6 @@ public static class Startup
         });
         services.AddScoped<IDataverseAccessObjectAsync, DataverseAccessObjectAsync>();
         services.AddScoped<IAdminDataverseAccessObjectService, AdminDataverseAccessObjectService>();
-        services.AddScoped<ITracingService, ExtendedTracingService>();
-
         return services;
     }
 }
