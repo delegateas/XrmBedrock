@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "nswag.consolecore": {
-      "version": "14.0.7",
+      "version": "14.7.1",
       "commands": [
         "nswag"
       ]
@@ -37,7 +37,7 @@
       "rollForward": false
     },
     "microsoft.powerapps.cli.tool": {
-      "version": "2.12.2",
+      "version": "2.13.1",
       "commands": [
         "pac"
       ],
