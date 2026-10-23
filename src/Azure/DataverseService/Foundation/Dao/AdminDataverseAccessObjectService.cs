@@ -5,7 +5,7 @@ using SharedContext.Dao;
 namespace DataverseService.Foundation.Dao;
 
 /// <summary>
-/// This is used by the services in the SharedDataverseLogic project
+/// This is used by the services in the DataverseService project
 /// </summary>
 #pragma warning disable CA1062 // Validate arguments of public methods
 public class AdminDataverseAccessObjectService(IOrganizationServiceAsync2 organizationService, ILogger<AdminDataverseAccessObjectService> logger)

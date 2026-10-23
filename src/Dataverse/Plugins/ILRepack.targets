@@ -11,7 +11,6 @@
 			<InputAssemblies Include="$(TargetDir)SharedContext.dll" />
 			<InputAssemblies Include="$(TargetDir)XrmPluginCore.dll" />
 			<InputAssemblies Include="$(TargetDir)XrmPluginCore.Abstractions.dll" />
-			<InputAssemblies Include="$(TargetDir)SharedDataverseLogic.dll" />
 			<InputAssemblies Include="$(TargetDir)SharedDomain.dll" />
 			<InputAssemblies Include="$(TargetDir)System.Threading.Tasks.Extensions.dll" />
 			<InputAssemblies Include="$(TargetDir)System.Text.Json.dll" />
