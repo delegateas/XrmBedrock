@@ -23,7 +23,7 @@
       "rollForward": false
     },
     "xrmsync": {
-      "version": "1.0.0-preview.27",
+      "version": "1.0.1",
       "commands": [
         "xrmsync"
       ],
